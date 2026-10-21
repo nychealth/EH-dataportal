@@ -90,6 +90,7 @@ $(function () {
                 if ($next.length) {
                     var nextOrigTop = $next.data('origTop');
                     if (scrollTop > nextOrigTop - h) {
+
                         // Next header is displacing this one
 
                         fixedTop = -(scrollTop - (nextOrigTop - h));

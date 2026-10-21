@@ -310,6 +310,7 @@ const bindTopicSelectorControls = () => {
     const indicatorDestination = document.getElementById('indicatorDestination');
 
     if (indicatorDestination) {
+
         // The indicator list is rebuilt with innerHTML on every topic change,
         // so delegate from the stable modal container.
 
@@ -385,11 +386,13 @@ const renderIndicatorList = async (indList, destination) => {
         // - - - build each indicator card, with recently-updated badge - - - //
 
         const indicatorsHtml = section.indicators.map(id => {
+
             // Look up the indicator object in the global indicators array
 
             const indicator = indicators.find(ind => ind.IndicatorID === id);
             
             if (!indicator) {
+
                 // Skip broken front-matter references without breaking the rest of the modal.
 
                 console.warn(`Indicator with ID ${id} not found.`);

@@ -66,6 +66,7 @@ function init() {
 }
 
 function UrlExists(url) {
+
     // console.log('checking ' + url)
 
     var http = new XMLHttpRequest();
@@ -87,6 +88,7 @@ function UrlExists(url) {
 function getMagmaColors(n) {
   const colors = [];
   for (let i = 0; i < n; i++) {
+
     // Get evenly spaced t values from 0 to 1
 
     const t = i / (n - 1);
@@ -248,11 +250,13 @@ function toggleScatter(x) {
   // console.log(scatterCount)
 
   if ( scatterCount % 2 == 0) {
+
     // console.log('even')
 
     document.getElementById('scattertoggle').innerHTML = 'Show time'
     vegaEmbed('#vis2', scatterplot, {renderer: "svg"})
   } else {
+
     // console.log('odd')
 
     document.getElementById('scattertoggle').innerHTML = 'Show scatter'

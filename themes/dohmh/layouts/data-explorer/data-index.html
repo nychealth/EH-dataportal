@@ -268,6 +268,7 @@
                         // setting 'onclick' action for each geography, with the geo as the argument
 
                         li.addEventListener('click', e => {
+
                             // console.log("classList [e]", e.target.classList)
 
                             toggle_button(e);
@@ -358,6 +359,7 @@
                 var button = e.target;
 
                 if (button.classList.contains("active") == false) {
+
                     // if the clicked button isn't active, add active class to buttons with this geo type
 
                     // all buttons of this geo type
@@ -370,6 +372,7 @@
 
                 }
                 else if (button.classList.contains("active") == true) {
+
                     // if the clicked button is active, remove active class to buttons with this geo type
 
                     // all buttons of this geo type
@@ -571,6 +574,7 @@
                     // loop through measures
 
                     for (let j = 0; j < indicators[i].Measures.length; j ++) {
+
                         // for each measure, get measure - visOptions - map - geotype
 
                         maps.push(indicators[i].Measures[j].VisOptions[0].Map[0].GeoType)
@@ -580,6 +584,7 @@
 
                         const isNull = (geotype) => geotype == null
                         if (maps.every(isNull) == true) {
+
                             // send indicator info to object
 
                             var indicator = {}
@@ -605,6 +610,7 @@
                     // loop through their measures
 
                     for (let j = 0; j < indicators[i].Measures.length; j ++) {
+
                         // Count views for each measure...
 
                         var thisMeasure = {};

@@ -89,6 +89,7 @@ const closeExplorerTabPane = (paneId) => {
     const targetTab = document.querySelector('[href="#' + paneId + '"]');
 
     if (targetPane && targetTab) {
+
         // Remove active state from the tab
 
         targetTab.classList.remove('active');
@@ -113,6 +114,7 @@ const closeExplorerTabPane = (paneId) => {
 };
 
 document.addEventListener('DOMContentLoaded', function() {
+
     // One shared button (outside every .tab-pane.fade, see de-tab-content.html)
     // closes whichever pane is currently active — same lookup the Escape
     // handler below uses.
@@ -166,6 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const toggleIcon = mobileDetailsToggle ? mobileDetailsToggle.querySelector('.toggle-icon') : null;
 
     if (mobileAccordionHeader && mobileDetailsToggle && detailsContent && toggleIcon) {
+
         // Function to update icon state
 
         function updateIconState(isOpen) {
@@ -259,6 +262,7 @@ document.addEventListener('DOMContentLoaded', function() {
     panelIds.forEach(panelId => {
         const panel = document.querySelector('#' + panelId);
         if (panel) {
+
             // Listen for Bootstrap show/hide events
 
             panel.addEventListener('show.bs.tab', updateHasOpenPanelClass);
@@ -272,6 +276,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const tabContent = document.querySelector('#v-pills-tabContent');
     if (tabContent) {
+
         // Use MutationObserver to watch for style changes
 
         const observer = new MutationObserver(function(mutations) {
@@ -289,6 +294,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const tabLinks = document.querySelectorAll('.nav-link[data-toggle="pill"]');
     tabLinks.forEach(link => {
         link.addEventListener('click', function() {
+
             // Small delay to ensure Bootstrap has processed the click
 
             setTimeout(updateHasOpenPanelClass, 50);

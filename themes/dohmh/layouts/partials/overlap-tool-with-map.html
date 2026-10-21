@@ -87,6 +87,7 @@
 
 
     function initializeMap() {
+
         // Add a basemap
 
         L.tileLayer(
@@ -179,6 +180,7 @@
         .then(data => {
           geojsonLayer = L.geoJSON(data, {
             style: function (feature) {
+
               // Default style before any click
 
               return {
@@ -242,6 +244,7 @@
 
                 geojsonLayer.setStyle(function (f) {
                   if (f.properties[currentProperty] === selectedID) {
+
                     // Clicked feature highlighted
 
                     return {
@@ -251,6 +254,7 @@
                       fillOpacity: 0.6
                     };
                   } else {
+
                     // Non-clicked features invisible
 
                     return {
@@ -307,6 +311,7 @@ function drawUHFs(UHF_ids) {
   fetch("https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/UHF42.geojson")
     .then(response => response.json())
     .then(data => {
+
       // Filter features for all matching UHF_ids
 
       const features = data.features.filter(f => UHF_ids.includes(f.properties.GEOCODE));

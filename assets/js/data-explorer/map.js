@@ -296,6 +296,7 @@ const clearHoverUI = () => {
 // Coordinates legend hover text and tick placement with hovered map features.
 
 const createHoverUIHelpers = (metadata, minValue, maxValue, digits) => {
+
     // Converts a value into a 0-100 percent position along the legend's color range.
 
     const calculatePercent = (x) => {
@@ -738,6 +739,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
     // Builds popup markup for a feature, substituting the citywide popup when the data is citywide-only.
 
     const createPopupContent = (properties) => {
+
         // Use citywide-specific popup if this is citywide-only data
 
         if (isCitywideOnly) {
@@ -839,6 +841,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
             attachMapInterop({
 
                 highlight: (geoID) => {
+
                     // The lookup registers both GeoID and GEOCODE, raw and stringified, so a
                     // single fallback covers the number-vs-string mismatch between the two sources.
 
@@ -851,6 +854,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
                 },
 
                 reset: () => {
+
                     // No argument: resetHighlight falls back to whichever layer is tracked, so a
                     // highlight from either source (map hover or bar chart) clears correctly.
 
@@ -910,6 +914,7 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
     // Builds popup markup for a bubble or polygon, substituting the citywide popup when the data is citywide-only.
 
     const createPopupContent = (properties) => {
+
         // Use citywide-specific popup if this is citywide-only data
 
         if (isCitywideOnly) {

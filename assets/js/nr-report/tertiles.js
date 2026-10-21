@@ -12,13 +12,16 @@
 // it, scoring a neighborhood above its reference value as comp-good exactly when the flag is
 // set. It arrives as a boolean from some report payloads and as the string 'true' from others,
 // so every consumer has to accept both
+
 const isRankReversed = value => value === true || value === 'true';
 
 
 // Reduces a tertile rank to the bare "Higher"/"Lower" word shown on the card pill
+
 const getTertileLabel = (rank, rankReverse) => {
 
     // Normalize rank values that may arrive as numbers or strings
+
     const r = String(rank);
     const reverse = isRankReversed(rankReverse);
 
@@ -45,6 +48,7 @@ const getTertileLabel = (rank, rankReverse) => {
 // choosing which word describes the value — that is getTertileLabel's. Flipping the class on
 // the flag would pill Park access, Bike lanes, Subway access and Exercise as "better" on
 // jamaica/active_design, where Jamaica sits below most neighborhoods on all four
+
 const getTertilePillClass = (rank) => {
 
     const r = String(rank);
@@ -63,6 +67,7 @@ const getTertilePillClass = (rank) => {
 // use it need it three ways: the expanded panel and the print row want the word wrapped in
 // its .comp-* class, and the collapsed row's screen-reader copy wants plain text. One source
 // so a reader who meets the same fact in two places does not meet it in two vocabularies
+
 const getTertileSentenceParts = (rank, rankReverse) => {
 
     const r = String(rank);
@@ -74,6 +79,7 @@ const getTertileSentenceParts = (rank, rankReverse) => {
     // file, scores that same situation the other way — a neighborhood below its reference on a
     // reversed indicator is comp-bad — so one card would contradict itself, the tertile
     // sentence and the borough sentence disagreeing
+
     if (r === '1') {
         return {
             word: reverse ? 'Lower' : 'Higher',
@@ -100,6 +106,7 @@ const getTertileSentenceParts = (rank, rankReverse) => {
 
 
 // Expands the same rank into a full sentence fragment with the judgment word colored
+
 const getTertileInlineLabel = (rank, rankReverse) => {
 
     const parts = getTertileSentenceParts(rank, rankReverse);
@@ -114,6 +121,7 @@ const getTertileInlineLabel = (rank, rankReverse) => {
 // The same sentence as plain text, for the collapsed row's screen-reader copy. That row shows
 // only the bare word, and which way it goes is carried by the pill's background colour — so
 // the tree gets the sentence and the pixels get a glyph (assets/scss/theme.scss)
+
 const getTertileSentence = (rank, rankReverse) => {
 
     const parts = getTertileSentenceParts(rank, rankReverse);
@@ -127,20 +135,24 @@ const getTertileSentence = (rank, rankReverse) => {
 // The judgment word and its preposition are returned separately because only the word is
 // styled — the preposition belongs to the sentence around it, and "Equal" takes "to"
 // where the other two take "than"
+
 const getComparison = (neighVal, refVal, rankReverse) => {
 
     // A missing value is checked before Number(), which turns null and '' into 0 and would
     // compare a neighborhood with no data as if it measured zero (audit row A-374). No row on
     // either EHDP-data branch reaches this today — the 48 with a null value also have a null
     // rank, and cards.js hides the comparison block for those — so this guards the next one
+
     const missing = v => v == null || v === '';
 
     // Parse defensively because the source payload can contain string numerics
+
     const n = Number(neighVal);
     const r = Number(refVal);
     const reverse = isRankReversed(rankReverse);
 
     // When either side is missing or not numeric, omit comparison messaging
+
     if (missing(neighVal) || missing(refVal) || isNaN(n) || isNaN(r)) {
         return { word: '', preposition: '', cssClass: '' };
     }
@@ -152,6 +164,7 @@ const getComparison = (neighVal, refVal, rankReverse) => {
     // rankReverse flips "good" vs "bad" for metrics where higher values are better. This is the
     // function the rest of the file's reading of the flag is anchored to — it was already right
     // when the two tertile functions above it were not
+
     if (n > r) {
         word = 'Higher';
         preposition = 'than';

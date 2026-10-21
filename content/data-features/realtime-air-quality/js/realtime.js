@@ -183,6 +183,7 @@ function loadMonitorLocations() {
         console.log(allMonitorLocations)
         
         for (let i = 0; i < allMonitorLocations.length; i++) {
+
             // if stations includes allMonitorLocations[i].loc_col, push to activeMonitors
 
             if (stations.includes(allMonitorLocations[i].loc_col)) {
@@ -209,6 +210,7 @@ function loadMonitorLocations() {
 // ---- DRAW CHECKBOXES, table, and box listener ---- //
 
 function drawCheckboxes() {
+
     // console.log('drawing checkboxes...')
     
     for (let i = 0; i < activeMonitors.length; i++) {
@@ -245,6 +247,7 @@ function listenTable() {
     rows.forEach(row => {
         
         row.addEventListener('click',(e) => {
+
             // console.log('table listener:')
             // console.log(e.currentTarget)
             
@@ -293,6 +296,7 @@ function zoomTo(locationColumn) {
 // ---- PRINT RECENT AVERAGE TO TABLE ---- //
 
 function printRecentAverage() {
+
     // first, creating convertData that has starttime in milliseconds 
 
     var convertData = []
@@ -354,6 +358,7 @@ function printRecentAverage() {
     // get all names of active Monitors
 
     for (let i = 0; i < activeMonitors.length; i++) {
+
         // console.log(activeMonitors[i].loc_col)
         
         // for each of those names, filter last 24 hours of data
@@ -399,6 +404,7 @@ function printRecentAverage() {
             document.getElementById(cont).style.width = widthPercent + "%"
             
         } else {
+
             // console.log(activeMonitors[i].loc_col + " doesn't have enough data")
 
             var print = 'value-'+activeMonitors[i].loc_col+'-1'
@@ -568,6 +574,7 @@ function updateTime(x) {
 // ---- Update data based on map click ---- // 
 
 function updateData(x) {
+
     // look in active monitors for x.
 
     console.log('updating data for ', x)
@@ -625,6 +632,7 @@ function drawHamiltonBridge() {
 Note: relies on an invisible column of just values. Values displayed as * are given a 0 in this column. 
 */
 function sortTable() {
+
     // console.log('sort table running')
 
     var table, rows, switching, i, x, y, shouldSwitch;
@@ -633,6 +641,7 @@ function sortTable() {
     // Make a loop that will continue until no switching has been done:*/
 
     while (switching) {
+
         //start by saying: no switching is done:
 
         switching = false;
@@ -640,6 +649,7 @@ function sortTable() {
         // Loop through all table rows (except the first, which contains table headers):*/
 
         for (i = 1; i < (rows.length - 1); i++) {
+
             //start by saying there should be no switching:
 
             shouldSwitch = false;
@@ -650,6 +660,7 @@ function sortTable() {
             // check if the two rows should switch place:
 
             if (Number(x.innerHTML) < Number(y.innerHTML)) {
+
                 // if so, mark as a switch and break the loop:
 
                 shouldSwitch = true;
@@ -657,6 +668,7 @@ function sortTable() {
             }
         }
         if (shouldSwitch) {
+
             // If a switch has been marked, make the switch and mark that a switch has been done:*/
 
             rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);

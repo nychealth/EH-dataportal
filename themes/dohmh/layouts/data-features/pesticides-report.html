@@ -47,6 +47,7 @@ d3.csv("data/agency-totals.csv").then(function(data) {
 });
 
 function renderAgencyTable(agencyName, targetId, noDataProvided) {
+
     // filter
 
     const filtered = agencyData.filter(d => d.Agency === agencyName);
@@ -67,10 +68,12 @@ function renderIntroTable(tableName, destination, standard, numeric) {
         // console.log(data);
 
         if (standard) {
+
             // use same formatted table
 
             printTable(data, destination);
         } else {
+
             // fallback: just dump raw data
 
             let table = `<table cellpadding="5" class="table table-striped">

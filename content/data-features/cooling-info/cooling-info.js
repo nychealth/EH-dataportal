@@ -34,6 +34,7 @@ var warmSeason;
     // Any failure here — network, an error body, a missing field, or a null
     // reading — leaves currentTemp at its initial "No" and moves on, so the
     // forecast and the air quality still load. printToPage shows it as unavailable.
+
     try {
 
       // Step 1: Get station list
@@ -63,12 +64,14 @@ var warmSeason;
   }
 
   async function getForecastHighNYC() {
+
       // get NWS data to retrieve forecast high
 
       const userAgent = { headers: { "User-Agent": "ehdp@health.nyc.gov" } };
 
       // As in getCurrentTempNYC: a failure leaves forecastTemp unset and the
       // page carries on to printToPage and the air quality lookup.
+
       try {
 
         // Step 1: Get forecast URL
@@ -106,7 +109,9 @@ function getAQI() {
 
   fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10013&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F')
   .then(response => {
+
     // A non-2xx answer can carry an HTML error page, which .json() would throw on.
+
     if (!response.ok) throw new Error('AirNow responded ' + response.status)
     return response.json()
   })
@@ -117,6 +122,7 @@ function getAQI() {
     // AirNow returns one observation per pollutant, and the page shows the
     // worse of the first two. It can also return fewer, or none, which used
     // to throw here on `aqiAPI[1].AQI` [smoke, 2026-10-02 and 2026-10-03].
+
     var readings = Array.isArray(aqiAPI) ? aqiAPI.slice(0, 2) : []
     if (!readings.length) throw new Error('AirNow returned no observations')
 
@@ -153,21 +159,25 @@ function getAQI() {
     document.getElementById('aqiNum').innerHTML = aqi
   })
   .catch(err => {
+
     // Covers every way the lookup can fail: network, non-2xx, unparseable or
     // empty body. `aqi` keeps its initial "No", so the recommendations skip
     // their AQI rows, as they do while the request is pending. A warning
     // rather than an error: an AirNow outage is not a fault in this page.
+
     console.warn('Air quality unavailable: ' + err.message)
     aqiMeaning.innerHTML = '<em>unavailable right now</em>'
   })
 }
 
 function printToPage() {
+
     // Print current temp, max temp, and AQI
 
     // Either reading can be missing when the weather service fails, so each
     // prints on its own and maxTemp comes from whichever arrived. parseFloat
     // rather than Number, because Number(null) is 0.
+
     var current = parseFloat(currentTemp)
     var forecast = parseFloat(forecastTemp)
 
@@ -293,6 +303,7 @@ function answer(question, answer, next) {
   // This exposes the next question, specified by goTo
 
   if (next === 99) {
+
     // console.log('next is 99')
 
     runFinal()
@@ -545,6 +556,7 @@ function runFinal() {
 // -------------------------------------------------------------------------- //
 
 function isSummerDate() {
+
   // Get the current date
 
   var currentDate = new Date();

@@ -338,6 +338,7 @@
   var dataFile;
 
   async function ingestData() {
+
     // Wait for the CSV to finish loading
 
     const data = await d3.csv("data/map-data.csv");
@@ -357,6 +358,7 @@
   }
 
   function drawMap(w, s, v) {
+
     // console.log(w,s,v)
 
     if (v === "poverty" || v === "Poverty") {
@@ -818,6 +820,7 @@
 
     buttons.forEach((btn) => {
       btn.addEventListener("click", () => {
+
         // remove active from all in this group
 
         buttons.forEach((b) => b.classList.remove("active"));

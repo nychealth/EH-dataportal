@@ -108,6 +108,7 @@
 
                 document.getElementById('topicList').innerHTML = ''
                 for (let i = 0; i < topics.length; i++) {
+
                     // console.log(topics[i].topic)
 
                     var datatopic = `<a class="btn btn-sm btn-outline-primary mb-1 mr-1" href="${baseURL}data-explorer/${topics[i].topic}/?id=${x.IndicatorID}">${topics[i].topic_name}</a>`

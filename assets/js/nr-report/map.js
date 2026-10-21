@@ -29,10 +29,12 @@ const highlightStyle = {
 
 
 // Base style for all UHF polygons before hover/selection overrides
+
 const styleFeature = () => defaultStyle;
 
 
 // Temporary hover state for visual affordance
+
 const reportMapHighlight = e => {
 
     const layer = e.target;
@@ -43,6 +45,7 @@ const reportMapHighlight = e => {
 
 
 // Reverts hover style on mouseout, unless this layer is the active selection
+
 const reportMapResetHighlight = e => {
 
     const layer = e.target;
@@ -50,6 +53,7 @@ const reportMapResetHighlight = e => {
 
     // The active neighborhood goes back to its selected style, not the default one —
     // reportMapHighlight overwrote it with the hover style on the way in
+
     if (geocode == currentGeocode) {
         layer.setStyle(highlightStyle);
         return;
@@ -79,9 +83,11 @@ const reportMapResetHighlight = e => {
 // The map zooms to the selected neighborhood anyway, by Chris's decision of 2026-10-20, which
 // accepts that cost: the "Reset zoom" button (initLeafletMap) returns to the whole-city fit,
 // where the 41 are reachable again. nr-leaflet.html does the same on the neighborhood index pages
+
 const selectLayer = layer => {
 
     // Clear previous selection style first
+
     if (uhfLayer) uhfLayer.resetStyle();
 
     layer.setStyle(highlightStyle);
@@ -89,6 +95,7 @@ const selectLayer = layer => {
 
     // The style alone tells only a sighted user which neighborhood the report shows (N-027).
     // aria-current, not aria-pressed: pressing the selected polygon again does not toggle it off
+
     if (uhfLayer) {
         uhfLayer.eachLayer(other => {
             const el = typeof other.getElement === 'function' && other.getElement();
@@ -106,6 +113,7 @@ const selectLayer = layer => {
 // gives below: a zoom click made during the animation was dropped. No maxZoom of its own: the
 // deepest fit, Greenwich Village - Soho, lands at 13.97, under the tiles' 15
 // [measured 2026-10-20, report and index map boxes at 1280 and 390 wide]
+
 const reportMapFitLayer = layer => {
 
     if (leafletMap && layer) leafletMap.fitBounds(layer.getBounds(), { padding: [10, 10], animate: false });
@@ -114,6 +122,7 @@ const reportMapFitLayer = layer => {
 
 
 // Frames all 42 neighborhoods; the "Reset zoom" button's target
+
 const reportMapFitCity = () => {
 
     if (leafletMap && uhfLayer) leafletMap.fitBounds(uhfLayer.getBounds(), { padding: [10, 10], animate: false });
@@ -126,6 +135,7 @@ const reportMapFitCity = () => {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 // Resolves a UHF geocode to the display name report rows use
+
 const geocodeToName = geocode => {
 
     if (typeof neighborhoods === 'undefined') return null;
@@ -139,6 +149,7 @@ const geocodeToName = geocode => {
 
 
 // Finds the rendered Leaflet layer carrying a given UHF geocode
+
 const findLayerByGeocode = geocode => {
 
     if (!uhfLayer) return null;
@@ -157,6 +168,7 @@ const findLayerByGeocode = geocode => {
 
 
 // Converts a display name to its Leaflet layer, by way of the UHF id
+
 const findLayerByName = name => {
 
     const uhfId = getUhfIdForDisplayName(name);
@@ -176,6 +188,7 @@ const findLayerByName = name => {
 // data/globals/uhflist.json on GEOCODE = UHF_id, 42 of 42 joined; an earlier count of 6 predates
 // two edits to UHF42.geojson, 32408c5304 and 67b76b49ea]. GEONAME stays the fallback for a geocode
 // uhflist does not carry
+
 const featureDisplayName = feature =>
     geocodeToName(feature.properties.GEOCODE) || feature.properties.GEONAME;
 
@@ -187,6 +200,7 @@ const featureDisplayName = feature =>
 // Switches the report to one polygon's neighborhood. Shared by the pointer and keyboard
 // paths so the two cannot diverge — the map is the report's only in-place switcher, and a
 // keyboard route that did something subtly different from the mouse one would be its own defect
+
 const reportMapSelectNeighborhood = (layer, source) => {
 
     const geocode = layer.feature.properties.GEOCODE;
@@ -195,6 +209,7 @@ const reportMapSelectNeighborhood = (layer, source) => {
     // The polygons arrive before the report data does. A selection made in that window is
     // held for tryInitialRender (data.js) rather than highlighted: highlighting it here left
     // the map marking one neighborhood while the report then rendered the page's own
+
     if (!dataReady) {
         debugLog(source + ': branch-data-not-ready:', { name, geocode });
         pendingMapSelection = layer;
@@ -209,6 +224,7 @@ const reportMapSelectNeighborhood = (layer, source) => {
     // Counts a reader's choice of neighborhood, which page_view cannot isolate: page_view
     // also counts Back and Forward. Read before renderAll overwrites currentNeighborhood,
     // so re-selecting the neighborhood already shown is not counted as a choice
+
     if (name !== currentNeighborhood) {
         trackNREvent('select_neighborhood', { nr_neighborhood: name, report_name: reportConfig.reportName || '' });
     }
@@ -219,6 +235,7 @@ const reportMapSelectNeighborhood = (layer, source) => {
 
 
 // Map click drives neighborhood selection for the full report UI
+
 const onMapClick = e => reportMapSelectNeighborhood(e.target, 'onMapClick');
 
 
@@ -229,6 +246,7 @@ const onMapClick = e => reportMapSelectNeighborhood(e.target, 'onMapClick');
 // (leaflet-src.js:4435, 4466-4491, 4556-4565), skipping only the coordinate computation it
 // does for mouse events. Nothing was listening, so 42 tab stops did nothing. This is the
 // listener, not new plumbing. Leaflet binds neither key itself, so there is no contention
+
 const onMapKeyDown = e => {
 
     const key = e.originalEvent && e.originalEvent.key;
@@ -236,6 +254,7 @@ const onMapKeyDown = e => {
     if (key !== 'Enter' && key !== ' ' && key !== 'Spacebar') return;
 
     // Space would otherwise scroll the page out from under the report being rebuilt
+
     e.originalEvent.preventDefault();
 
     reportMapSelectNeighborhood(e.target, 'onMapKeyDown');
@@ -247,6 +266,7 @@ const onMapKeyDown = e => {
 // (leaflet-src.js:10998-11002) and never takes it back, so after a hover sweep all 42
 // polygons reference tooltip nodes that no longer exist. tooltipclose fires on the source
 // layer (:10710-10712), which is the hook the library does not use itself
+
 const onTooltipClose = e => {
 
     const el = typeof e.target.getElement === 'function' && e.target.getElement();
@@ -257,10 +277,12 @@ const onTooltipClose = e => {
 
 
 // Attaches the tooltip and interaction handlers to one UHF polygon
+
 const reportMapOnEachFeature = (feature, layer) => {
 
     // Same string the aria-label carries, so the visible label is contained in the
     // accessible name (WCAG 2.5.3) rather than differing from it on 4 of the 42
+
     layer.bindTooltip(featureDisplayName(feature), {
         permanent: false,
         opacity: 0.9,
@@ -284,6 +306,7 @@ const reportMapOnEachFeature = (feature, layer) => {
 // created each layer's <path>, so getElement() is null there. role="button" rather than the
 // graphics-symbol a bare <path> computes to, because after onMapKeyDown these are activatable
 // controls and that is what tells a keyboard user Enter will do something
+
 const nameMapPolygons = () => {
 
     if (!uhfLayer) return;
@@ -309,6 +332,7 @@ const nameMapPolygons = () => {
 
 
 // Sets up the Leaflet map and loads UHF polygon geometry onto it
+
 const initLeafletMap = () => {
 
     debugLog('initLeafletMap: enter:', reportConfig.geojsonUrl);
@@ -317,9 +341,11 @@ const initLeafletMap = () => {
     // on, beside a "Reset zoom" button, since the map frames one neighborhood once one is selected.
     // fadeAnimation is off for the reason nr-leaflet.html gives: a 200ms per-tile fade-in that
     // left even cached tiles invisible for a quarter second after each page load
+
     leafletMap = L.map('nr-map', { fadeAnimation: false }).setView([40.7128, -74.006], 10);
 
     // Use CARTO basemap tiles to match existing portal styling
+
     L.tileLayer(
         'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=cb1_2vaf_1_f87644104deb54c869cef554',
         {
@@ -332,6 +358,7 @@ const initLeafletMap = () => {
 
     // Back to the whole city, where every polygon can be reached by pointer. Same control as the
     // congestion pricing report's (map-monitoring.js): easyButton, fas fa-undo, "Reset zoom"
+
     const resetZoom = L.easyButton({
         position: 'bottomleft',
         states: [{
@@ -343,10 +370,12 @@ const initLeafletMap = () => {
 
     // easyButton puts the label only in `title`, and the button's computed name came out empty
     // with the icon inside it [measured 2026-10-20, Playwright ariaSnapshot: button ""]
+
     resetZoom.button.setAttribute('aria-label', 'Reset zoom');
     resetZoom.button.querySelectorAll('.fas').forEach(i => i.setAttribute('aria-hidden', 'true'));
 
     // Load the neighborhood polygons once, then wait for the data pipeline to finish
+
     fetch(reportConfig.geojsonUrl)
         .then(res => res.json())
         .then(data => {
@@ -360,6 +389,7 @@ const initLeafletMap = () => {
             }).addTo(leafletMap);
 
             // addTo is synchronous, so every polygon has its <path> by here
+
             nameMapPolygons();
 
             // Fit the whole city rather than keeping the fixed zoom-10 view above. The initial
@@ -372,16 +402,19 @@ const initLeafletMap = () => {
             // level. Same container, same page, measured both ways on 2026-09-15 — snap 1
             // landed the fly-to on a flat 12, snap 0 fits at 9.58. nr-leaflet.html reached
             // the same conclusion for the picker map, and this uses its padding
+
             leafletMap.options.zoomSnap = 0;
             // animate: false — the map lands on the city rather than zooming out to it from the
             // zoom-10 placeholder view, and a zoom click made during that animation was
             // dropped [2026-10-19]
+
             reportMapFitCity();
 
         })
         .catch(err => {
 
             // The report still renders without its map
+
             console.error('Error loading UHF42 GeoJSON:', err);
             debugLog('initLeafletMap: branch-geojson-load-failed:', err);
 
@@ -391,6 +424,7 @@ const initLeafletMap = () => {
             // After the catch, not inside the load's .then: there, a throw from the initial
             // render was caught above and reported as a GeoJSON failure, and the render ran a
             // second time from the catch. Here it surfaces as the render error it is
+
             mapReady = true;
             tryInitialRender();
 

@@ -1359,6 +1359,7 @@ async function toggleLayerOnMap(layerId, button) {
     try {
         button.disabled = true;
         if (!(layerId in layersVisible)) {
+
             // FIXME make this a set
 
             await addLayerToMap(layerId);
@@ -1723,6 +1724,7 @@ function updateInfoBox({ lat, lng }) {
     // if there are no layers, then we don't need a infoBox
 
     if (Object.keys(layerGroup._layers).length == 0 || featureMouseOver == null) {
+
     // if (Object.keys(layerGroup._layers).length == 0) {
 
         // console.log("no layers [updateInfoBox]");
@@ -2038,6 +2040,7 @@ const legendFuncForLayer = (id, name, args, layer) => {
     // console.log("layer [legendFuncForLayer]", layer);
 
     return () => {
+
         // console.log("** legendFunc [createMeasuresLayer]");
 
         if (args?.colorMap) {

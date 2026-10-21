@@ -57,6 +57,7 @@ async function preloadGeoJSONs() {
 // ----------------------------------------------
 
 function changeText(x) {
+
     // console.log('Running text for ', x)
 
     var next = x+1
@@ -130,6 +131,7 @@ function loadGeoJSON(config = {}) {
 
   dataPromise
     .then(data => {
+
       // Clear existing GeoJSON layer
 
       if (geojsonLayer) {
@@ -162,6 +164,7 @@ function loadGeoJSON(config = {}) {
       // --- Handle Pins ---
 
       if (pin === true) {
+
         // Add pin to isochrone center
 
         L.marker([40.675377, -73.872106], { icon: customIcon }).addTo(map);
@@ -182,6 +185,7 @@ function loadGeoJSON(config = {}) {
           )
           .openPopup();
       } else {
+
         // Clear all popups and pins
 
         map.eachLayer(layer => {
@@ -238,6 +242,7 @@ function loadGeoJSON(config = {}) {
 
         onEachFeature: (feature, layer) => {
           if (choropleth) {
+
             // --- Choropleth case ---
 
             if (suppressTooltip === true) return; // suppress tooltip in zoom mode
@@ -254,6 +259,7 @@ function loadGeoJSON(config = {}) {
 
             layer.bindTooltip(tooltipContent, { sticky: true });
           } else {
+
             // --- Non-choropleth case ---
 
             const displayValue = feature.properties[labelName];

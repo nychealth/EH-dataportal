@@ -45,6 +45,7 @@ const getSelectedTableRows = (rows) => {
     const selectedGeos = new Set(DE.table.selectedTableGeography);
 
     return rows.filter(d => {
+
         // Compare against prettified geotypes so checkbox labels and row filtering stay aligned.
 
         const matchesTime = !selectedTimes.size || selectedTimes.has(d.TimePeriod);
@@ -445,6 +446,7 @@ const renderTableFilterControls = (rows) => {
             input.disabled = unavailable;
 
             input.addEventListener('change', (event) => {
+
                 // Bubble one normalized value + checked pair back to the caller's filter logic.
 
                 onChange(event.target.value, event.target.checked);
@@ -511,7 +513,9 @@ const renderTableFilterControls = (rows) => {
 
     if (syncButton) {
         syncButton.onclick = (event) => {
+
             // The link's href="#" would otherwise add "#" to the URL, a history entry and a popstate.
+
             event.preventDefault();
 
             // Force both dimensions back into map-following mode in one click.
@@ -573,6 +577,7 @@ const renderTable = (tableData) => {
         // Build a grouped Area label that optionally appends borough context for nested geographies.
         .derive({
             Area: aq.escape(d => {
+
                 // Append borough context only for non-borough rows that have it.
 
                 if (d.Borough && d.GeoTypeDesc != 'Borough') {
@@ -737,6 +742,7 @@ const renderTable = (tableData) => {
                 targets: 9,
                 // Parses the numeric-value column to a sortable float for sort/type requests, leaving the display text untouched.
                 render: function (data, type) {
+
                     // Strip formatting so numeric sorts use the raw number rather than display text.
 
                     if (type === 'sort' || type === 'type') {
@@ -751,6 +757,7 @@ const renderTable = (tableData) => {
                 targets: 8,
                 // Replaces the xx/yy placeholder delimiters in the Area column with a styled line break for display only.
                 render: function (data, type) {
+
                     // Inject line breaks only for display mode so sorting/searching sees plain text.
 
                     if (type === 'display') {

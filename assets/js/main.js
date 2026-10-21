@@ -94,6 +94,7 @@ $(document).ready(function () {
     const subscribe_triggers = $('[data-subscribe-click]');
 
     if ( subscribe_triggers.length ) {
+
         // Behaviour only. click_subscribe is fired by site.js, which delegates it for
         // the same [data-subscribe-click] elements — binding it here too sent two events
         // with two different schemas on every click [verified 2026-08-21 in-browser].

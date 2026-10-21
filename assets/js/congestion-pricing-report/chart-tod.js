@@ -266,6 +266,7 @@ async function renderTODChart(site) {
 
         el.style.minHeight = "";
     } catch (err) {
+
         // Release the lock even if the chart fails to render
 
         console.error("TOD Traffic Vega render failed:", err);

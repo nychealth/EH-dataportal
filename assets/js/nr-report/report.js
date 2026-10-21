@@ -82,14 +82,17 @@ const renderSection = (section, neighborhoodName) => {
     }
 
     // Neighborhood-level rows are pre-grouped during loadSection
+
     const byNeighborhood = sectionData[section.id] || {};
     const rows = byNeighborhood[neighborhoodName] || [];
 
     // Reset section contents before re-rendering cards
+
     container.innerHTML = '';
 
     // A failed fetch is not an absence of data, and saying so would tell the reader this
     // neighborhood has nothing to report
+
     if (failedSections.has(section.id)) {
         debugLog('renderSection: branch-load-failed:', section.id);
         container.innerHTML =
@@ -112,12 +115,14 @@ const renderSection = (section, neighborhoodName) => {
         // escaped field by field: the data carries & and < as text today ("N/A<1%*"), which
         // already renders as written, and DOMPurify leaves that, and every tag and attribute
         // the card itself emits, as it was while dropping anything executable a value might bring
+
         card.innerHTML = DOMPurify.sanitize(buildIndicatorCard(row, neighborhoodName));
         container.appendChild(card);
 
     });
 
     // Last, so the legend sits beneath the cards whose markers it explains
+
     renderSectionNotes(container, rows);
 
 };
@@ -238,6 +243,7 @@ const renderAll = (neighborhoodName, mapGeocode, fromHistory = false) => {
     renderedPanels = {};
 
     // The panels these charts sit in are about to be rebuilt (chart.js keeps them)
+
     chartViews.forEach(view => view.finalize());
     chartViews = [];
     accordionCounter = 0;
@@ -272,6 +278,7 @@ const renderAll = (neighborhoodName, mapGeocode, fromHistory = false) => {
     }
 
     // The narrow layout carries its own copy of the title
+
     const mobileTitle = document.getElementById('nr-mobile-title');
     const mobileNeighborhood = document.getElementById('nr-mobile-neighborhood');
 
@@ -281,6 +288,7 @@ const renderAll = (neighborhoodName, mapGeocode, fromHistory = false) => {
     // ----- demographics and deep-link state ----- //
 
     // Sidebar metrics are keyed by geocode, so this has to follow the resolution above
+
     renderDemographics(currentGeocode);
 
     // ----- history, head and analytics ----- //
@@ -289,6 +297,7 @@ const renderAll = (neighborhoodName, mapGeocode, fromHistory = false) => {
     // is already standing on its entry and must not add another. fromHistory wins even on
     // a first render: tryInitialRender sets it when the address bar has already moved off
     // the served neighborhood, and a replace then would rewrite that entry's path
+
     const historyMode = fromHistory ? 'none' : (!previousNeighborhood ? 'replace' : 'push');
     setNeighborhoodInURL(neighborhoodName, historyMode);
 

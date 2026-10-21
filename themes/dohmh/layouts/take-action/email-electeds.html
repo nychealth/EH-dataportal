@@ -337,6 +337,7 @@
                 let tableBody = document.getElementById('newTableBody');
                 
                 for (let i = 0; i < data.length; i++) {
+
                     // Create table row
 
                     let row = document.createElement('tr');
@@ -422,6 +423,7 @@
                         callback();
                     } else {
                         setTimeout(function() {
+
                             // window.waitForGlobal(keyPath, callback);
 
                             waitForGlobal(keyPath, callback);

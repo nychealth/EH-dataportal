@@ -143,6 +143,7 @@ fetch(RMZgeojson)
 
 
 function resetZoom() {
+
     // console.log('reset zoom 3')
 
     window.location.hash = '#top'
@@ -193,6 +194,7 @@ function geocode() {
 //---------------------------------------- 
 
 function addMarker(lat,long,locationName) {
+
     // Remove prior markers
 
     mapMarkers.forEach(marker => map.removeLayer(marker))
@@ -235,6 +237,7 @@ async function checkPointInRMZ(lat,long) {
     inputLatLong = [lat,long]
     
     for (let i = 0; i < geojsonData.features.length; i++) {
+
         // console.log(i)
         
         // Loop through all the nested multipolygons
@@ -293,6 +296,7 @@ async function checkPointInRMZ(lat,long) {
 //---------------------------------------- 
 
 async function showParentCD(lat,long) {
+
     // get CD geojson
 
     await getGeoJSON(CDgeojson)
@@ -342,6 +346,7 @@ function getCDIndicatorData(x) {
             return response.json(); // Parse data
         })
         .then(data => {
+
             // Get the keys and length of data
 
             const keys = Object.keys(data);
@@ -384,6 +389,7 @@ async function getPropertyData(x) {
     var openDataSource = 'https://data.cityofnewyork.us/resource/a2h9-9z38.json?bbl=' + x
     
     return new Promise((resolve, reject) => {
+
         // Fetch the GeoJSON data
 
         fetch(openDataSource)
@@ -430,6 +436,7 @@ function printCDData(data) {
     fetch('https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/indicators/metadata/TimePeriods.json')
     .then(response => response.json())
     .then(timePeriods => {
+
         // Create a lookup map
 
         const timePeriodMap = new Map(timePeriods.map(tp => [tp.TimePeriodID, tp.TimePeriod]));
@@ -551,6 +558,7 @@ function printPropertyData(data) {
 
 function getGeoJSON(x) {
     return new Promise((resolve, reject) => {
+
         // Fetch the GeoJSON data
 
         fetch(x)
@@ -576,9 +584,11 @@ function getGeoJSON(x) {
 // Point re-formatter
 
 function swapFirstAndSecond(arrays) {
+
     // Iterate over each sub-array
 
     return arrays.map(subArray => {
+
         // Swap the first and second elements
 
         return [subArray[1], subArray[0]];

@@ -827,6 +827,7 @@ const getLeafletLayerDrawBox = (layerElement, mapRect, options = {}) => {
     const { useRenderedBounds = false } = options;
 
     if (useRenderedBounds) {
+
         // Tile images inherit scale from their parent tile container, so their
         // rendered box is the only reliable source of export coordinates.
 

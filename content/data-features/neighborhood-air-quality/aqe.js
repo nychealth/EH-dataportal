@@ -105,6 +105,7 @@ d3.csv('aqe-nta.csv', d3.autoType).then(data => {
 
 var thisGeocode
 function setNeighborhood(x, y, z) {
+
   // document.getElementById('showNeighb').classList.remove('hide')
   // document.getElementById('showData').classList.remove('hide')
 
@@ -149,14 +150,17 @@ function sourceTertile(x,dest) {
   var destination = document.getElementById(dest)
 
   if (x === 'High') {
+
     // change class
 
     destination.classList.add('badge-worse')
   } else if (x === 'Medium') {
+
     // change class
 
     destination.classList.add('badge-medium')
   } else if (x === 'Low') {
+
     // change class
 
     destination.classList.add('badge-better')
@@ -264,6 +268,7 @@ const renderChart = (
 
 
 function changeSource(x) {
+
   // console.log(x)
 
   // get all class sourceBox and remove active

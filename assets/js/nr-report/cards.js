@@ -15,13 +15,16 @@
 // and is what the shared top-level scope buys — making this cards.js-local
 // would silently break id stability across neighborhood switches.
 // WRITE: cards (increment), report (reset)  READ: cards
+
 let accordionCounter = 0;
 
 // Generates the unique id that pairs a collapse control with its panel
+
 const nextAccordionId = () => 'nr-acc-' + (++accordionCounter);
 
 
 // Escapes a value for interpolation into a double-quoted HTML attribute
+
 const escapeAttr = value => {
 
     if (value == null) return '';
@@ -38,11 +41,13 @@ const escapeAttr = value => {
 // The retired nr-output/single.html did this on click, writing href and display onto an
 // element whose id was the raw IndicatorID; here the href is resolved as the card is
 // built, so nothing has to survive a neighborhood switch rebuilding every card
+
 const getDataExplorerUrl = indicatorID => {
 
     if (!indicatorTopicSlugs || indicatorID == null) return '';
 
     // Guard the interpolation into ?id=: the ids arrive from EHDP-data report JSON
+
     const id = Number(indicatorID);
     if (!Number.isFinite(id)) return '';
 
@@ -58,6 +63,7 @@ const getDataExplorerUrl = indicatorID => {
 // ----------------------------------------------------------------------- //
 
 // Returns one indicator's accordion HTML — header button plus its collapse panel
+
 const buildIndicatorCard = (row, neighborhoodName) => {
 
     // ----- resolve ids, value, and units ----- //
@@ -67,12 +73,14 @@ const buildIndicatorCard = (row, neighborhoodName) => {
     const collapseId = accId + '-c';
 
     // Preserve dash placeholder when the row has no direct neighborhood value
+
     const value =
         row.data_value_geo_entity !== null && row.data_value_geo_entity !== undefined
             ? row.data_value_geo_entity
             : '–';
 
     // Build a compact units label from optional type and unit fields
+
     const unitParts = [];
     if (row.measurement_type) unitParts.push(row.measurement_type);
     if (row.units) unitParts.push(row.units);
@@ -81,6 +89,7 @@ const buildIndicatorCard = (row, neighborhoodName) => {
     // ----- tertile pill ----- //
 
     // Tertile pill for the header row (production uses .worse/.better/.middle classes)
+
     const pillLabel = getTertileLabel(row.data_value_rank, row.rankReverse);
     const pillClass = getTertilePillClass(row.data_value_rank);
     const pillSentence = getTertileSentence(row.data_value_rank, row.rankReverse);
@@ -93,6 +102,7 @@ const buildIndicatorCard = (row, neighborhoodName) => {
     // "... Age-adjusted percent Higher, Higher than most neighborhoods".
     // Rank 2 emits no pill and still gets the sentence — showing nothing was the third state,
     // and the print rendition already spells that one out
+
     if (pillLabel && pillClass) {
         pillHTML = '<span class="' + pillClass + '" aria-hidden="true">' + pillLabel + '</span>';
     }
@@ -112,6 +122,7 @@ const buildIndicatorCard = (row, neighborhoodName) => {
     // The sentence is getTertileInlineLabel, the same one the expanded panel shows, so a
     // reader who opens a row and prints it does not get the same fact in two vocabularies.
     // Plain divs at 50/25/25, not grid columns: .print-only resolves to display:flex
+
     const printRowHTML =
         '<div class="col-12 print-only" style="flex-direction:row; width:100%;">' +
             '<div style="width:50%;" class="border-right pl-1">' +
@@ -124,6 +135,7 @@ const buildIndicatorCard = (row, neighborhoodName) => {
             '</div>' +
             // font-weight-normal because the accordion button is bold and the column
             // inherits it, which would leave nothing for the .comp-* bold to pick out
+
             '<div style="width:25%;" class="pl-1 fs-sm font-weight-normal">' +
                 getTertileInlineLabel(row.data_value_rank, row.rankReverse) +
             '</div>' +
@@ -134,10 +146,12 @@ const buildIndicatorCard = (row, neighborhoodName) => {
     // Every id and data-* interpolation below goes through escapeAttr. The generated
     // ids cannot contain a quote, but routing them all one way keeps the rule
     // checkable by eye rather than per-value
+
     const headerHTML =
         '<div class="card-header border-top" id="' + escapeAttr(headingId) + '">' +
             // h3: one level below the section h2 in nr-report.html. As an h2 every
             // indicator read as closing its section and opening a sibling of the page title
+
             '<h3 class="mb-0">' +
                 '<button class="btn btn-block btn-sm text-left" type="button" ' +
                     'data-toggle="collapse" data-target="#' + escapeAttr(collapseId) + '" ' +
@@ -163,9 +177,11 @@ const buildIndicatorCard = (row, neighborhoodName) => {
     // ----- comparison blocks ----- //
 
     // Some indicators do not have comparative rank metadata
+
     const hasRank = row.data_value_rank != null;
 
     // Comparison blocks rely on the unmodified values for direction and text
+
     const boroComp = getComparison(
         row.unmodified_data_value_geo_entity,
         row.data_value_boro,
@@ -185,6 +201,7 @@ const buildIndicatorCard = (row, neighborhoodName) => {
     let unitSuffix = '';
 
     // Use percent suffix for percentage-like metrics, otherwise append units
+
     if (row.measurement_type && row.measurement_type.toLowerCase().indexOf('ercent') !== -1) {
         unitSuffix = '%';
     } else if (row.units) {
@@ -201,6 +218,7 @@ const buildIndicatorCard = (row, neighborhoodName) => {
     // by an .sr-only suffix — 20-odd links reading the same two words is 2.4.4, and putting
     // the name after rather than inside keeps the visible label a prefix of the accessible
     // one (2.5.3). No d-print-none: @media print hides the panel this sits in
+
     const deUrl = getDataExplorerUrl(row.IndicatorID);
 
     const dataExplorerLinkHTML = deUrl
@@ -215,6 +233,7 @@ const buildIndicatorCard = (row, neighborhoodName) => {
         : '';
 
     // Hide comparison copy when rank-derived context is unavailable
+
     const hideClass = hasRank ? '' : ' d-none';
 
     const comparisonsHTML =
@@ -248,6 +267,7 @@ const buildIndicatorCard = (row, neighborhoodName) => {
     // 2022 7.0* Age-adjusted percent Higher". A region wants a name, not a sentence.
     // data-indicator-label carries the same short name through to the chart, which otherwise
     // names every one of the 22 charts "Vega visualization" (see chart.js).
+
     const detailHTML =
         '<div id="' + escapeAttr(collapseId) + '" class="collapse border-bottom" ' +
             'role="region" ' +

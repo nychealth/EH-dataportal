@@ -1515,6 +1515,7 @@ showTable = (e) => {
         renderTable(DE.table.tableData);
         didRenderTable = true;
     } else if (DE.table.tableData && typeof renderTableFilterControls === 'function' && typeof applyTableFilters === 'function') {
+
         // Reopen path: keep the existing DataTable and just resync controls + hidden searches.
 
         renderTableFilterControls(DE.table.tableData);
@@ -1525,6 +1526,7 @@ showTable = (e) => {
 
     const dataTables = $.fn.dataTable.tables(false);
     if (didRenderTable && dataTables.length) {
+
         // First-open path still initializes while pane is hidden, so headers need one
         // follow-up width pass after Bootstrap finishes showing the panel.
 

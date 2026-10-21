@@ -7,17 +7,20 @@
 // ----------------------------------------------------------------------- //
 
 // Renders the URL-selected neighborhood once both map and data are ready
+
 const tryInitialRender = () => {
 
     debugLog('tryInitialRender: enter:', { dataReady, mapReady });
 
     // Guard initial render until both data payloads and map geometry are ready
+
     if (!dataReady || !mapReady) {
         debugLog('tryInitialRender: branch-waiting');
         return;
     }
 
     // Render the neighborhood this page was generated for after both data sources are ready
+
     const pageNeighborhood = getPageNeighborhood();
 
     if (pageNeighborhood) {
@@ -37,6 +40,7 @@ const tryInitialRender = () => {
         // address bar's as a history re-render, so the title, head and page_view follow it
         // and the entry keeps its path. Rendering the served one alone, as before, let its
         // replaceState rewrite the entry and lost the neighborhood Back had reached [2026-10-21]
+
         const urlNeighborhood = getNeighborhoodFromURL();
         const addressBarMoved = !!urlNeighborhood && urlNeighborhood !== pageNeighborhood;
 
@@ -61,6 +65,7 @@ const tryInitialRender = () => {
     // A polygon chosen while the data was still loading. Rendered as a switch from the page's
     // own neighborhood, not in place of it: renderAll treats its first call as first paint,
     // which leaves the title, head metadata and history entry as served and sends no page_view
+
     if (pendingMapSelection) {
 
         debugLog('tryInitialRender: branch-pending-selection');
@@ -75,6 +80,7 @@ const tryInitialRender = () => {
 
 
 // Counts a completed fetch and triggers the initial render once all are in
+
 const checkAllLoaded = () => {
 
     debugLog('checkAllLoaded: enter:', { fetchesCompleteBefore: fetchesComplete, totalFetches });
@@ -82,6 +88,7 @@ const checkAllLoaded = () => {
     fetchesComplete++;
 
     // Trigger initial render once all sections and viz data have loaded
+
     if (fetchesComplete >= totalFetches) {
         debugLog('checkAllLoaded: branch-ready');
         dataReady = true;
@@ -92,6 +99,7 @@ const checkAllLoaded = () => {
 
 
 // Fetches one report section's rows and buckets/sorts them by neighborhood
+
 const loadSection = section => {
 
     debugLog('loadSection: enter:', { sectionId: section.id, reportUrl: section.reportUrl });
@@ -99,6 +107,7 @@ const loadSection = section => {
     // ----- fetch ----- //
 
     // nr-report.html already writes every space in the filename as %20
+
     fetch(section.reportUrl)
         .then(res => {
             if (!res.ok) throw new Error('HTTP ' + res.status);
@@ -107,6 +116,7 @@ const loadSection = section => {
         .then(data => {
 
             // Non-array responses are treated as empty to keep rendering resilient
+
             const rows = Array.isArray(data) ? data : [];
 
             debugLog('loadSection: branch-data-loaded:', { sectionId: section.id, rowCount: rows.length });
@@ -114,6 +124,7 @@ const loadSection = section => {
             // ----- bucket by neighborhood ----- //
 
             // Build neighborhood buckets once during load for faster rerenders
+
             const byNeighborhood = {};
 
             rows.forEach(row => {
@@ -130,6 +141,7 @@ const loadSection = section => {
 
             // Sort each neighborhood's rows by rank descending so higher-ranked
             // indicators appear at the top of the accordion
+
             Object.keys(byNeighborhood).forEach(n => {
 
                 byNeighborhood[n].sort((a, b) => {
@@ -156,11 +168,13 @@ const loadSection = section => {
 
 
 // Loads the topic → IndicatorID map and reverses it into IndicatorID → topic slug
+
 const loadTopicIndicators = () => {
 
     debugLog('loadTopicIndicators: enter:', reportConfig.topicIndicatorsUrl);
 
     // Without the map no card can resolve a topic, so the link is simply omitted
+
     if (!reportConfig.topicIndicatorsUrl || !reportConfig.dataExplorerUrl) {
         debugLog('loadTopicIndicators: branch-not-configured');
         checkAllLoaded();
@@ -178,6 +192,7 @@ const loadTopicIndicators = () => {
 
             // First topic wins, matching the retired getURL, which returned on its first
             // hit: 42 of the 263 ids sit in more than one data-explorer topic
+
             Object.keys(data).forEach(slug => {
 
                 const ids = data[slug] && data[slug].IndicatorID;
@@ -205,11 +220,13 @@ const loadTopicIndicators = () => {
 
 
 // Loads the shared viz table used by all per-indicator Vega charts
+
 const loadVizData = () => {
 
     debugLog('loadVizData: enter:', reportConfig.vizUrl);
 
     // If no viz URL is configured, continue with section-only rendering
+
     if (!reportConfig.vizUrl) {
         debugLog('loadVizData: branch-no-viz-url');
         checkAllLoaded();
@@ -227,6 +244,7 @@ const loadVizData = () => {
             vizTable = null;
 
             // downloadCSV exports from this table, so without it the button would do nothing
+
             const download = document.getElementById('nr-download-csv');
             if (download) download.disabled = true;
         })

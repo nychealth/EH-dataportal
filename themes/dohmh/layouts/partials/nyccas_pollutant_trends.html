@@ -110,6 +110,7 @@
           }
 
         function createSourceButtons() {
+
             // loop through Sources and create buttons
 
             document.getElementById('subCont').innerHTML = '';
@@ -128,6 +129,7 @@
 
             for (let x = 0; x < srcBtns.length; x++) {
                 srcBtns[x].addEventListener("click", function() {
+
                 // remove "active" from classnames
 
                 var activeSource = document.querySelectorAll('.srcbtn.border')

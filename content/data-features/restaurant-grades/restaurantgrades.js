@@ -69,6 +69,7 @@ d3.csv('resto-data-full.csv').then(data => {
 // updateValues runs on button click, and updates page-printed values
 
 function updateValues(x) {
+
     // console.log('to filter for:' + x)
 
     partData = fullData.filter(row => row.Time == year)

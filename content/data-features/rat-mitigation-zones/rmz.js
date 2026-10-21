@@ -33,6 +33,7 @@ L.easyButton({
 }).addTo(map);     
 
 function resetZoom() {
+
     // console.log('reset zoom 3')
 
     window.location.hash = '#top'
@@ -57,6 +58,7 @@ function style(feature) {
 
 function getGeoJSON(x) {
   return new Promise((resolve, reject) => {
+
       // Fetch the GeoJSON data
 
       fetch(x)
@@ -102,6 +104,7 @@ function resetHighlight(e) {
 }
 
 function zoomToFeature(e) {
+
   // console.log('zoom to feature:'),
   // console.log(e)
   // console.log(rmzgeojson)
@@ -154,6 +157,7 @@ layer.bringToFront();
 // ===== PRINT INFO TO PAGE ================================================== //
 
 function printToPage(x) {
+
     // console.log("id: " + x)
 
     document.getElementById('zoneName').innerHTML = name;
@@ -164,6 +168,7 @@ function printToPage(x) {
 // update map and page from dropdown
 
 function update(x) {
+
   // console.log('updated for: ', x)
 
   let zone = x - 1
@@ -183,6 +188,7 @@ function update(x) {
 // ===== GET RECENT DATA (INITIAL, COMPLIANCE) ================================================== //
 
 function interpretInitial(x) {
+
   // filter recent Initial Inspections data for this neighborhood
 
   thisRecent = recent.filter (y => y.zoneID == x)
@@ -870,6 +876,7 @@ var revSpecFour = {
   var recent = [];
   var thisRecent = [];
   d3.csv('initial-inspections.csv').then(data => {
+
     // ingest data
 
     initialData = data

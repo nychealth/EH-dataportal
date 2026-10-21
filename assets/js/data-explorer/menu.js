@@ -90,6 +90,7 @@ const updateAllMenus = (indicator) => {
     let measure = indicator.Measures.find(m => m.MeasureID === DE.state.MeasureID);
 
     if (!measure) {
+
         // Recover from stale globals or URL params by snapping back to the default measure.
 
         measure = getDefaultMeasure(indicator);
@@ -296,6 +297,7 @@ const handleSelection = (type, value, label) => {
     // - - - resync table filters - - - //
 
     if ((type === 'geo' || type === 'time') && typeof syncTableFiltersToMapSelection === 'function') {
+
         // Geo and time changes can invalidate the current Area search, so clear and resync first.
 
         if (typeof clearTableAreaSearch === 'function') {

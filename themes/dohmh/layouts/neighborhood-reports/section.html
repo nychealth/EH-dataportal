@@ -171,6 +171,7 @@ function handleTopicButtons() {
 
   buttons.forEach(button => {
     button.addEventListener('click', () => {
+
       // 1. Remove 'active' from all buttons. aria-pressed moves with it, so the
       //    selected topic is announced and not only styled (N-027)
 
@@ -224,11 +225,13 @@ function setIntendedDestination(x) {
 // The neighborhood list ships from Hugo with topic-less hrefs, so it works with JS off and
 // gives crawlers a path to the 42 neighborhood index pages. Once a topic is active the links
 // follow it, so clicking one lands where the map and the search box already send you.
+
 function updateNeighborhoodListLinks() {
   const base = {{ relURL "neighborhood-reports/" }}
 
   // Falls back to the neighborhood index when the lookup in setIntendedDestination missed:
   // intendedDestinationName stays null there, and null would otherwise land in the URL.
+
   const suffix = intendedDestinationName ? intendedDestinationName + '/' : ''
 
   document.querySelectorAll('#nr-neighborhood-list a[data-nbhd]').forEach(a => {
@@ -239,6 +242,7 @@ function updateNeighborhoodListLinks() {
 // SET DEFAULTS FOR HOME PAGE
 
 // Default: the first NR_topics.yml entry, the button rendered active above
+
 const defaultTopic = {{ (index site.Data.globals.NR_topics 0).key }}
 setIntendedDestination(defaultTopic)
 document.getElementById('descr').innerHTML = document.getElementById(defaultTopic + '-Descr').innerHTML
@@ -251,6 +255,7 @@ handleTopicButtons()
 // the destination is whichever topic button is active. Navigating straight to
 // <nbhd>/<topic>/ is a page the content adapter generates, so the neighborhood no longer
 // has to travel through sessionStorage to a topic page that would re-select it.
+
 function nrPickerDestination() { return intendedDestinationName }
 
 
