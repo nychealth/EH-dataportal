@@ -89,8 +89,9 @@ const holdsFunction = (node) =>
 
 // ----- the rules: should this block be padded, given its body length? ----- //
 
-// Returns true (padded), false (tight), or null (no rule: leave it alone)
-const wantsPadding = (node, ancestors, length) => {
+// Returns true (padded), false (tight), or null (no rule: leave it alone). `grouped`:
+// the body has a blank line between its first and last lines
+const wantsPadding = (node, ancestors, length, grouped) => {
 
     const parent = ancestors[0];
 
@@ -102,8 +103,8 @@ const wantsPadding = (node, ancestors, length) => {
 
     if (node.type !== "BlockStatement") return null;
 
-    // Function bodies, callbacks included
-    if (isFunction(parent) && parent.body === node) return length > 3;
+    // Function bodies, callbacks included; one already split into groups is padded at any length
+    if (isFunction(parent) && parent.body === node) return length > 3 || grouped;
 
     // Every branch of an if / else chain, however short
     if (parent?.type === "IfStatement") {
@@ -187,7 +188,9 @@ const planEdits = (source, lines) => {
         let length = 0;
         for (let i = first; i <= last; i++) if (lines[i].trim()) length++;
 
-        const want = wantsPadding(node, ancestors, length);
+        const grouped = length < last - first + 1;
+
+        const want = wantsPadding(node, ancestors, length, grouped);
 
         if (want === null) return;
 
@@ -345,7 +348,17 @@ list.forEach((item) => {
 const commented = () => {
     // kept apart
     a();
-};`;
+};
+const guarded = () => {
+    if (!a) return;
+
+    b();
+};
+if (w) {
+    a();
+
+    b();
+}`;
 
 const FIXTURE_OUT = `const long = () => {
 
@@ -421,7 +434,19 @@ const commented = () => {
 
     // kept apart
     a();
-};`;
+};
+const guarded = () => {
+
+    if (!a) return;
+
+    b();
+
+};
+if (w) {
+    a();
+
+    b();
+}`;
 
 {
     const lines = FIXTURE_IN.split("\n");

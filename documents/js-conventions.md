@@ -334,8 +334,10 @@ its distinct phases.
 Block lengths below count non-blank lines between the braces.
 
 - **Function bodies, callbacks included:** blank line after the opening `{` and
-  before the closing `}` when the body is longer than three lines. Three lines or
-  fewer stays tight.
+  before the closing `}` when the body is longer than three lines, or when it already
+  has a blank line inside it, at any length: a body split into groups reads as
+  sections, and the padding frames them. Three lines or fewer with no inner blank
+  line stays tight.
 - **Every branch of an `if` / `else if` / `else` chain, and every `try` /
   `catch` / `finally` block:** blank line after `{` and before `}`, even when the
   branch is one statement.
@@ -384,6 +386,16 @@ const myFunction = (arg) => {
 const setBarSelection = (geoID) => {
     if (!window.myVegaView) return;
     window.myVegaView.signal("selectedGeo", geoID).run();
+};
+
+// Two lines, but already in two groups: padded
+
+const trackDataExplorerOption = (option, extraParams = null) => {
+
+    if (!option) return;
+
+    trackDataExplorerEvent('click_option', { option, ...extraParams });
+
 };
 ```
 
