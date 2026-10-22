@@ -154,6 +154,9 @@ The complete list of products used by NYC agencies by pesticide type can be foun
     {{< csvtable 
         src="data/Table-2-Fungicide.csv" 
         screenreader="false" 
+        datatable="true"
+        search="false"
+        paging="false"
           download="true"
           fontsize="fs-xs"
         >}}
@@ -165,6 +168,9 @@ The complete list of products used by NYC agencies by pesticide type can be foun
     {{< csvtable 
         src="data/Table-2-Herbicide.csv" 
         screenreader="false" 
+        datatable="true"
+        search="false"
+        paging="false"
         download="true"
         fontsize="fs-xs"
         >}}
@@ -176,6 +182,9 @@ The complete list of products used by NYC agencies by pesticide type can be foun
     {{< csvtable 
         src="data/Table-2-Insecticide.csv" 
         screenreader="false" 
+        datatable="true"
+        search="false"
+        paging="false"
         download="true"
         fontsize="fs-xs"
         >}}
@@ -187,6 +196,9 @@ The complete list of products used by NYC agencies by pesticide type can be foun
     {{< csvtable 
         src="data/Table-2-Rodenticide.csv" 
         screenreader="false" 
+        datatable="true"
+        search="false"
+        paging="false"
         download="true"
         fontsize="fs-xs"
         >}}
@@ -198,6 +210,9 @@ The complete list of products used by NYC agencies by pesticide type can be foun
     {{< csvtable 
         src="data/Table-2-Other.csv" 
         screenreader="false"
+        datatable="true"
+        search="false"
+        paging="false"
         download="true"
         fontsize="fs-xs" >}}
   </div>
