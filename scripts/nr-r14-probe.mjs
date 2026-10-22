@@ -313,7 +313,8 @@ const checkZoomControls = async (browser, baseURL) => {
 
             // Read and click the moment the polygons appear. While the initial fitBounds animated
             // from zoom 10, _animatingZoom read true here and Leaflet dropped 1 of 2 such clicks
-            // [2026-10-19]; with animate: false there is nothing to wait out
+            // [2026-10-19]. The neighborhood framing is now a flyToBounds, which never sets
+            // _animatingZoom, and a click during it stops the fly and zooms in [2026-10-22]
             animating = await page.evaluate(() =>
                 !!(typeof leafletMap !== 'undefined' ? leafletMap : map)._animatingZoom);
 

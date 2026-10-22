@@ -102,13 +102,15 @@ const selectLayer = layer => {
 };
 
 
-// Frames one neighborhood, filling the map box. animate: false for the reason the opening fit
-// gives below: a zoom click made during the animation was dropped. No maxZoom of its own: the
-// deepest fit, Greenwich Village - Soho, lands at 13.97, under the tiles' 15
+// Flies to one neighborhood, filling the map box, as production's NR maps do (Chris, 2026-10-22).
+// flyToBounds, not an animated fitBounds: a Zoom in click during fitBounds's zoom animation was
+// dropped [2026-10-19], while one during a fly stops it and zooms in one level from where it got
+// to [measured 2026-10-22, east_new_york/: 11.82 -> 12.82]. No maxZoom of its own: the deepest
+// fit, Greenwich Village - Soho, lands at 13.97, under the tiles' 15
 // [measured 2026-10-20, report and index map boxes at 1280 and 390 wide]
 const reportMapFitLayer = layer => {
 
-    if (leafletMap && layer) leafletMap.fitBounds(layer.getBounds(), { padding: [10, 10], animate: false });
+    if (leafletMap && layer) leafletMap.flyToBounds(layer.getBounds(), { padding: [10, 10], duration: 0.5 });
 
 };
 
@@ -374,8 +376,7 @@ const initLeafletMap = () => {
             // the same conclusion for the picker map, and this uses its padding
             leafletMap.options.zoomSnap = 0;
             // animate: false — the map lands on the city rather than zooming out to it from the
-            // zoom-10 placeholder view, and a zoom click made during that animation was
-            // dropped [2026-10-19]
+            // zoom-10 placeholder view, so the fly to the neighborhood starts from the city
             reportMapFitCity();
 
         })

@@ -159,11 +159,16 @@
             // 679px-wide box.
             map.options.zoomSnap = 0;
 
-            // animate: false — the map lands on its framing rather than zooming to it from the
-            // zoom-10 placeholder view, and a zoom click made during that animation was
-            // dropped [2026-10-19]
-            const framing = ownNeighborhoodLayer ? ownNeighborhoodLayer.getBounds() : uhf_geojson.getBounds();
-            map.fitBounds(framing, { padding: [10, 10], animate: false });
+            // The city lands without animation from the zoom-10 placeholder view. The page's own
+            // neighborhood is then flown to from there, as production's NR maps do (Chris,
+            // 2026-10-22), with no delay before the fly: a click made before it would be undone
+            // by it. flyToBounds, not an animated fitBounds: a Zoom in click during fitBounds's
+            // zoom animation was dropped [2026-10-19], while one during a fly stops it and zooms
+            // in one level from where it got to [measured 2026-10-22, east_new_york/]
+            map.fitBounds(uhf_geojson.getBounds(), { padding: [10, 10], animate: false });
+            if (ownNeighborhoodLayer) {
+                map.flyToBounds(ownNeighborhoodLayer.getBounds(), { padding: [10, 10], duration: 0.5 });
+            }
 
             removeHiddenMapFromTabOrder();
 
