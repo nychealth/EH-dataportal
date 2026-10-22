@@ -98,6 +98,7 @@ const load_flexdatalist = async () => {
                 // console.log("e [clear click]", e);
 
                 $($input).find("~input").val("").trigger( "focus" )
+
             })
         })
 }
@@ -144,6 +145,7 @@ function dataChange(GEOCODE) {
         // using numeric version of the NTACode for operations
         
         return hvi.GEOCODE == GEOCODE;
+
     });
     
     // console.log("neighborhoodData", neighborhoodData);

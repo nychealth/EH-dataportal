@@ -96,7 +96,6 @@ const applySelectionToState = (selection) => {
     if (selection.overlay) {
         DE.state.overlay      = selection.overlay;
     }
-
 };
 
 
@@ -107,10 +106,12 @@ const applySelectionToState = (selection) => {
 // Centralizes history writes so replace/push state stay consistent.
 
 const writeHistoryState = (historyMethod, nextState, nextURL) => {
+
     window.history[historyMethod](nextState, '', nextURL);
     debugLog(`${historyMethod} →`, nextURL.search);
 
     refreshCitation();
+
 };
 
 

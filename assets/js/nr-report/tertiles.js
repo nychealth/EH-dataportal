@@ -104,11 +104,13 @@ const getTertileSentenceParts = (rank, rankReverse) => {
 // Expands the same rank into a full sentence fragment with the judgment word colored
 
 const getTertileInlineLabel = (rank, rankReverse) => {
+
     const parts = getTertileSentenceParts(rank, rankReverse);
 
     if (!parts.word) return '';
 
     return '<span class="' + parts.cssClass + '">' + parts.word + '</span>' + parts.rest;
+
 };
 
 
@@ -117,9 +119,11 @@ const getTertileInlineLabel = (rank, rankReverse) => {
 // the tree gets the sentence and the pixels get a glyph (assets/scss/theme.scss)
 
 const getTertileSentence = (rank, rankReverse) => {
+
     const parts = getTertileSentenceParts(rank, rankReverse);
 
     return parts.word ? parts.word + parts.rest : '';
+
 };
 
 

@@ -139,9 +139,11 @@ const nrById = id => document.getElementById(id);
 // the guard keeps a blocked gtag.js from turning a download or a panel open into a throw
 
 const trackNREvent = (eventName, eventParams) => {
+
     if (typeof gtag !== 'function') return;
 
     gtag('event', eventName, eventParams);
+
 };
 
 

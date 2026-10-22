@@ -44,7 +44,6 @@ function updateSiteHeading(site) {
     if (suffixEl) {
         suffixEl.style.display = isControl ? "none" : "";
     }
-
 }
 
 // Default selection
@@ -572,10 +571,12 @@ function buildAqSpec(site, rows) {
 // #cpVis is a plain facet — the width goes on the repeated panel spec.
 
 function applyFacet(spec, { cols, spacing, pane }) {
+
     spec.columns = cols;
 
     if (spec.spacing != null) spec.spacing = spacing;
     if (spec.spec?.width != null) spec.spec.width = pane;
+
 }
 
 // #aqChangeVis is an hconcat of four single-pollutant facets. `columns` is not

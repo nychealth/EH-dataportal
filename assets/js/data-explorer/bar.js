@@ -572,9 +572,11 @@ const renderBar = (
         // Clear the linked map highlight when the cursor leaves a bar or the chart.
 
         result.view.addEventListener('mouseout', () => {
+
             if (!window.mapInterop.ready) return;
 
             window.mapInterop.reset();
+
         });
     });
 };

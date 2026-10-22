@@ -96,17 +96,18 @@ const updateAccordionToggle = () => {
     if (label) {
         label.textContent = allExpanded ? 'Collapse all' : 'Expand all';
     }
-
 };
 
 
 // Opens every indicator panel unless they are already all open, then closes them
 
 const toggleAllAccordions = () => {
+
     const panels = getAccordionPanels();
     const allExpanded = panels.length > 0 && panels.filter('.show').length === panels.length;
 
     panels.collapse(allExpanded ? 'hide' : 'show');
+
 };
 
 

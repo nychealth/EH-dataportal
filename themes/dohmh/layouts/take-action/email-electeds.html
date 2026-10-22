@@ -313,10 +313,8 @@
             }
             
             function removeLeadingZero(str) {
-
                 if (str.startsWith('0')) return str.slice(1);
                 return str;
-
             }
             
             // ----------------------------------------------------------------------  //
@@ -448,10 +446,8 @@
                 const checkNested = function(obj, args) {
 
                     for (var i = 0; i < args.length; i++) {
-
                         if (!obj || !obj.hasOwnProperty(args[i])) return false;
                         obj = obj[args[i]];
-
                     }
                     return true;
 
@@ -471,6 +467,7 @@
                             // window.waitForGlobal(keyPath, callback);
 
                             waitForGlobal(keyPath, callback);
+
                         }, 100);
 
                     }

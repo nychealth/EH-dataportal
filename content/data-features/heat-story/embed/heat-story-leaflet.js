@@ -240,10 +240,12 @@ function setupMap() {
     layerGroup.addTo(map);
 
     map.on("zoomend", () => {
+
         zoom = map.getZoom();
         // scale the weight based on the zoom layer so it looks good zooming in and out
 
         layerGroup.eachLayer((layer) => layer.setStyle && layer.setStyle({ weight: zoom / ZOOM_WEIGHT_SCALE_FACTOR }))
+
     });
 
 
@@ -492,9 +494,11 @@ function placeAllStoryPins() {
                 );
         
         thisStory.on('click', function (e) {
+
             console.log('story click.')
 
             updateMapStateForStory(story.id)
+
         });
 
         storyMarkers.addLayer(thisStory);
@@ -544,9 +548,11 @@ function filterPins(theme) {
                     );
             
             thisStory.on('click', function (e) {
+
                 console.log('story click.')
 
                 updateMapStateForStory(config.stories[i].id)
+
             });
 
             // add them to storyMarkers layer
@@ -1338,6 +1344,7 @@ function removeLayerFromMap(layerId) {
         const button = document.querySelector(`#${layerId}`)
 
         if (button != null) button.classList.remove("active");
+
     }
 
     createLegend("removeLayerFromMap")
@@ -2220,10 +2227,12 @@ const loadData = async (indicatorID) => {
 
         aq.loadJSON(data_url, {autoType: false})
             .then(async (d) => {
+
                 indicator_data = await d;
 
                 // console.log("indicator_data [loadData]");
                 // indicator_data.print()
+
             }),
 
         loadTime()
@@ -2256,10 +2265,12 @@ const loadTime = async () => {
 
     await aq.loadJSON(timeUrl, {autoType: false})
         .then(async (data) => {
+
             timeTable = await data;
 
             // console.log("timeTable [loadTime]");
             // timeTable.print()
+
     });
 }
 

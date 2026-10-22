@@ -253,6 +253,7 @@ const setTableAreaSearch = (dataTable, nextValue, shouldDraw = true) => {
     // Some callers batch search updates and will trigger the draw themselves.
 
     if (shouldDraw) dataTable.draw();
+
 };
 
 
@@ -438,6 +439,7 @@ const renderTableFilterControls = (rows) => {
                 // Bubble one normalized value + checked pair back to the caller's filter logic.
 
                 onChange(event.target.value, event.target.checked);
+
             });
 
             label.appendChild(input);

@@ -43,7 +43,6 @@ const pickDefaultMeasureByPriority = (visArray) => {
     ];
 
     for (const matcher of priorityMatchers) {
-
         const matchedMeasure = findFirstMeasureByType(visArray, matcher);
 
         if (matchedMeasure) return matchedMeasure;
@@ -57,9 +56,11 @@ const pickDefaultMeasureByPriority = (visArray) => {
 // Builds one-item metadata arrays used by tab defaults.
 
 const buildDefaultMetadataArray = (visArray) => {
+
     const defaultMeasure = pickDefaultMeasureByPriority(visArray);
 
     return defaultMeasure ? [defaultMeasure] : [];
+
 };
 
 
@@ -70,11 +71,13 @@ const buildDefaultMetadataArray = (visArray) => {
 // Chooses the default measure for map and bar rendering.
 
 const setDefaultMapMeasure = (visArray) => {
+
     debugLog("* setDefaultMapMeasure");
 
     DE.map.defaultMapMetadata = buildDefaultMetadataArray(visArray);
 
     // console.log(">> defaultMapMetadata", DE.map.defaultMapMetadata);
+
 }
 
 
@@ -91,6 +94,7 @@ const setDefaultTrendMeasure = (visArray) => {
     DE.trend.defaultTrendMetadata = buildDefaultMetadataArray(visArray);
 
     // console.log(">> defaultTrendMetadata", defaultTrendMetadata);
+
 }
 
 
@@ -148,11 +152,13 @@ const setDefaultLinksMeasure = async (visArray) => {
 // Chooses the default measure for the disparities tab.
 
 const setDefaultDisparitiesMeasure = (visArray) => {
+
     debugLog("* setDefaultDisparitiesMeasure");
 
     DE.disparities.defaultDisparitiesMetadata = buildDefaultMetadataArray(visArray);
 
     // console.log(">> defaultDisparitiesMetadata", defaultDisparitiesMetadata);
+
 }
 
 
@@ -230,9 +236,11 @@ const measureSupportsDisparities = (measureId) => {
 // Finds the first linked secondary measure configured for one primary measure.
 
 const getDefaultLinksSecondaryMeasureId = (primaryMeasureId) => {
+
     const defaultSecondaryMeasureId = getMeasureLinksMetadata(primaryMeasureId)[0]?.MeasureID;
 
     return defaultSecondaryMeasureId != null ? Number(defaultSecondaryMeasureId) : null;
+
 };
 
 
@@ -711,9 +719,11 @@ const getActiveTrendMeasureId = () => {
 // Returns the active trend measure's MeasurementType, or 'No borough trend' when none matches.
 
 const getActiveTrendMeasureLabel = () => {
+
     const trendMeasure = DE.lookups.trendMeasures.find(m => Number(m.MeasureID) === Number(getActiveTrendMeasureId()));
 
     return trendMeasure?.MeasurementType || 'No borough trend';
+
 };
 
 
@@ -791,6 +801,7 @@ const setTrendButtonState = () => {
     const trendButton = trendMeasurePills?.querySelector('.trendmode-button[data-trend-mode="geography"]');
 
     if (trendButton) setBadgePillState(trendButton, true);
+
 };
 
 
@@ -1946,7 +1957,6 @@ const renderMeasures = async () => {
         if (disparities) {
             DE.lookups.disparitiesMeasures.push(measure);
         }
-
     });
 
 
@@ -2093,6 +2103,7 @@ const showOverlayTab = () => {
         resetOverlayTabState();
 
         if (tabContent) tabContent.style.display = 'none';
+
     }
 };
 

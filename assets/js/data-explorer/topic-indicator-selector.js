@@ -447,6 +447,7 @@ const dismissIndicatorModal = () => {
     // By the time a user can interact with the modal, Bootstrap is loaded
 
     $('#indicatorSelector').modal('hide');
+
 };
 
 
@@ -586,6 +587,7 @@ const renderIndicatorInfo = async (IndicatorID) => {
         howCalculatedEl.appendChild(p);
 
         if (measure.Sources) uniqueSources.add(measure.Sources);
+
     });
 
     // ----- render collected sources ----- //

@@ -469,11 +469,13 @@ const GEO_FILE_BY_TYPE = {
 // Maps a backend GeoType value to the corresponding TopoJSON filename.
 
 function getGeoFile(mapGeoType) {
+
     debugLog("*** getGeoFile");
 
     // Return the matching geography file for the requested map geography.
 
     return GEO_FILE_BY_TYPE[mapGeoType];
+
 }
 
 // ----------------------------------------------------------------------- //
@@ -517,10 +519,12 @@ const getLinksMeasureGeos = (measure) => (measure?.AvailableGeoTypes || []).filt
 // Returns the intersection of link-eligible geo types for two measures — geographies where both measures have data.
 
 const getSharedLinksGeos = (primaryMeasure, secondaryMeasure) => {
+
     const primaryMeasureGeos = getLinksMeasureGeos(primaryMeasure);
     const secondaryMeasureGeos = getLinksMeasureGeos(secondaryMeasure);
 
     return secondaryMeasureGeos.filter(g => primaryMeasureGeos.includes(g));
+
 }
 
 // ----------------------------------------------------------------------- //

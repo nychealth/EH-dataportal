@@ -57,9 +57,11 @@ const attachMapInterop = ({ highlight, reset }) => {
 // map handler can call it unconditionally.
 
 const setBarSelection = (geoID) => {
+
     if (!window.myVegaView) return;
 
     window.myVegaView.signal("selectedGeo", geoID).run();
+
 };
 
 // Points the contract back at the no-ops. Called synchronously at the start of every render so
@@ -309,11 +311,9 @@ const createHoverUIHelpers = (metadata, minValue, maxValue, digits) => {
     // Converts a value into a 0-100 percent position along the legend's color range.
 
     const calculatePercent = (x) => {
-
         const range = maxValue - minValue;
         if (range === 0 || x == null) return 0;
         return 100 * (x - minValue) / range;
-
     };
 
     // Updates the legend hover panel and tick position to reflect the hovered feature.
@@ -755,6 +755,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
         geojsonLayer.resetStyle(target);
 
         if (target === highlightedLayer) highlightedLayer = null;
+
     };
 
     // Builds popup markup for a feature, substituting the citywide popup when the data is citywide-only.
@@ -821,6 +822,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
                         const linkedGeoID = props.GeoID ?? props.GEOCODE;
 
                         if (linkedGeoID != null) setBarSelection(linkedGeoID);
+
                     });
 
                     layer.on('mouseover', (e) => {
@@ -842,10 +844,12 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
                     });
                     
                     layer.on('mouseout', (e) => {
+
                         resetHighlight(e.target);
                         clearHoverUI();
 
                         setBarSelection(null);
+
                     });
                 }
             }).addTo(map);
@@ -992,10 +996,12 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
             // Restores whichever marker is currently highlighted, whoever highlighted it.
 
             const resetMarkerHighlight = () => {
+
                 if (!highlightedMarker) return;
 
                 highlightedMarker.marker.setStyle(highlightedMarker.originalStyle);
                 highlightedMarker = null;
+
             };
 
             // ----- Add the GeoJSON overlay (light gray polygons) ----- //
@@ -1008,6 +1014,7 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                     layer.bindPopup(createPopupContent(feature.properties));
 
                     if (isCitywideOnly) layer.on('click', switchToTrendTabOnce);
+
                 }
             }).addTo(map);
 
@@ -1067,19 +1074,23 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                     });
 
                     circle.on('mouseover', (e) => {
+
                         highlightMarker(markerEntry);
 
                         updateHoverUI(item);
 
                         setBarSelection(item.GeoID);
+
                     });
 
                     circle.on('mouseout', (e) => {
+
                         resetMarkerHighlight();
 
                         clearHoverUI();
 
                         setBarSelection(null);
+
                     });
                 }
             });

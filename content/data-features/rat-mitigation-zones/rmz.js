@@ -37,6 +37,7 @@ function resetZoom() {
 
     window.location.hash = '#top'
     location.reload()
+
 }
 
 // When style is run in const geojson, it returns these - default styles
@@ -170,6 +171,7 @@ function printToPage(x) {
     document.getElementById('zoneName').innerHTML = name;
 
     const zoneData = ratData.filter(zone => zone.ID == x)
+
 }
 
 // update map and page from dropdown

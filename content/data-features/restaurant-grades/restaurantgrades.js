@@ -71,10 +71,12 @@ var partData = [];
 var uhfData = [];
 var cityValue = [];
 d3.csv('resto-data-full.csv').then(data => {
+
     fullData = data;
     // console.log(fullData)
 
     updateValues(year)
+
 })
 
 // updateValues runs on button click, and updates page-printed values

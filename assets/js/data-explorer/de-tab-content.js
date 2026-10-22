@@ -57,7 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (typeof pushSelectionToURL === 'function') {
                     pushSelectionToURL();
                 }
-
             }
         });
     });
@@ -118,7 +117,6 @@ const closeExplorerTabPane = (paneId) => {
         if (typeof pushSelectionToURL === 'function') {
             pushSelectionToURL();
         }
-
     }
 };
 
@@ -137,6 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const openPane = document.querySelector('#v-pills-tabContent .tab-pane.show.active');
 
             if (openPane?.id) closeExplorerTabPane(openPane.id);
+
         });
     }
 
@@ -156,6 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const detailsContent = document.querySelector('#detailsContent.show');
 
         if (detailsContent) $('#detailsContent').collapse('hide');
+
     });
 });
 
@@ -324,6 +324,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Small delay to ensure Bootstrap has processed the click
 
             setTimeout(updateHasOpenPanelClass, 50);
+
         });
     });
 

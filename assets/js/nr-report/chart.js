@@ -20,10 +20,12 @@ const loadTopojson = () => {
 
     const base = reportConfig.dataRepo + reportConfig.dataBranch + '/geography/';
     const getJSON = file => fetch(base + file).then(res => {
+
         if (!res.ok) {
             throw new Error('HTTP ' + res.status + ' for ' + file);
         }
         return res.json();
+
     });
 
     topojsonPromise = Promise.all([getJSON('borough.topo.json'), getJSON('UHF42.topo.json')])
@@ -65,6 +67,7 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode, indicator
     loadTopojson()
         .then(topo => embedIndicatorChart(data, container, destination, legendLabel, geocode, indicatorLabel, topo))
         .catch(err => {
+
             console.error('Error rendering chart for ' + destination + ':', err);
 
             if (container.isConnected) {
@@ -299,7 +302,6 @@ const embedIndicatorChart = (data, container, destination, legendLabel, geocode,
         if (summary) {
             summary.setAttribute('aria-label', 'Export or view source for ' + chartName);
         }
-
     }).catch(err => {
 
         // vegaEmbed rejects ASYNCHRONOUSLY, so onAccordionExpand's try/catch around the
@@ -315,7 +317,6 @@ const embedIndicatorChart = (data, container, destination, legendLabel, geocode,
         if (container.isConnected) {
             container.innerHTML = '<p class="text-muted small">Unable to render chart.</p>';
         }
-
     });
 };
 

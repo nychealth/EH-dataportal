@@ -57,10 +57,12 @@ function initializeNYCLIB() {
         if (searchButton) {
 
             searchButton.onclick = function() {
+
                 $("#map-search1").parent().trigger("submit")
                 // $("#map-search1").trigger("submit")
 
                 setTimeout(geocode, 2500)
+
             };
         }
 
@@ -146,6 +148,7 @@ function resetZoom() {
 
     window.location.hash = '#top'
     location.reload()
+
 }
 
 //----------------------------------------
@@ -601,10 +604,12 @@ function getGeoJSON(x) {
 
         })
         .then(data => {
+
             geojsonData = data; // Store the GeoJSON data in a global variable
             // console.log('GeoJSON data loaded.');
 
             resolve(); // Resolve the promise when the data is ready
+
         })
         .catch(error => {
             console.error('Error fetching the GeoJSON file:', error);
@@ -624,6 +629,7 @@ function swapFirstAndSecond(arrays) {
         // Swap the first and second elements
 
         return [subArray[1], subArray[0]];
+
     });
 }
 

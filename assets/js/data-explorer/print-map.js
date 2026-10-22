@@ -674,6 +674,7 @@ const buildTemporaryLeafletExport = async (width, height) => {
         const geojsonBounds = exportGeojsonLayer.getBounds();
 
         if (geojsonBounds.isValid()) exportBounds = geojsonBounds;
+
     }
 
     // ----- fit/frame the export view to bounds ----- //

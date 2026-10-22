@@ -169,9 +169,11 @@ const findLayerByGeocode = geocode => {
 // Converts a display name to its Leaflet layer, by way of the UHF id
 
 const findLayerByName = name => {
+
     const uhfId = getUhfIdForDisplayName(name);
 
     return uhfId == null ? null : findLayerByGeocode(uhfId);
+
 };
 
 
@@ -267,9 +269,11 @@ const onMapKeyDown = e => {
 // layer (:10710-10712), which is the hook the library does not use itself
 
 const onTooltipClose = e => {
+
     const el = typeof e.target.getElement === 'function' && e.target.getElement();
 
     if (el) el.removeAttribute('aria-describedby');
+
 };
 
 
@@ -413,6 +417,7 @@ const initLeafletMap = () => {
 
             console.error('Error loading UHF42 GeoJSON:', err);
             debugLog('initLeafletMap: branch-geojson-load-failed:', err);
+
         })
         .then(() => {
 

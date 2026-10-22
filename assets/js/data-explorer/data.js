@@ -21,9 +21,11 @@
 // typed — trend.js concatenates them, so they must not disagree about column types.
 
 const loadIndicatorData = (indicator_id) => {
+
     const dataUrl = `${data_repo}${data_branch}/indicators/data/${indicator_id}.json`;
 
     return loadOnce(dataUrl, () => aq.loadJSON(dataUrl, { autoType: false }));
+
 };
 
 // ----------------------------------------------------------------------- //
@@ -559,7 +561,6 @@ const joinData = async () => {
         if (trendTimesGeosMeasure) {
             trendTimesGeos.push(trendTimesGeosMeasure);
         }
-
     })
 
 
@@ -895,9 +896,11 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
         })
         .then(d => {
+
             returnData = d;
 
             // console.log("data 2", returnData);
+
         })
 
     // console.log("data 3", returnData);

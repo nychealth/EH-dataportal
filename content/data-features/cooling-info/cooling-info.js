@@ -125,6 +125,7 @@ function getAQI() {
       throw new Error('AirNow responded ' + response.status);
     }
     return response.json()
+
   })
   .then(data => {
 

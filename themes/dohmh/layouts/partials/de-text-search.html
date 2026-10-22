@@ -100,6 +100,7 @@
                 // console.log("e [clear click]", e);
                 
                 $($input).find("~input").val("").trigger( "focus" )
+
             })
         })
     }
@@ -111,10 +112,12 @@
     // ----- send to DE output page ----------------------------------------- //
     
     function sendToIndicator(x) {
+
         var id = x.IndicatorID
         
         const topics = topicIndicatorsTable.filter((ind) => ind.IndicatorID === x.IndicatorID);
         window.location.href = {{ relURL (printf "%s/" .Section) }} + topics[0].topic + '/?id=' + x.IndicatorID 
+
     }
     
 </script>

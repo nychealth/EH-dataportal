@@ -72,6 +72,7 @@ const load_flexdatalist = async () => {
               // console.log("e [clear click]", e);
 
               $($input).find("~input").val("").trigger( "focus" )
+
           })
       })
 }

@@ -126,11 +126,9 @@
     // this map to a site without a direct module reference to `map`
 
     window.cpReportZoomToSite = function (siteName) {
-
         var coords = CP_SITES[siteName] && CP_SITES[siteName].mapCoords;
         if (!coords) return;
         map.setView([coords.lat, coords.lng], coords.zoom);
-
     };
 
     // ----------------------------------------------------------------------- //

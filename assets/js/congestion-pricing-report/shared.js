@@ -276,9 +276,11 @@ const cpTextMetrics = document.createElement("canvas").getContext("2d");
 // measuring bold text with a regular font packs too many words onto a line.
 
 function measureTextWidth(text, fontSize, fontFamily, fontWeight) {
+
     cpTextMetrics.font = `${fontWeight || "normal"} ${fontSize}px ${fontFamily || "Helvetica"}`;
 
     return cpTextMetrics.measureText(text).width;
+
 }
 
 // Word-wrap a string to fit `maxPx`, returning one array element per line.
@@ -381,9 +383,11 @@ const CP_SHRINK = new Map();        // "ej:2" -> measured allowance per panel
 const CP_FLOOR_BOUND = new Set();   // "tod:1" -> text sets the width; trimming panels can't help
 
 function cpRenderedWidth(el) {
+
     const svg = el && el.querySelector("svg");
 
     return svg ? svg.getBoundingClientRect().width : 0;
+
 }
 
 // Size a spec's panels to its container. `apply` writes the computed geometry
