@@ -806,10 +806,10 @@ config = {
         */
 
         {
-            "id": "heat-video-placeholder",
+            "id": "heat-sensitivity",
             "title": "Heat story video (QDA)",
             "themes": ["Heat"],
-            "content": "<p>Temporary video embed for testing the heat story map popup.</p>",
+            "content": "<p>Navigating heat sensitivity</p>",
             "videoId": "FqqVJZUWirE", 
             "mapState": {
                 "lat": 40.7032036,

@@ -459,7 +459,8 @@ function getStoryPopupContent(story) {
 
     const video = story.videoId
         ? `
-            <div class="embed-responsive embed-responsive-16by9" style="width: 280px; max-width: 100%;">
+            <div class="embed-responsive embed-responsive-16by9" style="width: 280px; max-width: 100%; height: 158px; max-height: 100%; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            ">
                 <iframe
                     class="embed-responsive-item"
                     title="${story.title} video"
