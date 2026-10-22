@@ -19,19 +19,52 @@ export const maskHugo = (text, asValue = false) =>
 // ----- <script> bodies, as [startLine, endLine) pairs ----- //
 
 // Found on the masked file, so a Hugo comment that mentions <script> is not one. A
-// src-only script has no body; a JSON or template script is not JavaScript
+// src-only script has no body; a JSON or template script is not JavaScript. An
+// opening tag split over several lines is read to its `>` before deciding either:
+// a Datawrapper embed's attributes, one per line, are not a body
 export const scriptRegions = (source) => {
 
     const lines = maskHugo(source.replace(/\r\n/g, "\n")).split("\n");
     const out = [];
     let start = null;
+    let openTag = null;
+
+    // The opening tag is complete: no body if `</script>` follows on the same line
+    const closeTag = (tag, i) => {
+
+        if (tag.includes("</script")) return null;
+
+        return /type=["']?(application\/(ld\+)?json|text\/template)/.test(tag) ? -1 : i + 1;
+
+    };
 
     lines.forEach((l, i) => {
 
         const low = l.toLowerCase();
 
-        if (start === null && low.includes("<script") && !low.includes("</script")) {
-            start = /type=["']?(application\/(ld\+)?json|text\/template)/.test(low) ? -1 : i + 1;
+        if (openTag !== null) {
+
+            openTag += " " + low;
+
+            if (low.includes(">")) {
+                start = closeTag(openTag, i);
+                openTag = null;
+            }
+
+        } else if (start === null && low.includes("<script") && !low.includes("</script")) {
+
+            const tag = low.slice(low.indexOf("<script"));
+
+            if (tag.includes(">")) {
+
+                start = closeTag(tag, i);
+
+            } else {
+
+                openTag = tag;
+
+            }
+
         } else if (start !== null && low.includes("</script")) {
             if (start >= 0) out.push([start, i]);
             start = null;
