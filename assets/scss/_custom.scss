@@ -114,12 +114,28 @@ $comp-bad-text: #7a5c00;
   border-top: 5px solid $primary !important;
 }
 
-// Two class names, one rule: the NDHR report page builds the same container from
-// assets/js/ndhr-report/cards.js. Adding the second selector rather than reusing the nr-
-// name keeps the class on an NDHR page from claiming to be a Neighborhood Reports one.
-.nr-map-container,
-.ndhr-map-container {
+.nr-map-container {
   min-height: 350px;
+}
+
+// The NDHR counterpart, built by assets/js/ndhr-report/cards.js, holds only the bar
+// strip since the choropleth above it was dropped (2026-10-20), so it reserves the
+// strip's height rather than the map's.
+.ndhr-chart-container {
+  min-height: 240px;
+}
+
+// Legend dot for the facility points on the NDHR report map (assets/js/ndhr-report/map.js),
+// drawn to match the map's circle markers: a filled dot with a white ring
+.ndhr-facility-swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 4px;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  box-shadow: 0 0 0 1px #999;
+  vertical-align: -1px;
 }
 
 // NOT scoped to .nr-report-accordion, unlike .card-header above: 24 elements carry this

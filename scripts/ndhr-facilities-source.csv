@@ -1,0 +1,314 @@
+﻿INPUT_1_Facility_Type,INPUT_1_Total_Beds,INPUT_1_Facility_Name,OUTPUT_Community_District,OUTPUT_Geocoded_Standardized_Address,OUTPUT_Latitude,OUTPUT_Longitude,OUTPUT_Zip_Code
+Hospital,362,Lincoln Medical & Mental Health Center,201,234 EAST 149 STREET ,40.817733780280,-73.924155139519,10451
+Residential Health Care Facility - SNF,90,Highbridge Woodycrest Center,204,936 WOODYCREST AVENUE ,40.830717045514,-73.929459461884,10452
+Residential Health Care Facility - SNF,66,Hope Center for HIV and Nursing Care,204,1401 UNIVERSITY AVENUE ,40.842917572868,-73.925376842614,10452
+Hospital,170,BronxCare Hospital Center,203,1276 FULTON AVENUE ,40.831713940554,-73.903754667953,10456
+Residential Health Care Facility - SNF,405,Triboro Center for Rehabilitation and Nursing,204,1160 TELLER AVENUE ,40.831561366523,-73.912012010313,10456
+Residential Health Care Facility - SNF,240,"Concourse Rehabilitation and Nursing Center, Inc",204,1072 GRAND CONCOURSE ,40.831520610221,-73.920092112130,10456
+Adult Home,140,Claremont Village ALP,204,1160 TELLER AVENUE ,40.831561366523,-73.912012010313,10456
+Residential Health Care Facility - SNF,240,BronxCare Special Care Center,203,1265 FULTON AVENUE ,40.831582286958,-73.903866881378,10456
+Hospital,415,BronxCare Hospital Center,204,1650 GRAND CONCOURSE ,40.843462413239,-73.911829952069,10457
+Hospital,422,SBH Health System,206,4422 THIRD AVENUE ,40.853339891573,-73.891610032999,10457
+Residential Health Care Facility - SNF,199,Bronx Gardens Rehabilitation and Nursing Center,206,2175 QUARRY ROAD ,40.852345154194,-73.890404332449,10457
+Residential Health Care Facility - SNF,108,Casa Promesa,205,308 EAST 175 STREET ,40.846615646809,-73.904380008866,10457
+Adult Home,118,St. Vincent de Paul Assisted Living Program,202,900 INTERVALE AVENUE ,40.819325501660,-73.895838609344,10459
+Residential Health Care Facility - SNF,120,St Vincent Depaul Residence,202,900 INTERVALE AVENUE ,40.819325501660,-73.895838609344,10459
+Hospital,457,Jacobi Medical Center,211,1400 PELHAM PARKWAY ,40.857420088629,-73.847077007650,10461
+Hospital,21,Montefiore Einstein Children's Center for Mental Health of the Children's Hospital at Montefiore Einstein,211,1300 WATERS PLACE ,40.844430632277,-73.840030134804,10461
+Hospital,421,Montefiore Med Center - Jack D Weiler Hosp of A Einstein College Div,211,1825 EASTCHESTER ROAD ,40.850305480517,-73.844841503422,10461
+Hospital,200,Calvary Hospital Inc,211,1740 EASTCHESTER ROAD ,40.847492006119,-73.844754114520,10461
+Residential Health Care Facility - SNF,77,Williamsbridge Center for Rehabilitation and Nursing,211,1540 TOMLINSON AVENUE ,40.845504710791,-73.848792422375,10461
+Residential Health Care Facility - SNF,314,Morningside Nursing and Rehabilitation Center,211,1000 PELHAM PARKWAY SOUTH ,40.856805239946,-73.859976745162,10461
+Adult Home,80,Morningside at Home Assisted Living Program,211,1000 PELHAM PARKWAY SOUTH ,40.856805239946,-73.859976745162,10461
+Residential Health Care Facility - SNF,213,Rebekah Rehab and Extended Care Center,209,1072 HAVEMEYER AVENUE ,40.829879789299,-73.847389882271,10462
+Enriched Housing Program,112,"Rebekah Rehab Assisted Living Program, Inc.",209,1050 HAVEMEYER AVENUE ,40.829704068629,-73.847346924600,10462
+Residential Health Care Facility - SNF,264,St Patricks Home,208,66 VAN CORTLANDT PARK SOUTH ,40.884385107593,-73.888307986388,10463
+Residential Health Care Facility - SNF,364,Schervier Nursing Care Center,208,2975 INDEPENDENCE AVENUE ,40.882886325753,-73.917343136408,10463
+Residential Health Care Facility - SNF,159,Hudson Pointe at Riverdale Center for Nursing and Rehabilitation,208,3220 HENRY HUDSON PARKWAY ,40.885030100156,-73.913803487720,10463
+Residential Health Care Facility - SNF,200,Independence Care Center for Nursing and Rehabilitation,208,666 KAPPOCK STREET ,40.880653405625,-73.919150455727,10463
+Residential Health Care Facility - SNF,385,Prestige Nursing Care & Rehab Center,208,3400 CANNON PLACE ,40.879969579754,-73.897956385991,10463
+Residential Health Care Facility - SNF,146,New Riverdale Rehab and Nursing,208,641 WEST 230 STREET ,40.882239834508,-73.915307918839,10463
+Residential Health Care Facility - SNF,240,Fordham Nursing and Rehabilitation Center,208,2678 KINGSBRIDGE TERRACE ,40.870442568463,-73.904262451831,10463
+Residential Health Care Facility - SNF,200,Manhattanville Health Care Center,208,311 WEST 231 STREET ,40.881090369489,-73.908879568525,10463
+Residential Health Care Facility - SNF,200,ArchCare at Providence Rest,210,3304 WATERBURY AVENUE ,40.837214876096,-73.818009789858,10465
+Residential Health Care Facility - SNF,205,Throgs Neck Rehabilitation & Nursing Center,210,707 THROGS NECK EXPRESSWAY ,40.828083962156,-73.818547968215,10465
+Hospital,321,Montefiore Medical Center-Wakefield Hospital,212,600 EAST 233 STREET ,40.894552050281,-73.861054383105,10466
+Residential Health Care Facility - SNF,240,Split Rock Rehabilitation and Health Care Center,212,3525 BAYCHESTER AVENUE ,40.881697181488,-73.838996250988,10466
+Residential Health Care Facility - SNF,240,Laconia Nursing Home,212,1050 EAST 230 STREET ,40.888019788010,-73.848170924490,10466
+Hospital,213,North Central Bronx Hospital,207,3424 KOSSUTH AVENUE ,40.880670241061,-73.881569851391,10467
+Hospital,816,Montefiore Medical Center - Henry & Lucy Moses Div,207,111 EAST 210 STREET ,40.879878631338,-73.880479157235,10467
+Residential Health Care Facility - SNF,448,Beth Abraham Center for Rehabilitation and Nursing,211,612 ALLERTON AVENUE ,40.865358621556,-73.869998813554,10467
+Residential Health Care Facility - SNF,200,Bainbridge Nursing & Rehabilitation Center,207,3518 BAINBRIDGE AVENUE ,40.881369555820,-73.878375373845,10467
+Residential Health Care Facility - SNF,122,Mosholu Parkway Nursing & Rehabilitation Center,207,3356 PERRY AVENUE ,40.878744145839,-73.874471087668,10467
+Residential Health Care Facility - SNF,240,Bronx Park Rehabilitation & Nursing Center,212,3845 CARPENTER AVENUE ,40.885710508178,-73.865000535855,10467
+Residential Health Care Facility - SNF,243,Wayne Center for Nursing & Rehabilitation,207,3530 WAYNE AVENUE ,40.881138008532,-73.877442786919,10467
+Adult Home,506,Bronxwood,212,799 EAST GUN HILL ROAD ,40.876073330041,-73.862311756635,10467
+Adult Home,236,Parkview Assisted Living,212,3200 BRONX BOULEVARD ,40.871770901132,-73.870521369361,10467
+Adult Home,70,New Fordham Arms Assisted Living,211,2915 WILLIAMSBRIDGE ROAD ,40.868176416413,-73.862038921243,10467
+Residential Health Care Facility - SNF,744,The Plaza Rehab and Nursing Center,207,100 WEST KINGSBRIDGE ROAD ,40.868315615699,-73.901268172853,10468
+Residential Health Care Facility - SNF,46,University Center for Rehabilitation and Nursing,207,2505 GRAND AVENUE ,40.864876842656,-73.901703534992,10468
+Enriched Housing Program,144,The New Jewish Home University Avenue Assisted Living,207,2553 UNIVERSITY AVENUE ,40.867218273313,-73.901909763383,10468
+Residential Health Care Facility - SNF,524,Workmen's Circle Multicare Center,212,3155 GRACE AVENUE ,40.874388064573,-73.837115638532,10469
+Residential Health Care Facility - SNF,175,Gold Crest Care Center,211,2316 BRUNER AVENUE ,40.859240055007,-73.833403987521,10469
+Residential Health Care Facility - SNF,200,Eastchester Rehabilitation and Health Care Center,211,2700 EASTCHESTER ROAD ,40.865372017278,-73.843323873049,10469
+Residential Health Care Facility - SNF,191,Morris Park Rehabilitation and Nursing Center,211,1235 PELHAM PARKWAY NORTH ,40.858535091942,-73.851755981006,10469
+Residential Health Care Facility - SNF,200,Pelham Parkway Nursing Care and Rehabilitation Facility LLC,211,2401 LACONIA AVENUE ,40.861408631660,-73.855917935025,10469
+Residential Health Care Facility - SNF,720,Kings Harbor Multicare Center,211,2000 EAST GUNHILL ROAD ,40.861137216031,-73.830029815376,10469
+Residential Health Care Facility - SNF,200,East Haven Nursing & Rehabilitation Center,211,2323 EASTCHESTER ROAD ,40.859923378688,-73.843072851099,10469
+Adult Home,378,Amber Court of Pelham Gardens,211,1800 WARING AVENUE ,40.860712335999,-73.834166710640,10469
+Residential Health Care Facility - SNF,588,Hebrew Home for the Aged at Riverdale,208,5901 PALISADE AVENUE ,40.908227483485,-73.908968840201,10471
+Residential Health Care Facility - SNF,120,Methodist Home for Nursing and Rehabilitation,208,4499 MANHATTAN COLLEGE PARKWAY ,40.889876847224,-73.902928689428,10471
+Adult Home,70,RiverSpring Assisted Living,208,5901 PALISADES AVENUE ,40.908227483485,-73.908968840201,10471
+Adult Home,456,The W Assisted Living at Riverdale Home for Adults,208,6355 BROADWAY ,40.901292316918,-73.896831060042,10471
+Residential Health Care Facility - SNF,200,Bronx Center for Rehabilitation & Health Care,209,1010 UNDERHILL AVENUE ,40.826570807323,-73.861308900394,10472
+Residential Health Care Facility - SNF,240,Grand Manor Nursing & Rehabilitation Center,209,700 WHITE PLAINS ROAD ,40.820253661218,-73.857846405285,10473
+Residential Health Care Facility - SNF,236,Regeis Care Center,212,3200 BAYCHESTER AVENUE ,40.876953237536,-73.836306555844,10475
+Residential Health Care Facility - SNF,480,Pinnacle Multicare Nursing and Rehabilitation Center,210,801 CO-OP CITY BOULEVARD ,40.878500370366,-73.828169931417,10475
+Hospital,464,Brooklyn Hospital Center - Downtown Campus,302,121 DEKALB AVENUE ,40.689793200923,-73.977585695581,11201
+Residential Health Care Facility - SNF,364,"Cobble Hill Health Center, Inc",306,380 HENRY STREET ,40.688134776952,-73.997504776186,11201
+Residential Health Care Facility - SNF,400,The Phoenix Rehabilitation and Nursing Center,302,140 ST EDWARDS STREET ,40.692628572008,-73.977689314440,11201
+Hospital,2,NYU Langone Hospital - Joseph S. and Diane H. Steinberg Ambulatory Care Center,306,70 ATLANTIC AVENUE ,40.691112857038,-73.997540724073,11201
+Enriched Housing Program,47,Cumberland Gardens NY Foundation EHP #6,302,425 CUMBERLAND STREET ,40.683152323829,-73.971837092933,11238
+Enriched Housing Program,664,The Watermark at Brooklyn Heights,302,21 CLARK STREET ,40.698087255391,-73.995326163771,11201
+Hospital,624,Kings County Hospital Center,309,451 CLARKSON AVENUE ,40.655752260730,-73.944602024958,11203
+Residential Health Care Facility - SNF,466,"Rutland Nursing Home, Inc.",309,585 SCHENECTADY AVENUE ,40.659314921706,-73.934110682154,11203
+Hospital,342,University Hospital of Brooklyn,317,445 LENOX ROAD ,40.654519713498,-73.944311129073,11203
+Residential Health Care Facility - SNF,320,Dr Susan Smith Mckinney Nursing and Rehabilitation Center,309,594 ALBANY AVENUE ,40.659960294989,-73.939732729800,11203
+Hospital,310,Woodhull Medical & Mental Health Center,303,760 BROADWAY ,40.700520815949,-73.941603753866,11206
+Enriched Housing Program,60,"Moffat Gardens ALP, Inc",304,22 MOFFAT STREET ,40.683675035605,-73.910177957584,11207
+Residential Health Care Facility - SNF,225,Bushwick Center for Rehabilitation and Health Care,305,50 SHEFFIELD AVENUE ,40.676388479086,-73.898041959769,11207
+Residential Health Care Facility - SNF,280,Linden Center for Nursing and Rehabilitation,305,2237 LINDEN BOULEVARD ,40.662987860048,-73.880379074671,11207
+Residential Health Care Facility - SNF,120,Brooklyn United Methodist Church Home,305,1485 DUMONT AVENUE ,40.670957900613,-73.862534956818,11208
+Residential Health Care Facility - SNF,140,Brooklyn-Queens Nursing Home,305,2749 LINDEN BOULEVARD ,40.669661012927,-73.861412937200,11208
+Residential Health Care Facility - SNF,448,Schulman and Schachne Institute for Nursing And Rehabilitation,317,555 ROCKAWAY PARKWAY ,40.655255472249,-73.913582535706,11212
+Enriched Housing Program,86,Brookdale Hospital Medical Center ALP,317,558 ROCKAWAY PARKWAY ,40.655219781978,-73.913571770024,11212
+Hospital,287,Interfaith Medical Center,303,1545 ATLANTIC AVENUE ,40.677808420676,-73.937556990563,11213
+Residential Health Care Facility - SNF,281,Brooklyn Center for Rehabilitation and Residential Health Care,308,170 BUFFALO AVENUE ,40.673326995587,-73.925138330399,11213
+Residential Health Care Facility - SNF,295,Crown Heights Center for Nursing and Rehabilitation,308,810 ST MARKS AVENUE ,40.674971858644,-73.945984778007,11213
+Residential Health Care Facility - SNF,240,Haym Solomon Home for the Aged,311,2340 CROPSEY AVENUE ,40.594971370366,-73.995967143800,11214
+Residential Health Care Facility - SNF,271,King David Center for Nursing and Rehabilitation,311,2266 CROPSEY AVENUE ,40.596047364957,-73.997248971448,11214
+Residential Health Care Facility - SNF,200,Bensonhurst Center for Rehabilitation and Healthcare,311,1740 84 STREET ,40.609378802035,-74.002337402413,11214
+Adult Home,400,Kings Adult Care Center,311,2255 CROPSEY AVENUE ,40.596099516688,-73.997281376721,11214
+Hospital,577,NewYork-Presbyterian Brooklyn Methodist Hospital,306,506 SIXTH STREET ,40.668285450818,-73.979236711471,11215
+Residential Health Care Facility - SNF,140,Concord Nursing and Rehabilitation Center,303,300 MADISON STREET ,40.685199035087,-73.946286548124,11216
+Residential Health Care Facility - SNF,235,Oxford Nursing Home,302,144 SOUTH OXFORD STREET ,40.684953222617,-73.973199262172,11217
+Residential Health Care Facility - SNF,288,Hopkins Center for Rehabilitation and Healthcare,302,155 DEAN STREET ,40.686251174875,-73.987203326253,11217
+Residential Health Care Facility - SNF,240,Palm Gardens Center for Nursing and Rehabilitation,312,615 AVENUE C ,40.640973615327,-73.973090880575,11218
+Hospital,711,Maimonides Medical Center,312,4802 TENTH AVENUE ,40.639480856373,-73.998241650351,11219
+Residential Health Care Facility - SNF,135,Norwegian Christian Home and Health Center,310,1250 67 STREET ,40.625463200578,-74.003822163202,11219
+Residential Health Care Facility - SNF,79,The Heritage Rehabilitation and Health Care Center,312,5606 15 AVENUE ,40.628334022599,-73.991915829789,11219
+Residential Health Care Facility - SNF,504,Boro Park Center for Rehabilitation and Healthcare,312,4915 10 AVENUE ,40.638863288264,-73.998857803975,11219
+Hospital,25,Calvary Hospital,307,150 55 STREET ,40.646933783885,-74.020929590199,11220
+Hospital,444,NYU Langone Hospital-Brooklyn,307,150 55 STREET ,40.646933783885,-74.020929590199,11220
+Residential Health Care Facility - SNF,240,Buena Vida Rehabilitation and Nursing Center,304,48 CEDAR STREET ,40.697026976073,-73.927614387494,11221
+Adult Home,401,Garden of Eden Assisted Living Program,311,1608 STILLWELL AVENUE ,40.607006617905,-73.987222175685,11223
+Residential Health Care Facility - SNF,360,Seagate Rehabilitation and Nursing Center,313,3015 WEST 29 STREET ,40.572680899557,-73.994870629535,11224
+Residential Health Care Facility - SNF,305,Sea Crest Nursing and Rehabilitation Center,313,3035 WEST 24 STREET ,40.572853547939,-73.990572732546,11224
+Adult Home,400,Oceanview Manor Home for Adults,313,3010 WEST 33 STREET ,40.572461427845,-73.999103712960,11224
+Adult Home,399,Mermaid Manor Home for Adults,313,3602 MERMAID AVENUE ,40.574717632341,-74.001907824253,11224
+Residential Health Care Facility - SNF,200,Saints Joachim & Anne Nursing and Rehabilitation Center,313,2720 SURF AVENUE ,40.573128205848,-73.993078003006,11224
+Residential Health Care Facility - SNF,200,The Monarch at Brooklyn Rehabilitation and Nursing Center,317,135 LINDEN BOULEVARD ,40.652426957642,-73.953891990431,11226
+Residential Health Care Facility - SNF,119,"Caton Park Rehabilitation and Nursing Center, LLC",314,1312 CATON AVENUE ,40.649667687616,-73.967696183465,11226
+Residential Health Care Facility - SNF,240,Ditmas Park Care Center,314,2107 DITMAS AVENUE ,40.639840913183,-73.957842616548,11226
+Residential Health Care Facility - SNF,200,Hamilton Park Nursing and Rehabilitation Center,310,691 92 STREET ,40.614973016633,-74.023574092422,11228
+Hospital,134,Maimonides Midwood Community Hospital,314,2525 KINGS HIGHWAY ,40.613240291161,-73.948844289464,11229
+Residential Health Care Facility - SNF,189,The Chateau at Brooklyn Rehabilitation and Nursing Center,315,3457 NOSTRAND AVENUE ,40.599705100066,-73.941742682264,11229
+Adult Home,199,Signature Senior Living,314,631 FOSTER AVENUE ,40.630485175071,-73.970544422685,11230
+Enriched Housing Program,170,Ateret Avot Assisted Living,312,1410 EAST 10 STREET ,40.614500507160,-73.964259119848,11230
+Residential Health Care Facility - SNF,240,Brooklyn Gardens Nursing & Rehabilitation Center,303,835 HERKIMER STREET ,40.678333807826,-73.925659059861,11233
+Hospital,212,Mount Sinai Brooklyn,318,3201 KINGS HIGHWAY ,40.617903670980,-73.943009052500,11234
+Enriched Housing Program,465,Sunrise at Mill Basin,318,5905 STRICKLAND AVENUE ,40.607517242801,-73.916003514754,11234
+Hospital,351,South Brooklyn Health,313,2601 OCEAN PARKWAY ,40.586545432467,-73.966167901117,11235
+Residential Health Care Facility - SNF,200,Sheepshead Nursing & Rehabilitation Center,315,2840 KNAPP STREET ,40.584833458026,-73.931171068121,11235
+Residential Health Care Facility - SNF,320,Shore View Nursing & Rehabilitation Center,313,2865 BRIGHTON 3 STREET ,40.581404327448,-73.965778112147,11235
+Adult Home,585,The Waterford on the Bay,315,2900 BRAGG STREET ,40.583698154783,-73.932921918211,11235
+Adult Home,177,Harbor View Home for Adults,315,3900 SHORE PARKWAY ,40.585349402226,-73.931044525754,11235
+Enriched Housing Program,608,Sunrise at Sheepshead Bay,315,2211 EMMONS AVENUE ,40.583732541128,-73.946044455967,11235
+Residential Health Care Facility - SNF,436,Menorah Home & Hospital for Aged & Infirm,315,1516 ORIENTAL BOULEVARD ,40.578341205769,-73.939421476196,11235
+Residential Health Care Facility - SNF,380,Atrium Center for Rehabilitation and Nursing,318,630 EAST 104 STREET ,40.649684809986,-73.898374827521,11236
+Adult Home,74,New South Shore Manor,318,1041 EAST 83 STREET ,40.634404710601,-73.908259330851,11236
+Adult Home,349,Amber Court of Brooklyn,318,650 EAST 104 STREET ,40.649616123371,-73.898299254271,11236
+Residential Health Care Facility - SNF,270,Four Seasons Nursing and Rehabilitation Center,318,1555 ROCKAWAY PARKWAY ,40.642590516527,-73.899473884667,11236
+Hospital,324,Wyckoff Heights Medical Center,304,374 STOCKHOLM STREET ,40.704628796527,-73.917698464014,11237
+Residential Health Care Facility - SNF,148,"New Carlton Rehab and Nursing Center, LLC",302,405 CARLTON AVENUE ,40.685540150597,-73.971324074835,11238
+Residential Health Care Facility - SNF,320,Downtown Brooklyn Nursing & Rehabilitation Center,308,520 PROSPECT PLACE ,40.675603100806,-73.959106956693,11238
+Residential Health Care Facility - SNF,188,Spring Creek Rehabilitation & Nursing Care Center,318,660 LOUISIANA AVENUE ,40.646237781898,-73.884344291748,11239
+Enriched Housing Program,368,Brooklyn Boulevard ALP,318,636 LOUISIANA AVENUE ,40.647295715912,-73.885531639584,11239
+Residential Health Care Facility - SNF,200,Bedford Center for Nursing and Rehabilitation,301,40 HEYWARD STREET ,40.700324953466,-73.958197327813,11249
+Hospital,530,Brookdale Hospital Medical Center,317,1 BROOKDALE PLAZA ,40.654156034922,-73.911583760349,11212
+Adult Home,176,Norwegian Christian Home and Health Center,310,1250 67 STREET ,40.625463200578,-74.003822163202,11219
+Adult Home,410,Brooklyn Adult Care Center,305,2830 PITKIN AVENUE ,40.675976106944,-73.867838578012,11208
+Adult Home,482,The Belvedere,312,5110 19 AVENUE ,40.625886996926,-73.980215405957,11204
+Enriched Housing Program,80,Assisted Living at Jennings Hall,301,260 POWERS STREET ,40.712898864330,-73.939922752360,11211
+Residential Health Care Facility - SNF,200,"Woodcrest Rehabilitation & Residential Health Care Center., LLC",407,119-09 26 AVENUE ,40.774829418661,-73.848227803752,11354
+Adult Home,462,Elm York Home for Adults,403,100-30 DITMARS BOULEVARD ,40.769882763927,-73.870110091634,11369
+Residential Health Care Facility - SNF,240,"Elmhurst Care Center, Inc",403,100-17 23 AVENUE ,40.768746774832,-73.870411962363,11369
+Residential Health Care Facility - SNF,228,Rockaway Care Center,414,353 BEACH 48 STREET ,40.594450571525,-73.778936160908,11691
+Adult Home,552,Queens Adult Care Center,404,80-08 45 AVENUE ,40.741402136886,-73.884607896508,11373
+Hospital,545,Elmhurst Hospital Center,404,79-01 BROADWAY ,40.744409142236,-73.886096742623,11373
+Adult Home,246,New Haven Manor,414,15-26 NEW HAVEN AVENUE ,40.599154525551,-73.749323874012,11691
+Adult Home,236,"Seaview Manor, LLC",414,210 BEACH 47 STREET ,40.593361729694,-73.777953190735,11691
+Adult Home,430,Long Island Living Center,414,431 BEACH 20 STREET ,40.598970265316,-73.754221922364,11691
+Enriched Housing Program,56,Central Townhouse,414,11-38 FOAM PLACE ,40.604878949292,-73.751279419940,11691
+Hospital,252,St Johns Episcopal Hospital So Shore,414,327 BEACH 19 STREET ,40.598552656058,-73.752761470583,11691
+Residential Health Care Facility - SNF,200,Peninsula Nursing and Rehabilitation Center,414,50-15 BEACH CHANNEL DRIVE ,40.595294728827,-73.781147843347,11691
+Residential Health Care Facility - SNF,100,Far Rockaway Center for Rehabilitation and Nursing,414,13-11 VIRGINIA STREET ,40.610097466079,-73.745335272898,11691
+Residential Health Care Facility - SNF,102,"Oceanview Nursing & Rehabilitation Center, LLC",414,315 BEACH 9 STREET ,40.597947312753,-73.744582383878,11691
+Residential Health Care Facility - SNF,200,Queens Nassau Rehabilitation and Nursing Center,414,520 BEACH 19 STREET ,40.599951409635,-73.752255725375,11691
+Residential Health Care Facility - SNF,298,Brookhaven Rehabilitation & Health Care Center LLC,414,250 BEACH 17 STREET ,40.596630554483,-73.751151824976,11691
+Residential Health Care Facility - SNF,215,"West Lawrence Care Center, LLC",414,14-10 SEAGIRT BOULEVARD ,40.595249574695,-73.748481601240,11691
+Residential Health Care Facility - SNF,120,Bezalel Rehabilitation and Nursing Center,414,29-38 FAR ROCKAWAY BOULEVARD ,40.598536161066,-73.764464688385,11691
+Residential Health Care Facility - SNF,240,"Haven Manor Health Care Center,LLC",414,14-41 GATEWAY BOULEVARD ,40.601714785604,-73.749033335143,11691
+Residential Health Care Facility - SNF,163,Beach Gardens Rehab and Nursing Center,414,17-11 BROOKHAVEN AVENUE ,40.598891811259,-73.750941709306,11691
+Residential Health Care Facility - SNF,183,Premier Nursing and Rehab Center of Far Rockaway,414,22-41 NEW HAVEN AVENUE ,40.601113462389,-73.756561927032,11691
+Adult Home,200,Wavecrest Assisted Living,414,242 BEACH 20 STREET ,40.596153854338,-73.754106299619,11691
+Adult Home,392,"Central Assisted Living, LLC",414,15-09 CENTRAL AVENUE ,40.605696978304,-73.751315975620,11691
+Adult Home,146,"Sutton Gardens, LLC",407,147-02 34 AVENUE ,40.767366544052,-73.819844002729,11354
+Residential Health Care Facility - SNF,218,Cliffside Rehabilitation & Residential Health Care Center,407,119-19 GRAHAM COURT ,40.775110541573,-73.847032069186,11354
+Residential Health Care Facility - SNF,200,Waterview Nursing Care Center,407,119-15 27 AVENUE ,40.773846329501,-73.847876225994,11354
+Residential Health Care Facility - SNF,227,"Sapphire Center for Rehabilitation and Nursing of Central Queens, LLC",407,35-15 PARSONS BOULEVARD ,40.765527980845,-73.823653965241,11354
+Residential Health Care Facility - SNF,200,Long Island Care Center Inc,407,144-61 38 AVENUE ,40.763392749788,-73.820241053518,11354
+Residential Health Care Facility - SNF,268,Cypress Garden Center for Nursing and Rehabilitation,407,139-62 35 AVENUE ,40.765420838330,-73.827199291993,11354
+Residential Health Care Facility - SNF,280,Union Plaza Care Center,407,33-23 UNION STREET ,40.767270741079,-73.827154762347,11354
+Residential Health Care Facility - SNF,302,The Pavilion at Queens for Rehabilitation & Nursing,407,36-17 PARSONS BOULEVARD ,40.764385692260,-73.823350154251,11354
+Adult Home,400,Sanford Home,407,140-40 SANFORD AVENUE ,40.757450818867,-73.825895328747,11355
+Hospital,293,Flushing Hospital Medical Center,407,45-00 PARSONS BOULEVARD ,40.755667297096,-73.815717631083,11355
+Hospital,535,NewYork-Presbyterian/Queens,407,56-45 MAIN STREET ,40.746809754251,-73.826154221818,11355
+Residential Health Care Facility - SNF,320,Franklin Center for Rehabilitation and Nursing,407,142-27 FRANKLIN AVENUE ,40.756568141500,-73.823049717052,11355
+Enriched Housing Program,439,Boulevard ALP,408,71-61 159 STREET ,40.728103018402,-73.809869824356,11365
+Residential Health Care Facility - SNF,143,Meadow Park Rehabilitation and Health Care Center LLC,408,78-10 164 STREET ,40.722601951239,-73.804647204807,11366
+Adult Home,426,"Madison York Assisted Living Community, LLC",404,112-14 CORONA AVENUE ,40.739627854983,-73.848246952768,11368
+Residential Health Care Facility - SNF,200,Rego Park Nursing Home,404,111-26 CORONA AVENUE ,40.740331223276,-73.848783034295,11368
+Adult Home,43,Castle Senior Living at Forest Hills,404,108-25 HORACE HARDING EXPRESSWAY ,40.738404406518,-73.850887600869,11368
+Enriched Housing Program,320,Castle Senior Living at Forest Hills,404,108-25 HORACE HARDING EXPRESSWAY ,40.738404406518,-73.850887600869,11368
+Enriched Housing Program,95,Atria Forest Hills,406,112-50 72 AVENUE ,40.721876933400,-73.837854194652,11375
+Residential Health Care Facility - SNF,200,Fairview Nursing Care Center Inc,406,69-70 GRAND CENTRAL PARKWAY ,40.724748097348,-73.837948200664,11375
+Residential Health Care Facility - SNF,100,Forest Hills Care Center,406,71-44 YELLOWSTONE BOULEVARD ,40.721477012481,-73.854854329878,11375
+Residential Health Care Facility - SNF,160,Forest View Center for Rehabilitation & Nursing,406,71-20 110 STREET ,40.721846090451,-73.841314008069,11375
+Hospital,312,Long Island Jewish Forest Hills,406,102-01 66 ROAD ,40.729257553920,-73.852015819693,11375
+Residential Health Care Facility - SNF,60,"New Glen Oaks Nursing Home, Inc",413,260-01 79 AVENUE ,40.746675167078,-73.711640739060,11004
+Residential Health Care Facility - SNF,314,Holliswood Center for Rehabilitation and Healthcare,412,195-44 WOODHULL AVENUE ,40.712364606515,-73.764125838203,11423
+Residential Health Care Facility - SNF,80,Hollis Park Manor Nursing Home,412,191-06 HILLSIDE AVENUE ,40.716026153942,-73.770901848492,11423
+Residential Health Care Facility - SNF,280,Regal Heights Rehabilitation and Health Care Center,403,70-05 35 AVENUE ,40.750635134739,-73.895668518356,11372
+Hospital,384,Jamaica Hospital Medical Center,409,89-00 VAN WYCK EXPRESSWAY ,40.701211829082,-73.816218573886,11418
+Residential Health Care Facility - SNF,228,Jamaica Hospital Nursing Home Co Inc,409,89-40 135 STREET ,40.700284866223,-73.816700801255,11418
+Hospital,269,Queens Hospital Center,408,82-68 164 STREET ,40.717242076559,-73.803432850281,11432
+Residential Health Care Facility - SNF,200,Margaret Tietz Nursing and Rehabilitation Center,408,164-11 CHAPIN PARKWAY ,40.714006047305,-73.801873285829,11432
+Residential Health Care Facility - SNF,320,Highland Care Center,412,91-31 175 STREET ,40.708803747621,-73.786068737657,11432
+Residential Health Care Facility - SNF,220,Chapin Home for the Aging,408,165-01 CHAPIN PARKWAY ,40.714270940420,-73.801093330810,11432
+Residential Health Care Facility - SNF,250,NYS Veterans Home In NYC,412,178-50 LINDEN BOULEVARD ,40.692601591575,-73.769230096788,11434
+Residential Health Care Facility - SNF,320,Silvercrest,408,144-45 87 AVENUE ,40.706809376697,-73.811726997418,11435
+Residential Health Care Facility - SNF,400,Hillside Manor Rehab & Extended Care Center,408,182-15 HILLSIDE AVENUE ,40.713521906328,-73.780202650132,11432
+Enriched Housing Program,455,Atria Kew Gardens,409,117-01 84 AVENUE ,40.703962451349,-73.834471589550,11418
+Adult Home,163,"New Homestead Home for Adults, Inc.",409,82-45 GRENFELL STREET ,40.709244428947,-73.831410534883,11415
+Residential Health Care Facility - SNF,120,Little Neck Care Center,411,260-19 NASSAU BOULEVARD ,40.765760406995,-73.724261562862,11362
+Enriched Housing Program,522,Brandywine Living at The Savoy,411,55-15 LITTLE NECK PARKWAY ,40.765209277079,-73.724498504807,11362
+Enriched Housing Program,46,River View Gardens NY Foundation EHP #8,402,4-12 49 AVENUE ,40.743935974414,-73.956614445695,11101
+Hospital,228,Mount Sinai Hospital - Mount Sinai Hospital of Queens,401,25-10 30 AVENUE ,40.768438427911,-73.924724141072,11102
+Residential Health Care Facility - SNF,200,Central Queens Rehabilitation and Nursing Center,405,69-95 QUEENS MIDTOWN EXPRESSWAY ,40.725977698529,-73.891410293382,11378
+Residential Health Care Facility - SNF,360,Dry Harbor Nursing Home,405,61-35 DRY HARBOR ROAD ,40.727052421071,-73.871622636368,11379
+Residential Health Care Facility - SNF,527,Parker Jewish Institute for Health Care & Rehab,413,271-11 76 AVENUE ,40.754085405937,-73.705974234951,11005
+Hospital,1014,Long Island Jewish Medical Center,413,270-05 76 AVENUE ,40.753338177941,-73.706793265343,11005
+Hospital,115,Mount Sinai - Behavioral Health Center,103,45 RIVINGTON STREET ,40.720868588003,-73.991024309598,10002
+Enriched Housing Program,47,NY Found-Sr Citizens EHP#4 Ridge Street Gardens,103,80 RIDGE STREET ,40.717763462137,-73.983795451848,10002
+Residential Health Care Facility - SNF,58,New East Side Nursing Home,103,25 BIALYSTOKER PLACE ,40.716056066470,-73.982767779171,10002
+Residential Health Care Facility - SNF,295,New Gouverneur Hospital SNF,103,227 MADISON STREET ,40.712776777575,-73.988417431834,10002
+Hospital,69,New York Eye and Ear Infirmary of Mount Sinai,103,310 EAST 14 STREET ,40.732124170174,-73.984441422897,10003
+Hospital,225,NYU Langone Orthopedic Hospital,106,301 EAST 17 STREET ,40.734212794613,-73.983430604315,10003
+Hospital,8,Northwell Greenwich Village Hospital,102,30 SEVENTH AVENUE ,40.737543389345,-74.000425802872,10011
+Adult Home,47,Frederic Fleming Residence,104,443 WEST 22 STREET ,40.746389717302,-74.003147030493,10011
+Residential Health Care Facility - SNF,105,West Village Rehabilitation and Nursing Center,102,214 WEST HOUSTON STREET ,40.728518518481,-74.004419810213,10014
+Hospital,898,Bellevue Hospital Center,106,462 FIRST AVENUE ,40.739489790595,-73.976623458224,10016
+Hospital,813,NYU Langone Hospitals,106,550 FIRST AVENUE ,40.742286272801,-73.974594351853,10016
+Hospital,514,Mount Sinai West,104,1000 10 AVENUE ,40.770290460533,-73.987688944705,10019
+Enriched Housing Program,47,NY Found-Sr Citizens EHP#5 Clinton Gardens,104,404 WEST 54 STREET ,40.766189788597,-73.987635554774,10019
+Hospital,626,Lenox Hill Hospital,108,100 EAST 77 STREET ,40.774171119042,-73.961147501499,10075
+Hospital,16,David H. Koch Center For Cancer Care,108,530 EAST 74 STREET ,40.767802550340,-73.951956191292,10021
+Hospital,215,Hospital for Special Surgery,108,535 EAST 70 STREET ,40.765204056713,-73.953885815035,10021
+Residential Health Care Facility - SNF,360,Mary Manning Walsh Nursing Home Co Inc,108,1339 YORK AVENUE ,40.766507865386,-73.954007651341,10021
+Hospital,744,New York-Presbyterian Hospital - New York Weill Cornell Center,108,525 EAST 68 STREET ,40.764142375937,-73.955251112566,10065
+Residential Health Care Facility - SNF,520,The Riverside,107,150 RIVERSIDE DRIVE ,40.790699326576,-73.979783432283,10024
+Enriched Housing Program,199,Atria West 86,107,333 WEST 86 STREET ,40.789560195400,-73.979447925905,10024
+Hospital,501,Mount Sinai Morningside,109,1111 AMSTERDAM AVENUE ,40.805834769614,-73.961750248871,10025
+Residential Health Care Facility - SNF,514,"The New Jewish Home, Manhattan",107,120 WEST 106 STREET ,40.799898754317,-73.964469816031,10025
+Residential Health Care Facility - SNF,409,Amsterdam Nursing Home Corp (1992),109,1060 AMSTERDAM AVENUE ,40.804350226968,-73.962863642814,10025
+Adult Home,79,"West Side Federation For Senior And Supportive Housing, Inc.",110,109 WEST 129 STREET ,40.810581507404,-73.944248683238,10027
+Residential Health Care Facility - SNF,40,St Marys Center Inc,109,516 WEST 126 STREET ,40.814701061001,-73.956203253206,10027
+Hospital,1121,Mount Sinai Hospital,111,1 GUSTAVE L LEVY PLACE ,40.790436546276,-73.953792431443,10029
+Hospital,338,Metropolitan Hospital Center,111,1901 FIRST AVENUE ,40.784550076146,-73.943779460420,10029
+Enriched Housing Program,254,Vista on 5th,111,1261 FIFTH AVENUE ,40.795230213676,-73.950408597757,10029
+Residential Health Care Facility - SNF,559,Terence Cardinal Cooke Health Care Center,111,1249 FIFTH AVENUE ,40.794173813405,-73.951175042880,10029
+Hospital,1022,New York-Presbyterian Hospital - Columbia Presbyterian Center,112,622 WEST 168 STREET ,40.841422338018,-73.940604967143,10032
+Hospital,196,New York-Presbyterian Hospital - Allen Hospital,112,5141 BROADWAY ,40.872378804051,-73.912666496098,10034
+Hospital,201,Henry J. Carter Specialty Hospital,111,1752 PARK AVENUE ,40.802930061152,-73.940585265539,10035
+Residential Health Care Facility - SNF,164,Henry J. Carter Skilled Nursing Facility,111,1752 PARK AVENUE ,40.802930061152,-73.940585265539,10035
+Residential Health Care Facility - SNF,320,Northern Manhattan Rehabilitation and Nursing Center,111,116 EAST 125 STREET ,40.804704677163,-73.938242999056,10035
+Enriched Housing Program,178,VillageCare at 46 and Ten,104,510 WEST 46 STREET ,40.762380580632,-73.994119554788,10036
+Hospital,268,Harlem Hospital Center,110,506 LENOX AVENUE ,40.814350988218,-73.940658121806,10037
+Residential Health Care Facility - SNF,200,Harlem Center for Nursing and Rehabilitation,110,30 WEST 138 STREET ,40.815263405196,-73.937669577294,10037
+Hospital,180,New York-Presbyterian/Lower Manhattan Hospital,101,170 WILLIAM STREET ,40.710471623675,-74.005515145400,10038
+Residential Health Care Facility - SNF,705,Isabella Geriatric Center Inc,112,515 AUDUBON AVENUE ,40.854776442222,-73.927908365186,10040
+Residential Health Care Facility - SNF,205,Fort Tryon Center for Rehabilitation and Nursing,112,801 WEST 190 STREET ,40.856927012856,-73.934929974402,10040
+Hospital,514,Memorial Hospital for Cancer and Allied Diseases,108,1275 YORK AVENUE ,40.764191953837,-73.955695102824,10065
+Hospital,135,New York-Presbyterian David H. Koch Center,108,1283 YORK AVENUE ,40.764567879313,-73.955420494129,10065
+Adult Home,280,The 80th Street Residence,108,430 EAST 80 STREET ,40.772553370072,-73.951118747366,10075
+Residential Health Care Facility - SNF,499,Upper East Side Rehabilitation and Nursing Center,108,211 EAST 79 STREET ,40.774073496200,-73.956793312056,10075
+Adult Home,521,Inspir Carnegie Hill,108,1802 2 AVENUE ,40.782589698560,-73.948291198942,10128
+Enriched Housing Program,47,NY Found-Sr Citizens EHP#2 Brown Gardens,108,225 EAST 93 STREET ,40.782774168795,-73.949576556978,10128
+Enriched Housing Program,117,Carnegie East House,108,1844 SECOND AVENUE ,40.783777775992,-73.947409185079,10128
+Enriched Housing Program,250,Inspir Carnegie Hill,108,1802 2 AVENUE ,40.782589698560,-73.948291198942,10128
+Enriched Housing Program,256,RiverSpring Residences,208,5901 PALISADE AVENUE ,40.908227483485,-73.908968840201,10471
+Enriched Housing Program,42,NY Found-Sr Citizens EHP#3,108,1850 2 AVENUE ,40.783953382150,-73.947282659984,10128
+Enriched Housing Program,47,Alma Rangel Gardens NY Foundation EHP#7,110,55 WEST 137 STREET ,40.814756003984,-73.938367305924,10037
+Enriched Housing Program,500,305 West End Assisted Living,107,305 WEST END AVENUE ,40.781343043030,-73.983371889596,10023
+Enriched Housing Program,658,Sunrise at East 56th,106,139 EAST 56 STREET ,40.760150648017,-73.969382283011,10022
+Adult Home,407,The Bristal at York Avenue,108,1622 YORK AVENUE ,40.775675208732,-73.947292849287,10028
+Enriched Housing Program,440,Coterie Hudson Yards,104,505 WEST 35 STREET ,40.755403550281,-73.999014614644,10001
+Enriched Housing Program,680,The Apsley,107,2330 BROADWAY ,40.787363988309,-73.977292714308,10024
+Residential Health Care Facility - SNF,280,Resort Nursing Home,414,430 BEACH 68 STREET ,40.593542968252,-73.797227121147,11692
+Residential Health Care Facility - SNF,200,"Lawrence Nursing Care Center, Inc",414,350 BEACH 54 STREET ,40.593772070556,-73.784411496250,11692
+Residential Health Care Facility - SNF,280,Ocean Gardens Care Center,414,64-11 BEACH CHANNEL DRIVE ,40.592992768275,-73.793462500393,11692
+Residential Health Care Facility - SNF,280,New York Center for Rehabilitation & Nursing,401,26-13 21 STREET ,40.773066433732,-73.925253233554,11102
+Residential Health Care Facility - SNF,124,St. Mary's Hospital for Children,411,29-01 216 STREET ,40.776483842369,-73.770209223371,11360
+Residential Health Care Facility - SNF,432,Ozanam Hall of Queens Nursing Home Inc,411,42-41 201 STREET ,40.758991387310,-73.782863966947,11361
+Adult Home,162,Belle Harbor Manor,414,209 BEACH 125 STREET ,40.577697746894,-73.844940856749,11694
+Residential Health Care Facility - SNF,70,Windsor Park Rehab & Nursing Center,413,212-40 HILLSIDE AVENUE ,40.725231037420,-73.753173612150,11427
+Residential Health Care Facility - SNF,53,Queen of Peace Residence,413,110-30 221 STREET ,40.705814520074,-73.735947616556,11429
+Residential Health Care Facility - SNF,200,Park Terrace Care Center,404,59-20 VAN DOREN STREET ,40.739089410817,-73.849976697690,11368
+Adult Home,402,Madison York Home for Adults,405,61-80 WOODHAVEN BOULEVARD ,40.727367153314,-73.870806631091,11374
+Enriched Housing Program,508,Atria Riverdale,208,3718 HENRY HUDSON PARKWAY ,40.888353937768,-73.910189676263,10463
+Residential Health Care Facility - SNF,200,Park Gardens Rehabilitation & Nursing Center LLC,208,6585 BROADWAY ,40.907890375540,-73.896563914863,10471
+Adult Home,399,"Surfside Manor Home for Adults, LLC",414,95-02 ROCKAWAY BEACH BOULEVARD ,40.585504845529,-73.817625497600,11693
+Residential Health Care Facility - SNF,196,Park Nursing Home,414,128 BEACH 115 STREET ,40.578820961512,-73.835535309531,11694
+Residential Health Care Facility - SNF,240,Promenade Rehabilitation and Health Care Center,414,140 BEACH 114 STREET ,40.579253584882,-73.834803456305,11694
+Residential Health Care Facility - SNF,120,Beacon Rehabilitation and Nursing Center,414,140 BEACH 113 STREET ,40.579518625564,-73.833971213322,11694
+Adult Home,181,Park Inn Home,414,115-02 OCEAN PROMENADE ,40.578027340967,-73.835274481942,11694
+Adult Home,222,The Elliot Pearl House,414,140 BEACH 119 STREET ,40.577854384005,-73.839108744409,11694
+Residential Health Care Facility - SNF,815,Coler Rehabilitation and Nursing Care Center,108,900 MAIN STREET ,40.769792991239,-73.941217855213,10044
+Adult Home,400,"Lakeside Manor Home for Adults, Inc.",501,797 BRIGHTON AVENUE ,40.632440459585,-74.097167372131,10301
+Residential Health Care Facility - SNF,278,Silver Lake Specialized Rehabilitation and Care Center,501,275 CASTLETON AVENUE ,40.633363943480,-74.092355319547,10301
+Residential Health Care Facility - SNF,120,Verrazano Nursing and Post-Acute Center,501,100 CASTLETON AVENUE ,40.634477128015,-74.086869639922,10301
+Residential Health Care Facility - SNF,300,Staten Island Care Center,501,200 LAFAYETTE AVENUE ,40.640012985284,-74.094281463472,10301
+Adult Home,400,"Mariners Residence, Inc.",501,2099 FOREST AVENUE ,40.626401007662,-74.159283151305,10303
+Enriched Housing Program,417,Sunrise of Staten Island,501,801 NARROWS ROAD NORTH ,40.610991110348,-74.095799825315,10304
+Residential Health Care Facility - SNF,320,"New Vanderbilt Rehabilitation and Care Center, Inc",501,135 VANDERBILT AVENUE ,40.620502721504,-74.076304291373,10304
+Residential Health Care Facility - SNF,300,Carmel Richmond Healthcare and Rehabilitation Center,502,88 OLD TOWN ROAD ,40.596228480598,-74.090478134833,10304
+Hospital,10,RUMC-Bayley Seton,501,75 VANDERBILT AVENUE ,40.621129327423,-74.075101881544,10304
+Residential Health Care Facility - SNF,144,Richmond Center for Rehabilitation and Specialty Healthcare.,501,75 VANDERBILT AVENUE ,40.621129327423,-74.075101881544,10304
+Residential Health Care Facility - SNF,228,Richmond Center for Rehabilitation and Specialty Healthcare,501,91 TOMPKINS AVENUE ,40.622321086769,-74.078417294899,10304
+Adult Home,325,New Broadview Home for Adults,502,70 FATHER CAPODANNO BOULEVARD ,40.594380487260,-74.062922805494,10305
+Hospital,454,Staten Island University Hosp-North,502,475 SEAVIEW AVENUE ,40.583652281336,-74.086374856853,10305
+Enriched Housing Program,150,"Eger Harbor House, Inc.",502,110 MEISNER AVENUE ,40.579991857779,-74.131358762383,10306
+Enriched Housing Program,456,Sunrise of New Dorp,502,470 NEW DORP LANE ,40.569333862112,-74.107675395193,10306
+Residential Health Care Facility - SNF,378,Archcare at Eger Health Care and Rehabilitation Center,502,140 MEISNER AVENUE ,40.579563290595,-74.131689110227,10306
+Hospice,8,Staten Island University Hospital University Hospice,502,78 MEISNER AVENUE ,40.580900150268,-74.131562156104,10306
+Hospital,172,Staten Island University Hospital Prince's Bay,503,375 SEGUINE AVENUE ,40.516718137336,-74.196878000039,10309
+Hospital,448,Richmond University Medical Center,501,355 BARD AVENUE ,40.635470467802,-74.106683617016,10310
+Adult Home,590,The Brielle at Seaview,502,140 FRIENDSHIP LANE ,40.595127068375,-74.130981763894,10314
+Residential Health Care Facility - SNF,304,"Sea View Hospital, Rehabilitation Center and Home",502,460 BRIELLE AVENUE ,40.593790660708,-74.135436804831,10314
+Residential Health Care Facility - SNF,576,"Clove Lakes Health Care and Rehabilitation Center, Inc",502,25 FANNING STREET ,40.607794882880,-74.123007865099,10314
+Residential Health Care Facility - SNF,238,Golden Gate Rehabilitation & Health Care Center,502,191 BRADLEY AVENUE ,40.606731004506,-74.131883360683,10314
+Adult Home,774,The Veranda Assisted Living,501,110 HENDERSON AVENUE ,40.640626704954,-74.095622739149,10301
+Residential Health Care Facility - SNF,200,Bridge View Nursing Home,407,143-10 20 AVENUE ,40.781704139989,-73.824492020395,11357
+Residential Health Care Facility - SNF,179,Queens Center for Rehabilitation and Nursing,407,157-15 19 AVENUE ,40.781285731381,-73.805034058860,11357
+Residential Health Care Facility - SNF,280,Queens Boulevard Extended Care Facility,402,61-11 QUEENS BOULEVARD ,40.741397673047,-73.903557246452,11377

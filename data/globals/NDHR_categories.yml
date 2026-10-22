@@ -12,6 +12,10 @@
 # `key` is the join key: it names a file in data/globals/NDHR_content/, and it is what
 # each generated page carries as `content_yml`.
 #
+# `facilities_layer` turns on the health care facility points
+# (static/geojson/ndhr-facilities.geojson) on that category's report map. Off only on
+# Mental Health, which carries no district data for the points to sit beside.
+#
 # `slug` is the URL segment, under /ndhr/<cd-slug>/<slug>/. Hyphens, where NR_topics
 # uses underscores — NR's slugs reproduce URLs already indexed and this section has
 # none yet, so it is a free choice rather than a compatibility one.
@@ -29,6 +33,7 @@
   seo_short_name: "Climate and Active Design"
   seo_long_name: "Climate and Active Design — Neighborhood Development Health Report"
   summary: "Climate change is driving higher temperatures and more frequent and intense rainfall and storms. Approximately 500 New Yorkers die from heat each summer. Active design is an approach to creating streets, buildings and neighborhoods that promote the physical and mental health and well-being of residents."
+  facilities_layer: true
 
 # TODO (source document, not site work): the Housing header description carries an
 # unresolved authoring note — "[Also add language about housing affordability,
@@ -41,6 +46,7 @@
   seo_short_name: "Housing"
   seo_long_name: "Housing — Neighborhood Development Health Report"
   summary: "Safe, quality housing is a primary driver of health. For example, the presence of pests can exacerbate asthma."
+  facilities_layer: true
 
 - key: neighborhood_conditions
   slug: neighborhood-conditions
@@ -49,6 +55,7 @@
   seo_short_name: "Neighborhood Conditions"
   seo_long_name: "Neighborhood Conditions — Neighborhood Development Health Report"
   summary: "Neighborhood conditions include amenities available for public use by those living in the neighborhood, design of public spaces that create a sense of safety, and unique characteristics that gives a community a sense of identity. These conditions reflect policies and investment that contribute to the overall mental and physical health of community members."
+  facilities_layer: true
 
 # The header description below is REPAIRED, not transcribed. Accepting the document's
 # tracked changes leaves "...across the city,and its availability  can encourage more
@@ -62,6 +69,7 @@
   seo_short_name: "Health Outcomes and Care Access"
   seo_long_name: "Health Outcomes and Care Access — Neighborhood Development Health Report"
   summary: "Health care access is not equally distributed across the city, and the availability of affordable health-related facilities in a community can encourage more preventive care. Variable access to healthcare facilities contributes to disparities between communities in death rates from chronic diseases and maternal health outcomes."
+  facilities_layer: true
 
 # Zero indicators at community-district geography — see the plan's DECIDED-7. The
 # category is deliberately present: its content file carries an `empty_state` string
@@ -74,3 +82,4 @@
   seo_short_name: "Mental Health"
   seo_long_name: "Mental Health — Neighborhood Development Health Report"
   summary: "The quality of housing (e.g., lighting and density), landscape environment (e.g., green spaces), and community service facilities all can influence residents’ mental health. Additionally, environmental risk factors such as coastal storms, flooding, heat, and other disasters contribute to the stress experienced by residents."
+  facilities_layer: false

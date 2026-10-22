@@ -255,6 +255,248 @@ const nameMapPolygons = () => {
 };
 
 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// facility points
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+// Facility type → legend label and point color, in the colors the reviewers asked for
+// (2026-10-20). Array order is legend order. `type` is the source CSV's own spelling,
+// which scripts/ndhr-build-facilities.mjs holds to these five
+const FACILITY_TYPES = [
+    { type: 'Hospital', label: 'Hospital', color: '#00838f' },
+    { type: 'Residential Health Care Facility - SNF', label: 'Skilled nursing facility', color: '#2e7d32' },
+    { type: 'Adult Home', label: 'Adult home', color: '#1f5fbf' },
+    { type: 'Enriched Housing Program', label: 'Enriched housing program', color: '#f29d0b' },
+    { type: 'Hospice', label: 'Hospice', color: '#8e1b2e' }
+];
+
+
+// Looks up one facility type's entry, falling back to grey for a type the table lacks
+const facilityTypeFor = type =>
+    FACILITY_TYPES.find(t => t.type === type) || { type, label: type, color: '#666666' };
+
+
+// Builds a facility's popup from DOM nodes rather than an HTML string, so a name like
+// "Lincoln Medical & Mental Health Center" needs no escaping
+const buildFacilityPopup = props => {
+
+    const wrap = document.createElement('div');
+    wrap.className = 'fs-sm';
+
+    const lines = [
+        [props.name, 'font-weight-bold'],
+        [facilityTypeFor(props.type).label, ''],
+        [Number(props.beds).toLocaleString() + ' beds', ''],
+        [props.address + (props.zip ? ', ' + props.zip : ''), 'text-muted']
+    ];
+
+    lines.forEach(([text, className]) => {
+
+        const p = document.createElement('div');
+        p.textContent = text;
+        if (className) p.className = className;
+        wrap.appendChild(p);
+
+    });
+
+    return wrap;
+
+};
+
+
+// The points start hidden and load on first request: all 313 at once crowd out the
+// district polygons the map exists to select (reviewer feedback, 2026-10-22). One layer
+// group per type, so each checkbox adds or removes its own points
+
+const facilityGroups = {};
+
+// The one in-flight or settled fetch, so a second box ticked before the first load
+// lands does not fetch again. Reset to null on failure so a later tick can retry
+
+let facilitiesLoad = null;
+
+
+// Fetches the facility points into their per-type groups, without adding any to the map.
+// Their own pane rather than the overlay pane the polygons share: selectLayer brings the
+// selected district to front, which would otherwise bury every point inside it
+const loadFacilities = () => {
+
+    if (facilitiesLoad) return facilitiesLoad;
+
+    debugLog('loadFacilities: enter:', reportConfig.facilitiesUrl);
+
+    if (!leafletMap.getPane('ndhr-facilities')) {
+        leafletMap.createPane('ndhr-facilities').style.zIndex = 450;
+    }
+
+    facilitiesLoad = fetch(reportConfig.facilitiesUrl)
+        .then(res => {
+
+            if (!res.ok) throw new Error('HTTP ' + res.status + ' from ' + reportConfig.facilitiesUrl);
+
+            return res.json();
+
+        })
+        .then(data => {
+
+            debugLog('loadFacilities: branch-loaded:', { featureCount: data && data.features && data.features.length });
+
+            FACILITY_TYPES.forEach(t => {
+                facilityGroups[t.type] = L.layerGroup();
+            });
+
+            // Not added to the map: each marker goes into its type's group, and the
+            // checkboxes decide which groups are on the map
+            L.geoJSON(data, {
+                pointToLayer: (feature, latlng) => L.circleMarker(latlng, {
+                    pane: 'ndhr-facilities',
+                    radius: 4.5,
+                    color: '#ffffff',
+                    weight: 1,
+                    fillColor: facilityTypeFor(feature.properties.type).color,
+                    fillOpacity: 0.95
+                }),
+                onEachFeature: (feature, layer) => {
+
+                    layer.bindPopup(() => buildFacilityPopup(feature.properties));
+
+                    const group = facilityGroups[feature.properties.type];
+                    if (group) group.addLayer(layer);
+
+                }
+            });
+
+            return true;
+
+        })
+        .catch(err => {
+
+            // The points are supplementary: a failure here leaves the district map working
+            console.error('Error loading facilities GeoJSON:', err);
+            debugLog('loadFacilities: branch-load-failed:', err);
+
+            facilitiesLoad = null;
+
+            const status = document.getElementById('ndhr-facilities-status');
+            if (status) status.textContent = 'Facilities could not be loaded. Try again.';
+
+            return false;
+
+        });
+
+    return facilitiesLoad;
+
+};
+
+
+// Keeps the "All facilities" box in step with the five type boxes — checked when every
+// type is on, mixed when some are
+const syncAllFacilitiesToggle = boxes => {
+
+    const all = document.getElementById('ndhr-facility-all');
+
+    if (!all) return;
+
+    const onCount = boxes.filter(b => b.checked).length;
+
+    all.checked = onCount === boxes.length;
+    all.indeterminate = onCount > 0 && onCount < boxes.length;
+
+};
+
+
+// Puts each type's group on the map or takes it off, to match its checkbox. Reads the
+// boxes again once the load resolves, so ticks made while it was in flight still count
+const applyFacilityToggles = () => {
+
+    const readBoxes = () => [...document.querySelectorAll('.ndhr-facility-toggle')];
+
+    syncAllFacilitiesToggle(readBoxes());
+
+    // Nothing ticked and nothing loaded yet: no reason to fetch
+    if (!readBoxes().some(b => b.checked) && !facilitiesLoad) return;
+
+    loadFacilities().then(ok => {
+
+        if (!ok) return;
+
+        const status = document.getElementById('ndhr-facilities-status');
+        if (status) status.textContent = '';
+
+        readBoxes().forEach(box => {
+
+            const group = facilityGroups[box.value];
+
+            if (!group) return;
+
+            if (box.checked) group.addTo(leafletMap);
+            else group.remove();
+
+        });
+
+    });
+
+};
+
+
+// Builds the facility checkboxes beneath the map, which double as the legend. Outside the
+// map rather than an L.control on it, because at this column's ~320px a six-row control
+// covers most of Staten Island
+const renderFacilitiesControls = () => {
+
+    const container = document.getElementById('ndhr-facilities-legend');
+
+    if (!container) return;
+
+    const typeItems = FACILITY_TYPES.map((t, i) =>
+        '<li class="mb-1">' +
+            '<input type="checkbox" class="ndhr-facility-toggle mr-1" id="ndhr-facility-' + i + '" value="' + escapeAttr(t.type) + '">' +
+            '<label for="ndhr-facility-' + i + '" class="mb-0">' +
+                '<span class="ndhr-facility-swatch" style="background:' + t.color + ';" aria-hidden="true"></span>' +
+                t.label +
+            '</label>' +
+        '</li>'
+    ).join('');
+
+    // The fieldset takes the portal's own form styling (_f-layout-elements.scss): a bordered
+    // box under a green legend bar. mb-3 replaces that rule's 3rem bottom margin, which
+    // pushed the demographics table a long way down the column
+    container.innerHTML =
+        '<fieldset class="mb-3">' +
+            '<legend class="fs-sm font-weight-bold">Health care facilities</legend>' +
+            '<ul class="list-unstyled fs-sm px-2 pt-2 pb-1 mb-0">' +
+                '<li class="mb-1">' +
+                    '<input type="checkbox" class="mr-1" id="ndhr-facility-all">' +
+                    '<label for="ndhr-facility-all" class="mb-0">All facilities</label>' +
+                '</li>' +
+                '<li>' +
+                    '<ul class="list-unstyled ml-3 mb-0">' + typeItems + '</ul>' +
+                '</li>' +
+            '</ul>' +
+            '<p id="ndhr-facilities-status" class="fs-xs text-danger px-2 mb-0" aria-live="polite"></p>' +
+        '</fieldset>';
+
+    // "All" sets every type box to its own state; mixed resolves to all-on, the browser's
+    // default when an indeterminate box is clicked
+    document.getElementById('ndhr-facility-all').addEventListener('change', e => {
+
+        document.querySelectorAll('.ndhr-facility-toggle').forEach(box => {
+            box.checked = e.target.checked;
+        });
+
+        applyFacilityToggles();
+
+    });
+
+    document.querySelectorAll('.ndhr-facility-toggle').forEach(box => {
+        box.addEventListener('change', applyFacilityToggles);
+    });
+
+    container.classList.remove('d-none');
+
+};
+
+
 // Sets up the Leaflet map and loads community district geometry onto it
 const initLeafletMap = () => {
 
@@ -273,6 +515,10 @@ const initLeafletMap = () => {
     ).addTo(leafletMap);
 
     L.control.scale({ metric: false, position: 'bottomleft' }).addTo(leafletMap);
+
+    // Null on categories whose facilities_layer is off in NDHR_categories.yml. Only the
+    // checkboxes are drawn here; the points load when one is first ticked
+    if (reportConfig.facilitiesUrl) renderFacilitiesControls();
 
     // The geometry comes from EHDP-data at the environment's own data_branch, not from a
     // copy in static/geojson/ where NR keeps UHF42.geojson — the data repository generates

@@ -449,7 +449,7 @@ const buildIndicatorCard = (row, districtName) => {
                         geoNoteHTML +
                     '</div>' +
                     '<div class="col-md-7 border-right h-100">' +
-                        '<div class="ndhr-map-container" id="map-' + escapeAttr(accId) + '" style="width:100%;min-height:350px;">' +
+                        '<div class="ndhr-chart-container" id="chart-' + escapeAttr(accId) + '" style="width:100%;">' +
                             '<p class="text-muted small">Loading...</p>' +
                         '</div>' +
                     '</div>' +

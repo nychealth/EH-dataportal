@@ -102,6 +102,14 @@
                     */}}
                     <div id="ndhr-map" class="border" style="height: 450px; width: 100%;"></div>
 
+                    {{/* Facility point checkboxes, which double as the legend. Filled and
+                        un-hidden by map.js when the map initializes; the points themselves
+                        stay off the map until a box is ticked. Only on categories with
+                        facilities_layer set in data/globals/NDHR_categories.yml */}}
+                    {{- if .Params.facilities_layer }}
+                    <div id="ndhr-facilities-legend" class="d-none mt-3"></div>
+                    {{- end }}
+
                     {{/* Demographics table — populated by JS from the `communityDistricts`
                         global, emitted by lib-cdlist.html from data/globals/cdlist.json.
 
@@ -374,6 +382,9 @@
             "PUMA2020": {{ .Params.puma2020_id }}
         },
         geojsonUrl: "{{ $cdGeojsonUrl }}",
+        // Health care facility points for the map, built by scripts/ndhr-build-facilities.mjs.
+        // null where the category's facilities_layer is off
+        facilitiesUrl: {{ if .Params.facilities_layer }}"{{ relURL "geojson/ndhr-facilities.geojson" }}"{{ else }}null{{ end }},
         // safeJS, not a bare jsonify: inside a <script> Hugo's context-aware escaper treats
         // template output as a JS *string* and quotes the whole array, so the consumer
         // receives one long string instead of a list. jsonify still escapes <, > and & to

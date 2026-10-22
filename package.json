@@ -16,6 +16,7 @@
         "report-data:parity": "node scripts/report-data-parity.mjs",
         "ndhr:availability": "node scripts/ndhr-indicator-availability.mjs",
         "ndhr:cdlist": "node scripts/ndhr-build-cdlist.mjs",
+        "ndhr:facilities": "node scripts/ndhr-build-facilities.mjs",
         "smoke": "node scripts/smoke-pages.mjs",
         "smoke:all": "node scripts/smoke-pages.mjs --all --report scripts/smoke-reports/",
         "smoke:env": "node scripts/smoke-env.mjs",

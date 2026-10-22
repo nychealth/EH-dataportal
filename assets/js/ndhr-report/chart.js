@@ -3,27 +3,15 @@
 // ======================================================================= //
 
 // ----------------------------------------------------------------------- //
-// Vega map and bar chart
+// Vega bar chart
 // ----------------------------------------------------------------------- //
-
-// The topojson each geotype is drawn on. All three are published by EHDP-data at the
-// environment's own data_branch and share one shape — objects.collection, with
-// properties.GEOCODE carrying the id the rows join on — so the spec below needs the URL
-// to vary and nothing else `[verified 2026-09-11 against the production branch: CD 59
-// geometries, CDTA2020 71, PUMA2020 55; all 59 cdlist CDTA_id and PUMA2020_id values are
-// present in their own file's GEOCODE set]`
-const GEOTYPE_TOPOJSON = {
-    CD: 'geography/CD.topo.json',
-    CDTA2020: 'geography/CDTA2020.topo.json',
-    PUMA2020: 'geography/PUMA2020.topo.json'
-};
 
 // The area noun this chart's title uses moved to global.js as GEOTYPE_AREA_NOUN, because
 // tertiles.js needs the same vocabulary in a sentence that takes no "NYC" prefix. The
 // prefix is applied at the one use below, so this title's wording is unchanged
 
 
-// Draws one indicator across every area of its own geotype, with geocode's own value
+// Ranks one indicator across every area of its own geotype, with geocode's own bar
 // highlighted
 const renderIndicatorChart = (data, destination, legendLabel, geocode, indicatorLabel, geoType) => {
 
@@ -45,22 +33,10 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode, indicator
         ? indicatorLabel + ' across all ' + areaLabel
         : 'Indicator values across all ' + areaLabel;
 
-    // ----- build geography URLs ----- //
-
-    // Topojson is fetched by Vega at render time from the configured EHDP-data branch
-    const base = reportConfig.dataRepo + reportConfig.dataBranch + '/';
-    const boroTopoUrl = base + 'geography/borough.topo.json';
-    const areaTopoUrl = base + (GEOTYPE_TOPOJSON[geoType] || GEOTYPE_TOPOJSON.CD);
-
     // ----- shared spec fragments ----- //
-
-    // The choropleth and the bar strip mark the same area the same way, so these three are
-    // written once and referenced from both halves of the vconcat
 
     // Vega expression, not JS: evaluated per datum inside the spec
     const selectedTest = "datum.geo_join_id == " + geocode;
-
-    const valueScale = { "scheme": { "name": "viridis", "extent": [1, 0] } };
 
     const tooltipFields = [
         { "field": "area_name", "title": "Area", "type": "nominal" },
@@ -69,7 +45,10 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode, indicator
 
     // ----- chart spec ----- //
 
-    // Vega-Lite spec combines a choropleth map with a compact sorted bar strip
+    // One bar per area sorted by value. The choropleth that used to sit above it was
+    // dropped on reviewer feedback (2026-10-20): the page's own Leaflet map already shows
+    // where the district is, and the ranking is what the panel is for. With the map went
+    // its legend, so the units it carried now title the y axis
     const spec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         // Becomes the aria-label on the .chart-wrapper vega emits with
@@ -80,134 +59,42 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode, indicator
             "format": { "parse": { "Value": "number" } }
         },
         "config": {
-            "concat": { "spacing": 20 },
             "view": { "stroke": "transparent" },
             "axisY": { "domain": false, "ticks": false, "labelBaseline": "bottom" },
             "legend": { "disable": true },
             "scale": { "invalid": { "color": { "value": "#808080" } } }
         },
-        "projection": { "type": "mercator" },
-        "vconcat": [
-            {
-                "layer": [
-
-                    // - - - borough fill, drawn first so it backs gaps in area coverage - - - //
-
-                    {
-                        "height": 300,
-                        "width": "container",
-                        "data": {
-                            "url": boroTopoUrl,
-                            "format": { "type": "topojson", "feature": "collection" }
-                        },
-                        // aria:false — a plain grey backdrop behind gaps in coverage. It
-                        // carries no value a reader needs, and left in the tree it is one more
-                        // unnamed graphics-symbol group per chart
-                        "mark": { "type": "geoshape", "stroke": "#fafafa", "fill": "#C5C5C5", "strokeWidth": 0.5, "aria": false }
-                    },
-
-                    // - - - area outlines, drawn under the data layer - - - //
-
-                    {
-                        "height": 300,
-                        "width": "container",
-                        "data": {
-                            "url": areaTopoUrl,
-                            "format": { "type": "topojson", "feature": "collection" }
-                        },
-                        // aria:false for the same reason: area outlines under the data
-                        "mark": { "type": "geoshape", "stroke": "#a2a2a2", "fill": "#e7e7e7", "strokeWidth": 0.5, "aria": false }
-                    },
-
-                    // - - - indicator values, with the selected area outlined - - - //
-
-                    {
-                        "height": 300,
-                        "width": "container",
-                        "mark": { "type": "geoshape", "invalid": null, "description": "Choropleth map of " + chartName },
-                        "transform": [
-                            {
-                                "lookup": "geo_join_id",
-                                "from": {
-                                    "data": {
-                                        "url": areaTopoUrl,
-                                        "format": { "type": "topojson", "feature": "collection" }
-                                    },
-                                    "key": "properties.GEOCODE"
-                                },
-                                "as": "geo"
-                            }
-                        ],
-                        "encoding": {
-                            "shape": { "field": "geo", "type": "geojson" },
-                            "color": {
-                                "field": "unmodified_data_value_geo_entity",
-                                "type": "quantitative",
-                                "scale": valueScale,
-                                "legend": {
-                                    "direction": "horizontal",
-                                    "orient": "top-left",
-                                    "title": legendLabel,
-                                    "fontWeight": "normal",
-                                    "tickCount": 3,
-                                    "offset": -25,
-                                    "gradientLength": 200
-                                }
-                            },
-                            "order": {
-                                "condition": { "test": selectedTest, "value": 1 },
-                                "value": 0
-                            },
-                            "stroke": {
-                                "condition": { "test": selectedTest, "value": "cyan" },
-                                "value": "#2d2d2d"
-                            },
-                            "strokeWidth": {
-                                "condition": { "test": selectedTest, "value": 2.5 },
-                                "value": 0.5
-                            },
-                            "tooltip": tooltipFields
-                        }
-                    }
-                ]
+        "height": 220,
+        "width": "container",
+        "mark": { "type": "bar", "tooltip": true, "stroke": "#161616", "description": "Bar chart of " + chartName + ", sorted by value" },
+        "encoding": {
+            "y": {
+                "field": "unmodified_data_value_geo_entity",
+                "type": "quantitative",
+                "title": legendLabel,
+                "axis": { "labelAngle": 0, "labelFontSize": 11, "tickCount": 4, "titleFontWeight": "normal" }
             },
-
-            // - - - bar strip, one bar per area sorted by value - - - //
-
-            {
-                "height": 80,
-                "width": "container",
-                "mark": { "type": "bar", "tooltip": true, "stroke": "#161616", "description": "Bar chart of " + chartName + ", sorted by value" },
-                "encoding": {
-                    "y": {
-                        "field": "unmodified_data_value_geo_entity",
-                        "type": "quantitative",
-                        "title": null,
-                        "axis": { "labelAngle": 0, "labelFontSize": 11, "tickCount": 3 }
-                    },
-                    "x": { "field": "geo_join_id", "sort": "y", "axis": null },
-                    "color": {
-                        "field": "unmodified_data_value_geo_entity",
-                        "type": "quantitative",
-                        "scale": valueScale,
-                        "legend": false
-                    },
-                    "order": {
-                        "condition": { "test": selectedTest, "value": 1 },
-                        "value": 0
-                    },
-                    "stroke": {
-                        "condition": { "test": selectedTest, "value": "cyan" },
-                        "value": "#2d2d2d"
-                    },
-                    "strokeWidth": {
-                        "condition": { "test": selectedTest, "value": 2.5 },
-                        "value": 0
-                    },
-                    "tooltip": tooltipFields
-                }
-            }
-        ]
+            "x": { "field": "geo_join_id", "sort": "y", "axis": null },
+            "color": {
+                "field": "unmodified_data_value_geo_entity",
+                "type": "quantitative",
+                "scale": { "scheme": { "name": "viridis", "extent": [1, 0] } },
+                "legend": false
+            },
+            "order": {
+                "condition": { "test": selectedTest, "value": 1 },
+                "value": 0
+            },
+            "stroke": {
+                "condition": { "test": selectedTest, "value": "cyan" },
+                "value": "#2d2d2d"
+            },
+            "strokeWidth": {
+                "condition": { "test": selectedTest, "value": 2.5 },
+                "value": 0
+            },
+            "tooltip": tooltipFields
+        }
     };
 
     // ----- embed ----- //
@@ -269,13 +156,13 @@ const onAccordionExpand = event => {
     const measureId = Number(panel.getAttribute('data-measure-id'));
     const geoType = panel.getAttribute('data-geotype') || 'CD';
     const geocode = panel.getAttribute('data-geocode');
-    const mapEl = panel.querySelector('.ndhr-map-container');
+    const chartEl = panel.querySelector('.ndhr-chart-container');
 
     const summaryData = Number.isFinite(measureId) ? (indicatorSeries[measureId] || []) : [];
 
     // If required inputs are missing, keep the panel open but do not attempt render
-    if (!Number.isFinite(measureId) || !mapEl) {
-        debugLog('onAccordionExpand: branch-missing-prereqs:', { measureId, hasMapEl: !!mapEl });
+    if (!Number.isFinite(measureId) || !chartEl) {
+        debugLog('onAccordionExpand: branch-missing-prereqs:', { measureId, hasChartEl: !!chartEl });
         return;
     }
 
@@ -283,9 +170,9 @@ const onAccordionExpand = event => {
 
         if (summaryData.length) {
 
-            debugLog('onAccordionExpand: branch-render-map:', { panelId, measureId, summaryRows: summaryData.length });
+            debugLog('onAccordionExpand: branch-render-chart:', { panelId, measureId, summaryRows: summaryData.length });
 
-            mapEl.innerHTML = '';
+            chartEl.innerHTML = '';
 
             let legendLabel = panel.getAttribute('data-legend-label');
 
@@ -298,7 +185,7 @@ const onAccordionExpand = event => {
 
             renderIndicatorChart(
                 summaryData,
-                '#' + mapEl.id,
+                '#' + chartEl.id,
                 legendLabel,
                 geocode,
                 panel.getAttribute('data-indicator-label'),
@@ -307,12 +194,12 @@ const onAccordionExpand = event => {
 
         } else {
             debugLog('onAccordionExpand: branch-no-summary-data:', measureId);
-            mapEl.innerHTML = '<p class="text-muted small">No chart data available.</p>';
+            chartEl.innerHTML = '<p class="text-muted small">No chart data available.</p>';
         }
 
     } catch (e) {
-        console.error('onAccordionExpand: error rendering map for measure ' + measureId + ':', e);
-        mapEl.innerHTML = '<p class="text-muted small">Unable to render chart.</p>';
+        console.error('onAccordionExpand: error rendering chart for measure ' + measureId + ':', e);
+        chartEl.innerHTML = '<p class="text-muted small">Unable to render chart.</p>';
     }
 
     // Mark panel as rendered even on no-data/error to prevent repeated work
