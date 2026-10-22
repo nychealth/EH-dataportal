@@ -99,6 +99,19 @@ page; `workflow_dispatch` offers the 33-page sample instead. A failing sweep tri
 against it — green means the PR caused it, red means the data or a third party moved. The harness
 aborts `www.googletagmanager.com`, so no sweep reports page views to Google Analytics.
 
+**A docs-only push to an open PR re-runs both sweeps.** On `pull_request`, `paths-ignore` reads every
+file the PR changes, not the push, so `documents/**` in it only spares a PR that touches nothing else.
+To skip a push whose code CI has already checked, such as a ledger commit, put `[skip ci]` in its
+message. GitHub documents that this skips `push` and `pull_request` runs, that on a PR only the head
+commit's message counts, and that skipped checks stay Pending, which blocks a merge only where checks
+are required (docs.github.com, "Skipping workflow runs", read 2026-10-22). `production` requires
+none: its branch protection has no required status checks and there are no rulesets `[checked
+2026-10-22]`. First used on `6d14a79b6c`, before its push. The automatic alternative, not built
+(Chris, 2026-10-22): a first job diffs `github.event.before..github.sha`, the files that one push
+changed, and the two sweep jobs run only when it touches something outside the ignored paths. It
+has to run the sweeps anyway when `before` is not an ancestor of the new head (a force-push or
+rebase) and when the PR opens, or a rewritten branch could skip its only sweep.
+
 Eleven things to know before trusting a result:
 
 - **`npm run smoke -- --all` does not work here.** PowerShell eats the `--`, so the script gets an empty `argv` and silently runs the curated list — a pass you would read as full coverage. That is why `--all` has its own npm script. Direct `node scripts/smoke-pages.mjs --all --concurrency 12` works from either shell.
