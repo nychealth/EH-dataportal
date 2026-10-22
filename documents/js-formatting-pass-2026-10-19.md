@@ -19,12 +19,12 @@
 | A padded block whose last line is a closer (`}`, `});`, `]`) gets no bottom blank line | Always padding both ends | Chris, 2026-10-21. The pass did this in 24 of 35 one-end paddings and padded the bottom anyway in 27 blocks |
 | Inside a block of three lines or fewer, no blank line before a `return` | A return gap in every block | Chris, 2026-10-21 |
 | A comment that is a block's first line keeps the gap after `{` even when the block stays tight; step 4's sweep stands | Dropping the gap in tight blocks and reverting those step-4 insertions | Chris, 2026-10-21 (`table.js` `getTableColumnSearchValues`'s `return {`) |
-| Rules derived from Chris's 2026-10-19 hand pass, recovered as `fmt-hand-edits.patch` from that session's scratchpad | — | The patch rebuilds against its base blobs to its recorded post-image hash on all 20 files `[verified 2026-10-21]`; the rows above are measured against it |
+| Rules derived from Chris's 2026-10-19 hand pass, recovered from that session's scratchpad and kept as `documents/js-formatting-hand-pass-2026-10-19.patch` | — | The patch rebuilds against its base blobs to its recorded post-image hash on all 20 files `[verified 2026-10-21]`; the rows above are measured against it. Rebuild under a short path such as `C:/temp`: `git apply` fails with `Filename too long` under the scratchpad |
 | The multi-line-value comment gap stays a hand pass; `js-comment-spacing.py` is not taught it | Adding a "property line ends in `{ [ (`" test to the script | Chris, 2026-10-19. 20 sites in 4 files on 2026-10-19, a floor because multi-line ternary values evade the probe; see step 5 |
 
 The rules were extracted from a hand pass over 20 files that Chris made as examples on
-2026-10-19 and then discarded, along with a staged run of the script. Nothing tracked keeps them;
-the patch survived only in a session scratchpad (Decisions, last row). The code examples in `js-conventions.md` (`setBarSelection`, `addResizeHandler`, `L.control`) are
+2026-10-19 and then discarded, along with a staged run of the script. The hand pass survived as a
+patch in a session scratchpad and is now tracked (Decisions, last row). The code examples in `js-conventions.md` (`setBarSelection`, `addResizeHandler`, `L.control`) are
 taken from that pass.
 
 ## Steps
