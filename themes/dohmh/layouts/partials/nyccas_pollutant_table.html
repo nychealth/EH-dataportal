@@ -37,10 +37,10 @@
   <hr>
 
   <script>
-      var pollutant = 'bc' // default
-      var polTable = []
-      var filteredTable
-      var table = document.getElementById('tableBody')
+      var pollutant = 'bc'; // default
+      var polTable = [];
+      var filteredTable;
+      var table = document.getElementById('tableBody');
 
       function changePollutant(x) {
 
@@ -49,15 +49,15 @@
 
           // remove active classes from .polbtn & add active class to x_btn
 
-          const btns = document.querySelectorAll(".srcbtn")
+          const btns = document.querySelectorAll(".srcbtn");
             for (var i = 0; i < btns.length; i++) {
-                btns[i].classList.remove('active')
+                btns[i].classList.remove('active');
             }
-          document.getElementById(x+'btn').classList.add('active')
+          document.getElementById(x+'btn').classList.add('active');
 
           // filter data table for selected pollutant
 
-          filterData(x)
+          filterData(x);
 
         }
 
@@ -65,12 +65,12 @@
       function filterData(x) {
 
         filteredTable = polTable.filter(row => row.Pollutant === x);
-        table.innerHTML = ''
+        table.innerHTML = '';
         for (let i = 0; i < filteredTable.length; i++) {
 
           // console.log(filteredTable[i].Indicator)
 
-              var row = table.insertRow()
+              var row = table.insertRow();
 
               // Create cells for Indicator, Description, and Sources
 
@@ -92,8 +92,8 @@
     d3.csv(`embed/spatial-model.csv`)
     .then(async data => {
         polTable = data;
-        filterData('bc')
-    })
+        filterData('bc');
+    });
 
   </script>
 </div>

@@ -189,9 +189,9 @@ function handleTopicButtons() {
 
       // 3. Set intended destination
 
-      setIntendedDestination(button.id)
+      setIntendedDestination(button.id);
 
-      changeHomeCopy(button.id)
+      changeHomeCopy(button.id);
 
     });
   });
@@ -200,16 +200,16 @@ function handleTopicButtons() {
 
 function changeHomeCopy(x) {
 
-      var copyHolder = x + '-Descr'
+      var copyHolder = x + '-Descr';
 
       if (document.getElementById(copyHolder)) {
 
-        var copy = document.getElementById(copyHolder).innerHTML
-        document.getElementById('descr').innerHTML = copy
+        var copy = document.getElementById(copyHolder).innerHTML;
+        document.getElementById('descr').innerHTML = copy;
 
       } else {
 
-        console.log('Not home page; doing nothing.')
+        console.log('Not home page; doing nothing.');
 
       }
 }
@@ -217,7 +217,7 @@ function changeHomeCopy(x) {
 
 function setIntendedDestination(x) {
 
-  intendedDestination = x
+  intendedDestination = x;
 
   // look up intendedDestination in topicSlugs, and retrieve the URL Path for the intended destination
 
@@ -225,7 +225,7 @@ function setIntendedDestination(x) {
       intendedDestinationName = topicSlugs[intendedDestination];
   }
 
-  updateNeighborhoodListLinks()
+  updateNeighborhoodListLinks();
 
 }
 
@@ -236,26 +236,26 @@ function setIntendedDestination(x) {
 
 function updateNeighborhoodListLinks() {
 
-  const base = {{ relURL "neighborhood-reports/" }}
+  const base = {{ relURL "neighborhood-reports/" }};
 
   // Falls back to the neighborhood index when the lookup in setIntendedDestination missed:
   // intendedDestinationName stays null there, and null would otherwise land in the URL.
 
-  const suffix = intendedDestinationName ? intendedDestinationName + '/' : ''
+  const suffix = intendedDestinationName ? intendedDestinationName + '/' : '';
 
   document.querySelectorAll('#nr-neighborhood-list a[data-nbhd]').forEach(a => {
-    a.href = base + a.dataset.nbhd + '/' + suffix
-  })
+    a.href = base + a.dataset.nbhd + '/' + suffix;
+  });
 }
 
 // SET DEFAULTS FOR HOME PAGE
 
 // Default: the first NR_topics.yml entry, the button rendered active above
 
-const defaultTopic = {{ (index site.Data.globals.NR_topics 0).key }}
-setIntendedDestination(defaultTopic)
-document.getElementById('descr').innerHTML = document.getElementById(defaultTopic + '-Descr').innerHTML
-handleTopicButtons()
+const defaultTopic = {{ (index site.Data.globals.NR_topics 0).key }};
+setIntendedDestination(defaultTopic);
+document.getElementById('descr').innerHTML = document.getElementById(defaultTopic + '-Descr').innerHTML;
+handleTopicButtons();
 
 
 // ===== neighborhood picker destination ==================================== //
@@ -265,7 +265,7 @@ handleTopicButtons()
 // <nbhd>/<topic>/ is a page the content adapter generates, so the neighborhood no longer
 // has to travel through sessionStorage to a topic page that would re-select it.
 
-function nrPickerDestination() { return intendedDestinationName }
+function nrPickerDestination() { return intendedDestinationName; }
 
 
   </script>

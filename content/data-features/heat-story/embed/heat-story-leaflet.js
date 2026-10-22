@@ -36,7 +36,7 @@ function init() {
 
 // set based on "getting-started" card
 
-const initial_state = config.initialMapState
+const initial_state = config.initialMapState;
 
 const getting_started = config.stories.find(s => s.id == "getting-started");
 
@@ -135,7 +135,7 @@ const prettifyGeoType = (GeoType) => {
         return GeoType;
         
     }
-}
+};
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -152,7 +152,7 @@ const geoTypes = [
     "CD",
     "CDTA",
     "NTA"
-]
+];
 
 
 // ----------------------------------------------------------------------- //
@@ -205,7 +205,7 @@ function getLayerConfigById(layerId) {
     // console.log("** getLayerConfigById");
 
     const layersFromConfig = config.layers;
-    const layerMatch = layersFromConfig.find((layer) => layer.property?.id == layerId)
+    const layerMatch = layersFromConfig.find((layer) => layer.property?.id == layerId);
 
     // console.log("layerMatch [getLayerConfigById]", layerMatch);
 
@@ -244,7 +244,7 @@ function setupMap() {
         zoom = map.getZoom();
         // scale the weight based on the zoom layer so it looks good zooming in and out
 
-        layerGroup.eachLayer((layer) => layer.setStyle && layer.setStyle({ weight: zoom / ZOOM_WEIGHT_SCALE_FACTOR }))
+        layerGroup.eachLayer((layer) => layer.setStyle && layer.setStyle({ weight: zoom / ZOOM_WEIGHT_SCALE_FACTOR }));
 
     });
 
@@ -261,12 +261,12 @@ function setupMap() {
 
         console.log(">>> create info legend [dataControl.onAdd]");
         const div = L.DomUtil.create('div', 'info legend');
-        div.classList.add('fs-xs')
-        div.classList.add('left-bar-width')
-        div.classList.add('p-0')
-        div.classList.add('mb-1')
+        div.classList.add('fs-xs');
+        div.classList.add('left-bar-width');
+        div.classList.add('p-0');
+        div.classList.add('mb-1');
 
-        div.innerHTML = document.getElementById('allDataButtons').innerHTML
+        div.innerHTML = document.getElementById('allDataButtons').innerHTML;
 
         // div.innerHTML += `<div id="infoboxHolderTarget"></div>`
 
@@ -288,9 +288,9 @@ function setupMap() {
         console.log("create info legend [themeControl.onAdd]");
 
         const div = L.DomUtil.create('div', 'info legend');
-        div.classList.add('fs-xs')
-        div.classList.add('p-0')
-        div.classList.add('mt-1')
+        div.classList.add('fs-xs');
+        div.classList.add('p-0');
+        div.classList.add('mt-1');
 
         const content = config.themes
             .map(theme => `<a href="#map" class="list-group-item theme-item" data-theme-id="${theme}">${theme}</a></li>`)
@@ -308,9 +308,9 @@ function setupMap() {
 
         return div;
 
-    }
+    };
 
-    themeControl.addTo(map)
+    themeControl.addTo(map);
 
     // ===== add event listeners for .theme-item ===== //
 
@@ -322,7 +322,7 @@ function setupMap() {
 
             console.log('theme clicked for:', e.target.attributes["data-theme-id"].nodeValue);
 
-            filterPins(e.target.attributes["data-theme-id"].nodeValue)
+            filterPins(e.target.attributes["data-theme-id"].nodeValue);
 
             // remove .active from all .theme-item elements
 
@@ -401,9 +401,9 @@ function setupMap() {
 // get the elements to append
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-let buttonHolderStudyArea = document.getElementById('buttonHolderStudyArea')
-let buttonHolderBase = document.getElementById('buttonHolderBase')
-let buttonHolderAdditional = document.getElementById('buttonHolderAdditional')
+let buttonHolderStudyArea = document.getElementById('buttonHolderStudyArea');
+let buttonHolderBase = document.getElementById('buttonHolderBase');
+let buttonHolderAdditional = document.getElementById('buttonHolderAdditional');
 
 let buttonHolders = {
     studyArea: buttonHolderStudyArea,
@@ -428,7 +428,7 @@ function addLayerButtons() {
         const button = `
              <a href="#map" class="layer-button list-group-item" id="${layer.property.id}"> 
              ${layer.property.name}
-             </a>`
+             </a>`;
 
 
         const buttonHolder = buttonHolders[layer.property?.buttonSection ?? "additional"];
@@ -495,9 +495,9 @@ function placeAllStoryPins() {
         
         thisStory.on('click', function (e) {
 
-            console.log('story click.')
+            console.log('story click.');
 
-            updateMapStateForStory(story.id)
+            updateMapStateForStory(story.id);
 
         });
 
@@ -506,7 +506,7 @@ function placeAllStoryPins() {
     });
 }
 
-placeAllStoryPins()
+placeAllStoryPins();
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -515,7 +515,7 @@ placeAllStoryPins()
 
 function filterPins(theme) {
 
-    console.log('filtering for ', theme)
+    console.log('filtering for ', theme);
 
     // remove all pins
 
@@ -527,9 +527,9 @@ function filterPins(theme) {
 
         if (config.stories[i].themes.includes(theme)) {
 
-            console.log('theme match for: ', config.stories[i].id)
-            console.log(config.stories[i].themes)
-            console.log(theme)
+            console.log('theme match for: ', config.stories[i].id);
+            console.log(config.stories[i].themes);
+            console.log(theme);
 
             // add pins
 
@@ -549,9 +549,9 @@ function filterPins(theme) {
             
             thisStory.on('click', function (e) {
 
-                console.log('story click.')
+                console.log('story click.');
 
-                updateMapStateForStory(config.stories[i].id)
+                updateMapStateForStory(config.stories[i].id);
 
             });
 
@@ -611,7 +611,7 @@ function drawStoryCardDropdown() {
 
     storyButtons.forEach(btn => {
         btn.addEventListener('click', handleStoryClick);
-    })
+    });
 }
 
 
@@ -672,7 +672,7 @@ const handleStoryClick = (e) => {
 
         storyMarkerLayerGroup.addTo(map);
     }
-}
+};
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -708,7 +708,7 @@ function drawStoryCard(id) {
 
     // replace storyCardHolder inner HTML with story content
 
-    const storyCardHolder = document.getElementById('story-card-general-holder')
+    const storyCardHolder = document.getElementById('story-card-general-holder');
 
     storyCardHolder.innerHTML = storyCard;
 
@@ -734,7 +734,7 @@ async function createRedlinedLayer({ id, name, urls, args, displayProperties }) 
     // get data
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     
-    const data = {}
+    const data = {};
 
     for (const [name, url] of Object.entries(urls)) {
 
@@ -770,7 +770,7 @@ async function createRedlinedLayer({ id, name, urls, args, displayProperties }) 
         return {
             ...colors,
         };
-    }
+    };
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -800,7 +800,7 @@ async function createRedlinedLayer({ id, name, urls, args, displayProperties }) 
 
                 layer.on('mouseout', function() {
 
-                    console.log('This should clear the info box...')
+                    console.log('This should clear the info box...');
 
                     if (layer.options[CUSTOM_ID_FIELD] == layerMouseOver.options._custom_id) {
                         layerMouseOver = null;
@@ -867,14 +867,14 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
 
         return { ...colors };
 
-    }
+    };
 
     // All metrics have an Id of value. Add that to 
 
     const updatedDisplayProperties = {
         ...displayProperties, 
         displayPropertyArgs: displayProperties.displayPropertyArgs
-            ? displayProperties.displayPropertyArgs.map(x => { return {...x, id: "Value"}})
+            ? displayProperties.displayPropertyArgs.map(x => { return {...x, id: "Value"};})
             : [{ "id": "Value", }]
     };
 
@@ -1002,7 +1002,7 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
 
         return { ...colors };
 
-    }
+    };
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -1011,7 +1011,7 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
 
     // figure out which pane to put it on
 
-    let isPoint = /Point/i.test(data.features[0].geometry.type)
+    let isPoint = /Point/i.test(data.features[0].geometry.type);
 
     const layer = L.geoJSON(
         data,
@@ -1132,7 +1132,7 @@ async function createGeotiffLayer({ id, url, args, name }) {
 
         return legend;
 
-    }
+    };
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -1277,7 +1277,7 @@ async function addLayerToMap(layerId) {
 
     if (document.getElementById('infoboxHolderTarget')) {
 
-        document.getElementById('infoboxHolderTarget').innerHTML = '' // clear 'tooltip' box
+        document.getElementById('infoboxHolderTarget').innerHTML = ''; // clear 'tooltip' box
 
     } else {
     }
@@ -1313,11 +1313,11 @@ async function addLayerToMap(layerId) {
         }
 
         layersVisible[layerId] = true;
-        const button = document.querySelector(`#${layerId}`)
+        const button = document.querySelector(`#${layerId}`);
 
         if (button != null) button.classList.add("active");
 
-        createLegend("addLayerToMap")
+        createLegend("addLayerToMap");
 
     }
 
@@ -1341,13 +1341,13 @@ function removeLayerFromMap(layerId) {
         const layer = layers[layerId];
         layerGroup.removeLayer(layer);
         delete layersVisible[layerId];
-        const button = document.querySelector(`#${layerId}`)
+        const button = document.querySelector(`#${layerId}`);
 
         if (button != null) button.classList.remove("active");
 
     }
 
-    createLegend("removeLayerFromMap")
+    createLegend("removeLayerFromMap");
 
 }
 
@@ -1409,7 +1409,7 @@ function saveCurrentMapState() {
     lastMapState.lng = lng;
     lastMapState.zoom = zoom;
 
-    let layersVisible = []
+    let layersVisible = [];
     layerGroup.eachLayer(l => layersVisible.push(l.options[CUSTOM_ID_FIELD]));
     lastMapState.layers = layersVisible.filter(x => x);
 
@@ -1447,7 +1447,7 @@ async function updateMapStateForStory(storyId) {
 
     const layers = mapState.layers;
 
-    let layersVisible = []
+    let layersVisible = [];
     layerGroup.eachLayer(l => layersVisible.push(l.options[CUSTOM_ID_FIELD]));
 
     // add the layers that are not in the visible layer
@@ -1459,7 +1459,7 @@ async function updateMapStateForStory(storyId) {
     // remove
 
     layersVisible.filter(l => !(l in layers)).forEach(async l => {
-        removeLayerFromMap(l)
+        removeLayerFromMap(l);
     });
 
     // clear out the layer markers
@@ -1614,14 +1614,14 @@ function featureInfoToHtmlForInfoBox(feature, layer) {
 
             let displayName = displayPropertyArgs[x[0]]?.displayName ?? x[0];
             let units = displayPropertyArgs[x[0]]?.units ?? "";
-            let display_units = `${displayName}${units && ` (${units})`}`
+            let display_units = `${displayName}${units && ` (${units})`}`;
 
             // console.log("disp", [displayName, units, display_units]);
 
             let ret = [
                 `${display_units}`, 
                 formatValue(x[1], displayPropertyArgs[x[0]]?.format)
-            ]
+            ];
             
             return ret;
 
@@ -1639,8 +1639,8 @@ function featureInfoToHtmlForInfoBox(feature, layer) {
 
     // then create that into an html table
 
-    console.log('featureMap:')
-    console.log(featureMap)
+    console.log('featureMap:');
+    console.log(featureMap);
 
     const featureTable = Object.entries(featureMap)
         .map(x => `<tr class="fs-xs" style="max-width:100%;"><td>${x[0]}</td><td style="text-align: left;">${x[1] ?? missingDisplay}</td></tr>`);
@@ -1663,7 +1663,7 @@ function featureInfoToHtmlForInfoBox(feature, layer) {
     ? layer.options.displayProperties.displayPropertyArgs[0].units 
     : '';
 
-    const display = value ? value + ' ' + units : 'Supressed'
+    const display = value ? value + ' ' + units : 'Supressed';
 
     document.getElementById('infoboxHolderTarget').innerHTML = 
     `<div class="fs-xs mt-1 text-black font-weight-bold border-bottom" style="max-width: 275px; overflow-x: wrap;">
@@ -1822,7 +1822,7 @@ function updateInfoBox({ lat, lng }) {
 
         // infoBox = L.popup({autoPan: false, maxWidth: 560}).setLatLng({ lat, lng }).setContent(content).openOn(map);
 
-        infoBox.update(content)
+        infoBox.update(content);
         infoBoxContent = content;
 
     } else if ( infoBox != null && content != null) {
@@ -1835,7 +1835,7 @@ function updateInfoBox({ lat, lng }) {
 
         if (content != infoBoxContent) {
             infoBoxContent = content;
-            infoBox.update(content)
+            infoBox.update(content);
         }
     } else if (infoBox != null && content == null) {
 
@@ -2013,7 +2013,7 @@ const legendFuncForColorMap = (id, name, args) => {
 
     }
 
-    const backgroundCss = `background: linear-gradient(to right, ${gradients.join(', ')});`
+    const backgroundCss = `background: linear-gradient(to right, ${gradients.join(', ')});`;
 
     let legend = name + '<span style="'
         + backgroundCss
@@ -2034,7 +2034,7 @@ const legendFuncForColorMap = (id, name, args) => {
 
     return legend;
 
-}
+};
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -2083,7 +2083,7 @@ const legendFuncForLayer = (id, name, args, layer) => {
             + backgroundCss
             + ' height: 20px;  width: 100%;'
             + ' display: block; background-repeat: no-repeat; '
-            + ' "></span>'
+            + ' "></span>';
 
         if (args.colorFeatureProperty) {
 
@@ -2113,8 +2113,8 @@ const legendFuncForLayer = (id, name, args, layer) => {
 
         return legend;
 
-    }
-}
+    };
+};
 
 
 // ======================================================================= //
@@ -2182,7 +2182,7 @@ async function loadIndicator(indicatorID, measureID, geoType, time) {
     // the below is taken from other parts of the code.
     // this grabs all the data and joins the geodata to the features to create geojson
 
-    const filteredDataMap = filteredData.reduce((x, y) => {x[y.GeoID] = y; return x}, {})
+    const filteredDataMap = filteredData.reduce((x, y) => {x[y.GeoID] = y; return x;}, {});
 
     const topoUrl = getTopoUrl(filteredData, measure);
     console.log("topoUrl [loadIndicator]", topoUrl);
@@ -2193,7 +2193,7 @@ async function loadIndicator(indicatorID, measureID, geoType, time) {
     const topoData = await responseTopo.json();
     console.log("topoData [loadIndicator]", topoData);
 
-    const geoJsonData = topojson.feature(topoData, topoData.objects.collection)
+    const geoJsonData = topojson.feature(topoData, topoData.objects.collection);
     console.log("geoJsonData 1 [loadIndicator]", geoJsonData);
     
     geoJsonData.features = geoJsonData.features.map(feature => {
@@ -2237,20 +2237,20 @@ const loadData = async (indicatorID) => {
 
         loadTime()
 
-    ])
+    ]);
 
     data = indicator_data
 
         // join the additional time period info
         .join(timeTable, "TimePeriodID")
         .select(aq.not("TimePeriodID", "TimeType", "start_period", "end_period"))
-        .reify()
+        .reify();
     
     // console.log("data.objects() [loadData]", data.objects());
 
     return data.objects();
 
-}
+};
 
 
 // ----------------------------------------------------------------------- //
@@ -2272,7 +2272,7 @@ const loadTime = async () => {
             // timeTable.print()
 
     });
-}
+};
 
 
 // ----------------------------------------------------------------------- //
@@ -2283,7 +2283,7 @@ const getTopoUrl = ( data, metadata ) => {
 
     console.log("* getTopoUrl");
     
-    let mapGeoType = data[0].GeoType
+    let mapGeoType = data[0].GeoType;
 
     // console.log("mapGeoType [getTopoUrl]", mapGeoType);
 
@@ -2349,9 +2349,9 @@ const getTopoUrl = ( data, metadata ) => {
 
     }
 
-    return {url: `${data_repo}${data_branch}/geography/${topoFile}`}
+    return {url: `${data_repo}${data_branch}/geography/${topoFile}`};
 
-}
+};
 
 
 // ======================================================================= //
@@ -2372,11 +2372,11 @@ function addListeners() {
     // layer buttons
     // ----------------------------------------------------------------------- //
     
-    const layerButtons = document.querySelectorAll('.layer-button')
+    const layerButtons = document.querySelectorAll('.layer-button');
 
     layerButtons.forEach(button => {
         button.addEventListener('click', async () => {
-            await toggleLayerOnMap(button.id, button)
+            await toggleLayerOnMap(button.id, button);
         });
     });
 
@@ -2387,7 +2387,7 @@ function addListeners() {
     
     // this is where we'd add behavior to update the main card with each story's card content.
 
-    const storyButtons = document.querySelectorAll('.story-dropdown-item')
+    const storyButtons = document.querySelectorAll('.story-dropdown-item');
 
     storyButtons.forEach(s => {
         s.addEventListener('click', async () => {

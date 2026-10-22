@@ -352,7 +352,7 @@
     // don't collide, and the variable stays defined on report pages that load
     // only this partial. (used on the home page)
 
-    var intendedDestinationName
+    var intendedDestinationName;
     
     // console.log('*** GETTING TOPIC AND NEIGHBORHOOD TO POWER NAVIGATION')
     
@@ -367,10 +367,10 @@
     // generates the report URLs from, so the two cannot disagree. The landing page's topic
     // buttons use the same keys as their ids (neighborhood-reports/section.html)
 
-    {{- $topicSlugs := dict -}}
-    {{- range site.Data.globals.NR_topics -}}
-        {{- $topicSlugs = merge $topicSlugs (dict .key .slug) -}}
-    {{- end }}
+    {{- $topicSlugs := dict -}};
+    {{- range site.Data.globals.NR_topics -}};
+        {{- $topicSlugs = merge $topicSlugs (dict .key .slug) -}};
+    {{- end }};
 
     const topicSlugs = {{ $topicSlugs }};
     
@@ -380,8 +380,8 @@
 
     function getReportAndNeighborhood(x) {
 
-        const url = window.location.pathname.match(/neighborhood-reports.*/)[0]
-        let urlPieces = url.split("/")
+        const url = window.location.pathname.match(/neighborhood-reports.*/)[0];
+        let urlPieces = url.split("/");
 
         // console.log('urlPieces', urlPieces)
         
@@ -389,18 +389,18 @@
 
         if (topicValues.includes(urlPieces[1])) {
 
-            chosenNeighborhood = null
+            chosenNeighborhood = null;
             chosenReport = (urlPieces[1] && urlPieces[1].length > 2) ? urlPieces[1] : null;
 
         } else {
 
-            chosenNeighborhood = (urlPieces[1] && urlPieces[1].length > 2) ? urlPieces[1] : null
+            chosenNeighborhood = (urlPieces[1] && urlPieces[1].length > 2) ? urlPieces[1] : null;
             chosenReport = (urlPieces[2] && urlPieces[2].length > 2) ? urlPieces[2] : null;
 
         }
     }
 
-    getReportAndNeighborhood(window.location.href)
+    getReportAndNeighborhood(window.location.href);
 
     
     // --------------------------------------------------------------------------------------------------- // 

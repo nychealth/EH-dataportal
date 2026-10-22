@@ -34,7 +34,7 @@ const setDropdownLabel = (type, value) => {
     document.querySelectorAll(`.${cls}`).forEach(span => {
         span.textContent = value;
     });
-}
+};
 
 
 // ----------------------------------------------------------------------- //

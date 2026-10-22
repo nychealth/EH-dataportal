@@ -72,7 +72,7 @@ const ensureIndicatorsLoaded = async (topic) => {
         return await indicatorsPromise; 
 
     }
-}
+};
 
 
 // Clears the temporary required-selection hint around the topic trigger.
@@ -214,7 +214,7 @@ const getIndicatorsForTopic = (title, indicatorsJSON, dest) => {
 
     renderIndicatorList(indicators, dest);
 
-}
+};
 
 
 // Wires topic/indicator modal prompts, topic-link clicks, relaunch, and indicator selection once on load.
@@ -325,7 +325,7 @@ const bindTopicSelectorControls = () => {
 
         });
     }
-}
+};
 
 
 // ----------------------------------------------------------------------- //
@@ -433,7 +433,7 @@ const renderIndicatorList = async (indList, destination) => {
         indicatorDestination.innerHTML += sectionHtml;
 
     });
-}
+};
 
 
 // ----------------------------------------------------------------------- //
@@ -525,7 +525,7 @@ const renderIndicatorInfo = async (IndicatorID) => {
     const showRecentlyUpdatedIcon = recentlyUpdatedIndicatorIds.includes(normalizedIndicatorId);
 
     debugLog('This indicator:');
-    debugLog(indicator)
+    debugLog(indicator);
 
     // ----- guard: reopen chooser if not found ----- //
 
@@ -597,7 +597,7 @@ const renderIndicatorInfo = async (IndicatorID) => {
         p.textContent = source;
         dataSourcesEl.appendChild(p);
     });
-}
+};
 
 
 // ----------------------------------------------------------------------- //
@@ -702,5 +702,5 @@ const checkURL = async () => {
 
     await loadAndRenderIndicator(chosenIndicator, { selection, history: 'replace' });
 
-}
+};
 

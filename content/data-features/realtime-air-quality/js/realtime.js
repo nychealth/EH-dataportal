@@ -20,12 +20,12 @@ THEN, ADD A UNIQUE PIN
 
 // initialize variables (other variables are initialized closer to their prime use)
 
-var rtaqData = 'https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/portal/view.csv'
+var rtaqData = 'https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/portal/view.csv';
 var current_spec;
 var dt;
 var times;
 var fullTable;
-var locSelect = "No location"
+var locSelect = "No location";
 var res;
 var floorDate;
 var maxTime;
@@ -48,7 +48,7 @@ var filter2;
 var specTwo;
 var ftl;
 var dataWithNulls = aq.table();
-var chartStart // takes either floorDate or filtered date
+var chartStart; // takes either floorDate or filtered date
 var myView;
 
 
@@ -59,20 +59,20 @@ aq.loadCSV(rtaqData).then(data => {
     dt = data
         .derive({starttime: d => op.parse_date(d.starttime)})
         .orderby("starttime")
-        .print()
+        .print();
     
     fullTable = dt.objects();                       // puts the data into fullTable to use. 
-    floorDate = new Date(fullTable[0].starttime)    // creates earliest date in 7-day feed - used for time filter
-    console.log('Showing data since: ' + floorDate)
-    floorDate = Date.parse(floorDate)               // converting to milliseconds
-    chartStart = floorDate
+    floorDate = new Date(fullTable[0].starttime);    // creates earliest date in 7-day feed - used for time filter
+    console.log('Showing data since: ' + floorDate);
+    floorDate = Date.parse(floorDate);               // converting to milliseconds
+    chartStart = floorDate;
     
     // get most recent time
 
-    ftl = fullTable.length - 1
-    maxTime = fullTable[ftl].starttime
-    maxTime = Date.parse(maxTime)
-    maxTimeMinusDay = maxTime - 86400000
+    ftl = fullTable.length - 1;
+    maxTime = fullTable[ftl].starttime;
+    maxTime = Date.parse(maxTime);
+    maxTimeMinusDay = maxTime - 86400000;
     
     // console.log("fullTable:", fullTable);
 
@@ -87,13 +87,13 @@ function getStationsFromData() {
     var sites = [];
 
     for (let i = 0; i<fullTable.length; i++) {
-        sites.push(fullTable[i].SiteName)
+        sites.push(fullTable[i].SiteName);
     }
-    stations = [...new Set(sites)]
+    stations = [...new Set(sites)];
     
     // Null Handling
 
-    times = dt.select('starttime','timeofday').dedupe('starttime') // creats an arquero table of only times
+    times = dt.select('starttime','timeofday').dedupe('starttime'); // creats an arquero table of only times
     
     var accumulatedRows = [];
     for (let i = 0; i < stations.length; i++) {
@@ -103,12 +103,12 @@ function getStationsFromData() {
             times = dt
             .select('starttime','timeofday')
             .dedupe('starttime')
-            .derive({ SiteName: aq.escape(stations[i])})
+            .derive({ SiteName: aq.escape(stations[i])});
             
-            var thisStation = dt.filter(aq.escape(d => d.SiteName === stations[i]))      // for this station, get data
-            thisStation = thisStation.select(aq.not('SiteName','Operator','timeofday'))  // drop the other cols but starttime and Value              
+            var thisStation = dt.filter(aq.escape(d => d.SiteName === stations[i]));      // for this station, get data
+            thisStation = thisStation.select(aq.not('SiteName','Operator','timeofday'));  // drop the other cols but starttime and Value              
             
-            var thisStationFull = times.join_full(thisStation, 'starttime')             // join to times
+            var thisStationFull = times.join_full(thisStation, 'starttime');             // join to times
             
             dataWithNulls = thisStationFull; // sets up initial table
             
@@ -117,13 +117,13 @@ function getStationsFromData() {
             times = dt
             .select('starttime','timeofday')
             .dedupe('starttime')
-            .derive({ SiteName: aq.escape(stations[i])})
+            .derive({ SiteName: aq.escape(stations[i])});
             
             
-            var thisStation = dt.filter(aq.escape(d => d.SiteName === stations[i]))      // for this station, get data
-            thisStation = thisStation.select(aq.not('SiteName','Operator','timeofday'))  // drop the other cols but starttime and Value              
+            var thisStation = dt.filter(aq.escape(d => d.SiteName === stations[i]));      // for this station, get data
+            thisStation = thisStation.select(aq.not('SiteName','Operator','timeofday'));  // drop the other cols but starttime and Value              
             
-            var thisStationFull = times.join_full(thisStation, 'starttime')             // join to times
+            var thisStationFull = times.join_full(thisStation, 'starttime');             // join to times
             
             // put thisStationFull into one table
 
@@ -172,8 +172,8 @@ function loadMonitorLocations() {
 
             if (allMonitorLocations[i].loc_col === 'DEC_Avg') {
 
-                console.log('We are making DEC gray')
-                allMonitorLocations[i].Color = '#999999'
+                console.log('We are making DEC gray');
+                allMonitorLocations[i].Color = '#999999';
 
             } else {
 
@@ -185,8 +185,8 @@ function loadMonitorLocations() {
         
         // make DEC gray. #999999
         
-        console.log('all monitor locations:')
-        console.log(allMonitorLocations)
+        console.log('all monitor locations:');
+        console.log(allMonitorLocations);
         
         for (let i = 0; i < allMonitorLocations.length; i++) {
 
@@ -200,8 +200,8 @@ function loadMonitorLocations() {
         // alphabetize activeMonitors for color coordination
 
         activeMonitors.sort(GetSortOrder("loc_col"));
-        console.log('active Monitors:')
-        console.log(activeMonitors)
+        console.log('active Monitors:');
+        console.log(activeMonitors);
         
         // Draw page
 
@@ -236,20 +236,20 @@ function drawCheckboxes() {
                 </td>
         
                 </tr>
-                `
+                `;
         
-        document.getElementById('tableBody').innerHTML += tableCheckBox
+        document.getElementById('tableBody').innerHTML += tableCheckBox;
         
     }
     
-    listenTable()
+    listenTable();
     
 }
 
 
 function listenTable() {
 
-    var rows = document.querySelectorAll('.location-row')
+    var rows = document.querySelectorAll('.location-row');
     
     rows.forEach(row => {
         
@@ -261,42 +261,42 @@ function listenTable() {
             // remove previous active classes, add Active to clicked item
 
             rows.forEach(row => {
-                row.classList.remove('row-active')
-                row.classList.remove('table-highlight')
-            })
+                row.classList.remove('row-active');
+                row.classList.remove('table-highlight');
+            });
             
-            e.currentTarget.classList.add('table-highlight')
+            e.currentTarget.classList.add('table-highlight');
             
             chosenSite = {
                 "siteName": e.currentTarget.dataset.loc,
                 "color"   : e.currentTarget.dataset.color
-            }
+            };
             
             // send to zoom to
 
-            zoomTo(e.currentTarget.dataset.loc)
+            zoomTo(e.currentTarget.dataset.loc);
             
             // pass chosenSite into renderSpec for use in highlighted layer
 
-            renderSpec(dataWithNulls, chosenSite)
+            renderSpec(dataWithNulls, chosenSite);
             
-        })
-    })
+        });
+    });
 }
 
 function zoomTo(locationColumn) {
 
-    console.log('Zooming to ' + locationColumn + ' from table click')
+    console.log('Zooming to ' + locationColumn + ' from table click');
     
     // filter activeMonitors to locationColumn
 
-    const thisLocation = activeMonitors.filter((loc) => loc.loc_col === locationColumn)
+    const thisLocation = activeMonitors.filter((loc) => loc.loc_col === locationColumn);
     
-    console.log('this location:', thisLocation, thisLocation[0].Latitude, thisLocation[0].Longitude)
+    console.log('this location:', thisLocation, thisLocation[0].Latitude, thisLocation[0].Longitude);
     
     // map zoom to lat/long.
 
-    map.setView([thisLocation[0].Latitude, thisLocation[0].Longitude],13)
+    map.setView([thisLocation[0].Latitude, thisLocation[0].Longitude],13);
     
 }
 
@@ -307,13 +307,13 @@ function printRecentAverage() {
 
     // first, creating convertData that has starttime in milliseconds 
 
-    var convertData = []
+    var convertData = [];
     for (let i = 0; i < fullTable.length; i++) {
 
-        convertData.push(fullTable[i])
-        const date = new Date(convertData[i].starttime)
-        let dateInMsec = Date.parse(date)
-        convertData[i].starttime = dateInMsec
+        convertData.push(fullTable[i]);
+        const date = new Date(convertData[i].starttime);
+        let dateInMsec = Date.parse(date);
+        convertData[i].starttime = dateInMsec;
 
     }
     
@@ -321,16 +321,16 @@ function printRecentAverage() {
     
     // then, get the largest one
 
-    var mostRecentTime = convertData[convertData.length - 1].starttime
-    var startingTime = mostRecentTime - 86400000
+    var mostRecentTime = convertData[convertData.length - 1].starttime;
+    var startingTime = mostRecentTime - 86400000;
     
     // then, filter everything over largest one minus 24 hours of milliseconds
 
-    var last24HoursData = []
+    var last24HoursData = [];
     for (let i = 0; i < convertData.length; i++) {
         if (convertData[i].starttime > startingTime) {
 
-            last24HoursData.push(convertData[i])
+            last24HoursData.push(convertData[i]);
 
         } else {}
     }
@@ -339,36 +339,36 @@ function printRecentAverage() {
 
     for (let i = 0; i < activeMonitors.length; i++) {
 
-        var thisLast = []
-        thisLast = last24HoursData.filter(s => s.SiteName === activeMonitors[i].loc_col)
+        var thisLast = [];
+        thisLast = last24HoursData.filter(s => s.SiteName === activeMonitors[i].loc_col);
         
         // count if there are 17 entries
 
         if (thisLast.length > 17) {
 
             var average;
-            var sum = []
+            var sum = [];
             for (let i = 0; i < thisLast.length; i ++ ) {
-                sum.push(thisLast[i].Value)
+                sum.push(thisLast[i].Value);
             }
             
-            let totals = 0
+            let totals = 0;
             for (let i = 0; i < sum.length; i ++ ) {
-                totals += sum[i]
+                totals += sum[i];
             }
             
-            average = totals / 24
-            average = Math.round(average * 100) / 100
+            average = totals / 24;
+            average = Math.round(average * 100) / 100;
             
-            values.push(average)
+            values.push(average);
 
         }
     }
     
     // get max value
 
-    max = Math.max(...values)
-    var maxWidth = max * 1
+    max = Math.max(...values);
+    var maxWidth = max * 1;
     
     // get all names of active Monitors
 
@@ -378,8 +378,8 @@ function printRecentAverage() {
         
         // for each of those names, filter last 24 hours of data
 
-        var thisLast = []
-        thisLast = last24HoursData.filter(s => s.SiteName === activeMonitors[i].loc_col)
+        var thisLast = [];
+        thisLast = last24HoursData.filter(s => s.SiteName === activeMonitors[i].loc_col);
         // console.log('this last:', thisLast)
         
         // count if there are 17 entries
@@ -387,56 +387,56 @@ function printRecentAverage() {
         if (thisLast.length > 17) {
 
             var average;
-            var sum = []
+            var sum = [];
             for (let i = 0; i < thisLast.length; i ++ ) {
-                sum.push(thisLast[i].Value)
+                sum.push(thisLast[i].Value);
             }
             
-            let totals = 0
+            let totals = 0;
             for (let i = 0; i < sum.length; i ++ ) {
-                totals += sum[i]
+                totals += sum[i];
             }
             
-            average = totals / 24
-            average = Math.round(average * 100) / 100
+            average = totals / 24;
+            average = Math.round(average * 100) / 100;
             
-            values.push(average)
+            values.push(average);
             
             // console.log(activeMonitors[i].loc_col + ' average for this location over the last 24 hours: ' + average)
 
-            var print = 'value-'+activeMonitors[i].loc_col+'-1'
-            var print2 = 'value-'+activeMonitors[i].loc_col+'-2'
-            document.getElementById(print).innerHTML = average 
-            document.getElementById(print2).innerHTML = Math.round(average) // round to integer
+            var print = 'value-'+activeMonitors[i].loc_col+'-1';
+            var print2 = 'value-'+activeMonitors[i].loc_col+'-2';
+            document.getElementById(print).innerHTML = average; 
+            document.getElementById(print2).innerHTML = Math.round(average); // round to integer
             
             if (average > 35 ) {
-                document.getElementById('exceeds').classList.remove('hide')
-                document.getElementById('allUnder').classList.add('hide')
-                document.getElementById(print2).innerHTML += '<i class="fas fa-exclamation-circle ml-1" style="color:red">'
+                document.getElementById('exceeds').classList.remove('hide');
+                document.getElementById('allUnder').classList.add('hide');
+                document.getElementById(print2).innerHTML += '<i class="fas fa-exclamation-circle ml-1" style="color:red">';
             }
             
             var cont = 'value-' + activeMonitors[i].loc_col + '-2';
-            var widthPercent = 100 * Math.round(average)  / maxWidth
-            document.getElementById(cont).style.width = widthPercent + "%"
+            var widthPercent = 100 * Math.round(average)  / maxWidth;
+            document.getElementById(cont).style.width = widthPercent + "%";
             
         } else {
 
             // console.log(activeMonitors[i].loc_col + " doesn't have enough data")
 
-            var print = 'value-'+activeMonitors[i].loc_col+'-1'
-            var print2 = 'value-'+activeMonitors[i].loc_col+'-2'
+            var print = 'value-'+activeMonitors[i].loc_col+'-1';
+            var print2 = 'value-'+activeMonitors[i].loc_col+'-2';
             
-            document.getElementById(print).innerHTML = 0
-            document.getElementById(print2).innerHTML = '*'    
+            document.getElementById(print).innerHTML = 0;
+            document.getElementById(print2).innerHTML = '*';    
             
             var cont = 'value-' + activeMonitors[i].loc_col + '-2';
             document.getElementById(cont).style.backgroundColor = "white";
-            document.getElementById('insufficient').classList.remove('hide')
+            document.getElementById('insufficient').classList.remove('hide');
             
         }
     }
     
-    sortTable()
+    sortTable();
 
 }
 
@@ -455,7 +455,7 @@ var monitor_locations;
 
 function drawMap() {
     
-    monitor_locations = activeMonitors
+    monitor_locations = activeMonitors;
     
     // adding each monitor to the feature group
     
@@ -471,7 +471,7 @@ function drawMap() {
         var this_monitor = 
             L.marker([monitor.Latitude, monitor.Longitude], {icon: this_icon, riseOnHover: true, riseOffset: 2000})
                 .bindPopup(monitor.Location, {permanent: true, opacity: 0.85, interactive: true})
-                .addTo(monitors_group)
+                .addTo(monitors_group);
         
         // create group without the DEC Monitor, which we'll use to set the center and bounds
 
@@ -480,7 +480,7 @@ function drawMap() {
             var those_monitors = 
                 L.marker([monitor.Latitude, monitor.Longitude], {icon: this_icon, riseOnHover: true, riseOffset: 2000})
                     .bindTooltip(monitor.Location, {permanent: false, opacity: 0.85, interactive: true})
-                    .addTo(monitors_group_noDEC)
+                    .addTo(monitors_group_noDEC);
 
         }
         
@@ -493,7 +493,7 @@ function drawMap() {
         
         this_monitor.on('click', function (e) {
             map.setView(e.latlng, 13);
-            updateData(monitor_locations[i].loc_col)
+            updateData(monitor_locations[i].loc_col);
         });
     });
     
@@ -521,7 +521,7 @@ function drawMap() {
     
     // if Hamilton Bridge isn't reporting, add the marker anyway
 
-    if (!stations.includes('Hamilton Bridge')) {drawHamiltonBridge()} 
+    if (!stations.includes('Hamilton Bridge')) {drawHamiltonBridge();} 
     
     // adding the monitor markers to the map
     
@@ -549,12 +549,12 @@ function resetZoom() {
 
     map.setView(monitors_center, 11).fitBounds(monitors_bounds);
     
-    var rows = document.querySelectorAll('.location-row')
-    rows.forEach(row => row.classList.remove('row-active'))
-    rows.forEach(row => row.classList.remove('table-highlight'))
+    var rows = document.querySelectorAll('.location-row');
+    rows.forEach(row => row.classList.remove('row-active'));
+    rows.forEach(row => row.classList.remove('table-highlight'));
     
     chosenSite = undefined;
-    renderSpec(dataWithNulls,null)
+    renderSpec(dataWithNulls,null);
 
 }
 
@@ -569,11 +569,11 @@ document.getElementById('inputNum').addEventListener('change', function (event) 
     if (inputNum > 7) {
 
         console.log('too large');
-        $("#sevenModal").modal()
+        $("#sevenModal").modal();
 
     } else {
 
-        updateTime(inputNum)
+        updateTime(inputNum);
 
     }
 });
@@ -582,14 +582,14 @@ document.getElementById('inputNum').addEventListener('change', function (event) 
 
 function updateTime(x) {
 
-    var last = fullTable.pop()
-    const date = new Date(last.starttime)
-    let dateInMsec = Date.parse(date)
-    var filterTo = dateInMsec - x * 86400000
+    var last = fullTable.pop();
+    const date = new Date(last.starttime);
+    let dateInMsec = Date.parse(date);
+    var filterTo = dateInMsec - x * 86400000;
     
-    chartStart = filterTo                   
+    chartStart = filterTo;                   
     
-    renderSpec(dataWithNulls, chosenSite)
+    renderSpec(dataWithNulls, chosenSite);
     
 }
 
@@ -600,28 +600,28 @@ function updateData(x) {
 
     // look in active monitors for x.
 
-    console.log('updating data for ', x)
-    var thisLocation = activeMonitors.filter(mon => mon.loc_col === x)
+    console.log('updating data for ', x);
+    var thisLocation = activeMonitors.filter(mon => mon.loc_col === x);
     
-    console.log(thisLocation)
+    console.log(thisLocation);
     
     chosenSite = {
         "siteName": thisLocation[0].loc_col,
         "color":    thisLocation[0].Color
-    }
+    };
     
     // loop through rows and remove .table-highlight
 
-    var rows = document.querySelectorAll('.location-row')
-    rows.forEach(row => row.classList.remove('row-active'))
-    rows.forEach(row => row.classList.remove('table-highlight'))
+    var rows = document.querySelectorAll('.location-row');
+    rows.forEach(row => row.classList.remove('row-active'));
+    rows.forEach(row => row.classList.remove('table-highlight'));
     
     // add table row highlight...?
 
-    var row = 'row-'+x
-    document.getElementById(row).classList.add('table-highlight')
+    var row = 'row-'+x;
+    document.getElementById(row).classList.add('table-highlight');
     
-    renderSpec(dataWithNulls, chosenSite)
+    renderSpec(dataWithNulls, chosenSite);
     
     // scroll chart into view (for mobile)
 
@@ -633,7 +633,7 @@ function updateData(x) {
 
 function drawHamiltonBridge() {
 
-    console.log('Hamilton Bridge not reporting. Drawing point anyway')
+    console.log('Hamilton Bridge not reporting. Drawing point anyway');
     const hamiltonBridgeLocation = allMonitorLocations.filter(item => item.Location === 'Hamilton Bridge');
     
     let this_icon = L.colorIcon({
@@ -646,7 +646,7 @@ function drawHamiltonBridge() {
     var this_monitor = 
     L.marker([hamiltonBridgeLocation[0].Latitude, hamiltonBridgeLocation[0].Longitude], {icon: this_icon, riseOnHover: true, riseOffset: 2000})
     .bindPopup(`Hamilton Bridge`) // Add a popup with the location name
-    .addTo(map)
+    .addTo(map);
 
 }
 
@@ -719,7 +719,7 @@ function GetSortOrder(prop) {
         }    
         return 0;    
 
-    }    
+    };    
 }  
 
 
@@ -812,13 +812,13 @@ async function renderSpec(
                 }
             }
         ]
-    }
+    };
     
     // if checked, layer:
     
     if ( site != null) {
 
-        console.log('drawing chart with selected sites', site.siteName, site.color)
+        console.log('drawing chart with selected sites', site.siteName, site.color);
         var checkedLayer =     // needs sitename and color inserted, see below. 
         {
             "mark": {
@@ -850,14 +850,14 @@ async function renderSpec(
                     {"field": "starttime", "type": "temporal", "title": "Date"}
                 ]
             }
-        }
+        };
         
-        chartSpec.layer.push(checkedLayer)
+        chartSpec.layer.push(checkedLayer);
         
     } else {
 
-        var checkedLayer
-        console.log('No selected sites')
+        var checkedLayer;
+        console.log('No selected sites');
 
     }
     
@@ -880,7 +880,7 @@ async function renderSpec(
                 "force":  true
             }
         ]
-    }
+    };
     
     const locSignal =  {
         "name": "locFilter", 
@@ -892,10 +892,10 @@ async function renderSpec(
                 "force": true
             }
         ]
-    }
+    };
     
-    vegaSpec.signals.push(colorSignal)
-    vegaSpec.signals.push(locSignal)
+    vegaSpec.signals.push(colorSignal);
+    vegaSpec.signals.push(locSignal);
     
     const textSignal = {
         "name": "textlabel",
@@ -907,7 +907,7 @@ async function renderSpec(
                 "force":  true
             }
         ]
-    }
+    };
     
     const textMark =  {
         "type": "text",
@@ -920,7 +920,7 @@ async function renderSpec(
                 "text": {"signal": "textlabel"}
             }
         }
-    }
+    };
     
     
     
@@ -932,8 +932,8 @@ async function renderSpec(
     
     
     vegaEmbed('#vis',vegaSpec, {renderer: "svg"}).then(res => {
-        myView = res.view // save the vega view 
+        myView = res.view; // save the vega view 
         // console.log('myView, vega with marks pushed:')
         // console.log(myView)
-    })
+    });
 }

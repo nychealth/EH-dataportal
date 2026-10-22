@@ -58,96 +58,96 @@
 
     // print Community Districts to menu
 
-    let CDholder = document.getElementById('CDButtons')
+    let CDholder = document.getElementById('CDButtons');
 
     CDtoUHF.forEach(cd => {
 
         let thisButton = `
             <a class="dropdown-item cd-items" href="#top" id='button-${cd.CD}' onclick='getUHFs("CD", ${cd.CD})'>${cd.CD_NAME}</a>
-        `
-        CDholder.innerHTML += thisButton
+        `;
+        CDholder.innerHTML += thisButton;
 
-    })
+    });
 
 
     // print City Council Districts to menu
 
-    let holder = document.getElementById('districtButtons')
+    let holder = document.getElementById('districtButtons');
 
     CCDtoUHF.forEach(ccd => {
 
           let thisButton = `
         <a class="dropdown-item ccd-items" href="#top" id='button-${ccd.CCD}' onclick='getUHFs("CCD", ${ccd.CCD})'>City Council District #${ccd.CCD}</a>
-      `
-      holder.innerHTML += thisButton
+      `;
+      holder.innerHTML += thisButton;
 
-    })
+    });
 
 
     let thisOverlap ;
 
     function getUHFs(from, geo) {
 
-        document.getElementById('overlapReveal').classList.remove('hide')
+        document.getElementById('overlapReveal').classList.remove('hide');
 
-        let overlaps = document.getElementById('overlaps')
-        overlaps.innerHTML = ''
+        let overlaps = document.getElementById('overlaps');
+        overlaps.innerHTML = '';
 
         if (from === 'CCD') {
 
-            console.log('Getting UHFs for City Council District ' + geo)
+            console.log('Getting UHFs for City Council District ' + geo);
             // Style CCD selections
 
-            let allButtons = document.querySelectorAll('.ccd-items')
+            let allButtons = document.querySelectorAll('.ccd-items');
             allButtons.forEach(btn => {
-                btn.classList.remove('active')
-                btn.classList.remove('text-white')
-            })
+                btn.classList.remove('active');
+                btn.classList.remove('text-white');
+            });
 
-            let selected = document.getElementById(`button-${geo}`)
-            selected.classList.add('active')
-            selected.classList.add('text-white')
+            let selected = document.getElementById(`button-${geo}`);
+            selected.classList.add('active');
+            selected.classList.add('text-white');
 
             // Loop through source JS
 
-            thisOverlap = CCDtoUHF.filter(neighborhood => neighborhood.CCD == geo)
+            thisOverlap = CCDtoUHF.filter(neighborhood => neighborhood.CCD == geo);
 
         } else if (from === 'CD') {
 
-            console.log('Getting UHFs for Community District ' + geo)
+            console.log('Getting UHFs for Community District ' + geo);
             // Style CD selections
 
-            let allButtons = document.querySelectorAll('.cd-items')
+            let allButtons = document.querySelectorAll('.cd-items');
             allButtons.forEach(btn => {
-                btn.classList.remove('active')
-                btn.classList.remove('text-white')
-            })
+                btn.classList.remove('active');
+                btn.classList.remove('text-white');
+            });
 
-            let selected = document.getElementById(`button-${geo}`)
-            selected.classList.add('active')
-            selected.classList.add('text-white')
+            let selected = document.getElementById(`button-${geo}`);
+            selected.classList.add('active');
+            selected.classList.add('text-white');
 
             // Loop through source JS
 
-            thisOverlap = CDtoUHF.filter(cd => cd.CD == geo)
+            thisOverlap = CDtoUHF.filter(cd => cd.CD == geo);
 
         } else {
 
-            console.log('Error.')
+            console.log('Error.');
 
         }
 
-        console.log('This overlap:')
-        console.log(thisOverlap[0])
+        console.log('This overlap:');
+        console.log(thisOverlap[0]);
 
         // Print matching overlaps to page
 
         thisOverlap[0].matchingUHFs.forEach(ol => {
 
-            let uhfid = ol.UHF_id
-            let name = ol.GEONAME
-            let overl = ol.percent.toFixed(0)
-            let dest = ol.page_name
+            let uhfid = ol.UHF_id;
+            let name = ol.GEONAME;
+            let overl = ol.percent.toFixed(0);
+            let dest = ol.page_name;
             let popol = (from === 'CCD') 
                 ? ol.pop_pct_of_ccd.toFixed(1) 
                 : (from === 'CD') 
@@ -158,7 +158,7 @@
 
             if (overl < 5) {
 
-                return
+                return;
 
             } else {
 
@@ -168,9 +168,9 @@
                     ${name} 
                     </span> <br>
                     Overlap: ${overl}% area | ${popol}% population
-                </a>`
+                </a>`;
 
             }
-        })
+        });
     }
 </script>

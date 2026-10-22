@@ -14,7 +14,7 @@
 
 const cp_container_id = "cpVis";
 const aq_container_id = "aqChangeVis";
-const text_container_id = "EJ_text"
+const text_container_id = "EJ_text";
 
 // Updates the preposition and site name spans in the heading. The control
 // site (Van Wyck) isn't asking "did congestion pricing affect air quality"
@@ -518,7 +518,7 @@ const secondSpec = {
             }
         }
     ]
-}
+};
 
 
 // ----------------------------------------------------------------------- //

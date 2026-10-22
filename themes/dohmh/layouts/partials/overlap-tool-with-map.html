@@ -76,7 +76,7 @@
         "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/UHF42.geojson",
         "property": "tbd"
     }
-  ]
+  ];
 
 
 
@@ -117,12 +117,12 @@
 
     function reset() {
 
-      console.log('Reset')
+      console.log('Reset');
       // loadGeoJSON("CD");
 
-      document.getElementById('overlaps').innerHTML = ''
-      document.getElementById('neighbHolder').innerHTML = ''
-      document.getElementById('prompt').classList.add('hide')
+      document.getElementById('overlaps').innerHTML = '';
+      document.getElementById('neighbHolder').innerHTML = '';
+      document.getElementById('prompt').classList.add('hide');
 
 
       var radioButtons = document.querySelectorAll('input[name="inlineRadioOptions"]');
@@ -132,7 +132,7 @@
         if (rb.checked) selectedValue = rb.value;
       });
 
-      loadGeoJSON(selectedValue)
+      loadGeoJSON(selectedValue);
 
     }
 
@@ -165,7 +165,7 @@
 
         if (UHFLayer) {
             map.removeLayer(UHFLayer);
-            UHFLayer = null
+            UHFLayer = null;
         }
 
 
@@ -373,48 +373,48 @@ function drawUHFs(UHF_ids) {
     var thisOverlap ;
     function getUHFs(from, geo) {
 
-        document.getElementById('prompt').classList.remove('hide')
+        document.getElementById('prompt').classList.remove('hide');
 
-        var overlaps = document.getElementById('overlaps')
-        overlaps.innerHTML = ''
+        var overlaps = document.getElementById('overlaps');
+        overlaps.innerHTML = '';
 
         if (from === 'CCD') {
 
-            console.log('Getting UHFs for City Council District ' + geo)
+            console.log('Getting UHFs for City Council District ' + geo);
 
 
             // Loop through source JS
 
-            thisOverlap = CCDtoUHF.filter(neighborhood => neighborhood.CCD == geo)
+            thisOverlap = CCDtoUHF.filter(neighborhood => neighborhood.CCD == geo);
 
         } else if (from === 'CD') {
 
-            console.log('Getting UHFs for Community District ' + geo)
+            console.log('Getting UHFs for Community District ' + geo);
 
             // Loop through source JS
 
-            thisOverlap = CDtoUHF.filter(cd => cd.CD == geo)
+            thisOverlap = CDtoUHF.filter(cd => cd.CD == geo);
 
         } else {
 
-            console.log('Error.')
+            console.log('Error.');
 
         }
 
-        console.log('Overlapping neighborhoods:')
-        console.log(thisOverlap[0].matchingUHFs)
+        console.log('Overlapping neighborhoods:');
+        console.log(thisOverlap[0].matchingUHFs);
         const uhfIds = thisOverlap[0].matchingUHFs.map(item => item.UHF_id);
-        drawUHFs(uhfIds)
+        drawUHFs(uhfIds);
 
 
         // Print matching overlaps to page
 
         thisOverlap[0].matchingUHFs.forEach(ol => {
 
-            var uhfid = ol.UHF_id
-            var name = ol.GEONAME
-            var overl = ol.percent.toFixed(1)
-            var dest = ol.page_name
+            var uhfid = ol.UHF_id;
+            var name = ol.GEONAME;
+            var overl = ol.percent.toFixed(1);
+            var dest = ol.page_name;
             var popol = (from === 'CCD') 
                 ? ol.pop_pct_of_ccd.toFixed(1) 
                 : (from === 'CD') 
@@ -425,7 +425,7 @@ function drawUHFs(UHF_ids) {
 
             if (overl < 0.1) {
 
-                return
+                return;
 
                 } else {
 
@@ -435,11 +435,11 @@ function drawUHFs(UHF_ids) {
                     ${name} 
                     </span> <br>
                     Overlap: ${overl}% area | ${popol}% population
-                </a>`
+                </a>`;
 
                 }
             }
-        )
+        );
     }
 
       

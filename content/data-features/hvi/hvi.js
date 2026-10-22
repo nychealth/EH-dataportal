@@ -89,7 +89,7 @@ const load_flexdatalist = async () => {
 
                 dataChange(set.GEOCODE);
                 
-            })
+            });
 
             // ----- add clear button handler -------------------------------------------------- //
 
@@ -97,15 +97,15 @@ const load_flexdatalist = async () => {
 
                 // console.log("e [clear click]", e);
 
-                $($input).find("~input").val("").trigger( "focus" )
+                $($input).find("~input").val("").trigger( "focus" );
 
-            })
-        })
-}
+            });
+        });
+};
 
 // ----- call loader function -------------------------------------------------- //
 
-load_flexdatalist()
+load_flexdatalist();
 
 // ----------------------------------------------------------------------- //
 // main functionality
@@ -171,11 +171,11 @@ function dataChange(GEOCODE) {
     document.querySelector("#hviVal").innerHTML = nHVI_RANK + ' out of 5';
 
     var cssClass = 'class-' + nHVI_RANK;
-    document.getElementById('hviVal').removeAttribute("class")    // remove old classes, if re-select
-    document.getElementById('NTA').removeAttribute("class")
+    document.getElementById('hviVal').removeAttribute("class");    // remove old classes, if re-select
+    document.getElementById('NTA').removeAttribute("class");
 
-    document.getElementById('hviVal').classList.add(cssClass)       // add classes
-    document.getElementById('NTA').classList.add(cssClass)
+    document.getElementById('hviVal').classList.add(cssClass);       // add classes
+    document.getElementById('NTA').classList.add(cssClass);
     
     document.querySelector("#tempVal").innerHTML = nSURFACE_TEMP + '° F';
     document.querySelector("#greenVal").innerHTML = nGREENSPACE + '%';
@@ -278,7 +278,7 @@ function buildMap(div, spec, csv, topo, nbr) {
         
         // get data object whose url is "topo"
         
-        let topo_url = spec.data.filter(data => {return data.url === "topo"})[0];
+        let topo_url = spec.data.filter(data => {return data.url === "topo";})[0];
         
         // update url element of this data array (which updates the spec), because
         //  top_url is a shallow copy / reference to the spec

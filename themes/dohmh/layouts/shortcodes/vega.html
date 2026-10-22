@@ -8,11 +8,11 @@
     var dir = "{{ path.Clean .Page.File.Dir }}";
     var spec = '{{ .Get "spec" }}';
 
-    var istrans = "{{ .Page.IsTranslated }}"
+    var istrans = "{{ .Page.IsTranslated }}";
 
     if (istrans) {
-        var lang = "{{ .Page.Language.Lang }}"
-        dir += "/mapspec-" + lang
+        var lang = "{{ .Page.Language.Lang }}";
+        dir += "/mapspec-" + lang;
     }
 
     // console.log("id", '{{ .Get "id" }}');

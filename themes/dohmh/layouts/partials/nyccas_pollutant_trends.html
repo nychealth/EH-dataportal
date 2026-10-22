@@ -36,12 +36,12 @@
   </style>
 
   <script>
-        var trendPollutant
-        var source
+        var trendPollutant;
+        var source;
         var view; // ssn (season) or ttl (tertile)
         var sources = [];
-        var units
-        var trendPollutantName
+        var units;
+        var trendPollutantName;
         
         // arrays of pollutant-specific sources
 
@@ -54,70 +54,70 @@
 
         // SET DEFAULTS
 
-        trendPollutant = 'BC'
-        trendPollutantName = 'Black Carbon'
-        units = 'micrograms per cubic meter'
-        sources = bcSources 
-        source = sources[0]
-        createSourceButtons()
+        trendPollutant = 'BC';
+        trendPollutantName = 'Black Carbon';
+        units = 'micrograms per cubic meter';
+        sources = bcSources; 
+        source = sources[0];
+        createSourceButtons();
 
 
         // GET POLLUTANT AND OTHER VARIABLES ON INITIAL BUTTON CLICK
 
-        const trbtns = document.querySelectorAll(".trpolbtn")
+        const trbtns = document.querySelectorAll(".trpolbtn");
         for (var i = 0; i < trbtns.length; i++) {
 
             trbtns[i].addEventListener("click", function() {
 
               for (let button of document.querySelectorAll('.trpolbtn')) button.classList.remove('active');
               this.className += " active";
-              trendPollutant = this.value
+              trendPollutant = this.value;
 
               // declare sources and units for selected pollutant
 
                 if (trendPollutant === 'BC') {
 
-                    sources = bcSources
-                    units = 'micrograms per cubic meter'
-                    trendPollutantName = 'Black Carbon'
+                    sources = bcSources;
+                    units = 'micrograms per cubic meter';
+                    trendPollutantName = 'Black Carbon';
 
                 } else if (trendPollutant === 'NO') {
 
-                    sources = noSources
-                    units = 'parts per billion'
-                    trendPollutantName = 'Nitric Oxide'
+                    sources = noSources;
+                    units = 'parts per billion';
+                    trendPollutantName = 'Nitric Oxide';
 
                 } else if (trendPollutant === 'NO2') {
 
-                    sources = no2Sources
-                    units = 'parts per billion'
-                    trendPollutantName = 'Nitrogen Dioxide'
+                    sources = no2Sources;
+                    units = 'parts per billion';
+                    trendPollutantName = 'Nitrogen Dioxide';
 
                 } else if (trendPollutant === 'O3') {
 
-                    sources = o3Sources
-                    units = 'parts per billion'
-                    trendPollutantName = 'Ozone'
+                    sources = o3Sources;
+                    units = 'parts per billion';
+                    trendPollutantName = 'Ozone';
 
                 } else if (trendPollutant === 'PM2.5') {
 
-                    sources = pmSources
-                    units = 'micrograms per cubic meter'
-                    trendPollutantName = 'Fine Particles'
+                    sources = pmSources;
+                    units = 'micrograms per cubic meter';
+                    trendPollutantName = 'Fine Particles';
 
                 } else if (trendPollutant = 'SO2') {
 
-                    sources = so2Sources
-                    units = 'parts per billion'
-                    trendPollutantName = 'Sulfur Dioxide'
+                    sources = so2Sources;
+                    units = 'parts per billion';
+                    trendPollutantName = 'Sulfur Dioxide';
 
                 }
-                source = sources[0]
+                source = sources[0];
                 // logMetadata();
 
                 // create buttons for the pollutant's sources
 
-                createSourceButtons()
+                createSourceButtons();
                 drawChart();
 
             });
@@ -129,15 +129,15 @@
 
             document.getElementById('subCont').innerHTML = '';
             for (let i = 0; i < sources.length; i++) {
-                var thisSource = sources[i]
-                var newButton = `<span class="badge srcbtn badge-light mr-1">${thisSource}</span>`
-                document.getElementById('subCont').innerHTML += newButton
+                var thisSource = sources[i];
+                var newButton = `<span class="badge srcbtn badge-light mr-1">${thisSource}</span>`;
+                document.getElementById('subCont').innerHTML += newButton;
             };
 
             // loop through newly-added buttons, get first, apply Active state
 
-            var srcBtns = document.querySelectorAll('.srcbtn')
-            srcBtns[0].classList.add('border')
+            var srcBtns = document.querySelectorAll('.srcbtn');
+            srcBtns[0].classList.add('border');
 
             // put listener on source buttons
 
@@ -147,15 +147,15 @@
 
                 // remove "active" from classnames
 
-                var activeSource = document.querySelectorAll('.srcbtn.border')
-                activeSource[0].classList.remove('border')
+                var activeSource = document.querySelectorAll('.srcbtn.border');
+                activeSource[0].classList.remove('border');
                 // apply Active to selected source button
 
                 this.className += " border";
                 source = this.innerHTML;
                 drawChart();
 
-                })
+                });
             }
         }
 
@@ -168,10 +168,10 @@
         var chartSpec = {};
         function drawChart() {
 
-            document.getElementById('polPrint').innerHTML = trendPollutantName
-            document.getElementById('sourcePrint').innerHTML = DOMPurify.sanitize(source)
-            document.getElementById('unitPrint').innerHTML = units
-            let width = document.getElementById('vis').offsetWidth / 2.25
+            document.getElementById('polPrint').innerHTML = trendPollutantName;
+            document.getElementById('sourcePrint').innerHTML = DOMPurify.sanitize(source);
+            document.getElementById('unitPrint').innerHTML = units;
+            let width = document.getElementById('vis').offsetWidth / 2.25;
 
             chartSpec = {
                 "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -238,12 +238,12 @@
 
         function logMetadata() {
 
-            console.log('*****METADATA*****')
-            console.log('pollutant: ' + trendPollutant)
-            console.log('sources: ' + sources)
+            console.log('*****METADATA*****');
+            console.log('pollutant: ' + trendPollutant);
+            console.log('sources: ' + sources);
             // console.log('source: ' + source)
 
-            console.log('units: ' + units)
+            console.log('units: ' + units);
 
         }
 

@@ -1,4 +1,4 @@
-console.log("Config file loaded.")
+console.log("Config file loaded.");
 
 var content = [
 
@@ -163,5 +163,5 @@ var content = [
         ]
     },
 
-]
+];
     

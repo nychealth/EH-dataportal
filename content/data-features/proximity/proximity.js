@@ -62,42 +62,42 @@ function changeText(x) {
 
     // console.log('Running text for ', x)
 
-    var next = x+1
-    var last = x-1
-    var textHolder = document.getElementById('thisText')
-    var nextButton = document.getElementById('nextButton')
+    var next = x+1;
+    var last = x-1;
+    var textHolder = document.getElementById('thisText');
+    var nextButton = document.getElementById('nextButton');
 
-    textHolder.innerHTML = config[x].text
-    textHolder.classList.add('overflower')
+    textHolder.innerHTML = config[x].text;
+    textHolder.classList.add('overflower');
 
-    nextButton.setAttribute('onclick',`changeText(${next})`)
-    nextButton.classList.remove('hide')
+    nextButton.setAttribute('onclick',`changeText(${next})`);
+    nextButton.classList.remove('hide');
 
     // Add the "Go back" button
 
     if (x == 1) {
 
-        document.getElementById('lastButton').classList.remove('hide')
+        document.getElementById('lastButton').classList.remove('hide');
 
     } else if (x == 0 ) {
 
-        document.getElementById('lastButton').classList.add('hide')
+        document.getElementById('lastButton').classList.add('hide');
 
     } else {}
 
-    document.getElementById('lastButton').setAttribute('onclick',`changeText(${last})`)
+    document.getElementById('lastButton').setAttribute('onclick',`changeText(${last})`);
 
     // load GeoJSON as specified in config, if it exists
 
-    loadGeoJSON(config[x])
+    loadGeoJSON(config[x]);
 
     // if we're at the end of the config, then, remove the Next Button
 
     if (next == config.length) {
 
-        console.log('We are done here!')
-        nextButton.classList.add('hide')
-        return
+        console.log('We are done here!');
+        nextButton.classList.add('hide');
+        return;
 
     } else {}
 

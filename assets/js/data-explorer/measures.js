@@ -78,7 +78,7 @@ const setDefaultMapMeasure = (visArray) => {
 
     // console.log(">> defaultMapMetadata", DE.map.defaultMapMetadata);
 
-}
+};
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -95,7 +95,7 @@ const setDefaultTrendMeasure = (visArray) => {
 
     // console.log(">> defaultTrendMetadata", defaultTrendMetadata);
 
-}
+};
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -125,7 +125,7 @@ const setDefaultLinksMeasure = async (visArray) => {
 
     // using await here because createJoinedLinksData calls fetch, and we need that data
 
-    const defaultLinksDataMetadata = await createJoinedLinksData(defaultPrimaryMeasureId, defaultSecondaryMeasureId)
+    const defaultLinksDataMetadata = await createJoinedLinksData(defaultPrimaryMeasureId, defaultSecondaryMeasureId);
 
     if (!isIndicatorLoadCurrent(loadToken)) return;
 
@@ -140,9 +140,9 @@ const setDefaultLinksMeasure = async (visArray) => {
 
     DE.links.selectedPrimaryMeasureMetadata = defaultLinksDataMetadata.primaryMeasureMetadata;
     DE.links.selectedSecondaryMeasureMetadata = defaultLinksDataMetadata.secondaryMeasureMetadata;
-    DE.links.joinedLinksDataObjects = defaultLinksDataMetadata.data
+    DE.links.joinedLinksDataObjects = defaultLinksDataMetadata.data;
 
-}
+};
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -159,7 +159,7 @@ const setDefaultDisparitiesMeasure = (visArray) => {
 
     // console.log(">> defaultDisparitiesMetadata", defaultDisparitiesMetadata);
 
-}
+};
 
 
 // ----------------------------------------------------------------------- //
@@ -390,7 +390,7 @@ const bindCorrelateControls = () => {
         showLinks();
 
     });
-}
+};
 
 
 // ----------------------------------------------------------------------- //
@@ -1615,7 +1615,7 @@ showTrend = (e) => {
     setTrendButtonState();
     updateTrendSelectionSummary();
 
-}
+};
 
 // Renders the standard borough trend chart for the selected measure.
 
@@ -1764,7 +1764,7 @@ showComparisonTrend = (e) => {
     setTrendButtonState();
     updateTrendSelectionSummary();
 
-}
+};
 
 
 // Renders the links view, or shows a metadata-driven empty state when no correlates exist.
@@ -2041,7 +2041,7 @@ const renderMeasures = async () => {
 
     showOverlayTab();
 
-}
+};
 
 
 // Opens the tab and pane matching DE.state.overlay, or closes them all for 'none'. Called after

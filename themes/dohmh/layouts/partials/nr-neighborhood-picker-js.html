@@ -46,15 +46,15 @@
         // active topic button on the landing page.
 
         $input.on('select:flexdatalist', (e, set) => {
-            window.location.href = {{ relURL "neighborhood-reports/" }} + set.page_name + '/' + nrPickerDestination() + '/'
-        })
+            window.location.href = {{ relURL "neighborhood-reports/" }} + set.page_name + '/' + nrPickerDestination() + '/';
+        });
 
         // flexdatalist hides the original input and renders its own; "~input" is how the
         // other copies of this reach that visible one.
 
         $("#clear").on("click", () => {
-            $($input).find("~input").val("").trigger("focus")
-        })
+            $($input).find("~input").val("").trigger("focus");
+        });
 
         // The generated input is the one the reader focuses, and it inherits nothing from
         // the authored input's <label for>. Without this its only name is the placeholder,
@@ -69,6 +69,6 @@
         }
     }
 
-    loadNeighborhoodSearch()
+    loadNeighborhoodSearch();
 
 </script>

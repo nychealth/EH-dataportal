@@ -169,30 +169,30 @@
                   "value": 0.25
                 }
           }
-        }
+        };
 
-        var changeSpec = spec
+        var changeSpec = spec;
 
 
 
         vegaEmbed("#vis1", spec, {renderer: "svg"});
 
-        var smoothCount = 0
+        var smoothCount = 0;
         function smooth(x) {
 
-            changeSpec = spec
-            smoothCount = smoothCount + 1
+            changeSpec = spec;
+            smoothCount = smoothCount + 1;
             if (smoothCount % 2 == 0) {
 
-                changeSpec.encoding.y.field = 'Count'
-                document.getElementById('smoothBtn').classList.remove('btn-secondary')
-                document.getElementById('smoothBtn').classList.add('btn-outline-secondary')
+                changeSpec.encoding.y.field = 'Count';
+                document.getElementById('smoothBtn').classList.remove('btn-secondary');
+                document.getElementById('smoothBtn').classList.add('btn-outline-secondary');
 
             } else {
 
-                changeSpec.encoding.y.field = 'rollingAverage'
-                document.getElementById('smoothBtn').classList.add('btn-secondary')
-                document.getElementById('smoothBtn').classList.remove('btn-outline-secondary')
+                changeSpec.encoding.y.field = 'rollingAverage';
+                document.getElementById('smoothBtn').classList.add('btn-secondary');
+                document.getElementById('smoothBtn').classList.remove('btn-outline-secondary');
 
             }
             vegaEmbed("#vis1", changeSpec, {renderer: "svg"});
@@ -201,67 +201,67 @@
 
         function smoothed(x) {
 
-          changeSpec = spec
-          changeSpec.encoding.y.field = x
+          changeSpec = spec;
+          changeSpec.encoding.y.field = x;
           vegaEmbed("#vis1", changeSpec, {renderer: "svg"});
 
           if (x == 'Count') {
 
-            document.getElementById('countBtn').classList.add('active')
-            document.getElementById('raBtn').classList.remove('active')
+            document.getElementById('countBtn').classList.add('active');
+            document.getElementById('raBtn').classList.remove('active');
 
           } else {
 
-            document.getElementById('countBtn').classList.remove('active')
-            document.getElementById('raBtn').classList.add('active')
+            document.getElementById('countBtn').classList.remove('active');
+            document.getElementById('raBtn').classList.add('active');
 
           }
         }
 
         function time(y) {
 
-          changeSpec.encoding.x.timeUnit = y
+          changeSpec.encoding.x.timeUnit = y;
           vegaEmbed("#vis1", changeSpec, {renderer: "svg"});
 
           if (y == 'dayofyear') {
 
-            document.getElementById('dayBtn').classList.add('btn-primary')
-            document.getElementById('dayBtn').classList.remove('btn-outline-primary')
-            document.getElementById('monthBtn').classList.remove('btn-primary')
-            document.getElementById('monthBtn').classList.add('btn-outline-primary')
-            document.getElementById('smoothBtn').classList.remove('hide')
-            document.getElementById('smoothBtn').classList.remove('btn-secondary')
-            document.getElementById('smoothBtn').classList.add('btn-outline-secondary')
+            document.getElementById('dayBtn').classList.add('btn-primary');
+            document.getElementById('dayBtn').classList.remove('btn-outline-primary');
+            document.getElementById('monthBtn').classList.remove('btn-primary');
+            document.getElementById('monthBtn').classList.add('btn-outline-primary');
+            document.getElementById('smoothBtn').classList.remove('hide');
+            document.getElementById('smoothBtn').classList.remove('btn-secondary');
+            document.getElementById('smoothBtn').classList.add('btn-outline-secondary');
 
           } else {
 
-            changeSpec.encoding.y.field = 'Count'
-            document.getElementById('dayBtn').classList.remove('btn-primary')
-            document.getElementById('dayBtn').classList.add('btn-outline-primary')
-            document.getElementById('monthBtn').classList.add('btn-primary')
-            document.getElementById('monthBtn').classList.remove('btn-outline-primary')
-            document.getElementById('smoothBtn').classList.add('hide')
+            changeSpec.encoding.y.field = 'Count';
+            document.getElementById('dayBtn').classList.remove('btn-primary');
+            document.getElementById('dayBtn').classList.add('btn-outline-primary');
+            document.getElementById('monthBtn').classList.add('btn-primary');
+            document.getElementById('monthBtn').classList.remove('btn-outline-primary');
+            document.getElementById('smoothBtn').classList.add('hide');
 
           }
         }
 
 // #00FFFFFF
 
-        var count = 0
+        var count = 0;
         function toggle(x) {
 
-          count = count + x
+          count = count + x;
           if (count % 2 == 0) {
 
             // changeSpec.transform[2].filter = `datum.Date > 1451624400000`;
 
-            changeSpec.encoding.color.scale.range = ["grey","grey","grey","grey","grey","grey","grey","#12135b"]
-            document.getElementById('toggle').innerHTML = 'Hide previous years'
+            changeSpec.encoding.color.scale.range = ["grey","grey","grey","grey","grey","grey","grey","#12135b"];
+            document.getElementById('toggle').innerHTML = 'Hide previous years';
 
           } else {
 
-            document.getElementById('toggle').innerHTML = 'Show previous years'
-            changeSpec.encoding.color.scale.range = ["#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#12135b"]
+            document.getElementById('toggle').innerHTML = 'Show previous years';
+            changeSpec.encoding.color.scale.range = ["#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#12135b"];
 
             // changeSpec.transform[2].filter = `datum.Date > 1672549200000`
 
@@ -274,23 +274,23 @@
 
       function changeYear(x) {
 
-        var chosenYear = x
-        var indexPos = x - 2016
-        var colors = ["grey","grey","grey","grey","grey","grey","grey","grey"]
-        colors[indexPos] = "#12135b"
-        changeSpec.encoding.color.scale.range = colors
-        changeSpec.encoding.opacity.condition.test = `datum.year === ${x}`
+        var chosenYear = x;
+        var indexPos = x - 2016;
+        var colors = ["grey","grey","grey","grey","grey","grey","grey","grey"];
+        colors[indexPos] = "#12135b";
+        changeSpec.encoding.color.scale.range = colors;
+        changeSpec.encoding.opacity.condition.test = `datum.year === ${x}`;
         vegaEmbed("#vis1", changeSpec, {renderer: "svg"});
 
-        var yearButtons = document.getElementsByClassName('yearbtn')
+        var yearButtons = document.getElementsByClassName('yearbtn');
         for (var i = 0; i < yearButtons.length; i++) {
-          yearButtons[i].classList.remove('btn-secondary')
-          yearButtons[i].classList.add('btn-outline-secondary')
+          yearButtons[i].classList.remove('btn-secondary');
+          yearButtons[i].classList.add('btn-outline-secondary');
         }
 
-        var buttonIndex = 0 - indexPos
-        yearButtons[indexPos].classList.remove('btn-outline-secondary')
-        yearButtons[indexPos].classList.add('btn-secondary')
+        var buttonIndex = 0 - indexPos;
+        yearButtons[indexPos].classList.remove('btn-outline-secondary');
+        yearButtons[indexPos].classList.add('btn-secondary');
 
       }
 

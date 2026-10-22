@@ -6,10 +6,10 @@ $(window).on('load',function() {
         html: true,
         container: '.main',
         content: function(){
-            var id = $(this).attr('id')
+            var id = $(this).attr('id');
             return $('#popover-content-' + id).find('.modal-body').html();
         }
-    })
+    });
 
 	/*  // the following code is not necessary due to modal being activated by data attributes: https://getbootstrap.com/docs/4.0/components/modal/#via-data-attributes
     $('.flake.mobile').modal({
@@ -128,10 +128,10 @@ $(window).on('load',function() {
 
             }
         }
-        $("<p style='position:absolute;top: -10000px;' role='alert'>A new scene has loaded.</p>").appendTo(document.body)
+        $("<p style='position:absolute;top: -10000px;' role='alert'>A new scene has loaded.</p>").appendTo(document.body);
         snow();
         setTimeout(pause,2000);
 
 
     });
-})
+});

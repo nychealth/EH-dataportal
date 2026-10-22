@@ -56,7 +56,7 @@ $(document).ready(function () {
     const config = {
         attributes: true,
         attributeFilter: ['class']
-    }
+    };
 
     observer.observe(target, config);
 
@@ -196,7 +196,7 @@ $(document).ready(function () {
 
 $('.lang-select').click(function (e) {
     e.preventDefault();
-    const lang = $(this).attr('data-lang')
+    const lang = $(this).attr('data-lang');
     setLanguage(lang);
 });
 
@@ -214,7 +214,7 @@ function fireEvent(element, event) {
     if (document.createEventObject) {
 
         const evt = document.createEventObject();
-        return element.fireEvent('on' + event, evt)
+        return element.fireEvent('on' + event, evt);
 
     } else {
 

@@ -31,7 +31,7 @@ const getTrendLayoutConfig = (viewportWidth) => {
     // ----- legend columns by breakpoint ----- //
 
     let columns;
-    let xAxisLabelField = 'fallbackYear'
+    let xAxisLabelField = 'fallbackYear';
 
     if (viewportWidth < 340) {
 

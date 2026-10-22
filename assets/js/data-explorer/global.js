@@ -325,7 +325,7 @@ const copyCitation = (button = null) => {
             feedbackButton.innerHTML = `<i class="fas fa-copy mr-1" aria-hidden="true"></i>Copied!`;
         }
     });
-}
+};
 
 
 // Attaches click handlers to all citation-copy buttons in the DOM, each invoking copyCitation with the clicked button as context.
@@ -525,7 +525,7 @@ const getSharedLinksGeos = (primaryMeasure, secondaryMeasure) => {
 
     return secondaryMeasureGeos.filter(g => primaryMeasureGeos.includes(g));
 
-}
+};
 
 // ----------------------------------------------------------------------- //
 // unmapped measures
@@ -684,7 +684,7 @@ const prettifyGeoType = (GeoType) => {
             return GeoType;
 
     }
-}
+};
 
 // ----------------------------------------------------------------------- //
 // measure display resolution
@@ -770,9 +770,9 @@ const updateChartPlotSize = () => {
 
     setTimeout(() => {
         window.dispatchEvent(new Event('resize'));
-    }, 200)
+    }, 200);
 
-}
+};
 
 // Resizer for chart print modal
 
@@ -949,7 +949,7 @@ const downloadData = (
     // chartType
 ) => {
 
-        debugLog('Downloading data')
+        debugLog('Downloading data');
 
         // Guard against an empty CSVforDownload (e.g. the download button is clicked before
         // any tab has rendered). On its own this blocks only an *empty* CSV; a leftover one from
@@ -975,7 +975,7 @@ const downloadData = (
             fileExtension: '.csv',
             linkText: 'Download chart data'
         });
-}
+};
 
 // Revises the notes that are displayed under each chart - meant to work in concert with tooltip notes at each datapoint. This lets you display chart-specific notes, rather than datapoint-specific notes (which should show in tooltips)
 

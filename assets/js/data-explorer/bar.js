@@ -105,7 +105,7 @@ const renderBar = (
     let topoFile = '';
     let barDisplay = [];
     let setHeight = 500;
-    let setCircleSize = 250
+    let setCircleSize = 250;
 
 
     // ----- display-rule resolution (CI detection, percent formatting) ----- //
@@ -117,7 +117,7 @@ const renderBar = (
 
     ({ isPercent, displayUnit: displayType, measurementDisplay: subtitle } = resolveMeasureDisplay(barMeasurementType, metadata[0]?.DisplayType));
 
-    debugLog('is percent? [bar.js]', isPercent)
+    debugLog('is percent? [bar.js]', isPercent);
 
 
     // ----- layer-variant selection (Mean / CI / plain) ----- //
@@ -222,7 +222,7 @@ const renderBar = (
                 }
                 }
                 */
-            ]  
+            ];  
         } else if (hasCI == true) {
 
             // - - - CI: gray error bar plus point-estimate marker for confidence-interval rows - - - //
@@ -361,7 +361,7 @@ const renderBar = (
                         }
                     }
                 }
-            ]
+            ];
         } else {
 
             // - - - Plain: standard single-layer ranked bar (no mean dot or CI) - - - //
@@ -432,7 +432,7 @@ const renderBar = (
                     }
                 }
                 */
-            ]   
+            ];   
         }
 
 
@@ -499,13 +499,13 @@ const renderBar = (
         // width lays out identically.
         "width": getChartContainerWidth('#barHolder') || "container",
         "layer": barDisplay
-    }
+    };
 
 
     // ----- compile & finalize spec ----- //
 
-    debugLog('vega-lite spec:')
-    debugLog(barSpec)
+    debugLog('vega-lite spec:');
+    debugLog(barSpec);
 
     const vegaSpec = vegaLite.compile(barSpec).spec;
 
@@ -514,9 +514,9 @@ const renderBar = (
     const geoSignal = {
         "name": "selectedGeo",
         "value": null
-    }
+    };
     
-    vegaSpec.signals.push(geoSignal)
+    vegaSpec.signals.push(geoSignal);
 
     DE.print.printSpec = vegaSpec;
     DE.print.vizSource = metadata[0]?.Sources;
