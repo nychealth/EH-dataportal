@@ -106,7 +106,8 @@ message. GitHub documents that this skips `push` and `pull_request` runs, that o
 commit's message counts, and that skipped checks stay Pending, which blocks a merge only where checks
 are required (docs.github.com, "Skipping workflow runs", read 2026-10-22). `production` requires
 none: its branch protection has no required status checks and there are no rulesets `[checked
-2026-10-22]`. First used on `6d14a79b6c`, before its push. The automatic alternative, not built
+2026-10-22]`. It held on `029eb9fce4`, a PR head carrying the marker: 0 runs, where the push before
+it (`cf9d58fc4d`) started both. The automatic alternative, not built
 (Chris, 2026-10-22): a first job diffs `github.event.before..github.sha`, the files that one push
 changed, and the two sweep jobs run only when it touches something outside the ignored paths. It
 has to run the sweeps anyway when `before` is not an ancestor of the new head (a force-push or
@@ -149,6 +150,10 @@ Eleven things to know before trusting a result:
 - **A cache-cold first run has been seen to fail spuriously** — `documents/site-wide-audit-2026-06-27.md` §5j.
 
 `scripts/dev-server.mjs` resolves the server. It reuses one that is already answering on :8080, :8081 or :1313, starts one (`--environment dev_stage`, so **staging data**) when nothing is running, and never stops a server it didn't start. If a `hugo` process exists but answers on no prefix it knows, it aborts rather than start a second builder — set `DE_BASE_URL` in that case.
+**It matches by port, not by tree**: a server started from another worktree answers on :8080 like
+this tree's own, and every harness then checks that worktree's code and passes. Before a check run,
+read the listening process's `CommandLine` (`Get-NetTCPConnection -LocalPort 8080` → `Win32_Process`)
+or grep the served page for your change, and point `DE_BASE_URL` at the right server `[2026-10-22]`.
 
 Import `ensureDevServer()` from that module directly for one-off browser checks — it is exported
 (`scripts/dev-server.mjs:178`). **Starting a server when none is running needs no permission**;
