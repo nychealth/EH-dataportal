@@ -29,34 +29,12 @@
 // parsing, so line positions hold. A body that still fails to parse is left
 // untouched and named, and the run exits 1.
 //
-// Targets, VENDORED and EXEMPT_DIRS mirror scripts/js-comment-spacing.py; change
-// them in both.
+// Targets come from js-sweep-targets.mjs.
 
-import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 import * as espree from "espree";
 import { maskHugo, scriptRegions } from "./html-script-bodies.mjs";
-
-
-// ----- targets ----- //
-
-const VENDORED = new Set([
-    "assets/js/L.colorIcon.js",
-    "assets/js/color-convert.js",
-    "assets/js/naturalSort.js",
-    "content/data-features/healthy-homes-info/source/assets/js/plugins.js",
-]);
-
-const EXEMPT_DIRS = [
-    "assets/js/data-explorer-old/",
-    "themes/dohmh/layouts/data-explorer-old/",
-];
-
-const TARGET_ROOTS = [
-    ["assets/js", ".js"],
-    ["content", ".js"],
-    ["themes/dohmh/layouts", ".html"],
-];
+import { sweepTargets } from "./js-sweep-targets.mjs";
 
 
 // ----- syntax helpers ----- //
@@ -465,14 +443,7 @@ if (process.argv.length > 3 || filter?.startsWith("-")) {
     process.exit(2);
 }
 
-const targets = TARGET_ROOTS
-    .flatMap(([root, ext]) =>
-        execFileSync("git", ["ls-files", "-z", "--", root], { encoding: "utf8" })
-            .split("\0")
-            .filter((p) => p.endsWith(ext) && !p.endsWith(".min.js")))
-    .filter((p) => !VENDORED.has(p) && !EXEMPT_DIRS.some((d) => p.startsWith(d)))
-    .filter((p) => !filter || p.includes(filter))
-    .sort();
+const targets = sweepTargets(filter);
 
 const failures = [];
 let inserted = 0, removed = 0, files = 0;

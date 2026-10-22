@@ -58,11 +58,15 @@ CONTINUATION = re.compile(r'^\s*(?:[.)\]}?:,+]|&&|\|\||else\b|catch\b|finally\b|
 
 # Vendored third-party files, which are not ours to restyle. Hand-maintained: a
 # vendored file added after this list was written will be reformatted like our own.
+# VENDORED, EXEMPT_DIRS and TARGET_ROOTS are mirrored in scripts/js-sweep-targets.mjs;
+# change them in both.
 VENDORED = (
     "assets/js/L.colorIcon.js",                  # Leaflet.ColorIcon, MIT
     "assets/js/color-convert.js",                # from a public gist
     "assets/js/naturalSort.js",                  # Jim Palmer's natural sort, MIT
+    "content/data-features/healthy-homes-info/source/assets/js/bootstrap.js",  # Bootstrap 4.1.3, minified
     "content/data-features/healthy-homes-info/source/assets/js/plugins.js",  # HTML5 Boilerplate
+    "content/data-features/healthy-homes-info/source/assets/js/popper.js",   # Popper, minified
 )
 
 # The retiring explorer, exempt in documents/js-conventions.md § Scope: its JS and

@@ -259,11 +259,20 @@ const reverse = rankReverse === true || rankReverse === 'true';
 End every statement with a semicolon.
 
 An `if` with no `else` and a single-statement body goes on one line, without
-braces. An `if` with an `else` keeps its braces on every branch.
+braces, when that line is 60 characters or fewer from `if` to the end. Longer, it
+takes braces, because a long condition is hard to read with its body run on after
+it. It also keeps braces when the statement itself spans lines, or when a comment
+sits inside the braces. An `if` with an `else` keeps its braces on every branch.
+`scripts/js-guard-braces.mjs` applies this rule to old code, in both directions;
+its header lists the cases it leaves alone.
 
 ```js
 if (!button) return;
 if (title) button.title = title;
+
+if (textElement && CP_SITES[site].text) {
+    textElement.innerHTML = CP_SITES[site].text;
+}
 
 if (str === null || str === '') {
 
