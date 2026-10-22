@@ -18,9 +18,7 @@ const resetDisparitiesPaneLayout = () => {
     const correlateHolder = document.getElementById('correlateHolder');
     const linksChart = document.getElementById('links');
 
-    if (!correlateHolder || !linksChart) {
-        return;
-    }
+    if (!correlateHolder || !linksChart) return;
 
     // - - - remove some properties and classes - - - //
 
@@ -59,9 +57,7 @@ const renderDisparitiesChart = async (
 
     // ----- guard clause, resolve DOM refs, reset pane layout ----- //
 
-    if (!primaryMetadata?.length) {
-        return;
-    }
+    if (!primaryMetadata?.length) return;
 
     const viewDescription = document.getElementById('viewDescription');
     const linksViewNote = document.getElementById('linksViewNote');

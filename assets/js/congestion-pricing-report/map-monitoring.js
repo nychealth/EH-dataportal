@@ -128,9 +128,7 @@
     window.cpReportZoomToSite = function (siteName) {
 
         var coords = CP_SITES[siteName] && CP_SITES[siteName].mapCoords;
-        if (!coords) {
-            return;
-        }
+        if (!coords) return;
         map.setView([coords.lat, coords.lng], coords.zoom);
 
     };
@@ -167,9 +165,7 @@
                 map.setView(event.latlng, 13);
             });
 
-            if (!site._icon) {
-                return;
-            }
+            if (!site._icon) return;
 
             // - - - color-code the pin by site type - - - //
 

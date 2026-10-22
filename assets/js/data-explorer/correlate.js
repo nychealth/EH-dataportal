@@ -36,9 +36,7 @@ const measureCorrelateLegend = () => {
     const svg = document.querySelector('#links svg');
     const pane = svg?.closest('.tab-pane');
 
-    if (!svg || !pane) {
-        return null;
-    }
+    if (!svg || !pane) return null;
 
     const hidden = svg.getBoundingClientRect().width === 0;
     const priorDisplay = pane.style.display;
@@ -65,9 +63,7 @@ const measureCorrelateLegend = () => {
         pane.style.visibility = priorVisibility;
     }
 
-    if (!entries.length || svgRect.width === 0) {
-        return null;
-    }
+    if (!entries.length || svgRect.width === 0) return null;
 
     const legendLeft = Math.min(...entries.map(entry => entry.left));
 
@@ -101,9 +97,7 @@ const legendColumnsThatFit = ({ widths, available }) => {
 
         }
 
-        if (rowWidth <= available) {
-            return columns;
-        }
+        if (rowWidth <= available) return columns;
     }
 
     return 1;
@@ -124,9 +118,7 @@ const fitCorrelateLegend = async () => {
     const view = window.correlateVegaView;
     const legend = view ? measureCorrelateLegend() : null;
 
-    if (!legend) {
-        return;
-    }
+    if (!legend) return;
 
     const columns = legendColumnsThatFit(legend);
 
@@ -158,9 +150,7 @@ const updateCorrelatePaneLayout = () => {
     const correlateHolder = document.getElementById('correlateHolder');
     const linksChart = document.getElementById('links');
 
-    if (!correlateHolder || !linksChart) {
-        return;
-    }
+    if (!correlateHolder || !linksChart) return;
 
     // Pin the holder to its own natural width so the chart doesn't reflow as Vega measures
     // its container. Measured with the previous pin cleared, so it is the same box
@@ -224,15 +214,11 @@ const scheduleCorrelateViewResize = () => {
 
 const registerCorrelateResizeHandler = () => {
 
-    if (correlateResizeEventRegistered) {
-        return;
-    }
+    if (correlateResizeEventRegistered) return;
 
     window.addEventListener('resize', () => {
 
-        if (DE.print.chartType !== 'links') {
-            return;
-        }
+        if (DE.print.chartType !== 'links') return;
 
         scheduleCorrelateViewResize();
 
@@ -267,9 +253,7 @@ const setCorrelateActionState = (isEnabled) => {
 
     [saveChartButton, downloadDataButton].forEach(button => {
 
-        if (!button) {
-            return;
-        }
+        if (!button) return;
 
         button.classList.toggle('disabled', !isEnabled);
         button.setAttribute('aria-disabled', String(!isEnabled));
@@ -306,9 +290,7 @@ const renderNoCorrelatesMessage = (measureLabel) => {
         linksChart.innerHTML = `<div class="alert alert-warning mb-0 w-100" role="alert">${getNoCorrelatesMessage(measureLabel)}</div>`;
     }
 
-    if (viewDescription) {
-        viewDescription.innerHTML = '';
-    }
+    if (viewDescription) viewDescription.innerHTML = '';
 
     if (linksViewNote) {
         linksViewNote.innerHTML = '';

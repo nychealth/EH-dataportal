@@ -147,9 +147,7 @@ function loadGeoJSON(config = {}) {
 
       // Clear existing GeoJSON layer
 
-      if (geojsonLayer) {
-        map.removeLayer(geojsonLayer);
-      }
+      if (geojsonLayer) map.removeLayer(geojsonLayer);
 
       let min = Infinity;
       let max = -Infinity;
@@ -277,9 +275,7 @@ function loadGeoJSON(config = {}) {
             const name = feature.properties[geonameField];
             let val = feature.properties[valueField];
 
-            if (labelName === "Block Group") {
-              val *= 100;
-            }
+            if (labelName === "Block Group") val *= 100;
 
             val = val.toFixed(2);
             const tooltipContent = `${labelName} <b>${name}</b>: ${val}% of residents<br>live in walking distance of an accessible subway station.`;

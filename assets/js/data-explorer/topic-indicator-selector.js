@@ -245,9 +245,7 @@ const bindTopicSelectorControls = () => {
 
             // - - - skip prompt: the SPA isn't loaded on this page - - - //
 
-            if (typeof loadAndRenderIndicator === 'function') {
-                return;
-            }
+            if (typeof loadAndRenderIndicator === 'function') return;
 
             // - - - otherwise nudge the user back toward the topic trigger - - - //
 
@@ -271,9 +269,7 @@ const bindTopicSelectorControls = () => {
                 return;
             }
 
-            if (!isTopicLandingPageWithoutIndicator()) {
-                return;
-            }
+            if (!isTopicLandingPageWithoutIndicator()) return;
 
             showIndicatorSelectorPrompt();
 
@@ -323,9 +319,7 @@ const bindTopicSelectorControls = () => {
 
             const indicatorButton = event.target.closest('.de-select-indicator-button[data-indicator-id]');
 
-            if (!indicatorButton) {
-                return;
-            }
+            if (!indicatorButton) return;
 
             selectIndicator(indicatorButton.dataset.indicatorId);
 
@@ -383,7 +377,9 @@ const renderIndicatorList = async (indList, destination) => {
 
         // - - - guard: skip empty sections - - - //
 
-        if (!section.indicators || section.indicators.length === 0) return;
+        if (!section.indicators || section.indicators.length === 0) {
+            return;
+        }
 
         // - - - build header (optional) - - - //
 
@@ -462,9 +458,7 @@ const dismissIndicatorModal = () => {
 
 const relaunchTopicSelector = (event) => {
 
-    if (event) {
-        event.preventDefault();
-    }
+    if (event) event.preventDefault();
 
     // Section pages use hash-based modal history, so go back there instead
     // of forcing a second manual modal transition.
@@ -591,9 +585,7 @@ const renderIndicatorInfo = async (IndicatorID) => {
         p.innerHTML = DOMPurify.sanitize(`<strong>${measure.MeasurementType}:</strong> ${measure.how_calculated}`);
         howCalculatedEl.appendChild(p);
 
-        if (measure.Sources) {
-            uniqueSources.add(measure.Sources);
-        }
+        if (measure.Sources) uniqueSources.add(measure.Sources);
     });
 
     // ----- render collected sources ----- //

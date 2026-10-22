@@ -237,9 +237,7 @@ const createMapPopupContent = (properties, metadata, options = {}) => {
     const requireGeoRank = options.requireGeoRank ?? true;
     const valueDigits = options.valueDigits ?? 1;
 
-    if (requireGeoRank && !properties.GeoRank) {
-        return;
-    }
+    if (requireGeoRank && !properties.GeoRank) return;
 
     if (!requireGeoRank && properties.Value == null && !properties.GeoRank) {
         return;
@@ -313,9 +311,7 @@ const createHoverUIHelpers = (metadata, minValue, maxValue, digits) => {
     const calculatePercent = (x) => {
 
         const range = maxValue - minValue;
-        if (range === 0 || x == null) {
-            return 0;
-        }
+        if (range === 0 || x == null) return 0;
         return 100 * (x - minValue) / range;
 
     };
@@ -653,9 +649,7 @@ const renderMap = (
     const isCitywideOnly = availableGeoTypes.length === 1 &&
                            availableGeoTypes[0] === 'Citywide';
 
-    if (isCitywideOnly) {
-        debugLog("** renderMap: citywide only");
-    }
+    if (isCitywideOnly) debugLog("** renderMap: citywide only");
 
     // ----- determine map type based on measurement type ----- //
 
@@ -760,9 +754,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
 
         geojsonLayer.resetStyle(target);
 
-        if (target === highlightedLayer) {
-            highlightedLayer = null;
-        }
+        if (target === highlightedLayer) highlightedLayer = null;
     };
 
     // Builds popup markup for a feature, substituting the citywide popup when the data is citywide-only.
@@ -824,15 +816,11 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
                         const props = feature.properties;
                         debugLog("** click", feature.properties);
 
-                        if (isCitywideOnly) {
-                            switchToTrendTabOnce();
-                        }
+                        if (isCitywideOnly) switchToTrendTabOnce();
 
                         const linkedGeoID = props.GeoID ?? props.GEOCODE;
 
-                        if (linkedGeoID != null) {
-                            setBarSelection(linkedGeoID);
-                        }
+                        if (linkedGeoID != null) setBarSelection(linkedGeoID);
                     });
 
                     layer.on('mouseover', (e) => {
@@ -864,9 +852,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
 
             currentGeojsonLayer = geojsonLayer;
 
-            if (isCitywideOnly) {
-                handleCitywideOnly(map, data, metadata);
-            }
+            if (isCitywideOnly) handleCitywideOnly(map, data, metadata);
 
             // ----- publish the hover contract for bar.js ----- //
 
@@ -985,7 +971,9 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
 
             const highlightMarker = (markerEntry) => {
 
-                if (!markerEntry || markerEntry === highlightedMarker) return;
+                if (!markerEntry || markerEntry === highlightedMarker) {
+                    return;
+                }
 
                 if (highlightedMarker) {
                     highlightedMarker.marker.setStyle(highlightedMarker.originalStyle);
@@ -1019,9 +1007,7 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
 
                     layer.bindPopup(createPopupContent(feature.properties));
 
-                    if (isCitywideOnly) {
-                        layer.on('click', switchToTrendTabOnce);
-                    }
+                    if (isCitywideOnly) layer.on('click', switchToTrendTabOnce);
                 }
             }).addTo(map);
 
@@ -1074,9 +1060,7 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
 
                         debugLog("** click", item);
 
-                        if (isCitywideOnly) {
-                            switchToTrendTabOnce();
-                        }
+                        if (isCitywideOnly) switchToTrendTabOnce();
 
                         setBarSelection(item.GeoID);
 
@@ -1100,9 +1084,7 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                 }
             });
 
-            if (isCitywideOnly) {
-                handleCitywideOnly(map, data, metadata);
-            }
+            if (isCitywideOnly) handleCitywideOnly(map, data, metadata);
 
             // ----- publish the hover contract for bar.js ----- //
 

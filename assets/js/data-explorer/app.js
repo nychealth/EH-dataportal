@@ -84,10 +84,18 @@ const parseSelectionFromURL = () => {
 
 const applySelectionToState = (selection) => {
 
-    if (selection.MeasureID)    DE.state.MeasureID    = selection.MeasureID;
-    if (selection.GeoType)      DE.state.GeoType      = selection.GeoType;
-    if (selection.TimePeriodID) DE.state.TimePeriodID = selection.TimePeriodID;
-    if (selection.overlay)      DE.state.overlay      = selection.overlay;
+    if (selection.MeasureID) {
+        DE.state.MeasureID    = selection.MeasureID;
+    }
+    if (selection.GeoType) {
+        DE.state.GeoType      = selection.GeoType;
+    }
+    if (selection.TimePeriodID) {
+        DE.state.TimePeriodID = selection.TimePeriodID;
+    }
+    if (selection.overlay) {
+        DE.state.overlay      = selection.overlay;
+    }
 
 };
 
@@ -158,9 +166,7 @@ const normalizeLegacyGeoTypeURL = () => {
     const nextURL = new URL(window.location.href);
     const rawSearch = nextURL.search.replace(/^\?/, '');
 
-    if (!rawSearch) {
-        return;
-    }
+    if (!rawSearch) return;
 
     // ----- split into parts, detect canonical GeoType ----- //
 
@@ -185,9 +191,7 @@ const normalizeLegacyGeoTypeURL = () => {
         // Leave unrelated params untouched so future query params survive this rewrite.
         // pass non-GeoTypeID params through unchanged
 
-        if (key !== 'GeoTypeID') {
-            return [part];
-        }
+        if (key !== 'GeoTypeID') return [part];
 
         didChange = true;
         // capture the first GeoTypeID value for the history state
@@ -196,9 +200,7 @@ const normalizeLegacyGeoTypeURL = () => {
 
         // - - - drop duplicate GeoTypeID when GeoType already exists - - - //
 
-        if (hasCanonicalGeoType) {
-            return [];
-        }
+        if (hasCanonicalGeoType) return [];
 
         // - - - otherwise rename GeoTypeID to GeoType - - - //
 
@@ -208,9 +210,7 @@ const normalizeLegacyGeoTypeURL = () => {
 
     // ----- exit early if nothing changed ----- //
 
-    if (!didChange) {
-        return;
-    }
+    if (!didChange) return;
 
     // ----- commit normalized URL ----- //
 
@@ -235,9 +235,7 @@ const normalizeLegacyOverlayURL = () => {
 
     // 'map' was an old overlay value; 'bar' is its current equivalent
 
-    if (nextURL.searchParams.get('overlay') !== 'map') {
-        return;
-    }
+    if (nextURL.searchParams.get('overlay') !== 'map') return;
 
     nextURL.searchParams.set('overlay', 'bar');
 
@@ -275,9 +273,7 @@ const normalizeLegacyHashOverlayURL = () => {
 
     const nextOverlay = legacyOverlayByHash[window.location.hash];
 
-    if (!nextOverlay) {
-        return;
-    }
+    if (!nextOverlay) return;
 
     const nextURL = new URL(window.location.href);
     let didChange = false;
@@ -304,9 +300,7 @@ const normalizeLegacyHashOverlayURL = () => {
 
     // ----- commit if changed ----- //
 
-    if (!didChange) {
-        return;
-    }
+    if (!didChange) return;
 
     // This is a normalization pass, not a user navigation event, so replaceState keeps history
     // clean while still making the URL canonical for refreshes and copied links.
@@ -350,9 +344,7 @@ let pendingTableOverlayToken = 0;
 
 const runOverlayRenderer = (renderer) => {
 
-    if (typeof renderer !== 'function') {
-        return false;
-    }
+    if (typeof renderer !== 'function') return false;
 
     renderer();
 
@@ -523,9 +515,7 @@ const loadAndRenderIndicator = async (id, { selection = null, history = 'push' }
 
     resetSelectionForNewIndicator();
 
-    if (selection) {
-        applySelectionToState(selection);
-    }
+    if (selection) applySelectionToState(selection);
 
     // ----- paint what metadata alone can render ----- //
 

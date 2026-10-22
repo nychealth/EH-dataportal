@@ -311,9 +311,7 @@ const copyCitation = (button = null) => {
     const citationTargetId = button?.dataset.citationTarget || 'citeText';
     const citationTextElement = document.getElementById(citationTargetId);
 
-    if (!citationTextElement) {
-        return;
-    }
+    if (!citationTextElement) return;
 
     refreshCitation();
 
@@ -380,9 +378,7 @@ const renderAboutSources = (about, sources) => {
         dataSources = document.querySelector('.indicator-sources') || document.getElementById('dataSources');
     }
 
-    if (!aboutMeasures || !dataSources) {
-        return;
-    }
+    if (!aboutMeasures || !dataSources) return;
 
     dataSources.innerHTML = '';
 
@@ -426,16 +422,12 @@ const renderAboutSources = (about, sources) => {
 
 const renderUnreliabilityNotes = (holderEl, notes, wrapNote = (note) => `<div class='fs-xs'>${note}</div>`) => {
 
-    if (!holderEl) {
-        return;
-    }
+    if (!holderEl) return;
 
     holderEl.innerHTML = '';
     holderEl.classList.add('hide');
 
-    if (!notes.length) {
-        return;
-    }
+    if (!notes.length) return;
 
     holderEl.innerHTML = notes.map(wrapNote).join('');
     holderEl.classList.remove('hide');
@@ -735,19 +727,13 @@ const getChartContainerWidth = (selector) => {
 
     const container = document.querySelector(selector);
 
-    if (!container) {
-        return 0;
-    }
+    if (!container) return 0;
 
-    if (container.offsetWidth > 0) {
-        return container.offsetWidth;
-    }
+    if (container.offsetWidth > 0) return container.offsetWidth;
 
     const pane = container.closest('.tab-pane');
 
-    if (!pane) {
-        return 0;
-    }
+    if (!pane) return 0;
 
     // Lay the pane out without showing it. Kept in normal flow (no position change) so the
     // container resolves against the same parent width it will have once revealed, and
@@ -864,9 +850,7 @@ const buildLinksDownloadTable = (rows, extraDrops, labels) => {
 
 const trackDataExplorerEvent = (eventName, eventParams = null) => {
 
-    if (typeof gtag !== 'function') {
-        return;
-    }
+    if (typeof gtag !== 'function') return;
 
     if (eventParams && Object.keys(eventParams).length > 0) {
         gtag('event', eventName, eventParams);
@@ -882,9 +866,7 @@ const trackDataExplorerEvent = (eventName, eventParams = null) => {
 
 const trackDataExplorerOption = (option, extraParams = null) => {
 
-    if (!option) {
-        return;
-    }
+    if (!option) return;
 
     trackDataExplorerEvent('click_option', { option, ...extraParams });
 
@@ -910,9 +892,7 @@ const getLegacyMapControlAnalyticsOption = (type) => {
 
 const trackDataExplorerFileDownload = ({ fileName, fileExtension, linkText }) => {
 
-    if (!fileName || !fileExtension || !linkText) {
-        return;
-    }
+    if (!fileName || !fileExtension || !linkText) return;
 
     trackDataExplorerEvent('file_download', {
         file_name: fileName,
@@ -926,9 +906,7 @@ const trackDataExplorerFileDownload = ({ fileName, fileExtension, linkText }) =>
 
 const trackDataExplorerPrintView = (chartView) => {
 
-    if (!chartView) {
-        return;
-    }
+    if (!chartView) return;
 
     trackDataExplorerEvent('print_viz', {
         chart_type: chartView === 'bubble-map' ? 'map' : chartView
@@ -944,17 +922,11 @@ const getCurrentDataDownloadView = () => {
         return DE.print.chartType === 'bubble-map' ? 'map' : DE.print.chartType;
     }
 
-    if (DE.state.overlay === 'trend') {
-        return 'trend';
-    }
+    if (DE.state.overlay === 'trend') return 'trend';
 
-    if (DE.state.overlay === 'links') {
-        return 'links';
-    }
+    if (DE.state.overlay === 'links') return 'links';
 
-    if (DE.state.overlay === 'table') {
-        return 'table';
-    }
+    if (DE.state.overlay === 'table') return 'table';
 
     return 'bar';
 
@@ -982,9 +954,7 @@ const downloadData = (
         // Mirrors the early-return guard-clause pattern used throughout the renderers rather
         // than introducing a new disable/hide mechanism.
 
-        if (!DE.print.CSVforDownload) {
-            return;
-        }
+        if (!DE.print.CSVforDownload) return;
 
         // else, for chart view downloads:
 

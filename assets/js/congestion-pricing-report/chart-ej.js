@@ -25,10 +25,14 @@ function updateSiteHeading(site) {
     const isControl = CP_SITES[site].isControlSite === true;
 
     const prefixEl = document.getElementById("site-question-prefix");
-    if (prefixEl) prefixEl.style.display = isControl ? "none" : "";
+    if (prefixEl) {
+        prefixEl.style.display = isControl ? "none" : "";
+    }
 
     const prepWrapEl = document.getElementById("site-prep-wrap");
-    if (prepWrapEl) prepWrapEl.style.display = isControl ? "none" : "";
+    if (prepWrapEl) {
+        prepWrapEl.style.display = isControl ? "none" : "";
+    }
 
     const prepEl = document.getElementById("site-prep");
     if (prepEl) prepEl.textContent = CP_SITES[site].preposition;
@@ -37,7 +41,9 @@ function updateSiteHeading(site) {
     if (nameEl) nameEl.textContent = getSiteDisplayName(site);
 
     const suffixEl = document.getElementById("site-question-suffix");
-    if (suffixEl) suffixEl.style.display = isControl ? "none" : "";
+    if (suffixEl) {
+        suffixEl.style.display = isControl ? "none" : "";
+    }
 
 }
 
@@ -584,7 +590,9 @@ function applyHconcatFacet(spec, { cols, spacing, pane }) {
     if (spec.spacing != null) spec.spacing = spacing;
 
     spec.hconcat?.forEach((chartSpec) => {
-        if (chartSpec?.spec?.width != null) chartSpec.spec.width = pane;
+        if (chartSpec?.spec?.width != null) {
+            chartSpec.spec.width = pane;
+        }
     });
 }
 
@@ -606,7 +614,9 @@ async function draw(site) {
     // are momentarily empty between renders
     
     cpEl.style.minHeight = cpEl.offsetHeight + "px";
-    if (aqEl.offsetHeight > 0) aqEl.style.minHeight = aqEl.offsetHeight + "px";
+    if (aqEl.offsetHeight > 0) {
+        aqEl.style.minHeight = aqEl.offsetHeight + "px";
+    }
     
     cpEl.innerHTML = "";
     aqEl.innerHTML = "";
@@ -677,7 +687,9 @@ async function handleSiteChange(site) {
     
     const textElement = document.getElementById(text_container_id);
     
-    if (textElement && CP_SITES[site].text) textElement.innerHTML = CP_SITES[site].text;
+    if (textElement && CP_SITES[site].text) {
+        textElement.innerHTML = CP_SITES[site].text;
+    }
     
     updateSiteHeading(site);
     

@@ -12,9 +12,7 @@
 
 const appendTrendNote = (trendUnreliability, note) => {
 
-    if (!trendUnreliability || !note) {
-        return;
-    }
+    if (!trendUnreliability || !note) return;
 
     trendUnreliability.innerHTML += `<div class='fs-xs'>${note}</div>`;
     trendUnreliability.classList.remove('hide');
@@ -239,9 +237,7 @@ const renderTrendChart = (
 
         const { isPercent, displayUnit } = resolveMeasureDisplay(compMeasurementType[0]);
 
-        if (isPercent) {
-            compDisplayTypes = displayUnit;
-        }
+        if (isPercent) compDisplayTypes = displayUnit;
 
         comp_group_col = "GeographyShort"; // point to calculated field to create abbreviated borough labels
 

@@ -268,9 +268,7 @@ const renderAll = (neighborhoodName, mapGeocode, fromHistory = false) => {
     const reportHeader = document.getElementById('nr-report-header');
     const headerNeighborhood = document.getElementById('nr-header-neighborhood');
 
-    if (reportHeader) {
-        reportHeader.style.display = '';
-    }
+    if (reportHeader) reportHeader.style.display = '';
 
     if (headerNeighborhood) {
         headerNeighborhood.textContent = neighborhoodName;
@@ -282,7 +280,9 @@ const renderAll = (neighborhoodName, mapGeocode, fromHistory = false) => {
     const mobileNeighborhood = document.getElementById('nr-mobile-neighborhood');
 
     if (mobileTitle) mobileTitle.style.display = '';
-    if (mobileNeighborhood) mobileNeighborhood.textContent = neighborhoodName;
+    if (mobileNeighborhood) {
+        mobileNeighborhood.textContent = neighborhoodName;
+    }
 
     // ----- demographics and deep-link state ----- //
 
@@ -325,9 +325,7 @@ const renderAll = (neighborhoodName, mapGeocode, fromHistory = false) => {
     // neighborhood in place — so it has to be regenerated from the rewritten URL rather
     // than once at load. Defined in nr-report.html, which owns the qrcode library
 
-    if (typeof renderQRCode === 'function') {
-        renderQRCode();
-    }
+    if (typeof renderQRCode === 'function') renderQRCode();
 
     // ----- announce ----- //
 

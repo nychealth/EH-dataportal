@@ -314,9 +314,7 @@
             
             function removeLeadingZero(str) {
 
-                if (str.startsWith('0')) {
-                    return str.slice(1);
-                }
+                if (str.startsWith('0')) return str.slice(1);
                 return str;
 
             }
@@ -451,9 +449,7 @@
 
                     for (var i = 0; i < args.length; i++) {
 
-                        if (!obj || !obj.hasOwnProperty(args[i])) {
-                            return false;
-                        }
+                        if (!obj || !obj.hasOwnProperty(args[i])) return false;
                         obj = obj[args[i]];
 
                     }

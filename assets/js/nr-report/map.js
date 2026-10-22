@@ -114,14 +114,18 @@ const selectLayer = layer => {
 // [measured 2026-10-20, report and index map boxes at 1280 and 390 wide]
 
 const reportMapFitLayer = layer => {
-    if (leafletMap && layer) leafletMap.fitBounds(layer.getBounds(), { padding: [10, 10], animate: false });
+    if (leafletMap && layer) {
+        leafletMap.fitBounds(layer.getBounds(), { padding: [10, 10], animate: false });
+    }
 };
 
 
 // Frames all 42 neighborhoods; the "Reset zoom" button's target
 
 const reportMapFitCity = () => {
-    if (leafletMap && uhfLayer) leafletMap.fitBounds(uhfLayer.getBounds(), { padding: [10, 10], animate: false });
+    if (leafletMap && uhfLayer) {
+        leafletMap.fitBounds(uhfLayer.getBounds(), { padding: [10, 10], animate: false });
+    }
 };
 
 
@@ -244,7 +248,9 @@ const onMapKeyDown = e => {
 
     const key = e.originalEvent && e.originalEvent.key;
 
-    if (key !== 'Enter' && key !== ' ' && key !== 'Spacebar') return;
+    if (key !== 'Enter' && key !== ' ' && key !== 'Spacebar') {
+        return;
+    }
 
     // Space would otherwise scroll the page out from under the report being rebuilt
 

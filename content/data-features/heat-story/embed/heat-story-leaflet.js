@@ -734,9 +734,7 @@ async function createRedlinedLayer({ id, name, urls, args, displayProperties }) 
 
         const response = await fetch(url);
 
-        if (!response.ok) {
-            return null;
-        }
+        if (!response.ok) return null;
 
         let responseText = await response.text(); 
 
@@ -943,9 +941,7 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
 
     // if bad response, return
 
-    if (!response.ok) {
-        return null;
-    }
+    if (!response.ok) return null;
 
     let data = null;
 
@@ -1078,9 +1074,7 @@ async function createGeotiffLayer({ id, url, args, name }) {
 
     // if bad response, return
 
-    if (!response.ok) {
-        return null;
-    }
+    if (!response.ok) return null;
 
     const arrayBuffer = await response.arrayBuffer();
     
@@ -1226,9 +1220,7 @@ async function createLayer(layerId) {
 
     }
 
-    if (layer == null) {
-        return null;
-    }
+    if (layer == null) return null;
 
     layers[layerId] = layer;
 
@@ -1304,9 +1296,7 @@ async function addLayerToMap(layerId) {
 
                 // this only applies to exclusive layers
 
-                if (!layersExclusive.has(_layerId)) {
-                    continue;
-                }
+                if (!layersExclusive.has(_layerId)) continue;
 
                 const isVisible = layersVisible[_layerId];
                 
@@ -1319,9 +1309,7 @@ async function addLayerToMap(layerId) {
         layersVisible[layerId] = true;
         const button = document.querySelector(`#${layerId}`)
 
-        if (button != null) {
-            button.classList.add("active");
-        }
+        if (button != null) button.classList.add("active");
 
         createLegend("addLayerToMap")
 
@@ -1349,9 +1337,7 @@ function removeLayerFromMap(layerId) {
         delete layersVisible[layerId];
         const button = document.querySelector(`#${layerId}`)
 
-        if (button != null) {
-            button.classList.remove("active");
-        }
+        if (button != null) button.classList.remove("active");
     }
 
     createLegend("removeLayerFromMap")
@@ -1782,9 +1768,7 @@ function updateInfoBox({ lat, lng }) {
 
             // only check intersections if we are going to display something
 
-            if (_layer.options.displayProperties == null) {
-                return;
-            }
+            if (_layer.options.displayProperties == null) return;
 
             // this is our main layer. we know we overlap here because we are in this function, so ignore it.
 
@@ -1901,23 +1885,17 @@ L.Control.Legend = L.Control.extend({
                 return;
             }
 
-            if (layer.options?.legendFunc == null) {
-                return;
-            }
+            if (layer.options?.legendFunc == null) return;
 
             const html = layer.options.legendFunc();
 
-            if (html === '') {
-                return;
-            }
+            if (html === '') return;
 
             htmls.push(html);
 
         });
 
-        if (!htmls.length) {
-            return L.DomUtil.create('div', '');
-        }
+        if (!htmls.length) return L.DomUtil.create('div', '');
         
         // console.log("create info legend [onAdd - L.Control.Legend]");
 
@@ -1987,9 +1965,7 @@ function createLegend(fun) {
     // const legendDescriptionsDiv = document.getElementById("legendDescriptions");
     // legendDescriptionsDiv.innerHTML = legendDescriptions.join('<br />');
 
-    if (legendControl != null) {
-        map.removeControl(legendControl);
-    }
+    if (legendControl != null) map.removeControl(legendControl);
 
     legendControl = L.control.legend(layerGroup, { label: 'Legend' });
     legendControl.addTo(map);
@@ -2009,9 +1985,7 @@ const legendFuncForColorMap = (id, name, args) => {
 
     console.log("** legendFuncForColorMap");
 
-    if (!args?.colorMap) {
-        return '';
-    }
+    if (!args?.colorMap) return '';
 
     const colorMapEntries = Object.entries(args.colorMap).sort();
     let gradients = [];
@@ -2025,9 +1999,7 @@ const legendFuncForColorMap = (id, name, args) => {
 
         const [value, color] = colorMapEntries[i];
 
-        if (i > 0) {
-            gradients.push(`${color} ${i * percent}%`);
-        }
+        if (i > 0) gradients.push(`${color} ${i * percent}%`);
 
         gradients.push(`${color} ${(i + 1) * percent}%`);
         labels.push(`<div style="float: left; width: ${percent}%; text-align: center;">${value}</div>`);

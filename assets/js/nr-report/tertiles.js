@@ -25,17 +25,11 @@ const getTertileLabel = (rank, rankReverse) => {
     const r = String(rank);
     const reverse = isRankReversed(rankReverse);
 
-    if (r === '1') {
-        return reverse ? 'Lower' : 'Higher';
-    }
+    if (r === '1') return reverse ? 'Lower' : 'Higher';
 
-    if (r === '2') {
-        return '';
-    }
+    if (r === '2') return '';
 
-    if (r === '3') {
-        return reverse ? 'Higher' : 'Lower';
-    }
+    if (r === '3') return reverse ? 'Higher' : 'Lower';
 
     return '';
 

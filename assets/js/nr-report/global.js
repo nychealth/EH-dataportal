@@ -160,7 +160,9 @@ const getUhfIdForDisplayName = displayName => {
 
     // Neighborhood metadata may not be loaded in every page context
 
-    if (!displayName || typeof neighborhoods === 'undefined') return null;
+    if (!displayName || typeof neighborhoods === 'undefined') {
+        return null;
+    }
 
     const entry = neighborhoods.find(n => n.UHF_name === displayName);
 

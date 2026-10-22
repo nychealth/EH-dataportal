@@ -107,9 +107,7 @@ const showPrintErrorState = (message) => {
 
 const clonePrintSpec = (spec) => {
 
-    if (!spec) {
-        return null;
-    }
+    if (!spec) return null;
 
     return JSON.parse(JSON.stringify(spec));
 
@@ -250,9 +248,7 @@ const bindPrintControls = () => {
 
             const fileName = printModalDownload.getAttribute('download');
 
-            if (!fileName) {
-                return;
-            }
+            if (!fileName) return;
 
             trackDataExplorerFileDownload({
                 fileName,
@@ -276,9 +272,7 @@ const bindPrintControls = () => {
 
             const exportLink = event.target.closest('.vega-actions a[download]');
 
-            if (!exportLink) {
-                return;
-            }
+            if (!exportLink) return;
 
             const fileName = exportLink.getAttribute('download');
 

@@ -467,9 +467,7 @@ const expandMeasureTimesGeos = (measure, visGeotypes) => {
 
     });
 
-    if (!perGeotypeTables.length) {
-        return null;
-    }
+    if (!perGeotypeTables.length) return null;
 
     return perGeotypeTables.flatMap(d => d).reduce((a, b) => a.concat(b));
 
@@ -548,13 +546,19 @@ const joinData = async () => {
     DE.indicator.indicatorMeasures.forEach(measure => {
 
         const tableTimesGeosMeasure = expandMeasureTimesGeos(measure, measure.VisOptions[0].Table);
-        if (tableTimesGeosMeasure) tableTimesGeos.push(tableTimesGeosMeasure);
+        if (tableTimesGeosMeasure) {
+            tableTimesGeos.push(tableTimesGeosMeasure);
+        }
 
         const mapTimesGeosMeasure = expandMeasureTimesGeos(measure, measure.VisOptions[0].Map);
-        if (mapTimesGeosMeasure) mapTimesGeos.push(mapTimesGeosMeasure);
+        if (mapTimesGeosMeasure) {
+            mapTimesGeos.push(mapTimesGeosMeasure);
+        }
 
         const trendTimesGeosMeasure = expandMeasureTimesGeos(measure, measure.VisOptions[0].Trend);
-        if (trendTimesGeosMeasure) trendTimesGeos.push(trendTimesGeosMeasure);
+        if (trendTimesGeosMeasure) {
+            trendTimesGeos.push(trendTimesGeosMeasure);
+        }
 
     })
 

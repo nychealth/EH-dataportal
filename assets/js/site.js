@@ -16,15 +16,11 @@
 			element.getAttribute("aria-label") ||
 			element.getAttribute("title");
 
-		if (explicitLabel) {
-			return explicitLabel.trim();
-		}
+		if (explicitLabel) return explicitLabel.trim();
 
 		const textLabel = element.textContent.replace(/\s+/g, " ").trim();
 
-		if (textLabel) {
-			return textLabel;
-		}
+		if (textLabel) return textLabel;
 
 		const image = element.querySelector("img[alt]");
 
@@ -44,13 +40,9 @@
 			return `homepage:${homepageSection.dataset.homepageSection}`;
 		}
 
-		if (element.closest("#global-header")) {
-			return "header";
-		}
+		if (element.closest("#global-header")) return "header";
 
-		if (element.closest("#global-footer")) {
-			return "footer";
-		}
+		if (element.closest("#global-footer")) return "footer";
 
 		if (element.closest("#article-footer")) {
 			return "article-footer";
@@ -62,9 +54,7 @@
 
 	function sendAnalyticsEvent(eventName, params = {}) {
 
-		if (!canTrackAnalytics()) {
-			return;
-		}
+		if (!canTrackAnalytics()) return;
 
 		window.gtag("event", eventName, {
 			page: window.location.pathname,
@@ -78,9 +68,7 @@
 
 		const clickTarget = event.target.closest("a, button");
 
-		if (!clickTarget) {
-			return;
-		}
+		if (!clickTarget) return;
 
 		if (clickTarget.classList.contains("pagefind-ui__result-link")) {
 
@@ -133,9 +121,7 @@
 
 			const clickLabel = getAnalyticsLabel(clickTarget);
 
-			if (!clickLabel) {
-				return;
-			}
+			if (!clickLabel) return;
 
 			sendAnalyticsEvent("click_homepage_link", {
 				homepage_section: homepageSection.dataset.homepageSection,
@@ -168,9 +154,7 @@
 
 			const clickLabel = getAnalyticsLabel(clickTarget);
 
-			if (!clickLabel) {
-				return;
-			}
+			if (!clickLabel) return;
 
 			sendAnalyticsEvent("click_navigation", {
 				navigation_region: navigationRoot.id === "global-header" ? "header" : "footer",

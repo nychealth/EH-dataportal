@@ -50,7 +50,9 @@ var warmSeason;
       const obsData = await obsRes.json();
 
       const tempC = obsData.properties.temperature.value;
-      if (tempC === null) throw new Error('latest observation has no temperature');
+      if (tempC === null) {
+        throw new Error('latest observation has no temperature');
+      }
       const tempF = (tempC * 9/5 + 32).toFixed(1);
       console.log(`Current temp in NYC: ${tempF}°F`);
 
@@ -119,7 +121,9 @@ function getAQI() {
 
     // A non-2xx answer can carry an HTML error page, which .json() would throw on.
 
-    if (!response.ok) throw new Error('AirNow responded ' + response.status)
+    if (!response.ok) {
+      throw new Error('AirNow responded ' + response.status);
+    }
     return response.json()
   })
   .then(data => {
@@ -131,7 +135,9 @@ function getAQI() {
     // to throw here on `aqiAPI[1].AQI` [smoke, 2026-10-02 and 2026-10-03].
 
     var readings = Array.isArray(aqiAPI) ? aqiAPI.slice(0, 2) : []
-    if (!readings.length) throw new Error('AirNow returned no observations')
+    if (!readings.length) {
+      throw new Error('AirNow returned no observations');
+    }
 
     var worst = readings.reduce((a, b) => (a.AQI > b.AQI ? a : b))
     aqi = worst.Category.Number
@@ -218,9 +224,7 @@ function printToPage() {
 
     // Style temp interpretation
 
-      if (maxTemp > 77.9) {
-        over78F = 'Yes'
-      }
+      if (maxTemp > 77.9) over78F = 'Yes';
 
     if (maxTemp >= 78 & maxTemp < 85) {
 

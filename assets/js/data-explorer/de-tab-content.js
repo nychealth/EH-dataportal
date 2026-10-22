@@ -49,14 +49,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Hide the tab content container
 
                 const tabContent = document.querySelector('#v-pills-tabContent');
-                if (tabContent) {
-                    tabContent.style.display = 'none';
-                }
+                if (tabContent) tabContent.style.display = 'none';
 
                 // Persist the closed state in the URL
 
                 DE.state.overlay = 'none';
-                if (typeof pushSelectionToURL === 'function') pushSelectionToURL();
+                if (typeof pushSelectionToURL === 'function') {
+                    pushSelectionToURL();
+                }
 
             }
         });
@@ -110,14 +110,14 @@ const closeExplorerTabPane = (paneId) => {
         // Hide the tab content container
 
         const tabContent = document.querySelector('#v-pills-tabContent');
-        if (tabContent) {
-            tabContent.style.display = 'none';
-        }
+        if (tabContent) tabContent.style.display = 'none';
 
         // Persist the closed state in the URL
 
         DE.state.overlay = 'none';
-        if (typeof pushSelectionToURL === 'function') pushSelectionToURL();
+        if (typeof pushSelectionToURL === 'function') {
+            pushSelectionToURL();
+        }
 
     }
 };
@@ -136,9 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const openPane = document.querySelector('#v-pills-tabContent .tab-pane.show.active');
 
-            if (openPane?.id) {
-                closeExplorerTabPane(openPane.id);
-            }
+            if (openPane?.id) closeExplorerTabPane(openPane.id);
         });
     }
 
@@ -146,9 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.addEventListener('keydown', function(event) {
 
-        if (event.key !== 'Escape') {
-            return;
-        }
+        if (event.key !== 'Escape') return;
 
         const openPane = document.querySelector('#v-pills-tabContent .tab-pane.show.active');
 
@@ -159,9 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const detailsContent = document.querySelector('#detailsContent.show');
 
-        if (detailsContent) {
-            $('#detailsContent').collapse('hide');
-        }
+        if (detailsContent) $('#detailsContent').collapse('hide');
     });
 });
 

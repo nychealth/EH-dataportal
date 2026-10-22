@@ -247,9 +247,7 @@ const renderMenuSection = (items, destination, type) => {
 
             const button = event.target.closest('.dropdown-item');
 
-            if (!button) {
-                return;
-            }
+            if (!button) return;
 
             const item = items[Number(button.dataset.optionIndex)];
 
@@ -272,17 +270,11 @@ const handleSelection = (type, value, label) => {
 
     // ----- update the one changed global ----- //
 
-    if (type === 'measure') {
-        DE.state.MeasureID = value;
-    }
+    if (type === 'measure') DE.state.MeasureID = value;
 
-    if (type === 'geo') {
-        DE.state.GeoType = value;
-    }
+    if (type === 'geo') DE.state.GeoType = value;
 
-    if (type === 'time') {
-        DE.state.TimePeriodID = value;
-    }
+    if (type === 'time') DE.state.TimePeriodID = value;
 
     // ----- cascade-rebuild dependent menus ----- //
 

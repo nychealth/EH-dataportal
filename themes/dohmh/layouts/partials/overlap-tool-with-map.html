@@ -129,9 +129,7 @@
       var selectedValue = null;
 
       radioButtons.forEach(rb => {
-        if (rb.checked) {
-          selectedValue = rb.value;
-        }
+        if (rb.checked) selectedValue = rb.value;
       });
 
       loadGeoJSON(selectedValue)
@@ -161,9 +159,7 @@
 
       // Remove old layer if exists
 
-      if (geojsonLayer) {
-        map.removeLayer(geojsonLayer);
-      }
+      if (geojsonLayer) map.removeLayer(geojsonLayer);
 
         // Remove UHF layer if exists
 
@@ -250,9 +246,7 @@
                 // Remove tooltips from non-selected features
 
                 geojsonLayer.eachLayer(function (l) {
-                  if (l !== layer) {
-                    l.unbindTooltip();
-                  }
+                  if (l !== layer) l.unbindTooltip();
                 });
 
                 // Reset styles for all features

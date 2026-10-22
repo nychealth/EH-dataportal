@@ -68,7 +68,9 @@
             title: "Reset zoom",
             icon: "fas fa-undo",
             onClick: () => {
-                if (uhf_geojson) map.fitBounds(uhf_geojson.getBounds(), { padding: [10, 10], animate: false });
+                if (uhf_geojson) {
+                    map.fitBounds(uhf_geojson.getBounds(), { padding: [10, 10], animate: false });
+                }
             }
         }]
     }).addTo(map);
@@ -279,7 +281,9 @@
 
         const key = e.originalEvent && e.originalEvent.key;
 
-        if (key !== "Enter" && key !== " " && key !== "Spacebar") return;
+        if (key !== "Enter" && key !== " " && key !== "Spacebar") {
+            return;
+        }
 
         // Space would otherwise scroll the page as it navigates away
 

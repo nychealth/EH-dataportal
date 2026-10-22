@@ -66,17 +66,13 @@ const setNeighborhoodInURL = (name, historyMode) => {
 
     // The browser has already moved the address bar to the entry being re-rendered
 
-    if (historyMode === 'none') {
-        return;
-    }
+    if (historyMode === 'none') return;
 
     // ----- resolve the slug for this neighborhood ----- //
 
     const slug = slugForNeighborhood(name);
 
-    if (!slug) {
-        return;
-    }
+    if (!slug) return;
 
     // ----- rewrite the segment before the topic ----- //
 
@@ -93,9 +89,7 @@ const setNeighborhoodInURL = (name, historyMode) => {
     // Index 2 is the shallowest a report page can sit at — neighborhood-reports/<nbhd>/<topic>
     // with no site path prefix. Anything shallower is not a path this should be rewriting
 
-    if (topicIdx < 2) {
-        return;
-    }
+    if (topicIdx < 2) return;
 
     const newPath = '/' + pathParts.slice(0, topicIdx - 1).concat(slug, reportConfig.topicSlug).join('/') + '/';
 
@@ -178,9 +172,7 @@ const updateTopicLinks = neighborhoodName => {
 
     const slug = slugForNeighborhood(neighborhoodName);
 
-    if (!slug) {
-        return;
-    }
+    if (!slug) return;
 
     document.querySelectorAll('.nr-topic-link').forEach(a => {
 
@@ -189,9 +181,7 @@ const updateTopicLinks = neighborhoodName => {
 
         // Last segment is the destination topic, the one before it the neighborhood
 
-        if (parts.length < 2) {
-            return;
-        }
+        if (parts.length < 2) return;
 
         parts[parts.length - 2] = slug;
         a.href = '/' + parts.join('/') + '/';
@@ -213,9 +203,7 @@ const updateNeighborhoodCrumb = neighborhoodName => {
     const slug = slugForNeighborhood(neighborhoodName);
     const crumb = document.querySelector('.nr-breadcrumb-neighborhood');
 
-    if (!slug || !crumb) {
-        return;
-    }
+    if (!slug || !crumb) return;
 
     // Its href is the neighborhood index, neighborhood-reports/<nbhd>/, so the
     // neighborhood is the last segment. Rewriting that one keeps any site path prefix

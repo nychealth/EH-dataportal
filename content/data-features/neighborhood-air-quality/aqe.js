@@ -43,9 +43,7 @@ const load_flexdatalist = async () => {
 
           const generated = document.getElementById($input.attr('id') + '-flexdatalist');
 
-          if (generated) {
-              wireComboboxState(generated);
-          }
+          if (generated) wireComboboxState(generated);
 
           // ----- add flexdatalist select handler -------------------------------------------------- //
 

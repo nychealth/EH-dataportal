@@ -428,7 +428,9 @@ async function embedFitted(el, buildSpec, cfg, apply, paneOverride) {
 
     await vegaEmbed(el, spec, CP_EMBED_OPTS);
 
-    if (layout.overridden || CP_FLOOR_BOUND.has(layout.key)) return layout;
+    if (layout.overridden || CP_FLOOR_BOUND.has(layout.key)) {
+        return layout;
+    }
 
     const rendered = cpRenderedWidth(el);
     const overflow = rendered - el.clientWidth;

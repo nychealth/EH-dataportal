@@ -20,7 +20,9 @@ const loadTopojson = () => {
 
     const base = reportConfig.dataRepo + reportConfig.dataBranch + '/geography/';
     const getJSON = file => fetch(base + file).then(res => {
-        if (!res.ok) throw new Error('HTTP ' + res.status + ' for ' + file);
+        if (!res.ok) {
+            throw new Error('HTTP ' + res.status + ' for ' + file);
+        }
         return res.json();
     });
 
@@ -65,7 +67,9 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode, indicator
         .catch(err => {
             console.error('Error rendering chart for ' + destination + ':', err);
 
-            if (container.isConnected) container.innerHTML = '<p class="text-muted small">Unable to render chart.</p>';
+            if (container.isConnected) {
+                container.innerHTML = '<p class="text-muted small">Unable to render chart.</p>';
+            }
         });
 };
 
@@ -292,7 +296,9 @@ const embedIndicatorChart = (data, container, destination, legendLabel, geocode,
         // is no embed option for its label, so it is set on the rendered node
 
         const summary = container.querySelector('details > summary');
-        if (summary) summary.setAttribute('aria-label', 'Export or view source for ' + chartName);
+        if (summary) {
+            summary.setAttribute('aria-label', 'Export or view source for ' + chartName);
+        }
 
     }).catch(err => {
 
@@ -306,7 +312,9 @@ const embedIndicatorChart = (data, container, destination, legendLabel, geocode,
         console.error('Error embedding chart for ' + chartName + ':', err);
         debugLog('renderIndicatorChart: branch-embed-failed:', { destination, err });
 
-        if (container.isConnected) container.innerHTML = '<p class="text-muted small">Unable to render chart.</p>';
+        if (container.isConnected) {
+            container.innerHTML = '<p class="text-muted small">Unable to render chart.</p>';
+        }
 
     });
 };
@@ -329,7 +337,9 @@ const onAccordionExpand = event => {
     // buildIndicatorCard writes is some other collapse and is not counted
 
     const indicatorLabel = panel.getAttribute('data-indicator-label');
-    if (indicatorLabel) trackNREvent('click_modal', { modal_name: indicatorLabel });
+    if (indicatorLabel) {
+        trackNREvent('click_modal', { modal_name: indicatorLabel });
+    }
 
     // ----- guard already-rendered ----- //
 

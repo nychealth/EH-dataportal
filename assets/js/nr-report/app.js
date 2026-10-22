@@ -93,7 +93,9 @@ const updateAccordionToggle = () => {
         icon.className = 'fas ' + (allExpanded ? 'fa-compress-alt' : 'fa-expand-alt') + ' mr-1';
     }
 
-    if (label) label.textContent = allExpanded ? 'Collapse all' : 'Expand all';
+    if (label) {
+        label.textContent = allExpanded ? 'Collapse all' : 'Expand all';
+    }
 
 };
 
@@ -143,7 +145,9 @@ const bootstrap = () => {
     $(document).on('shown.bs.collapse hidden.bs.collapse', '.nr-report-accordion .collapse', updateAccordionToggle);
 
     const accordionToggle = document.getElementById('nr-toggle-accordions');
-    if (accordionToggle) accordionToggle.addEventListener('click', toggleAllAccordions);
+    if (accordionToggle) {
+        accordionToggle.addEventListener('click', toggleAllAccordions);
+    }
 
     // Back and Forward across in-place switches re-render the neighborhood the address bar now
     // names. Not the entry's state alone: an entry a #fragment link added (the header's

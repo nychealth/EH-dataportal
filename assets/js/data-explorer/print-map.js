@@ -64,9 +64,7 @@ const buildWrappedPrintLines = (value, shouldStartNewLine) => {
 
     const sourceText = normalizePrintTextInput(value);
 
-    if (!sourceText) {
-        return [];
-    }
+    if (!sourceText) return [];
 
     const words = sourceText.split(/\s+/);
     const lines = [];
@@ -86,9 +84,7 @@ const buildWrappedPrintLines = (value, shouldStartNewLine) => {
 
     });
 
-    if (currentLine) {
-        lines.push(currentLine);
-    }
+    if (currentLine) lines.push(currentLine);
 
     return lines;
 
@@ -128,9 +124,7 @@ const buildSourceHTML = (values = [], warning = '') => {
 
     const htmlLines = [...sourceLines, warning].filter(Boolean);
 
-    if (!htmlLines.length) {
-        return '';
-    }
+    if (!htmlLines.length) return '';
 
     return htmlLines.map(line => `<div>${line}</div>`).join('');
 
@@ -304,9 +298,7 @@ const waitForLeafletIdle = (mapInstance) => {
 
         const finalize = () => {
 
-            if (isResolved) {
-                return;
-            }
+            if (isResolved) return;
 
             isResolved = true;
             window.clearTimeout(fallbackTimer);
@@ -376,9 +368,7 @@ const getExportBoundsTuning = (bubbleMapExport) => {
 
 const ensureBoundsWithinExportViewport = (mapInstance, bounds, width, height) => {
 
-    if (!bounds || !bounds.isValid()) {
-        return;
-    }
+    if (!bounds || !bounds.isValid()) return;
 
     const maxAdjustments = 8;
     const visibleEdgeTolerance = EXPORT_FEATURE_EDGE_BUFFER_PX;
@@ -396,16 +386,12 @@ const ensureBoundsWithinExportViewport = (mapInstance, bounds, width, height) =>
             visibleEdgeTolerance
         );
 
-        if (boundsAreVisible) {
-            return;
-        }
+        if (boundsAreVisible) return;
 
         const currentZoom = mapInstance.getZoom();
         const zoomedOutLevel = Math.max(mapMinZoom, currentZoom - 0.25);
 
-        if (zoomedOutLevel === currentZoom) {
-            return;
-        }
+        if (zoomedOutLevel === currentZoom) return;
 
         mapInstance.setView(bounds.getCenter(), zoomedOutLevel, { animate: false });
 
@@ -485,15 +471,11 @@ const getLoadedTileCoverageBounds = (mapElement, mapRect) => {
 
 const areExportBoundsCoveredByTiles = (mapInstance, bounds, mapElement, mapRect) => {
 
-    if (!bounds || !bounds.isValid()) {
-        return true;
-    }
+    if (!bounds || !bounds.isValid()) return true;
 
     const tileCoverage = getLoadedTileCoverageBounds(mapElement, mapRect);
 
-    if (!tileCoverage.hasCoverage) {
-        return false;
-    }
+    if (!tileCoverage.hasCoverage) return false;
 
     const viewportBox = getBoundsViewportBox(mapInstance, bounds);
     const coverageBuffer = EXPORT_TILE_COVERAGE_BUFFER_PX;
@@ -512,9 +494,7 @@ const ensureTileCoverageForExport = async (mapInstance, mapElement, mapRect, bou
 
     // ----- guard: nothing to cover without valid bounds ----- //
 
-    if (!bounds || !bounds.isValid()) {
-        return true;
-    }
+    if (!bounds || !bounds.isValid()) return true;
 
     // ----- tuning setup ----- //
 
@@ -547,9 +527,7 @@ const ensureTileCoverageForExport = async (mapInstance, mapElement, mapRect, bou
         const currentZoom = mapInstance.getZoom();
         const zoomedOutLevel = Math.max(mapMinZoom, currentZoom - 0.25);
 
-        if (zoomedOutLevel === currentZoom) {
-            break;
-        }
+        if (zoomedOutLevel === currentZoom) break;
 
         mapInstance.setView(bounds.getCenter(), zoomedOutLevel, { animate: false });
         ensureBoundsWithinExportViewport(mapInstance, bounds, width, height);
@@ -632,9 +610,7 @@ const buildTemporaryLeafletExport = async (width, height) => {
 
         const geojsonBounds = exportGeojsonLayer.getBounds();
 
-        if (geojsonBounds.isValid()) {
-            exportBounds = geojsonBounds;
-        }
+        if (geojsonBounds.isValid()) exportBounds = geojsonBounds;
 
         const radiusScale = d3.scaleSqrt()
             .domain(minValue === maxValue ? [0, maxValue || 1] : [minValue, maxValue])
@@ -697,9 +673,7 @@ const buildTemporaryLeafletExport = async (width, height) => {
 
         const geojsonBounds = exportGeojsonLayer.getBounds();
 
-        if (geojsonBounds.isValid()) {
-            exportBounds = geojsonBounds;
-        }
+        if (geojsonBounds.isValid()) exportBounds = geojsonBounds;
     }
 
     // ----- fit/frame the export view to bounds ----- //
@@ -816,9 +790,7 @@ const parseLeafletTransform = (transformValue = '') => {
 
     const match = transformValue.match(/translate3d\(([-\d.]+)px,\s*([-\d.]+)px,\s*[-\d.]+px\)/);
 
-    if (!match) {
-        return null;
-    }
+    if (!match) return null;
 
     return {
         x: Number(match[1]),
@@ -942,9 +914,7 @@ const drawLeafletSvgLayers = async (ctx, mapElement, mapRect, offsetY) => {
         // Leaflet root SVG overlays already encode the pane offset via viewBox.
         // Removing the CSS translate avoids applying that offset a second time.
 
-        if (hasLeafletPaneOffset) {
-            svgClone.removeAttribute('style');
-        }
+        if (hasLeafletPaneOffset) svgClone.removeAttribute('style');
 
         const svgMarkup = new XMLSerializer().serializeToString(svgClone);
         const normalizedSvgMarkup = svgMarkup.includes('xmlns=')

@@ -294,9 +294,7 @@ async function checkPointInRMZ(lat,long) {
         }
     }
     
-    if (isRMZ === false) {
-        console.log('- not in an RMZ.')
-    }
+    if (isRMZ === false) console.log('- not in an RMZ.');
     
     showParentCD(lat,long)
     

@@ -174,9 +174,7 @@ const updateTableFilterSummary = (availableTimes, availableGeos) => {
 
     // The collapsed button gets a terse summary instead of listing every checked option.
 
-    if (!summary) {
-        return;
-    }
+    if (!summary) return;
 
     const timeSummary = !DE.table.selectedTableTimes.length
         ? 'No time periods'
@@ -229,9 +227,7 @@ const syncTableAreaSearchInput = () => {
 
     // DataTables redraws can replace the search box DOM, so always resolve it fresh.
 
-    if (!filterInput.length) {
-        return;
-    }
+    if (!filterInput.length) return;
 
     filterInput.val(DE.table.tableAreaSearchValue);
     filterInput.data('areaOnlySearchValue', DE.table.tableAreaSearchValue);
@@ -256,9 +252,7 @@ const setTableAreaSearch = (dataTable, nextValue, shouldDraw = true) => {
 
     // Some callers batch search updates and will trigger the draw themselves.
 
-    if (shouldDraw) {
-        dataTable.draw();
-    }
+    if (shouldDraw) dataTable.draw();
 };
 
 
@@ -289,9 +283,7 @@ const lockSummaryTableScrollBodyHeight = () => {
 
     // Bail out when DataTables has not created its wrapper yet.
 
-    if (!scrollBody) {
-        return;
-    }
+    if (!scrollBody) return;
 
     // A real fixed height keeps the scrollbar footprint stable across redraws and filter changes.
 
@@ -309,9 +301,7 @@ const bindAreaOnlySearch = (dataTable) => {
 
     const filterInput = $('#tableID_filter input[type="search"]');
 
-    if (!filterInput.length) {
-        return;
-    }
+    if (!filterInput.length) return;
 
     // Replace DataTables' default global-search handler with our Area-only behavior.
 
@@ -344,9 +334,7 @@ const applyTableFilters = (rows) => {
 
     // Checkbox and sync actions can fire before the table tab has been opened for the first time.
 
-    if (!$.fn.dataTable.isDataTable('#tableID')) {
-        return;
-    }
+    if (!$.fn.dataTable.isDataTable('#tableID')) return;
 
     const dataTable = $('#tableID').DataTable();
     const filteredRows = getSelectedTableRows(rows);
@@ -378,9 +366,7 @@ const renderTableFilterControls = (rows) => {
 
     // The control panel may be absent on partial templates or before the tab markup loads.
 
-    if (!timeHolder || !geoHolder) {
-        return;
-    }
+    if (!timeHolder || !geoHolder) return;
 
     // ----- compute available time and geography option sets ----- //
 
@@ -437,9 +423,7 @@ const renderTableFilterControls = (rows) => {
             label.className = `btn btn-light dropdown-item text-left ${checkboxClass}`;
             label.setAttribute('aria-disabled', unavailable ? 'true' : 'false');
 
-            if (unavailable) {
-                label.classList.add('disabled');
-            }
+            if (unavailable) label.classList.add('disabled');
 
             const input = document.createElement('input');
             input.className = 'largerCheckbox';
@@ -844,9 +828,7 @@ const renderTable = (tableData) => {
                     const geoTypeDesc = data[i][2];
                     const borough     = data[i][6];
 
-                    if (skipFn && skipFn(geoTypeDesc, borough)) {
-                        return;
-                    }
+                    if (skipFn && skipFn(geoTypeDesc, borough)) return;
 
                     const key = keyFn(time, geoTypeDesc, borough);
 
@@ -929,9 +911,7 @@ const getTableDownloadFileName = () => 'NYC EH Data Portal - ' + DE.indicator.in
 
 const downloadTableData = () => {
 
-    if (!$.fn.dataTable.isDataTable('#tableID')) {
-        return;
-    }
+    if (!$.fn.dataTable.isDataTable('#tableID')) return;
 
     $('#tableID').DataTable().button(0).trigger();
 

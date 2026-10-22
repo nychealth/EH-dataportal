@@ -33,14 +33,10 @@ const scheduleBarViewResize = () => {
 
 const registerBarTabResizeHandler = () => {
 
-    if (barResizeEventRegistered) {
-        return;
-    }
+    if (barResizeEventRegistered) return;
 
     const barTab = document.getElementById('v-pills-bar-tab');
-    if (!barTab) {
-        return;
-    }
+    if (!barTab) return;
 
     barTab.addEventListener('shown.bs.tab', () => {
         if (DE.state.overlay === 'bar' && window.myVegaView && typeof window.myVegaView.resize === 'function') {

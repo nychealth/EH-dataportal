@@ -45,9 +45,7 @@
 		const targetSelector = this.getAttribute("href") || this.dataset.target;
 		const pane = targetSelector ? document.querySelector(targetSelector) : null;
 
-		if (!pane) {
-			return;
-		}
+		if (!pane) return;
 
 		activateLazyEmbeds(pane);
 

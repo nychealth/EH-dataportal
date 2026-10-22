@@ -100,7 +100,9 @@
         try {
 
             const aqiRes = await fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10032&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F');
-            if (!aqiRes.ok) throw new Error(`AirNow returned HTTP ${aqiRes.status}`);
+            if (!aqiRes.ok) {
+                throw new Error(`AirNow returned HTTP ${aqiRes.status}`);
+            }
 
             const aqiData = await aqiRes.json();
             const categories = (Array.isArray(aqiData) ? aqiData : [])
@@ -190,9 +192,15 @@
 
         const activeEvents = [];
 
-        if (isHot) activeEvents.push({ icon: 'fa-temperature-high', label: "It's hot!" });
-        if (isCold) activeEvents.push({ icon: 'fa-temperature-high', label: "It's cold!" });
-        if (isBadAQ) activeEvents.push({ icon: 'fa-smog', label: 'Air quality alert!' });
+        if (isHot) {
+            activeEvents.push({ icon: 'fa-temperature-high', label: "It's hot!" });
+        }
+        if (isCold) {
+            activeEvents.push({ icon: 'fa-temperature-high', label: "It's cold!" });
+        }
+        if (isBadAQ) {
+            activeEvents.push({ icon: 'fa-smog', label: 'Air quality alert!' });
+        }
 
         const icons = activeEvents
             .map(event => `<i class="fas ${event.icon} mr-1" aria-hidden="true"></i>`)

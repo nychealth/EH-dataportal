@@ -80,7 +80,9 @@ const buildIndicatorCard = (row, neighborhoodName) => {
     // Build a compact units label from optional type and unit fields
 
     const unitParts = [];
-    if (row.measurement_type) unitParts.push(row.measurement_type);
+    if (row.measurement_type) {
+        unitParts.push(row.measurement_type);
+    }
     if (row.units) unitParts.push(row.units);
     const units = unitParts.join(' ').trim();
 
