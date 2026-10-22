@@ -100,11 +100,21 @@ var warmSeason;
   getCurrentTempNYC();
 
 
+// Maps an AQI value to EPA's category number (1 = Good ... 6 = Hazardous),
+// using the AQI's fixed category bounds of 50, 100, 150, 200 and 300.
+// Negative or missing values are AirNow's "Unavailable", returned as null.
+function aqiToCategory(value) {
+  if (!Number.isFinite(value) || value < 0) return null
+  return [50, 100, 150, 200, 300].filter(upper => value > upper).length + 1
+}
+
 var aqiAPI;
 function getAQI() {
   var aqiMeaning = document.getElementById('aqimeaning')
 
-  fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10013&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F')
+  // The zipCode/current service was retired 2026-10-01; its replacement
+  // returns nowcastAQI but no Category.Number, hence aqiToCategory above.
+  fetch('https://www.airnowapi.org/aq/observation/current/ziplatLong?format=application/json&zipCode=10013&api_key=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F')
   .then(response => {
     // A non-2xx answer can carry an HTML error page, which .json() would throw on.
     if (!response.ok) throw new Error('AirNow responded ' + response.status)
@@ -117,11 +127,12 @@ function getAQI() {
     // AirNow returns one observation per pollutant, and the page shows the
     // worse of the first two. It can also return fewer, or none, which used
     // to throw here on `aqiAPI[1].AQI` [smoke, 2026-10-02 and 2026-10-03].
-    var readings = Array.isArray(aqiAPI) ? aqiAPI.slice(0, 2) : []
+    var readings = (Array.isArray(aqiAPI) ? aqiAPI.slice(0, 2) : [])
+      .filter(r => aqiToCategory(r.nowcastAQI) !== null)
     if (!readings.length) throw new Error('AirNow returned no observations')
 
-    var worst = readings.reduce((a, b) => (a.AQI > b.AQI ? a : b))
-    aqi = worst.Category.Number
+    var worst = readings.reduce((a, b) => (a.nowcastAQI > b.nowcastAQI ? a : b))
+    aqi = aqiToCategory(worst.nowcastAQI)
 
     console.log('The AQI is: ' + aqi)
 
