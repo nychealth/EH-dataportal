@@ -439,18 +439,22 @@
 
 <script>
 function escapeHTML(str) {
+
   return str
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
+
 }
 
 function markdownToHTML(md) {
+
   const lines = md.split(/\r?\n/);
   let html = "";
   let paragraph = [];
 
   function flushParagraph() {
+
     if (paragraph.length) {
       html += `<p>${paragraph.join(" ")}</p>\n`;
       paragraph = [];
@@ -458,6 +462,7 @@ function markdownToHTML(md) {
   }
 
   for (let line of lines) {
+
     line = line.trim();
 
     // Blank line → paragraph break
@@ -484,10 +489,12 @@ function markdownToHTML(md) {
     // Normal text → paragraph
 
     paragraph.push(escapeHTML(line));
+
   }
 
   flushParagraph();
   return html;
+
 }
 
 // Fetch + render

@@ -43,9 +43,13 @@ document.querySelectorAll('.chunk').forEach(x => x.classList.add('hide'));
 // report reaching this template is a genuine 404 and should be treated as one.
 
 if (url.includes('beta')) {
+
   removeBeta(url);
+
 } else {
+
   redirectHome();
+
 }
 
 // ----------  remove /beta from URL and redirect to otherwise same URL -------------------- //
@@ -63,11 +67,16 @@ function redirectHome() {
 }
 
 function countDown(x) {
+
   if (x > 0) {
+
     document.getElementById('sec').innerHTML = x;
     setTimeout(() => { countDown(x - 1); }, 1000);
+
   } else {
+
     setTimeout(() => { window.location.href = {{ relURL "" }}; }, 1000);
+
   }
 }
 

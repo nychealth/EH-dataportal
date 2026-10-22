@@ -1,33 +1,35 @@
 // ---------- INITIALIZE: draw buttons and set up data source variables ---------- // 
     // Initialize by getting date and drawing buttons
 
-    const today = new Date()
+    const today = new Date();
     const month   = today.getUTCMonth() + 1; // months from 1-12
     const day     = today.getUTCDate();
     const year    = today.getUTCFullYear();
     const date    = today.getDate();
     var allYears  = [];    
     var fileExists;
-    var yearURL   = 'https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat' + year + '_live.csv'
+    var yearURL   = 'https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat' + year + '_live.csv';
 
 function init() {
 
     // check if this year's URL exists, and if it does, draw this year's button
 
-    UrlExists(yearURL)
+    UrlExists(yearURL);
 
     // console.log(UrlExists(yearURL))
 
     if (fileExists == true) {
+
       for (let i = year; i > 2016; i--) {
-        allYears.push(i)
+        allYears.push(i);
         // console.log(i)
         // changeYear(year)
       }
     } else {
+
       for (let i = year-1; i > 2016; i--) {
-        allYears.push(i)
-        var lastYear = year-1
+        allYears.push(i);
+        var lastYear = year-1;
         // changeYear(lastYear)
       }
     }
@@ -36,19 +38,21 @@ function init() {
     
     // get colors for spec
 
-    colorArray = getMagmaColors(allYears.length)
-    colorArray = colorArray.reverse()
+    colorArray = getMagmaColors(allYears.length);
+    colorArray = colorArray.reverse();
 
 
     for (let i = 0; i < allYears.length; i++) {
-      var oneYear = allYears[i]
-      var btnID = oneYear + 'button'
-      var yearButton = `<button class='btn btn-sm btn-outline-secondary yearButtons ml-1' id='${btnID}' onclick='changeYear(${oneYear})'>${oneYear}</button>`
-      document.getElementById('yearButtonHolder').innerHTML += yearButton
+
+      var oneYear = allYears[i];
+      var btnID = oneYear + 'button';
+      var yearButton = `<button class='btn btn-sm btn-outline-secondary yearButtons ml-1' id='${btnID}' onclick='changeYear(${oneYear})'>${oneYear}</button>`;
+      document.getElementById('yearButtonHolder').innerHTML += yearButton;
 
       if (i == 0) {
-        document.getElementById(btnID).classList.add('btn-secondary')
-        document.getElementById(btnID).classList.remove('btn-outline-secondary')
+
+        document.getElementById(btnID).classList.add('btn-secondary');
+        document.getElementById(btnID).classList.remove('btn-outline-secondary');
 
       } else {}
 
@@ -56,25 +60,30 @@ function init() {
 
     // run for most recent year
 
-    changeYear(allYears[0])
+    changeYear(allYears[0]);
 
     // check if it's after September
 
     if (month > 8) {
-      console.log('Updates have ended for the year.')
+      console.log('Updates have ended for the year.');
     }
 }
 
 function UrlExists(url) {
+
     // console.log('checking ' + url)
 
     var http = new XMLHttpRequest();
     http.open('HEAD', url, false);
     http.send();
     if (http.status == 404 ) {
-      fileExists = false
+
+      fileExists = false;
+
     } else {
-      fileExists = true
+
+      fileExists = true;
+
     }
     // console.log(fileExists)
 
@@ -85,8 +94,10 @@ function UrlExists(url) {
 // get Magma colors for the number of years
 
 function getMagmaColors(n) {
+
   const colors = [];
   for (let i = 0; i < n; i++) {
+
     // Get evenly spaced t values from 0 to 1
 
     const t = i / (n - 1);
@@ -95,6 +106,7 @@ function getMagmaColors(n) {
   // console.log('got colors:', colors)
 
   return colors;
+
 }
 
 
@@ -132,7 +144,6 @@ var spec = {
   "data": {
     "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat2023_live.csv",
   "format": {"type":"csv", "parse":{"END_DATE": "date:'%Y-%m-%d'", "MAX_DAILY_TEMP":"number","HEAT_ED_VISIT_COUNT":"number"}} //format.parse -> END_DATE resolves UTC time issues
-
   },
   "transform": [
     {"calculate": "year(datum.END_DATE)", "as": "Year"},
@@ -205,11 +216,11 @@ var spec = {
       }
     }
   ]
-}
+};
 
 // Initial embed of line chart
 
-vegaEmbed('#vis1',spec, {renderer: "svg"})
+vegaEmbed('#vis1',spec, {renderer: "svg"});
 
 
 
@@ -217,53 +228,62 @@ vegaEmbed('#vis1',spec, {renderer: "svg"})
 // Year change function powered by year buttons
 
 function changeYear(x) {
-  console.log('showing chart for year: ', x)
+
+  console.log('showing chart for year: ', x);
   spec.transform[1].filter = `datum.Year == ${x}`;
 
   if ( x == allYears[0]) {
-    spec.data.url = `https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat${x}_live.csv`
+
+    spec.data.url = `https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat${x}_live.csv`;
+
   }
   else {
-    spec.data.url = 'https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/previous_years.csv'
+
+    spec.data.url = 'https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/previous_years.csv';
+
   }
   document.getElementById('yearHeader').innerHTML = x;
   vegaEmbed('#vis1',spec, {renderer: "svg"});
 
-  var buttons = document.querySelectorAll('.yearButtons')
+  var buttons = document.querySelectorAll('.yearButtons');
   for (let i = 0; i < buttons.length; i ++ ) {
-    buttons[i].classList.remove('btn-secondary')
-    buttons[i].classList.add('btn-outline-secondary')
+    buttons[i].classList.remove('btn-secondary');
+    buttons[i].classList.add('btn-outline-secondary');
   }
 
-  var buttonName = x + 'button'
-  document.getElementById(buttonName).classList.add('btn-secondary')
-  document.getElementById(buttonName).classList.remove('btn-outline-secondary')
+  var buttonName = x + 'button';
+  document.getElementById(buttonName).classList.add('btn-secondary');
+  document.getElementById(buttonName).classList.remove('btn-outline-secondary');
 
 
 }
 
-var scatterCount = 0
+var scatterCount = 0;
 function toggleScatter(x) {
-  scatterCount = Number(scatterCount + 1)
+
+  scatterCount = Number(scatterCount + 1);
   // console.log(scatterCount)
 
   if ( scatterCount % 2 == 0) {
+
     // console.log('even')
 
-    document.getElementById('scattertoggle').innerHTML = 'Show time'
-    vegaEmbed('#vis2', scatterplot, {renderer: "svg"})
+    document.getElementById('scattertoggle').innerHTML = 'Show time';
+    vegaEmbed('#vis2', scatterplot, {renderer: "svg"});
+
   } else {
+
     // console.log('odd')
 
-    document.getElementById('scattertoggle').innerHTML = 'Show scatter'
-    vegaEmbed('#vis2', scatterplotTwo, {renderer: "svg"})
+    document.getElementById('scattertoggle').innerHTML = 'Show scatter';
+    vegaEmbed('#vis2', scatterplotTwo, {renderer: "svg"});
 
   }
 }
 
 
 
-init()
+init();
 
 // Scatterplot specs. They need to follow init() because that's how we get colorArray
 
@@ -351,7 +371,7 @@ var scatterplot = {
       }
     ]
   }
-}
+};
 
 var scatterplotTwo = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -449,8 +469,8 @@ var scatterplotTwo = {
       }
     ]
   }
-}
+};
 
 // Initial embed of scatterplot
 
-vegaEmbed('#vis2', scatterplot, {renderer: "svg"})
+vegaEmbed('#vis2', scatterplot, {renderer: "svg"});

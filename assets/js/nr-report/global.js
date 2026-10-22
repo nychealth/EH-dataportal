@@ -34,21 +34,25 @@
 // Server-injected report configuration, read here so every function below can reach it.
 // Whether it actually arrived is bootstrap()'s guard, not this line's.
 // WRITE: never after this line  READ: app, chart, data, map, report, url
+
 const reportConfig = window.NR_REPORT_CONFIG;
 
 // Per-section data store: sectionId -> { neighborhoodName -> rows[] }.
 // The binding is never reassigned; data.js fills it key by key
 // WRITE (keys): data  READ: report
+
 const sectionData = {};
 
 // Ids of sections whose fetch failed, so renderSection can tell "could not load" from
 // "no rows for this neighborhood". A failed section still gets {} in sectionData, which
 // keeps resolveGeocode's walk over it free of a special case
 // WRITE: data  READ: report
+
 const failedSections = new Set();
 
 // Arquero table for the viz dataset (all indicators, all neighborhoods)
 // WRITE: data  READ: app (CSV export), chart (per-indicator summary)
+
 let vizTable = null;
 
 // IndicatorID (as a string key) -> data-explorer topic slug, reversed out of the
@@ -56,23 +60,27 @@ let vizTable = null;
 // Null until that fetch resolves and null again if it fails, which is what suppresses
 // the "Full dataset" link rather than emitting one with no href
 // WRITE: data  READ: cards
+
 let indicatorTopicSlugs = null;
 
 // Track which accordion panels have already had their chart rendered.
 // Two writers of different kinds: report.js replaces the whole object to reset
 // it per render, chart.js sets one key per panel it draws
 // WRITE: report (reset), chart (keys)  READ: chart
+
 let renderedPanels = {};
 
 // The Vega views of the charts drawn since the last render, finalized when the
 // panels they sit in are rebuilt
 // WRITE: chart (push), report (finalize and reset)  READ: report
+
 let chartViews = [];
 
 // Track loading: sections + viz = total fetches needed before first render.
 // bootstrap() sets the total, since module scope runs before the config guard.
 // fetchesComplete never leaves data.js; it lives here to stay beside its pair
 // WRITE: app (total), data (complete)  READ: data
+
 let totalFetches = 0;
 let fetchesComplete = 0;
 
@@ -80,6 +88,7 @@ let fetchesComplete = 0;
 // Annotated separately because their readers do not overlap
 // currentNeighborhood — WRITE: report  READ: app
 // currentGeocode      — WRITE: report  READ: chart, map, report
+
 let currentNeighborhood = '';
 let currentGeocode = null;
 
@@ -87,6 +96,7 @@ let currentGeocode = null;
 // map.js — they sit here with the rest of the map state rather than because
 // anything outside map.js needs them
 // WRITE: map  READ: map
+
 let leafletMap = null;
 let uhfLayer = null;
 
@@ -94,12 +104,14 @@ let uhfLayer = null;
 // the data fetches and the map geometry are in. tryInitialRender() checks both
 // dataReady — WRITE: data  READ: data, map
 // mapReady  — WRITE: map   READ: data
+
 let dataReady = false;
 let mapReady = false;
 
 // A polygon selected after the map loaded but before the data did; tryInitialRender
 // switches to it once the page's own neighborhood has rendered
 // WRITE: map, data  READ: data
+
 let pendingMapSelection = null;
 
 
@@ -109,10 +121,12 @@ let pendingMapSelection = null;
 
 // Treats null, undefined, and '' alike, since geocodes arrive from three sources
 // that disagree about how they spell "absent"
+
 const isBlank = value => value == null || value === '';
 
 
 // Shorthand for the demographics renderers, which touch many individually optional nodes
+
 const nrById = id => document.getElementById(id);
 
 
@@ -123,6 +137,7 @@ const nrById = id => document.getElementById(id);
 // Sends a GA event under the names the retired nr-output pages used, so report
 // traffic stays continuous across the swap. Modelled on trackDataExplorerEvent;
 // the guard keeps a blocked gtag.js from turning a download or a panel open into a throw
+
 const trackNREvent = (eventName, eventParams) => {
 
     if (typeof gtag !== 'function') return;
@@ -142,10 +157,14 @@ const trackNREvent = (eventName, eventParams) => {
 // and had it matched it would have corrected only one side and broken the lookup
 
 // Looks up a neighborhood's UHF id from the display name shown in the UI
+
 const getUhfIdForDisplayName = displayName => {
 
     // Neighborhood metadata may not be loaded in every page context
-    if (!displayName || typeof neighborhoods === 'undefined') return null;
+
+    if (!displayName || typeof neighborhoods === 'undefined') {
+        return null;
+    }
 
     const entry = neighborhoods.find(n => n.UHF_name === displayName);
 

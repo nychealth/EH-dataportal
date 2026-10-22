@@ -11,6 +11,7 @@
 // each file, none answered from the browser cache, since they all go out at once
 // [measured 2026-10-20 over CDP]. Resolves to null on failure, and forgets the failure so
 // the next chart tries again; a chart given null keeps Vega's own URL loading
+
 let topojsonPromise = null;
 
 const loadTopojson = () => {
@@ -19,8 +20,12 @@ const loadTopojson = () => {
 
     const base = reportConfig.dataRepo + reportConfig.dataBranch + '/geography/';
     const getJSON = file => fetch(base + file).then(res => {
-        if (!res.ok) throw new Error('HTTP ' + res.status + ' for ' + file);
+
+        if (!res.ok) {
+            throw new Error('HTTP ' + res.status + ' for ' + file);
+        }
         return res.json();
+
     });
 
     topojsonPromise = Promise.all([getJSON('borough.topo.json'), getJSON('UHF42.topo.json')])
@@ -37,6 +42,7 @@ const loadTopojson = () => {
 
 
 // Draws one indicator across all neighborhoods, with geocode's own value highlighted
+
 const renderIndicatorChart = (data, destination, legendLabel, geocode, indicatorLabel) => {
 
     // Captured now, before any wait, and used for everything after it rather than a fresh
@@ -44,6 +50,7 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode, indicator
     // lookup made once the geography or the embed had settled found the NEW panel and wrote
     // the previous neighborhood's chart, or its export label, into it. A detached element
     // means its panel is gone and there is nothing to update
+
     const container = document.querySelector(destination);
 
     if (!container) {
@@ -56,20 +63,22 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode, indicator
     // try/catch no longer sees it, and the panel was left empty with the error uncaught
     // [2026-10-21: vegaEmbed replaced by a throwing stub]. vegaEmbed's own rejection is
     // caught inside embedIndicatorChart
+
     loadTopojson()
         .then(topo => embedIndicatorChart(data, container, destination, legendLabel, geocode, indicatorLabel, topo))
         .catch(err => {
 
             console.error('Error rendering chart for ' + destination + ':', err);
 
-            if (container.isConnected) container.innerHTML = '<p class="text-muted small">Unable to render chart.</p>';
-
+            if (container.isConnected) {
+                container.innerHTML = '<p class="text-muted small">Unable to render chart.</p>';
+            }
         });
-
 };
 
 
 // Builds and embeds the chart once the shared geography has settled
+
 const embedIndicatorChart = (data, container, destination, legendLabel, geocode, indicatorLabel, topo) => {
 
     debugLog('renderIndicatorChart: enter:', {
@@ -83,6 +92,7 @@ const embedIndicatorChart = (data, container, destination, legendLabel, geocode,
     // Every chart on the page is otherwise named "Vega visualization" — vega's default, and
     // identical for all 22, so nothing says which indicator a chart shows. Falls back to the
     // generic phrasing rather than to vega's default when the card has no short name
+
     const chartName = indicatorLabel
         ? indicatorLabel + ' across all NYC neighborhoods'
         : 'Indicator values across all NYC neighborhoods';
@@ -91,6 +101,7 @@ const embedIndicatorChart = (data, container, destination, legendLabel, geocode,
 
     // Inline values from the shared fetch when it succeeded, otherwise the URL for Vega to
     // load itself, as every chart did before. The format is the same either way
+
     const topoFormat = { "type": "topojson", "feature": "collection" };
     const geoBase = reportConfig.dataRepo + reportConfig.dataBranch + '/geography/';
     const boroData = topo ? { "values": topo.borough, "format": topoFormat } : { "url": geoBase + 'borough.topo.json', "format": topoFormat };
@@ -107,6 +118,7 @@ const embedIndicatorChart = (data, container, destination, legendLabel, geocode,
     // arrives as a string ("101") while geocode is usually a number, and Vega's == coerces
     // either way [verified 2026-10-20: vegaEmbed filters `datum.g == 302` and `== "302"` each
     // kept 1 of 2 rows; the highlighted chart still marks 2 shapes]
+
     const selectedTest = "datum.geo_join_id == " + JSON.stringify(String(geocode));
 
     const valueScale = { "scheme": { "name": "viridis", "extent": [1, 0] } };
@@ -119,6 +131,7 @@ const embedIndicatorChart = (data, container, destination, legendLabel, geocode,
     // ----- chart spec ----- //
 
     // Vega-Lite spec combines a choropleth map with a compact sorted bar strip
+
     const spec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         // Becomes the aria-label on the .chart-wrapper vega emits with
@@ -260,6 +273,7 @@ const embedIndicatorChart = (data, container, destination, legendLabel, geocode,
     // re-render — a view that collapsed to zero width on hide would come back blank
 
     // The panel was replaced while the geography loaded
+
     if (!container.isConnected) {
         debugLog('renderIndicatorChart: branch-stale-before-embed:', destination);
         return;
@@ -271,6 +285,7 @@ const embedIndicatorChart = (data, container, destination, legendLabel, geocode,
         // does not remove it, so each is kept for renderAll's reset to finalize. Window
         // resize listeners grew 2 → 24 → 46 across two Expand alls with a switch between
         // [2026-10-21, counted over CDP]. One whose panel went during the embed is finalized now
+
         if (!container.isConnected) {
             debugLog('renderIndicatorChart: branch-stale-embed:', destination);
             result.view.finalize();
@@ -282,9 +297,11 @@ const embedIndicatorChart = (data, container, destination, legendLabel, geocode,
         // vega-embed's actions control is a <summary> containing only an SVG, so it computes
         // to a bare "DisclosureTriangle" with no name while sitting in the tab order. There
         // is no embed option for its label, so it is set on the rendered node
-        const summary = container.querySelector('details > summary');
-        if (summary) summary.setAttribute('aria-label', 'Export or view source for ' + chartName);
 
+        const summary = container.querySelector('details > summary');
+        if (summary) {
+            summary.setAttribute('aria-label', 'Export or view source for ' + chartName);
+        }
     }).catch(err => {
 
         // vegaEmbed rejects ASYNCHRONOUSLY, so onAccordionExpand's try/catch around the
@@ -293,17 +310,19 @@ const embedIndicatorChart = (data, container, destination, legendLabel, geocode,
         // — it surfaces as an unhandled rejection, which `npm run smoke` does fail on — but
         // that carries only the underlying error and says nothing about WHICH chart or
         // panel died. Reported here rather than re-thrown: there is no caller left to catch it
+
         console.error('Error embedding chart for ' + chartName + ':', err);
         debugLog('renderIndicatorChart: branch-embed-failed:', { destination, err });
 
-        if (container.isConnected) container.innerHTML = '<p class="text-muted small">Unable to render chart.</p>';
-
+        if (container.isConnected) {
+            container.innerHTML = '<p class="text-muted small">Unable to render chart.</p>';
+        }
     });
-
 };
 
 
 // Draws a panel's chart the first time it opens, so closed panels cost nothing
+
 const onAccordionExpand = event => {
 
     const panel = event.target;
@@ -317,8 +336,11 @@ const onAccordionExpand = event => {
     // so every open counted, re-opens included, and expand-all sent one event per panel.
     // The handler is bound to every .collapse on the page, so a panel without the label
     // buildIndicatorCard writes is some other collapse and is not counted
+
     const indicatorLabel = panel.getAttribute('data-indicator-label');
-    if (indicatorLabel) trackNREvent('click_modal', { modal_name: indicatorLabel });
+    if (indicatorLabel) {
+        trackNREvent('click_modal', { modal_name: indicatorLabel });
+    }
 
     // ----- guard already-rendered ----- //
 
@@ -330,11 +352,13 @@ const onAccordionExpand = event => {
     // ----- read rendering inputs ----- //
 
     // buildIndicatorCard stashed these on the collapse node as data-* attributes
+
     const indicatorName = panel.getAttribute('data-indicator-name');
     const geocode = panel.getAttribute('data-geocode') || currentGeocode;
     const mapEl = panel.querySelector('.nr-map-container');
 
     // If required inputs are missing, keep the panel open but do not attempt render
+
     if (!indicatorName || !mapEl) {
         debugLog('onAccordionExpand: branch-missing-prereqs:', { indicatorName, hasMapEl: !!mapEl });
         return;
@@ -343,6 +367,7 @@ const onAccordionExpand = event => {
     // Cards render only after the viz fetch has settled, so a missing table here means it
     // failed (or no vizUrl is configured) and will not arrive later. Returning silently left
     // the card's "Loading..." placeholder up for good
+
     if (!vizTable) {
         debugLog('onAccordionExpand: branch-no-viz-table:', panelId);
         mapEl.innerHTML = '<p class="text-muted small">Chart data could not be loaded.</p>';
@@ -377,6 +402,7 @@ const onAccordionExpand = event => {
             let legendLabel = panel.getAttribute('data-legend-label');
 
             // Fall back to a generic legend title when no unit text is available
+
             if (!legendLabel || !String(legendLabel).trim()) {
                 debugLog('onAccordionExpand: branch-default-legend-label');
                 legendLabel = 'Value';
@@ -389,18 +415,21 @@ const onAccordionExpand = event => {
                 geocode,
                 panel.getAttribute('data-indicator-label')
             );
-
         } else {
+
             debugLog('onAccordionExpand: branch-no-summary-data:', indicatorName);
             mapEl.innerHTML = '<p class="text-muted small">No chart data available.</p>';
-        }
 
+        }
     } catch (e) {
+
         console.error('onAccordionExpand: error rendering map for ' + indicatorName + ':', e);
         mapEl.innerHTML = '<p class="text-muted small">Unable to render chart.</p>';
+
     }
 
     // Mark panel as rendered even on no-data/error to prevent repeated work
+
     renderedPanels[panelId] = true;
 
 };

@@ -108,10 +108,12 @@
             input.setAttribute('aria-expanded', options.length ? 'true' : 'false');
 
             if (!options.length) {
+
                 input.removeAttribute('aria-activedescendant');
                 input.removeAttribute('aria-controls');
                 input.removeAttribute('aria-owns');
                 return;
+
             }
 
             input.setAttribute('aria-controls', RESULTS_ID);
@@ -123,18 +125,19 @@
             let active = null;
 
             options.forEach((li, i) => {
-
                 if (!li.id) li.id = RESULTS_ID + '-option-' + i;
                 if (li.classList.contains('active')) active = li;
-
             });
 
             if (active) {
-                input.setAttribute('aria-activedescendant', active.id);
-            } else {
-                input.removeAttribute('aria-activedescendant');
-            }
 
+                input.setAttribute('aria-activedescendant', active.id);
+
+            } else {
+
+                input.removeAttribute('aria-activedescendant');
+
+            }
         };
 
         // The list is created and destroyed under <body> directly (:1565-1574), so a
@@ -151,6 +154,7 @@
             // between <li>s, and rows are replaced in place as the search term narrows
 
             if (list && list !== watched) {
+
                 watched = list;
                 listObserver.observe(list, {
                     childList: true,

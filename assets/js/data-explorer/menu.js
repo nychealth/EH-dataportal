@@ -34,7 +34,7 @@ const setDropdownLabel = (type, value) => {
     document.querySelectorAll(`.${cls}`).forEach(span => {
         span.textContent = value;
     });
-}
+};
 
 
 // ----------------------------------------------------------------------- //
@@ -66,6 +66,7 @@ const renderMenus = async (indicatorID) => {
     }
 
     updateAllMenus(indicator);
+
 };
 
 
@@ -90,6 +91,7 @@ const updateAllMenus = (indicator) => {
     let measure = indicator.Measures.find(m => m.MeasureID === DE.state.MeasureID);
 
     if (!measure) {
+
         // Recover from stale globals or URL params by snapping back to the default measure.
 
         measure = getDefaultMeasure(indicator);
@@ -120,6 +122,7 @@ const updateAllMenus = (indicator) => {
     // whatever the catalog says. See withCitywideMapFallback in global.js for the metadata side.
 
     (measure.VisOptions[0].Map || []).forEach(d => {
+
         const pretty = prettifyGeoType(d.GeoType);
         if (typeof pretty === 'string' && pretty && !seenGeos.has(pretty)) {
             seenGeos.add(pretty);
@@ -157,6 +160,7 @@ const updateAllMenus = (indicator) => {
 
     const times = (geoObj?.TimePeriodID || [])
         .map(id => {
+
             const tp = DE.lookups.timeLookup[id];
             return {
                 label: tp?.TimePeriod || id,
@@ -175,6 +179,7 @@ const updateAllMenus = (indicator) => {
     renderMenuSection(times, '.time-holder', 'time');
 
     setDropdownLabel('time', getTimeLabel(DE.state.TimePeriodID));
+
 };
 
 
@@ -229,6 +234,7 @@ const renderMenuSection = (items, destination, type) => {
             button.textContent = item.label;
 
             container.appendChild(button);
+
         });
 
         // One delegated listener per container rather than one per button, matching the
@@ -241,13 +247,12 @@ const renderMenuSection = (items, destination, type) => {
 
             const button = event.target.closest('.dropdown-item');
 
-            if (!button) {
-                return;
-            }
+            if (!button) return;
 
             const item = items[Number(button.dataset.optionIndex)];
 
             handleSelection(type, item.value, item.label);
+
         };
     });
 };
@@ -265,17 +270,11 @@ const handleSelection = (type, value, label) => {
 
     // ----- update the one changed global ----- //
 
-    if (type === 'measure') {
-        DE.state.MeasureID = value;
-    }
+    if (type === 'measure') DE.state.MeasureID = value;
 
-    if (type === 'geo') {
-        DE.state.GeoType = value;
-    }
+    if (type === 'geo') DE.state.GeoType = value;
 
-    if (type === 'time') {
-        DE.state.TimePeriodID = value;
-    }
+    if (type === 'time') DE.state.TimePeriodID = value;
 
     // ----- cascade-rebuild dependent menus ----- //
 
@@ -296,6 +295,7 @@ const handleSelection = (type, value, label) => {
     // - - - resync table filters - - - //
 
     if ((type === 'geo' || type === 'time') && typeof syncTableFiltersToMapSelection === 'function') {
+
         // Geo and time changes can invalidate the current Area search, so clear and resync first.
 
         if (typeof clearTableAreaSearch === 'function') {
@@ -303,6 +303,7 @@ const handleSelection = (type, value, label) => {
         }
 
         syncTableFiltersToMapSelection();
+
     }
 
     // ----- push new state to the url ----- //
@@ -324,4 +325,5 @@ const handleSelection = (type, value, label) => {
     // ----- re-render the active view and update the map ----- //
 
     renderCurrentView(true);
+
 };

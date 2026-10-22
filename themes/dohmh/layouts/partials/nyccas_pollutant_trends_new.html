@@ -137,6 +137,7 @@
     // ESTABLISH INITIAL RUN CHART. TAKES CHOSENPOLLUTANT JSON, AND SOURCEORSEASON VARIABLE
 
     function runChart(cp, sos) {
+
       let filterFor = cp.pollutant;
       let chartTitle = cp.name + " (" + cp.units + ")";
       let units = cp.units;
@@ -155,6 +156,7 @@
       // SET UP BASICS FOR SEASONAL DATA
 
       if (sos === "Season") {
+
         basicFilter = {
           filter: `datum.Pollutant === '${filterFor}' && datum.Source === 'ALL' && datum.Season != 'ALL'`,
         };
@@ -173,6 +175,7 @@
           };
         }
       } else if (sos === "Source") {
+
         // SET UP BASICS FOR DATA BY SOURCE
 
         basicFilter = {
@@ -185,11 +188,13 @@
           { title: "Year", field: "YearString" },
         ];
         annualLineTransform = [{ filter: "datum.Source === 'ALL'" }];
+
       }
 
       // SPECIFICS FOR SO2
 
       if (filterFor === "SO2" && sos === "Source") {
+
         basicFilter = {
           filter: `datum.Pollutant === '${filterFor}' && datum.Season === 'Winter' && (datum.Source === '${chosenSource}' || datum.Source === 'ALL')`,
         };
@@ -199,15 +204,18 @@
           { title: "Time", field: "Seasonyear" },
         ]),
           (annualLineTransform = [{ filter: "datum.Source === 'ALL'" }]);
+
       }
 
       // SPECIFICS FOR O3
 
       if (filterFor === "O3" && sos === "Source") {
+
         basicFilter = {
           filter: `datum.Pollutant === '${filterFor}' && datum.Season === 'Summer' && (datum.Source === '${chosenSource}' || datum.Source === 'ALL')`,
         };
         annualLineTransform = [{ filter: "datum.Source === 'ALL'" }];
+
       }
 
       // get date for x-axis
@@ -468,6 +476,7 @@
       };
 
       vegaEmbed("#newVis", newVis, { renderer: "svg", actions: true });
+
     }
 
     // INITIALIZE CHART AND SOURCES
@@ -480,7 +489,9 @@
     const selectButtons = document.querySelectorAll(".btn2");
 
     for (var i = 0; i < selectButtons.length; i++) {
+
       selectButtons[i].addEventListener("click", function () {
+
         for (let button of document.querySelectorAll(".btn2"))
           button.classList.remove("active");
         this.className += " active";
@@ -492,15 +503,18 @@
         sourceOrSeason = "Season";
         document.getElementById("bySeasonButton").classList.add("active");
         runChart(chosenPollutant, sourceOrSeason);
+
       });
     }
 
     function writeSources(x) {
+
       let sources = x.Sources;
       var cont = document.getElementById("sourceContainer");
       cont.innerHTML = ""; // Clear container
 
       for (let j = 0; j < sources.length; j++) {
+
         let thisSource = sources[j];
         let thisButton = document.createElement("button");
         thisButton.type = "button";
@@ -516,34 +530,42 @@
         thisButton.textContent = thisSource;
 
         thisButton.addEventListener("click", function () {
+
           document.getElementById("bySeasonButton").classList.remove("active");
           for (let button of document.querySelectorAll(".srcbtn"))
             button.classList.remove("active");
           this.className += " active";
           setSource(thisSource);
+
         });
 
         cont.appendChild(thisButton);
+
       }
 
       var sourceNote =
         '<div class="fs-xs mt-1">Data by sources shows data by neighborhoods with <strong>high</strong> concentration of these sources, <strong>medium</strong> concentrations, or <strong>low</strong> concentrations.</div>';
       // cont.innerHTML += sourceNote;
+
     }
 
     function setSource(x) {
+
       console.log("source set for " + x);
       chosenSource = x;
       sourceOrSeason = "Source";
       runChart(chosenPollutant, sourceOrSeason);
+
     }
 
     function setSeason() {
+
       document.getElementById("bySeasonButton").classList.add("active");
       for (let button of document.querySelectorAll(".srcbtn"))
         button.classList.remove("active");
       sourceOrSeason = "Season";
       runChart(chosenPollutant, sourceOrSeason);
+
     }
   </script>
 </div>

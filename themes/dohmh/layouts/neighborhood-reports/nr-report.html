@@ -366,6 +366,7 @@
 <script>
     // Redraws the print-only QR code from the current address, which renderAll() has just
     // rewritten if the reader switched neighborhood on the map
+
     function renderQRCode() {
 
         const destination = document.getElementById('qrcode');
@@ -376,16 +377,19 @@
         // and a tracking parameter such as fbclid can push location.href past what type 10
         // holds (213 bytes), which throws inside renderAll and skips the title and
         // live-region updates after it. A printed code has no use for either part anyway
+
         const reportUrl = location.origin + location.pathname;
 
         // Type 10 at error-correction level M: production's settings. The longest report
         // URL on the live site is 144 characters, leaving 69 bytes of headroom
+
         const code = qrcode(10, 'M');
         code.addData(reportUrl);
         code.make();
 
         // (2, 8) are createImgTag's own defaults — passed explicitly only because alt is
         // its third argument, and the library omits the attribute entirely when it is absent
+
         destination.innerHTML = code.createImgTag(2, 8, 'QR code linking to this report at ' + reportUrl);
 
     }

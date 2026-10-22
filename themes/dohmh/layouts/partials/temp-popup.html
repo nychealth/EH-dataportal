@@ -98,8 +98,11 @@
         let aqi = null;
 
         try {
+
             const aqiRes = await fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10032&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F');
-            if (!aqiRes.ok) throw new Error(`AirNow returned HTTP ${aqiRes.status}`);
+            if (!aqiRes.ok) {
+                throw new Error(`AirNow returned HTTP ${aqiRes.status}`);
+            }
 
             const aqiData = await aqiRes.json();
             const categories = (Array.isArray(aqiData) ? aqiData : [])
@@ -108,11 +111,14 @@
                 .filter(number => Number.isFinite(number));
 
             if (categories.length) aqi = Math.max(...categories);
+
         } catch (error) {
+
             // warn, not error: smoke fails the build on console errors, and an
             // unreachable third party is not this site's regression.
 
             console.warn(`Air quality unavailable: ${error.message}`);
+
         }
 
         const isBadAQ = aqi !== null && aqi > 2;
@@ -122,7 +128,6 @@
         if (isHot || isCold || isBadAQ) {
             fireWeatherModal({ isHot, isCold, isBadAQ, high, low, aqi });
         }
-
     };
 
 
@@ -133,13 +138,16 @@
     // Maps an AirNow AQI category number to its display text and colors.
 
     const getAqiInterpretation = (aqi) => {
+
         switch (String(aqi)) {
+
             case '1': return { text: 'Good', bgColor: '#00E400' };
             case '2': return { text: 'Moderate', bgColor: '#FFFF00' };
             case '3': return { text: 'Unhealthy for sensitive groups', bgColor: '#FF7E00' };
             case '4': return { text: 'Unhealthy', bgColor: '#FF0000', color: 'white' };
             case '5': return { text: 'Very unhealthy', bgColor: '#993399', color: 'white' };
             case '6': return { text: 'Hazardous', bgColor: '#7E0023', color: 'white' };
+
         }
     };
 
@@ -170,21 +178,29 @@
         }
 
         if (isBadAQ) {
+
             const aqiMeaning = document.getElementById('aqimeaning');
             const interpretation = getAqiInterpretation(aqi);
 
             aqiMeaning.style['background-color'] = interpretation.bgColor;
             aqiMeaning.style.color = interpretation.color || '';
             aqiMeaning.textContent = interpretation.text;
+
         }
 
         // ----- title reflects whichever event(s) are active ----- //
 
         const activeEvents = [];
 
-        if (isHot) activeEvents.push({ icon: 'fa-temperature-high', label: "It's hot!" });
-        if (isCold) activeEvents.push({ icon: 'fa-temperature-high', label: "It's cold!" });
-        if (isBadAQ) activeEvents.push({ icon: 'fa-smog', label: 'Air quality alert!' });
+        if (isHot) {
+            activeEvents.push({ icon: 'fa-temperature-high', label: "It's hot!" });
+        }
+        if (isCold) {
+            activeEvents.push({ icon: 'fa-temperature-high', label: "It's cold!" });
+        }
+        if (isBadAQ) {
+            activeEvents.push({ icon: 'fa-smog', label: 'Air quality alert!' });
+        }
 
         const icons = activeEvents
             .map(event => `<i class="fas ${event.icon} mr-1" aria-hidden="true"></i>`)

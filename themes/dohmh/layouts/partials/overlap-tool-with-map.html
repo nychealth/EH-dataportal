@@ -76,7 +76,7 @@
         "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/UHF42.geojson",
         "property": "tbd"
     }
-  ]
+  ];
 
 
 
@@ -87,6 +87,7 @@
 
 
     function initializeMap() {
+
         // Add a basemap
 
         L.tileLayer(
@@ -105,34 +106,33 @@
                 icon: "fas fa-undo",
                 
                 onClick: function() {
-                    
                     reset();
                 }
             }]
         }).addTo(map);    
+
     }
 
     initializeMap();
 
     function reset() {
-      console.log('Reset')
+
+      console.log('Reset');
       // loadGeoJSON("CD");
 
-      document.getElementById('overlaps').innerHTML = ''
-      document.getElementById('neighbHolder').innerHTML = ''
-      document.getElementById('prompt').classList.add('hide')
+      document.getElementById('overlaps').innerHTML = '';
+      document.getElementById('neighbHolder').innerHTML = '';
+      document.getElementById('prompt').classList.add('hide');
 
 
       var radioButtons = document.querySelectorAll('input[name="inlineRadioOptions"]');
       var selectedValue = null;
 
       radioButtons.forEach(rb => {
-        if (rb.checked) {
-          selectedValue = rb.value;
-        }
+        if (rb.checked) selectedValue = rb.value;
       });
 
-      loadGeoJSON(selectedValue)
+      loadGeoJSON(selectedValue);
 
     }
 
@@ -146,6 +146,7 @@
     // Function to load GeoJSON by name
 
     function loadGeoJSON(name) {
+
       const match = geojsonURLs.find(d => d.name === name);
       if (!match) {
         console.error("No matching GeoJSON for", name);
@@ -158,15 +159,13 @@
 
       // Remove old layer if exists
 
-      if (geojsonLayer) {
-        map.removeLayer(geojsonLayer);
-      }
+      if (geojsonLayer) map.removeLayer(geojsonLayer);
 
         // Remove UHF layer if exists
 
         if (UHFLayer) {
             map.removeLayer(UHFLayer);
-            UHFLayer = null
+            UHFLayer = null;
         }
 
 
@@ -177,8 +176,11 @@
       fetch(match.url)
         .then(response => response.json())
         .then(data => {
+
           geojsonLayer = L.geoJSON(data, {
+
             style: function (feature) {
+
               // Default style before any click
 
               return {
@@ -194,11 +196,17 @@
 
                 let tooltipLabel;
                 if (name === 'CD') {
+
                   tooltipLabel = feature.properties.GEONAME;
+
                 } else if (name === 'CCD') {
+
                   tooltipLabel = 'Council District #' + feature.properties[currentProperty];
+
                 } else {
+
                   tooltipLabel = feature.properties[currentProperty];
+
                 }
 
                 // Bind tooltip (hover label)
@@ -210,15 +218,20 @@
               // bind actions
 
               layer.on("click", function () {
+
                 const id = feature.properties[currentProperty];
                 let neighborhoodName;
 
                 if (name === 'CD') {
+
                   neighborhoodName = feature.properties.GEONAME;
                   getUHFs('CD', id);
+
                 } else if (name === 'CCD') {
+
                   neighborhoodName = 'Council District #' + id;
                   getUHFs('CCD', id);
+
                 }
 
                 document.getElementById('neighbHolder').innerHTML = neighborhoodName;
@@ -233,15 +246,15 @@
                 // Remove tooltips from non-selected features
 
                 geojsonLayer.eachLayer(function (l) {
-                  if (l !== layer) {
-                    l.unbindTooltip();
-                  }
+                  if (l !== layer) l.unbindTooltip();
                 });
 
                 // Reset styles for all features
 
                 geojsonLayer.setStyle(function (f) {
+
                   if (f.properties[currentProperty] === selectedID) {
+
                     // Clicked feature highlighted
 
                     return {
@@ -251,6 +264,7 @@
                       fillOpacity: 0.6
                     };
                   } else {
+
                     // Non-clicked features invisible
 
                     return {
@@ -266,14 +280,15 @@
 
                 map.fitBounds(layer.getBounds());
                 layer.openPopup();
-              });
 
+              });
             }
           }).addTo(map);
 
           // Fit bounds to all features initially
 
           map.fitBounds(geojsonLayer.getBounds());
+
         });
     }
 
@@ -281,7 +296,9 @@
 
     const radios = document.querySelectorAll('input[name="inlineRadioOptions"]');
     radios.forEach(radio => {
+
       radio.addEventListener('change', function () {
+
         if (this.checked) {
           console.log("Loading:", this.value);
           loadGeoJSON(this.value);
@@ -307,6 +324,7 @@ function drawUHFs(UHF_ids) {
   fetch("https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/UHF42.geojson")
     .then(response => response.json())
     .then(data => {
+
       // Filter features for all matching UHF_ids
 
       const features = data.features.filter(f => UHF_ids.includes(f.properties.GEOCODE));
@@ -318,6 +336,7 @@ function drawUHFs(UHF_ids) {
       // Add all matching polygons as a single layer
 
       UHFLayer = L.geoJSON(features, {
+
         style: {
           color: "red",
           weight: 1,
@@ -326,6 +345,7 @@ function drawUHFs(UHF_ids) {
           fillOpacity: 0
         },
         onEachFeature: function (feature, layer) {
+
           const tooltipContent = `UHF42:<br>
                                   ${feature.properties.GEONAME}`;
           layer.bindTooltip(tooltipContent, {
@@ -353,48 +373,48 @@ function drawUHFs(UHF_ids) {
     var thisOverlap ;
     function getUHFs(from, geo) {
 
-        document.getElementById('prompt').classList.remove('hide')
+        document.getElementById('prompt').classList.remove('hide');
 
-        var overlaps = document.getElementById('overlaps')
-        overlaps.innerHTML = ''
+        var overlaps = document.getElementById('overlaps');
+        overlaps.innerHTML = '';
 
         if (from === 'CCD') {
 
-            console.log('Getting UHFs for City Council District ' + geo)
+            console.log('Getting UHFs for City Council District ' + geo);
 
 
             // Loop through source JS
 
-            thisOverlap = CCDtoUHF.filter(neighborhood => neighborhood.CCD == geo)
+            thisOverlap = CCDtoUHF.filter(neighborhood => neighborhood.CCD == geo);
 
         } else if (from === 'CD') {
 
-            console.log('Getting UHFs for Community District ' + geo)
+            console.log('Getting UHFs for Community District ' + geo);
 
             // Loop through source JS
 
-            thisOverlap = CDtoUHF.filter(cd => cd.CD == geo)
+            thisOverlap = CDtoUHF.filter(cd => cd.CD == geo);
 
         } else {
 
-            console.log('Error.')
+            console.log('Error.');
 
         }
 
-        console.log('Overlapping neighborhoods:')
-        console.log(thisOverlap[0].matchingUHFs)
+        console.log('Overlapping neighborhoods:');
+        console.log(thisOverlap[0].matchingUHFs);
         const uhfIds = thisOverlap[0].matchingUHFs.map(item => item.UHF_id);
-        drawUHFs(uhfIds)
+        drawUHFs(uhfIds);
 
 
         // Print matching overlaps to page
 
         thisOverlap[0].matchingUHFs.forEach(ol => {
 
-            var uhfid = ol.UHF_id
-            var name = ol.GEONAME
-            var overl = ol.percent.toFixed(1)
-            var dest = ol.page_name
+            var uhfid = ol.UHF_id;
+            var name = ol.GEONAME;
+            var overl = ol.percent.toFixed(1);
+            var dest = ol.page_name;
             var popol = (from === 'CCD') 
                 ? ol.pop_pct_of_ccd.toFixed(1) 
                 : (from === 'CD') 
@@ -404,18 +424,22 @@ function drawUHFs(UHF_ids) {
             // set minimum overlap
 
             if (overl < 0.1) {
-                return
+
+                return;
+
                 } else {
+
                 overlaps.innerHTML += `
                 <a href="{{ .Site.BaseURL }}neighborhood-reports/${dest}" class="dropdown-item text-primary">
                     <span class="font-weight-bold">
                     ${name} 
                     </span> <br>
                     Overlap: ${overl}% area | ${popol}% population
-                </a>`
+                </a>`;
+
                 }
             }
-        )
+        );
     }
 
       

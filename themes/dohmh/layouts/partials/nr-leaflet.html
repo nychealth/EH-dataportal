@@ -20,6 +20,7 @@
 
     // The neighborhood index pages' own neighborhood: its layer once the GeoJSON is in, and
     // the style that marks it, which resetHighlight puts back after a hover
+
     let ownNeighborhoodLayer = null;
 
     const OWN_NEIGHBORHOOD_STYLE = {
@@ -41,6 +42,7 @@
     // already cached a click from one neighborhood to the next still showed an empty map for a
     // quarter second — tiles in the page at 68ms, fully opaque at 331ms [measured 2026-10-19,
     // southwest_queens/, warm cache]. It also turns off Leaflet's tooltip fade
+
     let map = L.map("map", { fadeAnimation: false }).setView([lat, lng], zoom); // [Lat,Long],Zoom
 
     L.tileLayer(
@@ -59,25 +61,30 @@
 
     // Back to the whole city, where every polygon can be reached by pointer. Same control as the
     // report page's map.js and the congestion pricing report's: easyButton, fas fa-undo
+
     const resetZoom = L.easyButton({
         position: "bottomleft",
         states: [{
             title: "Reset zoom",
             icon: "fas fa-undo",
             onClick: () => {
-                if (uhf_geojson) map.fitBounds(uhf_geojson.getBounds(), { padding: [10, 10], animate: false });
+                if (uhf_geojson) {
+                    map.fitBounds(uhf_geojson.getBounds(), { padding: [10, 10], animate: false });
+                }
             }
         }]
     }).addTo(map);
 
     // easyButton puts the label only in `title`, and the button's computed name came out empty
     // with the icon inside it [measured 2026-10-20, Playwright ariaSnapshot: button ""]
+
     resetZoom.button.setAttribute("aria-label", "Reset zoom");
     resetZoom.button.querySelectorAll(".fas").forEach((i) => i.setAttribute("aria-hidden", "true"));
 
     // Now, not only once the polygons are in: the container, the zoom links and the
     // attribution links already exist, and if the GeoJSON never arrives the second call
     // below never runs, which left those stops reachable inside the hidden map
+
     removeHiddenMapFromTabOrder();
 
     // add and style geographies
@@ -93,14 +100,13 @@
             const data = JSON.parse(text);
 
             uhf_geojson = L.geoJSON(data, {
-
                 style: style,
                 onEachFeature: onEachFeature,
                 filter: (feature) => feature.properties.GEOCODE != 0
-
             }).addTo(map);
 
             // addTo is synchronous, so every polygon has its <path> by here
+
             nameNeighborhoodPolygons();
 
 
@@ -129,6 +135,7 @@
                     targetLayer.setStyle(OWN_NEIGHBORHOOD_STYLE);
 
                     // "page" because activating this polygon leads to the page already shown
+
                     const ownPath = targetLayer.getElement();
                     if (ownPath) ownPath.setAttribute("aria-current", "page");
 
@@ -141,7 +148,6 @@
                     console.warn("No matching GEOCODE found:", geocode);
 
                 }
-
             }
 
             // The neighborhood index pages frame their own neighborhood; the landing and topic
@@ -157,11 +163,13 @@
             // zoomSnap has to be 0 because the default of 1 makes fitBounds round *down* to a
             // whole zoom level — measured 2026-08-09, that left the city spanning 59% of a
             // 679px-wide box.
+
             map.options.zoomSnap = 0;
 
             // animate: false — the map lands on its framing rather than zooming to it from the
             // zoom-10 placeholder view, and a zoom click made during that animation was
             // dropped [2026-10-19]
+
             const framing = ownNeighborhoodLayer ? ownNeighborhoodLayer.getBounds() : uhf_geojson.getBounds();
             map.fitBounds(framing, { padding: [10, 10], animate: false });
 
@@ -198,6 +206,7 @@
     // define styl function
 
     function style(feature) {
+
         return {
             weight: 1.5,
             opacity: 1,
@@ -220,14 +229,11 @@
         // set event handlers for each layer
 
         layer.on({
-
             mouseover: highlightFeature,
             mouseout: resetHighlight,
             click: selectNeighborhood,
             keydown: onNeighborhoodKeyDown,
-
         });
-
     }
 
     // The name the rest of the site uses: uhflist's UHF_name, which the neighborhood list,
@@ -266,7 +272,6 @@
             el.setAttribute("aria-label", neighborhoodDisplayName(layer.feature));
 
         });
-
     }
 
     // Enter and Space on a focused polygon do what a click does. Leaflet's map container
@@ -276,9 +281,12 @@
 
         const key = e.originalEvent && e.originalEvent.key;
 
-        if (key !== "Enter" && key !== " " && key !== "Spacebar") return;
+        if (key !== "Enter" && key !== " " && key !== "Spacebar") {
+            return;
+        }
 
         // Space would otherwise scroll the page as it navigates away
+
         e.originalEvent.preventDefault();
 
         selectNeighborhood(e);
@@ -331,7 +339,6 @@
             color: "black",
             dashArray: "1",
         });
-
     }
     
     // --------------------------------------------------------------------------------------------------- // 
@@ -345,7 +352,7 @@
     // don't collide, and the variable stays defined on report pages that load
     // only this partial. (used on the home page)
 
-    var intendedDestinationName
+    var intendedDestinationName;
     
     // console.log('*** GETTING TOPIC AND NEIGHBORHOOD TO POWER NAVIGATION')
     
@@ -359,10 +366,11 @@
     // Topic key -> URL slug, from data/globals/NR_topics.yml — the source the content adapter
     // generates the report URLs from, so the two cannot disagree. The landing page's topic
     // buttons use the same keys as their ids (neighborhood-reports/section.html)
-    {{- $topicSlugs := dict -}}
-    {{- range site.Data.globals.NR_topics -}}
-        {{- $topicSlugs = merge $topicSlugs (dict .key .slug) -}}
-    {{- end }}
+
+    {{- $topicSlugs := dict -}};
+    {{- range site.Data.globals.NR_topics -}};
+        {{- $topicSlugs = merge $topicSlugs (dict .key .slug) -}};
+    {{- end }};
 
     const topicSlugs = {{ $topicSlugs }};
     
@@ -372,8 +380,8 @@
 
     function getReportAndNeighborhood(x) {
 
-        const url = window.location.pathname.match(/neighborhood-reports.*/)[0]
-        let urlPieces = url.split("/")
+        const url = window.location.pathname.match(/neighborhood-reports.*/)[0];
+        let urlPieces = url.split("/");
 
         // console.log('urlPieces', urlPieces)
         
@@ -381,19 +389,18 @@
 
         if (topicValues.includes(urlPieces[1])) {
 
-            chosenNeighborhood = null
+            chosenNeighborhood = null;
             chosenReport = (urlPieces[1] && urlPieces[1].length > 2) ? urlPieces[1] : null;
 
         } else {
 
-            chosenNeighborhood = (urlPieces[1] && urlPieces[1].length > 2) ? urlPieces[1] : null
+            chosenNeighborhood = (urlPieces[1] && urlPieces[1].length > 2) ? urlPieces[1] : null;
             chosenReport = (urlPieces[2] && urlPieces[2].length > 2) ? urlPieces[2] : null;
 
         }
-
     }
 
-    getReportAndNeighborhood(window.location.href)
+    getReportAndNeighborhood(window.location.href);
 
     
     // --------------------------------------------------------------------------------------------------- // 
@@ -419,6 +426,7 @@
         
         // Find the matching neighborhood - 'neighborhoods' is a global emitted by the
         // lib-uhflist.html partial from data/globals/uhflist.json
+
         const match = neighborhoods.find(
             n => n.UHF_id == geocodeClicked
         );
@@ -429,11 +437,13 @@
 
             // Report destination: a topic button's choice on the NR landing page, or the
             // topic already being read. Null on a neighborhood index, which has neither.
+
             const dest = intendedDestinationName || chosenReport;
 
             // Neighborhood-first URLs. Both shapes are pages the content adapter generates,
             // so the slug travels in the path — there is no sessionStorage hand-off left to
             // make, and no clean topic URL that would read one.
+
             const buildURL = dest
                 ? {{ relURL "neighborhood-reports/" }} + match.page_name + '/' + dest + '/'
                 : {{ relURL "neighborhood-reports/" }} + match.page_name + '/';
@@ -444,7 +454,9 @@
             // console.log(buildURL)
 
         } else {
+
             console.warn("No matching neighborhood for GEOCODE:", geocodeClicked);
+
         }
     }
     

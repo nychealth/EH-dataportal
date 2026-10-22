@@ -54,7 +54,6 @@
     // Hand-digitized outline of the Congestion Relief Zone boundary
 
     var cpAreaGeoJSON = {
-
         type: 'FeatureCollection',
         features: [
             {
@@ -109,10 +108,15 @@
             title: "Reset zoom",
             icon: "fas fa-undo",
             onClick: (btn, map) => { 
+
                 if (cpAreaLayer.getBounds && cpAreaLayer.getBounds().isValid()) {
+
                     map.fitBounds(cpAreaLayer.getBounds(), { padding: [20, 20] });
+
                 } else {
-                    map.setView([40.715554, -74.0026642], 10)
+
+                    map.setView([40.715554, -74.0026642], 10);
+
                 }
             }
         }]
@@ -123,9 +127,7 @@
 
     window.cpReportZoomToSite = function (siteName) {
         var coords = CP_SITES[siteName] && CP_SITES[siteName].mapCoords;
-        if (!coords) {
-            return;
-        }
+        if (!coords) return;
         map.setView([coords.lat, coords.lng], coords.zoom);
     };
 
@@ -161,23 +163,26 @@
                 map.setView(event.latlng, 13);
             });
 
-            if (!site._icon) {
-                return;
-            }
+            if (!site._icon) return;
 
             // - - - color-code the pin by site type - - - //
 
             if (siteData.SiteType === 'Traffic Counter') {
+
                 site._icon.classList.add('traffic');
+
             } else if (siteData.SiteType === 'Integrated Monitor') {
+
                 site._icon.classList.add('integrated-monitor');
+
             } else if (siteData.SiteType === 'PM2.5 Real-Time Monitor') {
+
                 site._icon.classList.add('PM-monitor');
+
             }
         });
 
         map.invalidateSize();
 
     });
-    
 })();

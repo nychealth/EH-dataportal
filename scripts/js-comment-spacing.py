@@ -28,9 +28,9 @@ tree and prove the diff is empty-line insertions and nothing else:
 
 The first two cannot see a blank line inserted inside a template literal, which
 changes the string while still being an empty-line insertion; the third compares
-each changed .js file's token stream against HEAD and can. It does not cover the
-<script> bodies of .html targets, whose Go-template syntax a JS tokenizer cannot
-read — review those insertions by eye.
+each changed .js file's token stream against HEAD and can. It covers the
+<script> bodies of .html targets too, with Hugo actions masked, and names any it
+cannot tokenize.
 
 Targets come from `git ls-files`, not a directory walk: the checks above read
 `git diff`, which cannot show an edit to an untracked file, so a walk would rewrite
@@ -58,11 +58,22 @@ CONTINUATION = re.compile(r'^\s*(?:[.)\]}?:,+]|&&|\|\||else\b|catch\b|finally\b|
 
 # Vendored third-party files, which are not ours to restyle. Hand-maintained: a
 # vendored file added after this list was written will be reformatted like our own.
+# VENDORED, EXEMPT_DIRS and TARGET_ROOTS are mirrored in scripts/js-sweep-targets.mjs;
+# change them in both.
 VENDORED = (
     "assets/js/L.colorIcon.js",                  # Leaflet.ColorIcon, MIT
     "assets/js/color-convert.js",                # from a public gist
     "assets/js/naturalSort.js",                  # Jim Palmer's natural sort, MIT
+    "content/data-features/healthy-homes-info/source/assets/js/bootstrap.js",  # Bootstrap 4.1.3, minified
     "content/data-features/healthy-homes-info/source/assets/js/plugins.js",  # HTML5 Boilerplate
+    "content/data-features/healthy-homes-info/source/assets/js/popper.js",   # Popper, minified
+)
+
+# The retiring explorer, exempt in documents/js-conventions.md § Scope: its JS and
+# the layouts that carry its inline scripts
+EXEMPT_DIRS = (
+    "assets/js/data-explorer-old/",
+    "themes/dohmh/layouts/data-explorer-old/",
 )
 
 TARGET_ROOTS = (
@@ -185,7 +196,7 @@ if __name__ == '__main__':
                                 capture_output=True, check=True).stdout.decode("utf-8")
         targets += [p for p in listed.split("\0") if p.endswith(exts)]
 
-    targets = [t for t in targets if t not in VENDORED]
+    targets = [t for t in targets if t not in VENDORED and not t.startswith(EXEMPT_DIRS)]
 
     if len(sys.argv) > 1:
         targets = [t for t in targets if sys.argv[1] in t]

@@ -338,6 +338,7 @@
   var dataFile;
 
   async function ingestData() {
+
     // Wait for the CSV to finish loading
 
     const data = await d3.csv("data/map-data.csv");
@@ -348,6 +349,7 @@
 
     drawMap(wage, scenario, "poverty");
     drawMap(wage, scenario, "prematuremort");
+
   }
 
   ingestData();
@@ -357,9 +359,11 @@
   }
 
   function drawMap(w, s, v) {
+
     // console.log(w,s,v)
 
     if (v === "poverty" || v === "Poverty") {
+
       var destination = "#mapDest";
       var subtitle = "low income";
       var variable = "poverty";
@@ -370,7 +374,9 @@
       var tooltipLabel = "Low income at baseline";
       var label2 = " ";
       var label3 = " percentage points";
+
     } else {
+
       var destination = "#mapDest2";
       var subtitle = "premature death";
       var variable = "prematuremort";
@@ -381,6 +387,7 @@
       var tooltipLabel = "Expected premature death";
       var label2 = " ";
       var label3 = " premature deaths per 100,000 people";
+
     }
 
     // Filter the data based on the arguments
@@ -571,9 +578,11 @@
     };
 
     vegaEmbed(destination, mapSpec, { renderer: "svg", actions: false });
+
   }
 
   function drawChart(w, s) {
+
     const newWage = w.includes("20")
       ? "With $20 min wage"
       : w.includes("30")
@@ -814,10 +823,13 @@
   // helper to wire up a group of buttons
 
   function setupButtonGroup(selector, variableName) {
+
     const buttons = document.querySelectorAll(selector);
 
     buttons.forEach((btn) => {
+
       btn.addEventListener("click", () => {
+
         // remove active from all in this group
 
         buttons.forEach((b) => b.classList.remove("active"));
@@ -828,6 +840,7 @@
         // update variable
 
         if (variableName === "wage") {
+
           wage = btn.dataset.value;
           // Show corresponding div, hide others
 
@@ -836,6 +849,7 @@
             div.style.display = div.id === wage ? "block" : "none";
           });
         } else if (variableName === "scenario") {
+
           scenario = btn.dataset.value;
 
           // Show corresponding div, hide others
@@ -850,6 +864,7 @@
         drawChart(wage, scenario);
         drawMap(wage, scenario, "poverty");
         drawMap(wage, scenario, "prematuremort");
+
       });
     });
   }

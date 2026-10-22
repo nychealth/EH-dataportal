@@ -65,11 +65,9 @@
             site.on('click', function (event) {
                 map.setView(event.latlng, 13);
             });
-
         });
 
         map.invalidateSize();
 
     });
-
 })();

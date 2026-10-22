@@ -11,6 +11,7 @@
 const geojsonCache = {};
 
 async function preloadGeoJSONs() {
+
   const uniqueFiles = [...new Set(config.map(c => c.geoFile))];
 
   const promises = uniqueFiles.map(file =>
@@ -24,6 +25,7 @@ async function preloadGeoJSONs() {
 
   await Promise.all(promises);
   console.log("✅ All GeoJSONs preloaded:", Object.keys(geojsonCache));
+
 }
 
 // ----------------------------------------------
@@ -57,39 +59,46 @@ async function preloadGeoJSONs() {
 // ----------------------------------------------
 
 function changeText(x) {
+
     // console.log('Running text for ', x)
 
-    var next = x+1
-    var last = x-1
-    var textHolder = document.getElementById('thisText')
-    var nextButton = document.getElementById('nextButton')
+    var next = x+1;
+    var last = x-1;
+    var textHolder = document.getElementById('thisText');
+    var nextButton = document.getElementById('nextButton');
 
-    textHolder.innerHTML = config[x].text
-    textHolder.classList.add('overflower')
+    textHolder.innerHTML = config[x].text;
+    textHolder.classList.add('overflower');
 
-    nextButton.setAttribute('onclick',`changeText(${next})`)
-    nextButton.classList.remove('hide')
+    nextButton.setAttribute('onclick',`changeText(${next})`);
+    nextButton.classList.remove('hide');
 
     // Add the "Go back" button
 
     if (x == 1) {
-        document.getElementById('lastButton').classList.remove('hide')
+
+        document.getElementById('lastButton').classList.remove('hide');
+
     } else if (x == 0 ) {
-        document.getElementById('lastButton').classList.add('hide')
+
+        document.getElementById('lastButton').classList.add('hide');
+
     } else {}
 
-    document.getElementById('lastButton').setAttribute('onclick',`changeText(${last})`)
+    document.getElementById('lastButton').setAttribute('onclick',`changeText(${last})`);
 
     // load GeoJSON as specified in config, if it exists
 
-    loadGeoJSON(config[x])
+    loadGeoJSON(config[x]);
 
     // if we're at the end of the config, then, remove the Next Button
 
     if (next == config.length) {
-        console.log('We are done here!')
-        nextButton.classList.add('hide')
-        return
+
+        console.log('We are done here!');
+        nextButton.classList.add('hide');
+        return;
+
     } else {}
 
 }
@@ -100,6 +109,7 @@ function changeText(x) {
 // ----------------------------------------------
 
 function loadGeoJSON(config = {}) {
+
   const {
     geoFile = null,
     choropleth = null,
@@ -122,19 +132,22 @@ function loadGeoJSON(config = {}) {
 
   let dataPromise;
   if (geojsonCache && geojsonCache[geoFile]) {
+
     dataPromise = Promise.resolve(geojsonCache[geoFile]);
+
   } else {
+
     console.warn("GeoJSON not preloaded, fetching:", geoFile);
     dataPromise = fetch(geoFile).then(res => res.json());
+
   }
 
   dataPromise
     .then(data => {
+
       // Clear existing GeoJSON layer
 
-      if (geojsonLayer) {
-        map.removeLayer(geojsonLayer);
-      }
+      if (geojsonLayer) map.removeLayer(geojsonLayer);
 
       let min = Infinity;
       let max = -Infinity;
@@ -142,7 +155,9 @@ function loadGeoJSON(config = {}) {
       // --- Determine range for choropleth ---
 
       if (choropleth && valueField) {
+
         data.features.forEach(f => {
+
           const val = f.properties[valueField];
           if (typeof val === "number") {
             if (val < min) min = val;
@@ -154,14 +169,19 @@ function loadGeoJSON(config = {}) {
       // --- Handle Zoom ---
 
       if (zoom === true) {
+
         map.setView([40.675377, -73.872106], 15);
+
       } else {
+
         map.setView([lat, lng], 11);
+
       }
 
       // --- Handle Pins ---
 
       if (pin === true) {
+
         // Add pin to isochrone center
 
         L.marker([40.675377, -73.872106], { icon: customIcon }).addTo(map);
@@ -181,7 +201,9 @@ function loadGeoJSON(config = {}) {
             }
           )
           .openPopup();
+
       } else {
+
         // Clear all popups and pins
 
         map.eachLayer(layer => {
@@ -194,6 +216,7 @@ function loadGeoJSON(config = {}) {
       // --- Helper: map value -> color ---
 
       function getColor(value) {
+
         if (!choropleth || value == null || min === max) {
           return "green"; // fallback
         }
@@ -207,16 +230,20 @@ function loadGeoJSON(config = {}) {
         const b = Math.round(start[2] + t * (end[2] - start[2]));
 
         return `rgb(${r},${g},${b})`;
+
       }
 
       // --- Create GeoJSON Layer ---
 
       geojsonLayer = L.geoJSON(data, {
+
         pointToLayer: (feature, latlng) =>
           L.marker(latlng, { icon: customIcon }),
 
         style: feature => {
+
           if (choropleth && valueField && feature.properties[valueField] !== undefined) {
+
             const value = feature.properties[valueField];
             return {
               color: "#333333",
@@ -226,6 +253,7 @@ function loadGeoJSON(config = {}) {
               fillOpacity: 0.7
             };
           } else {
+
             return {
               color: "#333333",
               weight: 2,
@@ -237,7 +265,9 @@ function loadGeoJSON(config = {}) {
         },
 
         onEachFeature: (feature, layer) => {
+
           if (choropleth) {
+
             // --- Choropleth case ---
 
             if (suppressTooltip === true) return; // suppress tooltip in zoom mode
@@ -245,15 +275,15 @@ function loadGeoJSON(config = {}) {
             const name = feature.properties[geonameField];
             let val = feature.properties[valueField];
 
-            if (labelName === "Block Group") {
-              val *= 100;
-            }
+            if (labelName === "Block Group") val *= 100;
 
             val = val.toFixed(2);
             const tooltipContent = `${labelName} <b>${name}</b>: ${val}% of residents<br>live in walking distance of an accessible subway station.`;
 
             layer.bindTooltip(tooltipContent, { sticky: true });
+
           } else {
+
             // --- Non-choropleth case ---
 
             const displayValue = feature.properties[labelName];
@@ -263,10 +293,11 @@ function loadGeoJSON(config = {}) {
             }
           }
         }
-
       }).addTo(map);
+
     })
     .catch(err => console.error("Error loading GeoJSON:", err));
+
 }
 
 

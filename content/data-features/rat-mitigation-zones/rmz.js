@@ -17,7 +17,7 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r
 L.control.scale({
     metric: false,
     position: 'bottomleft'
-}).addTo(map)
+}).addTo(map);
 
 L.easyButton({
     position: "bottomleft",
@@ -26,22 +26,24 @@ L.easyButton({
         icon: "fas fa-undo",
         
         onClick: function() {
-            
             resetZoom();
         }
     }]
 }).addTo(map);     
 
 function resetZoom() {
+
     // console.log('reset zoom 3')
 
-    window.location.hash = '#top'
-    location.reload()
+    window.location.hash = '#top';
+    location.reload();
+
 }
 
 // When style is run in const geojson, it returns these - default styles
 
 function style(feature) {
+
     return {
         weight: 1,
         opacity: 1,
@@ -56,17 +58,22 @@ function style(feature) {
 
 
 function getGeoJSON(x) {
+
   return new Promise((resolve, reject) => {
+
       // Fetch the GeoJSON data
 
       fetch(x)
       .then(response => {
+
           if (!response.ok) {
               throw new Error('Network response was not ok');
           }
           return response.json(); // Parse the GeoJSON data
+
       })
       .then(data => {
+
         rmzgeojson = data; // Store the GeoJSON data in a global variable
           // console.log('GeoJSON data loaded:', rmzgeojson);
 
@@ -75,6 +82,7 @@ function getGeoJSON(x) {
               style,
               onEachFeature
           }).addTo(map);
+
       })
       .catch(error => {
           console.error('Error fetching the GeoJSON file:', error);
@@ -83,13 +91,14 @@ function getGeoJSON(x) {
   });
 }
 
-getGeoJSON('https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/rmz.geojson')
+getGeoJSON('https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/rmz.geojson');
 
        
 
 // ===== Map styles ================================================== //
 
 function onEachFeature(feature, layer) {
+
     layer.on({
         mouseover: highlightFeature,
         // mouseout: resetHighlight,
@@ -102,22 +111,23 @@ function resetHighlight(e) {
 }
 
 function zoomToFeature(e) {
+
   // console.log('zoom to feature:'),
   // console.log(e)
   // console.log(rmzgeojson)
 
-    geog.resetStyle()
+    geog.resetStyle();
     map.fitBounds(e.target.getBounds());
-    id = e.target.feature.properties.OBJECTID
+    id = e.target.feature.properties.OBJECTID;
     // console.log('Filtering data for: ')
     // console.log('Name: ' + e.target.feature.properties.Label) 
     // console.log('ID: ', id)
 
-    redrawChart(id)
-    name = e.target.feature.properties.Label
+    redrawChart(id);
+    name = e.target.feature.properties.Label;
     printToPage(id);
-    interpretInitial(id)
-    interpretCompliance(id)
+    interpretInitial(id);
+    interpretCompliance(id);
     // The above gets id and name, puts them into global variables, for other selection display
 
     // this sets style on click (but it won't stick)
@@ -135,7 +145,8 @@ function zoomToFeature(e) {
 }
 
 function highlightFeature(e) {
-    geog.resetStyle()
+
+    geog.resetStyle();
     // console.log('highlight feature:')
     // console.log(e)
 
@@ -154,70 +165,76 @@ layer.bringToFront();
 // ===== PRINT INFO TO PAGE ================================================== //
 
 function printToPage(x) {
+
     // console.log("id: " + x)
 
     document.getElementById('zoneName').innerHTML = name;
 
-    const zoneData = ratData.filter(zone => zone.ID == x)
+    const zoneData = ratData.filter(zone => zone.ID == x);
+
 }
 
 // update map and page from dropdown
 
 function update(x) {
+
   // console.log('updated for: ', x)
 
-  let zone = x - 1
-  let layerzone = rmzgeojson.features[zone]
+  let zone = x - 1;
+  let layerzone = rmzgeojson.features[zone];
 
-  var bounds = L.geoJSON(layerzone).getBounds()
-  var center = bounds.getCenter()
-  map.setView(center, 14)
+  var bounds = L.geoJSON(layerzone).getBounds();
+  var center = bounds.getCenter();
+  map.setView(center, 14);
 
-  document.getElementById('zoneName').innerHTML = layerzone.properties.Label
+  document.getElementById('zoneName').innerHTML = layerzone.properties.Label;
 
-  redrawChart(x)
-  interpretInitial(x)
-  interpretCompliance(x)
+  redrawChart(x);
+  interpretInitial(x);
+  interpretCompliance(x);
+
 }
 
 // ===== GET RECENT DATA (INITIAL, COMPLIANCE) ================================================== //
 
 function interpretInitial(x) {
+
   // filter recent Initial Inspections data for this neighborhood
 
-  thisRecent = recent.filter (y => y.zoneID == x)
+  thisRecent = recent.filter (y => y.zoneID == x);
 
   // get ARS fail number
 
-  var ars = thisRecent.filter(y => y.Type === 'Active rat signs')
-  var arsfail = ars[0].Number
+  var ars = thisRecent.filter(y => y.Type === 'Active rat signs');
+  var arsfail = ars[0].Number;
 
   // get total inspections
 
-  var entry = thisRecent.filter(y => y.Type === 'Initial inspections')
-  var initial = entry[0].Number 
+  var entry = thisRecent.filter(y => y.Type === 'Initial inspections');
+  var initial = entry[0].Number; 
 
   // calculate percent
 
-  var percent = 100 * arsfail / initial
+  var percent = 100 * arsfail / initial;
 
-  document.getElementById('failpercent').innerHTML = parseFloat(percent).toFixed(1)
-  document.getElementById('interpret-1').classList.remove('hide')
+  document.getElementById('failpercent').innerHTML = parseFloat(percent).toFixed(1);
+  document.getElementById('interpret-1').classList.remove('hide');
 
 }
 
 function interpretCompliance(x) {
-  thisCompliance = complianceRecent.filter(y => y.zoneID == x)
-  console.log('recent data compliance:', thisCompliance)
-  var comp = thisCompliance.filter(y => y.Type === 'Compliance inspections')
-  var compI = comp[0].Number
 
-  var ars = thisCompliance.filter(y => y.Type === 'Active rat signs')
-  var arsfail = ars[0].Number
+  thisCompliance = complianceRecent.filter(y => y.zoneID == x);
+  console.log('recent data compliance:', thisCompliance);
+  var comp = thisCompliance.filter(y => y.Type === 'Compliance inspections');
+  var compI = comp[0].Number;
 
-  var percent = 100 * arsfail / compI
-  document.getElementById('failpercent2').innerHTML = parseFloat(percent).toFixed(1)
-  document.getElementById('interpret-2').classList.remove('hide')
+  var ars = thisCompliance.filter(y => y.Type === 'Active rat signs');
+  var arsfail = ars[0].Number;
+
+  var percent = 100 * arsfail / compI;
+  document.getElementById('failpercent2').innerHTML = parseFloat(percent).toFixed(1);
+  document.getElementById('interpret-2').classList.remove('hide');
 
 }
 
@@ -351,7 +368,7 @@ var revSpecOne = {
       }
     }
   ]
-}
+};
 
 // ===== INITIAL INSPECTIONS SPEC ================================================== //
 
@@ -482,7 +499,7 @@ var revSpecTwo = {
       }
     }
   ]
-}
+};
 
 // ===== COMPLIANCE INSPECTIONS SPEC ================================================== //
 
@@ -732,7 +749,7 @@ var specThree = {
       }
     }
   ]
-}
+};
 
 // ===== EXTERMINATOR SPEC ================================================== //
 
@@ -870,19 +887,21 @@ var revSpecFour = {
   var recent = [];
   var thisRecent = [];
   d3.csv('initial-inspections.csv').then(data => {
+
     // ingest data
 
-    initialData = data
+    initialData = data;
 
     // get final date
 
-    var finalPos = initialData.length - 1    
-    var mostRecentDate = initialData[finalPos].Date
+    var finalPos = initialData.length - 1;    
+    var mostRecentDate = initialData[finalPos].Date;
 
     // get data for final date installment
 
-    recent = initialData.filter(x => x.Date === mostRecentDate)
-  })
+    recent = initialData.filter(x => x.Date === mostRecentDate);
+
+  });
 
     //// ----- Get most recent data for Compliance Inspections ------ ////
 
@@ -890,11 +909,13 @@ var revSpecFour = {
   var complianceRecent = [];
   var thisCompliance = [];
   d3.csv('compliance-inspections.csv').then(data => {
+
     complianceData = data;
-    var finalPosition = complianceData.length - 1
-    var mostRecentDate = complianceData[finalPosition].Date
-    complianceRecent = complianceData.filter(x => x.Date === mostRecentDate)
-  })
+    var finalPosition = complianceData.length - 1;
+    var mostRecentDate = complianceData[finalPosition].Date;
+    complianceRecent = complianceData.filter(x => x.Date === mostRecentDate);
+
+  });
 
   // ===== REDRAW CHARTS ON NEIGHBORHOOD SELECTION ================================================== //
 
@@ -903,6 +924,7 @@ function redrawChart(zoneID) {
   console.log('drawing chart for zone ', zoneID);
 
   if (zoneID == '4') {
+
     revSpecOne.layer[3].encoding.color.value = "red";
     revSpecTwo.layer[3].encoding.color.value = "red";
     revSpecThree.layer[3].encoding.color.value = "red";
@@ -912,6 +934,7 @@ function redrawChart(zoneID) {
         note.classList.remove('hide');
     });
   } else {
+
     revSpecOne.layer[3].encoding.color.value = "transparent";
     revSpecTwo.layer[3].encoding.color.value = "transparent";
     revSpecThree.layer[3].encoding.color.value = "transparent";
@@ -923,10 +946,10 @@ function redrawChart(zoneID) {
   }
 
 
-  revSpecOne.transform[0].filter = `datum.zoneID == '${zoneID}'`
-  revSpecTwo.transform[0].filter = `datum.zoneID == '${zoneID}'`
-  revSpecThree.transform[0].filter = `datum.zoneID == '${zoneID}'`
-  revSpecFour.transform[0].filter = `datum.zoneID == '${zoneID}'`
+  revSpecOne.transform[0].filter = `datum.zoneID == '${zoneID}'`;
+  revSpecTwo.transform[0].filter = `datum.zoneID == '${zoneID}'`;
+  revSpecThree.transform[0].filter = `datum.zoneID == '${zoneID}'`;
+  revSpecFour.transform[0].filter = `datum.zoneID == '${zoneID}'`;
 
   return Promise.all([
     vegaEmbed("#vizOne", revSpecOne, {renderer: "svg"}),

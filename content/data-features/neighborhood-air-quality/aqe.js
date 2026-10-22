@@ -43,9 +43,7 @@ const load_flexdatalist = async () => {
 
           const generated = document.getElementById($input.attr('id') + '-flexdatalist');
 
-          if (generated) {
-              wireComboboxState(generated);
-          }
+          if (generated) wireComboboxState(generated);
 
           // ----- add flexdatalist select handler -------------------------------------------------- //
 
@@ -63,9 +61,9 @@ const load_flexdatalist = async () => {
 
               // call tester Function
 
-              setNeighborhood(set.NTACode, set.GEONAME, set.zipcode)
+              setNeighborhood(set.NTACode, set.GEONAME, set.zipcode);
               
-          })
+          });
 
           // ----- add clear button handler -------------------------------------------------- //
 
@@ -73,12 +71,11 @@ const load_flexdatalist = async () => {
 
               // console.log("e [clear click]", e);
 
-              $($input).find("~input").val("").trigger( "focus" )
-              
-          })
+              $($input).find("~input").val("").trigger( "focus" );
 
-      })
-}
+          });
+      });
+};
 
 // ----- Load data and call loader function -------------------------------------------------- //
 
@@ -91,78 +88,85 @@ d3.csv('aqe-nta.csv', d3.autoType).then(data => {
 
   // console.table(allData);
 
-  load_flexdatalist()
+  load_flexdatalist();
 
-  renderChart('#NODestination','NO2','')
+  renderChart('#NODestination','NO2','');
 
-  renderChart('#PMDestination','PM','')
+  renderChart('#PMDestination','PM','');
 
-  renderMap(1,'')
+  renderMap(1,'');
 
 }); 
 
 
 
-var thisGeocode
+var thisGeocode;
 function setNeighborhood(x, y, z) {
+
   // document.getElementById('showNeighb').classList.remove('hide')
   // document.getElementById('showData').classList.remove('hide')
 
 
   // console.log('geocode',x)
 
-  thisGeocode = x
+  thisGeocode = x;
   // console.log(y)
 
-  document.getElementById('NTA3').innerHTML = y
-  document.getElementById('NTA3').classList.add('text-primary')
+  document.getElementById('NTA3').innerHTML = y;
+  document.getElementById('NTA3').classList.add('text-primary');
 
-  document.getElementById('NTA4').innerHTML = y
-  document.getElementById('NTA4').classList.add('text-primary')
+  document.getElementById('NTA4').innerHTML = y;
+  document.getElementById('NTA4').classList.add('text-primary');
 
-  document.getElementById('zips').innerHTML = z
+  document.getElementById('zips').innerHTML = z;
 
   // ingest data file and filter by GEOCODE
 
-  neighborhoodData = allData.filter(neighb => neighb.NTACODE == x)
+  neighborhoodData = allData.filter(neighb => neighb.NTACODE == x);
 
-  console.table(neighborhoodData)
+  console.table(neighborhoodData);
 
-  document.getElementById('thisPM').innerHTML = Number(neighborhoodData[0].PM_Avg).toFixed(2)
-  document.getElementById('thisNO2').innerHTML = Number(neighborhoodData[0].NO2_Avg).toFixed(2)
+  document.getElementById('thisPM').innerHTML = Number(neighborhoodData[0].PM_Avg).toFixed(2);
+  document.getElementById('thisNO2').innerHTML = Number(neighborhoodData[0].NO2_Avg).toFixed(2);
 
-  sourceTertile(neighborhoodData[0].Building_emissions,"BE")
-  sourceTertile(neighborhoodData[0].cook_tertiles,"CC")
-  sourceTertile(neighborhoodData[0].Industrial_tertiles,"IA")
-  sourceTertile(neighborhoodData[0].Traffic_tertiles,"TD")
+  sourceTertile(neighborhoodData[0].Building_emissions,"BE");
+  sourceTertile(neighborhoodData[0].cook_tertiles,"CC");
+  sourceTertile(neighborhoodData[0].Industrial_tertiles,"IA");
+  sourceTertile(neighborhoodData[0].Traffic_tertiles,"TD");
 
-  renderChart('#NODestination','NO2',x)
+  renderChart('#NODestination','NO2',x);
 
-  renderChart('#PMDestination','PM',x)
+  renderChart('#PMDestination','PM',x);
 
-  renderMap(1,x)
+  renderMap(1,x);
 
 }
 
 function sourceTertile(x,dest) {
 
-  var destination = document.getElementById(dest)
+  var destination = document.getElementById(dest);
 
   if (x === 'High') {
+
     // change class
 
-    destination.classList.add('badge-worse')
+    destination.classList.add('badge-worse');
+
   } else if (x === 'Medium') {
+
     // change class
 
-    destination.classList.add('badge-medium')
+    destination.classList.add('badge-medium');
+
   } else if (x === 'Low') {
+
     // change class
 
-    destination.classList.add('badge-better')
+    destination.classList.add('badge-better');
+
   }
 
-  destination.innerHTML = x
+  destination.innerHTML = x;
 
 }
 
@@ -179,13 +183,17 @@ const renderChart = (
 
   // add conditionals for TITLE, units, etc.
 
-  var title
-  var units
+  var title;
+  var units;
 
   if (variable === 'PM') {
-    title = "PM2.5 (μg/m3)"
+
+    title = "PM2.5 (μg/m3)";
+
   } else if (variable === 'NO2') {
-    title = "NO2 (ppb)"
+
+    title = "NO2 (ppb)";
+
   }
 
   var barSpec = {
@@ -254,72 +262,92 @@ const renderChart = (
         }
       }
     ]
-  }
+  };
 
   // console.log(barSpec)
 
-  vegaEmbed(destination, barSpec, {renderer: "svg", actions:false})
-}
+  vegaEmbed(destination, barSpec, {renderer: "svg", actions:false});
+
+};
 
 
 
 function changeSource(x) {
+
   // console.log(x)
 
   // get all class sourceBox and remove active
 
-  var sourceBoxes = document.querySelectorAll(".sourceBox")
+  var sourceBoxes = document.querySelectorAll(".sourceBox");
   for (let i = 0; i < sourceBoxes.length; i++) {
-      sourceBoxes[i].classList.remove('sourceBox-active')
+      sourceBoxes[i].classList.remove('sourceBox-active');
   }
 
   // highlight what you clicked on
 
-  var thisBox = 'sourceBox' + x
-  document.getElementById(thisBox).classList.add('sourceBox-active')
+  var thisBox = 'sourceBox' + x;
+  document.getElementById(thisBox).classList.add('sourceBox-active');
 
   // change map
 
   var title;
 
   if (x==1) {
-      title = 'Building emissions'
+
+      title = 'Building emissions';
+
   } else if (x==2) {
-      title = "Commercial cooking"
+
+      title = "Commercial cooking";
+
   } else if (x==3) {
-      title = "Industrial area"
+
+      title = "Industrial area";
+
   } else if (x==4) {
-      title = "Traffic density"
+
+      title = "Traffic density";
+
   }
 
-  document.getElementById('mapTitle').innerHTML = title
-  renderMap(x,thisGeocode)
+  document.getElementById('mapTitle').innerHTML = title;
+  renderMap(x,thisGeocode);
+
 }
 
 const renderMap = (
   x,           // indicator
   neighborhood // NTACode
 ) => {
+
     var title;
-    var indicator
+    var indicator;
     var label;
 
     if (x===1) {
-        title = 'Building emissions'
-        indicator = 'numeric_Building_emissions'
-        label = 'Building_emissions'
+
+        title = 'Building emissions';
+        indicator = 'numeric_Building_emissions';
+        label = 'Building_emissions';
+
     } else if (x===2) {
-        title = "Commercial cooking"
-        indicator = 'numeric_cook_tertiles'
-        label = 'cook_tertiles'
+
+        title = "Commercial cooking";
+        indicator = 'numeric_cook_tertiles';
+        label = 'cook_tertiles';
+
     } else if (x===3) {
-        title = "Industrial area"
-        indicator = 'numeric_Industrial_tertiles'
-        label = 'Industrial_tertiles'
+
+        title = "Industrial area";
+        indicator = 'numeric_Industrial_tertiles';
+        label = 'Industrial_tertiles';
+
     } else if (x===4) {
-        title = "Traffic density"
-        indicator = 'numeric_Traffic_tertiles'
-        label = 'Traffic_tertiles'
+
+        title = "Traffic density";
+        indicator = 'numeric_Traffic_tertiles';
+        label = 'Traffic_tertiles';
+
     }
 
     var mapSpec = {
@@ -417,9 +445,9 @@ const renderMap = (
           }
         }
       ]
-    }
+    };
     
-    vegaEmbed("#mapHolder", mapSpec, {renderer: "svg", actions:false})
+    vegaEmbed("#mapHolder", mapSpec, {renderer: "svg", actions:false});
 
 
-}
+};

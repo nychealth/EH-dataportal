@@ -109,6 +109,7 @@ d3.csv("sugar-items-data.csv").then(function(data) {
 });
 
 function renderFullSugarTable() {
+
   if (!sugarData || sugarData.length === 0) return;
 
   const columns = Object.keys(sugarData[0]); // 5 CSV columns
@@ -126,6 +127,7 @@ function renderFullSugarTable() {
 
   const tbody = $("#fullSugarTable tbody").empty();
   sugarData.forEach(row => {
+
     const tr = $("<tr>");
 
     // original 5 CSV columns
@@ -139,6 +141,7 @@ function renderFullSugarTable() {
     tr.append($("<td>"));
 
     tbody.append(tr);
+
   });
 
   // Identify numeric columns for right-alignment
@@ -162,22 +165,26 @@ function renderFullSugarTable() {
       {
         targets: 0,         // first column
         render: function (data, type, row) {
+
           const original = row[0]; // text from CSV
 
           return `
             <span class="fs-rg font-weight-bold">${original}</span>
           `;
+
         }
       },
 
       {
         targets: 1,         // first column
         render: function (data, type, row) {
+
           const original = row[1]; // text from CSV
 
           return `
             <span class="fs-sm font-weight-bold">${original}</span>
           `;
+
         }
       },
 
@@ -191,6 +198,7 @@ function renderFullSugarTable() {
         targets: 5,
         data: null,
         render: function (data, type, row) {
+
           const c3 = row[2]; // 3rd CSV column
           const c4 = row[3]; // 4th CSV column
           const c5 = row[4]; // 5th CSV column
@@ -213,6 +221,7 @@ function renderFullSugarTable() {
               </div>
             </div>
           `;
+
         }
       }
     ]
@@ -244,10 +253,12 @@ function renderFullSugarTable() {
   uniqueBrands.forEach(b => brandFilter.append(`<option value="${b}">${b}</option>`));
 
   brandFilter.on("change", function() {
+
     const val = $(this).val();
     table.column(columns.indexOf("Brand Name"))
         .search(val || "", true, false) // exact match false
         .draw();
+
   });
 
 
