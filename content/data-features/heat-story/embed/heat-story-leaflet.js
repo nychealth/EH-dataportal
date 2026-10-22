@@ -454,6 +454,35 @@ const storyIcon = L.icon({
     popupAnchor: [0, -47]     // Point from which the popup should open relative to the iconAnchor
 });
 
+// Keep video embeds consistent between the full pin set and filtered pins.
+function getStoryPopupContent(story) {
+
+    const video = story.videoId
+        ? `
+            <div class="embed-responsive embed-responsive-16by9" style="width: 280px; max-width: 100%;">
+                <iframe
+                    class="embed-responsive-item"
+                    title="${story.title} video"
+                    src="https://www.youtube-nocookie.com/embed/${story.videoId}"
+                    loading="lazy"
+                    allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <p class="mt-2"><a href="https://www.youtube.com/watch?v=${story.videoId}" target="_blank" rel="noopener noreferrer">Watch this video on YouTube</a></p>
+        `
+        : '';
+
+    return `
+        <strong>${story.title}</strong>
+        <hr class="mb-1">
+        ${story.content || ''}
+        ${video}
+        <hr class="my-1">
+        <em>Themes:</em> ${story.themes}
+    `;
+}
+
 function placeAllStoryPins() {
 
     // start by removing .active from Theme FIlters
@@ -472,16 +501,12 @@ function placeAllStoryPins() {
 
         let thisStory = L.marker([lat, lng], { icon: storyIcon })
             .addTo(map)
-            .bindPopup(`
-                <strong>${story.title}</strong>
-                <hr class="mb-1">
-                ${story.content}
-                <hr class="my-1">
-                <em>Themes:</em> ${story.themes}
-                `,
+            .bindPopup(
+                getStoryPopupContent(story),
                 {
                     autoClose: true,
-                    closeOnClick: false
+                    closeOnClick: false,
+                    maxWidth: story.videoId ? 320 : 300
                 }
                 );
         
@@ -529,14 +554,10 @@ function filterPins(theme) {
 
             let thisStory = L.marker([lat, lng], { icon: storyIcon })
                 .addTo(map)
-                .bindPopup(`
-                    <strong>${config.stories[i].title}</strong>
-                    <hr class="mb-1">
-                    ${config.stories[i].content}
-                    <hr class="my-1">
-                    <em>Themes:</em> ${config.stories[i].themes}
-                    `
-                    );
+                .bindPopup(
+                    getStoryPopupContent(config.stories[i]),
+                    { maxWidth: config.stories[i].videoId ? 320 : 300 }
+                );
             
             thisStory.on('click', function (e) {
                 console.log('story click.')

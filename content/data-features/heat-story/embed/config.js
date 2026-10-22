@@ -43,6 +43,7 @@
  *     id: unique id of the story
  *     title: title to use to display the story
  *     content: html blob for the story
+ *     videoId: optional YouTube video ID to embed in the story popup
  *     mapState: map state to use for showing the story
  *         lat: latitude for the story
  *         lng: longitude for the story
@@ -805,6 +806,23 @@ config = {
         */
 
         {
+            "id": "heat-video-placeholder",
+            "title": "Heat story video (QDA)",
+            "themes": ["Heat"],
+            "content": "<p>Temporary video embed for testing the heat story map popup.</p>",
+            "videoId": "FqqVJZUWirE", 
+            "mapState": {
+                "lat": 40.7032036,
+                "lng": -73.9191882,
+                "zoom": 12,
+                "layers": [
+                    "nycAfternoon",
+                    "Heat_vulnerability_index"
+                ]
+            }
+        },
+
+        {
             "id": "heat-traffic-pollution",
             "title": "Heat, traffic and odors are exhausting",
             "themes": ["Public space","Finances"],
@@ -1232,6 +1250,7 @@ config = {
     ],
     "themes": [
         "Finances",
+        "Heat",
         "AC",
         "Public space",
         "Caregiving",
