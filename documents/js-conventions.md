@@ -12,9 +12,10 @@ arrive: `accessible-autocomplete.min.js`, `naturalSort.js`, `color-convert.js`,
 explorer.
 
 **Not forward-only.** Until 2026-10-19 these rules governed only new files and code
-already being edited. The tree is to be swept to them once the Neighborhood Reports
-branch (#1491) merges, so the reformat is not noise in that PR;
-`documents/js-formatting-pass-2026-10-19.md` is the plan and its ledger. An existing
+already being edited. The tree is swept to them on `feature-js-formatting`, a branch
+of its own stacked on the Neighborhood Reports branch (#1491), so the reformat is not
+noise in that PR; `documents/js-formatting-pass-2026-10-19.md` is the plan and its
+ledger. An existing
 file you find out of conformance is fixed in a commit of its own, not inside a
 behaviour change. The gap list in §5h of `documents/site-wide-audit-2026-06-27.md`
 predates that decision.
@@ -321,27 +322,37 @@ its distinct phases.
   among them. It skips every comment above an object property, so the
   multi-line-value case above is applied by hand.
 
-- **Function bodies:** blank line after the opening `{` and before the closing
-  `}`, whatever the length — except a body of two lines or fewer, which stays
-  tight.
+Block lengths below count non-blank lines between the braces.
+
+- **Function bodies, callbacks included:** blank line after the opening `{` and
+  before the closing `}` when the body is longer than three lines. Three lines or
+  fewer stays tight.
 - **Every branch of an `if` / `else if` / `else` chain, and every `try` /
   `catch` / `finally` block:** blank line after `{` and before `}`, even when the
   branch is one statement.
-- **Any other block** (an `if` with no `else`, a loop, a multi-line object
-  literal): blank line after `{` and before `}` when it is longer than ~3 lines.
-  So a three-key `return { … }` stays tight, and a Vega `spec`, a `DataTable({`
-  options object or a `window.NR_REPORT_CONFIG = {` is padded.
-- `scripts/js-comment-spacing.py` applies the opening-brace gap only where a
-  comment is the block's first line, and does not check length.
-- Blank line between each logical group inside a function, and before each `return`.
+- **Any other block** (an `if` with no `else`, a loop): blank line after `{` and
+  before `}` when it is longer than three lines.
+- **A multi-line object literal is padded only when it holds code**: longer than
+  three lines and one of its values is a function. So `DataTable({` options with
+  `render:` callbacks and `L.geoJson(…, {` options with `onEachFeature:` are
+  padded; a Vega `spec`, a config object such as `window.NR_REPORT_CONFIG = {`
+  and a returned data object stay tight. An object nested inside another object
+  is never padded, whatever it holds.
+- **No blank line before a closer that follows a closer.** Where a padded block's
+  last line is itself a closing line (`}`, `});`, `]`), the bottom blank line is
+  left out so the closers stack; the top one stays.
+- **A comment that is a block's first line always gets the gap after `{`**, even
+  in a block the rules above leave tight; the bottom of that block stays tight.
+  `scripts/js-comment-spacing.py` applies this gap and does not check length.
+- Blank line between each logical group inside a function, and before each
+  `return` — except inside a block of three lines or fewer, which stays tight.
 - **Declare, then test:** blank line between a declaration and the `if`, `for` or
   `return` that uses it, and between a variable and a function declared after it.
 - At most one blank line in a row inside a function, and never more than two
   anywhere.
 - Two blank lines between top-level function definitions.
 - One blank line between variable groups in module-level declarations.
-- Inside `forEach`, `then`, and similar callbacks: blank line after the opening
-  brace and before the closing brace when the body is more than one line.
+- `forEach`, `then`, and similar callbacks follow the function-body rule above.
 
 ```js
 // correct
@@ -349,13 +360,14 @@ const myFunction = (arg) => {
 
     const x = compute(arg);
     const y = adjust(x);
+    const z = round(y);
 
-    return y;
+    return z;
 
 };
 
 
-// A body of two lines or fewer stays tight
+// A body of three lines or fewer stays tight
 
 const setBarSelection = (geoID) => {
     if (!window.myVegaView) return;
@@ -381,21 +393,18 @@ const renderSection = (section, neighborhoodName) => {
 
     container.innerHTML = '';
 
-    if (!rows.length) {
+    // Three lines or fewer: both blocks stay tight
 
+    if (!rows.length) {
         container.innerHTML =
             '<p class="text-muted px-2 pb-2 mb-0">No data available for this neighborhood.</p>';
-
         return;
-
     }
 
     rows.forEach(row => {
-
         const card = document.createElement('div');
         card.innerHTML = buildIndicatorCard(row, section.id, neighborhoodName);
         container.appendChild(card);
-
     });
 
 };
@@ -542,10 +551,12 @@ const headerHTML =
 const assignGeoRank = (GeoType) => {
 
     switch (GeoType) {
+
         case 'Citywide': return 0;
         case 'Borough':  return 1;
         case 'UHF34':    return 3;
         // ...
+
     }
 
 };
@@ -558,9 +569,7 @@ const assignGeoRank = (GeoType) => {
 // Finds the first measure in visArray whose MeasurementType satisfies typeMatcher
 
 const findFirstMeasureByType = (visArray, typeMatcher) => {
-
     return visArray.find(measure => typeMatcher(measure.MeasurementType || ''));
-
 };
 
 
@@ -568,9 +577,7 @@ const findFirstMeasureByType = (visArray, typeMatcher) => {
 
 const pickDefaultMeasureByPriority = (visArray) => {
 
-    if (!visArray.length) {
-        return null;
-    }
+    if (!visArray.length) return null;
 
     // ----- age-adjusted rate total has highest priority ----- //
 
@@ -578,9 +585,7 @@ const pickDefaultMeasureByPriority = (visArray) => {
         t.includes('Age-adjusted rate') && t.includes('Total')
     );
 
-    if (ageAdjustedTotal) {
-        return ageAdjustedTotal;
-    }
+    if (ageAdjustedTotal) return ageAdjustedTotal;
 
     // ----- fall through remaining priority list ----- //
 
@@ -595,9 +600,7 @@ const pickDefaultMeasureByPriority = (visArray) => {
 
     for (const matcher of priorityMatchers) {
         const match = findFirstMeasureByType(visArray, matcher);
-        if (match) {
-            return match;
-        }
+        if (match) return match;
     }
 
     return visArray[0];
