@@ -5,17 +5,17 @@
 {{- $popper_secure := resources.Get "node_modules/popper.js/dist/umd/popper.min.js" | partial "short-fingerprint.html" }}
 
 <script
-    src="{{ $popper_secure.RelPermalink }}";
-    integrity="{{ $popper_secure.Data.Integrity }}";
-    crossorigin="anonymous";
+    src="{{ $popper_secure.RelPermalink }}"
+    integrity="{{ $popper_secure.Data.Integrity }}"
+    crossorigin="anonymous"
 ></script>
 
 {{- $bootstrap_secure := resources.Get "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" | partial "short-fingerprint.html" }}
 
 <script
-    src="{{ $bootstrap_secure.RelPermalink }}";
-    integrity="{{ $bootstrap_secure.Data.Integrity }}";
-    crossorigin="anonymous";
+    src="{{ $bootstrap_secure.RelPermalink }}"
+    integrity="{{ $bootstrap_secure.Data.Integrity }}"
+    crossorigin="anonymous"
 ></script>
 
 <!-- Google Translate -->
@@ -45,15 +45,15 @@
 {{- $main := resources.Get "js/main.js" | partial "short-fingerprint.html" }}
 
 <script
-    type="text/javascript";
-    src="{{ $main.RelPermalink }}";
-    integrity="{{ $main.Data.Integrity }}";
+    type="text/javascript"
+    src="{{ $main.RelPermalink }}"
+    integrity="{{ $main.Data.Integrity }}"
 ></script>
 
 {{- $site := resources.Get "js/site.js" | partial "short-fingerprint.html" }}
 
 <script
-    type="text/javascript";
-    src="{{ $site.RelPermalink }}";
-    integrity="{{ $site.Data.Integrity }}";
+    type="text/javascript"
+    src="{{ $site.RelPermalink }}"
+    integrity="{{ $site.Data.Integrity }}"
 ></script>
