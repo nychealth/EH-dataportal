@@ -479,10 +479,13 @@ Every task is done or parked (Task 5's finding 17). Closed 2026-10-21:
 
 The local review then ran as Task 12, and its fixes change code, so the CI results above and the PR body's
 Verification section (Task V at `d6fe8cf481`) no longer describe the branch tip. Task 12's code is `7889c501cb`, the
-tree its checks ran on. Next, in order: Chris pushes; read both CI runs by the new head SHA; then update the PR
-body's Verification section to cite the checks at the branch tip (`gh pr edit` publishes). Task 13 changed map code
-after Task 12; its row records smoke, `nr-characterization`, `a11y:nr` and `prod_prod` site characterization at
-`f86aac1827`, and `docs-check` exit 0 on its code before commit; `pagefind-characterization`'s last run is Task 12's. The merge review,
+tree its checks ran on. Task 13 changed map code after Task 12; its row records smoke, `nr-characterization`,
+`a11y:nr` and `prod_prod` site characterization at `f86aac1827`, and `docs-check` exit 0 on its code before commit;
+`pagefind-characterization`'s last run is Task 12's. Closed 2026-10-22: Chris pushed, `origin` read `cf9d58fc4d`; CI
+on it, Smoke check run 39832982470 pass (18:37–18:49Z) and Site characterization check run 39832982531 pass
+(18:37–18:45Z), both base-control jobs skipped; the PR body's line 1 (+84,007 / -23,255 at `cf9d58fc4d`, `production`
+2 commits ahead, `git merge-tree` exit 0), a Maps bullet and the Verification section rewritten for Tasks 12 and 13 by
+`gh pr edit 1491 --body-file`, the re-fetched body differing only by `gh -q`'s trailing newline. The merge review,
 `/code-review ultra` on PR #1491, stays Chris's to start.
 
 ```bash
