@@ -12,6 +12,7 @@ var upper = 1309492800000 // 2011.5; one year: 31536000000; 1/2 year: 1576800000
 // changeYear runs on button click
 
 function changeYear(x) {
+
     year = Number(year);
     year = year + x
     document.getElementById('2020note').innerHTML = ''
@@ -19,17 +20,27 @@ function changeYear(x) {
     // run interactions
 
     if (year < 2011) {
+
     year = 2011
+
     } else if (year == 2011) {
+
     document.getElementById('downButton').disabled = true
+
     } else if (year > 2020) {
+
     year = 2020
+
     } else if (year == 2020) {
+
     document.getElementById('upButton').disabled = true
     document.getElementById('2020note').innerHTML = 'Data for 2020 are through 3/31/2020 only.'
+
     } else {
+
     document.getElementById('downButton').disabled = false
     document.getElementById('upButton').disabled = false
+
     }
     console.log('year is:' + year)
     document.getElementById('year').innerHTML = year
@@ -118,6 +129,7 @@ function updateValues(x) {
 
     valuesArray.splice(0,20) // remove first 21 values
     // document.getElementById('median').innerHTML = valuesArray[0] + '%'
+
 }
 
 
@@ -322,7 +334,6 @@ var line = {
         "type": "temporal",
         "title": "",
         "scale": {"domain": [1262322000000, 1609477200000]}
-
         },
         "tooltip": [
         {"field": "Percent", "type": "quantitative", "title": "Percent of restaurants with A grades"}

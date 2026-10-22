@@ -37,7 +37,6 @@ let todCurrentSite = "Major Deegan";
 // before each render so we never mutate this object directly.
 
 const todBaseSpec = {
-    
     $schema: "https://vega.github.io/schema/vega-lite/v5.json",
 
     // Global chart styling — fonts, axis appearance, legend placement, color palette
@@ -89,6 +88,7 @@ const todBaseSpec = {
             as: "ParamWithUnit",
         },
         {
+
             // Expand terse Time codes into readable labels for the x-axis
             calculate: "datum.Time === 'Pre' ? 'Before congestion pricing' : datum.Time === 'Post' ? 'With congestion pricing' : datum.Time",
             as: "TimeLabel",
@@ -202,11 +202,9 @@ function specForTODSite(site) {
     // pointing at a footnote that never renders.
 
     if (trafficMonitoringLocations[site]) {
-
         spec.facet.header = {
             labelExpr: `datum.value === '${TRAFFIC_PANEL_TITLE}' ? datum.value + '*' : datum.value`,
         };
-
     }
 
     return spec;
@@ -228,7 +226,6 @@ function applyTODFacet(spec, { cols, pane }) {
     if (cols === 1 && spec.config && spec.config.legend) {
         spec.config.legend.orient = "bottom";
     }
-
 }
 
 
@@ -239,6 +236,7 @@ function applyTODFacet(spec, { cols, pane }) {
 // Clears the container and re-renders the chart for the given site.
 
 async function renderTODChart(site) {
+
     const el = document.getElementById(TOD_CONTAINER_ID);
     if (!el) return;
 
@@ -261,10 +259,12 @@ async function renderTODChart(site) {
     }
 
     try {
+
         await embedFitted(el, () => specForTODSite(site), CP_FIT.tod, applyTODFacet);
         // Release the lock now that the new chart is in place
 
         el.style.minHeight = "";
+
     } catch (err) {
 
         // Release the lock even if the chart fails to render
@@ -306,7 +306,6 @@ function renderTODButtons() {
         onChange: handleTODSiteChange,
 
     });
-
 }
 
 
@@ -326,4 +325,5 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     addResizeHandler(document.getElementById(TOD_CONTAINER_ID),
         () => renderTODChart(todCurrentSite), renderTODButtons);
+
 });

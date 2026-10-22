@@ -26,6 +26,7 @@ function init() {
     addListeners();
     
     loadMetadata().catch(console.log);
+
 }
 
 
@@ -163,19 +164,25 @@ const geoTypes = [
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 L.TopoJSON = L.GeoJSON.extend({
+
     addData: function (data) {
+
         let geojson, key;
         if (data.type === "Topology") {
+
             for (key in data.objects) {
+
                 if (data.objects.hasOwnProperty(key)) {
                     geojson = topojson.feature(data, data.objects[key]);
                     L.GeoJSON.prototype.addData.call(this, geojson);
                 }
             }
             return this;
+
         }
         L.GeoJSON.prototype.addData.call(this, data);
         return this;
+
     }
 });
 
@@ -326,9 +333,7 @@ function setupMap() {
             e.target.classList.add('active');
 
         });
-
     });
-
 }
 
     // Custom control with + ⟳ - buttons in one row
@@ -336,6 +341,7 @@ function setupMap() {
     const zoomRefreshControl = L.control({ position: 'bottomleft' });
 
     zoomRefreshControl.onAdd = function(map) {
+
     const div = L.DomUtil.create('div', 'leaflet-bar leaflet-control d-flex');
 
     // Button styles
@@ -379,6 +385,7 @@ function setupMap() {
     };
 
     return div;
+
     };
 
     zoomRefreshControl.addTo(map);
@@ -429,7 +436,6 @@ function addLayerButtons() {
             layersExclusive.add(layer.property.id);
         }
     };
-
 }
 
 
@@ -489,13 +495,11 @@ function placeAllStoryPins() {
             console.log('story click.')
 
             updateMapStateForStory(story.id)
-            
         });
 
         storyMarkers.addLayer(thisStory);
 
     });
-
 }
 
 placeAllStoryPins()
@@ -506,6 +510,7 @@ placeAllStoryPins()
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 function filterPins(theme) {
+
     console.log('filtering for ', theme)
 
     // remove all pins
@@ -542,7 +547,6 @@ function filterPins(theme) {
                 console.log('story click.')
 
                 updateMapStateForStory(config.stories[i].id)
-                
             });
 
             // add them to storyMarkers layer
@@ -550,10 +554,11 @@ function filterPins(theme) {
             storyMarkers.addLayer(thisStory);
 
         } else {
+
             // no theme match
+
         }
     }
-
 }
 
 
@@ -601,7 +606,6 @@ function drawStoryCardDropdown() {
     storyButtons.forEach(btn => {
         btn.addEventListener('click', handleStoryClick);
     })
-
 }
 
 
@@ -617,6 +621,7 @@ let size = 30;
 let half = size/2;
 
 let map_pin = L.icon({
+
     // iconUrl: 'map_pin.png',
     iconUrl: 'map-pin.svg',
     iconSize: [size, size],
@@ -655,15 +660,12 @@ const handleStoryClick = (e) => {
     storyMarkerLayerGroup.clearLayers();
 
     if (story.marker) {
-
         const marker = L.marker([story.marker.lat, story.marker.lng], {icon: map_pin});
 
         storyMarkerLayerGroup.addLayer(marker);
 
         storyMarkerLayerGroup.addTo(map);
-
     }
-
 }
 
 
@@ -776,6 +778,7 @@ async function createRedlinedLayer({ id, name, urls, args, displayProperties }) 
     const layer = L.geoJSON(
         Object.values(data),
         {
+
             style: onStyle,
             onEachFeature: function(feature, layer) {
 
@@ -796,17 +799,15 @@ async function createRedlinedLayer({ id, name, urls, args, displayProperties }) 
                     console.log('This should clear the info box...')
 
                     if (layer.options[CUSTOM_ID_FIELD] == layerMouseOver.options._custom_id) {
-
                         layerMouseOver = null;
                         featureMouseOver = null;
-
                     }
-
                 });
             },
             _custom_id: id,
             displayProperties: displayProperties,
             name: name,
+
         });
 
 
@@ -819,6 +820,7 @@ async function createRedlinedLayer({ id, name, urls, args, displayProperties }) 
     // console.log("layer [createRedlinedLayer]", layer);
 
     return layer;
+
 }
 
 
@@ -860,6 +862,7 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
         });
 
         return { ...colors };
+
     }
 
     // All metrics have an Id of value. Add that to 
@@ -879,6 +882,7 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
     const layer = L.geoJSON(
         data,
         {
+
             style: onStyle,
             onEachFeature: function(feature, layer) {
 
@@ -901,13 +905,12 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
                         layerMouseOver = null;
                         featureMouseOver = null;
                     }
-                    
                 });
-
             },
             _custom_id: id,
             displayProperties: updatedDisplayProperties,
             name: name,
+
         });
 
 
@@ -920,6 +923,7 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
     // console.log("layer [createMeasuresLayer]", layer);
 
     return layer;
+
 }
 
 
@@ -946,9 +950,13 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
     let data = null;
 
     try {
+
         data = await response.json();
+
     } catch (error) {
+
         console.log(error);
+
     }
 
     // console.log("data [createGeoJsonLayer]", data);
@@ -991,6 +999,7 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
         });
 
         return { ...colors };
+
     }
 
 
@@ -1005,6 +1014,7 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
     const layer = L.geoJSON(
         data,
         {
+
             // if we wanted to customize the marker we'd use 'pointToLayer', but we'd have to get clever about passing the options, because "inherit" doesn't seem to work with a custom function 
             style: onStyle,
             onEachFeature: function(feature, layer) {
@@ -1024,9 +1034,7 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
                         layerMouseOver = null;
                         featureMouseOver = null;
                     }
-
                 });
-
             },
             markersInheritOptions: true,
             // geoJSON by default is on overlay pane, which is behind marker shadows, so put it on the marker pane if it's a point geometry
@@ -1034,6 +1042,7 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
             _custom_id: id,
             displayProperties: displayProperties,
             name: name
+
         });
 
 
@@ -1113,7 +1122,6 @@ async function createGeotiffLayer({ id, url, args, name }) {
             + '</div>';
 
         if (args?.legendDescription) {
-
             const collapseId = `${id}LegendCollapse`;
 
             legend += `<br /><div style="display: block; width: 100%; max-width: 275px; font-size: 90%"><a data-toggle="collapse" href="#${collapseId}" role="button" aria-expanded="false" aria-controls="${collapseId}">More info about ${name}</a>`
@@ -1200,6 +1208,7 @@ async function createLayer(layerId) {
 
     let layer = null;
     switch (properties.type) {
+
         case 'geojson':
             layer = await createGeoJsonLayer(properties);
             break;
@@ -1214,6 +1223,7 @@ async function createLayer(layerId) {
             break;
         default:
             console.log(`Could not create layer of type ${properties.type}`);
+
     }
 
     if (layer == null) {
@@ -1223,6 +1233,7 @@ async function createLayer(layerId) {
     layers[layerId] = layer;
 
     return layer;
+
 }
 
 
@@ -1241,12 +1252,17 @@ async function getOrCreateLayer(layerId) {
     let layer;
 
     if (!(layerId in layers)) {
+
         layer = await createLayer(layerId);
+
     } else {
+
         layer = layers[layerId];
+
     }
 
     return layer;
+
 }
 
 
@@ -1262,7 +1278,9 @@ async function getOrCreateLayer(layerId) {
 async function addLayerToMap(layerId) {
 
     if (document.getElementById('infoboxHolderTarget')) {
+
         document.getElementById('infoboxHolderTarget').innerHTML = '' // clear 'tooltip' box
+
     } else {
     }
 
@@ -1306,6 +1324,7 @@ async function addLayerToMap(layerId) {
         }
 
         createLegend("addLayerToMap")
+
     }
 
     // show reset button
@@ -1357,18 +1376,24 @@ async function toggleLayerOnMap(layerId, button) {
     // FIXME disable while waiting
 
     try {
+
         button.disabled = true;
         if (!(layerId in layersVisible)) {
 
             // FIXME make this a set
 
             await addLayerToMap(layerId);
+
         } else {
+
             removeLayerFromMap(layerId);
+
         }
     } catch (error) {
     } finally {
+
         button.disabled = false;
+
     }
 }
 
@@ -1394,6 +1419,7 @@ function saveCurrentMapState() {
     let layersVisible = []
     layerGroup.eachLayer(l => layersVisible.push(l.options[CUSTOM_ID_FIELD]));
     lastMapState.layers = layersVisible.filter(x => x);
+
 }
 
 
@@ -1446,6 +1472,7 @@ async function updateMapStateForStory(storyId) {
     // clear out the layer markers
     // map.removeLayer(storyMarkerLayerGroup);
     // $("#refreshButton").css("visibility", "visible");
+
 }
 
 
@@ -1652,6 +1679,7 @@ function featureInfoToHtmlForInfoBox(feature, layer) {
     </div>`;
 
     // return infobox_html;
+
 }
 
 
@@ -1676,6 +1704,7 @@ function formatInfoBox(features) {
     // console.log("updates [formatInfoBox]", updates);
 
     return updates == "" ? null : updates;
+
 }
 
 
@@ -1736,6 +1765,7 @@ function updateInfoBox({ lat, lng }) {
 
         infoBoxContent = null;
         return;
+
     }
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -1770,9 +1800,13 @@ function updateInfoBox({ lat, lng }) {
             let intersection = [];
 
             try {
+
                 intersection = leafletPip.pointInLayer({ lat, lng }, _layer);
+
             } catch(err) {
+
                 console.log(err);
+
             }
 
             // keep track of the intersections
@@ -1780,7 +1814,6 @@ function updateInfoBox({ lat, lng }) {
             if (intersection.length > 0) {
                 features.push({feature: intersection[0].feature, layer: _layer});
             }
-
         });
     }
 
@@ -1813,7 +1846,6 @@ function updateInfoBox({ lat, lng }) {
             infoBoxContent = content;
             infoBox.update(content)
         }
-
     } else if (infoBox != null && content == null) {
 
         // infoBox should be removed
@@ -1842,6 +1874,7 @@ function updateInfoBox({ lat, lng }) {
  */
 
 L.Control.Legend = L.Control.extend({
+
     options: {
         collapsed: false,
         position: 'bottomright',
@@ -1902,6 +1935,7 @@ L.Control.Legend = L.Control.extend({
         div.innerHTML = innerHtml;
 
         return div;
+
     }
 });
 
@@ -2013,7 +2047,6 @@ const legendFuncForColorMap = (id, name, args) => {
         + '</div>';
 
     if (args.legendDescription) {
-
         const collapseId = `${id}LegendCollapse`;
 
         legend += `<div style="display: block; width: 100%; max-width: 275px; font-size: 90%"><a data-toggle="collapse" href="#${collapseId}" role="button" aria-expanded="false" aria-controls="${collapseId}">More info about ${name}</a>`
@@ -2021,6 +2054,7 @@ const legendFuncForColorMap = (id, name, args) => {
     }
 
     return legend;
+
 }
 
 
@@ -2092,7 +2126,6 @@ const legendFuncForLayer = (id, name, args, layer) => {
 
         
         if (args.legendDescription) {
-
             const collapseId = `${id}LegendCollapse`;
 
             legend += `<br /><div style="display: block; width: 100%; max-width: 275px; font-size: 90%"><a data-toggle="collapse" href="#${collapseId}" role="button" aria-expanded="false" aria-controls="${collapseId}">More info about ${name}</a>`
@@ -2100,6 +2133,7 @@ const legendFuncForLayer = (id, name, args, layer) => {
         }
 
         return legend;
+
     }
 }
 
@@ -2214,12 +2248,10 @@ const loadData = async (indicatorID) => {
 
         aq.loadJSON(data_url, {autoType: false})
             .then(async (d) => {
-
                 indicator_data = await d;
 
                 // console.log("indicator_data [loadData]");
                 // indicator_data.print()
-
             }),
 
         loadTime()
@@ -2252,12 +2284,10 @@ const loadTime = async () => {
 
     await aq.loadJSON(timeUrl, {autoType: false})
         .then(async (data) => {
-
             timeTable = await data;
 
             // console.log("timeTable [loadTime]");
             // timeTable.print()
-
     });
 }
 
@@ -2279,36 +2309,65 @@ const getTopoUrl = ( data, metadata ) => {
     // set geo file based on geo type
 
     if (mapGeoType === "NTA2010") {
+
         topoFile = 'NTA_2010.topo.json';
+
     } else if (mapGeoType === "NTA2020") {
+
         topoFile = 'NTA_2020.topo.json';
+
     } else if (mapGeoType === "NYHarbor") {
+
         topoFile = 'ny_harbor.topo.json';
+
     } else if (mapGeoType === "CD") {
+
         topoFile = 'CD.topo.json';
+
     } else if (mapGeoType === "CDTA2020") {
+
         topoFile = 'CDTA_2020.topo.json';
+
     } else if (mapGeoType === "PUMA") {
+
         topoFile = 'PUMA_or_Subborough.topo.json';
+
     } else if (mapGeoType === "Subboro") {
+
         topoFile = 'PUMA_or_Subborough.topo.json';
+
     } else if (mapGeoType === "UHF42") {
+
         topoFile = 'UHF42.topo.json';
+
     } else if (mapGeoType === "UHF34") {
+
         topoFile = 'UHF34.topo.json';
+
     } else if (mapGeoType === "NYCKIDS2017") {
+
         topoFile = 'NYCKids_2017.topo.json';
+
     } else if (mapGeoType === "NYCKIDS2019") {
+
         topoFile = 'NYCKids_2019.topo.json';
+
     } else if (mapGeoType === "NYCKIDS2021") {
+
         topoFile = 'NYCKids_2021.topo.json';
+
     } else if (mapGeoType === "NYCKIDS2023") {
+
         topoFile = 'NYCKids_2023.topo.json';
+
     } else if (mapGeoType === "Borough") {
+
         topoFile = 'borough.topo.json';
+
     }
 
     return {url: `${data_repo}${data_branch}/geography/${topoFile}`}
+
 }
 
 
@@ -2333,13 +2392,9 @@ function addListeners() {
     const layerButtons = document.querySelectorAll('.layer-button')
 
     layerButtons.forEach(button => {
-
         button.addEventListener('click', async () => {
-
             await toggleLayerOnMap(button.id, button)
-
         });
-
     });
 
 
@@ -2352,13 +2407,9 @@ function addListeners() {
     const storyButtons = document.querySelectorAll('.story-dropdown-item')
 
     storyButtons.forEach(s => {
-
         s.addEventListener('click', async () => {
-
             await updateMapStateForStory(s.dataset.storyId);
-
         });
-
     });
 
 
@@ -2369,9 +2420,7 @@ function addListeners() {
     //  NEED A WAY TO CREATE THE POPUP THAT IS AWARE OF ALL LAYERS, WITHOUT FIRING AN EVENT ON LITERALLY EVERY MOUSEMOVE
     
     map.addEventListener('mousemove', (event) => {
-
         updateInfoBox(event.latlng);
-
     });
 
     
@@ -2380,9 +2429,7 @@ function addListeners() {
     // ----------------------------------------------------------------------- //
 
     map.addEventListener('popupclose', () => {
-
         infoBox = null;
-
     });
 
     
@@ -2393,8 +2440,6 @@ function addListeners() {
     document.querySelector('#refreshButton').addEventListener('click', async () => {
         await resetMapState();
     });
-
-
 }
 
 

@@ -99,6 +99,7 @@ function getStationsFromData() {
     for (let i = 0; i < stations.length; i++) {
         
         if (i == 0 ) {
+
             times = dt
             .select('starttime','timeofday')
             .dedupe('starttime')
@@ -112,6 +113,7 @@ function getStationsFromData() {
             dataWithNulls = thisStationFull; // sets up initial table
             
         } else {
+
             times = dt
             .select('starttime','timeofday')
             .dedupe('starttime')
@@ -126,13 +128,14 @@ function getStationsFromData() {
             // put thisStationFull into one table
 
             dataWithNulls = dataWithNulls.concat(thisStationFull); // adds subsequent loops to the fll table
+
         }
-        
     }
     
     // with stations, load locations from data file
 
     loadMonitorLocations();
+
 }
 
 let colors = [
@@ -158,6 +161,7 @@ let colors = [
 function loadMonitorLocations() {
 
     d3.csv("https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/portal/station-new.csv").then(data => {
+
         allMonitorLocations = data;
         
         // assign .Color to each item in allMonitorLocations, from colors
@@ -167,13 +171,15 @@ function loadMonitorLocations() {
             // make DEC gray, else, assign color from colors array
 
             if (allMonitorLocations[i].loc_col === 'DEC_Avg') {
+
                 console.log('We are making DEC gray')
                 allMonitorLocations[i].Color = '#999999'
+
             } else {
+
                 allMonitorLocations[i].Color = colors[i % colors.length];
                 
             }
-            
         }
         
         
@@ -242,6 +248,7 @@ function drawCheckboxes() {
 
 
 function listenTable() {
+
     var rows = document.querySelectorAll('.location-row')
     
     rows.forEach(row => {
@@ -278,6 +285,7 @@ function listenTable() {
 }
 
 function zoomTo(locationColumn) {
+
     console.log('Zooming to ' + locationColumn + ' from table click')
     
     // filter activeMonitors to locationColumn
@@ -301,10 +309,12 @@ function printRecentAverage() {
 
     var convertData = []
     for (let i = 0; i < fullTable.length; i++) {
+
         convertData.push(fullTable[i])
         const date = new Date(convertData[i].starttime)
         let dateInMsec = Date.parse(date)
         convertData[i].starttime = dateInMsec
+
     }
     
     // console.log('convertData', convertData)
@@ -319,19 +329,23 @@ function printRecentAverage() {
     var last24HoursData = []
     for (let i = 0; i < convertData.length; i++) {
         if (convertData[i].starttime > startingTime) {
+
             last24HoursData.push(convertData[i])
+
         } else {}
     }
     
     // first, loop through and get values, and get max value
 
     for (let i = 0; i < activeMonitors.length; i++) {
+
         var thisLast = []
         thisLast = last24HoursData.filter(s => s.SiteName === activeMonitors[i].loc_col)
         
         // count if there are 17 entries
 
         if (thisLast.length > 17) {
+
             var average;
             var sum = []
             for (let i = 0; i < thisLast.length; i ++ ) {
@@ -347,6 +361,7 @@ function printRecentAverage() {
             average = Math.round(average * 100) / 100
             
             values.push(average)
+
         }
     }
     
@@ -370,6 +385,7 @@ function printRecentAverage() {
         // count if there are 17 entries
 
         if (thisLast.length > 17) {
+
             var average;
             var sum = []
             for (let i = 0; i < thisLast.length; i ++ ) {
@@ -421,6 +437,7 @@ function printRecentAverage() {
     }
     
     sortTable()
+
 }
 
 
@@ -478,7 +495,6 @@ function drawMap() {
             map.setView(e.latlng, 13);
             updateData(monitor_locations[i].loc_col)
         });
-        
     });
     
     monitors = monitors_group.getLayers();
@@ -520,16 +536,17 @@ function drawMap() {
             icon: "fas fa-undo",
             
             onClick: function() {
-                
                 resetZoom();
             }
         }]
     }).addTo(map);      
+
 }
 
 // ---- reset zoom on click ---- //
 
 function resetZoom() {
+
     map.setView(monitors_center, 11).fitBounds(monitors_bounds);
     
     var rows = document.querySelectorAll('.location-row')
@@ -538,6 +555,7 @@ function resetZoom() {
     
     chosenSite = undefined;
     renderSpec(dataWithNulls,null)
+
 }
 
 // ---- TIME FILTER ---- //
@@ -545,20 +563,25 @@ function resetZoom() {
 // event listener on the time-selection form
 
 document.getElementById('inputNum').addEventListener('change', function (event) {
+
     event.preventDefault();
     inputNum = document.getElementById('inputNum').value;
     if (inputNum > 7) {
+
         console.log('too large');
         $("#sevenModal").modal()
+
     } else {
+
         updateTime(inputNum)
+
     }
-    
 });
 
 // Time update function - uses transform[0].filter
 
 function updateTime(x) {
+
     var last = fullTable.pop()
     const date = new Date(last.starttime)
     let dateInMsec = Date.parse(date)
@@ -609,6 +632,7 @@ function updateData(x) {
 // -- DRAW HAMILTON BRIDGE ---- //
 
 function drawHamiltonBridge() {
+
     console.log('Hamilton Bridge not reporting. Drawing point anyway')
     const hamiltonBridgeLocation = allMonitorLocations.filter(item => item.Location === 'Hamilton Bridge');
     
@@ -623,6 +647,7 @@ function drawHamiltonBridge() {
     L.marker([hamiltonBridgeLocation[0].Latitude, hamiltonBridgeLocation[0].Longitude], {icon: this_icon, riseOnHover: true, riseOffset: 2000})
     .bindPopup(`Hamilton Bridge`) // Add a popup with the location name
     .addTo(map)
+
 }
 
 
@@ -680,13 +705,20 @@ function sortTable() {
 // Comparer Function - used later    
 
 function GetSortOrder(prop) {    
+
     return function(a, b) {    
+
         if (a[prop] > b[prop]) {    
+
             return 1;    
+
         } else if (a[prop] < b[prop]) {    
+
             return -1;    
+
         }    
         return 0;    
+
     }    
 }  
 
@@ -785,6 +817,7 @@ async function renderSpec(
     // if checked, layer:
     
     if ( site != null) {
+
         console.log('drawing chart with selected sites', site.siteName, site.color)
         var checkedLayer =     // needs sitename and color inserted, see below. 
         {
@@ -822,8 +855,10 @@ async function renderSpec(
         chartSpec.layer.push(checkedLayer)
         
     } else {
+
         var checkedLayer
         console.log('No selected sites')
+
     }
     
     

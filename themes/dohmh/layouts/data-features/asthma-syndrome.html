@@ -179,40 +179,52 @@
 
         var smoothCount = 0
         function smooth(x) {
+
             changeSpec = spec
             smoothCount = smoothCount + 1
             if (smoothCount % 2 == 0) {
+
                 changeSpec.encoding.y.field = 'Count'
                 document.getElementById('smoothBtn').classList.remove('btn-secondary')
                 document.getElementById('smoothBtn').classList.add('btn-outline-secondary')
 
             } else {
+
                 changeSpec.encoding.y.field = 'rollingAverage'
                 document.getElementById('smoothBtn').classList.add('btn-secondary')
                 document.getElementById('smoothBtn').classList.remove('btn-outline-secondary')
+
             }
             vegaEmbed("#vis1", changeSpec, {renderer: "svg"});
+
         }
 
         function smoothed(x) {
+
           changeSpec = spec
           changeSpec.encoding.y.field = x
           vegaEmbed("#vis1", changeSpec, {renderer: "svg"});
 
           if (x == 'Count') {
+
             document.getElementById('countBtn').classList.add('active')
             document.getElementById('raBtn').classList.remove('active')
+
           } else {
+
             document.getElementById('countBtn').classList.remove('active')
             document.getElementById('raBtn').classList.add('active')
+
           }
         }
 
         function time(y) {
+
           changeSpec.encoding.x.timeUnit = y
           vegaEmbed("#vis1", changeSpec, {renderer: "svg"});
 
           if (y == 'dayofyear') {
+
             document.getElementById('dayBtn').classList.add('btn-primary')
             document.getElementById('dayBtn').classList.remove('btn-outline-primary')
             document.getElementById('monthBtn').classList.remove('btn-primary')
@@ -220,7 +232,9 @@
             document.getElementById('smoothBtn').classList.remove('hide')
             document.getElementById('smoothBtn').classList.remove('btn-secondary')
             document.getElementById('smoothBtn').classList.add('btn-outline-secondary')
+
           } else {
+
             changeSpec.encoding.y.field = 'Count'
             document.getElementById('dayBtn').classList.remove('btn-primary')
             document.getElementById('dayBtn').classList.add('btn-outline-primary')
@@ -235,6 +249,7 @@
 
         var count = 0
         function toggle(x) {
+
           count = count + x
           if (count % 2 == 0) {
 
@@ -244,17 +259,21 @@
             document.getElementById('toggle').innerHTML = 'Hide previous years'
 
           } else {
+
             document.getElementById('toggle').innerHTML = 'Show previous years'
             changeSpec.encoding.color.scale.range = ["#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#12135b"]
 
             // changeSpec.transform[2].filter = `datum.Date > 1672549200000`
+
           };
           // console.log(changeSpec)
 
           vegaEmbed("#vis1", changeSpec, {renderer: "svg"});
+
         }
 
       function changeYear(x) {
+
         var chosenYear = x
         var indexPos = x - 2016
         var colors = ["grey","grey","grey","grey","grey","grey","grey","grey"]
@@ -272,6 +291,7 @@
         var buttonIndex = 0 - indexPos
         yearButtons[indexPos].classList.remove('btn-outline-secondary')
         yearButtons[indexPos].classList.add('btn-secondary')
+
       }
 
 

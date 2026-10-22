@@ -64,7 +64,6 @@ const parseSelectionFromURL = () => {
     const rawOverlay = params.get('overlay');
 
     return {
-
         id:           toNumber(params.get('id')),
         MeasureID:    toNumber(params.get('MeasureID')),
 
@@ -76,9 +75,7 @@ const parseSelectionFromURL = () => {
 
         // 'map' is the legacy spelling of the bar overlay.
         overlay:      rawOverlay === 'map' ? 'bar' : (rawOverlay || null)
-
     };
-
 };
 
 
@@ -102,12 +99,10 @@ const applySelectionToState = (selection) => {
 // Centralizes history writes so replace/push state stay consistent.
 
 const writeHistoryState = (historyMethod, nextState, nextURL) => {
-
     window.history[historyMethod](nextState, '', nextURL);
     debugLog(`${historyMethod} →`, nextURL.search);
 
     refreshCitation();
-
 };
 
 
@@ -142,6 +137,7 @@ const writeSelectionToURL = (historyMethod = 'pushState') => {
         TimePeriodID: DE.state.TimePeriodID,
         overlay: DE.state.overlay
     }, url);
+
 };
 
 // Adds a history entry — what every user-initiated change (dropdown, tab, close) does.
@@ -182,6 +178,7 @@ const normalizeLegacyGeoTypeURL = () => {
     // Rewrite each key=value pair while preserving everything unrelated to GeoType.
 
     const normalizedParts = searchParts.flatMap(part => {
+
         const [key, ...rest] = part.split('=');
         const value = rest.join('=');
 
@@ -206,6 +203,7 @@ const normalizeLegacyGeoTypeURL = () => {
         // - - - otherwise rename GeoTypeID to GeoType - - - //
 
         return [`GeoType=${value}`];
+
     });
 
     // ----- exit early if nothing changed ----- //
@@ -323,11 +321,9 @@ const normalizeLegacyHashOverlayURL = () => {
 // Hash first: it can add an overlay param that the query-param passes then canonicalize.
 
 const normalizeLegacyURL = () => {
-
     normalizeLegacyHashOverlayURL();
     normalizeLegacyGeoTypeURL();
     normalizeLegacyOverlayURL();
-
 };
 
 // Runs at parse time, before checkURL() boots the app from the template, so every
@@ -376,7 +372,9 @@ const scheduleTableOverlayRender = (afterRender = Promise.resolve()) => {
     Promise.resolve(afterRender)
         .catch(() => null)
         .then(() => {
+
             window.requestAnimationFrame(() => {
+
                 window.requestAnimationFrame(() => {
                     if (DE.state.overlay === 'table' && token === pendingTableOverlayToken) {
                         showTable();
@@ -384,7 +382,6 @@ const scheduleTableOverlayRender = (afterRender = Promise.resolve()) => {
                 });
             });
         });
-
 };
 
 // Routes to the show* renderer for the current overlay after kicking off the optional map redraw promise.
@@ -425,6 +422,7 @@ const renderCurrentView = (updateMap = false) => {
             const tabContent = document.querySelector('#v-pills-tabContent');
             if (tabContent) tabContent.style.display = 'none';
             break;
+
         }
 
         case 'bar':
@@ -435,9 +433,13 @@ const renderCurrentView = (updateMap = false) => {
             // If the map also changed, let that redraw settle before starting heavy table work.
 
             if (updateMap) {
+
                 scheduleTableOverlayRender(mapRenderPromise);
+
             } else {
+
                 runOverlayRenderer(showTable);
+
             }
             break;
 
@@ -460,6 +462,7 @@ const renderCurrentView = (updateMap = false) => {
 
             runOverlayRenderer(showBar);
             break;
+
     }
 };
 
@@ -586,7 +589,6 @@ window.addEventListener('popstate', async (event) => {
     // writing it again would stack a duplicate on top of it.
 
     if (selection.id && selection.id !== DE.state.IndicatorID) {
-
         await loadAndRenderIndicator(selection.id, { selection, history: 'none' });
         return;
     }
@@ -670,9 +672,9 @@ document.addEventListener("DOMContentLoaded", () => {
             renderCurrentView();
 
             trackDataExplorerEvent('click_tab', { tab: value });
+
         });
     });
-
 });
 
 // ----------------------------------------------------------------------- //
@@ -690,11 +692,14 @@ $("#groupByBoroughToggle").on("change", (e) => {
     //  first-render path so we never build into a still-hidden pane.
 
     if (DE.table.tableData && $.fn.dataTable.isDataTable('#tableID')) {
-        renderTable(DE.table.tableData);
-    } else {
-        DE.table.tableNeedsRender = true;
-    }
 
+        renderTable(DE.table.tableData);
+
+    } else {
+
+        DE.table.tableNeedsRender = true;
+
+    }
 });
 
 

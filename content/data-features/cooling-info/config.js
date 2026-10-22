@@ -30,7 +30,6 @@ var content = [
                 "goTo": 2
             },
         ]
-
     },
 
     
@@ -58,7 +57,6 @@ var content = [
             }
         
         ]
-
     },
 
     /* Question 3*/
@@ -110,7 +108,6 @@ var content = [
                 "goTo": 6
             }
         ]
-
     },
 
 
@@ -138,7 +135,6 @@ var content = [
                 "goTo": 6
             }
         ]
-
     },
 
 
@@ -165,7 +161,6 @@ var content = [
                 "goTo": 99
             }
         ]
-
     },
 
 ]

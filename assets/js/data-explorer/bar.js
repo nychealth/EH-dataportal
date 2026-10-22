@@ -17,6 +17,7 @@ let barResizeEventRegistered = false;
 // Defers Vega resize until the overlay pane has fully repainted.
 
 const scheduleBarViewResize = () => {
+
     if (!window.myVegaView || typeof window.myVegaView.resize !== 'function') {
         return;
     }
@@ -48,6 +49,7 @@ const registerBarTabResizeHandler = () => {
     });
 
     barResizeEventRegistered = true;
+
 };
 
 
@@ -225,7 +227,6 @@ const renderBar = (
                 }
                 */
             ]  
-
         } else if (hasCI == true) {
 
             // - - - CI: gray error bar plus point-estimate marker for confidence-interval rows - - - //
@@ -436,7 +437,6 @@ const renderBar = (
                 }
                 */
             ]   
-
         }
 
 
@@ -541,7 +541,6 @@ const renderBar = (
     // ----- render & map-hover interop ----- //
 
     return vegaEmbed("#barHolder", vegaSpec, {
-
         renderer: "svg",
 
         actions: false
@@ -552,7 +551,6 @@ const renderBar = (
         //     compiled: false,
         //     editor: true
         // }
-
     }).then(result => {
 
         window.myVegaView = result.view; // store the vega view globally
@@ -572,17 +570,15 @@ const renderBar = (
             if (geoID == null || !window.mapInterop.ready) return;
 
             window.mapInterop.highlight(geoID);
+
         });
 
         // Clear the linked map highlight when the cursor leaves a bar or the chart.
 
         result.view.addEventListener('mouseout', () => {
-
             if (!window.mapInterop.ready) return;
 
             window.mapInterop.reset();
         });
-
     });
-
 };

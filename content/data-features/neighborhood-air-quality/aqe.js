@@ -74,9 +74,7 @@ const load_flexdatalist = async () => {
               // console.log("e [clear click]", e);
 
               $($input).find("~input").val("").trigger( "focus" )
-              
           })
-
       })
 }
 
@@ -154,16 +152,19 @@ function sourceTertile(x,dest) {
     // change class
 
     destination.classList.add('badge-worse')
+
   } else if (x === 'Medium') {
 
     // change class
 
     destination.classList.add('badge-medium')
+
   } else if (x === 'Low') {
 
     // change class
 
     destination.classList.add('badge-better')
+
   }
 
   destination.innerHTML = x
@@ -187,9 +188,13 @@ const renderChart = (
   var units
 
   if (variable === 'PM') {
+
     title = "PM2.5 (μg/m3)"
+
   } else if (variable === 'NO2') {
+
     title = "NO2 (ppb)"
+
   }
 
   var barSpec = {
@@ -263,6 +268,7 @@ const renderChart = (
   // console.log(barSpec)
 
   vegaEmbed(destination, barSpec, {renderer: "svg", actions:false})
+
 }
 
 
@@ -288,43 +294,61 @@ function changeSource(x) {
   var title;
 
   if (x==1) {
+
       title = 'Building emissions'
+
   } else if (x==2) {
+
       title = "Commercial cooking"
+
   } else if (x==3) {
+
       title = "Industrial area"
+
   } else if (x==4) {
+
       title = "Traffic density"
+
   }
 
   document.getElementById('mapTitle').innerHTML = title
   renderMap(x,thisGeocode)
+
 }
 
 const renderMap = (
   x,           // indicator
   neighborhood // NTACode
 ) => {
+
     var title;
     var indicator
     var label;
 
     if (x===1) {
+
         title = 'Building emissions'
         indicator = 'numeric_Building_emissions'
         label = 'Building_emissions'
+
     } else if (x===2) {
+
         title = "Commercial cooking"
         indicator = 'numeric_cook_tertiles'
         label = 'cook_tertiles'
+
     } else if (x===3) {
+
         title = "Industrial area"
         indicator = 'numeric_Industrial_tertiles'
         label = 'Industrial_tertiles'
+
     } else if (x===4) {
+
         title = "Traffic density"
         indicator = 'numeric_Traffic_tertiles'
         label = 'Traffic_tertiles'
+
     }
 
     var mapSpec = {

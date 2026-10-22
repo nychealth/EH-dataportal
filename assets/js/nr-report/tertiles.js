@@ -81,6 +81,7 @@ const getTertileSentenceParts = (rank, rankReverse) => {
     // sentence and the borough sentence disagreeing
 
     if (r === '1') {
+
         return {
             word: reverse ? 'Lower' : 'Higher',
             rest: ' than most neighborhoods',
@@ -93,6 +94,7 @@ const getTertileSentenceParts = (rank, rankReverse) => {
     }
 
     if (r === '3') {
+
         return {
             word: reverse ? 'Higher' : 'Lower',
             rest: ' than most neighborhoods',
@@ -108,13 +110,11 @@ const getTertileSentenceParts = (rank, rankReverse) => {
 // Expands the same rank into a full sentence fragment with the judgment word colored
 
 const getTertileInlineLabel = (rank, rankReverse) => {
-
     const parts = getTertileSentenceParts(rank, rankReverse);
 
     if (!parts.word) return '';
 
     return '<span class="' + parts.cssClass + '">' + parts.word + '</span>' + parts.rest;
-
 };
 
 
@@ -123,11 +123,9 @@ const getTertileInlineLabel = (rank, rankReverse) => {
 // the tree gets the sentence and the pixels get a glyph (assets/scss/theme.scss)
 
 const getTertileSentence = (rank, rankReverse) => {
-
     const parts = getTertileSentenceParts(rank, rankReverse);
 
     return parts.word ? parts.word + parts.rest : '';
-
 };
 
 
@@ -166,17 +164,23 @@ const getComparison = (neighVal, refVal, rankReverse) => {
     // when the two tertile functions above it were not
 
     if (n > r) {
+
         word = 'Higher';
         preposition = 'than';
         cls = reverse ? 'comp-good' : 'comp-bad';
+
     } else if (n < r) {
+
         word = 'Lower';
         preposition = 'than';
         cls = reverse ? 'comp-bad' : 'comp-good';
+
     } else {
+
         word = 'Equal';
         preposition = 'to';
         cls = 'comp-null';
+
     }
 
     return { word: word, preposition: preposition, cssClass: cls };

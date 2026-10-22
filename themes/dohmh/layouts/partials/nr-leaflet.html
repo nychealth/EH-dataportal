@@ -98,11 +98,9 @@
             const data = JSON.parse(text);
 
             uhf_geojson = L.geoJSON(data, {
-
                 style: style,
                 onEachFeature: onEachFeature,
                 filter: (feature) => feature.properties.GEOCODE != 0
-
             }).addTo(map);
 
             // addTo is synchronous, so every polygon has its <path> by here
@@ -148,7 +146,6 @@
                     console.warn("No matching GEOCODE found:", geocode);
 
                 }
-
             }
 
             // The neighborhood index pages frame their own neighborhood; the landing and topic
@@ -207,6 +204,7 @@
     // define styl function
 
     function style(feature) {
+
         return {
             weight: 1.5,
             opacity: 1,
@@ -229,14 +227,11 @@
         // set event handlers for each layer
 
         layer.on({
-
             mouseover: highlightFeature,
             mouseout: resetHighlight,
             click: selectNeighborhood,
             keydown: onNeighborhoodKeyDown,
-
         });
-
     }
 
     // The name the rest of the site uses: uhflist's UHF_name, which the neighborhood list,
@@ -275,7 +270,6 @@
             el.setAttribute("aria-label", neighborhoodDisplayName(layer.feature));
 
         });
-
     }
 
     // Enter and Space on a focused polygon do what a click does. Leaflet's map container
@@ -341,7 +335,6 @@
             color: "black",
             dashArray: "1",
         });
-
     }
     
     // --------------------------------------------------------------------------------------------------- // 
@@ -401,7 +394,6 @@
             chosenReport = (urlPieces[2] && urlPieces[2].length > 2) ? urlPieces[2] : null;
 
         }
-
     }
 
     getReportAndNeighborhood(window.location.href)
@@ -458,7 +450,9 @@
             // console.log(buildURL)
 
         } else {
+
             console.warn("No matching neighborhood for GEOCODE:", geocodeClicked);
+
         }
     }
     

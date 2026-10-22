@@ -100,9 +100,7 @@ const load_flexdatalist = async () => {
                 // console.log("e [clear click]", e);
 
                 $($input).find("~input").val("").trigger( "focus" )
-                
             })
-
         })
 }
 
@@ -131,6 +129,7 @@ d3.csv(hvi_url, d3.autoType).then(data => {
     buildMap('#mapvis', HVImapSpec, hvidata, nta_topojson, "");
 
     // console.log("hvidata", hvidata);
+
 }); 
 
 
@@ -147,7 +146,6 @@ function dataChange(GEOCODE) {
         // using numeric version of the NTACode for operations
         
         return hvi.GEOCODE == GEOCODE;
-        
     });
     
     // console.log("neighborhoodData", neighborhoodData);
@@ -207,53 +205,64 @@ function tertileTranslate(tertileVal, category) {
     if (category == "tempTert") {
         
         if (tertileVal == 3) {
+
             return '<span class="badge badge-warning">Higher than most NYC neighborhoods</span>';
             
         } else if (tertileVal == 2) {
+
             return '<span class="badge badge-light">In the middle of NYC neighborhoods</span>';
             
         } else {
+
             return '<span class="badge badge-success">Lower than most NYC neighborhoods</span>';
+
         }
-        
     } else if (category == "acTert") {
         
         if (tertileVal == 3) {
+
             return '<span class="badge badge-success">more than most NYC neighborhoods</span>';
             
         } else if (tertileVal == 2) {
+
             return '<span class="badge badge-light">in the middle of NYC neighborhoods</span>';
             
         } else {
+
             return '<span class="badge badge-warning">less than most NYC neighborhoods</span>';
+
         }
-        
     } else if (category == "greenTert") {
         
         if (tertileVal == 3) {
+
             return '<span class="badge badge-success">more than most NYC neighborhoods</span>';
             
         } else if (tertileVal == 2) {
+
             return '<span class="badge badge-light">in the middle of NYC neighborhoods</span>';
             
         } else {
+
             return '<span class="badge badge-warning">less than most NYC neighborhoods</span>';
+
         }
-        
     } else if (category == "incTert") {
         
         if (tertileVal == 3) {
+
             return '<span class="badge badge-success">higher than most NYC neighborhoods</span>';
             
         } else if (tertileVal == 2) {
+
             return '<span class="badge badge-light">in the middle of NYC neighborhoods</span>';
             
         } else {
+
             return '<span class="badge badge-warning">lower than most NYC neighborhoods</span>';
+
         }
-        
     }
-    
 }
 
 

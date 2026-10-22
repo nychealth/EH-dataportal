@@ -68,7 +68,6 @@ const buildLegend = (def) => {
             labels +
         '</div>'
     );
-
 };
 
 
@@ -98,7 +97,6 @@ const showAqCovidMap = (key) => {
         button.setAttribute('aria-pressed', isActive);
 
     });
-
 };
 
 

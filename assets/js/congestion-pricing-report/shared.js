@@ -99,6 +99,7 @@ site_names.forEach(s => { if (CP_SITES[s].badgeKey) CP_BADGE_TO_SITE[CP_SITES[s]
 // Shared by the EJ (#cpSiteButtons) and TOD (#todSiteButtons) charts.
 
 function createSiteSelector({ wrapId, sites, idPrefix, getCurrent, onChange }) {
+
     const btnWrap = document.getElementById(wrapId);
     if (!btnWrap) return;
     btnWrap.innerHTML = "";
@@ -137,11 +138,9 @@ function createSiteSelector({ wrapId, sites, idPrefix, getCurrent, onChange }) {
             if (site === current) btn.classList.add("active");
 
             btn.addEventListener("click", async () => {
-
                 [...btnWrap.querySelectorAll("button")].forEach((b) => b.classList.remove("active"));
                 btn.classList.add("active");
                 await onChange(site);
-
             });
 
             btnWrap.appendChild(btn);
@@ -196,6 +195,7 @@ function addResizeHandler(el, onResize, onBreakpoint) {
     observer.observe(el);
 
     return observer;
+
 }
 
 
@@ -207,7 +207,6 @@ function addResizeHandler(el, onResize, onBreakpoint) {
 // where available, JSON round-trip as a fallback (specs are plain JSON).
 
 function cloneSpec(spec) {
-
     return typeof structuredClone === "function"
         ? structuredClone(spec)
         : JSON.parse(JSON.stringify(spec));
@@ -235,6 +234,7 @@ const CP_CSV_CACHE = new Map();
 function loadCsv(url) {
 
     if (!CP_CSV_CACHE.has(url)) {
+
         CP_CSV_CACHE.set(
             url,
             vega.loader().load(url).then((raw) => vega.read(raw, { type: "csv", parse: "auto" }))
@@ -242,6 +242,7 @@ function loadCsv(url) {
     }
 
     return CP_CSV_CACHE.get(url);
+
 }
 
 // Vega tags ingested row objects with its own tuple id, so two views sharing
@@ -250,9 +251,7 @@ function loadCsv(url) {
 // optimizing away.
 
 function csvRows(rows) {
-
     return rows.map((row) => ({ ...row }));
-
 }
 
 
@@ -277,11 +276,9 @@ const cpTextMetrics = document.createElement("canvas").getContext("2d");
 // measuring bold text with a regular font packs too many words onto a line.
 
 function measureTextWidth(text, fontSize, fontFamily, fontWeight) {
-
     cpTextMetrics.font = `${fontWeight || "normal"} ${fontSize}px ${fontFamily || "Helvetica"}`;
 
     return cpTextMetrics.measureText(text).width;
-
 }
 
 // Word-wrap a string to fit `maxPx`, returning one array element per line.
@@ -297,16 +294,21 @@ function wrapText(text, maxPx, fontSize, fontFamily, fontWeight) {
         const candidate = line ? line + " " + word : word;
 
         if (line && measureTextWidth(candidate, fontSize, fontFamily, fontWeight) > maxPx) {
+
             lines.push(line);
             line = word;
+
         } else {
+
             line = candidate;
+
         }
     }
 
     if (line) lines.push(line);
 
     return lines;
+
 }
 
 // Wrap a spec's title + subtitle to the container width. On a wide container
@@ -379,11 +381,9 @@ const CP_SHRINK = new Map();        // "ej:2" -> measured allowance per panel
 const CP_FLOOR_BOUND = new Set();   // "tod:1" -> text sets the width; trimming panels can't help
 
 function cpRenderedWidth(el) {
-
     const svg = el && el.querySelector("svg");
 
     return svg ? svg.getBoundingClientRect().width : 0;
-
 }
 
 // Size a spec's panels to its container. `apply` writes the computed geometry
@@ -412,6 +412,7 @@ function fitChart(spec, el, cfg, apply, paneOverride) {
     wrapTitle(spec, avail);
 
     return { cols, spacing, pane, avail, key, shrink, overridden: paneOverride != null };
+
 }
 
 // Render, then check what actually came out. Only ever trims: a chart whose cap
@@ -456,6 +457,7 @@ async function embedFitted(el, buildSpec, cfg, apply, paneOverride) {
     }
 
     return layout;
+
 }
 
 

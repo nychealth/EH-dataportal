@@ -43,6 +43,7 @@
       var table = document.getElementById('tableBody')
 
       function changePollutant(x) {
+
           pollutant = x;
           // console.log('pollutant: ', x)
 
@@ -57,10 +58,12 @@
           // filter data table for selected pollutant
 
           filterData(x)
+
         }
 
 
       function filterData(x) {
+
         filteredTable = polTable.filter(row => row.Pollutant === x);
         table.innerHTML = ''
         for (let i = 0; i < filteredTable.length; i++) {
@@ -80,6 +83,7 @@
               cell1.innerHTML = filteredTable[i].Indicator;
               cell2.innerHTML = filteredTable[i].Description;
               cell3.innerHTML = filteredTable[i].Sources;
+
         }
       }
 

@@ -26,7 +26,6 @@ L.easyButton({
         icon: "fas fa-undo",
         
         onClick: function() {
-            
             resetZoom();
         }
     }]
@@ -43,6 +42,7 @@ function resetZoom() {
 // When style is run in const geojson, it returns these - default styles
 
 function style(feature) {
+
     return {
         weight: 1,
         opacity: 1,
@@ -57,18 +57,22 @@ function style(feature) {
 
 
 function getGeoJSON(x) {
+
   return new Promise((resolve, reject) => {
 
       // Fetch the GeoJSON data
 
       fetch(x)
       .then(response => {
+
           if (!response.ok) {
               throw new Error('Network response was not ok');
           }
           return response.json(); // Parse the GeoJSON data
+
       })
       .then(data => {
+
         rmzgeojson = data; // Store the GeoJSON data in a global variable
           // console.log('GeoJSON data loaded:', rmzgeojson);
 
@@ -77,6 +81,7 @@ function getGeoJSON(x) {
               style,
               onEachFeature
           }).addTo(map);
+
       })
       .catch(error => {
           console.error('Error fetching the GeoJSON file:', error);
@@ -92,6 +97,7 @@ getGeoJSON('https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/pro
 // ===== Map styles ================================================== //
 
 function onEachFeature(feature, layer) {
+
     layer.on({
         mouseover: highlightFeature,
         // mouseout: resetHighlight,
@@ -138,6 +144,7 @@ function zoomToFeature(e) {
 }
 
 function highlightFeature(e) {
+
     geog.resetStyle()
     // console.log('highlight feature:')
     // console.log(e)
@@ -183,6 +190,7 @@ function update(x) {
   redrawChart(x)
   interpretInitial(x)
   interpretCompliance(x)
+
 }
 
 // ===== GET RECENT DATA (INITIAL, COMPLIANCE) ================================================== //
@@ -213,6 +221,7 @@ function interpretInitial(x) {
 }
 
 function interpretCompliance(x) {
+
   thisCompliance = complianceRecent.filter(y => y.zoneID == x)
   console.log('recent data compliance:', thisCompliance)
   var comp = thisCompliance.filter(y => y.Type === 'Compliance inspections')
@@ -889,6 +898,7 @@ var revSpecFour = {
     // get data for final date installment
 
     recent = initialData.filter(x => x.Date === mostRecentDate)
+
   })
 
     //// ----- Get most recent data for Compliance Inspections ------ ////
@@ -897,10 +907,12 @@ var revSpecFour = {
   var complianceRecent = [];
   var thisCompliance = [];
   d3.csv('compliance-inspections.csv').then(data => {
+
     complianceData = data;
     var finalPosition = complianceData.length - 1
     var mostRecentDate = complianceData[finalPosition].Date
     complianceRecent = complianceData.filter(x => x.Date === mostRecentDate)
+
   })
 
   // ===== REDRAW CHARTS ON NEIGHBORHOOD SELECTION ================================================== //
@@ -910,6 +922,7 @@ function redrawChart(zoneID) {
   console.log('drawing chart for zone ', zoneID);
 
   if (zoneID == '4') {
+
     revSpecOne.layer[3].encoding.color.value = "red";
     revSpecTwo.layer[3].encoding.color.value = "red";
     revSpecThree.layer[3].encoding.color.value = "red";
@@ -919,6 +932,7 @@ function redrawChart(zoneID) {
         note.classList.remove('hide');
     });
   } else {
+
     revSpecOne.layer[3].encoding.color.value = "transparent";
     revSpecTwo.layer[3].encoding.color.value = "transparent";
     revSpecThree.layer[3].encoding.color.value = "transparent";

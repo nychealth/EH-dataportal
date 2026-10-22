@@ -36,11 +36,9 @@ const styleFeature = () => defaultStyle;
 // Temporary hover state for visual affordance
 
 const reportMapHighlight = e => {
-
     const layer = e.target;
     layer.setStyle({ weight: 5, color: '#444', dashArray: '' });
     layer.bringToFront();
-
 };
 
 
@@ -97,6 +95,7 @@ const selectLayer = layer => {
     // aria-current, not aria-pressed: pressing the selected polygon again does not toggle it off
 
     if (uhfLayer) {
+
         uhfLayer.eachLayer(other => {
             const el = typeof other.getElement === 'function' && other.getElement();
             if (el) el.removeAttribute('aria-current');
@@ -115,18 +114,14 @@ const selectLayer = layer => {
 // [measured 2026-10-20, report and index map boxes at 1280 and 390 wide]
 
 const reportMapFitLayer = layer => {
-
     if (leafletMap && layer) leafletMap.fitBounds(layer.getBounds(), { padding: [10, 10], animate: false });
-
 };
 
 
 // Frames all 42 neighborhoods; the "Reset zoom" button's target
 
 const reportMapFitCity = () => {
-
     if (leafletMap && uhfLayer) leafletMap.fitBounds(uhfLayer.getBounds(), { padding: [10, 10], animate: false });
-
 };
 
 
@@ -170,11 +165,9 @@ const findLayerByGeocode = geocode => {
 // Converts a display name to its Leaflet layer, by way of the UHF id
 
 const findLayerByName = name => {
-
     const uhfId = getUhfIdForDisplayName(name);
 
     return uhfId == null ? null : findLayerByGeocode(uhfId);
-
 };
 
 
@@ -268,11 +261,9 @@ const onMapKeyDown = e => {
 // layer (:10710-10712), which is the hook the library does not use itself
 
 const onTooltipClose = e => {
-
     const el = typeof e.target.getElement === 'function' && e.target.getElement();
 
     if (el) el.removeAttribute('aria-describedby');
-
 };
 
 
@@ -296,7 +287,6 @@ const reportMapOnEachFeature = (feature, layer) => {
         keydown: onMapKeyDown,
         tooltipclose: onTooltipClose
     });
-
 };
 
 
@@ -417,7 +407,6 @@ const initLeafletMap = () => {
 
             console.error('Error loading UHF42 GeoJSON:', err);
             debugLog('initLeafletMap: branch-geojson-load-failed:', err);
-
         })
         .then(() => {
 
@@ -429,5 +418,4 @@ const initLeafletMap = () => {
             tryInitialRender();
 
         });
-
 };

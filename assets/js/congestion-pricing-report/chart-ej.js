@@ -21,6 +21,7 @@ const text_container_id = "EJ_text"
 // of itself, so its heading collapses to just the site name.
 
 function updateSiteHeading(site) {
+
     const isControl = CP_SITES[site].isControlSite === true;
 
     const prefixEl = document.getElementById("site-question-prefix");
@@ -37,6 +38,7 @@ function updateSiteHeading(site) {
 
     const suffixEl = document.getElementById("site-question-suffix");
     if (suffixEl) suffixEl.style.display = isControl ? "none" : "";
+
 }
 
 // Default selection
@@ -52,7 +54,6 @@ let currentSite = "CRZ";
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 const baseSpec = {
-    
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
         "text": "Change in air quality after congestion pricing",
@@ -535,6 +536,7 @@ function buildCpSpec(site) {
     spec.spec.encoding.color.legend = (site || currentSite) !== "Van Wyck";
 
     return spec;
+
 }
 
 // The rows are attached after cloning, so the deep clone never copies the
@@ -553,6 +555,7 @@ function buildAqSpec(site, rows) {
     });
 
     return spec;
+
 }
 
 
@@ -563,12 +566,10 @@ function buildAqSpec(site, rows) {
 // #cpVis is a plain facet — the width goes on the repeated panel spec.
 
 function applyFacet(spec, { cols, spacing, pane }) {
-
     spec.columns = cols;
 
     if (spec.spacing != null) spec.spacing = spacing;
     if (spec.spec?.width != null) spec.spec.width = pane;
-
 }
 
 // #aqChangeVis is an hconcat of four single-pollutant facets. `columns` is not
@@ -585,7 +586,6 @@ function applyHconcatFacet(spec, { cols, spacing, pane }) {
     spec.hconcat?.forEach((chartSpec) => {
         if (chartSpec?.spec?.width != null) chartSpec.spec.width = pane;
     });
-
 }
 
 
@@ -645,14 +645,17 @@ async function draw(site) {
         const aligned = aqAvail >= 576 ? cpLayout?.pane : undefined;
 
         try {
+
             const rows = await loadCsv(CP_AQ_POST_URL);
             await embedFitted(aqEl, () => buildAqSpec(site, rows), CP_FIT.aq, applyHconcatFacet, aligned);
             aqEl.style.minHeight = "";
+
         } catch (err) {
+
             console.error("AQ change Vega render failed:", err);
             aqEl.innerHTML = "<pre style='white-space:pre-wrap'>Chart failed to render. See console.</pre>";
-        }
 
+        }
     } else {
 
         aqEl.style.display = "none";
@@ -694,7 +697,6 @@ function renderButtons() {
         onChange: handleSiteChange,
         
     });
-    
 }
 
 

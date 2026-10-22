@@ -11,11 +11,9 @@
 // generates the report pages from, so the slug is the one the page's own URL carries
 
 const slugForNeighborhood = name => {
-
     const entry = neighborhoods.find(n => n.UHF_name === name);
 
     return entry ? entry.page_name : undefined;
-
 };
 
 
@@ -116,11 +114,14 @@ const setNeighborhoodInURL = (name, historyMode) => {
     // Clicking the neighborhood already shown leaves the path unchanged and adds no entry
 
     if (historyMode === 'push' && newPath !== window.location.pathname) {
-        history.pushState(state, '', url);
-    } else {
-        history.replaceState(state, '', url);
-    }
 
+        history.pushState(state, '', url);
+
+    } else {
+
+        history.replaceState(state, '', url);
+
+    }
 };
 
 
@@ -196,7 +197,6 @@ const updateTopicLinks = neighborhoodName => {
         a.href = '/' + parts.join('/') + '/';
 
     });
-
 };
 
 

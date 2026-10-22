@@ -26,10 +26,8 @@ const nextAccordionId = () => 'nr-acc-' + (++accordionCounter);
 // Escapes a value for interpolation into a double-quoted HTML attribute
 
 const escapeAttr = value => {
-
     if (value == null) return '';
     return String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
-
 };
 
 
@@ -203,9 +201,13 @@ const buildIndicatorCard = (row, neighborhoodName) => {
     // Use percent suffix for percentage-like metrics, otherwise append units
 
     if (row.measurement_type && row.measurement_type.toLowerCase().indexOf('ercent') !== -1) {
+
         unitSuffix = '%';
+
     } else if (row.units) {
+
         unitSuffix = ' ' + row.units;
+
     }
 
     const tertileInlineHTML = getTertileInlineLabel(row.data_value_rank, row.rankReverse);

@@ -111,9 +111,11 @@
         let chosenYear
         let chosenMonth
         if (availMonth == 0) {
+
             chosenYear = thisYear - 1
             chosenMonth = 12
             console.log('Most recent month of data available: ', chosenYear, chosenMonth)
+
         } else {
 
             // else, it's last month of this year
@@ -121,6 +123,7 @@
             chosenYear = thisYear
             chosenMonth = availMonth
             console.log('Most recent month of data available: ', chosenYear, chosenMonth)
+
         }
 
 
@@ -135,6 +138,7 @@
     // loop through earliestDate.year through thisYear and create year options
     
     for (let i = earliestDate.year; i < (thisYear + 1); i ++) {
+
         let element = `
             <li>
                 <div class="custom-control custom-radio">
@@ -145,10 +149,12 @@
         `
         let parent = document.getElementById('yearList')
         parent.innerHTML += element
+
     }
     
     
     function updateURL() {
+
         document.getElementById(chosenYear).checked = true
         downloadURL = 'https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/hist/' + chosenFormat + '/' + chosenYear + '/'  + chosenMonth + '.' + chosenFormat
         document.getElementById('targetURL').innerHTML = downloadURL
@@ -159,13 +165,17 @@
         // if 2019, inactivate anything before earliestDate.month
 
         if (chosenYear == earliestDate.year && chosenMonth < earliestDate.month) {
+
             alert('We do not have data before October 2019. Please select a different month.')
+
         } else {}
     
         // if 2023, inactivate anything after last month
 
         if (chosenYear == thisYear && chosenMonth > thisMonth) {
+
             alert('You cannot download data for future months.')
+
         } else {}
     
     }
@@ -178,6 +188,7 @@
 
     let yearRadios = document.querySelectorAll('.year-radio')
     for (i = 0; i < yearRadios.length; i++) {
+
         yearRadios[i].onclick = function() {
             chosenYear = this.value
             updateURL()
@@ -187,10 +198,12 @@
     // update Month from dropdown list
 
     function changeMonth() {
+
         let e = document.getElementById("months");
         let value = e.value;
         chosenMonth = value
         updateURL()
+
     }
     
     
@@ -198,6 +211,7 @@
 
     let formatRadios = document.querySelectorAll('.format-radio')
     for (i = 0; i < formatRadios.length; i++) {
+
         formatRadios[i].onclick = function() {
             chosenFormat = this.value
             updateURL()

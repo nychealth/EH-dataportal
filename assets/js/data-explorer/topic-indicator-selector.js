@@ -42,11 +42,13 @@ let indicatorSelectionConfirmed = false;
 const indicatorsPromise = fetch(`${data_repo}${data_branch}/indicators/metadata/metadata.json`)
     .then(response => response.json())
     .then(data => {
+
         debugLog("* fetch metadata.json");
         indicators = data; 
         // console.log(">> indicators [fetch]", indicators);
 
         return data; // resolve promise
+
     })
     .catch(error => console.error("# Error loading metadata.json:", error));
 
@@ -70,7 +72,6 @@ const ensureIndicatorsLoaded = async (topic) => {
         return await indicatorsPromise; 
 
     }
-
 }
 
 
@@ -94,7 +95,6 @@ const clearTopicSelectorPrompt = () => {
         topicSelectorPrompt.classList.add('d-none');
         topicSelectorPrompt.setAttribute('aria-hidden', 'true');
     }
-
 };
 
 
@@ -129,7 +129,6 @@ const clearIndicatorSelectorPrompt = () => {
         prompt.classList.add('d-none');
         prompt.setAttribute('aria-hidden', 'true');
     });
-
 };
 
 
@@ -138,6 +137,7 @@ const clearIndicatorSelectorPrompt = () => {
 const showIndicatorSelectorPrompt = () => {
 
     document.querySelectorAll('.indicator-selector-trigger-wrap').forEach(wrapper => {
+
         const button = wrapper.querySelector('.indicator-selector-trigger');
         const prompt = wrapper.querySelector('.indicator-selector-prompt');
 
@@ -152,7 +152,6 @@ const showIndicatorSelectorPrompt = () => {
             prompt.setAttribute('aria-hidden', 'false');
         }
     });
-
 };
 
 
@@ -176,7 +175,6 @@ const showTopicSelectorPrompt = () => {
         topicSelectorPrompt.classList.remove('d-none');
         topicSelectorPrompt.setAttribute('aria-hidden', 'false');
     }
-
 };
 
 
@@ -231,6 +229,7 @@ const bindTopicSelectorControls = () => {
     // ----- wire topic-selector modal show/hidden handlers ----- //
 
     if (topicSelectorModal) {
+
         $('#topicSelector').on('show.bs.modal', () => {
             clearTopicSelectorPrompt();
         });
@@ -253,17 +252,20 @@ const bindTopicSelectorControls = () => {
             // - - - otherwise nudge the user back toward the topic trigger - - - //
 
             showTopicSelectorPrompt();
+
         });
     }
 
     // ----- wire indicator-selector modal show/hidden handlers ----- //
 
     if (indicatorSelectorModal) {
+
         $('#indicatorSelector').on('show.bs.modal', () => {
             clearIndicatorSelectorPrompt();
         });
 
         $('#indicatorSelector').on('hidden.bs.modal', () => {
+
             if (indicatorSelectionConfirmed) {
                 indicatorSelectionConfirmed = false;
                 return;
@@ -274,6 +276,7 @@ const bindTopicSelectorControls = () => {
             }
 
             showIndicatorSelectorPrompt();
+
         });
     }
 
@@ -285,7 +288,9 @@ const bindTopicSelectorControls = () => {
     const topicLinks = document.querySelectorAll('.de-topic-indicator-link[data-indicators][data-topic-title][data-topic-destination]');
 
     topicLinks.forEach(link => {
+
         link.addEventListener('click', event => {
+
             event.preventDefault();
             getIndicatorsForTopic(
                 link.dataset.topicTitle,
@@ -315,6 +320,7 @@ const bindTopicSelectorControls = () => {
         // so delegate from the stable modal container.
 
         indicatorDestination.addEventListener('click', event => {
+
             const indicatorButton = event.target.closest('.de-select-indicator-button[data-indicator-id]');
 
             if (!indicatorButton) {
@@ -322,9 +328,9 @@ const bindTopicSelectorControls = () => {
             }
 
             selectIndicator(indicatorButton.dataset.indicatorId);
+
         });
     }
-
 }
 
 
@@ -416,6 +422,7 @@ const renderIndicatorList = async (indList, destination) => {
                     <p class="mb-0" style="font-size: 14px;">${indicator.IndicatorDescription}</p>
                 </div>
             `;
+
         }).join('');
         
         // - - - wrap section HTML and append to destination - - - //
@@ -430,7 +437,6 @@ const renderIndicatorList = async (indList, destination) => {
         indicatorDestination.innerHTML += sectionHtml;
 
     });
-
 }
 
 
@@ -445,7 +451,6 @@ const dismissIndicatorModal = () => {
     // By the time a user can interact with the modal, Bootstrap is loaded
 
     $('#indicatorSelector').modal('hide');
-
 };
 
 
@@ -481,9 +486,13 @@ const relaunchTopicSelector = (event) => {
 
 
 if (document.readyState === 'loading') {
+
     document.addEventListener('DOMContentLoaded', bindTopicSelectorControls);
+
 } else {
+
     bindTopicSelectorControls();
+
 }
 
 
@@ -526,11 +535,9 @@ const renderIndicatorInfo = async (IndicatorID) => {
     // ----- guard: reopen chooser if not found ----- //
 
     if (!indicator) {
-
         console.warn("No indicator found for ID:", IndicatorID);
         $('#indicatorSelector').modal('show'); // fire Indicator Selection Modal
         return;
-
     }
 
     // ----- fill name field(s) ----- //
@@ -541,17 +548,20 @@ const renderIndicatorInfo = async (IndicatorID) => {
     // Updated indicators get the clock icon inline with the title instead of a separate badge.
 
     nameHolders.forEach(el => {
+
         el.replaceChildren(document.createTextNode(indicator.IndicatorName ?? ""));
 
         // - - - append recently-updated icon - - - //
 
         if (showRecentlyUpdatedIcon) {
+
             const icon = document.createElement('i');
             icon.className = 'fa-regular fa-clock ml-1 fs-sm';
             icon.setAttribute('aria-hidden', 'true');
             icon.setAttribute('aria-label', 'Recently updated');
             icon.setAttribute('title', 'Recently updated');
             el.appendChild(icon);
+
         }
     });
 
@@ -584,20 +594,15 @@ const renderIndicatorInfo = async (IndicatorID) => {
         if (measure.Sources) {
             uniqueSources.add(measure.Sources);
         }
-
     });
 
     // ----- render collected sources ----- //
 
     uniqueSources.forEach(source => {
-
         const p = document.createElement('p');
         p.textContent = source;
         dataSourcesEl.appendChild(p);
-
     });
-    
-    
 }
 
 

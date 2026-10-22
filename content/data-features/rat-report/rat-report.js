@@ -1,6 +1,7 @@
 console.log('rat javascript loaded')
 
 function changeTable(table,zone) {
+
     var buttonID = table + '-' + zone
     var tableID = "table-" + table + '-' + zone
 

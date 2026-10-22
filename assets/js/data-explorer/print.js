@@ -46,18 +46,23 @@ const setPrintModalState = ({
     }
 
     if (printModalDownload) {
+
         printModalDownload.textContent = downloadLabel;
         printModalDownload.href = downloadHref || '#';
 
         if (downloadName) {
+
             printModalDownload.setAttribute('download', downloadName);
+
         } else {
+
             printModalDownload.removeAttribute('download');
+
         }
 
         printModalDownload.classList.toggle('d-none', !showDownload);
-    }
 
+    }
 };
 
 
@@ -78,7 +83,6 @@ const showPrintLoadingState = (message) => {
         footnotesHTML: '',
         showDownload: false
     });
-
 };
 
 
@@ -92,7 +96,6 @@ const showPrintErrorState = (message) => {
         footnotesHTML: '',
         showDownload: false
     });
-
 };
 
 
@@ -122,6 +125,7 @@ const clonePrintSpec = (spec) => {
 const getChartFootnotesHTML = () => {
 
     switch (DE.print.chartType) {
+
         case 'trend':
             return document.getElementById('trend-unreliability')?.innerHTML || '';
 
@@ -131,8 +135,8 @@ const getChartFootnotesHTML = () => {
 
         default:
             return '';
-    }
 
+    }
 };
 
 
@@ -193,21 +197,17 @@ const renderChartPreview = () => {
 // Public entry point that tracks the event, opens the modal, and renders the chart preview.
 
 const openChartSaveModal = () => {
-
     trackDataExplorerPrintView(DE.print.chartType || DE.state.overlay || 'chart');
     openPrintModal();
     renderChartPreview();
-
 };
 
 // Public entry point that tracks the event, opens the modal, and renders the map preview.
 
 const openMapSaveModal = () => {
-
     trackDataExplorerPrintView('map');
     openPrintModal();
     renderMapPreview();
-
 };
 
 
@@ -223,6 +223,7 @@ const bindPrintControls = () => {
     const mapSaveButton = document.getElementById('deSaveMapButton');
 
     if (mapSaveButton) {
+
         mapSaveButton.addEventListener('click', event => {
             event.preventDefault();
             openMapSaveModal();
@@ -234,6 +235,7 @@ const bindPrintControls = () => {
     const chartSaveButtons = document.querySelectorAll('.de-save-chart-button[data-print-target="chart"]');
 
     chartSaveButtons.forEach(button => {
+
         button.addEventListener('click', event => {
             event.preventDefault();
             openChartSaveModal();
@@ -243,6 +245,7 @@ const bindPrintControls = () => {
     // ----- bind download-link tracking ----- //
 
     if (printModalDownload) {
+
         printModalDownload.addEventListener('click', () => {
 
             const fileName = printModalDownload.getAttribute('download');
@@ -256,7 +259,6 @@ const bindPrintControls = () => {
                 fileExtension: '.png',
                 linkText: printModalDownload.textContent.trim() || 'Download PNG'
             });
-
         });
     }
 
@@ -266,6 +268,7 @@ const bindPrintControls = () => {
     // inside #printVis on every render, so listen on the container rather than on the links.
 
     if (printVis) {
+
         printVis.addEventListener('click', event => {
 
             // Matches vega-embed 6.29.0's actions menu, a .vega-actions div of a[download] links. If an
@@ -284,7 +287,6 @@ const bindPrintControls = () => {
                 fileExtension: fileName.slice(fileName.lastIndexOf('.')),
                 linkText: exportLink.textContent.trim()
             });
-
         });
 
         // vega-embed builds an export link's image only on mousedown, so Enter on a focused link saved
@@ -308,7 +310,6 @@ const bindPrintControls = () => {
 
         });
     }
-
 };
 
 

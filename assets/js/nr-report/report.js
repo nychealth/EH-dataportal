@@ -54,11 +54,9 @@ const renderSectionNotes = (container, rows) => {
     wrapper.className = 'nr-section-notes px-2 pt-2 pb-1';
 
     notes.forEach(note => {
-
         const line = document.createElement('p');
         line.textContent = note;
         wrapper.appendChild(line);
-
     });
 
     container.appendChild(wrapper);
@@ -94,17 +92,21 @@ const renderSection = (section, neighborhoodName) => {
     // neighborhood has nothing to report
 
     if (failedSections.has(section.id)) {
+
         debugLog('renderSection: branch-load-failed:', section.id);
         container.innerHTML =
             '<p class="text-muted px-2 pb-2 mb-0">This section could not be loaded. Please try again later.</p>';
         return;
+
     }
 
     if (!rows.length) {
+
         debugLog('renderSection: branch-no-rows:', { sectionId: section.id, neighborhoodName });
         container.innerHTML =
             '<p class="text-muted px-2 pb-2 mb-0">No data available for this neighborhood.</p>';
         return;
+
     }
 
     rows.forEach(row => {
@@ -149,9 +151,7 @@ const resolveGeocode = (neighborhoodName, mapGeocode) => {
                 debugLog('resolveGeocode: branch-found-geocode-in-section:', { sectionId: sid, geocode: gj });
                 return gj;
             }
-
         }
-
     }
 
     // ----- from the map click ----- //
@@ -190,7 +190,6 @@ const updateDocumentTitle = neighborhoodName => {
         document.title = reportConfig.seoShortName + ' in ' + neighborhoodName +
             (reportConfig.siteTitle ? ' – ' + reportConfig.siteTitle : '');
     }
-
 };
 
 

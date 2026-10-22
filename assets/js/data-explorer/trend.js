@@ -36,16 +36,24 @@ const getTrendLayoutConfig = (viewportWidth) => {
     let xAxisLabelField = 'fallbackYear'
 
     if (viewportWidth < 340) {
+
         columns = 1;
+
     } else if (viewportWidth < 440) {
+
         columns = 2;
         // xAxisLabelField = 'fallbackYear';
+
     } else if (viewportWidth < 1200) {
+
         columns = 3;
         // xAxisLabelField = 'fallbackYear';
+
     } else {
+
         columns = 6;
         // xAxisLabelField = 'TimePeriodSplit';
+
     }
 
     // ----- mobile legend override ----- //
@@ -54,6 +62,7 @@ const getTrendLayoutConfig = (viewportWidth) => {
     let endLabelFontSize = 10;
 
     if (viewportWidth < 720) {
+
         mobileLegend = {
             "columns": 3,
             "title": "",
@@ -63,6 +72,7 @@ const getTrendLayoutConfig = (viewportWidth) => {
             }
         };
         endLabelFontSize = 0;
+
     }
 
     return {
@@ -71,7 +81,6 @@ const getTrendLayoutConfig = (viewportWidth) => {
         mobileLegend,
         endLabelFontSize
     };
-
 };
 
 
@@ -104,7 +113,6 @@ const buildLabelCollisionTransforms = (passCount) => {
             "calculate": `datum.${prevField} === null ? ${nullCase} : (datum.labelValue - datum.${prevField} < 0.05 * datum.maxChartVal ? datum.${prevField} + 0.05 * datum.maxChartVal : datum.labelValue)`,
             "as": "labelValue"
         });
-
     }
 
     return transforms;
@@ -122,9 +130,7 @@ const buildLabelCollisionTransforms = (passCount) => {
 // filtered consistently before they reach the page.
 
 const renderTrendNotes = (trendUnreliability, notes) => {
-
     renderUnreliabilityNotes(trendUnreliability, notes);
-
 };
 
 
@@ -250,9 +256,13 @@ const renderTrendChart = (
         plotTitle = compName;
 
         if (suppressSubtitleBy.includes(compId)) {
+
             plotSubtitle = compY_axis_title + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "");
+
         } else {
+
             plotSubtitle = compY_axis_title + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
+
         }
 
         compGroupLabel = compMeasurementType;
@@ -269,9 +279,13 @@ const renderTrendChart = (
         plotTitle = compName;
 
         if (suppressSubtitleBy.includes(compId)) {
+
             plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "");
+
         } else {
+
             plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
+
         }
 
         compGroupLabel = compIndicatorLabel;
@@ -289,9 +303,13 @@ const renderTrendChart = (
         plotTitle = compName;
 
         if (suppressSubtitleBy.includes(compId)) {
+
             plotSubtitle = compY_axis_title + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "");
+
         } else {
+
             plotSubtitle = compName + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
+
         }
 
         compGroupLabel = [...new Set(metadata.array("IndicatorMeasure"))];
@@ -378,7 +396,6 @@ const renderTrendChart = (
                 "strokeDash": { "value": [2, 2] }
             }
         }];
-
     } else {
 
         noCompare = [];
@@ -390,9 +407,13 @@ const renderTrendChart = (
     let comparisonToolTipLabel;
 
     if (DE_MEASURE_RULES.actionDaysComparisonIds.includes(Number(metadataObjects[0].ComparisonID))) {
+
         comparisonToolTipLabel = 'Action days';
+
     } else {
+
         comparisonToolTipLabel = compMeasurementType;
+
     }
 
     // ----- Vega-Lite spec assembly (compspec2) ----- //
@@ -680,7 +701,6 @@ const renderTrendChart = (
     // ----- render & export ----- //
 
     vegaEmbed("#trend", compspec2, {
-
         renderer: "svg",
 
         actions: false
@@ -690,7 +710,6 @@ const renderTrendChart = (
         //     compiled: false,
         //     editor: true
         // }
-
     });
 
     DE.print.vizSource = metadataObjects[0].Sources;

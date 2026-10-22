@@ -180,7 +180,6 @@ const DE = {
         TimePeriodID: undefined,
         overlay: undefined
     }
-
 };
 
 // Shared content holders are resolved after the page shell exists.
@@ -241,7 +240,6 @@ const DE_MEASURE_RULES = {
 
     // Comparisons whose trend tooltip label reads "Action days".
     actionDaysComparisonIds: [564, 565, 566]
-
 };
 
 
@@ -322,6 +320,7 @@ const copyCitation = (button = null) => {
     const citeText = citationTextElement.innerText;
 
     navigator.clipboard.writeText(citeText).then(() => {
+
         const feedbackButton = button || document.querySelector(`.de-copy-citation-button[data-citation-target="${citationTargetId}"]`);
 
         if (feedbackButton) {
@@ -341,19 +340,23 @@ const bindCitationCopyButton = () => {
     const citationButtons = document.querySelectorAll('.de-copy-citation-button[data-citation-target]');
 
     citationButtons.forEach(button => {
+
         button.addEventListener('click', event => {
             event.preventDefault();
             copyCitation(event.currentTarget);
         });
     });
-
 };
 
 
 if (document.readyState === 'loading') {
+
     document.addEventListener('DOMContentLoaded', bindCitationCopyButton);
+
 } else {
+
     bindCitationCopyButton();
+
 }
 
 
@@ -390,11 +393,15 @@ const renderAboutSources = (about, sources) => {
     // Collapse repeated source arrays to one string before printing.
 
     if (type === 'object') {
+
         let singleSource;
         singleSource = sources.every((val, i, arr) => val === arr[0]);
         singleSource === true ? dataSources.innerHTML = DOMPurify.sanitize(sources[0]) : dataSources.innerHTML = DOMPurify.sanitize(sources);
+
     } else {
+
         dataSources.innerHTML = DOMPurify.sanitize(sources);
+
     }
 
     aboutMeasures.innerHTML = DOMPurify.sanitize(about);
@@ -470,7 +477,6 @@ const GEO_FILE_BY_TYPE = {
 // Maps a backend GeoType value to the corresponding TopoJSON filename.
 
 function getGeoFile(mapGeoType) {
-
     debugLog("*** getGeoFile");
 
     // Return the matching geography file for the requested map geography.
@@ -519,12 +525,10 @@ const getLinksMeasureGeos = (measure) => (measure?.AvailableGeoTypes || []).filt
 // Returns the intersection of link-eligible geo types for two measures — geographies where both measures have data.
 
 const getSharedLinksGeos = (primaryMeasure, secondaryMeasure) => {
-
     const primaryMeasureGeos = getLinksMeasureGeos(primaryMeasure);
     const secondaryMeasureGeos = getLinksMeasureGeos(secondaryMeasure);
 
     return secondaryMeasureGeos.filter(g => primaryMeasureGeos.includes(g));
-
 }
 
 // ----------------------------------------------------------------------- //
@@ -617,7 +621,6 @@ const withCitywideMapFallback = (indicator) => {
                 ...measure.VisOptions.slice(1)
             ]
         };
-
     });
 
     return { ...indicator, Measures };
@@ -784,6 +787,7 @@ const updateChartPlotSize = () => {
 // Resizer for chart print modal
 
 window.addEventListener('load', () => {
+
   const printVis = document.getElementById('printVis');
   
   if (!printVis) {
@@ -794,13 +798,16 @@ window.addEventListener('load', () => {
   let resizeTimeout;
   
   const resizeObserver = new ResizeObserver(() => {
+
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
       updateChartPlotSize();
     }, 1000);
+
   });
   
   resizeObserver.observe(printVis);
+
 });
 
 
@@ -912,7 +919,6 @@ const trackDataExplorerFileDownload = ({ fileName, fileExtension, linkText }) =>
         file_extension: fileExtension,
         link_text: linkText
     });
-
 };
 
 
@@ -927,7 +933,6 @@ const trackDataExplorerPrintView = (chartView) => {
     trackDataExplorerEvent('print_viz', {
         chart_type: chartView === 'bubble-map' ? 'map' : chartView
     });
-
 };
 
 
@@ -1001,8 +1006,10 @@ const downloadData = (
 // Revises the notes that are displayed under each chart - meant to work in concert with tooltip notes at each datapoint. This lets you display chart-specific notes, rather than datapoint-specific notes (which should show in tooltips)
 
 function getDisplayNotes(notes) {
+
   return notes
     .map(note => {
+
       if (note.includes('based on small numbers')) {
         return 'Some estimates are based on small numbers and should be interpreted with caution.';
       }
@@ -1012,5 +1019,6 @@ function getDisplayNotes(notes) {
       }
 
       return note;
+
     });
 }

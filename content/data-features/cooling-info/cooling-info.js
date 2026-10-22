@@ -29,6 +29,7 @@ var warmSeason;
 // ------------------------------------------------------------------ //
 
   async function getCurrentTempNYC() {
+
     const headers = { headers: { "User-Agent": "ehdp@health.nyc.gov" } };
 
     // Any failure here — network, an error body, a missing field, or a null
@@ -56,7 +57,9 @@ var warmSeason;
       currentTemp = tempF
 
     } catch (err) {
+
       console.warn('Current temperature unavailable: ' + err.message)
+
     }
 
     getForecastHighNYC()
@@ -93,11 +96,14 @@ var warmSeason;
         forecastTemp = high
 
       } catch (err) {
+
         console.warn('Forecast high unavailable: ' + err.message)
+
       }
 
       printToPage()
       getAQI()
+
   }
 
   getCurrentTempNYC();
@@ -105,6 +111,7 @@ var warmSeason;
 
 var aqiAPI;
 function getAQI() {
+
   var aqiMeaning = document.getElementById('aqimeaning')
 
   fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10013&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F')
@@ -134,29 +141,42 @@ function getAQI() {
     // print to page and style
 
     if (aqi == '1') {
+
       aqiInterpretation = 'Good'
       aqiMeaning.style['background-color'] = '#00E400'
+
     } else if (aqi == '2') {
+
       aqiInterpretation = 'Moderate'
       aqiMeaning.style['background-color'] = '#FFFF00'
+
     } else if (aqi == '3') {
+
       aqiInterpretation = 'Unhealthy for sensitive groups'
       aqiMeaning.style['background-color'] = '#FF7E00'
+
     } else if (aqi == '4') {
+
       aqiInterpretation = 'Unhealthy'
       aqiMeaning.style['background-color'] = '#FF0000'
       aqiMeaning.style.color = 'white'
+
     } else if (aqi == '5') {
+
       aqiInterpretation = 'Very unhealthy'
       aqiMeaning.style['background-color'] = '#993399'
       aqiMeaning.style.color = 'white'
+
     } else if (aqi == '6') {
+
       aqiInterpretation = 'Hazardous'
       aqiMeaning.style['background-color'] = '#7E0023'
       aqiMeaning.style.color = 'white'
+
     }
     aqiMeaning.innerHTML = aqiInterpretation
     document.getElementById('aqiNum').innerHTML = aqi
+
   })
   .catch(err => {
 
@@ -167,6 +187,7 @@ function getAQI() {
 
     console.warn('Air quality unavailable: ' + err.message)
     aqiMeaning.innerHTML = '<em>unavailable right now</em>'
+
   })
 }
 
@@ -202,21 +223,29 @@ function printToPage() {
       }
 
     if (maxTemp >= 78 & maxTemp < 85) {
+
         tempLabel = 'Warm'
         hotText.style['background-color'] = "orange";
+
     } else if (maxTemp >= 85 & maxTemp < 90) {
+
         tempLabel = 'Hot'
         hotText.style['background-color'] = "red";
         hotText.style.color = 'white'
+
     } else if (maxTemp >= 90 ) {
+
         tempLabel = 'Very hot'
         hotText.style['background-color'] = "darkred"
         hotText.style.color = 'white'
+
     } else if (maxTemp < 80) {
+
         tempLabel = 'Mild'
         hotText.style['background-color'] = "blue"
         hotText.style.color = 'white';
         over80F = 'No'
+
     }
 
       hotText.innerHTML = tempLabel
@@ -245,10 +274,8 @@ function runQuestions() {
     // Draw answer buttons
 
     question.options.forEach(option => {
-
       var btn = `<button class="btn-${question.id} btn btn-sm btn-outline-secondary px-2 mr-1 mb-1" id="btn-${question.id}-${option.optionID}" onclick="answer(${question.id}, ${option.optionID}, ${option.goTo});${option.setVariable}">${option.copy}</button>`
       questionBlock.innerHTML += btn
-
     })
 
     // Create message Section
@@ -265,7 +292,6 @@ document.getElementById('question-1').classList.remove('hide')
 document.getElementById('question-1').scrollIntoView({
       behavior: 'smooth'
     })
-
 }
 
 
@@ -280,7 +306,9 @@ function answer(question, answer, next) {
   var thisQuestion;
   for (let i = 0; i < content.length; i++) {
     if (content[i].id === question) {
+
       thisQuestion = content[i]
+
     } else {}
   } 
 
@@ -289,7 +317,9 @@ function answer(question, answer, next) {
   var thisAnswer;
   for (let i = 0; i < thisQuestion.options.length; i++) {
     if (thisQuestion.options[i].optionID === answer) {
+
       thisAnswer = thisQuestion.options[i]
+
     } else {}
   }
 
@@ -311,11 +341,11 @@ function answer(question, answer, next) {
       behavior: 'smooth'
     })
   } else {
+
     document.getElementById('question-'+ next).classList.remove('hide')
     document.getElementById('message-'+ thisQuestion.id).scrollIntoView({
       behavior: 'smooth'
     })
-
   }
 
 
@@ -345,7 +375,6 @@ function eme(x) {
 function animal(x) {
   hasAnimal = x;
   document.getElementById('hasAnimal').innerHTML = hasAnimal
-
 }
 
 function ac(x) {
@@ -356,7 +385,6 @@ function ac(x) {
 function limitAC(x) {
   limitsAC = x;
   document.getElementById('limitsAC').innerHTML = limitsAC
-
 }
 
 function fan(x) {
@@ -370,6 +398,7 @@ function fan(x) {
 // -------------------------------------------------------------------------- //
 
 function runFinal() {
+
   var msg
   console.log('We are reviewing your data')
 
@@ -546,7 +575,6 @@ function runFinal() {
     msg = `<p>🦔 Heat and unhealthy air quality affects animals, too. Ask your vet how to recognize signs of heat stress and <a href="https://www.avma.org/resources/pet-owners/petcare/warm-weather-pet-safety">get tips on caring for animals in the heat</a>. When the air quality is unhealthy for people, keep your animals indoors as much as possible and limit strenuous outdoor activity for both of you.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
-
 }
 
 
@@ -569,16 +597,21 @@ function isSummerDate() {
   // Check if the current date is between April 1 and September 30
 
   return currentDate >= summerStart && currentDate <= summerEnd;
+
 }
 
 // Example usage
 
 if (isSummerDate()) {
+
   console.log('It is summer!');
   warmSeason = 'Yes'
+
 } else {
+
   console.log('It is not summer.');
   warmSeason = 'No'
+
 }
 
 
@@ -587,6 +620,7 @@ if (isSummerDate()) {
 // -------------------------------------------------------------------------- //
 
 function setUpTest() {
+
   document.getElementById('testInfo').classList.remove('hide')
 
   document.getElementById('input-currentTemp').setAttribute('value',currentTemp);
@@ -620,79 +654,105 @@ function setUpTest() {
 
 var btnSensitiveGroup = document.getElementById('btn-sensitiveGroup');
 btnSensitiveGroup.addEventListener('click', function(event) {
+
   btnSensitiveGroup.classList.toggle('active')
   if (sensitiveGroup === 'Yes') {
+
     sensitiveGroup = 'No'
+
   } else { sensitiveGroup = 'Yes'}
   document.getElementById('sensitiveGroup').innerHTML = sensitiveGroup;
   runFinal()
+
 });
 
 // put event listeners on each button to toggle state and variable
 
 var btnusesEME = document.getElementById('btn-usesEME');
 btnusesEME.addEventListener('click', function(event) {
+
   btnusesEME.classList.toggle('active')
   if (usesEME === 'Yes') {
+
     usesEME = 'No'
+
   } else { usesEME = 'Yes'}
   document.getElementById('usesEME').innerHTML = usesEME;
   runFinal()
+
 });
 
 // put event listeners on each button to toggle state and variable
 
 var btnhasAnimal = document.getElementById('btn-hasAnimal');
 btnhasAnimal.addEventListener('click', function(event) {
+
   btnhasAnimal.classList.toggle('active')
   if (hasAnimal === 'Yes') {
+
     hasAnimal = 'No'
+
   } else { hasAnimal = 'Yes'}
   document.getElementById('hasAnimal').innerHTML = hasAnimal;
   runFinal()
+
 });
 
 // put event listeners on each button to toggle state and variable
 
 var btnhasAC = document.getElementById('btn-hasAC');
 btnhasAC.addEventListener('click', function(event) {
+
   btnhasAC.classList.toggle('active')
   if (hasAC === 'Yes') {
+
     hasAC = 'No'
+
   } else { hasAC = 'Yes'}
   document.getElementById('hasAC').innerHTML = hasAC;
   runFinal()
+
 });
 
 // put event listeners on each button to toggle state and variable
 
 var btnlimitsAC = document.getElementById('btn-limitsAC');
 btnlimitsAC.addEventListener('click', function(event) {
+
   btnlimitsAC.classList.toggle('active')
   if (limitsAC === 'Yes') {
+
     limitsAC = 'No'
+
   } else { limitsAC = 'Yes'}
   document.getElementById('limitsAC').innerHTML = limitsAC;
   runFinal()
+
 });
 
 // put event listeners on each button to toggle state and variable
 
 var btnhasFan = document.getElementById('btn-hasFan');
 btnhasFan.addEventListener('click', function(event) {
+
   btnhasFan.classList.toggle('active')
   if (hasFan === 'Yes') {
+
     hasFan = 'No'
+
   } else { hasFan = 'Yes'}
   document.getElementById('hasFan').innerHTML = hasFan;
   runFinal()
+
 });
 
 // temp
 
 var inputCurrentTemp = document.getElementById('input-currentTemp');
 if (inputCurrentTemp) {
+
   inputCurrentTemp.addEventListener('input', function(event) {
+
       var currentValue = parseFloat(this.value);
       console.log('Current temperature:', currentValue);
       maxTemp = currentValue
@@ -700,25 +760,34 @@ if (inputCurrentTemp) {
 
       var hotText = document.getElementById('hot')
       if (currentValue > 78 & currentValue < 85) {
+
         tempLabel = 'Warm'
         hotText.style['background-color'] = "orange";
+
     } else if (currentValue >= 85 & currentValue < 90) {
+
         tempLabel = 'Hot'
         hotText.style['background-color'] = "red";
         hotText.style.color = 'white'
+
     } else if (currentValue >= 90 ) {
+
         tempLabel = 'Very hot'
         hotText.style['background-color'] = "darkred"
         hotText.style.color = 'white'
+
     } else if (currentValue < 78) {
+
         tempLabel = 'Mild'
         hotText.style['background-color'] = "blue"
         hotText.style.color = 'white';
         over80F = 'No'
+
     }
         hotText.innerHTML = tempLabel
 
       runFinal()
+
   })
 };
 
@@ -726,7 +795,9 @@ if (inputCurrentTemp) {
 
 var inputAQI = document.getElementById('input-aqinum');
 if (inputAQI) {
+
   inputAQI.addEventListener('input', function(event) {
+
       var currentValue = parseFloat(this.value);
       console.log('Current temperature:', currentValue);
       aqi = currentValue
@@ -736,30 +807,43 @@ if (inputAQI) {
 
       var aqiMeaning = document.getElementById('aqimeaning')
       if (aqi == '1') {
+
         aqiInterpretation = 'Good'
         aqiMeaning.style['background-color'] = '#00E400'
+
       } else if (aqi == '2') {
+
         aqiInterpretation = 'Moderate'
         aqiMeaning.style['background-color'] = '#FFFF00'
+
       } else if (aqi == '3') {
+
         aqiInterpretation = 'Unhealthy for sensitive groups'
         aqiMeaning.style['background-color'] = '#FF7E00'
+
       } else if (aqi == '4') {
+
         aqiInterpretation = 'Unhealthy'
         aqiMeaning.style['background-color'] = '#FF0000'
         aqiMeaning.style.color = 'white'
+
       } else if (aqi == '5') {
+
         aqiInterpretation = 'Very unhealthy'
         aqiMeaning.style['background-color'] = '#993399'
         aqiMeaning.style.color = 'white'
+
       } else if (aqi == '6') {
+
         aqiInterpretation = 'Hazardous'
         aqiMeaning.style['background-color'] = '#7E0023'
         aqiMeaning.style.color = 'white'
+
       }
       aqiMeaning.innerHTML = aqiInterpretation
       document.getElementById('aqiNum').innerHTML = aqi
 
       runFinal()
+
   })
 };

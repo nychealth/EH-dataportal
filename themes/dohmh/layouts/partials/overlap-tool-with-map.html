@@ -106,16 +106,17 @@
                 icon: "fas fa-undo",
                 
                 onClick: function() {
-                    
                     reset();
                 }
             }]
         }).addTo(map);    
+
     }
 
     initializeMap();
 
     function reset() {
+
       console.log('Reset')
       // loadGeoJSON("CD");
 
@@ -147,6 +148,7 @@
     // Function to load GeoJSON by name
 
     function loadGeoJSON(name) {
+
       const match = geojsonURLs.find(d => d.name === name);
       if (!match) {
         console.error("No matching GeoJSON for", name);
@@ -178,7 +180,9 @@
       fetch(match.url)
         .then(response => response.json())
         .then(data => {
+
           geojsonLayer = L.geoJSON(data, {
+
             style: function (feature) {
 
               // Default style before any click
@@ -196,11 +200,17 @@
 
                 let tooltipLabel;
                 if (name === 'CD') {
+
                   tooltipLabel = feature.properties.GEONAME;
+
                 } else if (name === 'CCD') {
+
                   tooltipLabel = 'Council District #' + feature.properties[currentProperty];
+
                 } else {
+
                   tooltipLabel = feature.properties[currentProperty];
+
                 }
 
                 // Bind tooltip (hover label)
@@ -212,15 +222,20 @@
               // bind actions
 
               layer.on("click", function () {
+
                 const id = feature.properties[currentProperty];
                 let neighborhoodName;
 
                 if (name === 'CD') {
+
                   neighborhoodName = feature.properties.GEONAME;
                   getUHFs('CD', id);
+
                 } else if (name === 'CCD') {
+
                   neighborhoodName = 'Council District #' + id;
                   getUHFs('CCD', id);
+
                 }
 
                 document.getElementById('neighbHolder').innerHTML = neighborhoodName;
@@ -243,6 +258,7 @@
                 // Reset styles for all features
 
                 geojsonLayer.setStyle(function (f) {
+
                   if (f.properties[currentProperty] === selectedID) {
 
                     // Clicked feature highlighted
@@ -270,14 +286,15 @@
 
                 map.fitBounds(layer.getBounds());
                 layer.openPopup();
-              });
 
+              });
             }
           }).addTo(map);
 
           // Fit bounds to all features initially
 
           map.fitBounds(geojsonLayer.getBounds());
+
         });
     }
 
@@ -285,7 +302,9 @@
 
     const radios = document.querySelectorAll('input[name="inlineRadioOptions"]');
     radios.forEach(radio => {
+
       radio.addEventListener('change', function () {
+
         if (this.checked) {
           console.log("Loading:", this.value);
           loadGeoJSON(this.value);
@@ -323,6 +342,7 @@ function drawUHFs(UHF_ids) {
       // Add all matching polygons as a single layer
 
       UHFLayer = L.geoJSON(features, {
+
         style: {
           color: "red",
           weight: 1,
@@ -331,6 +351,7 @@ function drawUHFs(UHF_ids) {
           fillOpacity: 0
         },
         onEachFeature: function (feature, layer) {
+
           const tooltipContent = `UHF42:<br>
                                   ${feature.properties.GEONAME}`;
           layer.bindTooltip(tooltipContent, {
@@ -409,8 +430,11 @@ function drawUHFs(UHF_ids) {
             // set minimum overlap
 
             if (overl < 0.1) {
+
                 return
+
                 } else {
+
                 overlaps.innerHTML += `
                 <a href="{{ .Site.BaseURL }}neighborhood-reports/${dest}" class="dropdown-item text-primary">
                     <span class="font-weight-bold">
@@ -418,6 +442,7 @@ function drawUHFs(UHF_ids) {
                     </span> <br>
                     Overlap: ${overl}% area | ${popol}% population
                 </a>`
+
                 }
             }
         )

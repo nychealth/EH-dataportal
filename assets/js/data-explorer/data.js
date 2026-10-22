@@ -21,11 +21,9 @@
 // typed — trend.js concatenates them, so they must not disagree about column types.
 
 const loadIndicatorData = (indicator_id) => {
-
     const dataUrl = `${data_repo}${data_branch}/indicators/data/${indicator_id}.json`;
 
     return loadOnce(dataUrl, () => aq.loadJSON(dataUrl, { autoType: false }));
-
 };
 
 // ----------------------------------------------------------------------- //
@@ -83,6 +81,7 @@ const createComparisonData = async (comps) => {
         DE.lookups.aqCombinedComparisonMetadata = undefined;
         DE.lookups.aqComparisonIndicatorData = undefined;
         return;
+
     }
 
     // ----- filter to selected comparisons; bail if none match ----- //
@@ -96,6 +95,7 @@ const createComparisonData = async (comps) => {
         DE.lookups.aqCombinedComparisonMetadata = undefined;
         DE.lookups.aqComparisonIndicatorData = undefined;
         return;
+
     }
 
     // ----- build aqComparisonMetadata ----- //
@@ -109,6 +109,7 @@ const createComparisonData = async (comps) => {
             GeoTypeName: d => d.Indicators.GeoTypeName,
             GeoID: d => d.Indicators.GeoID,
             Geography: d => d.Indicators.Geography
+
         })
         .select(aq.not("Indicators"));
 
@@ -144,6 +145,7 @@ const createComparisonData = async (comps) => {
             DisplayType: d => d.Measures.DisplayType,
             TrendNoCompare: d => d.Measures.TrendNoCompare,
             TrendThreshold: d => d.Measures.TrendThreshold
+
         })
         .derive({ IndicatorMeasure: d => d.IndicatorLabel + ": " + d.MeasurementType })
         .select(aq.not("Measures"))
@@ -175,7 +177,6 @@ const createComparisonData = async (comps) => {
                         .reify();
 
                 });
-
         })
     );
 
@@ -310,7 +311,6 @@ const loadIndicator = async (this_IndicatorID) => {
         loadData(DE.state.IndicatorID)
 
     ]);
-
 }
 
 // ----------------------------------------------------------------------- //
@@ -365,7 +365,9 @@ const loadData = async (this_IndicatorID) => {
         await joinData();
 
     } catch (error) {
+
         console.log(error);
+
     }
 
     // trigger 311 button render after all data fetches and joins have resolved
@@ -395,6 +397,7 @@ const loadGeo = async () => {
 
     //  console.log("geoTable [loadGeo]");
     //  geoTable.print()
+
 }
 
 // ----------------------------------------------------------------------- //
@@ -433,6 +436,7 @@ const loadTime = async () => {
 
     // console.log("timeTable [loadTime]");
     // timeTable.print()
+
 }
 
 
@@ -510,11 +514,9 @@ const joinData = async () => {
     DE.indicator.indicatorMeasures.forEach(
 
         (measure, i) => {
-
             MeasureID.push(measure.MeasureID)
             MeasurementType.push(measure.MeasurementType)
             DisplayType.push(measure.DisplayType)
-
         }
     )
     
@@ -841,9 +843,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
             // Choose the secondary time period whose end date is closest to the primary measure's latest end date.
 
             const closestSecondaryTime = filteredSecondaryMeasureTimesDataObjects.reduce((prev, curr) => {
-
                 return (Math.abs(curr.end_period - mostRecentPrimaryMeasureEndTime) < Math.abs(prev.end_period - mostRecentPrimaryMeasureEndTime) ? curr : prev);
-
             }, filteredSecondaryMeasureTimesDataObjects[0]);
 
             // console.log("closestSecondaryTime [createJoinedLinksData]", closestSecondaryTime);
@@ -891,11 +891,9 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
         })
         .then(d => {
-
             returnData = d;
 
             // console.log("data 2", returnData);
-
         })
 
     // console.log("data 3", returnData);

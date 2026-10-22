@@ -59,7 +59,6 @@ const tryInitialRender = () => {
             renderAll(urlNeighborhood, undefined, true);
 
         }
-
     }
 
     // A polygon chosen while the data was still loading. Rendered as a switch from the page's
@@ -75,7 +74,6 @@ const tryInitialRender = () => {
         reportMapSelectNeighborhood(layer, 'tryInitialRender');
 
     }
-
 };
 
 
@@ -94,7 +92,6 @@ const checkAllLoaded = () => {
         dataReady = true;
         tryInitialRender();
     }
-
 };
 
 
@@ -145,22 +142,25 @@ const loadSection = section => {
             Object.keys(byNeighborhood).forEach(n => {
 
                 byNeighborhood[n].sort((a, b) => {
+
                     const ra = Number(a.data_value_rank);
                     const rb = Number(b.data_value_rank);
                     if (isNaN(ra) || isNaN(rb)) return 0;
                     return rb - ra;
-                });
 
+                });
             });
 
             sectionData[section.id] = byNeighborhood;
 
         })
         .catch(error => {
+
             console.error('Error loading section "' + section.id + '":', error);
             debugLog('loadSection: branch-load-failed:', { sectionId: section.id, error });
             sectionData[section.id] = {};
             failedSections.add(section.id);
+
         })
         .then(checkAllLoaded);
 
@@ -201,7 +201,6 @@ const loadTopicIndicators = () => {
                 ids.forEach(id => {
                     if (slugs[id] === undefined) slugs[id] = slug;
                 });
-
             });
 
             indicatorTopicSlugs = slugs;
@@ -239,6 +238,7 @@ const loadVizData = () => {
             vizTable = table;
         })
         .catch(error => {
+
             console.error('Error loading viz data:', error);
             debugLog('loadVizData: branch-load-failed:', error);
             vizTable = null;
@@ -247,6 +247,7 @@ const loadVizData = () => {
 
             const download = document.getElementById('nr-download-csv');
             if (download) download.disabled = true;
+
         })
         .then(checkAllLoaded);
 

@@ -63,13 +63,10 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode, indicator
     loadTopojson()
         .then(topo => embedIndicatorChart(data, container, destination, legendLabel, geocode, indicatorLabel, topo))
         .catch(err => {
-
             console.error('Error rendering chart for ' + destination + ':', err);
 
             if (container.isConnected) container.innerHTML = '<p class="text-muted small">Unable to render chart.</p>';
-
         });
-
 };
 
 
@@ -312,7 +309,6 @@ const embedIndicatorChart = (data, container, destination, legendLabel, geocode,
         if (container.isConnected) container.innerHTML = '<p class="text-muted small">Unable to render chart.</p>';
 
     });
-
 };
 
 
@@ -408,15 +404,17 @@ const onAccordionExpand = event => {
                 geocode,
                 panel.getAttribute('data-indicator-label')
             );
-
         } else {
+
             debugLog('onAccordionExpand: branch-no-summary-data:', indicatorName);
             mapEl.innerHTML = '<p class="text-muted small">No chart data available.</p>';
-        }
 
+        }
     } catch (e) {
+
         console.error('onAccordionExpand: error rendering map for ' + indicatorName + ':', e);
         mapEl.innerHTML = '<p class="text-muted small">Unable to render chart.</p>';
+
     }
 
     // Mark panel as rendered even on no-data/error to prevent repeated work

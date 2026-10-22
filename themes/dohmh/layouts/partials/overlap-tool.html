@@ -61,6 +61,7 @@
     let CDholder = document.getElementById('CDButtons')
 
     CDtoUHF.forEach(cd => {
+
         let thisButton = `
             <a class="dropdown-item cd-items" href="#top" id='button-${cd.CD}' onclick='getUHFs("CD", ${cd.CD})'>${cd.CD_NAME}</a>
         `
@@ -74,10 +75,12 @@
     let holder = document.getElementById('districtButtons')
 
     CCDtoUHF.forEach(ccd => {
+
           let thisButton = `
         <a class="dropdown-item ccd-items" href="#top" id='button-${ccd.CCD}' onclick='getUHFs("CCD", ${ccd.CCD})'>City Council District #${ccd.CCD}</a>
       `
       holder.innerHTML += thisButton
+
     })
 
 
@@ -154,8 +157,11 @@
             // set minimum overlap
 
             if (overl < 5) {
+
                 return
+
             } else {
+
                 overlaps.innerHTML += `
                 <a href="{{ .Site.BaseURL }}/neighborhood-reports/${dest}" class="dropdown-item text-primary">
                     <span class="font-weight-bold">
@@ -163,6 +169,7 @@
                     </span> <br>
                     Overlap: ${overl}% area | ${popol}% population
                 </a>`
+
             }
         })
     }

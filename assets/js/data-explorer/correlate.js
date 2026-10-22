@@ -75,7 +75,6 @@ const measureCorrelateLegend = () => {
         widths: entries.map(entry => entry.right - entry.left),
         available: svgRect.right - legendLeft
     };
-
 };
 
 
@@ -99,6 +98,7 @@ const legendColumnsThatFit = ({ widths, available }) => {
             }
 
             rowWidth += columnWidth;
+
         }
 
         if (rowWidth <= available) {
@@ -146,7 +146,6 @@ const fitCorrelateLegend = async () => {
         printColumns.value = columns;
         DE.print.printSpec.width = Number(document.querySelector('#links svg').getAttribute('width'));
     }
-
 };
 
 
@@ -191,7 +190,9 @@ const updateCorrelatePaneLayout = () => {
 const scheduleCorrelateViewResize = () => {
 
     window.requestAnimationFrame(() => {
+
         window.requestAnimationFrame(() => {
+
             updateCorrelatePaneLayout();
 
             if (window.correlateVegaView && typeof window.correlateVegaView.resize === 'function') {
@@ -212,10 +213,10 @@ const scheduleCorrelateViewResize = () => {
                 // synchronously, so it waits for this run to finish.
 
                 window.correlateVegaView.resize().runAsync().then(fitCorrelateLegend);
+
             }
         });
     });
-
 };
 
 
@@ -234,6 +235,7 @@ const registerCorrelateResizeHandler = () => {
         }
 
         scheduleCorrelateViewResize();
+
     });
 
     correlateResizeEventRegistered = true;
@@ -248,11 +250,9 @@ const registerCorrelateResizeHandler = () => {
 // Builds the "no correlates available" message, resolving the label from the argument, then selectedMapMetadata's type, name, and a generic fallback, in order.
 
 const getNoCorrelatesMessage = (measureLabel) => {
-
     const resolvedMeasureLabel = `${measureLabel || DE.map.selectedMapMetadata?.MeasurementType || DE.map.selectedMapMetadata?.MeasureName || 'the selected measure'}`;
 
     return `No correlates available for ${resolvedMeasureLabel}. Change the Measure on the map to see available correlates.`;
-
 };
 
 
@@ -276,13 +276,15 @@ const setCorrelateActionState = (isEnabled) => {
         button.style.pointerEvents = isEnabled ? '' : 'none';
 
         if (isEnabled) {
+
             button.removeAttribute('tabindex');
+
         } else {
+
             button.setAttribute('tabindex', '-1');
+
         }
-
     });
-
 };
 
 
@@ -569,7 +571,6 @@ const renderCorrelate = (
                 "titleFontWeight": "normal",
                 "labelExpr":
                     "(isObject(datum) ? datum.value : datum) === 0 ? '' : (isObject(datum) ? datum.value : datum)",
-
             },
             "axisY": {
                 "labelFontSize": 11,
@@ -583,7 +584,6 @@ const renderCorrelate = (
                 "labelBaseline": "bottom",
                 "labelExpr":
                     "(isObject(datum) ? datum.value : datum) === 0 ? '' : (isObject(datum) ? datum.value : datum)",
-
             },
             "legend": {
                 "columns": { "expr": "legendColumns" },
@@ -739,7 +739,6 @@ const renderCorrelate = (
     // ----- render, bookkeeping & CSV export ----- //
 
     vegaEmbed('#links', correlateSpec, {
-
         renderer: "svg",
 
         actions: false
@@ -749,7 +748,6 @@ const renderCorrelate = (
         //     compiled: false,
         //     editor: true
         // }
-
     }).then((result) => {
         window.correlateVegaView = result.view;
         fitCorrelateLegend();

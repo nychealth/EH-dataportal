@@ -31,9 +31,7 @@ const getTableFilterOptions = (rows) => {
 // Escapes a string so it can be used safely inside a regex search.
 
 const escapeRegexValue = (value) => {
-
     return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-
 };
 
 
@@ -51,8 +49,8 @@ const getSelectedTableRows = (rows) => {
         const matchesTime = !selectedTimes.size || selectedTimes.has(d.TimePeriod);
         const matchesGeo = !selectedGeos.size || selectedGeos.has(prettifyGeoType(d.GeoType));
         return matchesTime && matchesGeo;
-    });
 
+    });
 };
 
 
@@ -63,6 +61,7 @@ const getTableColumnSearchValues = (rows) => {
     const { availableTimes, availableGeos } = getTableFilterOptions(rows);
 
     return {
+
         // '(?!)' is an always-false regex, which intentionally shows zero rows when nothing is selected.
         timeSearch: !DE.table.selectedTableTimes.length
             ? '(?!)'
@@ -76,7 +75,6 @@ const getTableColumnSearchValues = (rows) => {
                 ? ''
                 : `^(${DE.table.selectedTableGeography.map(escapeRegexValue).join('|')})$`
     };
-
 };
 
 
@@ -111,7 +109,6 @@ const getCurrentMapTableFilters = (rows) => {
                 ? [availableGeosForSelectedTime[0]]
                 : (availableGeos[0] ? [availableGeos[0]] : []))
     };
-
 };
 
 
@@ -135,6 +132,7 @@ const syncTableFiltersToMapSelection = (force = false) => {
     // Respect manual overrides unless the caller explicitly forces a full resync.
 
     if (force || !DE.table.tableTimeFilterIsManual) {
+
         const sameTimeSelection = DE.table.selectedTableTimes.length === timeSelection.length &&
             DE.table.selectedTableTimes.every((time, index) => time === timeSelection[index]);
 
@@ -144,11 +142,13 @@ const syncTableFiltersToMapSelection = (force = false) => {
         }
 
         DE.table.tableTimeFilterIsManual = false;
+
     }
 
     // Geography sync follows the same rule so users can customize one dimension independently.
 
     if (force || !DE.table.tableGeoFilterIsManual) {
+
         const sameGeoSelection = DE.table.selectedTableGeography.length === geoSelection.length &&
             DE.table.selectedTableGeography.every((geo, index) => geo === geoSelection[index]);
 
@@ -158,6 +158,7 @@ const syncTableFiltersToMapSelection = (force = false) => {
         }
 
         DE.table.tableGeoFilterIsManual = false;
+
     }
 
     return didChange;
@@ -258,7 +259,6 @@ const setTableAreaSearch = (dataTable, nextValue, shouldDraw = true) => {
     if (shouldDraw) {
         dataTable.draw();
     }
-
 };
 
 
@@ -318,6 +318,7 @@ const bindAreaOnlySearch = (dataTable) => {
     filterInput.off('.DT');
 
     filterInput.on('input.DT search.DT', function () {
+
         const nextValue = this.value || '';
 
         // Skip redundant redraws when the browser fires multiple search-related events.
@@ -329,6 +330,7 @@ const bindAreaOnlySearch = (dataTable) => {
         // Scope the shared DataTables search box to Area only.
 
         setTableAreaSearch(dataTable, nextValue);
+
     });
 
     syncTableAreaSearchInput();
@@ -404,6 +406,7 @@ const renderTableFilterControls = (rows) => {
     // for the currently selected time period(s).
 
     if (DE.table.selectedTableTimes.length) {
+
         DE.table.selectedTableGeography = DE.table.selectedTableGeography.filter(geo => dataGeos.includes(geo));
 
         // - - - fall back to a valid geography when the synced value is unavailable - - - //
@@ -425,6 +428,7 @@ const renderTableFilterControls = (rows) => {
         holder.innerHTML = '';
 
         options.forEach(option => {
+
             const label = document.createElement('label');
             const unavailable = isDisabled(option);
 
@@ -455,19 +459,24 @@ const renderTableFilterControls = (rows) => {
             label.appendChild(input);
             label.appendChild(document.createTextNode(` ${option}`));
             holder.appendChild(label);
-        });
 
+        });
     };
 
     // ----- render time checkboxes ----- //
 
     renderCheckboxes(timeHolder, availableTimes, DE.table.selectedTableTimes, 'checkbox-time', 'table-time', (value, checked) => {
+
         const nextTimes = new Set(DE.table.selectedTableTimes);
 
         if (checked) {
+
             nextTimes.add(value);
+
         } else {
+
             nextTimes.delete(value);
+
         }
 
         // Preserve display order from availableTimes instead of checkbox click order.
@@ -477,6 +486,7 @@ const renderTableFilterControls = (rows) => {
         trackDataExplorerOption('table_time');
         renderTableFilterControls(rows);
         applyTableFilters(rows);
+
     });
 
     // ----- render geography checkboxes ----- //
@@ -488,12 +498,16 @@ const renderTableFilterControls = (rows) => {
         'checkbox-geo',
         'table-geo',
         (value, checked) => {
+
             if (checked) {
+
                 if (!DE.table.selectedTableGeography.includes(value)) {
                     DE.table.selectedTableGeography.push(value);
                 }
             } else {
+
                 DE.table.selectedTableGeography = DE.table.selectedTableGeography.filter(geo => geo !== value);
+
             }
 
             // Re-sort to canonical geography order before redrawing controls and rows.
@@ -503,6 +517,7 @@ const renderTableFilterControls = (rows) => {
             trackDataExplorerOption('table_geo');
             renderTableFilterControls(rows);
             applyTableFilters(rows);
+
         },
         (option) => DE.table.selectedTableTimes.length > 0 && !dataGeos.includes(option)
     );
@@ -512,6 +527,7 @@ const renderTableFilterControls = (rows) => {
     const syncButton = document.getElementById('tableFilterSyncButton');
 
     if (syncButton) {
+
         syncButton.onclick = (event) => {
 
             // The link's href="#" would otherwise add "#" to the URL, a history entry and a popstate.
@@ -524,6 +540,7 @@ const renderTableFilterControls = (rows) => {
             trackDataExplorerOption('table_sync');
             renderTableFilterControls(rows);
             applyTableFilters(rows);
+
         };
     }
 
@@ -581,9 +598,13 @@ const renderTable = (tableData) => {
                 // Append borough context only for non-borough rows that have it.
 
                 if (d.Borough && d.GeoTypeDesc != 'Borough') {
+
                     return `${d.Geography} xx ${d.Borough} yy`;
+
                 } else {
+
                     return d.Geography; 
+
                 }
             })
         })
@@ -701,6 +722,7 @@ const renderTable = (tableData) => {
     // - - - initialize the table - - - //
 
     const dataTable = $('#tableID').DataTable({
+
         scrollY: 500,
         scrollX: true,
         scrollCollapse: false,
@@ -751,6 +773,7 @@ const renderTable = (tableData) => {
                         return isNaN(num) ? -Infinity : num;
                     }
                     return data;
+
                 }
             },
             {
@@ -765,6 +788,7 @@ const renderTable = (tableData) => {
                                    .replace(/yy/g, '</span>');
                     }
                     return data;
+
                 }
             }
         ],
@@ -776,6 +800,7 @@ const renderTable = (tableData) => {
         // Stamps ancestry data-* attributes on each row at build time so drawCallback
         //  can detect group boundaries and the toggle handler can find descendants later.
         createdRow: function (row, data) {
+
             const time = data[0];
             const GeoTypeDesc = data[2];
             const borough = data[6];
@@ -783,6 +808,7 @@ const renderTable = (tableData) => {
             //  descendant rows: nested group headers + data rows.
 
             if (time && GeoTypeDesc) {
+
                 row.setAttribute(`data-time`, timeKey(time));
                 row.setAttribute(`data-geo`, geoKey(time, GeoTypeDesc));
                 if (hasBorough(GeoTypeDesc, borough)) {
@@ -833,6 +859,7 @@ const renderTable = (tableData) => {
                         );
 
                         last = key;
+
                     }
                 });
             };
@@ -856,6 +883,7 @@ const renderTable = (tableData) => {
             // level 2: borough (only for the smaller geo types, and only when the toggle is on)
 
             if (DE.table.groupByBorough) {
+
                 createGroupRow(
                     groupColumnBoro, 2,
                     (time, geoTypeDesc, borough) => boroKey(time, geoTypeDesc, borough),
@@ -867,6 +895,7 @@ const renderTable = (tableData) => {
             // Group rows are rebuilt every draw, so the search-box text needs to be resynced here.
 
             syncTableAreaSearchInput();
+
         }
     });
 
@@ -883,6 +912,7 @@ const renderTable = (tableData) => {
     // Rebind the search box after init because DataTables has now created its wrapper DOM.
 
     bindAreaOnlySearch(dataTable);
+
 };
 
 
@@ -921,7 +951,6 @@ const downloadTableData = () => {
         fileExtension: '.csv',
         linkText: 'Current table view'
     });
-
 };
 
 
@@ -986,6 +1015,5 @@ const bindTableGroupToggles = () => {
             descendants.hide();
 
         }
-
     });
 };

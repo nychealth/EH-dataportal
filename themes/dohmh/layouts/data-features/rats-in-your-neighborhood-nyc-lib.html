@@ -112,6 +112,7 @@
     });
 
     document.addEventListener("DOMContentLoaded", function() {
+
         var searchButton = document.querySelector('.btn.btn-srch');
     
         // Check if the button exists to avoid errors
@@ -125,6 +126,7 @@
         // add event listener to form
 
         document.querySelector('#map-search1').addEventListener('keypress', function (e) {
+
             if (e.key === 'Enter') {
                 console.log('***Form submitted')
                 awaitGeoCoding()
@@ -136,11 +138,13 @@
     var yourCD
 
     function awaitGeoCoding() {
+
         console.log('***Looking for location')
         document.getElementById('yourCD').innerHTML = '...'
         document.getElementById('block').innerHTML = '...'
         document.getElementById('rmz').innerHTML = '...'
         setTimeout(getData,2500)
+
     }
 
 
@@ -149,14 +153,19 @@
         // if nycMap.location exists, then, run retrieveGeo(), else, wait.
 
         if (nycMap.location.type === 'geocoded') {
+
             console.log('***Location found! Details:')
             retrieveGeo()
+
         } else {
+
             console.log('***Location not found :( ')
+
         }
     }
 
     function retrieveGeo() {
+
         locationDetails = nycMap.location
         console.log(locationDetails)
         yourCD = Number(locationDetails.data.communityDistrict)
@@ -164,9 +173,12 @@
         document.getElementById('block').innerHTML = locationDetails.data.bblTaxBlock
 
         if (overlap.includes(yourCD)) {
+
             console.log('***You are in or near an RMZ')
             document.getElementById('rmz').innerHTML = 'Yes'
+
         } else {
+
             console.log('***You are NOT in or near an RMZ')
             document.getElementById('rmz').innerHTML = 'No'
 

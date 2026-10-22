@@ -66,6 +66,7 @@ const renderMenus = async (indicatorID) => {
     }
 
     updateAllMenus(indicator);
+
 };
 
 
@@ -121,6 +122,7 @@ const updateAllMenus = (indicator) => {
     // whatever the catalog says. See withCitywideMapFallback in global.js for the metadata side.
 
     (measure.VisOptions[0].Map || []).forEach(d => {
+
         const pretty = prettifyGeoType(d.GeoType);
         if (typeof pretty === 'string' && pretty && !seenGeos.has(pretty)) {
             seenGeos.add(pretty);
@@ -158,6 +160,7 @@ const updateAllMenus = (indicator) => {
 
     const times = (geoObj?.TimePeriodID || [])
         .map(id => {
+
             const tp = DE.lookups.timeLookup[id];
             return {
                 label: tp?.TimePeriod || id,
@@ -176,6 +179,7 @@ const updateAllMenus = (indicator) => {
     renderMenuSection(times, '.time-holder', 'time');
 
     setDropdownLabel('time', getTimeLabel(DE.state.TimePeriodID));
+
 };
 
 
@@ -230,6 +234,7 @@ const renderMenuSection = (items, destination, type) => {
             button.textContent = item.label;
 
             container.appendChild(button);
+
         });
 
         // One delegated listener per container rather than one per button, matching the
@@ -249,6 +254,7 @@ const renderMenuSection = (items, destination, type) => {
             const item = items[Number(button.dataset.optionIndex)];
 
             handleSelection(type, item.value, item.label);
+
         };
     });
 };
@@ -305,6 +311,7 @@ const handleSelection = (type, value, label) => {
         }
 
         syncTableFiltersToMapSelection();
+
     }
 
     // ----- push new state to the url ----- //
@@ -326,4 +333,5 @@ const handleSelection = (type, value, label) => {
     // ----- re-render the active view and update the map ----- //
 
     renderCurrentView(true);
+
 };

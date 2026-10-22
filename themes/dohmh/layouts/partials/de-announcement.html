@@ -59,6 +59,7 @@
         const key = "{{ $id }}-dismissed";
 
         try {
+
             if (localStorage.getItem(key)) {
                 banner.remove();
                 return;
@@ -69,7 +70,6 @@
             banner.remove();
             try { localStorage.setItem(key, "1"); } catch (e) {}
         });
-
     })();
 
 </script>

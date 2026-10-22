@@ -1,4 +1,5 @@
 (() => {
+
 	function canTrackAnalytics() {
 		return typeof window.gtag === "function";
 	}
@@ -8,6 +9,7 @@
 	}
 
 	function getAnalyticsLabel(element) {
+
 		const explicitLabel =
 			element.dataset.homepageLabel ||
 			element.dataset.gaLabel ||
@@ -31,9 +33,11 @@
 		}
 
 		return "";
+
 	}
 
 	function getAnalyticsPlace(element) {
+
 		const homepageSection = element.closest("[data-homepage-section]");
 
 		if (homepageSection) {
@@ -53,9 +57,11 @@
 		}
 
 		return "body";
+
 	}
 
 	function sendAnalyticsEvent(eventName, params = {}) {
+
 		if (!canTrackAnalytics()) {
 			return;
 		}
@@ -69,6 +75,7 @@
 	// Delegate common CTA tracking in one place instead of scattering inline handlers.
 
 	document.addEventListener("click", (event) => {
+
 		const clickTarget = event.target.closest("a, button");
 
 		if (!clickTarget) {
@@ -76,19 +83,23 @@
 		}
 
 		if (clickTarget.classList.contains("pagefind-ui__result-link")) {
+
 			sendAnalyticsEvent("search_click", {
 				page_viewed: clickTarget.href,
 				result_label: getAnalyticsLabel(clickTarget),
 			});
 			return;
+
 		}
 
 		if (clickTarget.classList.contains("lang-select")) {
+
 			sendAnalyticsEvent("click_language", {
 				language: clickTarget.dataset.lang || getAnalyticsLabel(clickTarget),
 				place: getAnalyticsPlace(clickTarget),
 			});
 			return;
+
 		}
 
 		// Track both direct subscribe links and subscribe CTAs that open the shared modal.
@@ -98,23 +109,28 @@
 			clickTarget.dataset.subscribeClick ||
 			clickTarget.getAttribute("data-target") === "#subscribeModal"
 		) {
+
 			sendAnalyticsEvent("click_subscribe", {
 				place: clickTarget.dataset.subscribeClick || getAnalyticsPlace(clickTarget),
 				click_url: getClickUrl(clickTarget),
 			});
 			return;
+
 		}
 
 		if (clickTarget.getAttribute("data-target") === "#searchModal") {
+
 			sendAnalyticsEvent("click_search_open", {
 				place: getAnalyticsPlace(clickTarget),
 			});
 			return;
+
 		}
 
 		const homepageSection = clickTarget.closest("[data-homepage-section]");
 
 		if (homepageSection) {
+
 			const clickLabel = getAnalyticsLabel(clickTarget);
 
 			if (!clickLabel) {
@@ -127,14 +143,17 @@
 				click_url: getClickUrl(clickTarget),
 			});
 			return;
+
 		}
 
 		if (clickTarget.classList.contains("link-track")) {
+
 			sendAnalyticsEvent("click_topic_link", {
 				click_url: getClickUrl(clickTarget),
 				click_label: getAnalyticsLabel(clickTarget),
 			});
 			return;
+
 		}
 
 		const navigationRoot = clickTarget.closest("#global-header, #global-footer");
@@ -146,6 +165,7 @@
 			clickUrl !== "#" &&
 			!clickTarget.hasAttribute("data-toggle")
 		) {
+
 			const clickLabel = getAnalyticsLabel(clickTarget);
 
 			if (!clickLabel) {

@@ -46,7 +46,6 @@ const scheduleDisparitiesViewResize = () => {
             updateChartPlotSize();
         });
     });
-
 };
 
 // Renders the disparities scatterplot for the selected primary measure.
@@ -129,10 +128,12 @@ const renderDisparitiesChart = async (
 
         const aqDisparityData = await createJoinedLinksData(primaryMeasureId, disparityMeasureId)
             .then(res => {
+
                 return aq.from(res.data)
                     .derive({ PovRank: d => (d.Value_2 > 30 ? 4 : (d.Value_2 > 20 ? 3 : (d.Value_2 > 10 ? 2 : 1))) })
                     .derive({ PovCat: d => (d.PovRank == 4 ? 'Very high (> 30%)' : (d.PovRank == 3 ? 'High (20-30%)' : (d.PovRank == 2 ? 'Medium (10-20%)' : 'Low (0-10%)'))) })
                     .derive({ randomOffsetX: aq.escape(d => d.PovRank + (seededRandom() * 2 - 1)) });
+
             });
 
         DE.disparities.disparityData = aqDisparityData.objects();
@@ -219,7 +220,6 @@ const renderDisparitiesChart = async (
                 "labelBaseline": "bottom",
                 "labelExpr":
                     "(isObject(datum) ? datum.value : datum) === 0 ? '' : (isObject(datum) ? datum.value : datum)",
-
             },
             "view": { "stroke": "transparent" },
             "text": {
@@ -337,7 +337,6 @@ const renderDisparitiesChart = async (
                 }
             }
         ]
-
     };
 
     // ----- embed chart, cache print-export state, build downloadable CSV ----- //

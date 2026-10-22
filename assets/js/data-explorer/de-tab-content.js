@@ -16,10 +16,13 @@
 // Clicking an already-active tab closes its pane and records the closed state.
 
 document.addEventListener('DOMContentLoaded', function() {
+
     const tabLinks = document.querySelectorAll('.nav-link[data-toggle="pill"]');
 
     tabLinks.forEach(link => {
+
         link.addEventListener('click', function(e) {
+
             const targetId = this.getAttribute('href');
             const targetPane = document.querySelector(targetId);
 
@@ -30,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Check if this tab is already active
 
             if (this.classList.contains('active') && targetPane.classList.contains('show')) {
+
                 e.preventDefault();
                 e.stopImmediatePropagation();
 
@@ -53,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 DE.state.overlay = 'none';
                 if (typeof pushSelectionToURL === 'function') pushSelectionToURL();
+
             }
         });
     });
@@ -62,8 +67,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Not for a disabled tab: Bootstrap won't open its pane, so this would reveal an empty container.
 
     document.addEventListener('click', function(e) {
+
         const tab = e.target.closest('.nav-link[data-toggle="pill"]');
         if (tab && !tab.classList.contains('disabled')) {
+
             const tabContent = document.querySelector('#v-pills-tabContent');
             if (tabContent && tabContent.style.display === 'none') {
                 tabContent.style.display = 'block';
@@ -85,6 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // ----------------------------------------------------------------------- //
 
 const closeExplorerTabPane = (paneId) => {
+
     const targetPane = document.querySelector('#' + paneId);
     const targetTab = document.querySelector('[href="#' + paneId + '"]');
 
@@ -110,6 +118,7 @@ const closeExplorerTabPane = (paneId) => {
 
         DE.state.overlay = 'none';
         if (typeof pushSelectionToURL === 'function') pushSelectionToURL();
+
     }
 };
 
@@ -122,7 +131,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeTabPaneButton = document.querySelector('.de-close-tab-button');
 
     if (closeTabPaneButton) {
+
         closeTabPaneButton.addEventListener('click', function() {
+
             const openPane = document.querySelector('#v-pills-tabContent .tab-pane.show.active');
 
             if (openPane?.id) {
@@ -134,6 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // close tab pane with Escape key
 
     document.addEventListener('keydown', function(event) {
+
         if (event.key !== 'Escape') {
             return;
         }
@@ -162,6 +174,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // anywhere on the header bar toggle it, as the bar did when it was the collapse trigger itself.
 
 document.addEventListener('DOMContentLoaded', function() {
+
     const mobileAccordionHeader = document.querySelector('.mobile-details-header');
     const mobileDetailsToggle = document.querySelector('.mobile-details-toggle');
     const detailsContent = document.querySelector('#detailsContent');
@@ -172,14 +185,19 @@ document.addEventListener('DOMContentLoaded', function() {
         // Function to update icon state
 
         function updateIconState(isOpen) {
+
             if (isOpen) {
+
                 toggleIcon.classList.remove('fa-plus');
                 toggleIcon.classList.add('fa-minus');
                 mobileDetailsToggle.setAttribute('aria-expanded', 'true');
+
             } else {
+
                 toggleIcon.classList.remove('fa-minus');
                 toggleIcon.classList.add('fa-plus');
                 mobileDetailsToggle.setAttribute('aria-expanded', 'false');
+
             }
         }
 
@@ -210,10 +228,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // Also listen for click events on the header as a backup
 
         mobileAccordionHeader.addEventListener('click', function() {
+
             setTimeout(() => {
                 const isCurrentlyOpen = detailsContent.classList.contains('show');
                 updateIconState(isCurrentlyOpen);
             }, 100);
+
         });
     }
 });
@@ -226,15 +246,18 @@ document.addEventListener('DOMContentLoaded', function() {
 // Toggles .has-open-panel on .de-tabs whenever any pane opens or closes.
 
 document.addEventListener('DOMContentLoaded', function() {
+
     const deTabsElement = document.querySelector('.de-tabs');
     const panelIds = ['v-pills-bar', 'v-pills-table', 'v-pills-trends', 'v-pills-correlate', 'v-pills-ds'];
 
     function updateHasOpenPanelClass() {
+
         let hasOpenPanel = false;
 
         // Check if any panel is currently open
 
         panelIds.forEach(panelId => {
+
             const panel = document.querySelector('#' + panelId);
             if (panel && panel.classList.contains('show') && panel.classList.contains('active')) {
                 hasOpenPanel = true;
@@ -251,15 +274,20 @@ document.addEventListener('DOMContentLoaded', function() {
         // Toggle the class based on panel state
 
         if (hasOpenPanel) {
+
             deTabsElement.classList.add('has-open-panel');
+
         } else {
+
             deTabsElement.classList.remove('has-open-panel');
+
         }
     }
 
     // Monitor all tab panes for show/hide events
 
     panelIds.forEach(panelId => {
+
         const panel = document.querySelector('#' + panelId);
         if (panel) {
 
@@ -269,6 +297,7 @@ document.addEventListener('DOMContentLoaded', function() {
             panel.addEventListener('hide.bs.tab', updateHasOpenPanelClass);
             panel.addEventListener('shown.bs.tab', updateHasOpenPanelClass);
             panel.addEventListener('hidden.bs.tab', updateHasOpenPanelClass);
+
         }
     });
 
@@ -280,6 +309,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Use MutationObserver to watch for style changes
 
         const observer = new MutationObserver(function(mutations) {
+
             mutations.forEach(function(mutation) {
                 if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
                     updateHasOpenPanelClass();
@@ -287,12 +317,14 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         observer.observe(tabContent, { attributes: true, attributeFilter: ['style'] });
+
     }
 
     // Monitor tab link clicks for immediate response
 
     const tabLinks = document.querySelectorAll('.nav-link[data-toggle="pill"]');
     tabLinks.forEach(link => {
+
         link.addEventListener('click', function() {
 
             // Small delay to ensure Bootstrap has processed the click
@@ -305,6 +337,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // This keeps the right overlay pane fully open when the page first renders.
 
     updateHasOpenPanelClass();
+
 });
 
 
@@ -316,5 +349,4 @@ $(document).ready(function() {
 
     // Tab display is now managed via the `overlay` URL search param in app.js.
     // No hash fragment logic needed here.
-
 });

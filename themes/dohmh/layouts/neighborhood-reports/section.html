@@ -167,9 +167,11 @@ var intendedDestinationName = null;
 // MANAGES TOPIC BUTTONS ON HOME PAGE
 
 function handleTopicButtons() {
+
   const buttons = document.querySelectorAll('.nr-topic-button');
 
   buttons.forEach(button => {
+
     button.addEventListener('click', () => {
 
       // 1. Remove 'active' from all buttons. aria-pressed moves with it, so the
@@ -197,18 +199,24 @@ function handleTopicButtons() {
 
 
 function changeHomeCopy(x) {
+
       var copyHolder = x + '-Descr'
 
       if (document.getElementById(copyHolder)) {
+
         var copy = document.getElementById(copyHolder).innerHTML
         document.getElementById('descr').innerHTML = copy
+
       } else {
+
         console.log('Not home page; doing nothing.')
+
       }
 }
 
 
 function setIntendedDestination(x) {
+
   intendedDestination = x
 
   // look up intendedDestination in topicSlugs, and retrieve the URL Path for the intended destination
@@ -227,6 +235,7 @@ function setIntendedDestination(x) {
 // follow it, so clicking one lands where the map and the search box already send you.
 
 function updateNeighborhoodListLinks() {
+
   const base = {{ relURL "neighborhood-reports/" }}
 
   // Falls back to the neighborhood index when the lookup in setIntendedDestination missed:

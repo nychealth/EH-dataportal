@@ -87,7 +87,6 @@
                             time_periods = tp;
 
                             loopThroughIndicators() // run loops.
-
                         })
                 });
 
@@ -153,6 +152,7 @@
                         // can eventually add an anchor or other deep-linking method
 
                         st_li.appendChild(li)
+
                     }
 
                     row_i.appendChild(cell_2);
@@ -176,12 +176,10 @@
                         // var finestGeography = [];
 
                         for (let y = 0; y < indicators[i].Measures[n].AvailableGeoTypes.length; y++) {
-
                             geographies.push(indicators[i].Measures[n].AvailableGeoTypes[y])
 
                             // console.log("AvailableGeoTypes", indicators[i].Measures[n].AvailableGeoTypes);
                             // here, can embed a loop through geographies to find the finest.
-
                         }
 
                         // get time period IDs for this measure
@@ -317,7 +315,9 @@
 
 
             function initializeDataTables() {
+
                 let table = new DataTable('#indicators', {
+
                     // options
                     scrollY: 600,
                     scrollX: true,
@@ -349,7 +349,6 @@
                         geo_buttons[i].classList.add("active");
                     }
                 }
-
             }
 
             function toggle_button(e) {
@@ -369,7 +368,6 @@
                     for (let i = 0; i < geo_buttons.length; i++) {
                         geo_buttons[i].classList.add("active");
                     }
-
                 }
                 else if (button.classList.contains("active") == true) {
 
@@ -382,18 +380,14 @@
                     for (let i = 0; i < geo_buttons.length; i++) {
                         geo_buttons[i].classList.remove("active");
                     }
-
                 }
 
                 let active = document.querySelectorAll("li.active");
                 let active_geos = [];
 
                 for (let i = 0; i < active.length; i++) {
-
                     if (typeof active[i].attributes.geo != "undefined") {
-
                         active_geos.push(active[i].attributes.geo.value);
-
                     }
                 }
 
@@ -470,11 +464,13 @@
                         let string = `"` + removeTags(cols[j].innerHTML) + `"`
 
                         csvrow.push(string); // run contents through removeTags() to strip HTML
+
                     }
 
                     // Combine each column value with comma
 
                     csv_data.push(csvrow.join(","));
+
                 }
                 // Combine each row data with new line character
 
@@ -484,6 +480,7 @@
                 // console.table(csv_data)
 
                 downloadCSVFile(csv_data);
+
             }
 
             // TRIGGERS DOWNLOAD
@@ -515,10 +512,12 @@
 
                 temp_link.click();
                 document.body.removeChild(temp_link);
+
             }
 
 
             function removeTags(str) {
+
                 if ((str === null) || (str === ''))
                     return false;
                 else
@@ -531,6 +530,7 @@
                 // HTML tag with a null string.
 
                 return str.replace(/(<([^>]+)>)/ig, '');
+
             }
 
 
@@ -540,6 +540,7 @@
 
             var object = [];
             function createMeasureMetadata() {
+
                 console.log('object of indicators, measures, and text metadata:')
                 // create object of indicators, measures and text metadata
 
@@ -557,19 +558,22 @@
                         measure.displayType      = indicators[i].Measures[j].DisplayType
 
                         object.push(measure)
-                    }
 
+                    }
                 }
 
                 console.log(object)
+
             }
 
             function getNoMaps() {
+
                 var noMapObject = [];
                 console.log('indicators without a mapped measure:')
                 // loop through indicators
 
                 for (let i = 0; i < indicators.length; i++) {
+
                     var maps = [];
                     // loop through measures
 
@@ -592,19 +596,23 @@
                             indicator.indicatorID      = indicators[i].IndicatorID
 
                             noMapObject.push(indicator)
+
                         } else {}
 
                     }
                     console.log(noMapObject)
+
             }
 
             var inds = [];
             var fullInds = [];
             function indicatorsWithFullViews() {
+
                 console.log('object of indicators with a full-view measure')
                 // for each indicator...
 
                 for (let i = 0; i < indicators.length; i++) {
+
                     var thisIndicator = [];
 
                     // loop through their measures
@@ -638,6 +646,7 @@
                 // then, loop through inds and return the number of measures that have a viewSum > 1.
 
                 for (let i = 0; i < inds.length; i++) {
+
                     var thisIndicator = {};
                     var count = 0
                             // loop through inds[i].length
@@ -649,14 +658,19 @@
                             }
                     inds[i].measuresTwoPlus = count
                     if (inds[i].measuresTwoPlus > 0) {
+
                         fullInds.push(inds[i])
+
                     } else {}
+
                 }
                 console.log(inds)
                 console.log(fullInds)
+
             }
 
             function measureViewSummary() {
+
                 var mvs = [];
                 console.log('object of indicators, measures, and text metadata:')
                 // create object of indicators, measures and text metadata
@@ -697,11 +711,12 @@
 
 
                         mvs.push(measure)
-                    }
 
+                    }
                 }
 
                 console.log(mvs)
+
             }
 
         </script>

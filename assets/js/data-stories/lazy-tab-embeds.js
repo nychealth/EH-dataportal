@@ -11,13 +11,16 @@
 // content/data-stories/{housing,redlining,air-quality-snapshots,vectorborne-diseases-and-health}.
 
 (() => {
+
 	function activateLazyEmbeds(pane) {
+
 		pane.querySelectorAll("[data-lazy-src]").forEach((iframe) => {
 			iframe.src = iframe.dataset.lazySrc;
 			iframe.removeAttribute("data-lazy-src");
 		});
 
 		pane.querySelectorAll("[data-lazy-embed-src]").forEach((container) => {
+
 			const script = document.createElement("script");
 
 			script.src = container.dataset.lazyEmbedSrc;
@@ -25,6 +28,7 @@
 			script.dataset.target = `#${container.id}`;
 			container.removeAttribute("data-lazy-embed-src");
 			container.appendChild(script);
+
 		});
 	}
 
@@ -37,6 +41,7 @@
 	// rather than a native document listener, which isn't guaranteed to see it.
 
 	$(document).on("shown.bs.tab", '[data-toggle="tab"]', function () {
+
 		const targetSelector = this.getAttribute("href") || this.dataset.target;
 		const pane = targetSelector ? document.querySelector(targetSelector) : null;
 
@@ -45,5 +50,6 @@
 		}
 
 		activateLazyEmbeds(pane);
+
 	});
 })();

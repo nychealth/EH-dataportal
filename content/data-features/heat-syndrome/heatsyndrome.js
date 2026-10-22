@@ -19,12 +19,14 @@ function init() {
     // console.log(UrlExists(yearURL))
 
     if (fileExists == true) {
+
       for (let i = year; i > 2016; i--) {
         allYears.push(i)
         // console.log(i)
         // changeYear(year)
       }
     } else {
+
       for (let i = year-1; i > 2016; i--) {
         allYears.push(i)
         var lastYear = year-1
@@ -41,12 +43,14 @@ function init() {
 
 
     for (let i = 0; i < allYears.length; i++) {
+
       var oneYear = allYears[i]
       var btnID = oneYear + 'button'
       var yearButton = `<button class='btn btn-sm btn-outline-secondary yearButtons ml-1' id='${btnID}' onclick='changeYear(${oneYear})'>${oneYear}</button>`
       document.getElementById('yearButtonHolder').innerHTML += yearButton
 
       if (i == 0) {
+
         document.getElementById(btnID).classList.add('btn-secondary')
         document.getElementById(btnID).classList.remove('btn-outline-secondary')
 
@@ -73,9 +77,13 @@ function UrlExists(url) {
     http.open('HEAD', url, false);
     http.send();
     if (http.status == 404 ) {
+
       fileExists = false
+
     } else {
+
       fileExists = true
+
     }
     // console.log(fileExists)
 
@@ -86,6 +94,7 @@ function UrlExists(url) {
 // get Magma colors for the number of years
 
 function getMagmaColors(n) {
+
   const colors = [];
   for (let i = 0; i < n; i++) {
 
@@ -97,6 +106,7 @@ function getMagmaColors(n) {
   // console.log('got colors:', colors)
 
   return colors;
+
 }
 
 
@@ -134,7 +144,6 @@ var spec = {
   "data": {
     "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat2023_live.csv",
   "format": {"type":"csv", "parse":{"END_DATE": "date:'%Y-%m-%d'", "MAX_DAILY_TEMP":"number","HEAT_ED_VISIT_COUNT":"number"}} //format.parse -> END_DATE resolves UTC time issues
-
   },
   "transform": [
     {"calculate": "year(datum.END_DATE)", "as": "Year"},
@@ -219,14 +228,19 @@ vegaEmbed('#vis1',spec, {renderer: "svg"})
 // Year change function powered by year buttons
 
 function changeYear(x) {
+
   console.log('showing chart for year: ', x)
   spec.transform[1].filter = `datum.Year == ${x}`;
 
   if ( x == allYears[0]) {
+
     spec.data.url = `https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat${x}_live.csv`
+
   }
   else {
+
     spec.data.url = 'https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/previous_years.csv'
+
   }
   document.getElementById('yearHeader').innerHTML = x;
   vegaEmbed('#vis1',spec, {renderer: "svg"});
@@ -246,6 +260,7 @@ function changeYear(x) {
 
 var scatterCount = 0
 function toggleScatter(x) {
+
   scatterCount = Number(scatterCount + 1)
   // console.log(scatterCount)
 
@@ -255,6 +270,7 @@ function toggleScatter(x) {
 
     document.getElementById('scattertoggle').innerHTML = 'Show time'
     vegaEmbed('#vis2', scatterplot, {renderer: "svg"})
+
   } else {
 
     // console.log('odd')

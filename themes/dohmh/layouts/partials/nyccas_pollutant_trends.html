@@ -66,7 +66,9 @@
 
         const trbtns = document.querySelectorAll(".trpolbtn")
         for (var i = 0; i < trbtns.length; i++) {
+
             trbtns[i].addEventListener("click", function() {
+
               for (let button of document.querySelectorAll('.trpolbtn')) button.classList.remove('active');
               this.className += " active";
               trendPollutant = this.value
@@ -74,29 +76,41 @@
               // declare sources and units for selected pollutant
 
                 if (trendPollutant === 'BC') {
+
                     sources = bcSources
                     units = 'micrograms per cubic meter'
                     trendPollutantName = 'Black Carbon'
+
                 } else if (trendPollutant === 'NO') {
+
                     sources = noSources
                     units = 'parts per billion'
                     trendPollutantName = 'Nitric Oxide'
+
                 } else if (trendPollutant === 'NO2') {
+
                     sources = no2Sources
                     units = 'parts per billion'
                     trendPollutantName = 'Nitrogen Dioxide'
+
                 } else if (trendPollutant === 'O3') {
+
                     sources = o3Sources
                     units = 'parts per billion'
                     trendPollutantName = 'Ozone'
+
                 } else if (trendPollutant === 'PM2.5') {
+
                     sources = pmSources
                     units = 'micrograms per cubic meter'
                     trendPollutantName = 'Fine Particles'
+
                 } else if (trendPollutant = 'SO2') {
+
                     sources = so2Sources
                     units = 'parts per billion'
                     trendPollutantName = 'Sulfur Dioxide'
+
                 }
                 source = sources[0]
                 // logMetadata();
@@ -128,6 +142,7 @@
             // put listener on source buttons
 
             for (let x = 0; x < srcBtns.length; x++) {
+
                 srcBtns[x].addEventListener("click", function() {
 
                 // remove "active" from classnames
@@ -139,6 +154,7 @@
                 this.className += " border";
                 source = this.innerHTML;
                 drawChart();
+
                 })
             }
         }
@@ -151,6 +167,7 @@
 
         var chartSpec = {};
         function drawChart() {
+
             document.getElementById('polPrint').innerHTML = trendPollutantName
             document.getElementById('sourcePrint').innerHTML = DOMPurify.sanitize(source)
             document.getElementById('unitPrint').innerHTML = units
@@ -214,17 +231,20 @@
               };
 
         vegaEmbed('#vis', chartSpec, {renderer: "svg"});
+
         }
 
 
 
         function logMetadata() {
+
             console.log('*****METADATA*****')
             console.log('pollutant: ' + trendPollutant)
             console.log('sources: ' + sources)
             // console.log('source: ' + source)
 
             console.log('units: ' + units)
+
         }
 
 
