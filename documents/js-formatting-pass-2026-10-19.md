@@ -35,7 +35,7 @@ taken from that pass.
 | 2 | Settle the two rule questions (object-literal padding; script vs hand for multi-line values) | `feature-js-formatting @ 955adbf64d` | **DONE 2026-10-19** — see the last two Decisions rows | Prose only; re-read of the edited `js-conventions.md` "Any other block" bullet. No tool covers these docs |
 | 3 | Merge #1491's branch (or `production`) into this branch | `feature-js-formatting @ 659d6cf339` (merge of `feature-MOD-Lab-NR-recode-refactor-merge` at `9a474a5c0b`) | **DONE 2026-10-21**, before #1491 merged | — |
 | 4 | `python scripts/js-comment-spacing.py`, commit alone | `feature-js-formatting @ c6f2a481be` (script), `d2d80dc7e2` (sweep) | **DONE 2026-10-21** | First run also touched 9 files under `data-explorer-old/` (19 lines), which `js-conventions.md` § Scope exempts; discarded, and `c6f2a481be` adds `EXEMPT_DIRS` to the script so a re-run cannot put them back. Second run: 313 lines across 50 files (30 `.js`, 20 `.html`). `[verified 2026-10-21: git diff -U0 with the script excluded, 0 non-blank + lines and 0 - lines; node scripts/js-comment-spacing-verify.mjs exit 0, 30 files, 0 changed tokens; positive control, a blank line injected after data-explorer/map.js:240 inside a template literal, exit 1, restored exit 0; the 58 .html insertions read by eye, all inside <script> bodies, none in markup or a {{ }} action; npm run lint exit 0; re-run inserts 0]` |
-| 5 | Hand pass for the rules the script does not apply, commit separately; `npm run lint`, `npm run smoke:all` | | **Parked 2026-10-21** on a scope decision from Chris — see below the table | — |
+| 5 | Hand pass for the rules the script does not apply, commit separately; `npm run lint`, `npm run smoke:all` | | **In progress 2026-10-21**: Chris chose (b). 5a, `scripts/js-brace-padding.mjs` applying the brace rules, then its sweep as its own commit; 5b, one-line guards; 5c, `semi` via `eslint --fix`. Each its own commit. 5a's sweep: 1,297 blank lines inserted and 398 removed in 85 files; two layout bodies it cannot parse are left untouched (`data-features/minimum-wage-with-maps.html`, whose detected body is markup, and `partials/render-table.html`, whose `{{ if }}…{{ else }}…{{ end }}` sits inside a JS value) | 5a sweep, before commit: `[2026-10-21: node scripts/js-comment-spacing-verify.mjs exit 0, 85 files, 0 changed tokens, 0 changed non-blank lines; that check's control, one doubled space in bar.js, exit 1; the tool's fixture control rejected 5 of 6 rule mutations (the sixth, loops, a no-op sed); re-run changes 0; npm run lint exit 0; step 4's 20 layouts re-read through the new .html path, token-identical, 16,066 tokens]`. `[2026-10-21: prod_prod built three times into temp dirs — base 41ab26e5f3 in a worktree, the swept tree, base again — all exit 0, 0 ERROR; python scripts/build-output-diff.py base→base exit 0 (3,017 identical, 3 build_datetime only), base→sweep exit 0 (2,003 identical, 1,017 blank lines only, 0 one-sided after fingerprint pairing); its control, one <title> edited in a built page, exit 1 naming it]` |
 
 Step 5 has a starting list for the multi-line-value gap: a comment directly above a property line
 ending in `{`, `[` or `(`, over `git ls-files assets/js content themes/dohmh/layouts`, excluding
@@ -71,11 +71,17 @@ re-run the script (idempotent). Step 4's proof is the three checks in the script
 
 ## Next command
 
-Step 5: Chris picks (a), (b) or (c) above; every rule question is settled (Decisions). For
-(a), apply the gap at
-the 19 sites, then read `data-explorer/global.js`, `table.js` and `chart-tod.js` for multi-line
-ternary values the probe misses. After the hand pass,
-`npm run lint` (exit 0) and `npm run smoke:all` (exit 0, `Pagefind index: served`).
+Step 5b: collapse braced single-statement `if`s with no `else` to one line
+(`js-conventions.md` § Statements). Not yet built. It changes tokens, so the verifier cannot prove
+it; the proof is an AST comparison that treats `if (x) { s; }` and `if (x) s;` as equal. Then 5c,
+`npx eslint --fix --rule "semi: error"` over the same targets, then `npm run lint` (exit 0) and
+`npm run smoke:all` (exit 0, `Pagefind index: served`), since 5b and 5c are the first changes in
+this step that alter tokens. The two layout bodies 5a skipped get a hand look.
+
+A re-run of 5a: `node scripts/js-brace-padding.mjs`, then `node scripts/js-comment-spacing-verify.mjs`
+(exit 0) and the build comparison in `scripts/build-output-diff.py`'s docstring (exit 0). The tool
+exits 1 while the two skipped bodies remain, and names them. 5b and 5c change tokens, so the build
+comparison will report changed pages for them; read what it names rather than expecting 0.
 
 If #1491 takes another commit first, merge it in before step 5: a conflict in a file only step 4
 touched is resolved by taking #1491's side and re-running the script, as above.

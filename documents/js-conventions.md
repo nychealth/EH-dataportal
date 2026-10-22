@@ -344,6 +344,9 @@ Block lengths below count non-blank lines between the braces.
 - **A comment that is a block's first line always gets the gap after `{`**, even
   in a block the rules above leave tight; the bottom of that block stays tight.
   `scripts/js-comment-spacing.py` applies this gap and does not check length.
+- `scripts/js-brace-padding.mjs` applies the brace rules above, both ways: it pads
+  what they pad and removes padding from what they leave tight. It parses with
+  espree, so read its header for how it reads layouts and which checks prove a run.
 - Blank line between each logical group inside a function, and before each
   `return` — except inside a block of three lines or fewer, which stays tight.
 - **Declare, then test:** blank line between a declaration and the `if`, `for` or

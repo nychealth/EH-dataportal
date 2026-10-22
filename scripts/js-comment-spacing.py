@@ -28,9 +28,9 @@ tree and prove the diff is empty-line insertions and nothing else:
 
 The first two cannot see a blank line inserted inside a template literal, which
 changes the string while still being an empty-line insertion; the third compares
-each changed .js file's token stream against HEAD and can. It does not cover the
-<script> bodies of .html targets, whose Go-template syntax a JS tokenizer cannot
-read — review those insertions by eye.
+each changed .js file's token stream against HEAD and can. It covers the
+<script> bodies of .html targets too, with Hugo actions masked, and names any it
+cannot tokenize.
 
 Targets come from `git ls-files`, not a directory walk: the checks above read
 `git diff`, which cannot show an edit to an untracked file, so a walk would rewrite
