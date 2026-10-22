@@ -86,7 +86,11 @@ function getSiteDisplayName(site) {
 const site_names = ["CRZ", ...Object.keys(CP_SITES).filter((site) => site !== "CRZ")];
 const tod_site_names = site_names.filter(s => CP_SITES[s].hasTOD);
 const CP_BADGE_TO_SITE = {};
-site_names.forEach(s => { if (CP_SITES[s].badgeKey) CP_BADGE_TO_SITE[CP_SITES[s].badgeKey] = s; });
+site_names.forEach(s => {
+    if (CP_SITES[s].badgeKey) {
+        CP_BADGE_TO_SITE[CP_SITES[s].badgeKey] = s;
+    }
+});
 
 
 // ----------------------------------------------------------------------- //
