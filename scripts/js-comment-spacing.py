@@ -1,8 +1,12 @@
 """
-Insert a blank line between a comment and the code it introduces.
+Insert a blank line between a comment and the code it introduces, and between
+an opening `{` and a comment directly under it.
 
-This is the convergence tool for the rule in documents/js-conventions.md
-(§ Vertical whitespace). It is NOT part of any check and no npm script wraps it:
+This is the convergence tool for two rules in documents/js-conventions.md
+(§ Vertical whitespace): the comment rule, and the blank line after a block's
+opening brace, applied only where a comment is the brace's first line. The
+second rule's "longer than ~3 lines" condition is not checked, since that needs
+brace matching; a comment plus the code it introduces is taken as long enough. It is NOT part of any check and no npm script wraps it:
 new code should be written to the convention, and this exists for the moment old
 code arrives, which is the merge of a long-lived branch. Run it, review the diff,
 commit separately from whatever else that branch changed.
@@ -32,7 +36,8 @@ Targets come from `git ls-files`, not a directory walk: the checks above read
 `git diff`, which cannot show an edit to an untracked file, so a walk would rewrite
 untracked .js in a working tree with nothing to reveal it.
 
-Two things it does NOT touch, both cases where the comment introduces nothing:
+Two things it does NOT touch, both cases where the comment introduces nothing,
+and neither gap is inserted for them:
 a comment above an object-literal property (Vega and Leaflet specs annotate
 consecutive keys, and spacing each one doubles the block's height), and a comment
 above a line that continues or closes what came before — a `.filter()` in a fluent
@@ -132,11 +137,24 @@ def process(path):
             while j < end and COMMENT.match(lines[j]):
                 j += 1
 
-            # lines[j] is blank already when the file is conformant, and .strip() is
-            # what makes the whole pass idempotent
-            if j < end and lines[j].strip() and qualifies(lines[j]) \
-                    and not in_template_literal(lines, i):
+            # The first code line after the block, past any blank line, is what the
+            # comment introduces; both gaps below exist only when it introduces code
+            k = j
+            while k < end and not lines[k].strip():
+                k += 1
+
+            introduces = k < end and qualifies(lines[k]) and not in_template_literal(lines, i)
+
+            # Gap after: lines[j] is blank already when the file is conformant, and
+            # .strip() is what makes the whole pass idempotent
+            if introduces and j == k:
                 inserts.add(j)
+
+            # Gap before: a comment directly under the `{` that opens a function or
+            # block. `i > start` keeps an HTML region's <script> line out of it
+            prev = lines[i - 1].rstrip() if i > start else ''
+            if introduces and prev.endswith('{') and not COMMENT.match(prev):
+                inserts.add(i)
 
             i = j + 1
 

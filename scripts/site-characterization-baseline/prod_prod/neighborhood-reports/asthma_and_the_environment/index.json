@@ -4,15 +4,18 @@
     "structure": {
         "lang": "en",
         "assets": [
+            "js/L.colorIcon.js",
             "js/main.js",
             "js/site.js",
-            "js/uhflist.js",
+            "js/uhflist-data.js",
             "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
             "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
             "node_modules/dompurify/dist/purify.min.js",
             "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.css",
             "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js",
             "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/leaflet-easybutton/src/easy-button.css",
+            "node_modules/leaflet-easybutton/src/easy-button.js",
             "node_modules/leaflet/dist/leaflet.css",
             "node_modules/leaflet/dist/leaflet.js",
             "node_modules/popper.js/dist/umd/popper.min.js",
@@ -22,10 +25,10 @@
             "translate.google.com",
             "www.googletagmanager.com"
         ],
-        "assetsWithIntegrity": 13,
+        "assetsWithIntegrity": 16,
         "headingLevels": [
-            2,
             1,
+            2,
             1,
             2,
             1,
@@ -103,17 +106,17 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 158,
+            "internal": 118,
             "external": 21,
-            "emptyHref": 29,
+            "emptyHref": 31,
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 7,
+            "button": 8,
             "input": 3,
             "select": 0,
             "textarea": 0,
-            "noAccessibleName": 2
+            "noAccessibleName": 1
         },
         "tables": {
             "total": 0,
@@ -126,8 +129,8 @@
     "content": {
         "title": "Asthma and the Environment in NYC – Environment & Health Data Portal",
         "headingText": [
-            "Select neighborhood",
             "Asthma and the Environment",
+            "Choose Neighborhood",
             "Adults with a recent asthma attack",
             "Adults reporting an asthma diagnosis, and symptoms, in the last 12 months (from when they were surveyed). Poor air quality and housing issues increase risk of developing and triggering asthma.",
             "Asthma emergency department visits (adults)",

@@ -1,0 +1,496 @@
+# PR #1491 xhigh review fixes (2026-10-20)
+
+**Status as of 2026-10-21: Tasks 0 to 10 done (Task 0's claim 30 reproduced only in part; Task 5's finding 17 parked); Task 11 done 2026-10-21; Task V done 2026-10-21 at `d6fe8cf481`; Task 12 (third review) done 2026-10-21 at `7889c501cb`; Task 13 (fly to the neighborhood) done 2026-10-22.** Chris answered all seven open decisions on 2026-10-20
+(see [Decisions answered by Chris](#decisions-answered-by-chris)). Finding 17 is parked. Finding 31 waits on a screenshot
+comparison that Task 10 produces.
+
+Source: `/code-review xhigh #1491 --max-findings all`, run 2026-10-19 23:53 local against head `13fa8d6016`, merge-base
+`06b38225b1`. It reported 31 findings, all of them static: lint, plus a tally of the live EHDP-data report JSONs. None was
+checked in a browser. The reviewer's full text is the last assistant message in
+`~/.claude/projects/c--Users-Chris-Documents-DOHMH-Programming-EH-dataportal-worktrees-feature-MOD-Lab-NR-recode-refactor-merge/c5623a61-8a7c-43c3-ac12-5383aa2bad81/subagents/agent-a8adb6362f930c608.jsonl`.
+A verbatim copy, with each finding's full failure scenario, is in
+[pr-1491-xhigh-review-findings-2026-10-19.md](pr-1491-xhigh-review-findings-2026-10-19.md). Read the scenario there before
+reproducing a finding in Task 0. Chris's verdict on each finding is quoted verbatim in the [Findings](#findings) table.
+
+Predecessor: [pr-1491-review-fixes-2026-10-17.md](pr-1491-review-fixes-2026-10-17.md), closed. Its decisions still stand
+unless a row below reverses one, and finding 17 reverses its F5.
+
+Line numbers below are the reviewer's, at `13fa8d6016`. Each task also names a symbol, so it can still be found once lines move.
+
+## Findings
+
+| # | Finding (reviewer, condensed) | Chris | Task |
+|---|---|---|---|
+| 1 | CSV download no longer sends GA `file_download` (`app.js` `downloadCSV`) | "Add gtag" | 1 |
+| 2 | Panel expand no longer sends GA `click_modal` (`chart.js` `onAccordionExpand`) | "Add gtag" | 1 |
+| 3 | Report map switches neighborhood in place; head metadata keeps the old neighborhood; Back skips the switch; no `page_view` for the new report; reviewer proposes full navigation instead | "Does this change the SPA-esque functionality? I want to preserve that, and fix whatever's wrong or bad." | 2 |
+| 4 | `nr-postswap-check.mjs` `extractReport` reads `<h3>`; template now renders `<h2 class="h4 fs-rg">` | "Fix" | 7 |
+| 5 | `totalFetches` counts the viz fetch only when `vizUrl` is set; `loadVizData` calls `checkAllLoaded()` either way (latent) | "Fix" | 3 |
+| 6 | `nr-characterization.mjs` waits on `#nr-header-neighborhood`, now server-rendered, so the wait is a no-op and the expand step races the card render | "Fix" | 7 |
+| 7 | EHDP-data strings concatenated into `innerHTML` unescaped (`cards.js` `buildIndicatorCard`, `report.js:97`) | "Fix with DOMPurify.sanitize" | 4 |
+| 8 | Indicator rows no longer server-rendered: no-JS readers see empty sections, runtime dependency on raw.githubusercontent.com, data pushes go live without a rebuild | "Intended, removes an awkward build loop. Might be documented in a plan. Same failure mode as the Data Explorer." | 11 |
+| 9 | GeoJSON `.catch` in `map.js` also catches `tryInitialRender()` throws, mislabels them, and re-runs `renderAll` | "Fix" | 3 |
+| 10 | A polygon clicked after map-ready but before data-ready is styled selected with `aria-current`, then the initial render silently drops it | "Fix" | 3 |
+| 11 | `chart.js` re-queries `#map-nr-acc-N` after `vegaEmbed` settles; after a switch that id belongs to another neighborhood's panel | "Fix" | 3 |
+| 12 | Geocode concatenated unquoted into a Vega expression (`chart.js:39`) | "Fix" | 3 |
+| 13 | `nr-postswap-check.mjs --limit` with no/non-numeric value checks 0 pages and reports PASS | "Fix" | 7 |
+| 14 | `nr-postswap-check.mjs` usage documents `/EH-dataportal/`, a prefix no environment serves | "Fix" | 7 |
+| 15 | `nr-postswap-check.mjs` ends with `process.exit()` after network activity (lines 211, 269) | "Fix" | 7 |
+| 16 | `nr-characterization.mjs --baseline` deletes the committed baseline dir before capturing; an uncaught `goto` timeout leaves it half-deleted | "Fix" | 7 |
+| 17 | Cards wait for the viz table and `topic_indicators.json`, which they don't need | "Fix"; then, 2026-10-20: "keep deferring 17" | 5, **parked** |
+| 18 | Each chart spec fetches `UHF42.topo.json` twice and `borough.topo.json` once, by URL | "Fix" | 5 |
+| 19 | `NR_REPORT_CONFIG.neighborhoodMap` duplicates the `neighborhoods` global from `lib-uhflist` | "Fix" | 5 |
+| 20 | `nr-leaflet.html` `removeHiddenMapFromTabOrder` runs only on GeoJSON success; zoom links focusable inside `aria-hidden` until then | "Fix" | 6 |
+| 21 | `nr-leaflet.html` hover-out resets the neighborhood index's own highlight; no `aria-current` there | "Fix" | 6 |
+| 22 | A failed section fetch reads as "No data available for this neighborhood." | "Fix" | 3 |
+| 23 | `pagefind-characterization.mjs` defaults to `local_prod`, whose `maxAge = -1` makes results depend on the machine's cache | "Change maxAge = 0. I'm the only consumer of local_prod." | 8 |
+| 24 | `.gitignore` ignores `.claude/` while two files in it are tracked | "Fix" | 9 |
+| 25 | Lockfile downgrades playwright/playwright-core 1.62.1 → 1.62.0 and drops sha.js metadata | "Restore" | 8 |
+| 26 | Root-level working files reach production: `EHDP feedback for MOD-Lab.md`, `README-MOD.md`, `.cursor/` | "Add stale files to gitignore" | 9 |
+| 27 | Changelog-style comments (`tertiles.js:45`, `:72`; `map.js:78-80`) and comments made false by merge (`report.js:15`, `_de-custom.scss:137`) | "Should we update or remove these?"; then, 2026-10-20: "update comments" | 10 |
+| 28 | `dev-server.mjs`: merge restored older wording over production's, added unused `const onExit` | "Fix" | 10 |
+| 29 | `chart.js:58` `format.parse.Value` names a field the data lacks | "Fix" | 10 |
+| 30 | `nr-a11y-audit.mjs:563` QR selector `#nr-qrcode img` matches nothing; the id is `qrcode` | "Fix" | 7 |
+| 31 | `nr-report.html:179` class `mb-` | "Change to whatever might have been intended"; then, 2026-10-20: "let's see if it needs a bottom margin" | 10, screenshots for Chris |
+
+## Decisions answered by Chris
+
+All answered 2026-10-20.
+
+| Item | Question | Answer | Effect on the plan |
+|---|---|---|---|
+| 17 | Fix now, reversing the 2026-10-17 plan's F5 deferral? | "keep deferring 17" | **Parked.** Cards keep waiting for the viz fetch. Same un-park condition as F5: the planned refactor of how report data arrives. |
+| 3, Back button | `pushState` so Back returns to the previous neighborhood, or keep `replaceState`? | "Back should go back to previous neighborhood" | Task 2 uses `pushState` plus a `popstate` handler. |
+| 3, GA `page_view` | Send a manual `page_view` on each switch? (The production stream's history events are **off**: `"vtp_enableHistoryEvents":false`, `de-analytics-audit-2026-10-16.md` §Ledger, `[verified 2026-10-16 16:26 UTC]`.) | "yes send a page view" (2026-10-20). `b8b572b6d3` had recorded this as "taken with the pushState answer", which was wrong: the row was never among the questions shown to Chris, so it was re-asked | Task 2 step 5 sends it. Step 1 re-checks the flag first, because with history events on, `pushState` would make the manual hit a double count. |
+| 26 | Untracking deletes the files from other clones that pull the branch, including MOD-Lab's. Acceptable? | "Yes, i think they're using Claude now, but i also think our agent setup supercedes theirs" | Task 9 untracks all four, `.cursor/` included. |
+| 27 | Update or remove the comments? | "update comments" | Task 10 rewrites them: state what the code does and why, with no dates, no "used to", and no references to production or to other branches. |
+| 31 | Remove `mb-` or pick a margin? | "let's see if it needs a bottom margin" | Task 10 produces screenshots for Chris to choose from. The intent can't be recovered from the repo: `mb-` arrived bare in `d6f99e19ea` and no commit gave it a number `[verified 2026-10-20: git log -S'd-none d-md-block mb-' -- themes/dohmh/layouts → one commit]`. |
+| 22, copy | "This section could not be loaded. Please try again later." OK? | "yes" | Task 3 uses that text. |
+| N-026 zoom, reopened | Reverse the 2026-10-19 decision that every NR map fits the whole city? (Asked by Chris, 2026-10-20, after Task 5.) | "keep the zoom controls, add a \"reset zoom\" easy button like other places on the site, and zoom to the neighborhood everywhere. reopen that item in the plan." | **Task 6b.** Reopens the N-026 zoom row of `documents/nr-audit-r14-fixes-2026-10-18.md` (Decisions). Known cost, told to Chris before building: zoomed to one neighborhood, a pointer can reach few of the others; measured 2026-09-15 on the report page, fly-to at zoom 12.54 reached 7 of 42 polygons against 41 of 42 fitted (`documents/site-wide-audit-2026-06-27.md` §18a). The reset button is the way back to the fitted view. |
+
+## Decisions taken in writing this plan
+
+| # | Decision | Rejected | Why |
+|---|---|---|---|
+| 3 | Keep the in-place switch and fix what it gets wrong | Reviewer's proposal: navigate to the generated page, as `nr-leaflet.html` does on the other NR pages | Chris: preserve the SPA feel |
+| 3 | Rewrite `<link rel=canonical>`, `og:url`, `og:title`, `twitter:title` and `meta description` (only if it names the neighborhood) on a switch. **Deferred:** the JSON-LD `BreadcrumbList`, whose parent item names the neighborhood index (`structured-data.html`, `.Title` / `.Permalink` of ancestors) | Rewriting JSON-LD too | A crawler fetches each `<nbhd>/<topic>/` URL directly and gets that page's own correct JSON-LD. The rewritten head matters only to in-browser readers of the DOM (share tools, extensions), and the plan assumes none of them reads JSON-LD. **Unverified assumption.** Un-defer if a share or SEO tool is found reading it after load. |
+| 1, 2 | One `trackNREvent(name, params)` helper in `assets/js/nr-report/global.js`, modelled on the data explorer's `trackDataExplorerEvent` (`assets/js/data-explorer/global.js`), with the same `typeof gtag !== 'function'` guard. No environment gate. | Porting production's `$envs` gate (`slice "Production" "production" "prod_prod" "development"` in `nr-indicator-new.html`) | `head.html` now defines `gtag` on every environment and routes non-`prod_prod` hits to the dev stream `G-PB98MPZ31B`. The explorer sends ungated on the same basis. |
+| 1, 2 | Payloads identical to production's: `file_download` `{file_name, file_extension: '.csv', link_text: 'Download Report Data'}`; `click_modal` `{modal_name: indicator_short_name}` | New names or params | GA reports keyed on them continue unbroken |
+| 7 | Sanitise every EHDP-data `innerHTML` sink in `assets/js/nr-report/`, including `demographics.js:72` (`metric.format(d[metric.field])`), which the reviewer did not list | Only the sinks the reviewer named | A grep for `innerHTML` across `assets/js/nr-report/*.js` returns 10 lines: 5 static strings in `chart.js`, 2 clears, and 3 data sinks (`report.js:89`, `report.js:97` → `buildIndicatorCard`, `demographics.js:72`) `[verified 2026-10-20 at 13fa8d6016]`. Re-run the grep in Task 4, since the count is a claim. |
+| 10 | Queue the early click: record the clicked neighborhood, and have `tryInitialRender` render it in place of the page's own | Ignoring clicks until data is ready | The user asked for that neighborhood. Ignoring the click means they have to click again, with no sign the first one was dropped. |
+| 25 | Put back production's `playwright`, `playwright-core` and `sha.js` lockfile entries by hand, and keep the branch's acorn 8.18.0 / eslint 10.8.0 / globals 17.8.0 / wkt-parser 1.5.6 entries | `git checkout production -- package-lock.json` | A whole-file restore also drops those four upgrades `[verified 2026-10-20: git diff production -- package-lock.json]`. The reviewer flagged only the downgrades. `npm install playwright@1.62.1` was rejected because `--save-*` rewrites ranges (project CLAUDE.md). |
+
+## Order and file overlap
+
+Tasks share files, so run them in this order: **0 → 1 → 2 → 3 → 4 → 5 → 6 → 6b → 7 → 8 → 9 → 10 → 11 → V**.
+
+- `report.js`: Tasks 2, 3, 4
+- `map.js`: Tasks 2, 3, 6b
+- `nr-leaflet.html`: Tasks 6, 6b
+- `chart.js`: Tasks 1, 3, 5, 10
+- `nr-report.html`: Tasks 2, 5, 10
+
+Task 2 consumes `trackNREvent` from Task 1. Commit each task on its own, never batched with an approval-gated command.
+
+---
+
+## Task 0: Evidence pass (no code)
+
+Reproduce each runtime claim before fixing it. A claim that does not reproduce is dropped from scope, and the row says so.
+Write the predictions in the Ledger's Proof column **before** running anything.
+
+Use a `dev_stage` server through `ensureDevServer()`, except Task 7's `nr-postswap-check.mjs`, which needs production data
+(`development`). Write a scratch Playwright probe in the session scratchpad. It is not kept.
+
+| Claim | Prediction if real |
+|---|---|
+| 3 | After an Enter-key switch on `east_harlem/asthma_and_the_environment/` to Kingsbridge - Riverdale: `link[rel=canonical]`, `og:url` and `og:title` still say East Harlem, and `history.length` is unchanged |
+| 4 | `node scripts/nr-postswap-check.mjs --limit 2` against a `development` server exits 1 with "report topic N" mismatches reading `''` |
+| 9 | With a temporary `throw` in `buildIndicatorCard`, the console shows "Error loading UHF42 GeoJSON" and the throw appears twice |
+| 10 | Throttle the section JSONs with route delay, click a polygon after the map draws: it gets `aria-current`; after render, the page's own neighborhood is selected |
+| 11 | Expand panel 3, switch neighborhood while a delayed topojson is pending, then let that request fail: the new panel 3 reads "Unable to render chart." |
+| 13 | `node scripts/nr-postswap-check.mjs --limit` prints "Checking 0 of 210" and exits 0 |
+| 20 | On the NR landing page (`/neighborhood-reports/`) with the GeoJSON request aborted, Tab reaches the zoom links inside `aria-hidden`. *Corrected 2026-10-20: this row first named a neighborhood index, but the finding is about the `aria-hidden` picker map on the landing page and topic indexes, and a neighborhood index's map is not hidden.* |
+| 21 | On a neighborhood index, after hovering on and off the page's own polygon, its stroke is black/1.5 and no polygon has `aria-current` |
+| 22 | With one section JSON answered 404, that section reads "No data available for this neighborhood." |
+| 30 | `document.querySelector('#nr-qrcode img')` is `null` on a report page; `#qrcode img` is not |
+
+Claims 5, 6, 12, 15 and 16 are argued from code. Each task cites the lines it read in its Proof cell. Do not run 16 for real,
+because it deletes the committed baseline.
+
+Step 1 also records a pre-change baseline at `13fa8d6016`: `npm run lint`, `node scripts/nr-characterization.mjs --check`
+and `node scripts/smoke-pages.mjs`, each with its exit code.
+
+## Task 1: Restore the two GA events (findings 1, 2)
+
+**Files:** `assets/js/nr-report/global.js` (new `trackNREvent`), `assets/js/nr-report/app.js` (`downloadCSV`),
+`assets/js/nr-report/chart.js` (`onAccordionExpand`).
+**Produces:** `trackNREvent(eventName, eventParams)`, consumed by Task 2.
+
+1. Add `trackNREvent` beside the other shared helpers in `global.js`, modelled on `trackDataExplorerEvent`.
+2. In `downloadCSV`, after the click, send `file_download` with `file_name` set to the anchor's `download` value.
+3. In `onAccordionExpand`, send `click_modal` with `modal_name` set to the row's `indicator_short_name`. Read production's
+   `nr-indicator-new.html` (`git show production:themes/dohmh/layouts/partials/nr-indicator-new.html`) to confirm whether
+   "expand all" fired one event per panel. Match whatever it did.
+4. **Proof:** a Playwright probe wrapping `window.gtag` to record calls: one download gives one `file_download` with the
+   expected params; expanding panel 1 gives one `click_modal` with that indicator's short name. `npm run lint` exit 0.
+
+## Task 2: Fix the in-place neighborhood switch (finding 3)
+
+**Files:** `assets/js/nr-report/url.js` (`setNeighborhoodInURL`, new head-metadata updater),
+`assets/js/nr-report/report.js` (`renderAll`, `announceNeighborhoodChange`), `assets/js/nr-report/app.js` (popstate
+listener, if Chris approves `pushState`).
+**Consumes:** `trackNREvent` (Task 1).
+
+1. Re-check the GA flag: fetch `https://www.googletagmanager.com/gtag/js?id=G-64BWDRHRGB` and the same for `G-PB98MPZ31B`,
+   and grep each for `vtp_enableHistoryEvents`. If either reads `true`, a manual `page_view` double-counts on that
+   stream. Stop and report.
+2. In `renderAll`, move the `document.title` rewrite ahead of the URL write. At `13fa8d6016` the URL write is
+   `setNeighborhoodInURL` (`report.js:244`) and the title rewrite is in `announceNeighborhoodChange` (`report.js:258`).
+3. Rewrite `link[rel=canonical]` and `meta[property="og:url"]` to the new absolute URL, and `og:title` / `twitter:title`
+   to the new title. Rewrite `meta[name=description]` only if the served value names the neighborhood. Check one built
+   report page first.
+4. History: `pushState` with `{neighborhood: name}` plus a `popstate` handler that re-renders from `event.state`
+   (Chris, 2026-10-20). The first render must still use `replaceState`, as it does now, so loading a page adds no history
+   entry. It should also seed `{neighborhood: <page's own>}` as state, so Back to the first entry has something to restore.
+   The `popstate` re-render must not push again.
+5. After the URL and title update, send `page_view` through `trackNREvent` with `page_location: location.href` and
+   `page_title: document.title`. Skip it on the initial render, because `gtag('config')` already counted that load.
+6. **Proof:** a Playwright probe on `east_harlem/asthma_and_the_environment/`, switching with Enter to Kingsbridge - Riverdale.
+   It checks: canonical, og:url and og:title name Kingsbridge; `document.title` changes before the `page_view` call
+   (record the order in a `gtag` wrapper); exactly one `page_view` per switch and none on load; with `pushState`, Back
+   restores East Harlem's h1, URL and canonical without a navigation (`performance.getEntriesByType('navigation').length`
+   unchanged). Back then Forward re-shows Kingsbridge, and neither sends a second `page_view` beyond the one per
+   rendered switch. Control: the same probe at `13fa8d6016` fails the canonical and `page_view` checks.
+
+## Task 3: Render-pipeline correctness (findings 5, 9, 10, 11, 12, 22)
+
+**Files:** `assets/js/nr-report/app.js` (`totalFetches`), `assets/js/nr-report/data.js` (`loadVizData`, `loadSection`'s
+`.catch`), `assets/js/nr-report/map.js` (GeoJSON `.then`/`.catch`, click handler), `assets/js/nr-report/chart.js`
+(`vegaEmbed` settle handlers, the `geo_join_id` filter expression), `assets/js/nr-report/report.js` (the empty-section
+branch).
+
+1. **5:** make `totalFetches` and the completion calls agree. Count the viz fetch whenever `loadVizData` will call
+   `checkAllLoaded()`, which it does unconditionally.
+2. **9:** split success and failure with `.then(onOk, onErr)` so a throw from `tryInitialRender` is not caught as a map-load
+   failure. `onErr` keeps today's "map unavailable, still render" behaviour.
+3. **10:** if a click arrives with `mapReady && !dataReady`, store the neighborhood and return without selecting.
+   `tryInitialRender` renders the stored one if set, otherwise the page's own.
+   **Note from Task 2 (`9c89f95642`):** `renderAll` treats a render with `previousNeighborhood === ''` as first paint, so a
+   stored neighborhood drawn that way gets `replaceState`, no title or head rewrite and no `page_view`. Render the page's own
+   neighborhood first and then the stored one as a switch, or pass the switch through explicitly; the probe for 10 must read
+   canonical and `document.title` as well as `aria-current`.
+4. **11:** capture the destination element before calling `vegaEmbed`. On resolve or reject, act only if
+   `el.isConnected` is still true. Task 0 reproduced this through the **resolve** handler, not the reject one: Vega logs a
+   failed topojson load as `WARN Loading failed` and `vegaEmbed` still resolves, so the stale `.then` relabelled the new
+   neighborhood's panel 3 export button with the old indicator's name. The Task 3 probe has to check the summary's
+   `aria-label`, because the chart text does not change.
+5. **12:** build the filter as `'datum.geo_join_id == ' + JSON.stringify(geocode)`. Before committing, check that
+   `geo_join_id` is numeric in the data and that the comparison still matches. Vega's `==` coerces types, but a quoted
+   number compared with a numeric field needs a browser check.
+6. **22:** in `loadSection`'s `.catch`, store a failure marker instead of `{}`. `report.js` renders a distinct message.
+   The copy is "This section could not be loaded. Please try again later." (Chris approved it 2026-10-20.)
+7. **Proof:** re-run the Task 0 probes for 9, 10, 11 and 22, which should now pass, plus a probe for 12 using an expanded
+   chart that renders a highlighted neighborhood. `npm run lint` exit 0.
+
+## Task 4: Sanitise EHDP-data markup (finding 7)
+
+**Files:** `assets/js/nr-report/report.js` (sinks at the empty-section branch and the card write),
+`assets/js/nr-report/demographics.js` (`metric.format` write).
+
+1. Re-run `git grep -n innerHTML -- assets/js/nr-report` and classify every hit as static, clear, or data.
+2. Wrap each data sink's value in `DOMPurify.sanitize(...)`. `DOMPurify` is loaded by `head.html`. **Correction 2026-10-20:**
+   it is *not* in `eslint.config.mjs`'s `NR_EXTERNAL_GLOBALS`. Its one hit there, `eslint.config.mjs:26`, is in
+   `DE_EXTERNAL_GLOBALS`, the data explorer's list. Add it to the NR list, as Task 1 added `gtag`. The card markup string
+   is built in `assets/js/nr-report/cards.js` (`buildIndicatorCard`), which has no `innerHTML`; the sink that writes it
+   is in `report.js`.
+3. **Proof:** a browser probe in which a stubbed report JSON row with `indicator_short_name: 'X<img src=x onerror=window.__xss=1>'`
+   leaves `window.__xss` undefined. Real data must render unchanged: a report page carrying `N/A<1%*` still shows that
+   literal text. Find the page with a grep over the production report JSONs, as the reviewer did. `node scripts/nr-characterization.mjs --check` passes.
+
+## Task 5: Efficiency and reuse (findings 17, 18, 19)
+
+**Files:** `assets/js/nr-report/app.js`, `assets/js/nr-report/data.js` (17); `assets/js/nr-report/chart.js`, which builds
+the spec's `UHF42.topo.json` / `borough.topo.json` data entries (18); `assets/js/nr-report/url.js`
+(`slugForNeighborhood`), `themes/dohmh/layouts/neighborhood-reports/nr-report.html` (`neighborhoodMap`) (19).
+
+1. **17, parked 2026-10-20** ("keep deferring 17"). Skip it. When the data-loading refactor un-parks it, the shape is:
+   render the cards when the section fetches finish, and fill the "Full dataset" links and enable charts and CSV when the
+   viz table and `topic_indicators.json` arrive. Keep the 2026-10-17 step 4 behaviour: a failed viz fetch still disables
+   Download and shows "Chart data could not be loaded."
+2. **18:** fetch both topojson files once per page (memoised promise) and pass them to the spec as inline `values` with
+   the same `format`. **Proof:** with "Expand all", count requests to each topojson URL in the network log (expect 1
+   each), and the charts still render.
+3. **19:** replace `reportConfig.neighborhoodMap` lookups with `neighborhoods.find(n => n.UHF_name === name)?.page_name`,
+   and remove `neighborhoodMap` from the template. First confirm that `lib-uhflist` loads before the NR scripts on the
+   report page. **Proof:** `git grep -n neighborhoodMap` returns nothing; lint exit 0; the Task 2 switch probe still passes.
+
+## Task 6: `nr-leaflet.html` keyboard and highlight (findings 20, 21)
+
+**Files:** `themes/dohmh/layouts/partials/nr-leaflet.html` (`removeHiddenMapFromTabOrder` call site, the reset-highlight
+handler). Related site-wide audit rows: A-134 / G2-60 (`aria-hidden-focus` on the picker map). Do not change their
+status here; that audit is the status record for `production`.
+
+1. **20:** call `removeHiddenMapFromTabOrder` once right after `L.map(...)` as well as in its current place, so the zoom
+   control is covered.
+2. **21:** in the reset handler, restore the highlight style when the layer is the page's own neighborhood, and give that
+   polygon `aria-current="page"`, mirroring `map.js`'s fix.
+3. **Proof:** the Task 0 probes for 20 and 21 now pass; `npm run a11y:nr`, comparing `aria-hidden-focus` against Task 0's
+   run.
+
+## Task 6b: Zoom to the neighborhood, with a reset-zoom button (N-026 zoom decision, reopened)
+
+**Files:** `assets/js/nr-report/map.js` (`initLeafletMap`'s whole-city `fitBounds`, and the switch path:
+`reportMapSelectNeighborhood`, the `popstate` re-render in `app.js`, the pending selection in `data.js`);
+`themes/dohmh/layouts/partials/nr-leaflet.html` (its whole-city `fitBounds`, and a new easyButton);
+`lib-easybutton-coloricon` includes, after `lib-leaflet`, in `nr-report.html`, `nr-neighborhood-index.html`,
+`nr-topic-index.html` and `section.html`; `scripts/nr-r14-probe.mjs` (its N-026 pointer check asserts the whole-city fit
+and is expected to fail on this change); the whole-city wording in `map.js`, `nr-leaflet.html`, `CLAUDE.md` and
+`documents/nr-architecture.md`.
+**Consumes:** Task 6's tab-order fix. On the landing and topic-index picker maps the new button sits inside the same
+`aria-hidden` wrapper as the zoom links, so `removeHiddenMapFromTabOrder` must take it out of the tab order too.
+
+1. Exemplar: `assets/js/congestion-pricing-report/map-monitoring.js:106`, `L.easyButton` at `bottomleft` with one state,
+   `title: "Reset zoom"`, `icon: "fas fa-undo"`, whose `onClick` fits the default view. Not `rmz.js`'s, which reloads the
+   page. Keep Leaflet's zoom control on both maps.
+2. **Report page:** fit the selected neighborhood's bounds on the first render and on every switch: map click or key,
+   Back/Forward, and Task 3's held early selection. The reset button fits the whole city (`uhfLayer.getBounds()`,
+   `zoomSnap = 0`, padding `[10, 10]`, as now). `animate: false`, keeping stage 3c of the r14 doc ("No opening zoom
+   animation", Chris 2026-10-19) for the switch too unless Chris says otherwise.
+3. **Neighborhood index** (`nr-leaflet.html` with a `geocode`): fit the page's own neighborhood; the reset button fits
+   the whole city.
+4. **Landing page and topic index** (`nr-leaflet.html` without a `geocode`): no neighborhood of their own, so they keep
+   the whole-city fit. They get the reset button for after a manual zoom.
+5. Before writing step 2, measure the fitted zoom of the smallest and largest of the 42 neighborhoods in the report
+   page's map box. If the smallest lands very deep, report it to Chris with a `maxZoom` option rather than picking one.
+6. **Proof:** report page and `east_new_york/`: after load the map's bounds contain the neighborhood and its zoom is
+   above the whole-city fit (9.58 in the r14 doc's measurement); a switch re-fits to the new neighborhood; "Reset zoom"
+   returns to the whole-city fit and the pointer then reaches 41 of 42 polygons, as r14 stage 3b measured. Record the
+   zoomed-in reachability count as the accepted cost. The button's accessible name is "Reset zoom" and Tab reaches it
+   on the report page and neighborhood index; on `/neighborhood-reports/` it is not reachable while the map is
+   `aria-hidden`. `nr-r14-probe.mjs`'s N-026 pointer check moved to run after a reset, exit 0. `npm run lint`,
+   `npm run docs-check`, `node scripts/nr-characterization.mjs --check`.
+7. Records: the r14 doc's N-026 zoom row carries a "Reopened 2026-10-20" pointer here. Do not change the status of
+   N-026 in `documents/site-wide-audit-2026-10.md` from this task; that audit is the status record for `production`.
+
+## Task 7: Harness scripts (findings 4, 6, 13, 14, 15, 16, 30)
+
+**Files:** `scripts/nr-postswap-check.mjs`, `scripts/nr-characterization.mjs`, `scripts/nr-a11y-audit.mjs`.
+
+1. **4:** read section headings from `h2` (or the class the template uses), whichever selects exactly the report-topic
+   headings. Check against one page's DOM before relying on it.
+2. **13:** reject a missing or non-numeric `--limit` value with a usage message and exit 2.
+3. **14:** correct the usage line to an environment that exists. `development` serves `/dev-prod/` (project CLAUDE.md).
+4. **15:** `main()` returns its code and the caller sets `process.exitCode`, on every exit path (the form in
+   `scripts/nr-r14-probe.mjs`).
+5. **6:** wait for `.card-header`, which is what `nr-a11y-audit.mjs` waits on, instead of `#nr-header-neighborhood`.
+6. **16:** `--baseline` captures into a temp directory and replaces the committed baseline directory only after every
+   target succeeds. Catch `page.goto` failures and exit non-zero naming the target.
+7. **30:** change the selector to `#qrcode img`, and drop the `.print-only img` fallback so a wrong selector fails instead of
+   matching some other image.
+8. **Proof:** `node scripts/nr-postswap-check.mjs --limit 2` against a production-data server reports non-empty headings
+   and no "report topic N" mismatch; `--limit` alone exits 2. *Corrected 2026-10-20: this first said `--limit 2` "exits 0",
+   but it cannot. EHDP-data has moved since the pre-capture: in Task 0 the two pages also differed on two indicator rows
+   whose year went from 2024 to 2025 (Ozone, PM2.5), so the run exits 1 whatever the heading fix does. Whether to
+   re-take `scripts/nr-output-precapture/capture.json` is out of scope here.* `node scripts/nr-characterization.mjs --check` 3 of 3; a `--baseline` run with `DE_BASE_URL` pointed at a dead port
+   leaves `git status -- scripts/nr-characterization-baseline/` clean; `npm run a11y:nr` reports the QR alt from `#qrcode`.
+
+## Task 8: Config and lockfile (findings 23, 25)
+
+**Files:** `config/local_prod/config.toml`, `scripts/pagefind-characterization.mjs` (comment near the default
+environment, reviewer's line 92), `CLAUDE.md` (Environments → "Build caching" bullet, which lists `local_prod` among the
+forever-cache environments), `package-lock.json`.
+
+1. **23:** set `maxAge = 0` under `local_prod`'s `getresource` cache. Correct the harness comment: the environment is a
+   data-source choice, and a build now always fetches from `http://localhost/EHDP-data/`, so it fails without a local data
+   server. Update the CLAUDE.md bullet, then run `npm run docs-check`. Site-wide audit row A-087 tracks `maxAge = -1` on
+   `production` and moves only when this merges.
+2. **25:** copy production's `node_modules/playwright`, `node_modules/playwright-core` and `node_modules/sha.js` blocks
+   (`git show production:package-lock.json`) over the branch's. **Proof:** `git diff production -- package-lock.json`
+   shows only the acorn, eslint, globals and wkt-parser entries; `npm ci` exit 0; `npx playwright --version` reads 1.62.1.
+   Then run `npx playwright install chromium` if the browser build differs.
+
+## Task 9: Repo hygiene (findings 24, 26)
+
+**Files:** `.gitignore`; untrack `EHDP feedback for MOD-Lab.md`, `README-MOD.md`, `.cursor/commands/readme.md`,
+`.cursor/rules/project-context.mdc`.
+
+1. **24:** replace the `.claude/` line with `.claude/settings.local.json` and `.claude/scheduled_tasks.lock`, which are
+   the two untracked files there now `[verified 2026-10-20: ls -a .claude]`. **Proof:** `git status --short --ignored
+   .claude` lists only those two as ignored, and a scratch `.claude/commands/x.md` shows as untracked. Delete it afterwards.
+2. **26** (Chris, 2026-10-20: approved, including `.cursor/`): `git rm --cached` the four files, then add their paths to `.gitignore`. **Proof:**
+   `git ls-files | grep -iE '^(EHDP feedback|README-MOD|\.cursor/)'` is empty, and the files still exist on disk.
+
+## Task 10: Comments and dead code (findings 27, 28, 29, 31)
+
+**Files:** `assets/js/nr-report/tertiles.js` (comments above `getTertilePillClass` and in `getTertileLabel`),
+`assets/js/nr-report/map.js` (the comment block above `selectLayer` naming `feature-NDHR-prototype`),
+`assets/js/nr-report/report.js` (`collectDataNotes` comment), `assets/scss/_de-custom.scss` (comment on the NR
+data-note class), `scripts/dev-server.mjs` (header, the two-builders error text, `onExit`),
+`assets/js/nr-report/chart.js` (`format.parse.Value`), `themes/dohmh/layouts/neighborhood-reports/nr-report.html`
+(`mb-`).
+
+1. **27** (Chris, 2026-10-20: "update comments"): rewrite the five comments as described under Decisions answered by Chris. **Proof:** a grep of those files for
+   `Fixed 20\|used to\|production\|feature-NDHR` returns no comment lines.
+2. **28:** restore production's header and error wording (`git show production:scripts/dev-server.mjs`), keep this
+   branch's code changes, and inline `onExit`. The finding's "unused" is wrong: `process.once("exit", onExit)` on the next
+   line uses it `[verified 2026-10-20: scripts/dev-server.mjs:238-239]`. Inlining is still the change, because it is
+   production's form and the merge rewrote it for no reason. **Proof:** `git diff production -- scripts/dev-server.mjs` shows code
+   only; `node scripts/smoke-pages.mjs` exercises the module.
+3. **29:** delete the `format.parse` entry. **Proof:** one expanded chart renders the same in the Task 3 probe.
+4. **31** (Chris, 2026-10-20: "let's see if it needs a bottom margin"): screenshot `#nr-report-header` at a desktop
+   width (≥768px, where `d-md-block` shows the wrapper) on one report page, with the class removed and with `mb-2` and
+   `mb-3`. Toggle the class in the live DOM so one page load gives all three. Then stop and show Chris; the class he picks
+   goes in. The `<hr class="mb-2 mt-1">` below the wrapper already sets its own top margin, so expect the differences to
+   be small. **Proof:** the three screenshots, and the chosen class in a grep of `nr-report.html`.
+5. Comment-only edits are proven with `git diff -w` showing only comment lines (project CLAUDE.md, Refactors). This is
+   invalid where a template literal is touched, which none of these files does at the cited lines. Check before relying on it.
+
+## Task 11: Record the no-JS trade (finding 8)
+
+**Files:** `documents/nr-output-retirement-scoping-2026-08-04.md` (§10.4, "Option B or Option D — DECIDED 2026-08-06").
+
+The decision is already recorded: §10.4 `[decided 2026-08-06: team]` says Option D concedes the rates to crawlers that do
+not run JS. That section also claims a non-JS crawler still sees "indicator and measure names, and indicator
+descriptions". But `nr-report.html` server-renders only the report-topic headings and an empty `<div id="nr-section-N">`
+per topic (`range $i, $rt := $reportTopics`) `[read 2026-10-20 at 13fa8d6016]`. The template no longer server-renders
+indicator names, so the memo sentence may describe an earlier template or another page kind.
+
+1. Build `development` into a temp directory (isolated build, project CLAUDE.md). Count indicator short names in one
+   report page's HTML against the same page's report JSON.
+1b. *Added 2026-10-21 (Chris, "go"): step 1 counted 0 of 19 long names and 0 of 17 descriptions, and Chris asked for
+   the old explorer's answer: hidden names and descriptions.* Move `nr-topic-index.html`'s hidden-heading block (the
+   `range (where $nr_indicator_names "title" "eq" $contentKey)` emitting `d-none` `h1`/`h2`) into a partial, and call it
+   from both the topic index and `nr-report.html`, inside `<section class="container-fluid" data-pagefind-ignore="all">`
+   so the report pages stay out of the search index. The topic index keeps its `Publish` of the JSON. **Proof:** the five
+   topic indexes' built HTML diffed against step 1's build shows no change beyond whitespace; step 1's
+   count reruns with names and descriptions present; `node scripts/pagefind-characterization.mjs --check` no diff;
+   `npm run smoke`; site characterization re-baselined for both committed keys (`staging`, `prod_prod`), its diff moving
+   only `headingLevels` (and `headingJumps` if any) on the 210 report pages.
+2. Correct the §10.4 sentence to what step 1b leaves a non-JS crawler, and date the correction. The same claim sits in
+   `documents/nr-decisions-and-sequencing-2026-08-04.md` (three places).
+3. Draft one paragraph for the PR #1491 description naming the trade, including Chris's point that the data explorer has
+   the same failure mode. Show it to Chris. Running `gh pr edit` publishes it, so Chris approves it first.
+
+## Task V: Verification
+
+At the final commit, with the hash recorded beside each result:
+
+- `npm run lint`, exit 0
+- `npm run docs-check`, exit 0
+- `node scripts/nr-characterization.mjs --check`, 3 of 3. Expected diffs come from Task 4 only if sanitising changes the rendered text, which the plan predicts it does not.
+- `node scripts/smoke-pages.mjs`, 44 clean, Pagefind served. A server `dev-server.mjs` merely reuses serves no index, as in
+  Task 0. Either run `npx -y pagefind --site docs` against it, which needs Chris's go-ahead if he started it, or accept
+  ABSENT and say so
+- `node scripts/pagefind-characterization.mjs --check`. Predicted unchanged: no task touches indexed text.
+- `npm run characterize:site:prod_prod`. Task 6 changes focusability and Task 10 may change classes. Predicted no
+  `structure` change; any change is read before re-baselining (project CLAUDE.md, "Before re-baselining").
+- `npm run a11y:nr`, compared with Task 0's run
+
+## Task 12: Third review (2026-10-21)
+
+A local review subagent (Opus, xhigh) over the code in `829e3c5396..dbd082c22d`, `documents/` and
+`scripts/site-characterization-baseline/` excluded. Verdict "With fixes": no Critical, one Important, eight Minor.
+Chris (2026-10-21): fix 1 to 4, record 5 to 9. The reviewer's probe scripts were in the session scratchpad and are
+not kept.
+
+**Fix:**
+
+1. **Back onto a stateless entry** (Important). `app.js`'s popstate handler returns when `event.state` is null.
+   The header's "Skip Header" link (`header.html`, `href="#skip-header-target"`) adds such an entry. Skip link,
+   then switch East Harlem → Kingsbridge, then Back: the address bar read `east_harlem/…#skip-header-target`
+   while the h1, title and canonical said Kingsbridge. The control arm without the skip link restored East
+   Harlem on the first Back. Fix: the address bar is the source of truth. A `url.js` helper reads the
+   neighborhood from the path segment before the topic, and the popstate handler renders that.
+2. **Back before the data loads** (Minor, same cause). Switch, reload with the section JSONs held, then Back:
+   the same-document entry reads `east_harlem`, the handler drops it (`!dataReady`), and the first render's
+   `replaceState` rewrites the path to the served neighborhood, losing the East Harlem entry. Fix:
+   `tryInitialRender` compares the address bar with `reportConfig.neighborhood`. On a mismatch it draws the
+   served neighborhood without writing history, then renders the address-bar one as a history re-render (title,
+   head, `page_view`, no history write), the two-step shape `pendingMapSelection` already uses.
+3. **A synchronous throw from `vegaEmbed`** (Minor). Since Task 5 the embed runs inside
+   `loadTopojson().then(...)`, which has no `.catch`, so `onAccordionExpand`'s try/catch cannot see it. The panel
+   was left empty and the error uncaught. Fix: a `.catch` on that chain that logs and writes "Unable to render
+   chart." when the container is still connected.
+4. **Vega views never finalized** (Minor, predates the range). Window `resize` listeners went 2 at load, 24 after
+   Expand all, 24 after a switch, 46 after a second Expand all. Fix: keep each embed's `view` and `finalize()`
+   them in `renderAll`'s per-render reset, and finalize a view whose panel was replaced during the embed.
+
+**Proof, predicted before the run:** probe 1's skip-link arm restores East Harlem's h1, title and canonical on the
+first Back, and its control arm is unchanged. Probe 2's early-Back arm ends on `east_harlem` with that h1, and a
+Forward then reaches `kingsbridge_riverdale` with its h1. (First written as "a further Back reaches the Kingsbridge
+entry"; corrected before the run: the history is `about:blank`, East Harlem, Kingsbridge, so a second Back from East
+Harlem reaches `about:blank` with or without the fix and cannot discriminate.) Probe 3's throwing `vegaEmbed` leaves
+"Unable to render chart." and no uncaught `pageerror`, and its control arm draws the chart. Probe 4's `resize`
+listener count returns to its load value after a switch following Expand all. Then Task V's local checks.
+
+**Recorded, not fixed (Chris, 2026-10-21):**
+
+5. `url.js` `slugForNeighborhood` reads `neighborhoods` without the `typeof` guard its siblings
+   (`getUhfIdForDisplayName`, `geocodeToName`, `renderDemographics`) use. If `lib-uhflist` fails to load,
+   `renderAll` throws at `setNeighborhoodInURL` before the title, topic links, QR code and announcement.
+6. New comments repeat finding 27's "used to" / production pattern: `app.js` "Same payload production's
+   downloadData() sent", `chart.js` "production bound a shown.bs.collapse handler…", `global.js` "the names the
+   retired nr-output pages used", `nr-leaflet.html` "…used to erase that…" (whose "with the whole city in view" has
+   been false for the neighborhood index since Task 6b).
+7. Stale `global.js` annotations: `dataReady` is read by `app` too (the popstate handler), and `currentNeighborhood`
+   by `map` too (`map.js`).
+8. `scripts/nr-r14-probe.mjs` does not prove Reset returns to the whole city on the report page (it checks only
+   "below the zoom Zoom-in left it") or on the hidden picker maps (only `tabindex`).
+9. NR pages load `L.colorIcon.js` (~10 KB) through `lib-easybutton-coloricon`, and nothing in
+   `assets/js/nr-report/` or `nr-leaflet.html` calls it.
+
+The reviewer's "Declined to judge" list was 15 items already decided in this ledger, plus one dependency worth
+keeping: Back and Forward avoid a double-counted `page_view` only while GA admin keeps history events off
+(`vtp_enableHistoryEvents:false`).
+
+## Ledger
+
+| # | Task | Commit | Status | Proof that ran |
+|---|---|---|---|---|
+| 0 | Evidence pass | *no commit*: checks | **DONE 2026-10-20** | At `829e3c5396`, docs-only since `13fa8d6016` (`git diff --stat` touches only the two plan files). **Server:** a `local_prod` server on :8080 that Chris started, reused rather than spawning `dev_stage`, since a second builder is unsafe. Its served `global.js`, `map.js` and `report.js` are byte-identical to this tree's. Production data, so `nr-characterization` checks against `production/`. **Baseline:** `npm run lint` exit 0; `node scripts/nr-characterization.mjs --check` exit 1 on the first run (bayside_little_neck/asthma: `chartCount` 1→0, `expandedPanel` null, accordion ids matching), then exit 0 on two re-runs, which is claim 6's race (below); `node scripts/smoke-pages.mjs` exit 0, 44 clean, **Pagefind index ABSENT** because a reused server gets no index; `npm run a11y:nr` exit 0, controls passed, 0 WCAG violations on all 4 pages, JSON in the session scratchpad (not kept). **Claims**, by Playwright probe on `east_harlem/asthma_and_the_environment/` unless named: **3** reproduced: after Enter on Kingsbridge - Riverdale, URL, `<title>` and `<h1>` changed; canonical, `og:url`, `og:title`, `twitter:title` and the meta description still say East Harlem; `history.length` 2→2. **9** reproduced: a throw injected at the top of `renderAll` (SRI stripped, GeoJSON held 6s) logged "Error loading UHF42 GeoJSON: Error: probe-throw" from `map.js:334`, then threw again uncaught (`pageerror`). The first two injections, in `buildIndicatorCard`, never ran: serving the document through `route.fulfill` made all 8 cross-origin section fetches fail, so no card was built. **10** reproduced: with section JSONs held 8s, a click gave Kingsbridge `aria-current`; after render, East Harlem was selected and rendered. **11** reproduced, by the resolve path (see Task 3 step 4): the new panel 3's export label read "…Asthma hospitalizations (adults)…" over an "Asthma (adults)" chart; the predicted "Unable to render chart." did not appear. **20** reproduced on `/neighborhood-reports/` with the GeoJSON aborted: Tab reached 5 stops inside `aria-hidden` (container, Zoom in, Zoom out, 2 attribution links); 0 in the control arm with it loaded. **21** reproduced on `east_harlem/`: stroke `#008939`/3 → hover → `black`/1.5/dash 1; 0 `aria-current` on the map. **22** reproduced: section 1's JSON answered 404 → "No data available for this neighborhood."; section 0 rendered 3 cards. **30** partly: `#nr-qrcode img` is null and `#qrcode img` is not, but the audit's selector list also has `.print-only img`, which matches the QR image (the page's only `.print-only img`). The audit reads the right element; one half of the selector is dead. **4** reproduced: `nr-postswap-check.mjs --limit 2` exit 1, every "got" heading empty (plus a data drift, see Task 7 step 8). **13** reproduced: `--limit` alone printed "Checking 0 of 210", PASS, exit 0. **From code, at `829e3c5396`:** **5** `app.js:119` counts the viz fetch only with `vizUrl`, and `data.js:177`/`:195` call `checkAllLoaded` on both paths; latent, since `nr-report.html:318` always sets `vizUrl`. **6** `nr-report.html:181` server-renders `#nr-header-neighborhood`, so the wait at `nr-characterization.mjs:137-142` passes at once; `:149-153` then clicks `#nr-acc-1-h button` only `if (await firstPanel.count())`, and the first baseline run above lost that race. **12** `chart.js:39` concatenates `geocode` unquoted. **15** `nr-postswap-check.mjs:211`, `:269` call `process.exit`. **16** `nr-characterization.mjs:350` `rmSync`s the baseline dir before capture, and `page.goto` at `:131` is not caught. **28** partly: the wording revert is real, but `onExit` is used (Task 10 step 2). |
+| 1 | GA events (1, 2) | `a6316e5fd4` | **DONE 2026-10-20** | On a `development` server Claude started on :8080 (production data, Pagefind index built with `npx -y pagefind --site docs`, `pagefind.js` 200). Playwright probe on `east_harlem/asthma_and_the_environment/` recording `dataLayer` pushes: control, the page-load `gtag('config')` recorded once; one `nrDownloadCSV()` gave one `file_download` `{file_name: "NYC EH Data Portal - Neighborhood Report - Asthma and the Environment - East Harlem.csv", file_extension: ".csv", link_text: "Download Report Data"}`, `file_name` equal to the download's suggested filename; opening `nr-acc-1` gave one `click_modal` `{modal_name: "Asthma (adults)"}`, close and re-open exactly one more; 0 page errors. `npm run lint` exit 0, after a first run failed `no-undef` on `gtag` (fixed by adding it to `NR_EXTERNAL_GLOBALS`), which is the control that the NR block is linted. Production's handler (`nr-indicator-new.html`, `shown.bs.collapse` per panel) counted re-opens, so `click_modal` fires ahead of the already-rendered guard; collapses without `data-indicator-label` are skipped, since `app.js` binds the handler to every `.collapse`. **Not run:** expand-all and the mobile-navbar skip. **Probe note:** panel ids start at `nr-acc-1` (`cards.js` `nextAccordionId` pre-increments). |
+| 2 | In-place switch (3) | `9c89f95642` | **DONE 2026-10-20** | Step 1 `[verified 2026-10-20: curl of gtag/js for each id, 519,559 and 515,522 bytes; `grep -o 'enableHistoryEvents[^,]*,[^,]*'` → `"vtp_enableHistoryEvents":false` once in each]`; the pattern first written here, `'"vtp_enableHistoryEvents",[a-z]*'`, matched nothing, since the value follows a colon. **Step 2 reversed by measurement:** the title is written *after* the history call. Written before, Chrome relabelled the entry being left: `Page.getNavigationHistory` over CDP read East Harlem's URL titled "… in Kingsbridge - Riverdale"; written after, each entry kept its own title. The step's stated reason, GA history-change page views, does not apply (step 1). **Step 3 widened:** `og:description` and `twitter:description` name the neighborhood too, so all three descriptions are rewritten. JSON-LD (`BreadcrumbList`, crawler-only) left as served. **Added at Chris's request, 2026-10-20:** Back/Forward each send `page_view`, matching GA4's own history-event behaviour (support.google.com/analytics/answer/9216061: pushState, popState, replaceState); a new `select_neighborhood` `{nr_neighborhood, report_name}` counts map choices alone. **Proof**, Playwright on the `development` server, Enter on Kingsbridge - Riverdale from `east_harlem/asthma_and_the_environment/`: canonical, `og:url`, `og:title`, `twitter:title` and the three descriptions name Kingsbridge; `page_view` 0 on load, then 1/2/3 across switch, Back, Forward, each sent with the new title already set; Back restored East Harlem's h1, URL, map `aria-current` and head with a page marker surviving (same document); `select_neighborhood` 1 through Back/Forward and Enter on the shown neighborhood, 2 after a click on Bayside - Little Neck; 0 page errors. `npm run lint` exit 0; `node scripts/nr-characterization.mjs --check` PASSED 3/3. **Control:** not re-run at `13fa8d6016`; Task 0's claim 3 is that arm. |
+| 3 | Render pipeline (5, 9, 10, 11, 12, 22) | `e7ce27a501` | **DONE 2026-10-20** | Playwright on the `development` server, which was serving the rebuilt `chart`, `map`, `data` and `report` fingerprints, with Task 0's probes adapted (`renderAll` anchor updated). **9:** with `probe-throw` injected into `renderAll` (SRI stripped, GeoJSON held 6s), one uncaught `pageerror`, no "Error loading UHF42 GeoJSON". **10:** section JSONs held 8s; after the early click 0 `aria-current`; at the end Kingsbridge's h1, path, title, canonical, `history.state` and `aria-current`, history 2→3. **11:** after the held topojson was released, the new panel's export label still read "…Asthma (adults)…". **12:** `geo_join_id` is a string (`"101"`) while `currentGeocode` is a number (303); `vegaEmbed` filters `datum.g == 302` and `== "302"` each kept 1 of 2 rows (the control), `== UHF101` errored "Unrecognized signal name", bare `== ` "Unexpected end of input"; the expanded `nr-acc-1` chart had 2 marks at `stroke-width` 2.5. **22:** section 1 forced to 404 read "This section could not be loaded. Please try again later." beside section 0's 3 cards. **5:** latent (`nr-report.html` always sets `vizUrl`), not exercised. `npm run lint` exit 0; `nr-characterization --check` PASSED 3/3; Task 2's probe re-run with identical counts. **Departures:** 9 uses `.catch(…).then(render)`, the shape `data.js` uses, rather than `.then(onOk, onErr)`, so an error while building the layer is caught too; 22 records failures in a `failedSections` set beside `sectionData`, which keeps `{}`, rather than a marker inside it, since `resolveGeocode` indexes every `sectionData` value. 10 applies the Task 2 note: the page's own neighborhood renders first, then the held selection as a switch. |
+| 4 | Sanitise (7) | `8ad92b34a4` | **DONE 2026-10-20** | Step 1, `git grep -n innerHTML -- assets/js/nr-report`: 13 hits; static 6 (`chart.js` ×4, `report.js` ×2), clears 3, a comment 1, data 2 (`report.js` card write, `demographics.js` `metric.format`). Card write wrapped in `DOMPurify.sanitize`; `DOMPurify` added to `NR_EXTERNAL_GLOBALS`. **Departure:** the demographics write became `textContent`, not DOMPurify; its values come from `data/globals/uhflist.json` through `Number()` and carry no markup. **Proof**, Playwright on the `development` server serving the rebuilt `report` and `demographics` fingerprints: on all five topic pages, every row for all 42 neighborhoods (3,570) gave identical parsed markup (`<template>` round-trip) with and without the sanitizer; 126 rows carry `&` and 1 carries `<`, the reviewer's counts, so the comparison saw both characters. The `<` row is Peeling paint on `south_beach_tottenville/housing_and_health`, and that page shows `N/A<1%*` as text. A stubbed `indicator_short_name: 'X<img src=x onerror=window.__xss=1>'` left `window.__xss` undefined, its four `<img>` rendered as `<img src="x">`; control: the same row written unsanitized set `window.__xssCtrl = 1`. `npm run lint` exit 0; `nr-characterization --check` PASSED 3/3. **Not checked in a browser:** the demographics sidebar's rendered values. |
+| 5 | Efficiency (17, 18, 19) | `a00d07817d` (18, 19) | **18, 19 DONE 2026-10-20**; **17 Parked** 2026-10-20 (Chris). Un-park with the data-loading refactor, as for F5 | Playwright on the `development` server, Expand all on `east_harlem/asthma_and_the_environment/` (22 panels), topojson requests counted over CDP (`Network.requestWillBeSent`, cache flags read): **before** 22 for each file, 0 from cache; **after** 1 each, and 89 `g.mark-shape path` in each of 22 charts (5 boroughs + 42 outlines + 42 data); **geography blocked** 0 shapes, 24 requests per file (the URL fallback). A first check, charts with >40 `path`, read 22 of 22 in the blocked arm too, since the bar strip draws ~40 rect paths; it had no power and was replaced by the geoshape count. Capturing the container before the topojson wait keeps finding 11 fixed: Task 3's claim 11 probe kept "…Asthma (adults)…" on the new panel. **19:** `lib-uhflist` precedes all ten NR `<script>` tags in `nr-report.html`, and `neighborhoodMap` was built from the same `page_name`/`UHF_name` pairs; `git grep -n neighborhoodMap -- assets themes scripts CLAUDE.md` exit 1 (dated records under `documents/` still name it, correctly); Task 2's switch probe passed unchanged (paths and canonicals on load, switch, Back, Forward). `npm run lint` exit 0; `nr-characterization --check` PASSED 3/3. One intervening run FAILED 1 of 3 with every data fetch on that target failing (`TypeError: Failed to fetch` from `data.js`, before any chart code); Chris attributed it to an unreliable network, and two re-runs passed. |
+| 6 | `nr-leaflet.html` (20, 21) | `11c7ee4e74` | **DONE 2026-10-20** | Task 0's probes on the `development` server (`DE_BASE_URL=http://localhost:8080/dev-prod/`), the served page carrying the new script. **20:** `/neighborhood-reports/`, 120 Tabs, GeoJSON aborted: 0 stops inside `aria-hidden` (5 at Task 0); control with it loaded: 0. **21:** `east_harlem/` stroke `#008939`/3/dash 3 → hover `#444`/5 → after `#008939`/3/dash 3; one `aria-current`, `"page"`. **Departure:** `aria-current="page"`, not `map.js`'s `"true"` (N-027): this polygon leads to the page already shown. Inline script: extracted with `{{ … }}` → `null` (no `range`/`if` in the file), `node --check` exit 0 on the new file and on `HEAD`'s; control: a copy with `} else {` appended exits 1. `npm run a11y:nr` with `A11Y_OUT`: exit 0, controls passed, `wcag.violations` empty on all four page kinds, as at Task 0; `aria-hidden-focus` absent from both runs' JSON. That audit loads the GeoJSON, where finding 20 cannot occur, so it has no power for 20; probe 20's aborted arm is the proof. |
+| 6b | Zoom to the neighborhood, reset-zoom button (N-026 zoom, reopened by Chris 2026-10-20) | `151832a10b` | **DONE 2026-10-20** | **Step 5 measurement** (fitted zoom per neighborhood via `getBoundsZoom`, padding 10, `zoomSnap` 0; control: its whole-city value 9.63 against the live 9.58): report and index map boxes at 1280 and 390 wide, shallowest Rockaway 11.10–11.26, median 12.76–12.89, deepest Greenwich Village - Soho 13.96–13.97, 0 of 42 at the tiles' `maxZoom` 15. Chris chose no `maxZoom` ("lets go with 1"). **Proof**, `development` server: report page, East Harlem framed at 13.33 with 6 of 42 pointer-reachable, Kingsbridge after Enter 13.05 (2), Back 13.33 (6), Reset 9.58 (41), `aria-current` following; `nr-r14-probe.mjs` 8/8 PASS, and a verbose scratch copy showed `east_new_york/` framed 12.79 / 5 reachable → after Reset 9.59 / 41, the reset button named and zooming out on the two visible maps and `tabindex=-1` and absent from the accessibility tree on the two picker maps. Inline-script `node --check` exit 0; `npm run lint`, `docs-check`, `nr-characterization --check` 3/3 and `smoke-pages.mjs` 44/44 (Pagefind served) pass. **Found on the way:** (a) easyButton's `title` alone computed an empty accessible name (Playwright `ariaSnapshot`: `button ""`), so both maps set `aria-label`; the same defect on six buttons elsewhere became audit row N-101, fixed on `production`'s side in PR #1514 (`hotfix-easybutton-names`: `52121eb69b`, `ba3d42975e`). (b) `removeHiddenMapFromTabOrder` matched `a, path, [tabindex]`, not `button`; now it does. (c) `nr-r14-probe.mjs` waited for the Kingsbridge polygon to be *visible*; framed elsewhere, Leaflet draws it as `d="M0 0"`, so two waits now use `state: 'attached'`. **Open, not decided by Chris:** framed, the off-screen polygons stay keyboard Tab stops with nothing drawn; dropping them from the tab order while framed is an offered follow-up. CLAUDE.md and `documents/nr-architecture.md` prose updated; neither `docs-check verified` stamp was bumped, since only the edited paragraph was re-read. |
+| 7 | Harness scripts (4, 6, 13, 14, 15, 16, 30) | `54ee0523db` | **DONE 2026-10-20** | `development` server on :8080. **4:** a live probe of `east_harlem/asthma_and_the_environment/` found `.report-section > .px-2` selects 8 blocks for 8 accordions, each with one `h2` and no `h3`, so the selector stayed and the tag changed. `--limit 2` exits 1 on the Ozone and PM2.5 2024 → 2025 rows only, as the corrected proof predicted, with no `report topic` line; HEAD's script on the same run printed 16 `report topic` lines, each with an empty `got` heading (control). **13:** `--limit` alone and `--limit abc` each exit 2 with the usage line. **15:** `git diff -w` shows only the intended lines inside the `main()` wrap. **6:** the wait is for `#nr-acc-1-h button`, the element the next line clicks, not the plan's `.card-header`; the report page renders no `.card-header` server-side, so both would have worked. **16:** *the plan's dead-port proof has no power*: `readServedBranch` returns null and `main()` exits 2 before the `rmSync`, on HEAD's code too. It ran (exit 2, baseline clean). The discriminating arm was a throw injected at the top of `captureTarget` for `TARGETS[1]`, in temporary copies under `scripts/` (deleted afterwards): HEAD's copy exited 1 on an unhandled rejection and left 2 of 3 `production/` baseline files deleted (restored with `git checkout`); the new copy printed `CAPTURE FAILED … east_new_york` and `Baseline NOT written`, exited 1, and left `git status -- scripts/nr-characterization-baseline/` clean. `nr-characterization --check` 3/3. **30:** `nr-a11y-audit.mjs` exit 0 with controls passed; `report-spa.json`'s `spaPrint.qrImage` has `parentId: "qrcode"` and the alt text present. `node --check` exit 0 on all three files. |
+| 8 | Config and lockfile (23, 25) | 23: `c85bb40e6a`; 25: `53552032b7` | **DONE 2026-10-20** (23 made by Chris) | 23: `git diff` of the commit is the one `maxAge = -1` → `0` line; `grep -rn maxAge config/` leaves `prod_stage` as the only environment inheriting `-1`. 25: the three blocks were copied from `git show production:package-lock.json` as text, not re-serialized; this lockfile is 4-space indented, so package blocks open at 8 spaces. The *step's* proof as written, `git diff production -- package-lock.json` "shows only" four entries, cannot be read off a diff, whose package key lines are unchanged context; what ran instead compares parsed `packages` entries (the next-command block's Python, as it stood at `de9d07e016`): seven differing before, four after (acorn, eslint, globals, wkt-parser, the branch's newer versions). 0 CR bytes of 422178. The :8080 server was stopped first (`npm ci` replaces `node_modules`, which holds the running `hugo.exe`). `npm ci` exit 0, 819 packages; `npx playwright --version` 1.62.1; Chromium 151.0.7922.34 launched without `playwright install`; `nr-characterization --check` 3/3 on the restarted server. `npm ci` reported 32 vulnerabilities, not compared with `production`. |
+| 9 | Repo hygiene (24, 26) | `042488c888` | **DONE 2026-10-20** | **24:** `.claude/` replaced by `.claude/settings.local.json` and `.claude/scheduled_tasks.lock`. The step's first proof has no power (those two read `!!` before the fix too); the scratch `.claude/commands/x.md` read `!!` before the edit and `??` after, then was deleted. Tracked `.claude` files unchanged (`js-development.md`, `settings.json`). **26:** the four files `git rm --cached`, ignored as `/EHDP feedback for MOD-Lab.md`, `/README-MOD.md`, `/.cursor/`; the `git ls-files` grep returns nothing (exit 1), all four still on disk and reading `!!`. `git grep` for the four names finds only `.gitignore` and the dated `documents/pr-1491-xhigh-review-findings-2026-10-19.md`; `docs-check` passes; `.gitignore` 0 CR bytes. Pulling the commit deletes the four from other clones' working trees (approved, decision 26). |
+| 10 | Comments and dead code (27, 28, 29, 31) | `1d6a00f806` | **DONE 2026-10-20** | **27:** rewritten at `tertiles.js` (`getTertilePillClass`, `getTertileSentenceParts`, plus a "used to" in the `rankReverse` comment the finding did not list), `report.js` `collectDataNotes`, `_de-custom.scss` `.nr-section-notes` (no `.data-note` rule exists on this branch, so the comment states the no-negative-margin reason instead of comparing). `map.js`'s comment was already gone in `151832a10b`. Chris (2026-10-20, "agree with your suggestions") also took two comments outside the finding: `report.js` `renderSectionNotes` and Task 4's sanitize comment. The step's proof grep then matches only `report.js:11`, the EHDP-data branch name inside a measurement, kept. **28:** every difference from `production` was comment/error wording and the `onExit` const, so the file is `git checkout production -- scripts/dev-server.mjs`; `git diff production -- scripts/dev-server.mjs` empty. **29:** `format.parse` deleted; a vegaEmbed spy on `east_harlem/asthma_and_the_environment/` panel 1 read 0 of 42 rows with `Value`; SVG sha256 prefix `757eada4d02af811`, 137 paths, on two runs before and one after (the after-run's spec had no `format`, so the edited file was served). **31:** bare `mb-` computed `margin-bottom: 0px`, same as no class; one page load at 1280 wide measured h1-to-rule 8px (none), 16px (`mb-2`), 32px (`mb-3`); composite screenshot shown to Chris, who chose "no margin"; served HTML reads `class="d-none d-md-block"`. `npm run lint` pass; `git diff -w` non-comment lines are only the `format` lines and the class; `nr-characterization --check` 3/3; `smoke-pages.mjs` 44/44 (Pagefind served), run without `DE_BASE_URL`, but its log does not name the server it resolved. |
+| 11 | No-JS trade (8) | 1b: `8d26cf7a1c`; re-baseline: `79f5e48eac`; 2: `3d1a65ccd7`; crawler research: `29ebec912d`; audit N-101: `80d1c42017`; 3: PR #1491 body | **DONE 2026-10-21** | **Crawler research** (Chris asked for a fuller record than "Googlebot, which renders, sees everything"): §10.4 of the retirement memo now quotes Google's JavaScript SEO, robots.txt and spam-policy pages, Bing's current guidelines (text Chris pasted; the page renders with JS) and Vercel's AI-crawler analysis, each with its date; `raw.githubusercontent.com/robots.txt` read 404 to a Googlebot UA. Chris decided the pages being found matters and the values in results do not; the server-rendering enhancement is site-wide audit N-101, OPEN P3 (A-104, the explorer's version, is P2); the audit recount after the edit read 503 rows, OPEN 47/72/132/2, matching its count table. The hidden headings stay `d-none`, not `.sr-only` (Chris, 2026-10-21: `.sr-only` would degrade accessibility); recorded in §10.4. **Step 3:** the paragraph, with the Bing sentence Chris approved, inserted as a "What changes" bullet after "Search" by `gh pr edit 1491 --body-file`; the re-fetched body differs from the file sent only by the trailing newline `gh -q` adds. **Step 1** (isolated `development` build into `$TEMP/t11-docs-before`, scratch `t11-nojs-count.py`): on `east_harlem/asthma_and_the_environment/`, text outside script/style held 0 of 19 indicator long names and 0 of 17 descriptions from the page's 8 report JSONs, and 2 of 22 short names, both coincidental ("Ozone" opens a topic description, "Poverty" is a demographics label); demographics labels present, value cells empty, panel `display:none`; controls: neighborhood name, ZIPs 10029/10035, 8 of 8 topic headings. **1b** (Chris: hidden names and descriptions, as the old explorer had): the topic index's block became `themes/dohmh/layouts/partials/nr-indicator-names-hidden.html`, called by both templates; on the report page inside the `data-pagefind-ignore` section. Second isolated build (`$TEMP/t11-docs`) against the first: 5 topic indexes byte-identical; 210 report pages changed, the only changed lines the hidden headings; 44 other files differ only by clock (41 data-explorer citation dates, 3 home `build_datetime`s; the builds straddled midnight). Names: `nr_indicator_names.json`'s `indicator_name` is the card long name without its ", year", so the count strips that suffix: 0 → 19 of 19; descriptions 0 → 17 of 17; short names 7 of 22 (not in the metadata). `pagefind-characterization --check` pass (its absent-report-page control included); `nr-characterization --check` 3/3; `smoke-pages.mjs` 44/44. **Re-baseline** (`site-characterization-rebaseline.mjs --expect "neighborhood-reports/*/*/"`, both keys captured at `8d26cf7a1c`): exit 1 as re-predicted, since the committed baselines were at `02f0c6c7b1`. A per-field tally against `HEAD` (scratch `t11-field-tally.py`) sorted every change: (a) all 258 NR pages per key gained `js/L.colorIcon.js` and leaflet-easybutton's css and js (`assets` +3, `assetsWithIntegrity` +3) and `controls.button` +1, which is Task 6b's `151832a10b`, the only commit in `02f0c6c7b1..8d26cf7a1c` adding `lib-easybutton-coloricon` (four templates); (b) the 210 report pages additionally moved `landmarks.h1` 2 → 21, `headingLevels` 37 → 75 on east_harlem asthma, and `content.headingText`, which is step 1b's 19 hidden `h1`/`h2` pairs, as predicted; (c) `prod_prod` only, `data-explorer/weather-related-illness/` moved `content.headingText` alone ("Cold stress: …" → "Cold-related illness: …", 5 headings), no repo commit touches it, so EHDP-data renamed it; content is not gated. `--report-only` with `--expect` `neighborhood-reports/*/*/`, `neighborhood-reports/*/`, `neighborhood-reports/` and `data-explorer/weather-related-illness/`: exit 0, "Nothing unexplained", prod_prod 259 of 924 covered, staging 258 of 924. |
+| V | Verification | *no commit*: checks | **DONE 2026-10-21** | All at `d6fe8cf481`. `git log --name-only 8d26cf7a1c..d6fe8cf481`: 0 of 528 file entries outside `documents/` and `scripts/site-characterization-baseline/`. **Server:** the `development` server on :8080 (production data), Pagefind `pagefind.js` 200; it served current templates (`east_harlem/asthma_and_the_environment/` carried step 1b's 19 `<h1 class="d-none">`). `npm run lint` exit 0; `npm run docs-check` exit 0 (3 docs); `node scripts/nr-characterization.mjs --check` exit 0, 3/3; `node scripts/smoke-pages.mjs` exit 0, 44 clean, `Pagefind index: served`; `node scripts/pagefind-characterization.mjs --check` exit 0, 203 indexed pages, controls passed, matches `production.json` (as predicted); `npm run characterize:site:prod_prod` exit 0, structure matches the baseline captured at `8d26cf7a1c`, EHDP-data `production @ cf418fde6b (2026-10-20)` (as predicted); `npm run a11y:nr` exit 0, axe positive control fired, `wcag.violations` empty on all four page kinds and `incompleteIds` `["color-contrast"]` on each, as at Task 0. JSON in the session scratchpad (not kept). |
+| 12 | Third review: fix 1 to 4, record 5 to 9 | `7889c501cb` | **DONE 2026-10-21**; 5 to 9 recorded in Task 12, not fixed | `development` server on :8080, its served `url`, `data` and `chart` carrying the new identifiers. The reviewer's four Playwright probes, re-run unchanged except probe 2, which gained the Forward step (scratch, not kept). **1:** skip link, switch to Kingsbridge, Back: path `east_harlem/…#skip-header-target` with h1 and canonical East Harlem on the first Back (reviewer's run: Kingsbridge); control arm unchanged (East Harlem on the first Back); 0 page errors in both arms. **2:** switch, reload with section JSONs held 6s, Back: `dataReady` false and h1 Kingsbridge right after it, then after the first render path `east_harlem` and h1 East Harlem (reviewer's run: path rewritten to `kingsbridge_riverdale`); Forward reached `kingsbridge_riverdale` with its h1. **3:** `vegaEmbed` replaced by a throwing stub: panel reads "Unable to render chart.", 0 page errors (reviewer's run: empty panel, uncaught `probe-sync-throw`); control drew the chart. **4:** window `resize` listeners 2 at load, 24 after Expand all, 2 after a switch, 24, 2 (reviewer's run: 2, 24, 24, 46, 46). New top-level names `getNeighborhoodFromURL`, `chartViews`: no hit outside `assets/js/nr-report/`. `npm run lint` exit 0, with both names declared in one file and used in others (the positive control). On the tree before commit, with no edit after the checks began: `docs-check` exit 0; `nr-characterization --check` 3/3; `smoke-pages.mjs` 44 clean, Pagefind served; `a11y:nr` exit 0, positive control fired, 0 WCAG violations on all four page kinds; `pagefind-characterization --check` pass; `characterize:site:prod_prod` structure matches the baseline. |
+| 13 | Fly to the neighborhood on load, as `production` does (Chris, 2026-10-22: "make it, without the delay"); reverses r14 stage 3c for the neighborhood framing only | `f86aac1827` | **DONE 2026-10-22** | Both NR maps land on the whole city with no animation, then `flyToBounds` the neighborhood over 0.5s with no delay first (`production` waits 500ms; a click in that wait would be undone by the fly). `reportMapFitLayer` in `map.js` flies, so in-place switches and Back/Forward fly too; "Reset zoom" stays instant. **Why the 3c reason no longer applies:** on a `local_prod` server on :8081 (this branch), before the edit, `east_new_york/` with `flyToBounds` run by hand from 2 levels out: no click ended at the framing, 13.01; a Zoom in click 150ms in, at 11.82, ended at 12.82 on both of 2 runs, so the click stops the fly and is honoured, not dropped as during `fitBounds`'s zoom animation. Leaflet 1.9.4's `flyTo` (`leaflet-src.js` 3471–3552) never touches `_animatingZoom`. **After:** per-frame zoom over 4s from load, `east_new_york/` 60 distinct values, 9.92 → 13.01 (the instant fit's 13.01, so same target); `east_harlem/asthma_and_the_environment/` 49 distinct, 10.7 → 13.53. `npm run lint` exit 0; `DE_BASE_URL=…:8081/local-prod/ node scripts/nr-r14-probe.mjs` exit 0, all eight PASS (its zoom-controls check still requires `_animatingZoom` false, which is now true by construction rather than evidence). Console: 4 errors per page, all Pagefind assets the :8081 server does not serve (`pagefind ABSENT`), the same 4 as before the edit. **At `f86aac1827`**, run one after another with `DE_BASE_URL` at :8081 (:8080 was a `development` server from the `feature-js-formatting` worktree, which `ensureDevServer` would have picked): `smoke-pages.mjs` 44 clean, Pagefind ABSENT and allowlisted; `nr-characterization --check` 3/3 against the `production` baseline; `a11y:nr` exit 0, positive control fired, 0 WCAG violations on 4 of 4 page kinds; then `characterize-env.mjs prod_prod` (isolated :8090, Pagefind served) 924 of 924 pages, structure matches the baseline captured at `8d26cf7a1c`; `git status` clean afterwards. |
+
+## Next command
+
+Every task is done or parked (Task 5's finding 17). Closed 2026-10-21:
+
+- Chris pushed the branch; `origin` read `643f50177f`.
+- The PR #1491 body's first line and Verification section were replaced: 876 files, +83,855 / -23,255 against
+  `origin/production` from the merge base, `production` 2 commits ahead (PR #1513, `assets/scss/theme.scss` only,
+  `git merge-tree` exit 0), and Task V's results at `d6fe8cf481`. The re-fetched body matched the file sent but for
+  `gh`'s trailing newline.
+- CI on `643f50177f` (`pull_request`, so on the merge with `production`, #1513 included): Smoke check run 39628929125
+  pass, 12m6s; Site characterization check run 39628928925 pass, 8m11s; both base-control jobs skipped.
+
+The local review then ran as Task 12, and its fixes change code, so the CI results above and the PR body's
+Verification section (Task V at `d6fe8cf481`) no longer describe the branch tip. Task 12's code is `7889c501cb`, the
+tree its checks ran on. Task 13 changed map code after Task 12; its row records smoke, `nr-characterization`,
+`a11y:nr` and `prod_prod` site characterization at `f86aac1827`, and `docs-check` exit 0 on its code before commit;
+`pagefind-characterization`'s last run is Task 12's. Closed 2026-10-22: Chris pushed, `origin` read `cf9d58fc4d`; CI
+on it, Smoke check run 39832982470 pass (18:37–18:49Z) and Site characterization check run 39832982531 pass
+(18:37–18:45Z), both base-control jobs skipped; the PR body's line 1 (+84,007 / -23,255 at `cf9d58fc4d`, `production`
+2 commits ahead, `git merge-tree` exit 0), a Maps bullet and the Verification section rewritten for Tasks 12 and 13 by
+`gh pr edit 1491 --body-file`, the re-fetched body differing only by `gh -q`'s trailing newline. The merge review,
+`/code-review ultra` on PR #1491, stays Chris's to start.
+
+```bash
+git rev-parse --abbrev-ref HEAD   # expect feature-MOD-Lab-NR-recode-refactor-merge
+gh api "repos/nychealth/EH-dataportal/actions/runs?head_sha=$(git rev-parse HEAD)" -q '.workflow_runs[] | "\(.name)\t\(.status)\t\(.conclusion)"'
+```
+
+A `development` server on :8080 (`npx hugo serve --environment development -p 8080`, with Pagefind built) may still be running, restarted in Task 8 after `npm ci`; check `curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/dev-prod/` before starting another. `nr-postswap-check.mjs` must run against a production-data server, which `development` is. The network here is unreliable: a run where every EHDP-data fetch fails with `Failed to fetch` is re-run before it is diagnosed. A second worktree, `EH-dataportal.worktrees/hotfix-easybutton-names` (PR #1514), is kept on disk for follow-ups; do not run a second Hugo server from it while :8080 is up unless on another port.

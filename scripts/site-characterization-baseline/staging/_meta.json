@@ -1,13 +1,13 @@
 {
-    "capturedAt": "2026-10-16T03:29:28.635Z",
-    "gitHead": "28c635d9445286df5e3ded0323b046ce1f9228e8",
+    "capturedAt": "2026-10-21T04:42:49.236Z",
+    "gitHead": "8d26cf7a1cb68b03c40ece310a5c791dcf8a341b",
     "baselineKey": "staging",
     "hugoEnv": "dev_stage",
     "dataBranch": "staging",
     "dataCommit": {
         "sha": "2de9129c38cd7f0883fc365619c129366b7d5be4",
         "date": "2026-10-15T19:59:34Z",
-        "fetchedAt": "2026-10-16T03:25:49.148Z"
+        "fetchedAt": "2026-10-21T04:39:17.650Z"
     },
     "pagefind": true,
     "hugo": {
