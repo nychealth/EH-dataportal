@@ -44,11 +44,11 @@
 <title>NYC Environment and Health Data Portal</title>
 
 
-<meta name="build_datetime" content='2026年10月19日星期一, EDT 下午7:09:41'>
+<meta name="build_datetime" content='2026年10月22日星期四, EDT 下午11:40:21'>
 <meta name="build_environment" content='prod_prod'>
 <meta name="git_branch" content='production'>
-<meta name="git_last_hash" content='2e36ac1395'>
-<meta name="git_last_msg" content='Merge pull request #1513 from nychealth:hotfix-data-story-teaser-text'>
+<meta name="git_last_hash" content='bb05ad3035'>
+<meta name="git_last_msg" content='Merge pull request #1514 from nychealth:hotfix-easybutton-names'>
 
 
         <link rel="alternate" hreflang="en" href="/IndicatorPublic/" title="English">
@@ -850,18 +850,24 @@
         
         
         
+        
+        
+        
+        
+        
+        
 
         let aqi = null;
 
         try {
-            const aqiRes = await fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10032&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F');
+            const aqiRes = await fetch('https://www.airnowapi.org/aq/observation/current/ziplatLong?format=application/json&zipCode=10032&api_key=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F');
             if (!aqiRes.ok) throw new Error(`AirNow returned HTTP ${aqiRes.status}`);
 
             const aqiData = await aqiRes.json();
             const categories = (Array.isArray(aqiData) ? aqiData : [])
                 .slice(0, 2)
-                .map(observation => observation?.Category?.Number)
-                .filter(number => Number.isFinite(number));
+                .map(observation => aqiToCategory(observation?.nowcastAQI))
+                .filter(number => number !== null);
 
             if (categories.length) aqi = Math.max(...categories);
         } catch (error) {
@@ -885,6 +891,15 @@
     
     
     
+
+    
+    
+    
+
+    const aqiToCategory = (value) => {
+        if (!Number.isFinite(value) || value < 0) return null;
+        return [50, 100, 150, 200, 300].filter(upper => value > upper).length + 1;
+    };
 
     
 
