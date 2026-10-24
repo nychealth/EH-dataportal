@@ -63,7 +63,7 @@
         },
         "links": {
             "internal": 69,
-            "external": 18,
+            "external": 19,
             "emptyHref": 29,
             "noAccessibleText": 0
         },
@@ -115,6 +115,7 @@
             "a127-ess.nyc.gov",
             "a856-citystore.nyc.gov",
             "a858-nycnotify.nyc.gov",
+            "forms.cloud.microsoft",
             "www.nyc.gov",
             "www1.nyc.gov"
         ],
