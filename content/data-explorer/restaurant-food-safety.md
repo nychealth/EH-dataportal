@@ -48,7 +48,7 @@ Safe food handling can protect diners from foodborne illness. During inspections
 
 The NYC Health Department began issuing grades and requiring restaurants to post them in July 2010. This portal presents the number and percent of restaurants operating with an A, B, or C in New York City.
 
-For 2020, the numbers provided were as of March 16, 2020; whereas the data provided are as of July 1 for every other year. Additionally, data from 2021 and 2022 were excluded, due to reduced food inspection activity during the COVID-19 pandemic, as the NYC Department of Health shifted its priorities to address pandemic-related needs during this period.
+Years are fiscal years, which end on June 30, and each year's data are as of the end of that fiscal year. 2020 is the exception: its data are as of March 16, 2020. Additionally, data from 2021 and 2022 were excluded, due to reduced food inspection activity during the COVID-19 pandemic, as the NYC Department of Health shifted its priorities to address pandemic-related needs during this period.
 
 ### Restaurants with Letter Grades (A, B, or C)
 
