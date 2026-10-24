@@ -19,6 +19,7 @@ const text_container_id = "EJ_text"
 // Updates the preposition and site name spans in the heading. The control
 // site (Van Wyck) isn't asking "did congestion pricing affect air quality"
 // of itself, so its heading collapses to just the site name.
+
 function updateSiteHeading(site) {
     const isControl = CP_SITES[site].isControlSite === true;
 
@@ -39,6 +40,7 @@ function updateSiteHeading(site) {
 }
 
 // Default selection
+
 let currentSite = "CRZ";
 
 // ----------------------------------------------------------------------- //
@@ -529,6 +531,7 @@ function buildCpSpec(site) {
 
     // The control site is the baseline the others are projected from, so there
     // is no Observed/Projected distinction to label.
+
     spec.spec.encoding.color.legend = (site || currentSite) !== "Van Wyck";
 
     return spec;

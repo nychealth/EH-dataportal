@@ -60,8 +60,8 @@
             2,
             1,
             2,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 1,
         "landmarks": {
@@ -158,8 +158,8 @@
             "Renter households spending 30% of their income or more on rent.",
             "Evictions (court-ordered)",
             "Court-ordered evictions. Eviction often leads to residential instability, moving into poor quality housing, overcrowding, and homelessness, all of which is associated with negative health among adults and children. People who are threatened with eviction, even before they lose their home, are more likely to report poor health.",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

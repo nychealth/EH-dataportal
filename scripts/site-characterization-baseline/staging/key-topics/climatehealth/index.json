@@ -26,10 +26,10 @@
             3,
             3,
             4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 4,
@@ -95,8 +95,8 @@
             "Flood Vulnerability Index",
             "Stay safe from heat and air pollution",
             "2026 NYC Heat-Related Mortality Report",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

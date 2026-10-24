@@ -53,23 +53,41 @@ on:
     # `[docs.github.com/en/pull-requests/collaborating-with-pull-requests/
     # collaborating-on-repositories-with-code-quality-features/
     # troubleshooting-required-status-checks, read 2026-08-24]`.
+    #
+    # The workflow entries are an explicit enumeration of every workflow BUT
+    # this one — a change to this file must re-run this check. So a workflow
+    # added later is not covered until it is listed, which is a maintenance
+    # cost paid by diffing these entries against `ls .github/workflows/`
+    # `[2026-09-21: that diff is how codeql.yml and test-print-branch.yml were
+    # found missing from both lists]`.
     paths-ignore:
       - documents/**
       - memories/**
       - .claude/**
       - .agents/**
+      - .github/instructions/**
+      - .github/pull_request_template.md
       - .github/workflows/check-deploy.yml
+      - .github/workflows/codeql.yml
       - .github/workflows/hugo-build-any-branch.yml
       - .github/workflows/hugo-build-to-dev-prod.yml
       - .github/workflows/hugo-build-to-dev-stage.yml
       - .github/workflows/hugo-build-to-prod-prod.yml
       - .github/workflows/site-characterization.yml
+      - .github/workflows/test-print-branch.yml
+      - .gitignore
       - CLAUDE.md
       - README.md
       - readme-components.md
       - readme-content.md
       - readme-development.md
       - LICENSE
+      - eslint.config.mjs
+      - skills-lock.json
+      - trigger_dev-stage_workflow.ps1
+      - trigger_dev-stage_workflow.sh
+      - trigger_prod-prod_workflow.ps1
+      - trigger_prod-prod_workflow.sh
 
   workflow_dispatch:
 

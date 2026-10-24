@@ -86,15 +86,18 @@
 
 <script>
     // Set earliest available data
-    var earliestDate = {
+
+    let earliestDate = {
         "year": 2019,
         "month": 10
     }
     
     // get today's date values
+
     const date = new Date();
 
     // const date = new Date(2025, 0, 2); // Month is zero-based (0 = January)
+
     console.log("Today's date:", date);
 
     let thisMonth = date.getMonth() + 1;    // thisMonth: months by standard numbers (date.getMonth() starts at 0)
@@ -104,14 +107,16 @@
     // set up defaults
 
         // if it's January, most recent availab month is Dec of Last Year
-        var chosenYear
-        var chosenMonth
+
+        let chosenYear
+        let chosenMonth
         if (availMonth == 0) {
             chosenYear = thisYear - 1
             chosenMonth = 12
             console.log('Most recent month of data available: ', chosenYear, chosenMonth)
         } else {
             // else, it's last month of this year
+
             chosenYear = thisYear
             chosenMonth = availMonth
             console.log('Most recent month of data available: ', chosenYear, chosenMonth)
@@ -120,15 +125,16 @@
 
 
     document.getElementById('months').value = chosenMonth
-    var chosenFormat = 'csv'
-    // var downloadURL = 'https://azdohv2staticweb.blob.core.windows.net/$web/hist/' + chosenFormat + '/' + chosenYear + '/' + chosenMonth + '/hourlyMonitoring.' + chosenFormat
-    var downloadURL = 'https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/hist/' + chosenFormat + '/' + chosenYear + '/'  + chosenMonth + '.' + chosenFormat
+    let chosenFormat = 'csv'
+    // let downloadURL = 'https://azdohv2staticweb.blob.core.windows.net/$web/hist/' + chosenFormat + '/' + chosenYear + '/' + chosenMonth + '/hourlyMonitoring.' + chosenFormat
+
+    let downloadURL = 'https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/hist/' + chosenFormat + '/' + chosenYear + '/'  + chosenMonth + '.' + chosenFormat
 
     
     // loop through earliestDate.year through thisYear and create year options
     
     for (let i = earliestDate.year; i < (thisYear + 1); i ++) {
-        var element = `
+        let element = `
             <li>
                 <div class="custom-control custom-radio">
                     <input type="radio" class="custom-control-input year-radio" id="${i}" name="year-radio" required="" value="${i}">
@@ -136,7 +142,7 @@
                 </div>
             </li>
         `
-        var parent = document.getElementById('yearList')
+        let parent = document.getElementById('yearList')
         parent.innerHTML += element
     }
     
@@ -150,11 +156,13 @@
         // console.log('Month, year, and format:', chosenMonth, chosenYear, chosenFormat)
     
         // if 2019, inactivate anything before earliestDate.month
+
         if (chosenYear == earliestDate.year && chosenMonth < earliestDate.month) {
             alert('We do not have data before October 2019. Please select a different month.')
         } else {}
     
         // if 2023, inactivate anything after last month
+
         if (chosenYear == thisYear && chosenMonth > thisMonth) {
             alert('You cannot download data for future months.')
         } else {}
@@ -166,7 +174,8 @@
     
     
     // Event Listener on Year List, update chosenYear
-    var yearRadios = document.querySelectorAll('.year-radio')
+
+    let yearRadios = document.querySelectorAll('.year-radio')
     for (i = 0; i < yearRadios.length; i++) {
         yearRadios[i].onclick = function() {
             chosenYear = this.value
@@ -175,16 +184,18 @@
     }
     
     // update Month from dropdown list
+
     function changeMonth() {
-        var e = document.getElementById("months");
-        var value = e.value;
+        let e = document.getElementById("months");
+        let value = e.value;
         chosenMonth = value
         updateURL()
     }
     
     
     // Event listener on Format List, update chosenFormat
-    var formatRadios = document.querySelectorAll('.format-radio')
+
+    let formatRadios = document.querySelectorAll('.format-radio')
     for (i = 0; i < formatRadios.length; i++) {
         formatRadios[i].onclick = function() {
             chosenFormat = this.value

@@ -44,7 +44,7 @@
                 </div>
                 {{- end -}}
 
-            <h1 class="h2 data-stories mb-3"><i class="fas fa-passport" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
+            <h1 class="h2 mb-3">{{ partial "section-icon.html" $.Section }}{{ .Title }}</h1>
             <div class="container-fluid px-0">
 
                 {{ $src := .Resources.GetMatch .Params.image }}
@@ -433,6 +433,7 @@
 
 
                 // get temp based on canopy and grass inputs
+
                 outputData = allData.filter(function (sf) {
                     return sf.veg === vegClean && sf.imperv === impervVar;
                 });
@@ -440,6 +441,7 @@
                 // console.log(outputData);
 
                 // assign temp based on canopy and green values
+
                 tempVar = Number(outputData[0].temp.toFixed(2));
 
                 // console.log("holding: ", slider.value, vegClean, impervVar, tempVar);

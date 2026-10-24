@@ -14,6 +14,10 @@
 </style>
 
 <article class="container-fluid p-0 overflow-hidden" id="primary-content">
+  {{/*  English only: the banner copy is untranslated, and the es/zh home pages render through this template too.  */}}
+  {{- if eq site.Language.Lang "en" }}
+    {{- partial "de-announcement.html" (dict "variant" "home") }}
+  {{- end }}
   <div class="row no-gutters">
     <div class="container wide">
       <div class="py-4 mb-4 border-bottom">

@@ -12,11 +12,11 @@
     // ---------- Establish initial variables ---------- // 
     // --------------------------------------------------------------------------------------------------- // 
     
-    var geocode = `{{ .Params.geocode }}`
+    let geocode = `{{ .Params.geocode }}`;
     
-    var lat = 40.715554;
-    var lng = -74.0026642;
-    var zoom = 10;
+    let lat = 40.715554;
+    let lng = -74.0026642;
+    let zoom = 10;
     
     // --------------------------------------------------------------------------------------------------- // 
     // ---------- Initialize map ---------- // 
@@ -25,7 +25,7 @@
     let map = L.map("map", { zoomControl: false }).setView([lat, lng], zoom); // [Lat,Long],Zoom
 
     L.tileLayer(
-        'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+        'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=cb1_2vaf_1_f87644104deb54c869cef554',
     {
         maxZoom: 15,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
@@ -193,16 +193,24 @@
     // ---------- this powers report and neighborhood identification, and subsequent navigation ---------- // 
     // --------------------------------------------------------------------------------------------------- // 
     
-    var intendedDestinationName // this needs to be declared even if it's not defined (it's used on the home page)
+    // Declared with `var`, not `let`: the neighborhood-reports landing page also
+    // declares `var intendedDestinationName` in its own inline script, and a
+    // top-level `let` here collides with that `var` in shared global scope
+    // ("Identifier ... has already been declared"). Two `var`s of the same name
+    // don't collide, and the variable stays defined on report pages that load
+    // only this partial. (used on the home page)
+
+    var intendedDestinationName
     
     // console.log('*** GETTING TOPIC AND NEIGHBORHOOD TO POWER NAVIGATION')
     
-    var chosenNeighborhood; // this is for the neighborhood you are *on*
-    var chosenGeo = {{ .Params.geocode }};
-    var chosenReport;       // this is the report that you are *on*
-    var chosenButton;       // this is a selected button, on NR home or Topic Landing
+    let chosenNeighborhood; // this is for the neighborhood you are *on*
+    let chosenGeo = {{ .Params.geocode }};
+    let chosenReport;       // this is the report that you are *on*
+    let chosenButton;       // this is a selected button, on NR home or Topic Landing
     
     // Javascript for nav buttons:
+
     const topicSlugs = {
         Active: "active_design_physical_activity_and_health",
         Asthma: "asthma_and_the_environment",
@@ -220,7 +228,7 @@
         console.log("** getReportAndNeighborhood");
 
         const url = window.location.pathname.match(/neighborhood-reports.*/)[0]
-        var urlPieces = url.split("/")
+        let urlPieces = url.split("/")
 
         // console.log('urlPieces', urlPieces)
         
@@ -299,6 +307,7 @@
         const geocodeClicked = layer.feature.properties.GEOCODE;
         
         // Find the matching neighborhood - 'neighborhoods' is a variable set in uhflist.js
+
         const match = neighborhoods.find(
             n => n.UHF_id == geocodeClicked
         );
@@ -308,12 +317,15 @@
         if (match && match.page_name) {
 
             // Get the current URL parts
+
             const parts = window.location.pathname.split("/");
             
             // Replace the 3rd index (neighborhood slug) with the new one
+
             parts[3] = match.page_name;
             
             // set report destination
+
             const dest = intendedDestinationName ? intendedDestinationName : (chosenReport ? chosenReport : '/');
             
             // Build the new path; this will now work if reportURL is set (as in the Output), or if it's not (as on a Neighborhood Landing Page)
@@ -321,6 +333,7 @@
             const buildURL = {{ relURL "neighborhood-reports/" }} + parts[3] + "/" + dest + '/'
             
             // Redirect - send to new page
+
             window.location.href = buildURL;
             // console.log(buildURL)
             

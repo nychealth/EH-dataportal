@@ -1,0 +1,12 @@
+{{- /*
+    Section icon, colored by its section's accent class. Takes a section key
+    (usually .Section) and renders nothing for a section not in
+    data/globals/sections.yml, so it is safe to call from any template.
+
+    The accent class sits on a wrapping span rather than the <h1> because the
+    *-accent rules are descendant selectors (`.ds-accent i`) — this colors the
+    icon without changing the heading's own classes.
+*/ -}}
+{{- with index site.Data.globals.sections . -}}
+<span class="{{ .accent }}"><i class="fas {{ .icon }} mr-2" aria-hidden="true"></i></span>
+{{- end -}}

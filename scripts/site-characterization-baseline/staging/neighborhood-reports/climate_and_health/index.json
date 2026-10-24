@@ -46,8 +46,8 @@
             2,
             1,
             2,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 1,
         "landmarks": {
@@ -130,8 +130,8 @@
             "Adults reporting independent living difficulty due to a physical, mental, or emotional problem. People with disabilities may need additional support during extreme weather. For example, extra planning for safe travel out of evacuation zones during a hurricane, or back-up electricity to support medical equipment during power outages.",
             "Older adults living alone (65+)",
             "People age 65+ living alone. People living alone may have more difficulty getting resources they need in an emergency, and are at higher risk of weather-related illnesses like heat stroke and hypothermia.",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

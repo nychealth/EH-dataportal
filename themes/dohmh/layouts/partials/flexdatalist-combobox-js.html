@@ -31,11 +31,13 @@
     // container directly and announce nothing. An event-driven sync would have gone stale on
     // exactly the two paths a reader is most likely to use to dismiss the list — the same
     // shape of defect as the one being fixed.
+
     function wireComboboxState(input) {
 
         // The library names its results container after the generated input it created:
         // $alias.attr('id') + '-results' (:1572). Deriving it here rather than hardcoding
         // is what lets one partial serve call sites that may not all use id="flex_search".
+
         const RESULTS_ID = input.id + '-results';
 
         input.setAttribute('role', 'combobox');
@@ -62,11 +64,13 @@
         //
         // Removal happens in a MutationObserver callback, which runs as a microtask before
         // paint, so the reopened list is gone in the same frame it was added.
+
         let dismissed = false;
 
         // Any other key, a click into the field, or leaving and coming back all mean the
         // reader wants results again. Escape's own keydown reaches the input before the
         // document handler that removes the list, so the flag is set before the removal
+
         input.addEventListener('keydown', e => { dismissed = e.key === 'Escape'; });
         input.addEventListener('mousedown', () => { dismissed = false; });
         input.addEventListener('blur', () => { dismissed = false; });
@@ -81,12 +85,14 @@
         // to determine if aria-controls referenced ID exists on the page while using
         // aria-haspopup". aria-owns is the library's and axe does not flag it, but it
         // dangles the same way, so it gets the same treatment rather than a different rule
+
         const sync = () => {
 
             let list = document.getElementById(RESULTS_ID);
 
             // Escape is still in force: take the reopened list back out. Its removal is
             // itself a mutation, so this re-enters once with nothing left to do
+
             if (dismissed && list) {
                 list.remove();
                 list = null;
@@ -108,6 +114,7 @@
 
             // The <li>s carry role="option" and aria-posinset but no id (:1507-1514), and
             // aria-activedescendant can only point at one
+
             let active = null;
 
             options.forEach((li, i) => {
@@ -128,6 +135,7 @@
         // The list is created and destroyed under <body> directly (:1565-1574), so a
         // childList observer on body — deliberately without subtree, which would fire on
         // every Leaflet pan and zoom on the same page — sees it arrive and leave.
+
         const listObserver = new MutationObserver(sync);
 
         const bodyObserver = new MutationObserver(() => {
@@ -136,6 +144,7 @@
 
             // Re-target on each new list: arrow-key navigation moves the .active class
             // between <li>s, and rows are replaced in place as the search term narrows
+
             if (list && list !== watched) {
                 watched = list;
                 listObserver.observe(list, {

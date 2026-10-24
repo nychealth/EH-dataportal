@@ -7,6 +7,7 @@
 // ----------------------------------------------
 // -------------------- PRELOAD GEOJSON FILES
 // ----------------------------------------------
+
 const geojsonCache = {};
 
 async function preloadGeoJSONs() {
@@ -70,6 +71,7 @@ function changeText(x) {
     nextButton.classList.remove('hide')
 
     // Add the "Go back" button
+
     if (x == 1) {
         document.getElementById('lastButton').classList.remove('hide')
     } else if (x == 0 ) {
@@ -79,9 +81,11 @@ function changeText(x) {
     document.getElementById('lastButton').setAttribute('onclick',`changeText(${last})`)
 
     // load GeoJSON as specified in config, if it exists
+
     loadGeoJSON(config[x])
 
     // if we're at the end of the config, then, remove the Next Button
+
     if (next == config.length) {
         console.log('We are done here!')
         nextButton.classList.add('hide')
@@ -94,6 +98,7 @@ function changeText(x) {
 // ----------------------------------------------
 // -------------------- Load geoJSON and config content 
 // ----------------------------------------------
+
 function loadGeoJSON(config = {}) {
   const {
     geoFile = null,
@@ -107,12 +112,14 @@ function loadGeoJSON(config = {}) {
   } = config;
 
   // Make sure we have a file to load
+
   if (!geoFile) {
     console.warn("loadGeoJSON: Missing geoFile (URL). Skipping load.");
     return;
   }
 
   // --- Load data from cache if available ---
+
   let dataPromise;
   if (geojsonCache && geojsonCache[geoFile]) {
     dataPromise = Promise.resolve(geojsonCache[geoFile]);
@@ -124,6 +131,7 @@ function loadGeoJSON(config = {}) {
   dataPromise
     .then(data => {
       // Clear existing GeoJSON layer
+
       if (geojsonLayer) {
         map.removeLayer(geojsonLayer);
       }
@@ -132,6 +140,7 @@ function loadGeoJSON(config = {}) {
       let max = -Infinity;
 
       // --- Determine range for choropleth ---
+
       if (choropleth && valueField) {
         data.features.forEach(f => {
           const val = f.properties[valueField];
@@ -143,6 +152,7 @@ function loadGeoJSON(config = {}) {
       }
 
       // --- Handle Zoom ---
+
       if (zoom === true) {
         map.setView([40.675377, -73.872106], 15);
       } else {
@@ -150,11 +160,14 @@ function loadGeoJSON(config = {}) {
       }
 
       // --- Handle Pins ---
+
       if (pin === true) {
         // Add pin to isochrone center
+
         L.marker([40.675377, -73.872106], { icon: customIcon }).addTo(map);
 
         // Add pin for block group
+
         L.marker([40.67777173561341, -73.87902747921927], { icon: customIcon })
           .addTo(map)
           .bindPopup(
@@ -170,6 +183,7 @@ function loadGeoJSON(config = {}) {
           .openPopup();
       } else {
         // Clear all popups and pins
+
         map.eachLayer(layer => {
           if (layer instanceof L.Popup || layer instanceof L.Marker) {
             map.removeLayer(layer);
@@ -178,6 +192,7 @@ function loadGeoJSON(config = {}) {
       }
 
       // --- Helper: map value -> color ---
+
       function getColor(value) {
         if (!choropleth || value == null || min === max) {
           return "green"; // fallback
@@ -195,6 +210,7 @@ function loadGeoJSON(config = {}) {
       }
 
       // --- Create GeoJSON Layer ---
+
       geojsonLayer = L.geoJSON(data, {
         pointToLayer: (feature, latlng) =>
           L.marker(latlng, { icon: customIcon }),
@@ -223,6 +239,7 @@ function loadGeoJSON(config = {}) {
         onEachFeature: (feature, layer) => {
           if (choropleth) {
             // --- Choropleth case ---
+
             if (suppressTooltip === true) return; // suppress tooltip in zoom mode
 
             const name = feature.properties[geonameField];
@@ -238,6 +255,7 @@ function loadGeoJSON(config = {}) {
             layer.bindTooltip(tooltipContent, { sticky: true });
           } else {
             // --- Non-choropleth case ---
+
             const displayValue = feature.properties[labelName];
             if (displayValue !== undefined) {
               const popupContent = `<strong>${labelName}:</strong> ${displayValue}`;
@@ -255,6 +273,7 @@ function loadGeoJSON(config = {}) {
 // ----------------------------------------------
 // -------------------- Run initial
 // ----------------------------------------------
+
 preloadGeoJSONs().then(() => {
   changeText(0);
 });

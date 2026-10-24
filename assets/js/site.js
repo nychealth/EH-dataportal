@@ -67,6 +67,7 @@
 	}
 
 	// Delegate common CTA tracking in one place instead of scattering inline handlers.
+
 	document.addEventListener("click", (event) => {
 		const clickTarget = event.target.closest("a, button");
 
@@ -91,6 +92,7 @@
 		}
 
 		// Track both direct subscribe links and subscribe CTAs that open the shared modal.
+
 		if (
 			clickTarget.classList.contains("subscribe-link") ||
 			clickTarget.dataset.subscribeClick ||

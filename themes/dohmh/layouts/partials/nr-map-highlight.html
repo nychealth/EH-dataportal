@@ -88,6 +88,7 @@
       var parts
     
       // load UHF42.csv to get Geoname, etc - to power neighborhood highlight for nonclickable map.
+
       d3.csv({{ relURL "UHF42.csv" }}).then(data => {
         neighborhoods = data;
         {{/*  console.table(neighborhoods)  */}}
@@ -122,6 +123,7 @@
         // } else {}
 
         // send name to breadcrumbs, for output page
+
         var link = document.getElementById('neighbLink')
         var dest = {{ relURL "neighborhood-reports/" }} + neighb[0].GEONAME + '/'
 
@@ -132,6 +134,7 @@
       })
     
       // redraws map with highlighted neighborhood 
+
       function drawChart(x) {
         spec.layer[1].encoding.stroke.condition.test = `datum['GEOCODE'] == '${x}'`
         spec.layer[1].encoding.strokeWidth.condition.test = `datum['GEOCODE'] == '${x}'`
@@ -142,6 +145,7 @@
             // console.log(item.datum)
 
             // send to new page
+
             window.location = {{ relURL "neighborhood-reports/" }} + DOMPurify.sanitize(item.datum.GEONAME) + '/' + rpt + '/'
           });
           }).catch(console.warn);
@@ -153,6 +157,7 @@
           // console.log(item.datum)
 
           // send to new page
+
           window.location = {{ relURL "neighborhood-reports/" }} + DOMPurify.sanitize(item.datum.GEONAME) + '/'
         });
         }).catch(console.warn);

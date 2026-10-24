@@ -17,6 +17,7 @@
 
 <script>
     // populate accessible neighborhood-selection
+
     var ul = document.getElementById("neighborhoodList");
     var ul2 = document.getElementById("neighborhoodList2");
 
@@ -26,6 +27,7 @@
         ul.appendChild(li);
         // clone for the second list: appendChild MOVES a node, so passing the same
         // li to both would leave the sr-only list empty
+
         ul2.appendChild(li.cloneNode(true));
     });
 
