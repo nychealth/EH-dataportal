@@ -224,6 +224,10 @@
 {{- partial "lib-leaflet.html" . }}
 {{- partial "lib-easybutton-coloricon.html" . }}
 
+<!-- Leaflet.PointInPolygon adds L.Polygon.contains(), which checkPointInRMZ needs; it was loaded
+     site-wide from cdn.rawgit.com until f76c7827c4 removed it -->
+<script src="https://cdn.jsdelivr.net/gh/hayeswise/Leaflet.PointInPolygon@v1.0.0/wise-leaflet-pip.js"></script>
+
 <!--bring in rmz JS -->
 <script type="text/javascript" src="neighborhood-rats.js"></script>
 

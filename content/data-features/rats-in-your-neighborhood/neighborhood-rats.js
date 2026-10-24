@@ -102,7 +102,7 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r
 
 // add reset button
 
-L.easyButton({
+const resetButton = L.easyButton({
     position: "bottomleft",
     states: [{
         title: "Zoom to fit",
@@ -114,6 +114,11 @@ L.easyButton({
         }
     }]
 }).addTo(leafletMap);
+
+// easyButton puts the label only in `title`, and Chrome computes the button's name as ""
+// with the icon inside it, so screen readers announce an unnamed button
+resetButton.button.setAttribute("aria-label", "Zoom to fit");
+resetButton.button.querySelectorAll(".fas").forEach(i => i.setAttribute("aria-hidden", "true"));
 
 // add and style RMZs
 

@@ -19,7 +19,7 @@ L.control.scale({
     position: 'bottomleft'
 }).addTo(map)
 
-L.easyButton({
+const resetButton = L.easyButton({
     position: "bottomleft",
     states: [{
         title: "Zoom to fit",
@@ -31,6 +31,11 @@ L.easyButton({
         }
     }]
 }).addTo(map);     
+
+// easyButton puts the label only in `title`, and Chrome computes the button's name as ""
+// with the icon inside it, so screen readers announce an unnamed button
+resetButton.button.setAttribute("aria-label", "Zoom to fit");
+resetButton.button.querySelectorAll(".fas").forEach(i => i.setAttribute("aria-hidden", "true"));
 
 function resetZoom() {
     // console.log('reset zoom 3')
