@@ -3754,7 +3754,7 @@
       "contentHead": "Public space, active design, and transportation Physical activity and healthy eating rank among the leading ways to get "
     },
     "/neighborhood-reports/": {
-      "words": 362,
+      "words": 366,
       "title": "Neighborhood Reports | Environment & Health Data Portal",
       "filters": {
         "section": [
@@ -3775,7 +3775,6 @@
         "Housing_and_Health-Descr",
         "Outdoor_Air_and_Health",
         "Outdoor_Air_and_Health-Descr",
-        "about",
         "descr",
         "districtButtons",
         "overlapReveal",
@@ -3791,7 +3790,7 @@
         "tabs-01-content",
         "tabs-02-content"
       ],
-      "contentHash": "f5862b97da85afad",
+      "contentHash": "4875546c5ebf752f",
       "contentHead": "Neighborhood Reports. What affects health in your neighborhood, and how does it compare with other parts of the city? Th"
     },
     "/neighborhood-reports/active_design_physical_activity_and_health/": {
@@ -4557,7 +4556,7 @@
       "contentHead": "Food Safety Health Code Reference Tool Food Safety Health Code Reference Tool for inspectors: Mobile version. Desktop ve"
     },
     "/resources/sugar-lookup/": {
-      "words": 29,
+      "words": 34,
       "title": "The Department’s Pre-calculations Sugar Lookup Tool | Resources",
       "filters": {},
       "anchors": [
@@ -4568,7 +4567,7 @@
         "results",
         "searchContainer"
       ],
-      "contentHash": "67f5d397b5cb9474",
+      "contentHash": "1e5ab24594aea0ac",
       "contentHead": "The Department’s Pre-calculations Sugar Lookup Tool. Use this tool to look up beverages to see how many calories it take"
     },
     "/take-action/": {
