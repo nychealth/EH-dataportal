@@ -98,6 +98,11 @@
                 {{/* Left column: map, demographics */}}
                 <div class="col-md-4 mb-4 d-print-none">
 
+                    {{/* Phone-width report switcher, above the map so it is the first control
+                        under the title. It hides itself from md up, where the buttons in the
+                        right column take over. */}}
+                    {{ partial "nr-topic-menu" (dict "active" $contentKey "neighborhood_slug" .Params.neighborhood_slug "show" "dropdown") }}
+
                     {{/*
                         Interactive Leaflet map for neighborhood selection.
                         Loads UHF42 GeoJSON from static/geojson/. Clicking a neighborhood
@@ -116,26 +121,48 @@
 
                     {{/* Demographics table — populated by JS from the `neighborhoods` global,
                         emitted by lib-uhflist.html from data/globals/uhflist.json */}}
-                    <div id="nr-demographics" class="report-section card-body-no-top my-2" style="display:none;">
-                        <table class="table fs-sm" style="color:darkslategrey">
-                            {{/* Row headers, not plain cells: in a two-column table a screen
-                                reader reading cell by cell otherwise announces the value with
-                                no metric name attached. */}}
-                            <thead class="sr-only">
-                                <tr><th scope="col">Metric</th><th scope="col">Value</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr><th scope="row"><strong>Population</strong></th><td id="nr-pop" class="text-right"></td></tr>
-                                <tr><th scope="row"><strong>Over age 65</strong></th><td id="nr-old" class="text-right"></td></tr>
-                                <tr><th scope="row"><strong>Under age 18</strong></th><td id="nr-young" class="text-right"></td></tr>
-                                <tr><th scope="row"><strong>Poverty</strong></th><td id="nr-pov" class="text-right"></td></tr>
-                                <tr><th scope="row"><strong>Graduated high school</strong></th><td id="nr-grad" class="text-right"></td></tr>
-                                <tr><th scope="row"><strong>Limited English</strong></th><td id="nr-eng" class="text-right"></td></tr>
-                                <tr><th scope="row"><strong>Owner-occupied homes</strong></th><td id="nr-own" class="text-right"></td></tr>
-                                <tr><th scope="row"><strong>Rent-burdened households</strong></th><td id="nr-rent" class="text-right"></td></tr>
-                            </tbody>
-                        </table>
-                        <span class="fs-xs" style="color:darkslategray;"><strong>Source:</strong> American Community Survey (2019-2023)</span>
+                    <div id="nr-demographics" class="report-section my-2" style="display:none;">
+
+                        {{/* Collapsed below md, where the table's ~410px sat between the map and
+                            the report. From md up the toggle is hidden and d-md-block holds the
+                            panel open whatever its collapse state, so a resize never strands it
+                            shut. The toggle sits inside #nr-demographics so demographics.js hides
+                            it with the table when a neighborhood has no row. Same trigger as
+                            nr-neighborhood-list's, for the same plus/minus styling. The table's
+                            left inset (card-body-no-top) is on the panel, not the wrapper, so the
+                            toggle spans the wrapper's green top border edge to edge. */}}
+                        <button class="d-flex d-md-none btn btn-md text-left btn-outline-primary w-100 text-decoration-none neighborhood-list-button nr-list-toggle collapsed p-2"
+                                type="button"
+                                data-toggle="collapse"
+                                data-target="#nr-demographics-body"
+                                aria-expanded="false"
+                                aria-controls="nr-demographics-body">
+                            <span class="flex-grow-1">Demographics</span>
+                            <span class="plus" aria-hidden="true">&plus;</span>
+                            <span class="minus" aria-hidden="true">&minus;</span>
+                        </button>
+
+                        <div class="collapse d-md-block card-body-no-top" id="nr-demographics-body">
+                            <table class="table fs-sm" style="color:darkslategrey">
+                                {{/* Row headers, not plain cells: in a two-column table a screen
+                                    reader reading cell by cell otherwise announces the value with
+                                    no metric name attached. */}}
+                                <thead class="sr-only">
+                                    <tr><th scope="col">Metric</th><th scope="col">Value</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><th scope="row"><strong>Population</strong></th><td id="nr-pop" class="text-right"></td></tr>
+                                    <tr><th scope="row"><strong>Over age 65</strong></th><td id="nr-old" class="text-right"></td></tr>
+                                    <tr><th scope="row"><strong>Under age 18</strong></th><td id="nr-young" class="text-right"></td></tr>
+                                    <tr><th scope="row"><strong>Poverty</strong></th><td id="nr-pov" class="text-right"></td></tr>
+                                    <tr><th scope="row"><strong>Graduated high school</strong></th><td id="nr-grad" class="text-right"></td></tr>
+                                    <tr><th scope="row"><strong>Limited English</strong></th><td id="nr-eng" class="text-right"></td></tr>
+                                    <tr><th scope="row"><strong>Owner-occupied homes</strong></th><td id="nr-own" class="text-right"></td></tr>
+                                    <tr><th scope="row"><strong>Rent-burdened households</strong></th><td id="nr-rent" class="text-right"></td></tr>
+                                </tbody>
+                            </table>
+                            <span class="fs-xs" style="color:darkslategray;"><strong>Source:</strong> American Community Survey (2019-2023)</span>
+                        </div>
                     </div>
 
                     <hr class="my-2">
@@ -167,8 +194,9 @@
                     {{/*
                         Topic mini-menu: the five topic buttons, hrefs pointing at this neighborhood's
                         other four reports. url.js rewrites them if the map switches neighborhood.
+                        md and up only; the phone dropdown is above the map.
                     */}}
-                    {{ partial "nr-topic-menu" (dict "active" $contentKey "neighborhood_slug" .Params.neighborhood_slug) }}
+                    {{ partial "nr-topic-menu" (dict "active" $contentKey "neighborhood_slug" .Params.neighborhood_slug "show" "buttons") }}
 
                     {{/*
                         Report header: title + neighborhood name + intro copy + buttons.
