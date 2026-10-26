@@ -358,6 +358,28 @@ $color-data-explorer: #0A408A;
   }
 }
 
+/* NR landing page (neighborhood-reports/section.html). Below xl the three areas are plain
+   blocks in source order: chooser, picker, footnote. From xl up the picker takes the right
+   column across both rows and the footnote moves up under the chooser — a placement
+   Bootstrap's row/col cannot make without duplicating the footnote, since the picker is
+   taller than the chooser. 5fr/7fr and the 30px gap match the col-5/col-7 split and
+   gutter it replaced. */
+@include media-breakpoint-up(xl) {
+  .nr-landing-grid {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "chooser picker"
+      "footnote picker";
+    column-gap: 30px;
+  }
+
+  .nr-landing-chooser { grid-area: chooser; }
+  .nr-landing-picker { grid-area: picker; }
+  .nr-landing-footnote { grid-area: footnote; }
+}
+
 .breadcrumb-item.active a {
   color: #000;
 }

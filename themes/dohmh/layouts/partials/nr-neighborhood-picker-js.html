@@ -53,14 +53,15 @@
             $($input).find("~input").val("").trigger("focus")
         })
 
-        // The generated input is the one the reader focuses, and it inherits nothing from
-        // the authored input's <label for>. Without this its only name is the placeholder,
-        // which vanishes as soon as there is a value in the box. flexdatalist derives the
-        // generated id from the authored one, so "#flex_search-flexdatalist" is stable.
+        // The generated input is the one the reader focuses, and nothing names it. Without
+        // this its only name is the placeholder, which vanishes as soon as there is a value
+        // in the box; the picker's "Choose Neighborhood" heading is its label. flexdatalist
+        // derives the generated id from the authored one, so "#flex_search-flexdatalist" is
+        // stable.
         const generated = document.getElementById('flex_search-flexdatalist');
 
         if (generated) {
-            generated.setAttribute('aria-labelledby', 'nr-search-label');
+            generated.setAttribute('aria-labelledby', 'nr-search-heading');
             wireComboboxState(generated);
         }
 
