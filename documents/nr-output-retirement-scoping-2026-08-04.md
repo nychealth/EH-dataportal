@@ -532,7 +532,7 @@ tested against Google itself; the test is at the end of the first point.]`
 **What matters is that the pages are found, not the values** `[decided 2026-10-21: Chris]`.
 Restoring server-rendered values would mean a build-time fetch and a template copy of
 `buildIndicatorCard`, the second card renderer this decision removed, and it is not planned.
-The site-wide audit holds it as N-101, a P3 enhancement for later.
+The site-wide audit holds it as N-102, a P3 enhancement for later.
 
 The comparison that produced the decision:
 

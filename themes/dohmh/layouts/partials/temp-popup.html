@@ -94,18 +94,24 @@
         // as before, so the reading is unchanged whenever AirNow returns its
         // usual pair; whether the max should cover every pollutant it returns is
         // a separate question about the feature.
+        //
+        // AirNow retired /aq/observation/zipCode/current/ on 2026-10-01 (it now
+        // answers 410). Its replacement returns no Category.Number, only
+        // nowcastAQI and a category name - and the name's key is spelled
+        // aqiCategoryName in live responses but AQICategoryName in AirNow's docs
+        // [checked 2026-10-22], so the category is derived from the number.
 
         let aqi = null;
 
         try {
-            const aqiRes = await fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10032&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F');
+            const aqiRes = await fetch('https://www.airnowapi.org/aq/observation/current/ziplatLong?format=application/json&zipCode=10032&api_key=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F');
             if (!aqiRes.ok) throw new Error(`AirNow returned HTTP ${aqiRes.status}`);
 
             const aqiData = await aqiRes.json();
             const categories = (Array.isArray(aqiData) ? aqiData : [])
                 .slice(0, 2)
-                .map(observation => observation?.Category?.Number)
-                .filter(number => Number.isFinite(number));
+                .map(observation => aqiToCategory(observation?.nowcastAQI))
+                .filter(number => number !== null);
 
             if (categories.length) aqi = Math.max(...categories);
         } catch (error) {
@@ -129,6 +135,15 @@
     // ----------------------------------------------------------------------- //
     // AQI category display
     // ----------------------------------------------------------------------- //
+
+    // Maps an AQI value to EPA's category number (1 = Good ... 6 = Hazardous),
+    // using the AQI's fixed category bounds of 50, 100, 150, 200 and 300.
+    // Negative or missing values are AirNow's "Unavailable", returned as null.
+
+    const aqiToCategory = (value) => {
+        if (!Number.isFinite(value) || value < 0) return null;
+        return [50, 100, 150, 200, 300].filter(upper => value > upper).length + 1;
+    };
 
     // Maps an AirNow AQI category number to its display text and colors.
 

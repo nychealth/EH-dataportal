@@ -254,6 +254,10 @@ are printed as a harness-health number and deliberately **not** baselined — th
   comparison through the months the data actually moves. A red `--check` prints one line saying
   whether it moved, with a compare URL; a baseline captured before the field existed has none, and
   that is not a mismatch.
+- **Two open PRs that each re-baseline conflict on both `_meta.json` files**, whatever pages they
+  touched. Re-baseline the second only after the first merges: merge `origin/production` into
+  it, then run `site-characterization-rebaseline.mjs --expect "<its pages>"`. `[2026-10-24: #1517
+  then #1518]`
 - **Concurrency defaults to `min(24, max(6, availableParallelism()))`, not a fixed 6.** Measured
   over 925 pages, three sweeps interleaved so a warm cache could not pass for a concurrency effect:
   12 -> 198s, **24 -> 114s**, 12 -> 199s, all three captures byte-identical across every record
