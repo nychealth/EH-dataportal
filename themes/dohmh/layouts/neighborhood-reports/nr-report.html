@@ -56,7 +56,7 @@
             {{/* Breadcrumbs — the neighborhood index sits between the section and this page,
                 mirroring the real URL and giving each report page a link back up to its 41
                 siblings' entry point */}}
-            <nav aria-label="breadcrumb" class="mt-2 mb-3 d-print-none">
+            <nav aria-label="breadcrumb" class="mt-2 mb-2 d-print-none">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item d-none d-sm-block"><a href="{{ relURL "" }}">Home</a></li>
                     <li class="breadcrumb-item"><a href="{{ relURL "neighborhood-reports" }}">Neighborhood Reports</a></li>
@@ -96,7 +96,7 @@
             <div class="row">
 
                 {{/* Left column: map, demographics */}}
-                <div class="col-md-4 mb-4 d-print-none">
+                <div class="col-md-4 mb-1 d-print-none">
 
                     {{/* Phone-width report switcher, above the map so it is the first control
                         under the title. It hides itself from md up, where the buttons in the
@@ -260,7 +260,7 @@
                             Topic titles can urlize to strings that are awkward for CSS selectors or can drift
                             between Hugo versions; mismatched id vs NR_REPORT_CONFIG leaves sections empty.
                         */}}
-                        <div class="accordion nr-report-accordion my-4 report-section pt-2 border-left border-right border-bottom" id="nr-accordion-{{ $i }}">
+                        <div class="accordion nr-report-accordion mt-2 mb-4 report-section pt-2 border-left border-right border-bottom" id="nr-accordion-{{ $i }}">
                             <div class="px-2 pb-2">
                                 {{/* h2, with .h4 carrying the visual size: these sections sit
                                     directly under the page h1, and each indicator card inside is

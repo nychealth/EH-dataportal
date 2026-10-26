@@ -31,7 +31,7 @@
      report page's own mobile title (d-md-none). Both copies are real links carrying
      .nr-topic-link, so url.js rewrites the dropdown's hrefs along with the buttons'. */}}
 {{- if ne $show "buttons" }}
-<div class="dropdown nr-topic-dropdown d-md-none d-print-none mb-2" data-pagefind-ignore="all">
+<div class="dropdown nr-topic-dropdown d-md-none d-print-none my-2" data-pagefind-ignore="all">
 
     {{- $activeLabel := "Choose a report" -}}
     {{- range site.Data.globals.NR_topics -}}
