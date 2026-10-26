@@ -1,13 +1,13 @@
 {
-    "capturedAt": "2026-10-26T17:17:06.724Z",
-    "gitHead": "e3ed7cf20de49dc2b18d3e0b202803c766a1e966",
+    "capturedAt": "2026-10-26T18:17:16.005Z",
+    "gitHead": "7974d6c429fd1c81079374fa1ba8ae8e47e21b0b",
     "baselineKey": "prod_prod",
     "hugoEnv": "prod_prod",
     "dataBranch": "production",
     "dataCommit": {
         "sha": "547482b9df589006543e13e8cdf6546e00ed9998",
         "date": "2026-10-24T03:19:55Z",
-        "fetchedAt": "2026-10-26T17:13:11.463Z"
+        "fetchedAt": "2026-10-26T18:13:31.863Z"
     },
     "pagefind": true,
     "hugo": {
@@ -17,12 +17,7 @@
     "prefix": "/IndicatorPublic/",
     "mode": "all",
     "pages": 924,
-    "arbitrated": [
-        "neighborhood-reports/downtown_heights_slope/active_design_physical_activity_and_health/",
-        "neighborhood-reports/east_new_york/active_design_physical_activity_and_health/",
-        "neighborhood-reports/kingsbridge_riverdale/climate_and_health/",
-        "neighborhood-reports/lower_manhattan/housing_and_health/"
-    ],
+    "arbitrated": [],
     "cleared": [],
     "capped": false,
     "viewport": {
