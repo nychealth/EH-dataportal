@@ -358,9 +358,10 @@ $color-data-explorer: #0A408A;
   }
 }
 
-/* NR landing page (neighborhood-reports/section.html). Below xl the three areas are plain
-   blocks in source order: chooser, picker, footnote. From xl up the picker takes the right
-   column across both rows and the footnote moves up under the chooser — a placement
+/* NR landing page (neighborhood-reports/section.html), and the five topic indexes
+   (nr-topic-index.html), which use the chooser and picker areas only. Below xl the areas
+   are plain blocks in source order: chooser, picker, footnote. From xl up the picker takes
+   the right column across both rows and the footnote moves up under the chooser — a placement
    Bootstrap's row/col cannot make without duplicating the footnote, since the picker is
    taller than the chooser. 5fr/7fr and the 30px gap match the col-5/col-7 split and
    gutter it replaced. */

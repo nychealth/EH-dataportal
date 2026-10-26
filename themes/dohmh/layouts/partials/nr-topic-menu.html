@@ -9,6 +9,9 @@
       show              — optional: "dropdown" or "buttons" renders only that copy; omitted
                           renders both. The report page splits them, because its phone-width
                           dropdown belongs above the map, in the other column from the buttons.
+                          "stack" renders the buttons one per line instead, for a caller that
+                          shows them in a narrow column (the topic index at xl); it has no
+                          responsive classes of its own, so the caller decides where it shows.
 
     When a neighborhood is known the hrefs are real <nbhd>/<topic>/ pages, so a click keeps
     the neighborhood without the sessionStorage hand-off. The .nr-topic-link class stays
@@ -30,7 +33,7 @@
      of chrome, so phones get the same links as a dropdown instead. md, not sm, to match the
      report page's own mobile title (d-md-none). Both copies are real links carrying
      .nr-topic-link, so url.js rewrites the dropdown's hrefs along with the buttons'. */}}
-{{- if ne $show "buttons" }}
+{{- if or (eq $show "both") (eq $show "dropdown") }}
 <div class="dropdown nr-topic-dropdown d-md-none d-print-none my-2" data-pagefind-ignore="all">
 
     {{- $activeLabel := "Choose a report" -}}
@@ -67,7 +70,7 @@
 </div>
 {{- end }}
 
-{{- if ne $show "dropdown" }}
+{{- if or (eq $show "both") (eq $show "buttons") }}
 <div class="row no-gutters d-none d-md-flex d-print-none mb-2" data-pagefind-ignore="all">
 
     {{- range site.Data.globals.NR_topics -}}
@@ -84,6 +87,25 @@
         </div>
 
     {{- end -}}
+
+</div>
+{{- end }}
+
+{{- if eq $show "stack" }}
+<div class="d-print-none" data-pagefind-ignore="all">
+
+    {{- range site.Data.globals.NR_topics -}}
+
+        {{- $href := cond (eq $slug "")
+            (printf "neighborhood-reports/%s/" .slug)
+            (printf "neighborhood-reports/%s/%s/" $slug .slug) }}
+
+        <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 mb-2 nr-topic-link{{ if eq .key $active }} active{{ end }}"
+           href="{{ relURL $href }}"{{ if eq .key $active }} aria-current="page"{{ end }}>
+            {{ .menu_label }}
+        </a>
+
+    {{- end }}
 
 </div>
 {{- end }}
