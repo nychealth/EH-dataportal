@@ -225,12 +225,14 @@
                             {{- end -}}
                         </div>
 
-                        <div class="row d-print-none">
-                            <div class="col-sm-6">
-                                <button onclick="window.print()" class="btn btn-sm btn-report mt-2"><i class="fas fa-print mr-1" aria-hidden="true"></i>Print</button>
-                                <button id="nr-download-csv" onclick="window.nrDownloadCSV()" class="btn btn-sm btn-report mt-2"><i class="fa fa-download mr-1" aria-hidden="true"></i>Download <span class="sr-only">(downloads a CSV file)</span></button>
-                            </div>
-                            <div class="col-sm-6 text-sm-right">
+                        {{/* One wrapping flex row rather than two col-sm-6 halves, so Expand all
+                            stays beside Print and Download until there is no room for it, rather
+                            than dropping to its own line at the sm breakpoint whether it fits or
+                            not. ml-auto right-aligns it, as text-sm-right did. */}}
+                        <div class="d-flex flex-wrap d-print-none">
+                            <button onclick="window.print()" class="btn btn-sm btn-report mt-2 mr-1"><i class="fas fa-print mr-1" aria-hidden="true"></i>Print</button>
+                            <button id="nr-download-csv" onclick="window.nrDownloadCSV()" class="btn btn-sm btn-report mt-2 mr-1"><i class="fa fa-download mr-1" aria-hidden="true"></i>Download <span class="sr-only">(downloads a CSV file)</span></button>
+                            <div class="ml-auto">
                                 {{/* aria-controls names the section containers, not the individual
                                     panels: the panel ids are minted in JS (nr-acc-N-c) and change
                                     on every neighborhood switch, where these are in the markup and
