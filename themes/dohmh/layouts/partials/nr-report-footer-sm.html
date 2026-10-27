@@ -16,45 +16,45 @@
         <div class="row">
             <div class="col-lg-4 ml-auto pr-lg-3">
                 <div class="related-border mb-2">
-                  <div class="mt-2">
-                    <h2 class="h4">What is the City doing?</h2>
-                    <hr class="my-2">
-                  </div>
-                  <div class="fs-lg">
-                    {{- range $content.city -}}
-                    <div class="text-black">{{ if .link }}<a href="{{ .link }}">{{ .copy }}</a>{{ else }}{{ .copy }}{{ end }}</div>
-                    <hr class="my-2">
-                    {{- end -}}
+                    <div class="mt-2">
+                        <h2 class="h4">What is the City doing?</h2>
+                        <hr class="my-2">
+                    </div>
+                    <div class="fs-lg">
+                        {{- range $content.city -}}
+                        <div class="text-black">{{ if .link }}<a href="{{ .link }}">{{ .copy }}</a>{{ else }}{{ .copy }}{{ end }}</div>
+                        <hr class="my-2">
+                        {{- end -}}
                 </div>
                 </div>
             </div>
 
             <div class="col-lg-4 pl-lg-3 h-100">
                 <div class="related-border mb-2">
-                  <div class="mt-2">
-                    <h2 class="h4">What you can do</h2>
-                    <hr class="my-2">
-                  </div>
-                  <div class="fs-lg">
-                    {{- range $content.you -}}
-                    <div class="text-black">{{ if .link }}<a href="{{ .link }}">{{ .copy }}</a>{{ else }}{{ .copy }}{{ end }}</div>
-                    <hr class="my-2">
-                    {{- end -}}
+                    <div class="mt-2">
+                        <h2 class="h4">What you can do</h2>
+                        <hr class="my-2">
+                    </div>
+                    <div class="fs-lg">
+                        {{- range $content.you -}}
+                        <div class="text-black">{{ if .link }}<a href="{{ .link }}">{{ .copy }}</a>{{ else }}{{ .copy }}{{ end }}</div>
+                        <hr class="my-2">
+                        {{- end -}}
                 </div>
                 </div>
             </div>
 
             <div class="col-lg-3 mr-auto">
                 <div class="related-border mb-2">
-                  <div class="mt-2">
-                    <h2 class="h4">More about</h2>
-                    <hr class="my-2">
-                  </div>
-                  <div class="fs-lg">
-                    {{- range $content.keytopic -}}
-                     <a href={{ urls.JoinPath ( relURL "key-topics" ) .link }}>{{ .text }}</a>
-                    <hr class="my-2">
-                    {{- end -}}
+                    <div class="mt-2">
+                        <h2 class="h4">More about</h2>
+                        <hr class="my-2">
+                    </div>
+                    <div class="fs-lg">
+                        {{- range $content.keytopic -}}
+                            <a href={{ urls.JoinPath ( relURL "key-topics" ) .link }}>{{ .text }}</a>
+                        <hr class="my-2">
+                        {{- end -}}
                 </div>
                 </div>
             </div>

@@ -1,41 +1,41 @@
 <div id="pollutantTrendsEmbed">
-  <div class="row">
-      <div class="col-12">
-              <div class="">
-                  <button type="button" class="btn trpolbtn btn-outline-dark active" value="BC">BC</button>
-                  <button type="button" class="btn trpolbtn btn-outline-dark" value="NO">NO</button>
-                  <button type="button" class="btn trpolbtn btn-outline-dark" value="NO2">NO<sub>2</sub></button>
-                  <button type="button" class="btn trpolbtn  btn-outline-dark" value="O3">O<sub>3</sub></button>
-                  <button type="button" class="btn trpolbtn btn-outline-dark" value="PM2.5">PM<sub>2.5</sub></button>
-                  <button type="button" class="btn trpolbtn btn-outline-dark" value="SO3">SO<sub>2</sub></button>
-              </div>
-      </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="">
+                <button type="button" class="btn trpolbtn btn-outline-dark active" value="BC">BC</button>
+                <button type="button" class="btn trpolbtn btn-outline-dark" value="NO">NO</button>
+                <button type="button" class="btn trpolbtn btn-outline-dark" value="NO2">NO<sub>2</sub></button>
+                <button type="button" class="btn trpolbtn  btn-outline-dark" value="O3">O<sub>3</sub></button>
+                <button type="button" class="btn trpolbtn btn-outline-dark" value="PM2.5">PM<sub>2.5</sub></button>
+                <button type="button" class="btn trpolbtn btn-outline-dark" value="SO3">SO<sub>2</sub></button>
+            </div>
+        </div>
 
-      <div class="col-12">
-          <div id="subCont" class="mt-1 mb-2"></div>
-      </div>
-  </div>
+        <div class="col-12">
+            <div id="subCont" class="mt-1 mb-2"></div>
+        </div>
+    </div>
 
-  <div class="row mt-1">
-      <div class="col-12">
-          <p><span class="fs-lg" style="font-weight: bold;"><span id='polPrint' class="">Pollutant</span> by <span id='sourcePrint'>Source</span></span><br>
-          <em><span id="unitPrint" class="fs-sm"></span></em>
-          </p>
-          <div id="vis" style="width: 100%;"></div>
-      </div>
-  </div>
-  <hr>
+    <div class="row mt-1">
+        <div class="col-12">
+            <p><span class="fs-lg" style="font-weight: bold;"><span id='polPrint' class="">Pollutant</span> by <span id='sourcePrint'>Source</span></span><br>
+            <em><span id="unitPrint" class="fs-sm"></span></em>
+            </p>
+            <div id="vis" style="width: 100%;"></div>
+        </div>
+    </div>
+    <hr>
 
-  <style>
-      .srcbtn {
-      cursor: pointer;}
-      .border {
-          background-color:#6c7287;
-          color: white;
-      }
-  </style>
+    <style>
+        .srcbtn {
+        cursor: pointer;}
+        .border {
+            background-color:#6c7287;
+            color: white;
+        }
+    </style>
 
-  <script>
+    <script>
         var trendPollutant;
         var source;
         var view; // ssn (season) or ttl (tertile)
@@ -69,11 +69,11 @@
 
             trbtns[i].addEventListener("click", function() {
 
-              for (let button of document.querySelectorAll('.trpolbtn')) button.classList.remove('active');
-              this.className += " active";
-              trendPollutant = this.value;
+                for (let button of document.querySelectorAll('.trpolbtn')) button.classList.remove('active');
+                this.className += " active";
+                trendPollutant = this.value;
 
-              // declare sources and units for selected pollutant
+                // declare sources and units for selected pollutant
 
                 if (trendPollutant === 'BC') {
 
@@ -121,7 +121,7 @@
                 drawChart();
 
             });
-          }
+        }
 
         function createSourceButtons() {
 
@@ -179,56 +179,56 @@
                 "width": width,
                 "description": "NYCCAS data by season, source, and pollutant",
                 "data": {
-                  "url": "embed/pollutant-trends-data.csv"
+                    "url": "embed/pollutant-trends-data.csv"
                 },
                 "config": {
                     "title": {"anchor": "start", "fontSize": 14},
                     "axisY": {"title": null},
                     "axisX": {"title": "Year","grid": false},
                     "style": {
-                      "cell": {"stroke": "transparent"},
-                      "line": {"stroke": "#1696d2", "strokeWidth": 3},
-                      "text": {"fontSize": 11, "fontWeight": "bold", "size": 11,"align": "left"},
-                      "group-title": {"fontWeight": "normal"}
+                        "cell": {"stroke": "transparent"},
+                        "line": {"stroke": "#1696d2", "strokeWidth": 3},
+                        "text": {"fontSize": 11, "fontWeight": "bold", "size": 11,"align": "left"},
+                        "group-title": {"fontWeight": "normal"}
                     },
                     "range": {
                         "category": [
-                          "#810f7c",
-                          "#b3cde3",
-                          "#8c96c6"
+                            "#810f7c",
+                            "#b3cde3",
+                            "#8c96c6"
 
                         ]
-                      },
-                      "legend": {"orient": "bottom"}
-                  },
+                    },
+                    "legend": {"orient": "bottom"}
+                },
                 "columns": 2,
                 "transform": [
-                  {
-                    "filter": `datum.Pollutant === '${trendPollutant}' && datum.Source === '${source}'`
-                  }
+                    {
+                        "filter": `datum.Pollutant === '${trendPollutant}' && datum.Source === '${source}'`
+                    }
                 ],
                 "mark": {"type": "line", "point": true},
                 "encoding": {
-                  "facet": {
-                    "field": "Season",
-                    "type": "nominal",
-                    "columns": 2,
-                    "title": null,
-                    "sort": ["Winter", "Spring", "Summer", "Fall"],
-                    "header": {"labelFontSize": 15,"labelAlign":"left","labelAnchor": "start"}
-                  },
-                  "x": {"timeUnit": "utcyear", "field": "Time"},
-                  "y": {"field": "Value", "type": "quantitative"},
-                  "tooltip": [
-                    {"field": "Value", "title": "Value", "format": ",.1~f"},
-                    {"field": "Tertile", "title": "Tertile"}
-                  ],
-                  "color": {
-                    "field": "Tertile", 
-                    "type": "nominal"
-                  }
+                    "facet": {
+                        "field": "Season",
+                        "type": "nominal",
+                        "columns": 2,
+                        "title": null,
+                        "sort": ["Winter", "Spring", "Summer", "Fall"],
+                        "header": {"labelFontSize": 15,"labelAlign":"left","labelAnchor": "start"}
+                    },
+                    "x": {"timeUnit": "utcyear", "field": "Time"},
+                    "y": {"field": "Value", "type": "quantitative"},
+                    "tooltip": [
+                        {"field": "Value", "title": "Value", "format": ",.1~f"},
+                        {"field": "Tertile", "title": "Tertile"}
+                    ],
+                    "color": {
+                        "field": "Tertile", 
+                        "type": "nominal"
+                    }
                 }
-              };
+            };
 
         vegaEmbed('#vis', chartSpec, {renderer: "svg"});
 
