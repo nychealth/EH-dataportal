@@ -534,18 +534,14 @@ function runFinal() {
 
     // High AQI and not Warm - close your windows
 
-    if ((maxTemp < 70 && aqi > 3)
-        ||
-        (maxTemp < 70 && (aqi > 2 && sensitiveGroup ==='Yes'))) {
+    if ((maxTemp < 70 && aqi > 3) || (maxTemp < 70 && (aqi > 2 && sensitiveGroup ==='Yes'))) {
         msg = `<p>💡 The air quality is unhealthy today. Close your windows to keep air pollution out.</p>`;
         finalMessageText.innerHTML+= msg + '<hr class="my-2">';
     }
 
     // high AQI and Warm. close windows, use AC.
 
-    if ((maxTemp > 70 && aqi > 3 && hasAC === 'Yes')
-        ||
-            (maxTemp > 70 && hasAC === 'Yes' && aqi > 2 && sensitiveGroup ==='Yes')) {
+    if ((maxTemp > 70 && aqi > 3 && hasAC === 'Yes') || (maxTemp > 70 && hasAC === 'Yes' && aqi > 2 && sensitiveGroup ==='Yes')) {
         msg = `<p>‼️ The air quality is unhealthy today. Keep your windows closed, and use your AC if it gets too hot inside. Keep the AC vent closed, or use "recirculate" mode, which can help filter the air."</p>`;
         finalMessageText.innerHTML+= msg + '<hr class="my-2">';
         }

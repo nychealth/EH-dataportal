@@ -346,8 +346,7 @@ function drawUHFs(UHF_ids) {
             },
             onEachFeature: function (feature, layer) {
 
-                    const tooltipContent = `UHF42:<br>
-                                  ${feature.properties.GEONAME}`;
+                const tooltipContent = `UHF42:<br>${feature.properties.GEONAME}`;
                 layer.bindTooltip(tooltipContent, {
                     permanent: true,
                     direction: "center",   // puts label inside polygon
