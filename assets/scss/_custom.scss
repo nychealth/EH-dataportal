@@ -216,6 +216,66 @@ $comp-bad-text: #7a5c00;
   cursor: pointer;
 }
 
+// The strategy beneath each NDHR indicator's chart (assets/js/ndhr-report/cards.js),
+// set apart from the chart and source line so it reads as advice rather than a caption.
+// $primary-dark for the label, since $primary falls under 4.5:1 on this fill — the same
+// pairing noted at .neighborhood-list-button below
+.ndhr-strategy-callout {
+  background: #EFFAF4;
+  border-left: 6px solid $primary;
+  padding: 0.75rem 1rem;
+}
+
+// The 59-district list on the NDHR category indexes (ndhr/ndhr-category-index.html), in
+// two columns from md up. The first heading's top margin would otherwise push column one
+// below column two; break-after keeps a borough heading with its first districts
+@include media-breakpoint-up(md) {
+  .ndhr-district-columns {
+    column-count: 2;
+    column-gap: 2rem;
+
+    h3:first-child {
+      margin-top: 0 !important;
+    }
+
+    h3 {
+      break-after: avoid;
+    }
+
+    li {
+      break-inside: avoid;
+    }
+  }
+}
+
+// "How it works" on the NDHR landing page (shortcodes/ndhr-how-it-works.html). The
+// circles take $primary-dark for the same contrast reason as the strategy label
+.ndhr-how-it-works {
+  background: #f6f8f7;
+  padding: 1.25rem 1.25rem 1rem;
+}
+
+.ndhr-step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-bottom: 0.5rem;
+  border-radius: 50%;
+  background: $primary-dark;
+  color: #fff;
+  font-weight: 700;
+}
+
+.ndhr-strategy-label {
+  color: $primary-dark;
+  font-size: $fs-sm;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 
 @media print {
   .print-only {

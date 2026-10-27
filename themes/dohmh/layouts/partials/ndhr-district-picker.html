@@ -1,14 +1,13 @@
 {{/*
     The community district typeahead: a visible label, a search box over the 59 rows of
-    data/globals/cdlist.json, and a Clear button. Shared by the NDHR landing page
-    (ndhr/section.html) and the five category indexes (ndhr/ndhr-category-index.html).
+    data/globals/cdlist.json, and a Clear button. Used by the five category indexes
+    (ndhr/ndhr-category-index.html). The NDHR landing page carried it too until 2026-10-27,
+    when reviewers asked for that page's picker to be removed.
 
     Markup only. Pair it with partials/ndhr-district-picker-js.html in the caller's js_bot
     block or this box does nothing — that partial loads flexdatalist and wires the search.
-    Where a selection lands is the one thing the two callers disagree on, so it is not here:
-    each defines ndhrPickerDestination(), returning a build-time category slug on a category
-    index and, on the landing page, whichever of its five category buttons is active — a
-    runtime value that changes without a navigation.
+    Where a selection lands is not here: the caller defines ndhrPickerDestination(), which
+    returns its build-time category slug on a category index.
 
     NO HEADING, unlike partials/nr-neighborhood-picker.html. That one carries its own because
     its two callers had drifted to two different introductions; here both callers already

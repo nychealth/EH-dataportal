@@ -516,6 +516,11 @@ const initLeafletMap = () => {
 
     L.control.scale({ metric: false, position: 'bottomleft' }).addTo(leafletMap);
 
+    // +/- buttons, on reviewer request (2026-10-27). Added as a control rather than by
+    // flipping zoomControl above, which NR keeps off, so the departure is visible here.
+    // Leaflet 1.9 names them "Zoom in"/"Zoom out" and makes them keyboard reachable
+    L.control.zoom({ position: 'topleft' }).addTo(leafletMap);
+
     // Null on categories whose facilities_layer is off in NDHR_categories.yml. Only the
     // checkboxes are drawn here; the points load when one is first ticked
     if (reportConfig.facilitiesUrl) renderFacilitiesControls();

@@ -48,7 +48,7 @@
 
     Keyed off an aria-hidden ancestor rather than a parameter, exactly as nr-leaflet is:
 
-      - WRAPPED in aria-hidden="true" (the landing page and the five category indexes): the
+      - WRAPPED in aria-hidden="true" (the five category indexes): the
         map is redundant with the 59-link borough-grouped list directly beneath it, so it is
         hidden from the accessibility tree and every tab stop inside it is removed. A hidden
         subtree must hold no keyboard stops, or a keyboard user tabs through positions a
@@ -91,7 +91,7 @@
     // build-time configuration
     // ------------------------------------------------------------------ //
 
-    // Empty on the landing page and the five category indexes; the CD id on a district
+    // Empty on the five category indexes; the CD id on a district
     // index, where that one polygon is highlighted. Every page frames the whole city —
     // see the fit at the foot of this file for why the located page does not zoom in.
     const cdId = "{{ $cdId }}";
@@ -113,6 +113,12 @@
     ).addTo(map);
 
     L.control.scale({ metric: false, position: "bottomleft" }).addTo(map);
+
+    // +/- buttons, on reviewer request (2026-10-27), as on the report page's map. On a
+    // caller that hides this map from the accessibility tree, removeHiddenMapFromTabOrder
+    // below takes them out of the tab order with everything else — they are <a> elements
+    // and exist by the time it runs, so they stay mouse-only there
+    L.control.zoom({ position: "topleft" }).addTo(map);
 
     // ------------------------------------------------------------------ //
     // polygon styles

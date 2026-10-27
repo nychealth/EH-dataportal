@@ -1,0 +1,33 @@
+{{/*
+    "How it works" — the three steps from a landing page to a report, for the NDHR landing
+    page (content/ndhr/_index.md). A shortcode rather than part of ndhr/section.html so the
+    markdown decides where it sits between the text sections, and editors can move it.
+
+    The steps follow the path the page actually offers since the district picker left it
+    (2026-10-27): a category first, from the list beside this text, then a district on
+    that category's own page.
+
+    The step list is an <ol> because the order is the point; the circled numbers are
+    decoration over the list's own numbering, so they are aria-hidden and the list keeps
+    its semantics.
+*/}}
+<section class="ndhr-how-it-works my-4" aria-labelledby="ndhr-how-it-works-heading">
+    <h2 id="ndhr-how-it-works-heading" class="h4 mb-3">How it works</h2>
+    <ol class="list-unstyled row mb-0">
+        <li class="col-md-4 mb-3 mb-md-0">
+            <span class="ndhr-step-number" aria-hidden="true">1</span>
+            <p class="font-weight-bold mb-1">Choose a category</p>
+            <p class="fs-sm mb-0">Five groups of indicators, each reflecting a social determinant of health.</p>
+        </li>
+        <li class="col-md-4 mb-3 mb-md-0">
+            <span class="ndhr-step-number" aria-hidden="true">2</span>
+            <p class="font-weight-bold mb-1">Pick a community district</p>
+            <p class="fs-sm mb-0">Search by name or borough, or click the map, on the category's page.</p>
+        </li>
+        <li class="col-md-4">
+            <span class="ndhr-step-number" aria-hidden="true">3</span>
+            <p class="font-weight-bold mb-1">See how it compares</p>
+            <p class="fs-sm mb-0">Each indicator places the district in the lower, middle or upper third of all 59, beside its borough and citywide values.</p>
+        </li>
+    </ol>
+</section>

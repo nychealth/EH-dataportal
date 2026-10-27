@@ -413,14 +413,22 @@ const buildIndicatorCard = (row, districtName) => {
     // the column. The phrase repeats here as the lead-in rather than being referred back
     // to, so the block reads on its own when a reader expands one panel out of six.
     // Rendered only when the YAML carries a description: evictions (1128) has an explicit
-    // null and a TODO beside it, and an empty <p> would read as a rendering fault
+    // null and a TODO beside it, and an empty <p> would read as a rendering fault.
+    //
+    // A shaded callout with its own label rather than one run-on line, which reviewers
+    // found easy to miss under the chart (2026-10-27). The label is a <p>, not a heading:
+    // the panel sits inside an accordion whose headers already set the heading level, and
+    // one heading per panel would add 18 entries to the page outline for a visual cue
     const strategyPanelHTML = strategyPair.description
         ? '<div class="row no-gutters">' +
-              '<div class="col-12 pt-2 border-top">' +
-                  '<p class="fs-sm mb-2">' +
-                      '<strong>Strategy: ' + strategyPair.strategy + '.</strong> ' +
-                      strategyPair.description +
-                  '</p>' +
+              '<div class="col-12">' +
+                  '<div class="ndhr-strategy-callout mb-3">' +
+                      '<p class="ndhr-strategy-label mb-1">' +
+                          '<i class="fas fa-lightbulb mr-1" aria-hidden="true"></i>Strategy' +
+                      '</p>' +
+                      '<p class="fs-md font-weight-bold mb-1">' + strategyPair.strategy + '</p>' +
+                      '<p class="fs-sm mb-0">' + strategyPair.description + '</p>' +
+                  '</div>' +
               '</div>' +
           '</div>'
         : '';

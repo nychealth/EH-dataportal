@@ -3,25 +3,25 @@
 {{/*
     Section landing page — /ndhr/.
 
-    Rendered for content/ndhr/_index.md. The NDHR counterpart of
-    themes/dohmh/layouts/neighborhood-reports/section.html, and shorter than it: that file's
-    264 lines carry a topic-button block, the shared Leaflet picker, and a Community
-    District chooser modal. The modal's whole purpose — sending a reader from UHF42 to
-    community districts — is what this section already is, so it has no NDHR analogue and
-    will not get one.
+    Rendered for content/ndhr/_index.md. Laid out like a Key Topics page
+    (themes/dohmh/layouts/key-topics/single.html) on reviewer request, 2026-10-27: the
+    page's text in a wide column, and beside it a link list with an accent header — here
+    the five category pages, then a contact box.
 
-    So the landing page is a five-category selector and the list of 59 community districts,
-    server-rendered links, which is what a crawler and a keyboard user need — plus the
-    district typeahead above that list. The five categories are buttons rather than links
-    and navigate nowhere: they nominate which report every other affordance on the page
-    leads to, which is how neighborhood-reports/section.html works and what the block
-    below says in full. The typeahead is
-    partials/ndhr-district-picker.html, added by Task 10 of
-    documents/ndhr-prototype-plan-2026-09-10.md after an NR/NDHR divergence audit found it
-    missing; the NR precedent is documents/nr-topic-index-picker-restore-2026-08-09.md,
-    where the same affordance was restored after a swap dropped it. The picker MAP beneath
-    it is partials/ndhr-leaflet.html, Task 11 of the same plan — a new partial rather than
-    an include of nr-leaflet.html, which is hard-bound to UHF42 geometry.
+    That request also REMOVED what this page used to be: a five-button category selector,
+    the district typeahead, the picker map and the 59-district list, all of which were
+    the Neighborhood Reports landing page's arrangement. A reader now reaches a report in
+    two steps — a category here, then a district on that category's index, which still
+    carries the typeahead, map and list. The "How it works" block in the content
+    (shortcodes/ndhr-how-it-works.html) describes exactly that path, so the two must change
+    together.
+
+    With the picker gone this page loads no Leaflet, no topojson, no cdlist and no
+    flexdatalist, and has no js_bot block at all.
+
+    The five category links are ranged over NDHR_categories.yml rather than hardcoded, so
+    the labels cannot drift from the category menu on the report pages, which reads the
+    same menu_label.
 
     NOT indexed, unlike the NR landing page: data-pagefind-ignore="all" sits on the wrapper
     below, and the same attribute sits on all four NDHR layouts. The whole section is out of
@@ -46,262 +46,71 @@
     are untouched.
 */}}
 
-<article class="container-fluid overflow-hidden" id="primary-content" data-pagefind-ignore="all">
+<article class="container wide" id="primary-content" data-pagefind-ignore="all">
 
-    <div class="row mb-4">
-        <div class="col-lg-10 mx-auto col-12">
-
-            <nav aria-label="breadcrumb" class="mt-2 mb-3">
+    <div class="row">
+        <div class="col-sm-12 mt-2 mb-2">
+            <nav aria-label="breadcrumb">
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
-                    <li class="breadcrumb-item active"><a href={{ relURL "ndhr" }}>{{ .Title }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ relURL "" }}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
                 </ul>
             </nav>
-
-            <div class="nr-accent">
-                <div class="row">
-                    <div class="col-md-7 col-sm-12 my-2">
-                        {{/* First mention carries the long form with the abbreviation, per
-                             DECIDED-8. .Title is already the long form, so the page h1 adds
-                             only the abbreviation. */}}
-                        <h1><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>{{ .Title }} (NDHR)</h1>
-                        {{- .Content -}}
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12">
-                    {{/* h2 with .h3 for size: this sits directly under the page h1, and an
-                         h3 here would make the landing page's heading sequence jump a level */}}
-                    <h2 class="h3 mt-3">Choose a report</h2>
-
-                    {{/* A SELECTOR, not a navigation bar — none of these five buttons
-                         navigates. The active one is the destination that the district
-                         typeahead, the picker map and the 59 district links below all
-                         resolve to, which is the arrangement
-                         neighborhood-reports/section.html uses for its five topic buttons.
-
-                         That is also why this is not partials/ndhr-category-menu.html: its
-                         <a href> buttons ARE a navigation bar, which is right for the 300
-                         report and category-index pages that include it and wrong here.
-
-                         Consequence worth stating rather than discovering: this page
-                         therefore carries no link to the five category index pages. Neither
-                         does the NR landing page to its five topic indexes — they are
-                         reached from a report page's own menu, from the breadcrumb, and
-                         from the sitemap.
-
-                         Ranged over NDHR_categories.yml rather than hardcoded, which is the
-                         one place this departs from the NR block it follows. NR hardcodes
-                         its five labels here and reads menu_label in nr-topic-menu.html,
-                         and the two have already drifted — its landing page says "Active
-                         design" where its menu says "Active Design". One source cannot.
-
-                         The first category is active on load, matching NR, which defaults
-                         to its own first topic button. */}}
-                    <div class="row no-gutters mt-2">
-
-                        {{- range $i, $category := site.Data.globals.NDHR_categories -}}
-                            <div class="col-sm mb-2 mr-1 mb-lg-0">
-                                {{/* aria-pressed alongside .active, which NR does not carry:
-                                     the class is a purely visual signal, so without this a
-                                     screen reader is told nothing about which report is
-                                     selected. */}}
-                                <button type="button"
-                                        class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 ndhr-category-button{{ if eq $i 0 }} active{{ end }}"
-                                        aria-pressed="{{ if eq $i 0 }}true{{ else }}false{{ end }}"
-                                        data-category-slug="{{ $category.slug }}"
-                                        data-summary="{{ $category.summary }}">{{ $category.menu_label }}</button>
-                            </div>
-                        {{- end -}}
-
-                        {{/* Server-rendered with the active category's summary, so the
-                             paragraph is not empty before JS runs, and untruncated where the
-                             cards this replaced cut it at 150 characters. The click handler
-                             swaps it from the data-summary attribute above, so the text has
-                             one source in either path. */}}
-                        <div class="col-12">
-                            <p id="ndhr-category-description" class="my-2">{{ (index site.Data.globals.NDHR_categories 0).summary }}</p>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-8 mx-auto">
-
-                    <h2 class="h3 mt-4">Choose a community district</h2>
-
-                    {{/* Typeahead above the district list, not below it: it is the primary
-                         affordance here, and 59 grouped names are a long scroll past on a
-                         phone. The list stays as the browse path and as the JS-off and
-                         crawler fallback. */}}
-                    {{ partial "ndhr-district-picker" . }}
-
-                    {{/* Libraries here rather than in js_bot: ndhr-leaflet's inline script
-                         calls L.map() as the parser reaches it, so Leaflet, topojson-client
-                         and the communityDistricts global must all already be parsed.
-                         lib-cdlist moved up here from js_bot when this map landed — the
-                         typeahead below still sees the global, since it is one shared
-                         classic-script scope, but the map's fetch callback can resolve
-                         between two script blocks and would otherwise race it. */}}
-                    {{- partial "lib-leaflet.html" . }}
-                    {{- partial "lib-topojson.html" . }}
-                    {{- partial "lib-cdlist.html" . }}
-
-                    {{/* aria-hidden because the 59-link list directly below is this map's
-                         text equivalent, and the partial keys its tab-order strip off that
-                         attribute — a hidden subtree must hold no keyboard stops. Same
-                         arrangement as nr-neighborhood-picker.html. */}}
-                    <div class="ndhr-selector-map border mt-2" aria-hidden="true" data-pagefind-ignore="all">
-                        {{- partial "ndhr-leaflet" . -}}
-                    </div>
-
-                    {{/* Grouped by borough rather than one flat list of 59: the district
-                         names do not carry their borough, and a bare list of 59 is not
-                         scannable. cdlist.json is already in borough-then-id order, so this
-                         is a break on the borough field rather than a sort.
-
-                         data-pagefind-ignore="all", matching ndhr-category-index.html and
-                         the nr-neighborhood-list partial. Without it these 59 names were
-                         body text on this page, which made it a bag of NYC place tokens
-                         that any two-word place query could hit across UNRELATED districts:
-                         "asthma East Harlem" returned this page first, on "East" from
-                         "Upper East Side (CD8)" and "Harlem" from "Central Harlem (CD10)",
-                         matching neither the phrase nor "asthma" at all, and "Kingsbridge"
-                         matched here as well as at its own district index
-                         `[verified 2026-09-12: Pagefind scores and excerpts off the built
-                         index]`. This is the same defect the NR partial's own comment
-                         records fixing — server-rendering a name list that used to be built
-                         in JS, which Pagefind never saw.
-
-                         This inner ignore is redundant while the page-level one above it
-                         stands, and is kept deliberately: it is the correct state for this
-                         list on its own merits, so lifting the section-wide ignore later
-                         does not silently restore the place-token bag described above. */}}
-                    {{/* The id and the per-link data-cd are what the category selector
-                         rewrites against — see js_bot. The hrefs ship pointing at the
-                         district index so the list works with JS off and gives crawlers a
-                         path to those 59 pages; the rewrite makes them follow the active
-                         category. Same arrangement as #nr-neighborhood-list a[data-nbhd]. */}}
-                    <div id="ndhr-district-list" data-pagefind-ignore="all">
-                    {{- $lastBorough := "" -}}
-                    {{- range site.Data.globals.cdlist -}}
-                        {{- if ne .borough $lastBorough -}}
-                            {{- if ne $lastBorough "" }}</ul>{{ end -}}
-                            <h3 class="h6 mt-3">{{ .borough }}</h3>
-                            <ul class="list-unstyled fs-sm">
-                            {{- $lastBorough = .borough -}}
-                        {{- end -}}
-                        <li><a href="{{ relURL (printf "ndhr/%s/" .page_name) }}" data-cd="{{ .page_name }}">{{ .CD_name }}</a></li>
-                    {{- end -}}
-                    </ul>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="row mt-4">
-                <div class="col-md-8 mx-auto fs-sm">
-                    <strong><i class="fas fa-info-circle mr-1" aria-hidden="true"></i>About these community districts</strong>
-                    <p>There are different ways to break up NYC into neighborhoods. These reports use the city's 59 <strong>community districts</strong>. <a href="{{ relURL "data-stories/geographies/" }}">Read about different neighborhood schemes in our data</a>.</p>
-                    {{/* Stated here rather than only on the affected cards: a few indicators
-                         are published at a wider geography than a community district, so a
-                         reader meeting one on a report page has already been told to expect
-                         it. Which rows, and their per-card labels, are Task 7. */}}
-                    <p>A few indicators are not published for community districts, and are shown at the closest larger area that publishes them. Those rows say so.</p>
-                </div>
-            </div>
-
         </div>
     </div>
 
+    <div class="row mt-1 py-4 mb-4">
+
+        <div class="col-12 mb-3">
+            {{/* First mention carries the long form with the abbreviation, per
+                 DECIDED-8. .Title is already the long form, so the h1 adds only the
+                 abbreviation. h2 sizing, as on the Key Topics pages */}}
+            <h1 class="h2">{{ partial "section-icon.html" $.Section }}{{ .Title }} (NDHR)</h1>
+        </div>
+
+        {{/* The page's text, from content/ndhr/_index.md, including the "How it works"
+             shortcode */}}
+        <div class="col-md-12 col-lg-8 pr-xl-4 mb-4">
+
+            {{- .Content -}}
+
+        </div>
+
+        {{/* Sidebar: the five category pages, the contact box, then the community district
+             note, which stays in the template because it explains the reports' geography
+             rather than the program. Real h2s where the Key Topics sidebar uses styled
+             divs, so both link blocks are in the page outline */}}
+        <div class="col-md-12 col-lg-4 pl-xl-4">
+
+            <div class="nr-accent">
+                <h2 class="h3 fs-lg"><i class="fas fa-map-marked-alt pr-1" aria-hidden="true"></i>Reports by category</h2>
+            </div>
+
+            <ul class="list-unstyled mt-2 mb-4">
+                {{- range $i, $category := site.Data.globals.NDHR_categories }}
+                <li>
+                    <a class="font-weight-bold" href="{{ relURL (printf "ndhr/%s/" $category.slug) }}">{{ $category.title }}</a>
+                    <hr class="{{ if eq (add $i 1) (len site.Data.globals.NDHR_categories) }}strong-hr {{ end }}my-1">
+                </li>
+                {{- end }}
+            </ul>
+
+            {{/* The address is front matter so an editor can change it in CloudCannon */}}
+            {{- with .Params.contact_email }}
+            <div class="card card-left-border shadow-sm mb-4">
+                <div class="card-body">
+                    <h2 class="h5"><i class="fas fa-envelope mr-1" aria-hidden="true"></i>Questions about the tool?</h2>
+                    <p class="fs-sm mb-0">Contact the Health Equity in Urban Planning team at <a href="mailto:{{ . }}">{{ . }}</a>.</p>
+                </div>
+            </div>
+            {{- end }}
+
+            {{ partial "ndhr-about-districts.html" . }}
+
+        </div>
+
+    </div>
+
 </article>
-
-{{- end -}}
-
-
-{{- /* ====  community district typeahead  ==== */ -}}
-
-{{- /* In js_bot because flexdatalist is not in head.html, and this is the only page kind
-       here that needs it. lib-cdlist is NOT here — it moved into `main` above the picker
-       map when Task 11 landed, since ndhr-leaflet reads `communityDistricts` from a fetch
-       callback that can run between script blocks. The typeahead still sees it: one shared
-       classic-script scope. The init itself lives in ndhr-district-picker-js, shared with
-       the category indexes; what this block adds is the category selector, and with it
-       where a selection should land — for the typeahead, the map and the 59 district
-       links alike. Unlike the category indexes, whose destination is a build-time slug,
-       this page's is whichever button is active, so it is a runtime value. */ -}}
-
-{{ define "js_bot" }}
-
-    <script type="text/javascript">
-
-        // The category the five buttons above currently nominate. Reassigned on click, and
-        // seeded with the first category, which is the one the row renders active.
-        let ndhrActiveCategory = '{{ (index site.Data.globals.NDHR_categories 0).slug }}';
-
-        // Points the 59 district links at the active category's report for each district
-        function updateDistrictListLinks() {
-
-            const base = {{ relURL "ndhr/" }};
-            const suffix = ndhrActiveCategory ? ndhrActiveCategory + '/' : '';
-
-            document.querySelectorAll('#ndhr-district-list a[data-cd]').forEach(a => {
-                a.href = base + a.dataset.cd + '/' + suffix;
-            });
-
-        }
-
-        // Moves the selection between the five buttons; nothing here navigates
-        function handleCategoryButtons() {
-
-            const buttons = document.querySelectorAll('.ndhr-category-button');
-
-            buttons.forEach(button => {
-
-                button.addEventListener('click', () => {
-
-                    // aria-pressed tracks .active rather than duplicating it: the class is
-                    // the visual signal and carries nothing to the accessibility tree
-                    buttons.forEach(other => {
-                        other.classList.remove('active');
-                        other.setAttribute('aria-pressed', 'false');
-                    });
-
-                    button.classList.add('active');
-                    button.setAttribute('aria-pressed', 'true');
-
-                    ndhrActiveCategory = button.dataset.categorySlug;
-                    debugLog('ndhrCategorySelect: active:', ndhrActiveCategory);
-
-                    // The summary rides on the button rather than in a hidden div per
-                    // category, which is how the NR landing page holds its five
-                    document.getElementById('ndhr-category-description').textContent = button.dataset.summary;
-
-                    updateDistrictListLinks();
-
-                });
-
-            });
-
-        }
-
-        // Read at selection time by partials/ndhr-district-picker-js.html and by
-        // partials/ndhr-leaflet.html, so this page's typeahead and its map cannot send a
-        // reader to two different places.
-        function ndhrPickerDestination() { return ndhrActiveCategory }
-
-        handleCategoryButtons();
-
-        // The served hrefs point at the district index, so this is what makes them agree
-        // with the button the row already renders active.
-        updateDistrictListLinks();
-
-    </script>
-
-    {{ partial "ndhr-district-picker-js" . }}
 
 {{- end -}}

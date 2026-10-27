@@ -85,8 +85,11 @@
 
             <div class="row">
 
-                {{/* Left column: map, demographics */}}
-                <div class="col-md-4 mb-4 d-print-none">
+                {{/* Left column: map, facility toggles, demographics. Five twelfths rather
+                    than NR's four, widened on reviewer request (2026-10-27): the map fits
+                    the city to its WIDTH, so a taller map alone would not have drawn the
+                    districts any larger */}}
+                <div class="col-md-5 mb-4 d-print-none">
 
                     {{/*
                         Interactive Leaflet map for community district selection, drawn by
@@ -100,7 +103,7 @@
                         SyntaxError that kills every script on the page, and `npm run lint`
                         cannot see it.
                     */}}
-                    <div id="ndhr-map" class="border" style="height: 450px; width: 100%;"></div>
+                    <div id="ndhr-map" class="border" style="height: 560px; width: 100%;"></div>
 
                     {{/* Facility point checkboxes, which double as the legend. Filled and
                         un-hidden by map.js when the map initializes; the points themselves
@@ -193,7 +196,7 @@
                 </div>
 
                 {{/* Right column: category buttons + report header + indicator rows */}}
-                <div class="col-md-8 col-print-12">
+                <div class="col-md-7 col-print-12">
 
                     {{/*
                         Category mini-menu: the five category buttons, hrefs pointing at this

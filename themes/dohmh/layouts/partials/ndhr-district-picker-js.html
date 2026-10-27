@@ -67,10 +67,11 @@
             data: communityDistricts
         });
 
-        // The destination category is the one thing the two callers disagree on, so each
-        // defines ndhrPickerDestination() itself — a build-time slug on a category index,
-        // and on the landing page whichever of its five category buttons is active, which
-        // is why this is called on selection rather than read once at load.
+        // The destination category is the caller's to define, as ndhrPickerDestination() —
+        // a build-time slug on a category index. It is called on selection rather than read
+        // once at load because the landing page used to answer with whichever of its five
+        // category buttons was active; that page lost its picker on 2026-10-27, and the
+        // call stays cheap enough not to be worth un-generalizing.
         $input.on('select:flexdatalist', (e, set) => {
 
             const category = ndhrPickerDestination();
