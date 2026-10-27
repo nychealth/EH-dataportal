@@ -22,6 +22,7 @@
     // Search the 42 UHF rows by name or ZIP, then jump to that neighborhood's report for
     // whichever topic the page nominates. `neighborhoods` is the global partials/lib-uhflist.html
     // builds from data/globals/uhflist.json, so the calling template must include that partial.
+
     function loadNeighborhoodSearch() {
 
         const $input = $('.flexdatalist').flexdatalist({
@@ -43,30 +44,32 @@
         // The destination topic is the one thing the two callers disagree on, so each
         // defines nrPickerDestination() itself — a build-time slug on a topic index, the
         // active topic button on the landing page.
+
         $input.on('select:flexdatalist', (e, set) => {
-            window.location.href = {{ relURL "neighborhood-reports/" }} + set.page_name + '/' + nrPickerDestination() + '/'
-        })
+            window.location.href = {{ relURL "neighborhood-reports/" }} + set.page_name + '/' + nrPickerDestination() + '/';
+        });
 
         // flexdatalist hides the original input and renders its own; "~input" is how the
         // other copies of this reach that visible one.
+
         $("#clear").on("click", () => {
-            $($input).find("~input").val("").trigger("focus")
-        })
+            $($input).find("~input").val("").trigger("focus");
+        });
 
         // The generated input is the one the reader focuses, and nothing names it. Without
         // this its only name is the placeholder, which vanishes as soon as there is a value
         // in the box; the picker's "Choose Neighborhood" heading is its label. flexdatalist
         // derives the generated id from the authored one, so "#flex_search-flexdatalist" is
         // stable.
+
         const generated = document.getElementById('flex_search-flexdatalist');
 
         if (generated) {
             generated.setAttribute('aria-labelledby', 'nr-search-heading');
             wireComboboxState(generated);
         }
-
     }
 
-    loadNeighborhoodSearch()
+    loadNeighborhoodSearch();
 
 </script>
