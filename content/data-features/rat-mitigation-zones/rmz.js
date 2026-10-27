@@ -70,17 +70,17 @@ function getGeoJSON(x) {
         // Fetch the GeoJSON data
 
         fetch(x)
-        .then(response => {
+            .then(response => {
 
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json(); // Parse the GeoJSON data
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json(); // Parse the GeoJSON data
 
-        })
-        .then(data => {
+            })
+            .then(data => {
 
-            rmzgeojson = data; // Store the GeoJSON data in a global variable
+                rmzgeojson = data; // Store the GeoJSON data in a global variable
                 // console.log('GeoJSON data loaded:', rmzgeojson);
 
                 resolve(); // Resolve the promise when the data is ready
@@ -89,11 +89,11 @@ function getGeoJSON(x) {
                     onEachFeature
                 }).addTo(map);
 
-        })
-        .catch(error => {
-            console.error('Error fetching the GeoJSON file:', error);
-            reject(error); // Reject the promise if there’s an error
-        });
+            })
+            .catch(error => {
+                console.error('Error fetching the GeoJSON file:', error);
+                reject(error); // Reject the promise if there’s an error
+            });
     });
 }
 

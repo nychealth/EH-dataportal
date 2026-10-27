@@ -87,13 +87,13 @@
             }
         }
 
-    // Initialize: ingest spatial model CSV, and filter for default pollutant
+        // Initialize: ingest spatial model CSV, and filter for default pollutant
 
-    d3.csv(`embed/spatial-model.csv`)
-    .then(async data => {
-        polTable = data;
-        filterData('bc');
-    });
+        d3.csv(`embed/spatial-model.csv`)
+        .then(async data => {
+            polTable = data;
+            filterData('bc');
+        });
 
     </script>
 </div>

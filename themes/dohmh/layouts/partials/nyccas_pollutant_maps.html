@@ -123,15 +123,15 @@
     const mtBtns = document.querySelectorAll(".mtBtn ");
     for (var i = 0; i < mtBtns.length; i++) {
 
-    mtBtns[i].addEventListener("click", function() {
+        mtBtns[i].addEventListener("click", function() {
 
-    for (let button of mtBtns) button.classList.remove('active');
-    this.className += " active";
-    mtPol = this.value;
-    polYear = mtPol+chosenYear;
-    updateRaster();
+            for (let button of mtBtns) button.classList.remove('active');
+            this.className += " active";
+            mtPol = this.value;
+            polYear = mtPol+chosenYear;
+            updateRaster();
 
-    });
+        });
     }
 
 
@@ -171,7 +171,7 @@
     }
 
     .hide {
-    display: none;
+        display: none;
     }
 </style>
 

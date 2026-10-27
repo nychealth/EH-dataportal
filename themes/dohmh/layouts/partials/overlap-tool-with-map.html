@@ -104,7 +104,7 @@
             states: [{
                 title: "Reset",
                 icon: "fas fa-undo",
-                
+            
                 onClick: function() {
                     reset();
                 }
@@ -174,44 +174,44 @@
         // Fetch and add new GeoJSON
 
         fetch(match.url)
-            .then(response => response.json())
-            .then(data => {
+        .then(response => response.json())
+        .then(data => {
 
-                geojsonLayer = L.geoJSON(data, {
+            geojsonLayer = L.geoJSON(data, {
 
-                    style: function (feature) {
+                style: function (feature) {
 
-                        // Default style before any click
+                    // Default style before any click
 
-                        return {
-                            color: "#333",
-                            weight: 1,
-                            fillColor: "#66c2a5",
-                            fillOpacity: 0.4
-                        };
-                    },
-                    onEachFeature: function (feature, layer) {
+                    return {
+                        color: "#333",
+                        weight: 1,
+                        fillColor: "#66c2a5",
+                        fillOpacity: 0.4
+                    };
+                },
+                onEachFeature: function (feature, layer) {
 
-                        // Determine tooltip label
+                    // Determine tooltip label
 
-                        let tooltipLabel;
-                        if (name === 'CD') {
+                    let tooltipLabel;
+                    if (name === 'CD') {
 
-                            tooltipLabel = feature.properties.GEONAME;
+                        tooltipLabel = feature.properties.GEONAME;
 
-                        } else if (name === 'CCD') {
+                    } else if (name === 'CCD') {
 
-                            tooltipLabel = 'Council District #' + feature.properties[currentProperty];
+                        tooltipLabel = 'Council District #' + feature.properties[currentProperty];
 
-                        } else {
+                    } else {
 
-                            tooltipLabel = feature.properties[currentProperty];
+                        tooltipLabel = feature.properties[currentProperty];
 
-                        }
+                    }
 
-                        // Bind tooltip (hover label)
+                    // Bind tooltip (hover label)
 
-                        layer.bindTooltip(`<b>${tooltipLabel}</b>`, { sticky: true });
+                    layer.bindTooltip(`<b>${tooltipLabel}</b>`, { sticky: true });
 
 
 
@@ -282,14 +282,14 @@
                         layer.openPopup();
 
                     });
-                    }
-                }).addTo(map);
+                }
+            }).addTo(map);
 
-                // Fit bounds to all features initially
+            // Fit bounds to all features initially
 
-                map.fitBounds(geojsonLayer.getBounds());
+            map.fitBounds(geojsonLayer.getBounds());
 
-            });
+        });
     }
 
     // Radio button listeners
@@ -333,39 +333,39 @@ function drawUHFs(UHF_ids) {
                 return;
             }
 
-            // Add all matching polygons as a single layer
+        // Add all matching polygons as a single layer
 
-            UHFLayer = L.geoJSON(features, {
+        UHFLayer = L.geoJSON(features, {
 
-                style: {
-                    color: "red",
-                    weight: 1,
-                    dashArray: "3,5",
-                    fillColor: "transparent",
-                    fillOpacity: 0
-                },
-                onEachFeature: function (feature, layer) {
+            style: {
+                color: "red",
+                weight: 1,
+                dashArray: "3,5",
+                fillColor: "transparent",
+                fillOpacity: 0
+            },
+            onEachFeature: function (feature, layer) {
 
                     const tooltipContent = `UHF42:<br>
                                   ${feature.properties.GEONAME}`;
-                    layer.bindTooltip(tooltipContent, {
-                        permanent: true,
-                        direction: "center",   // puts label inside polygon
-                        className: "uhf-label" // optional for custom styling
-                    }); 
-                }
-            }).addTo(map);
+                layer.bindTooltip(tooltipContent, {
+                    permanent: true,
+                    direction: "center",   // puts label inside polygon
+                    className: "uhf-label" // optional for custom styling
+                }); 
+            }
+        }).addTo(map);
 
-            // Zoom to bounds of all selected polygons
+        // Zoom to bounds of all selected polygons
 
-            map.fitBounds(UHFLayer.getBounds());
+        map.fitBounds(UHFLayer.getBounds());
 
-            // remove clickability from CD/CCDs
+        // remove clickability from CD/CCDs
 
-            geojsonLayer.eachLayer(layer => {
-                layer.off("click"); // removes click events
-            });
+        geojsonLayer.eachLayer(layer => {
+            layer.off("click"); // removes click events
         });
+    });
 }
 
 

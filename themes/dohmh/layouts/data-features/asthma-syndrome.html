@@ -30,32 +30,32 @@
         <div class="col-11 mx-auto">
             <div class="row" style="background-color:#f3f3f3; border-radius: 5px; padding: 5px;">
                 <div class="col-6">
-                <button class="btn btn-primary btn-sm" onclick="time(`dayofyear`)" id="dayBtn">Daily</button>
-                <button class="btn btn-outline-primary btn-sm" onclick="time(`month`)" id="monthBtn">Monthly</button> <br>
-                <button class="btn btn-outline-secondary btn-sm mt-1" id="smoothBtn" onclick="smooth(1)">7-day average</button>
+                    <button class="btn btn-primary btn-sm" onclick="time(`dayofyear`)" id="dayBtn">Daily</button>
+                    <button class="btn btn-outline-primary btn-sm" onclick="time(`month`)" id="monthBtn">Monthly</button> <br>
+                    <button class="btn btn-outline-secondary btn-sm mt-1" id="smoothBtn" onclick="smooth(1)">7-day average</button>
 
 
                 </div>
                 <div class="col-6 ml-auto">
                 <button class="btn btn-outline-primary btn-sm float-right" onclick="toggle(1)" id="toggle">Hide previous years</button><br>
-                <div class="float-right mt-1" id="prevYears">
-                <button class="btn btn-sm" disabled>Highlight:</button>
-                <button class="btn btn-outline-secondary btn-sm yearbtn" id="2016btn" onclick="changeYear(2016)">2016</button>
-                <button class="btn btn-outline-secondary btn-sm yearbtn" id="2017btn" onclick="changeYear(2017)">2017</button>
-                <button class="btn btn-outline-secondary btn-sm yearbtn" id="2018btn" onclick="changeYear(2018)">2018</button>
-                <button class="btn btn-outline-secondary btn-sm yearbtn" id="2019btn" onclick="changeYear(2019)">2019</button>
-                <button class="btn btn-outline-secondary btn-sm yearbtn" id="2020btn" onclick="changeYear(2020)">2020</button>
-                <button class="btn btn-outline-secondary btn-sm yearbtn" id="2021btn" onclick="changeYear(2021)">2021</button>
-                <button class="btn btn-outline-secondary btn-sm yearbtn" id="2022btn" onclick="changeYear(2022)">2022</button>
-                <button class="btn btn-secondary btn-sm yearbtn" id="2023btn" onclick="changeYear(2023)">2023</button>
-                </div>
+                    <div class="float-right mt-1" id="prevYears">
+                        <button class="btn btn-sm" disabled>Highlight:</button>
+                        <button class="btn btn-outline-secondary btn-sm yearbtn" id="2016btn" onclick="changeYear(2016)">2016</button>
+                        <button class="btn btn-outline-secondary btn-sm yearbtn" id="2017btn" onclick="changeYear(2017)">2017</button>
+                        <button class="btn btn-outline-secondary btn-sm yearbtn" id="2018btn" onclick="changeYear(2018)">2018</button>
+                        <button class="btn btn-outline-secondary btn-sm yearbtn" id="2019btn" onclick="changeYear(2019)">2019</button>
+                        <button class="btn btn-outline-secondary btn-sm yearbtn" id="2020btn" onclick="changeYear(2020)">2020</button>
+                        <button class="btn btn-outline-secondary btn-sm yearbtn" id="2021btn" onclick="changeYear(2021)">2021</button>
+                        <button class="btn btn-outline-secondary btn-sm yearbtn" id="2022btn" onclick="changeYear(2022)">2022</button>
+                        <button class="btn btn-secondary btn-sm yearbtn" id="2023btn" onclick="changeYear(2023)">2023</button>
+                    </div>
                 </div>
 
             </div>
 
             <div id="chartContainer py-1 my-1">
-            <em class="pl-2 fs-sm" style="clear:both">Emergency department visits for asthma in NYC</em>
-            <div id="vis1" class="chartdest" style="width:100%;"></div>
+                <em class="pl-2 fs-sm" style="clear:both">Emergency department visits for asthma in NYC</em>
+                <div id="vis1" class="chartdest" style="width:100%;"></div>
             </div>
 
         </div>
@@ -245,57 +245,57 @@
             }
         }
 
-// #00FFFFFF
+        // #00FFFFFF
 
-var count = 0;
-function toggle(x) {
+        var count = 0;
+        function toggle(x) {
 
-    count = count + x;
-    if (count % 2 == 0) {
+            count = count + x;
+            if (count % 2 == 0) {
 
-        // changeSpec.transform[2].filter = `datum.Date > 1451624400000`;
+                // changeSpec.transform[2].filter = `datum.Date > 1451624400000`;
 
-        changeSpec.encoding.color.scale.range = ["grey","grey","grey","grey","grey","grey","grey","#12135b"];
-        document.getElementById('toggle').innerHTML = 'Hide previous years';
+                changeSpec.encoding.color.scale.range = ["grey","grey","grey","grey","grey","grey","grey","#12135b"];
+                document.getElementById('toggle').innerHTML = 'Hide previous years';
 
-    } else {
+            } else {
 
-        document.getElementById('toggle').innerHTML = 'Show previous years';
-        changeSpec.encoding.color.scale.range = ["#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#12135b"];
+                document.getElementById('toggle').innerHTML = 'Show previous years';
+                changeSpec.encoding.color.scale.range = ["#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#12135b"];
 
-        // changeSpec.transform[2].filter = `datum.Date > 1672549200000`
+                // changeSpec.transform[2].filter = `datum.Date > 1672549200000`
 
-    };
-    // console.log(changeSpec)
+            };
+            // console.log(changeSpec)
 
-    vegaEmbed("#vis1", changeSpec, {renderer: "svg"});
+            vegaEmbed("#vis1", changeSpec, {renderer: "svg"});
 
-}
+        }
 
-function changeYear(x) {
+        function changeYear(x) {
 
-    var chosenYear = x;
-    var indexPos = x - 2016;
-    var colors = ["grey","grey","grey","grey","grey","grey","grey","grey"];
-    colors[indexPos] = "#12135b";
-    changeSpec.encoding.color.scale.range = colors;
-    changeSpec.encoding.opacity.condition.test = `datum.year === ${x}`;
-    vegaEmbed("#vis1", changeSpec, {renderer: "svg"});
+            var chosenYear = x;
+            var indexPos = x - 2016;
+            var colors = ["grey","grey","grey","grey","grey","grey","grey","grey"];
+            colors[indexPos] = "#12135b";
+            changeSpec.encoding.color.scale.range = colors;
+            changeSpec.encoding.opacity.condition.test = `datum.year === ${x}`;
+            vegaEmbed("#vis1", changeSpec, {renderer: "svg"});
 
-    var yearButtons = document.getElementsByClassName('yearbtn');
-    for (var i = 0; i < yearButtons.length; i++) {
-        yearButtons[i].classList.remove('btn-secondary');
-        yearButtons[i].classList.add('btn-outline-secondary');
-    }
+            var yearButtons = document.getElementsByClassName('yearbtn');
+            for (var i = 0; i < yearButtons.length; i++) {
+                yearButtons[i].classList.remove('btn-secondary');
+                yearButtons[i].classList.add('btn-outline-secondary');
+            }
 
-    var buttonIndex = 0 - indexPos;
-    yearButtons[indexPos].classList.remove('btn-outline-secondary');
-    yearButtons[indexPos].classList.add('btn-secondary');
+            var buttonIndex = 0 - indexPos;
+            yearButtons[indexPos].classList.remove('btn-outline-secondary');
+            yearButtons[indexPos].classList.add('btn-secondary');
 
-}
+        }
 
 
-</script>
+    </script>
 
 <!--
 var myFunction = function() {

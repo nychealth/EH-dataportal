@@ -178,125 +178,125 @@ function loadGeoJSON(config = {}) {
 
             }
 
-            // --- Handle Pins ---
+        // --- Handle Pins ---
 
-            if (pin === true) {
+        if (pin === true) {
 
-                // Add pin to isochrone center
+            // Add pin to isochrone center
 
-                L.marker([40.675377, -73.872106], { icon: customIcon }).addTo(map);
+            L.marker([40.675377, -73.872106], { icon: customIcon }).addTo(map);
 
-                // Add pin for block group
+            // Add pin for block group
 
-                L.marker([40.67777173561341, -73.87902747921927], { icon: customIcon })
-                    .addTo(map)
-                    .bindPopup(
-                        `This block group:<br>
-            Population outside walkable area: <strong>67.93%</strong><br>
-            Population inside walkable area: <strong>32.07%</strong>`,
-                        {
-                            autoClose: false,
-                            closeOnClick: false,
-                            className: 'my-popup-box'
-                        }
-                    )
-                    .openPopup();
+            L.marker([40.67777173561341, -73.87902747921927], { icon: customIcon })
+            .addTo(map)
+            .bindPopup(
+                `This block group:<br>
+        Population outside walkable area: <strong>67.93%</strong><br>
+        Population inside walkable area: <strong>32.07%</strong>`,
+                {
+                    autoClose: false,
+                    closeOnClick: false,
+                    className: 'my-popup-box'
+                }
+            )
+            .openPopup();
 
-            } else {
+        } else {
 
-                // Clear all popups and pins
+            // Clear all popups and pins
 
-                map.eachLayer(layer => {
-                    if (layer instanceof L.Popup || layer instanceof L.Marker) {
-                        map.removeLayer(layer);
-                    }
-                });
+            map.eachLayer(layer => {
+                if (layer instanceof L.Popup || layer instanceof L.Marker) {
+                    map.removeLayer(layer);
+                }
+            });
+        }
+
+        // --- Helper: map value -> color ---
+
+        function getColor(value) {
+
+            if (!choropleth || value == null || min === max) {
+                return "green"; // fallback
             }
 
-            // --- Helper: map value -> color ---
+            const t = (value - min) / (max - min); // normalize
+            const start = [255, 255, 255]; // white
+            const end = [0, 51, 0];        // dark green
 
-            function getColor(value) {
+            const r = Math.round(start[0] + t * (end[0] - start[0]));
+            const g = Math.round(start[1] + t * (end[1] - start[1]));
+            const b = Math.round(start[2] + t * (end[2] - start[2]));
 
-                if (!choropleth || value == null || min === max) {
-                    return "green"; // fallback
+            return `rgb(${r},${g},${b})`;
+
+        }
+
+        // --- Create GeoJSON Layer ---
+
+        geojsonLayer = L.geoJSON(data, {
+
+            pointToLayer: (feature, latlng) =>
+                L.marker(latlng, { icon: customIcon }),
+
+            style: feature => {
+
+                if (choropleth && valueField && feature.properties[valueField] !== undefined) {
+
+                    const value = feature.properties[valueField];
+                    return {
+                        color: "#333333",
+                        weight: 1,
+                        opacity: 1,
+                        fillColor: getColor(value),
+                        fillOpacity: 0.7
+                    };
+                } else {
+
+                    return {
+                        color: "#333333",
+                        weight: 2,
+                        opacity: 1,
+                        fillColor: "green",
+                        fillOpacity: 0.3
+                    };
                 }
+            },
 
-                const t = (value - min) / (max - min); // normalize
-                const start = [255, 255, 255]; // white
-                const end = [0, 51, 0];        // dark green
+            onEachFeature: (feature, layer) => {
 
-                const r = Math.round(start[0] + t * (end[0] - start[0]));
-                const g = Math.round(start[1] + t * (end[1] - start[1]));
-                const b = Math.round(start[2] + t * (end[2] - start[2]));
+                if (choropleth) {
 
-                return `rgb(${r},${g},${b})`;
+                    // --- Choropleth case ---
 
+                    if (suppressTooltip === true) return; // suppress tooltip in zoom mode
+
+                    const name = feature.properties[geonameField];
+                    let val = feature.properties[valueField];
+
+                    if (labelName === "Block Group") val *= 100;
+
+                    val = val.toFixed(2);
+                    const tooltipContent = `${labelName} <b>${name}</b>: ${val}% of residents<br>live in walking distance of an accessible subway station.`;
+
+                    layer.bindTooltip(tooltipContent, { sticky: true });
+
+                } else {
+
+                    // --- Non-choropleth case ---
+
+                    const displayValue = feature.properties[labelName];
+                    if (displayValue !== undefined) {
+                        const popupContent = `<strong>${labelName}:</strong> ${displayValue}`;
+                        layer.bindPopup(popupContent);
+                    }
+                }
             }
+        }).addTo(map);
 
-            // --- Create GeoJSON Layer ---
-
-            geojsonLayer = L.geoJSON(data, {
-
-                pointToLayer: (feature, latlng) =>
-                    L.marker(latlng, { icon: customIcon }),
-
-                style: feature => {
-
-                    if (choropleth && valueField && feature.properties[valueField] !== undefined) {
-
-                        const value = feature.properties[valueField];
-                        return {
-                            color: "#333333",
-                            weight: 1,
-                            opacity: 1,
-                            fillColor: getColor(value),
-                            fillOpacity: 0.7
-                        };
-                    } else {
-
-                        return {
-                            color: "#333333",
-                            weight: 2,
-                            opacity: 1,
-                            fillColor: "green",
-                            fillOpacity: 0.3
-                        };
-                    }
-                },
-
-                onEachFeature: (feature, layer) => {
-
-                    if (choropleth) {
-
-                        // --- Choropleth case ---
-
-                        if (suppressTooltip === true) return; // suppress tooltip in zoom mode
-
-                        const name = feature.properties[geonameField];
-                        let val = feature.properties[valueField];
-
-                        if (labelName === "Block Group") val *= 100;
-
-                        val = val.toFixed(2);
-                        const tooltipContent = `${labelName} <b>${name}</b>: ${val}% of residents<br>live in walking distance of an accessible subway station.`;
-
-                        layer.bindTooltip(tooltipContent, { sticky: true });
-
-                    } else {
-
-                        // --- Non-choropleth case ---
-
-                        const displayValue = feature.properties[labelName];
-                        if (displayValue !== undefined) {
-                            const popupContent = `<strong>${labelName}:</strong> ${displayValue}`;
-                            layer.bindPopup(popupContent);
-                        }
-                    }
-                }
-            }).addTo(map);
-
-        })
-        .catch(err => console.error("Error loading GeoJSON:", err));
+    })
+    .catch(err => console.error("Error loading GeoJSON:", err));
 
 }
 

@@ -21,10 +21,10 @@ In this file:
 
     $first-color-position: 0%,
     $second-color-position: 100%) {
-    background-image: linear-gradient($direction,
+        background-image: linear-gradient($direction,
         rgba($first-color, $first-color-opacity) $first-color-position,
         rgba($second-color, $second-color-opacity) $second-color-position);
-}
+    }
 
 ////////////////////////////////////////
 // B. Background image

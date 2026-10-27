@@ -308,7 +308,7 @@ function runQuestions() {
 
 document.getElementById('question-1').classList.remove('hide');
 document.getElementById('question-1').scrollIntoView({
-    behavior: 'smooth'
+        behavior: 'smooth'
     });
 }
 
