@@ -23,6 +23,11 @@ of one commit are byte-identical across all 3,020 files.
 
 Exit 0 when every file pair is identical or differs only by blank lines; 1 when
 any file differs otherwise or exists in one build only; it names each.
+
+--leading-whitespace (after the two directories) also accepts a pair whose
+non-blank lines differ only in leading whitespace: the build step for a
+re-indent (indent-normalize.mjs), whose own --verify proves the rest. Off by
+default, so a blank-line sweep's comparison stays as strict as it was.
 """
 
 import os
@@ -64,10 +69,11 @@ def non_blank(text):
 
 if __name__ == "__main__":
 
-    if len(sys.argv) != 3:
-        sys.exit("Usage: python scripts/build-output-diff.py <build-a> <build-b>")
+    if len(sys.argv) not in (3, 4) or sys.argv[3:] not in ([], ["--leading-whitespace"]):
+        sys.exit("Usage: python scripts/build-output-diff.py <build-a> <build-b> [--leading-whitespace]")
 
     root_a, root_b = sys.argv[1], sys.argv[2]
+    leading_ok = len(sys.argv) == 4
     a, b = tree(root_a), tree(root_b)
 
     one_sided = sorted(set(a) ^ set(b))
@@ -90,6 +96,8 @@ if __name__ == "__main__":
             counts["build noise only"] += 1
         elif non_blank(text_a) == non_blank(text_b):
             counts["blank lines only"] += 1
+        elif leading_ok and [l.lstrip() for l in non_blank(text_a)] == [l.lstrip() for l in non_blank(text_b)]:
+            counts["leading whitespace only"] += 1
         else:
             counts["changed"] += 1
             changed.append(key)
