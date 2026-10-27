@@ -76,9 +76,9 @@
 
         </div>
 
-        {{/* Sidebar: the five category pages, the contact box, then the community district
-             note, which stays in the template because it explains the reports' geography
-             rather than the program. Real h2s where the Key Topics sidebar uses styled
+        {{/* Sidebar: the five category pages, the community district note, then the
+             contact box. The note stays in the template because it explains the reports'
+             geography rather than the program. Real h2s where the Key Topics sidebar uses styled
              divs, so both link blocks are in the page outline */}}
         <div class="col-md-12 col-lg-4 pl-xl-4">
 
@@ -95,6 +95,10 @@
                 {{- end }}
             </ul>
 
+            <div class="mb-4">
+                {{ partial "ndhr-about-districts.html" . }}
+            </div>
+
             {{/* The address is front matter so an editor can change it in CloudCannon */}}
             {{- with .Params.contact_email }}
             <div class="card card-left-border shadow-sm mb-4">
@@ -104,8 +108,6 @@
                 </div>
             </div>
             {{- end }}
-
-            {{ partial "ndhr-about-districts.html" . }}
 
         </div>
 
