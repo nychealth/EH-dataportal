@@ -7,9 +7,9 @@ root = true
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-# 4 spaces, per CLAUDE.md. SCSS is left unset: the site's own partials are split
-# between 2 and 4, so setting either would mix styles inside a file on edit
-[*.{js,mjs,html,json,toml,py,ps1,sh}]
+# 4 spaces, per CLAUDE.md. SCSS and CSS joined 2026-10-27; partials still mixing
+# 2 and 4 wait for the structural re-indent in documents/js-formatting-pass-2026-10-19.md
+[*.{js,mjs,html,json,toml,py,ps1,sh,scss,css}]
 indent_style = space
 indent_size = 4
 
