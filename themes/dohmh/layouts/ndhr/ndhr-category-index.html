@@ -1,11 +1,20 @@
 {{- define "main" -}}
 
 {{/*
-    Per-category index — /ndhr/<category>/.
+    Per-category index — /ndhr/{category-slug}/.
 
     Rendered for the five hand-written markdown files in content/ndhr/, each of which sets
     `layout: ndhr-category-index` and an explicit `url`. Forked from
     themes/dohmh/layouts/neighborhood-reports/nr-topic-index.html.
+
+    NO ANGLE-BRACKET PLACEHOLDERS anywhere in this file, comments included — write
+    {category-slug}, not the word in < >. CloudCannon's build ran an HTML pass over this
+    layout and closed such a "tag" at the end of the file, outside every define block, and
+    Hugo then rendered only that stray closing tag: the five category pages were served
+    as 11 bytes, a closing "category" tag and nothing else. Reproduced locally by appending that
+    tag to this file [2026-10-27]. Other layouts carry the same placeholders unharmed; this
+    one differs in being named by a `layout:` key in hand-written content, which is
+    HYPOTHESIS (unverified) for why CloudCannon processes it and not them.
 
     Not indexed: data-pagefind-ignore="all" on the wrapper below, as on all four NDHR
     layouts. This page is the one that took first place for "climate" from
