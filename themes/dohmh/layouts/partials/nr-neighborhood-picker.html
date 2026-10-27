@@ -17,10 +17,9 @@
       page  the page, passed through to nr-leaflet, which reads .Params.geocode off it
 
     Every element here carries data-pagefind-ignore="all". This is a control, not content:
-    the words in it are "Choose Neighborhood", "Search for a neighborhood", the placeholder
-    and "Clear", and indexing them made all six caller pages match a search for
-    "neighborhood". There is no wrapper to hang one attribute on, so each of the four
-    top-level elements carries its own — an added wrapper <div> would land between the
+    the words in it are "Choose Neighborhood", the placeholder and "Clear", and indexing
+    them made all six caller pages match a search for "neighborhood". There is no wrapper
+    to hang one attribute on, so each of the three top-level elements carries its own — an added wrapper <div> would land between the
     caller's column and .nr-selector-map, which the stylesheet sizes.
 */}}
 
@@ -33,16 +32,15 @@
      from it. */}}
 {{/* h2 with .h3 for size: both callers put this directly under their page h1, so an h3
      jumped a level on the landing page and on all five topic indexes */}}
-<h2 class="h3" data-pagefind-ignore="all">Choose Neighborhood</h2>
+{{/* The heading is the search field's label. A placeholder alone would not do: it
+     disappears the moment the user types, leaving a filled-in box with nothing saying what
+     it holds (WCAG 3.3.2). The heading sits directly above the box and stays put, so it
+     replaced a separate "Search for a neighborhood" label that repeated it. flexdatalist
+     hides the authored input and renders its own, so nr-neighborhood-picker-js.html
+     points the generated input at this id too. */}}
+<h2 class="h3" id="nr-search-heading" data-pagefind-ignore="all">Choose Neighborhood</h2>
 
-{{/* The label is visible, not sr-only, because a placeholder is the *only* name this field
-     had and a placeholder disappears the moment the user types — leaving a filled-in box
-     with nothing saying what it holds (WCAG 3.3.2). It carries `for="flex_search"`, which
-     names the authored input; flexdatalist hides that one and renders its own, so
-     nr-neighborhood-picker-js.html points the generated input at this same label. */}}
-<label id="nr-search-label" for="flex_search" class="fs-sm mb-1" data-pagefind-ignore="all">Search for a neighborhood</label>
-
-<div class="btn-group w-100" role="group" aria-labelledby="nr-search-label" data-pagefind-ignore="all">
+<div class="btn-group w-100" role="group" aria-labelledby="nr-search-heading" data-pagefind-ignore="all">
     <input
         id="flex_search"
         type="search"

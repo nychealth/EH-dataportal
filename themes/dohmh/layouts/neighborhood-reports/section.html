@@ -19,37 +19,42 @@
     <div class="col-lg-10 mx-auto col-12">
       {{ partial "section-header.html" (dict "page" .) }}
 
-      <div class="row">
-        <div class="col-12">
+      {{/* From xl up the report chooser and the picker sit side by side, as production's
+           landing page has them, so the map starts level with the topic buttons instead of
+           under them; the footnote fills the space under the chooser. Below xl the three
+           stack in source order — chooser, picker, footnote — which keeps the map ahead of
+           the footnote on a phone. That split (footnote beside the map at one width, after
+           it at another, with no duplicated markup) is why this is a CSS grid in
+           _de-custom.scss (.nr-landing-grid) rather than Bootstrap columns. xl, not lg: at
+           1024px the buttons were 114px and the description 172px. The map's height is
+           .nr-selector-map's, shared with the topic indexes. */}}
+      <div class="nr-landing-grid">
+        <div class="nr-landing-chooser mb-4">
               {{/* h2 with .h3 for size: this sits directly under the page h1, and an h3 here
                    made the landing page's exposed sequence jump a level */}}
               <h2 class="h3">Choose report</h2>
 
-              <div class="row no-gutters">
+              <div class="row">
                 {{/* One button per data/globals/NR_topics.yml entry, in its order. The id is the
                      topic key: setIntendedDestination looks it up in nr-leaflet.html's
                      topicSlugs, and changeHomeCopy reads the "<key>-Descr" block below */}}
-                {{- range $i, $t := site.Data.globals.NR_topics }}
-                <div class="col-sm mb-2 mr-1 mb-lg-0">
-                  <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button{{ if eq $i 0 }} active{{ end }}" id="{{ $t.key }}" aria-pressed="{{ if eq $i 0 }}true{{ else }}false{{ end }}">{{ $t.menu_label }}</button>
+                <div class="col-sm-5">
+                  {{- range $i, $t := site.Data.globals.NR_topics }}
+                  <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 mb-2 nr-topic-button{{ if eq $i 0 }} active{{ end }}" id="{{ $t.key }}" aria-pressed="{{ if eq $i 0 }}true{{ else }}false{{ end }}">{{ $t.menu_label }}</button>
+                  {{- end }}
                 </div>
-                {{- end }}
 
-                <div class="col-12">
-                    <p id="descr" class="my-2">
+                <div class="col-sm-7">
+                    <p id="descr">
 
                     </p>
                 </div>
 
-            </div>
+              </div>
 
         </div>
-      </div>
 
-      {{/* Picker below the topic buttons rather than beside them, in a centred column, so
-           the map gets the width it was starved of in the old col-md-5. */}}
-      <div class="row">
-        <div class="col-md-8 mx-auto">
+        <div class="nr-landing-picker">
               {{/* Libraries before the picker, not in js_bot: the picker renders nr-leaflet,
                    whose inline script calls L.map() as the parser reaches it, and js_bot is
                    emitted after main. */}}
@@ -64,23 +69,12 @@
                    updateNeighborhoodListLinks below rewrites them as the selection changes. */}}
               {{ partial "nr-neighborhood-list" (dict "topic_slug" "") }}
         </div>
-      </div>
 
-      {{/* Footnote, so it sits under the picker rather than beside it — and in the same
-           centred column, which keeps it at a readable measure instead of the full
-           col-lg-10 width. */}}
-      <div class="row mt-6">
-        <div class="col-md-8 mx-auto fs-sm">
+        <div class="nr-landing-footnote fs-sm mt-3 mt-xl-0">
           <strong><i class="fas fa-info-circle mr-1" aria-hidden="true"></i>About these neighborhoods</strong>
           <p>There are different ways to break up NYC into neighborhoods. These Neighborhood Reports include data for 42 NYC neighborhoods &mdash; a neighborhood scheme called UHF42. <a href="../data-stories/geographies/">Read about different neighborhood schemes in our data</a>.</p>
-          <p><i class="fas fa-question-circle mr-1" aria-hidden="true"></i>If you're looking for data for <strong>Community Districts</strong> or <strong>City Council Districts</strong>, <a href="#about" data-toggle="modal" data-target="#CCDModal">use this tool to get data for overlapping neighborhoods</a>.</p>
-
-        </div>
-      </div>
-
-      <div class="row my-4">
-
-        <div class="col-md-4 col-sm-12 mb-2" id="about">
+          <p><i class="fas fa-question-circle mr-1" aria-hidden="true"></i>If you're looking for data for <strong>Community Districts</strong> or <strong>City Council Districts</strong>, you can get data for the neighborhoods that overlap them.</p>
+          <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#CCDModal"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Find overlapping neighborhoods</button>
         </div>
       </div>
 

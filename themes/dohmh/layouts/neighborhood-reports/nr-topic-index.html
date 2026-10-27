@@ -33,14 +33,20 @@
                 </ul>
             </nav>
 
-            {{ partial "nr-topic-menu" (dict "active" $contentKey "neighborhood_slug" "") }}
+            {{/* Laid out like the landing page (section.html), on the same .nr-landing-grid:
+                 from xl up the title, topic links and description sit beside the picker, so
+                 the map starts level with the title instead of under it. Below xl everything
+                 stacks: topic menu, title, description, picker. The topic links are rendered
+                 twice for that — the horizontal menu above the title below xl, and a vertical
+                 stack beside the description at xl — because the title sits between the two
+                 places and one copy cannot be in both. */}}
+            <div class="nr-landing-grid">
+                <div class="nr-landing-chooser mb-4">
 
-            {{/* Title above the picker rather than beside it, in the same centred column, so
-                 the two read as one column and the map gets the width it was starved of in
-                 the old col-md-4. The picker partial carries its own "Choose Neighborhood"
-                 heading, so there is nothing to introduce it with here. */}}
-            <div class="row mt-3">
-                <div class="col-md-8 mx-auto">
+                    <div class="d-xl-none">
+                        {{ partial "nr-topic-menu" (dict "active" $contentKey "neighborhood_slug" "") }}
+                    </div>
+
                     {{/* No data-pagefind-weight here, deliberately. Weighting this <h1> at 10.0
                          and the intro at 7.0 was tried on 2026-08-15 to lift the topic overview
                          above the 42 per-neighborhood reports that share its vocabulary, and it
@@ -49,30 +55,38 @@
                          their titles — "Climate and Health | East Harlem" — and a body weight
                          cannot outrank 42 of those. documents/nr-pagefind-parity-2026-08-15.md
                          §2f has the A/B. */}}
-                    <h1 class="h2">{{ partial "section-icon.html" $.Section }}{{ .Title }}</h1>
-                    <div class="report-description fs-lg my-2">{{ .Content }}</div>
+                    <h1 class="h2 mt-3 mt-xl-0">{{ partial "section-icon.html" $.Section }}{{ .Title }}</h1>
+
+                    <div class="row">
+                        <div class="col-xl-5 d-none d-xl-block">
+                            {{ partial "nr-topic-menu" (dict "active" $contentKey "neighborhood_slug" "" "show" "stack") }}
+                        </div>
+                        <div class="col-xl-7">
+                            <div class="report-description fs-lg my-2 mt-xl-0">{{ .Content }}</div>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
 
-            {{/* The partial already handles this page: getReportAndNeighborhood recognises a
-                 topic slug in the first path segment, so a map click navigates to
-                 <nbhd>/<topic>/ — the URL shape this branch serves. `geocode` is absent on a
-                 topic page, which is what sends nr-leaflet down its fit-the-whole-city
-                 branch with nothing highlighted. */}}
-            {{/* Libraries before the picker, not in js_bot: the picker renders nr-leaflet,
-                 whose inline script calls L.map() as the parser reaches it, and js_bot is
-                 emitted after main. */}}
-            {{- partial "lib-leaflet.html" . }}
-            {{- partial "lib-easybutton-coloricon.html" . }}
-            {{- partial "lib-uhflist.html" . }}
+                {{/* The partial already handles this page: getReportAndNeighborhood recognises a
+                     topic slug in the first path segment, so a map click navigates to
+                     <nbhd>/<topic>/ — the URL shape this branch serves. `geocode` is absent on a
+                     topic page, which is what sends nr-leaflet down its fit-the-whole-city
+                     branch with nothing highlighted. */}}
+                {{/* Libraries before the picker, not in js_bot: the picker renders nr-leaflet,
+                     whose inline script calls L.map() as the parser reaches it, and js_bot is
+                     emitted after main. Script elements generate no box, so they are not grid
+                     items and do not take a cell. */}}
+                {{- partial "lib-leaflet.html" . }}
+                {{- partial "lib-easybutton-coloricon.html" . }}
+                {{- partial "lib-uhflist.html" . }}
 
-            <div class="row mb-3">
-                <div class="col-md-8 mx-auto">
+                <div class="nr-landing-picker mb-4">
                     {{ partial "nr-neighborhood-picker" (dict "page" .) }}
+                    {{ partial "nr-neighborhood-list" (dict "topic_slug" $topicSlug) }}
                 </div>
-            </div>
 
-            {{ partial "nr-neighborhood-list" (dict "topic_slug" $topicSlug) }}
+            </div>
 
         </div>
     </div>

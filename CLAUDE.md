@@ -99,6 +99,20 @@ page; `workflow_dispatch` offers the 33-page sample instead. A failing sweep tri
 against it — green means the PR caused it, red means the data or a third party moved. The harness
 aborts `www.googletagmanager.com`, so no sweep reports page views to Google Analytics.
 
+**A docs-only push to an open PR re-runs both sweeps.** On `pull_request`, `paths-ignore` reads every
+file the PR changes, not the push, so `documents/**` in it only spares a PR that touches nothing else.
+To skip a push whose code CI has already checked, such as a ledger commit, put `[skip ci]` in its
+message. GitHub documents that this skips `push` and `pull_request` runs, that on a PR only the head
+commit's message counts, and that skipped checks stay Pending, which blocks a merge only where checks
+are required (docs.github.com, "Skipping workflow runs", read 2026-10-22). `production` requires
+none: its branch protection has no required status checks and there are no rulesets `[checked
+2026-10-22]`. It held on `029eb9fce4`, a PR head carrying the marker: 0 runs, where the push before
+it (`cf9d58fc4d`) started both. The automatic alternative, not built
+(Chris, 2026-10-22): a first job diffs `github.event.before..github.sha`, the files that one push
+changed, and the two sweep jobs run only when it touches something outside the ignored paths. It
+has to run the sweeps anyway when `before` is not an ancestor of the new head (a force-push or
+rebase) and when the PR opens, or a rewritten branch could skip its only sweep.
+
 Eleven things to know before trusting a result:
 
 - **`npm run smoke -- --all` does not work here.** PowerShell eats the `--`, so the script gets an empty `argv` and silently runs the curated list — a pass you would read as full coverage. That is why `--all` has its own npm script. Direct `node scripts/smoke-pages.mjs --all --concurrency 12` works from either shell.
@@ -136,6 +150,10 @@ Eleven things to know before trusting a result:
 - **A cache-cold first run has been seen to fail spuriously** — `documents/site-wide-audit-2026-06-27.md` §5j.
 
 `scripts/dev-server.mjs` resolves the server. It reuses one that is already answering on :8080, :8081 or :1313, starts one (`--environment dev_stage`, so **staging data**) when nothing is running, and never stops a server it didn't start. If a `hugo` process exists but answers on no prefix it knows, it aborts rather than start a second builder — set `DE_BASE_URL` in that case.
+**It matches by port, not by tree**: a server started from another worktree answers on :8080 like
+this tree's own, and every harness then checks that worktree's code and passes. Before a check run,
+read the listening process's `CommandLine` (`Get-NetTCPConnection -LocalPort 8080` → `Win32_Process`)
+or grep the served page for your change, and point `DE_BASE_URL` at the right server `[2026-10-22]`.
 
 Import `ensureDevServer()` from that module directly for one-off browser checks — it is exported
 (`scripts/dev-server.mjs:178`). **Starting a server when none is running needs no permission**;
@@ -236,6 +254,10 @@ are printed as a harness-health number and deliberately **not** baselined — th
   comparison through the months the data actually moves. A red `--check` prints one line saying
   whether it moved, with a compare URL; a baseline captured before the field existed has none, and
   that is not a mismatch.
+- **Two open PRs that each re-baseline conflict on both `_meta.json` files**, whatever pages they
+  touched. Re-baseline the second only after the first merges: merge `origin/production` into
+  it, then run `site-characterization-rebaseline.mjs --expect "<its pages>"`. `[2026-10-24: #1517
+  then #1518]`
 - **Concurrency defaults to `min(24, max(6, availableParallelism()))`, not a fixed 6.** Measured
   over 925 pages, three sweeps interleaved so a warm cache could not pass for a concurrency effect:
   12 -> 198s, **24 -> 114s**, 12 -> 199s, all three captures byte-identical across every record
@@ -332,7 +354,7 @@ on a branch mismatch.
 ### Four ways a local check silently lies
 
 - **A Hugo build's exit code is a fact about the tree *and* its `data_branch`, not the tree alone.** Each environment pins its own branch, so the same commit can build clean under one and abort under another when EHDP-data filenames differ. Name the environment in any claim that a branch does or does not build.
-- **Open a fresh browser tab after rebuilding.** JS and CSS are fingerprinted and cached hard; an existing tab can serve the previous build's assets. A server started *before* an edit to a shared template can also keep serving stale pages. The fingerprint is also the proof: read the served asset filename out of the page and confirm it changed between your before and after reads — an unchanged one means you measured the old file.
+- **Open a fresh browser tab after rebuilding.** JS and CSS are fingerprinted and cached hard; an existing tab can serve the previous build's assets. A server started *before* an edit to a shared template can also keep serving stale pages. The fingerprint is also the proof: read the served asset filename out of the page and confirm it changed between your before and after reads — an unchanged one means you measured the old file. A template edit has no fingerprint, so the proof is the edit itself: before measuring, fetch the page with `cache: 'no-store'` and confirm it contains a string only the edit introduced — a navigation made right after an edit can load the page from before the rebuild `[2026-10-26]`.
 - **Never run two Hugo builders against this tree at once** — a static build beside a running server, or two servers on different ports, even against different `--environment`s. They all write the same on-disk fingerprint cache (`resources/_gen/`), which is not namespaced by environment, so one can leave another pointing at asset paths that no longer exist. `scripts/dev-server.mjs` only guards the ports it probes, so a server started outside it slips past. The tell is every fingerprinted asset 404ing under the *other* environment's path prefix; the page dies with `$ is not defined` and reads like a broken code change, so check the served asset URLs before suspecting your diff. Ask before restarting a server you didn't start.
 - **Counting over generated HTML? Define the real-page set first, and pick a marker no `static/` file can also carry.** A `prod_prod` build writes 1397 HTML files, of which **927** are pages rendered through `head.html`; 443 are Hugo alias-redirect shells carrying their own `noindex` and `lang="en"`, and the rest are `static/` passthrough. A tree-wide count scores those 470 as failures. **`head.html`'s viewport meta is not a safe marker** — `static/data-stories/cold/source/index.html` contains the identical tag, so it returns 928, and a loose `name="viewport"` match returns 933 by picking up five more `static/` files with their own variants. Use `data-pagefind-meta="title:`, also emitted unconditionally by `head.html`: it returns 927 and agrees with a same-run `<script type="application/ld+json">` count on all 1397 files `[verified 2026-08-21: one Python walk, 0 disagreements]`. Earlier notes citing 933 real pages were taken with the loose match.
 

@@ -6,6 +6,12 @@
     Call with:
       active            — the content_yml key of the current topic, for the .active class
       neighborhood_slug — the neighborhood in the path, or "" on a topic index page
+      show              — optional: "dropdown" or "buttons" renders only that copy; omitted
+                          renders both. The report page splits them, because its phone-width
+                          dropdown belongs above the map, in the other column from the buttons.
+                          "stack" renders the buttons one per line instead, for a caller that
+                          shows them in a narrow column (the topic index at xl); it has no
+                          responsive classes of its own, so the caller decides where it shows.
 
     When a neighborhood is known the hrefs are real <nbhd>/<topic>/ pages, so a click keeps
     the neighborhood without the sessionStorage hand-off. The .nr-topic-link class stays
@@ -14,6 +20,7 @@
 
 {{- $active := .active -}}
 {{- $slug := .neighborhood_slug -}}
+{{- $show := .show | default "both" -}}
 
 {{/* data-pagefind-ignore="all": these five labels are the five NR topic words, and this
      partial puts all of them on all 258 NR pages. Indexing them made every report page a
@@ -22,7 +29,49 @@
      climate page all pushed off it. The active topic is already carried by the page title
      and the report header, so nothing findable is lost. Same navigation-chrome argument as
      nr-neighborhood-list and nr-neighborhood-picker. */}}
-<div class="row no-gutters d-print-none mb-2" data-pagefind-ignore="all">
+{{/* Below md the five stacked buttons ran ~370px, pushing the report under several screens
+     of chrome, so phones get the same links as a dropdown instead. md, not sm, to match the
+     report page's own mobile title (d-md-none). Both copies are real links carrying
+     .nr-topic-link, so url.js rewrites the dropdown's hrefs along with the buttons'. */}}
+{{- if or (eq $show "both") (eq $show "dropdown") }}
+<div class="dropdown nr-topic-dropdown d-md-none d-print-none my-2" data-pagefind-ignore="all">
+
+    {{- $activeLabel := "Choose a report" -}}
+    {{- range site.Data.globals.NR_topics -}}
+        {{- if eq .key $active }}{{ $activeLabel = .menu_label }}{{ end -}}
+    {{- end }}
+
+    <button class="btn btn-sm btn-block btn-outline-primary btn-light-green-bg py-2 dropdown-toggle"
+            type="button"
+            id="nr-topic-dropdown"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false">
+        <span class="sr-only">Report: </span>{{ $activeLabel }}
+    </button>
+
+    <div class="dropdown-menu w-100" aria-labelledby="nr-topic-dropdown">
+        {{- range site.Data.globals.NR_topics -}}
+
+            {{- $href := cond (eq $slug "")
+                (printf "neighborhood-reports/%s/" .slug)
+                (printf "neighborhood-reports/%s/%s/" $slug .slug) }}
+
+            {{/* Bold rather than .active: the theme compiles .dropdown-item.active to $info
+                 purple under dark body text, which fails contrast. */}}
+            <a class="dropdown-item nr-topic-link{{ if eq .key $active }} font-weight-bold{{ end }}"
+               href="{{ relURL $href }}"{{ if eq .key $active }} aria-current="page"{{ end }}>
+                {{ .menu_label }}
+            </a>
+
+        {{- end }}
+    </div>
+
+</div>
+{{- end }}
+
+{{- if or (eq $show "both") (eq $show "buttons") }}
+<div class="row no-gutters d-none d-md-flex d-print-none mb-2" data-pagefind-ignore="all">
 
     {{- range site.Data.globals.NR_topics -}}
 
@@ -40,3 +89,23 @@
     {{- end -}}
 
 </div>
+{{- end }}
+
+{{- if eq $show "stack" }}
+<div class="d-print-none" data-pagefind-ignore="all">
+
+    {{- range site.Data.globals.NR_topics -}}
+
+        {{- $href := cond (eq $slug "")
+            (printf "neighborhood-reports/%s/" .slug)
+            (printf "neighborhood-reports/%s/%s/" $slug .slug) }}
+
+        <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 mb-2 nr-topic-link{{ if eq .key $active }} active{{ end }}"
+           href="{{ relURL $href }}"{{ if eq .key $active }} aria-current="page"{{ end }}>
+            {{ .menu_label }}
+        </a>
+
+    {{- end }}
+
+</div>
+{{- end }}
