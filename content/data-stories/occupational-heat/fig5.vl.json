@@ -1,0 +1,204 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart of the percent change in workplace injury and illness risk compared with a 70°F day, by the day's maximum temperature from 65°F to 95°F, for 11 occupations. Six are highlighted: correctional officers (+45% at 95°F), taxi drivers (+32%), construction workers (+28%), warehouse stockers and order fillers (+26%), janitors and building cleaners (+15%) and restaurant cooks (+12%). The other five are waiters and waitresses (+31%), couriers and messengers (+27%), heavy truck drivers (+25%), transit bus drivers (+14%) and hotel and housekeeping cleaners (+12%).",
+    "width": "container",
+    "height": 400,
+    "autosize": {"type": "fit-x", "contains": "padding"},
+    "data": {
+        "url": "fig5-occupations.csv",
+        "format": {
+            "type": "csv",
+            "parse": {
+                "n_claims": "number",
+                "temperature_F": "number",
+                "percent_change": "number",
+                "percent_change_95ci_lower": "number",
+                "percent_change_95ci_upper": "number"
+            }
+        }
+    },
+    "transform": [
+        {"calculate": "datum.highlighted_in_figure === 'TRUE'", "as": "highlight"},
+        {
+            "calculate": "format(datum.percent_change, '+.1f') + '% (95% CI ' + format(datum.percent_change_95ci_lower, '+.1f') + '% to ' + format(datum.percent_change_95ci_upper, '+.1f') + '%)'",
+            "as": "tt_change"
+        },
+        {"calculate": "datum.temperature_F + '°F'", "as": "tt_temp"}
+    ],
+    "encoding": {
+        "x": {
+            "field": "temperature_F",
+            "type": "quantitative",
+            "title": "Hottest temperature of the day",
+            "scale": {"domain": [65, 95], "nice": false},
+            "axis": {
+                "values": [65, 70, 75, 80, 85, 90, 95],
+                "labelExpr": "datum.value + '°'",
+                "grid": false
+            }
+        },
+        "y": {
+            "field": "percent_change",
+            "type": "quantitative",
+            "title": "% change in injury and illness risk vs. 70°F",
+            "scale": {"domain": [-10, 50], "nice": false},
+            "axis": {
+                "values": [-10, 0, 10, 20, 30, 40, 50],
+                "labelExpr": "datum.value > 0 ? '+' + datum.value + '%' : datum.value + '%'"
+            }
+        }
+    },
+    "layer": [
+        {
+            "description": "The no-change baseline",
+            "mark": {"type": "rule", "color": "#8a8a8a", "strokeWidth": 1},
+            "encoding": {"x": null, "y": {"datum": 0}}
+        },
+        {
+            "description": "95% confidence interval for the hovered occupation only; clipped at the axis because some upper bounds pass +70%",
+            "transform": [{"filter": {"or": [{"param": "hover", "empty": false}, {"param": "label_hover", "empty": false}]}}],
+            "mark": {"type": "area", "opacity": 0.18, "clip": true, "interpolate": "monotone"},
+            "encoding": {
+                "y": {"field": "percent_change_95ci_lower", "type": "quantitative"},
+                "y2": {"field": "percent_change_95ci_upper"},
+                "color": {
+                    "condition": {"test": "datum.highlight", "value": "#c2410c"},
+                    "value": "#6b6b6b"
+                }
+            }
+        },
+        {
+            "description": "Occupations not highlighted, drawn first so the highlighted ones sit on top. An occupation is hovered through its line (hover) or its label (label_hover); the 'and' test is true when neither is set or this occupation matches the one that is.",
+            "transform": [{"filter": "!datum.highlight"}],
+            "mark": {"type": "line", "color": "#8c8c8c", "interpolate": "monotone"},
+            "encoding": {
+                "detail": {"field": "occupation"},
+                "opacity": {"condition": {"test": {"and": [{"param": "hover"}, {"param": "label_hover"}]}, "value": 1}, "value": 0.3},
+                "strokeWidth": {"condition": {"test": {"or": [{"param": "hover", "empty": false}, {"param": "label_hover", "empty": false}]}, "value": 3}, "value": 1.5}
+            }
+        },
+        {
+            "description": "Highlighted occupations",
+            "transform": [{"filter": "datum.highlight"}],
+            "mark": {"type": "line", "color": "#c2410c", "interpolate": "monotone"},
+            "encoding": {
+                "detail": {"field": "occupation"},
+                "opacity": {"condition": {"test": {"and": [{"param": "hover"}, {"param": "label_hover"}]}, "value": 1}, "value": 0.3},
+                "strokeWidth": {"condition": {"test": {"or": [{"param": "hover", "empty": false}, {"param": "label_hover", "empty": false}]}, "value": 3}, "value": 2}
+            }
+        },
+        {
+            "description": "Direct labels at 95°F. label_y spaces the labels apart in data units; re-check them if the data changes.",
+            "transform": [
+                {"filter": "datum.temperature_F === 95"},
+                {
+                    "lookup": "occupation",
+                    "from": {
+                        "data": {
+                            "values": [
+                                {"occupation": "Correctional officers", "label_y": 45.1},
+                                {"occupation": "Taxi drivers", "label_y": 33.5},
+                                {"occupation": "Waiters and waitresses", "label_y": 31.4},
+                                {"occupation": "Construction workers", "label_y": 29.3},
+                                {"occupation": "Couriers and messengers", "label_y": 27.2},
+                                {"occupation": "Warehouse stockers and order fillers", "label_y": 25.1},
+                                {"occupation": "Heavy truck drivers", "label_y": 23.0},
+                                {"occupation": "Janitors and building cleaners", "label_y": 15.9},
+                                {"occupation": "Bus drivers (transit)", "label_y": 13.8},
+                                {"occupation": "Restaurant cooks", "label_y": 11.7},
+                                {"occupation": "Hotel and housekeeping cleaners", "label_y": 9.7}
+                            ]
+                        },
+                        "key": "occupation",
+                        "fields": ["label_y"]
+                    }
+                }
+            ],
+            "layer": [
+                {
+                    "description": "Hover target behind each label: a transparent band 2.1 data units tall (the tightest label spacing), so adjacent labels' targets meet with no gap for the pointer to fall through",
+                    "transform": [
+                        {"calculate": "datum.label_y - 1.05", "as": "hit_y"},
+                        {"calculate": "datum.label_y + 1.05", "as": "hit_y2"}
+                    ],
+                    "params": [
+                        {
+                            "name": "label_hover",
+                            "select": {"type": "point", "fields": ["occupation"], "on": "pointerover", "clear": "pointerout"}
+                        }
+                    ],
+                    "mark": {"type": "rect", "fill": "transparent", "cursor": "pointer", "xOffset": 4, "x2Offset": 210},
+                    "encoding": {
+                        "x2": {"datum": 95},
+                        "y": {"field": "hit_y", "type": "quantitative"},
+                        "y2": {"field": "hit_y2"},
+                        "tooltip": [
+                            {"field": "occupation", "title": "title"},
+                            {"field": "tt_temp", "title": "Hottest temperature"},
+                            {"field": "tt_change", "title": "Change vs. 70°F"},
+                            {"field": "n_claims", "title": "Claims analyzed", "format": ","}
+                        ]
+                    }
+                },
+                {
+                    "mark": {"type": "rule", "color": "#c8c8c8", "strokeWidth": 1, "xOffset": 4, "x2Offset": 16},
+                    "encoding": {
+                        "x2": {"datum": 95},
+                        "y2": {"field": "label_y"}
+                    }
+                },
+                {
+                    "transform": [{"filter": "datum.highlight"}],
+                    "mark": {"type": "text", "align": "left", "baseline": "middle", "dx": 20, "fontSize": 11, "fontWeight": "bold", "color": "#1f1f1f", "cursor": "pointer"},
+                    "encoding": {
+                        "y": {"field": "label_y", "type": "quantitative"},
+                        "text": {"field": "occupation"},
+                        "opacity": {"condition": {"test": {"and": [{"param": "hover"}, {"param": "label_hover"}]}, "value": 1}, "value": 0.35}
+                    }
+                },
+                {
+                    "transform": [{"filter": "!datum.highlight"}],
+                    "mark": {"type": "text", "align": "left", "baseline": "middle", "dx": 20, "fontSize": 11, "color": "#6b6b6b", "cursor": "pointer"},
+                    "encoding": {
+                        "y": {"field": "label_y", "type": "quantitative"},
+                        "text": {"field": "occupation"},
+                        "opacity": {"condition": {"test": {"and": [{"param": "hover"}, {"param": "label_hover"}]}, "value": 1}, "value": 0.35}
+                    }
+                }
+            ]
+        },
+        {
+            "description": "Hover target: invisible points, nearest to the pointer, select their occupation",
+            "params": [
+                {
+                    "name": "hover",
+                    "select": {"type": "point", "fields": ["occupation"], "nearest": true, "on": "pointerover", "clear": "pointerout"}
+                }
+            ],
+            "mark": {"type": "point", "opacity": 0, "size": 30},
+            "encoding": {
+                "tooltip": [
+                    {"field": "occupation", "title": "title"},
+                    {"field": "tt_temp", "title": "Hottest temperature"},
+                    {"field": "tt_change", "title": "Change vs. 70°F"},
+                    {"field": "n_claims", "title": "Claims analyzed", "format": ","}
+                ]
+            }
+        }
+    ],
+    "config": {
+        "font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+        "view": {"stroke": null},
+        "axis": {
+            "labelFontSize": 12,
+            "labelColor": "#555555",
+            "titleFontSize": 12,
+            "titleFontWeight": "normal",
+            "titleColor": "#333333",
+            "gridColor": "#e6e6e6",
+            "domain": false,
+            "ticks": false,
+            "labelPadding": 6
+        }
+    }
+}

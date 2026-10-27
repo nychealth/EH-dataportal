@@ -1,0 +1,182 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart of the percent change in workplace injury and illness risk compared with a 70°F day, by the hottest temperature of the day from 65°F to 100°F. Three lines: industries with common outdoor or indoor heat exposure, all industries, and all other industries. On a 95°F day, risk is about 14% higher in industries with common heat exposure, 8% higher across all industries, and 4% higher in all other industries.",
+    "width": "container",
+    "height": 340,
+    "autosize": {"type": "fit-x", "contains": "padding"},
+    "data": {
+        "url": "fig1-dose-response.csv",
+        "format": {
+            "type": "csv",
+            "parse": {
+                "temperature_F": "number",
+                "All industries": "number",
+                "Heat-exposed industries": "number",
+                "All other industries": "number"
+            }
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "temperature_F",
+            "type": "quantitative",
+            "title": "Hottest temperature of the day",
+            "scale": {"domain": [65, 100], "nice": false},
+            "axis": {
+                "values": [65, 70, 75, 80, 85, 90, 95, 100],
+                "labelExpr": "datum.value + '°'",
+                "grid": false
+            }
+        }
+    },
+    "layer": [
+        {
+            "description": "The no-change baseline",
+            "mark": {"type": "rule", "color": "#8a8a8a", "strokeWidth": 1},
+            "encoding": {"x": null, "y": {"datum": 0}}
+        },
+        {
+            "description": "Marker for the 95°F values called out in the text",
+            "mark": {"type": "rule", "color": "#9a9a9a", "strokeWidth": 1, "strokeDash": [3, 3]},
+            "encoding": {"x": {"datum": 95}, "y": {"datum": 0}, "y2": {"datum": 13.63}}
+        },
+        {
+            "description": "One line per industry group",
+            "transform": [
+                {"fold": ["Heat-exposed industries", "All industries", "All other industries"], "as": ["series", "pct"]},
+                {
+                    "calculate": "datum.series === 'Heat-exposed industries' ? 'Industries with common heat exposure' : datum.series",
+                    "as": "group"
+                }
+            ],
+            "mark": {"type": "line", "strokeWidth": 2.5, "interpolate": "monotone"},
+            "encoding": {
+                "y": {
+                    "field": "pct",
+                    "type": "quantitative",
+                    "title": "% change in injury and illness risk vs. 70°F",
+                    "scale": {"domain": [-3, 18], "nice": false},
+                    "axis": {
+                        "values": [0, 5, 10, 15],
+                        "labelExpr": "datum.value > 0 ? '+' + datum.value + '%' : datum.value + '%'"
+                    }
+                },
+                "color": {
+                    "field": "group",
+                    "type": "nominal",
+                    "title": null,
+                    "sort": ["Industries with common heat exposure", "All industries", "All other industries"],
+                    "scale": {
+                        "domain": ["Industries with common heat exposure", "All industries", "All other industries"],
+                        "range": ["#d95f02", "#4d4d4d", "#1f78b4"]
+                    },
+                    "legend": {
+                        "orient": "top",
+                        "direction": "vertical",
+                        "symbolType": "stroke",
+                        "symbolStrokeWidth": 3,
+                        "labelLimit": 0
+                    }
+                }
+            }
+        },
+        {
+            "description": "Callouts at 95°F. The bottom line's label sits below it, where the line is flat enough to collide.",
+            "transform": [
+                {"filter": "datum.temperature_F === 95"},
+                {"fold": ["Heat-exposed industries", "All industries", "All other industries"], "as": ["series", "pct"]},
+                {
+                    "calculate": "datum.series === 'Heat-exposed industries' ? 'Industries with common heat exposure' : datum.series",
+                    "as": "group"
+                },
+                {"calculate": "'+' + format(datum.pct, '.0f') + '%'", "as": "pct_label"}
+            ],
+            "encoding": {"y": {"field": "pct", "type": "quantitative"}},
+            "layer": [
+                {
+                    "mark": {"type": "point", "filled": true, "size": 60, "opacity": 1, "stroke": "#ffffff", "strokeWidth": 1.5},
+                    "encoding": {"color": {"field": "group", "type": "nominal"}}
+                },
+                {
+                    "transform": [{"filter": "datum.series !== 'All other industries'"}],
+                    "mark": {"type": "text", "align": "right", "dx": -8, "dy": -10, "fontSize": 13, "fontWeight": "bold", "color": "#222222"},
+                    "encoding": {"text": {"field": "pct_label"}}
+                },
+                {
+                    "transform": [{"filter": "datum.series === 'All other industries'"}],
+                    "mark": {"type": "text", "align": "right", "dx": -8, "dy": 12, "fontSize": 13, "fontWeight": "bold", "color": "#222222"},
+                    "encoding": {"text": {"field": "pct_label"}}
+                }
+            ]
+        },
+        {
+            "description": "The 70°F comparison point",
+            "data": {"values": [{"temperature_F": 70, "pct": 0}]},
+            "encoding": {"y": {"field": "pct", "type": "quantitative"}},
+            "layer": [
+                {"mark": {"type": "point", "filled": true, "fill": "#ffffff", "stroke": "#4d4d4d", "strokeWidth": 1.5, "size": 50, "opacity": 1}},
+                {
+                    "mark": {"type": "text", "align": "left", "baseline": "top", "dx": -6, "dy": 10, "fontSize": 11, "color": "#555555"},
+                    "encoding": {"text": {"value": ["A 70°F day", "(the comparison point)"]}}
+                }
+            ]
+        },
+        {
+            "description": "Hover crosshair: points on each line at the hovered temperature",
+            "transform": [
+                {"filter": {"param": "hover", "empty": false}},
+                {"fold": ["Heat-exposed industries", "All industries", "All other industries"], "as": ["series", "pct"]},
+                {
+                    "calculate": "datum.series === 'Heat-exposed industries' ? 'Industries with common heat exposure' : datum.series",
+                    "as": "group"
+                }
+            ],
+            "mark": {"type": "point", "filled": true, "size": 45, "opacity": 1, "stroke": "#ffffff", "strokeWidth": 1.5},
+            "encoding": {
+                "y": {"field": "pct", "type": "quantitative"},
+                "color": {"field": "group", "type": "nominal"}
+            }
+        },
+        {
+            "description": "Hover crosshair: rule and tooltip, nearest temperature to the pointer",
+            "transform": [
+                {"calculate": "datum.temperature_F + '°F day'", "as": "tt_title"},
+                {"calculate": "format(datum['Heat-exposed industries'], '+.1f') + '%'", "as": "tt_heat"},
+                {"calculate": "format(datum['All industries'], '+.1f') + '%'", "as": "tt_all"},
+                {"calculate": "format(datum['All other industries'], '+.1f') + '%'", "as": "tt_other"}
+            ],
+            "params": [
+                {
+                    "name": "hover",
+                    "select": {"type": "point", "fields": ["temperature_F"], "nearest": true, "on": "pointerover", "clear": "pointerout"}
+                }
+            ],
+            "mark": {"type": "rule", "color": "#555555", "strokeWidth": 1},
+            "encoding": {
+                "opacity": {"condition": {"param": "hover", "empty": false, "value": 0.6}, "value": 0},
+                "tooltip": [
+                    {"field": "tt_title", "title": "title"},
+                    {"field": "tt_heat", "title": "Industries with common heat exposure"},
+                    {"field": "tt_all", "title": "All industries"},
+                    {"field": "tt_other", "title": "All other industries"}
+                ]
+            }
+        }
+    ],
+    "config": {
+        "font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+        "view": {"stroke": null},
+        "axis": {
+            "labelFontSize": 12,
+            "labelColor": "#555555",
+            "titleFontSize": 12,
+            "titleFontWeight": "normal",
+            "titleColor": "#333333",
+            "gridColor": "#e6e6e6",
+            "domain": false,
+            "ticks": false,
+            "labelPadding": 6
+        },
+        "legend": {"labelFontSize": 12, "labelColor": "#333333", "symbolSize": 200}
+    }
+}

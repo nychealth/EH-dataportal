@@ -1,0 +1,124 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Table-style heatmap of the estimated increase in workplace injury and illness risk compared with a 70°F day, for 20 NYC industry sectors on 80°F, 90°F and 95°F days. Construction shows the largest increases (+13% at 80°F, +22% at 90°F and 95°F). Schools and education show no observed increase at any temperature, and four sectors have too few claims to estimate.",
+    "width": "container",
+    "height": {"step": 40},
+    "params": [
+        {
+            "name": "narrow",
+            "description": "True in a phone-width container. Reading the width signal makes this re-evaluate on resize; the value itself comes from the container, so it cannot feed back into the layout.",
+            "expr": "width >= 0 && containerSize()[0] < 500"
+        }
+    ],
+    "autosize": {"type": "fit-x", "contains": "padding"},
+    "data": {
+        "url": "fig4-industry.csv",
+        "format": {
+            "type": "csv",
+            "parse": {"n_claims": "number", "temperature_F": "number", "percent_change": "number"}
+        }
+    },
+    "transform": [
+        {"calculate": "datum.temperature_F + '°F'", "as": "temp_label"},
+        {"calculate": "datum.figure_display === 'Increase'", "as": "is_increase"},
+        {"calculate": "isValid(datum.percent_change) ? datum.percent_change : 0", "as": "fill_value"},
+        {
+            "calculate": "datum.figure_display === 'Increase' ? '+' + datum.percent_change + '%' : datum.figure_display",
+            "as": "change_label"
+        },
+        {
+            "calculate": "datum.figure_display === 'No observed increase' ? ['No observed', 'increase'] : ['Too few claims', 'to estimate']",
+            "as": "status_lines"
+        },
+        {
+            "calculate": "datum.figure_display === 'No observed increase' ? ['No', 'observed', 'increase'] : ['Too few', 'claims to', 'estimate']",
+            "as": "status_lines_narrow"
+        }
+    ],
+    "encoding": {
+        "x": {
+            "field": "temp_label",
+            "type": "ordinal",
+            "sort": ["80°F", "90°F", "95°F"],
+            "title": null,
+            "scale": {"paddingInner": 0, "paddingOuter": 0},
+            "axis": {"orient": "top", "labelAngle": 0, "labelFontSize": 13, "labelFontWeight": "bold", "labelColor": "#222222", "labelPadding": 8}
+        },
+        "y": {
+            "field": "industry_label",
+            "type": "nominal",
+            "sort": null,
+            "title": null,
+            "scale": {"paddingInner": 0, "paddingOuter": 0},
+            "axis": {
+                "labelLimit": 240,
+                "labelFontSize": {"expr": "narrow ? 10 : 11"},
+                "labelColor": "#333333",
+                "labelPadding": 8,
+                "labelLineHeight": 12,
+                "labelExpr": "split(replace(replace(datum.label, regexp('(.{1,' + (narrow ? 26 : 36) + '})(\\\\s+|$)', 'g'), '$1|'), regexp('\\\\|$'), ''), '|')"
+            }
+        },
+        "tooltip": [
+            {"field": "industry_label", "title": "title"},
+            {"field": "temp_label", "title": "Temperature"},
+            {"field": "change_label", "title": "Change vs. 70°F"},
+            {"field": "naics_sector_code", "title": "NAICS sector"},
+            {"field": "n_claims", "title": "Claims analyzed", "format": ","},
+            {"field": "industry_sector_overview", "title": "About this sector"}
+        ]
+    },
+    "layer": [
+        {
+            "description": "Cells: orange scale for estimated increases, grays for the two cases with no estimate to show",
+            "mark": {"type": "rect", "stroke": "#ffffff", "strokeWidth": 2},
+            "encoding": {
+                "color": {
+                    "condition": [
+                        {"test": "datum.figure_display === 'No observed increase'", "value": "#ececec"},
+                        {"test": "datum.figure_display === 'Too few claims to estimate'", "value": "#c4c4c4"}
+                    ],
+                    "field": "fill_value",
+                    "type": "quantitative",
+                    "title": "Increase in risk vs. 70°F",
+                    "scale": {"domain": [0, 25], "range": ["#fff1c9", "#dd5c06"]},
+                    "legend": {
+                        "orient": "top",
+                        "direction": "horizontal",
+                        "gradientLength": 150,
+                        "values": [0, 5, 10, 15, 20, 25],
+                        "labelExpr": "datum.value > 0 ? '+' + datum.value + '%' : '0%'",
+                        "titleFontSize": 12,
+                        "titleFontWeight": "bold",
+                        "titleColor": "#222222",
+                        "labelColor": "#555555",
+                        "titleLimit": 0
+                    }
+                }
+            }
+        },
+        {
+            "description": "Estimated increase, written in the cell",
+            "transform": [{"filter": "datum.is_increase"}],
+            "mark": {"type": "text", "fontSize": 13, "fontWeight": "bold", "color": "#1a1a1a"},
+            "encoding": {"text": {"field": "change_label"}}
+        },
+        {
+            "description": "Status text for cells without an estimate to show, on two lines where the cells are wide",
+            "transform": [{"filter": "!datum.is_increase"}],
+            "mark": {"type": "text", "fontSize": 9, "lineHeight": 11, "baseline": "middle", "color": "#4a4a4a", "dy": -5, "opacity": {"expr": "narrow ? 0 : 1"}},
+            "encoding": {"text": {"field": "status_lines"}}
+        },
+        {
+            "description": "The same status text on three lines, for narrow cells",
+            "transform": [{"filter": "!datum.is_increase"}],
+            "mark": {"type": "text", "fontSize": 9, "lineHeight": 10, "baseline": "middle", "color": "#4a4a4a", "dy": -10, "opacity": {"expr": "narrow ? 1 : 0"}},
+            "encoding": {"text": {"field": "status_lines_narrow"}}
+        }
+    ],
+    "config": {
+        "font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+        "view": {"stroke": null},
+        "axis": {"domain": false, "ticks": false, "grid": false}
+    }
+}
