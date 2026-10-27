@@ -12,42 +12,42 @@
 
 (() => {
 
-	function activateLazyEmbeds(pane) {
+    function activateLazyEmbeds(pane) {
 
-		pane.querySelectorAll("[data-lazy-src]").forEach((iframe) => {
-			iframe.src = iframe.dataset.lazySrc;
-			iframe.removeAttribute("data-lazy-src");
-		});
+        pane.querySelectorAll("[data-lazy-src]").forEach((iframe) => {
+            iframe.src = iframe.dataset.lazySrc;
+            iframe.removeAttribute("data-lazy-src");
+        });
 
-		pane.querySelectorAll("[data-lazy-embed-src]").forEach((container) => {
+        pane.querySelectorAll("[data-lazy-embed-src]").forEach((container) => {
 
-			const script = document.createElement("script");
+            const script = document.createElement("script");
 
-			script.src = container.dataset.lazyEmbedSrc;
-			script.defer = true;
-			script.dataset.target = `#${container.id}`;
-			container.removeAttribute("data-lazy-embed-src");
-			container.appendChild(script);
+            script.src = container.dataset.lazyEmbedSrc;
+            script.defer = true;
+            script.dataset.target = `#${container.id}`;
+            container.removeAttribute("data-lazy-embed-src");
+            container.appendChild(script);
 
-		});
-	}
+        });
+    }
 
-	// shown.bs.tab (not show.bs.tab, and not a plain click listener) fires only
-	// after Bootstrap's fade transition finishes and the pane is actually
-	// display:block — activating on click or on show.bs.tab sets `src` while the
-	// pane is still hidden, reproducing the exact bug this file exists to avoid.
-	// It's a jQuery-custom event Bootstrap's own tab.js triggers, so it's bound
-	// through jQuery (already a hard dependency of data-toggle="tab" itself)
-	// rather than a native document listener, which isn't guaranteed to see it.
+    // shown.bs.tab (not show.bs.tab, and not a plain click listener) fires only
+    // after Bootstrap's fade transition finishes and the pane is actually
+    // display:block — activating on click or on show.bs.tab sets `src` while the
+    // pane is still hidden, reproducing the exact bug this file exists to avoid.
+    // It's a jQuery-custom event Bootstrap's own tab.js triggers, so it's bound
+    // through jQuery (already a hard dependency of data-toggle="tab" itself)
+    // rather than a native document listener, which isn't guaranteed to see it.
 
-	$(document).on("shown.bs.tab", '[data-toggle="tab"]', function () {
+    $(document).on("shown.bs.tab", '[data-toggle="tab"]', function () {
 
-		const targetSelector = this.getAttribute("href") || this.dataset.target;
-		const pane = targetSelector ? document.querySelector(targetSelector) : null;
+        const targetSelector = this.getAttribute("href") || this.dataset.target;
+        const pane = targetSelector ? document.querySelector(targetSelector) : null;
 
-		if (!pane) return;
+        if (!pane) return;
 
-		activateLazyEmbeds(pane);
+        activateLazyEmbeds(pane);
 
-	});
+    });
 })();
