@@ -227,23 +227,22 @@ $comp-bad-text: #7a5c00;
 }
 
 // The 59-district list on the NDHR category indexes (ndhr/ndhr-category-index.html), in
-// two columns from md up. The first heading's top margin would otherwise push column one
-// below column two; break-after keeps a borough heading with its first districts
+// three columns from md up, never splitting a borough across a column break. Every
+// borough heading loses its top margin so each column starts level; the space between
+// two boroughs sharing a column comes from the block's bottom padding instead. Padding,
+// not margin, because a margin at a column break is truncated unpredictably
 @include media-breakpoint-up(md) {
   .ndhr-district-columns {
-    column-count: 2;
+    column-count: 3;
     column-gap: 2rem;
 
-    h3:first-child {
-      margin-top: 0 !important;
+    .ndhr-borough {
+      break-inside: avoid;
+      padding-bottom: 1rem;
     }
 
     h3 {
-      break-after: avoid;
-    }
-
-    li {
-      break-inside: avoid;
+      margin-top: 0 !important;
     }
   }
 }

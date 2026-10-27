@@ -113,23 +113,25 @@
                          for every district name. The districts are findable through their own
                          index pages, which are indexed.
 
-                         Two columns from md up, on reviewer request (2026-10-27), to halve the
+                         Three columns from md up, on reviewer request (2026-10-27), to cut the
                          scroll. .ndhr-district-columns is CSS multi-column, which flows the
-                         boroughs top-to-bottom then into the second column, so reading order
-                         and DOM order stay the same, and a borough may continue across the
-                         break with its heading kept on the first part. */}}
+                         boroughs top-to-bottom then into the next column, so reading order and
+                         DOM order stay the same. Each borough is one .ndhr-borough block that
+                         the column break may not split, also on request — so the columns
+                         balance by whole boroughs and are uneven by design. */}}
                     <div class="ndhr-district-columns mt-3" data-pagefind-ignore="all">
                         {{- $lastBorough := "" -}}
                         {{- range site.Data.globals.cdlist -}}
                             {{- if ne .borough $lastBorough -}}
-                                {{- if ne $lastBorough "" }}</ul>{{ end -}}
+                                {{- if ne $lastBorough "" }}</ul></div>{{ end -}}
+                                <div class="ndhr-borough">
                                 <h3 class="h6 mt-3">{{ .borough }}</h3>
                                 <ul class="list-unstyled fs-sm">
                                 {{- $lastBorough = .borough -}}
                             {{- end -}}
                             <li><a href="{{ relURL (printf "ndhr/%s/%s/" .page_name $categorySlug) }}">{{ .CD_name }}</a></li>
                         {{- end -}}
-                        </ul>
+                        </ul></div>
                     </div>
 
                     <div class="mt-4 pt-3 border-top">
