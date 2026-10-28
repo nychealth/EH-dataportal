@@ -11,7 +11,9 @@ Shipped output: the review found no behaviour change in built JS, inline scripts
 one. Two tasks change what the site renders: Task 3 (latent, no output change today) and Task 13
 (heatstory's markup).
 
-## Open decisions (Chris)
+## Decisions (Chris)
+
+All four answered 2026-10-28: Chris took each recommendation ("go").
 
 | # | Question | Recommendation | Blocks |
 |---|---|---|---|
@@ -24,28 +26,28 @@ one. Two tasks change what the site renders: Task 3 (latent, no output change to
 
 | Task | Commit | Status | Proof that ran |
 |---|---|---|---|
-| 1 | — | open | — |
-| 2 | — | open | — |
-| 3 | — | open | — |
-| 4 | — | open | — |
-| 5 | — | open | — |
-| 6 | — | open | — |
-| 7 | — | open | — |
-| 8 | — | open | — |
-| 9 | — | open | — |
-| 10 | — | open | — |
-| 11 | — | open | — |
-| 12 | — | open | — |
-| 13 | — | open | — |
-| 14 | — | open | — |
-| 15 | — | open | — |
+| 1 | `6a710ef4aa` | **DONE 2026-10-28** | `[2026-10-28: new fixtures fail on the old mask — js-semicolons wrote "return; {{ .Params.x \| jsonify }}", and the verifier, once its control was wrapped in a function (a bare top-level return is a parse error, so its first run returned null on both masks and proved nothing), called the pair equal — and pass on the new one; three sweep tools re-run, 0 of 198 changed, only render-table.html:69 unparsed; scriptRegions identical on all 171 tracked .html under both masks; verifier controls const→let in cooling-info.js and temp-popup.html each exit 1; js-comment-spacing-verify control exit 1; npm run lint exit 0]` |
+| 2 | `e2e16ac69d` | **DONE 2026-10-28** | `[2026-10-28: git diff -U0, 4 pairs differing by ";"; js-semicolons re-run 0 changed, and the pre-Task-1 tool in a worktree adds all 4 back; prod_prod built before and after: 3,017 identical, 3 build noise, one-sided only the untracked static/commissaries/.vscode/settings.json; comparator control, a built NR page edited, exit 1]` |
+| 3 | `95e60939d8` | **DONE 2026-10-28** | `[2026-10-28: template-literal fixture exit 2 before, 0 after; tree re-run 0 changed]`. Departure: the line-text tests are kept beside the token tests, since dropping them would start padding `{ // note` lines |
+| 4 | `aad5d22f61`, `68114ff02f`, `fb58c99353` | **DONE 2026-10-28** | `[2026-10-28: each tool's fixture control passes and fails with lineOf shifted by one (padding, guards) or every action masked as a comment (semicolons); each re-run 0 of 198 changed; a semicolon deleted from bar.js put back byte-identical to HEAD]`. Departure: shared `jsBodies` and `lineIndex` rather than one `forEachBody` that also applies edits, since the three tools apply edits in three shapes (offsets, line plans, line sets) |
+| 5 | `38fdd07248` | **DONE 2026-10-28** | `[2026-10-28: no changed file, exit 2; a doubled space in bar.js staged, exit 1 naming it; the previous copy on that staged tree, 0 files compared, exit 0]` |
+| 6 | `b15e993648` | **DONE 2026-10-28** | `[2026-10-28: all three tools exit 0 at the tree, printing render-table as known; controls — an {{ if }}…{{ else }}…{{ end }} value in temp-popup.html, render-table removed from the list, temp-popup.html listed while it parses — each exit 1 naming its cause]` |
+| 7 | `116c985d12` (with 8) | **DONE 2026-10-28** | `[2026-10-28: the .py list, read through a new sweep_targets(), and the .mjs list hold the same 196 files (diff --strip-trailing-cr; a line appended to one makes them differ); the .py sweep inserts 0]` |
+| 8 | `116c985d12` (with 7) | **DONE 2026-10-28** | `[2026-10-28: both crosswalks 0 diff lines against 8ca6013616; js-semicolons no longer reaches them, and with HEAD's target list re-adds both ";"]` |
+| 9 | `b1f4685efc` | **DONE 2026-10-28** | `[2026-10-28: both refuse here, exit 2, --verify included, nothing written; at 81ae3b4ea0~1 the guarded rescale rescales 11 files, 2,548 lines; at 91aa287079~1 the guarded normalize changes 5,902 lines with 78 orphans — the ledger's own counts]` |
+| 10 | `62ac689947` | **DONE 2026-10-28** | `[2026-10-28: three synthetic pairs — lines re-indented inside <pre> and <textarea> CHANGED, outside accepted; the previous copy accepted all three; 9a's builds (3177305899, fc6eee395d) exit 0, 3,004 identical, 16 leading whitespace only, each named]`. No built page holds a `<pre>`, and its 3 `<textarea>` hits are inside minified jQuery, so the controls are synthetic |
+| 11 | `2c1988f5e9` | **DONE 2026-10-28** | `[2026-10-28: every section glob matches a tracked file except docs/** (untracked output) and *.diff; no EditorConfig parser installed]`. Departure: the final-newline exemption covers `themes/dohmh/layouts/**`, not only `shortcodes/`: 84 of the 145 tracked `.html` layouts end without a newline, render hooks among them |
+| 12 | `6f7c29c485` | **DONE 2026-10-28** | `[2026-10-28: npm ls espree, one copy, 11.2.0, deduped with ESLint's; package.json and the lockfile root each +1 line; fixture controls and verifier controls pass]`. Departure: `^11.2.0`, not `--save-exact`, matching the four caret-ranged devDependencies beside it and ESLint's own range |
+| 13 | `722ea6f50d`, baseline `e3bceb058c` | **DONE 2026-10-28** | `[2026-10-28: Chromium parsed DOM of the built page, scripts off: CAPA links 3 → 1, ul > :not(li) 31 → 30, elements 554 → 552; characterize-env.mjs prod_prod: heat-story alone, links.external 31 → 29, links.noAccessibleText 4 → 2; rebaseline --expect "data-features/heat-story/": that page alone in both keys, git diff -U0 those two fields only]` |
+| 14 | `c5f6d50e4f` | **DONE 2026-10-28** | `[2026-10-28: npm run docs-check exit 0]`. CLAUDE.md's `docs-check verified` stamp left as it was: one line changed, the file not re-read |
+| 15 | below | **DONE 2026-10-28** | Ledger edits read back: line 9, the commit-state Decisions row, step 9's 522-element claim corrected by measurement (557 → 554), the Next command's heatstory pointer replaced by a count, step 10 row added; step rows all 7 fields |
 | 16 | — | open | — |
 | 17 | — | open | — |
 
-**Next command:** Task 1, Step 1.
+**Next command:** Task 16, Step 1.
 
 Tasks 1–12 are tool and config changes. None of them may change a tracked file outside `scripts/`,
-`.editorconfig` or `package*.json`, except Task 3 (`nr-leaflet.html`) and Task 8 (the two crosswalk
+`.editorconfig` or `package*.json`, except Task 2 (`nr-leaflet.html`) and Task 8 (the two crosswalk
 files). The tools are expected to exit 1 naming only `themes/dohmh/layouts/partials/render-table.html:69`
 until Task 6 lands, and 0 after it.
 
