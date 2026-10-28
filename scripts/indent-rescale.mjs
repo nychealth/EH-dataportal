@@ -10,6 +10,11 @@
 // pushed to 8, which is why FILES is a list measured per file rather than a test
 // run over the tree (the measurement is in the ledger's step 6 row).
 //
+// Applied at 81ae3b4ea0 (step 7b), and kept as the record of how. It refuses to run,
+// either way, on a tree that already holds that commit: a second rescale doubles the
+// indentation again, and --verify then passes, since halving gives HEAD back. On a
+// tree from before it:
+//
 //   node scripts/indent-rescale.mjs            # rescale every file in FILES
 //   node scripts/indent-rescale.mjs --verify   # reverse each against HEAD; must exit 0
 //
@@ -66,6 +71,20 @@ const reverseLine = (line, unit) => {
     if (unit === "two") return " ".repeat(lead.length / 2) + body;
     return lead.replace(/ {4}/g, "\t") + body;
 };
+
+
+// ----- refuse a tree the rescale already reached ----- //
+
+const APPLIED_AT = "81ae3b4ea0";
+
+try {
+    execFileSync("git", ["merge-base", "--is-ancestor", APPLIED_AT, "HEAD"]);
+    console.error(`Already applied at ${APPLIED_AT}; this tool is a record of step 7, not a re-runnable sweep.`);
+    process.exit(2);
+} catch (err) {
+    // Exit 1 is git's "not an ancestor", the one case to go on; anything else is not an answer
+    if (err.status !== 1) throw err;
+}
 
 
 // ----- rescale, or verify against HEAD ----- //

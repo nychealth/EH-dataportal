@@ -14,6 +14,10 @@
 // A dedent returns to the level it matches. Rules fitted to Chris's hand pass over
 // these files (2026-10-27, step 8's row).
 //
+// Applied at 91aa287079 (step 8b), and kept as the record of how. It refuses to run,
+// either way, on a tree that already holds that commit: the files have since had a
+// hand pass, which a re-run would re-indent. On a tree from before it:
+//
 //   node scripts/indent-normalize.mjs            # re-indent every file in FILES
 //   node scripts/indent-normalize.mjs --verify   # check each against HEAD; must exit 0
 //
@@ -203,6 +207,20 @@ const normalize = (path, text) => {
     return { out: out.join("\n"), orphans, parseFailures };
 
 };
+
+
+// ----- refuse a tree the re-indent already reached ----- //
+
+const APPLIED_AT = "91aa287079";
+
+try {
+    execFileSync("git", ["merge-base", "--is-ancestor", APPLIED_AT, "HEAD"]);
+    console.error(`Already applied at ${APPLIED_AT}; this tool is a record of step 8, not a re-runnable sweep.`);
+    process.exit(2);
+} catch (err) {
+    // Exit 1 is git's "not an ancestor", the one case to go on; anything else is not an answer
+    if (err.status !== 1) throw err;
+}
 
 
 // ----- re-indent, or verify against HEAD ----- //
