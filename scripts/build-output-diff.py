@@ -27,7 +27,12 @@ any file differs otherwise or exists in one build only; it names each.
 --leading-whitespace (after the two directories) also accepts a pair whose
 non-blank lines differ only in leading whitespace: the build step for a
 re-indent (indent-normalize.mjs), whose own --verify proves the rest. Off by
-default, so a blank-line sweep's comparison stays as strict as it was.
+default, so a blank-line sweep's comparison stays as strict as it was. A line
+inside a <pre> or <textarea>, where leading whitespace renders, is not accepted,
+and every file that is accepted is named, to be read. What it cannot see: a JS
+template literal in a built page, whose leading whitespace is part of the string.
+A re-indent's own record must list every multi-line template literal it touched,
+as the ledger's step 7 row does for minimum-wage-with-maps.html.
 """
 
 import os
@@ -67,6 +72,45 @@ def non_blank(text):
     return [line for line in text.replace("\r\n", "\n").split("\n") if line.strip()]
 
 
+PRE_OPEN = re.compile(r"<(?:pre|textarea)\b", re.I)
+PRE_CLOSE = re.compile(r"</(?:pre|textarea)\s*>", re.I)
+
+
+# Indices of the lines whose leading whitespace renders: every line after one that
+# opens a <pre> or <textarea>, through the line that closes it
+def preformatted(lines):
+
+    inside, out = False, set()
+
+    for i, line in enumerate(lines):
+
+        if inside:
+            out.add(i)
+
+        last_open = max((m.start() for m in PRE_OPEN.finditer(line)), default=-1)
+        last_close = max((m.start() for m in PRE_CLOSE.finditer(line)), default=-1)
+
+        if last_open > last_close:
+            inside = True
+        elif last_close > last_open:
+            inside = False
+
+    return out
+
+
+# Non-blank lines equal past their leading whitespace, none of it inside a <pre>/<textarea>
+def leading_whitespace_only(text_a, text_b):
+
+    lines_a, lines_b = non_blank(text_a), non_blank(text_b)
+
+    if [l.lstrip() for l in lines_a] != [l.lstrip() for l in lines_b]:
+        return False
+
+    rendered = preformatted(lines_a) | preformatted(lines_b)
+
+    return not any(lines_a[i] != lines_b[i] for i in rendered)
+
+
 if __name__ == "__main__":
 
     if len(sys.argv) not in (3, 4) or sys.argv[3:] not in ([], ["--leading-whitespace"]):
@@ -79,6 +123,7 @@ if __name__ == "__main__":
     one_sided = sorted(set(a) ^ set(b))
     counts = Counter()
     changed = []
+    reindented = []
 
     for key in sorted(set(a) & set(b)):
 
@@ -96,8 +141,9 @@ if __name__ == "__main__":
             counts["build noise only"] += 1
         elif non_blank(text_a) == non_blank(text_b):
             counts["blank lines only"] += 1
-        elif leading_ok and [l.lstrip() for l in non_blank(text_a)] == [l.lstrip() for l in non_blank(text_b)]:
+        elif leading_ok and leading_whitespace_only(text_a, text_b):
             counts["leading whitespace only"] += 1
+            reindented.append(key)
         else:
             counts["changed"] += 1
             changed.append(key)
@@ -105,6 +151,8 @@ if __name__ == "__main__":
     print(f"{len(a)} files in A, {len(b)} in B")
     print(", ".join(f"{k}: {v}" for k, v in counts.items()))
 
+    for key in reindented:
+        print(f"  LEADING WS      {key}")
     for key in one_sided:
         print(f"  ONE BUILD ONLY  {key}")
     for key in changed:
