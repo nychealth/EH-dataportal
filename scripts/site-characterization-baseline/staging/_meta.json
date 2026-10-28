@@ -1,13 +1,13 @@
 {
-    "capturedAt": "2026-10-26T18:21:44.868Z",
-    "gitHead": "7974d6c429fd1c81079374fa1ba8ae8e47e21b0b",
+    "capturedAt": "2026-10-28T15:01:32.545Z",
+    "gitHead": "722ea6f50d30f7a679767d2a4923a85324c3bf9f",
     "baselineKey": "staging",
     "hugoEnv": "dev_stage",
     "dataBranch": "staging",
     "dataCommit": {
         "sha": "005d8ff8fc83dfbf117933654648885925759fdd",
         "date": "2026-10-24T03:08:03Z",
-        "fetchedAt": "2026-10-26T18:17:54.690Z"
+        "fetchedAt": "2026-10-28T14:57:52.111Z"
     },
     "pagefind": true,
     "hugo": {
@@ -17,9 +17,7 @@
     "prefix": "/dev-stage/",
     "mode": "all",
     "pages": 924,
-    "arbitrated": [
-        "data-stories/housing/"
-    ],
+    "arbitrated": [],
     "cleared": [],
     "capped": false,
     "viewport": {
