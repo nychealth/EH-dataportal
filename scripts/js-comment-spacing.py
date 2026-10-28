@@ -104,19 +104,57 @@ def in_template_literal(lines, upto):
     return sum(l.count('`') for l in lines[:upto]) % 2 == 1
 
 
-# Bound the edit to <script> bodies in an HTML file, so nothing lands in markup
+HUGO_ACTION = re.compile(r'\{\{[\s\S]*?\}\}')
+NOT_JS_TYPE = re.compile(r'''type=["']?(application/(ld\+)?json|text/template)''')
+
+
+# Bound the edit to <script> bodies in an HTML file, so nothing lands in markup.
+# A port of scriptRegions in html-script-bodies.mjs, which the verifier reads with;
+# the two must find the same bodies. Hugo actions are blanked first (same length,
+# newlines kept), so a Hugo comment that mentions <script> opens nothing. A src-only
+# script has no body, and a JSON or template script is not JavaScript; an opening tag
+# split over several lines is read to its `>` before deciding either
 def script_regions(lines):
 
-    out, start = [], None
+    masked = HUGO_ACTION.sub(lambda m: re.sub(r'[^\n]', '_', m.group()), '\n'.join(lines)).split('\n')
 
-    for i, l in enumerate(lines):
+    out, start, open_tag = [], None, None
+
+    # The opening tag is complete: no body if `</script>` follows on the same line,
+    # -1 for a script that is not JavaScript
+    def close_tag(tag, i):
+
+        if '</script' in tag:
+            return None
+
+        return -1 if NOT_JS_TYPE.search(tag) else i + 1
+
+    for i, l in enumerate(masked):
 
         low = l.lower()
 
-        if start is None and '<script' in low and '</script' not in low:
-            start = i + 1
+        if open_tag is not None:
+
+            open_tag += ' ' + low
+
+            if '>' in low:
+                start = close_tag(open_tag, i)
+                open_tag = None
+
+        elif start is None and '<script' in low and '</script' not in low:
+
+            tag = low[low.index('<script'):]
+
+            if '>' in tag:
+                start = close_tag(tag, i)
+            else:
+                open_tag = tag
+
         elif start is not None and '</script' in low:
-            out.append((start, i))
+
+            if start >= 0:
+                out.append((start, i))
+
             start = None
 
     return out

@@ -119,12 +119,14 @@ To change a rule later, re-run its tool: `node scripts/js-guard-braces.mjs` (cap
 steps in its header), `node scripts/js-brace-padding.mjs`, `node scripts/js-semicolons.mjs`,
 each proved as in step 5's row.
 
-Deferred, not part of step 5: `js-comment-spacing.py`'s `script_regions` reads a `<script>` mentioned
-inside a Hugo comment as the start of a body, which `html-script-bodies.mjs` fixed by masking Hugo
-actions first (`flexdatalist-combobox-js.html` and `structured-data.html` showed it). It also
-starts a body inside a split src-only `<script` tag, which `2edcfd98c3` fixed in the `.mjs`
-detector; harmless so far, since the script only acts after a comment. Un-defer when
-that script is next run or edited.
+Done 2026-10-28, after being deferred from step 5: `js-comment-spacing.py`'s `script_regions` read a
+`<script>` mentioned inside a Hugo comment as the start of a body, started one inside a split
+src-only `<script` tag, and read JSON and `text/template` scripts as JS, all three of which
+`html-script-bodies.mjs` already handled. It is now a port of that file's `scriptRegions`
+`[2026-10-28: both detectors' regions identical on all 171 tracked .html; the previous Python
+detector differs on 13, among them flexdatalist-combobox-js.html, structured-data.html,
+js_bottom.html and minimum-wage-with-maps.html; the sweep inserts 0 lines; control, a blank line
+deleted between a comment and code in temp-popup.html's body, put back byte-identical]`.
 
 A re-run of 5a: `node scripts/js-brace-padding.mjs`, then `node scripts/js-comment-spacing-verify.mjs`
 (exit 0) and the build comparison in `scripts/build-output-diff.py`'s docstring (exit 0). The tool
