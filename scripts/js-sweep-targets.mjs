@@ -10,10 +10,13 @@ import { execFileSync } from "node:child_process";
 
 // ----- what is not ours to restyle ----- //
 
-// Vendored third-party files. Hand-maintained: a vendored file added after this list
-// was written will be reformatted like our own
+// Vendored third-party files, and the two generated crosswalks, which
+// documents/js-conventions.md § Scope leaves exactly as they arrive. Hand-maintained:
+// a file added after this list was written will be reformatted like our own
 export const VENDORED = new Set([
     "assets/js/L.colorIcon.js",
+    "assets/js/ccd-to-uhf42.js",
+    "assets/js/cd-to-uhf42.js",
     "assets/js/color-convert.js",
     "assets/js/naturalSort.js",
     "content/data-features/healthy-homes-info/source/assets/js/bootstrap.js",

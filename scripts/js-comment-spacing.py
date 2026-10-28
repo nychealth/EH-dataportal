@@ -56,12 +56,14 @@ DECL_BLOCK   = re.compile(r'^\s*(?:const|let|var)\s+[\w$]+\s*=\s*(?:async\s+)?(?
 OBJ_PROP     = re.compile(r'''^\s*(?:["'][^"']*["']|[\w$-]+)\s*:''')
 CONTINUATION = re.compile(r'^\s*(?:[.)\]}?:,+]|&&|\|\||else\b|catch\b|finally\b|break\b|continue\b)')
 
-# Vendored third-party files, which are not ours to restyle. Hand-maintained: a
-# vendored file added after this list was written will be reformatted like our own.
-# VENDORED, EXEMPT_DIRS and TARGET_ROOTS are mirrored in scripts/js-sweep-targets.mjs;
-# change them in both.
+# Vendored third-party files and generated ones, which are not ours to restyle.
+# Hand-maintained: a file added after this list was written will be reformatted like
+# our own. VENDORED, EXEMPT_DIRS and TARGET_ROOTS are mirrored in
+# scripts/js-sweep-targets.mjs; change them in both.
 VENDORED = (
     "assets/js/L.colorIcon.js",                  # Leaflet.ColorIcon, MIT
+    "assets/js/ccd-to-uhf42.js",                 # generated crosswalk (js-conventions.md § Scope)
+    "assets/js/cd-to-uhf42.js",                  # generated crosswalk
     "assets/js/color-convert.js",                # from a public gist
     "assets/js/naturalSort.js",                  # Jim Palmer's natural sort, MIT
     "content/data-features/healthy-homes-info/source/assets/js/bootstrap.js",  # Bootstrap 4.1.3, minified
@@ -186,7 +188,8 @@ def process(path):
     return len(inserts)
 
 
-if __name__ == '__main__':
+def sweep_targets(filter_=None):
+    """The files this sweep may edit, as js-sweep-targets.mjs's sweepTargets lists them."""
 
     targets = []
 
@@ -194,16 +197,21 @@ if __name__ == '__main__':
     for root, exts in TARGET_ROOTS:
         listed = subprocess.run(["git", "ls-files", "-z", "--", root],
                                 capture_output=True, check=True).stdout.decode("utf-8")
-        targets += [p for p in listed.split("\0") if p.endswith(exts)]
+        targets += [p for p in listed.split("\0") if p.endswith(exts) and not p.endswith(".min.js")]
 
     targets = [t for t in targets if t not in VENDORED and not t.startswith(EXEMPT_DIRS)]
 
-    if len(sys.argv) > 1:
-        targets = [t for t in targets if sys.argv[1] in t]
+    if filter_:
+        targets = [t for t in targets if filter_ in t]
+
+    return sorted(targets)
+
+
+if __name__ == '__main__':
 
     total, files = 0, 0
 
-    for t in sorted(targets):
+    for t in sweep_targets(sys.argv[1] if len(sys.argv) > 1 else None):
 
         n = process(t)
 
