@@ -31,4 +31,15 @@
             <p class="fs-sm mb-0">Each indicator places the district in the lower, middle or upper third of all 59, beside its borough and citywide values.</p>
         </li>
     </ol>
+
+    {{/* A second way into the tool, on reviewer request (2026-10-28), right where the
+         steps have explained what it does. Same target as the sidebar button in
+         ndhr/section.html — the first category in NDHR_categories.yml — so the two
+         cannot disagree */}}
+    {{- $firstCategory := index site.Data.globals.NDHR_categories 0 }}
+    <p class="mt-4 mb-0">
+        <a class="btn btn-primary" href="{{ relURL (printf "ndhr/%s/" $firstCategory.slug) }}">
+            Take me to the tool<i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
+        </a>
+    </p>
 </section>
