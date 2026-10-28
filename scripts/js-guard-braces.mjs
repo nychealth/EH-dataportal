@@ -46,7 +46,7 @@
 
 import { readFileSync, writeFileSync } from "node:fs";
 import * as espree from "espree";
-import { maskHugo, scriptRegions } from "./html-script-bodies.mjs";
+import { jsBodies, lineIndex, maskHugo } from "./html-script-bodies.mjs";
 import { sweepTargets } from "./js-sweep-targets.mjs";
 
 
@@ -92,17 +92,7 @@ const planGuards = (source, original) => {
         ecmaVersion: "latest", sourceType: "script", range: true, tokens: true,
     });
 
-    const lineStarts = [0];
-    for (let i = 0; i < source.length; i++) if (source[i] === "\n") lineStarts.push(i + 1);
-
-    const lineOf = (offset) => {
-        let lo = 0, hi = lineStarts.length - 1;
-        while (lo < hi) {
-            const mid = (lo + hi + 1) >> 1;
-            if (lineStarts[mid] <= offset) lo = mid; else hi = mid - 1;
-        }
-        return lo;
-    };
+    const { lineStarts, lineOf } = lineIndex(source);
 
     const lineEnd = (line) => (line + 1 < lineStarts.length ? lineStarts[line + 1] - 1 : source.length);
 
@@ -228,20 +218,14 @@ const processFile = (path, failures) => {
     const nl = raw.includes("\r\n") ? "\r\n" : "\n";
     const lines = raw.replace(/\r\n/g, "\n").split("\n");
 
-    const isHtml = path.endsWith(".html");
-    const regions = isHtml ? scriptRegions(raw) : [[0, lines.length]];
-
     const plans = [];
 
-    for (const [start, end] of regions) {
+    for (const { start, end, text, source } of jsBodies(path, raw, lines)) {
 
-        const text = lines.slice(start, end).join("\n");
-
-        // A layout body is read with each Hugo action masked by its role
         let planned;
 
         try {
-            planned = planGuards(isHtml ? maskHugo(text) : text, text);
+            planned = planGuards(source, text);
         } catch (err) {
             failures.push(`${path}:${start + 1}  ${err.message}`);
             continue;
