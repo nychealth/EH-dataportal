@@ -101,14 +101,13 @@ const continuesStatement = (t) => /^(\.|\|\||&&|\+|-[^-]|\?|:)/.test(t);
 const jsRegions = (path, text, lines) =>
     path.endsWith(".html") ? scriptRegions(text) : path.endsWith(".js") ? [[0, lines.length]] : [];
 
-// A layout's body parses with Hugo actions masked as comments, or failing that as values
+// A layout's body, each Hugo action masked by its role; null when it does not parse
 const parseJs = (body) => {
-    for (const attempt of [maskHugo(body), maskHugo(body, true)]) {
-        try {
-            return espree.parse(attempt, { ecmaVersion: "latest", sourceType: "script", loc: true, tokens: true });
-        } catch (e) { /* try the next masking */ }
+    try {
+        return espree.parse(maskHugo(body), { ecmaVersion: "latest", sourceType: "script", loc: true, tokens: true });
+    } catch (e) {
+        return null;
     }
-    return null;
 };
 
 const tokenStream = (ast) => ast.tokens.map((t) => t.type + " " + t.value).join("\n");

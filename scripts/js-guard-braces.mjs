@@ -237,23 +237,13 @@ const processFile = (path, failures) => {
 
         const text = lines.slice(start, end).join("\n");
 
-        // A layout body is tried with actions as comments, then as values
-        const attempts = isHtml ? [maskHugo(text), maskHugo(text, true)] : [text];
+        // A layout body is read with each Hugo action masked by its role
+        let planned;
 
-        let planned = null;
-        let firstError = null;
-
-        for (const source of attempts) {
-            try {
-                planned = planGuards(source, text);
-                break;
-            } catch (err) {
-                firstError ??= err;
-            }
-        }
-
-        if (!planned) {
-            failures.push(`${path}:${start + 1}  ${firstError.message}`);
+        try {
+            planned = planGuards(isHtml ? maskHugo(text) : text, text);
+        } catch (err) {
+            failures.push(`${path}:${start + 1}  ${err.message}`);
             continue;
         }
 
@@ -479,7 +469,7 @@ const FIXTURE_OUT = `function f(a, b, list) {
 
 }`;
 
-// A Hugo action in the statement is left alone, under either mask
+// A Hugo action in the statement is left alone
 const HUGO = "function g(a) {\n    if (a) {\n        return {{ .Params.x }};\n    }\n}";
 
 // A two-space file gets a two-space body
@@ -490,7 +480,7 @@ const TWO_OUT = `function h(a) {\n  if (a) a.b();\n  if (${TWO_LONG}) {\n    a.b
 const run = (text) => applyPlans(text.split("\n"), planGuards(text, text)).join("\n");
 const fixtureGot = run(FIXTURE_IN);
 const twoGot = run(TWO_IN);
-const hugoPlans = planGuards(maskHugo(HUGO), HUGO).length + planGuards(maskHugo(HUGO, true), HUGO).length;
+const hugoPlans = planGuards(maskHugo(HUGO), HUGO).length;
 
 if (fixtureGot !== FIXTURE_OUT || twoGot !== TWO_OUT || hugoPlans) {
     console.error("Control failed: a fixture did not reach its known answer.");

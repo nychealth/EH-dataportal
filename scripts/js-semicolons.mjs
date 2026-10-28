@@ -37,7 +37,7 @@ const CONFIG = [{
 // ----- the semicolon insertions for one source, as offsets ----- //
 
 // `source` may be a masked copy of the text the offsets are applied to. Throws on a
-// parse error, so the caller can try another mask
+// parse error
 const planSemicolons = (source, path, refused) => {
 
     const messages = linter.verify(source, CONFIG);
@@ -64,6 +64,9 @@ const planSemicolons = (source, path, refused) => {
 
 const insertAt = (text, offsets) =>
     [...offsets].sort((a, b) => b - a).reduce((t, o) => t.slice(0, o) + ";" + t.slice(o), text);
+
+// A layout's <script> body, each Hugo action masked by its role
+const planBody = (body, path, refused) => planSemicolons(maskHugo(body), path, refused);
 
 
 // ----- one file ----- //
@@ -93,7 +96,7 @@ const processFile = (path, failures, refused) => {
 
     }
 
-    // A layout: each <script> body is tried with actions as comments, then as values
+    // A layout: each <script> body separately
     const lines = text.split("\n");
     let count = 0;
 
@@ -102,20 +105,12 @@ const processFile = (path, failures, refused) => {
 
         const body = lines.slice(start, end).join("\n");
 
-        let offsets = null;
-        let firstError = null;
+        let offsets;
 
-        for (const source of [maskHugo(body), maskHugo(body, true)]) {
-            try {
-                offsets = planSemicolons(source, `${path}:${start + 1}`, refused);
-                break;
-            } catch (err) {
-                firstError ??= err;
-            }
-        }
-
-        if (!offsets) {
-            failures.push(`${path}:${start + 1}  ${firstError.message}`);
+        try {
+            offsets = planBody(body, `${path}:${start + 1}`, refused);
+        } catch (err) {
+            failures.push(`${path}:${start + 1}  ${err.message}`);
             continue;
         }
 
@@ -165,18 +160,38 @@ class C {
 const s = \`x\${a}\`;
 `;
 
-// A Hugo action standing in for a value gets its semicolon after the action
-const HUGO_IN = "const data = {{ .Params.data | jsonify }}\nuse(data)";
-const HUGO_OUT = "const data = {{ .Params.data | jsonify }};\nuse(data);";
+// A Hugo action standing in for a value gets its semicolon after the action, also
+// after a `return`, where reading the action as a comment would end the statement at
+// `return` and return undefined. The control actions around them get none
+const HUGO_IN = [
+    "const data = {{ .Params.data | jsonify }}",
+    "use(data)",
+    "function f() {",
+    "    return {{ .Params.x | jsonify }}",
+    "}",
+    "{{- range .Pages -}}",
+    "    add({{ .Title }})",
+    "{{- end }}",
+].join("\n");
+const HUGO_OUT = [
+    "const data = {{ .Params.data | jsonify }};",
+    "use(data);",
+    "function f() {",
+    "    return {{ .Params.x | jsonify }};",
+    "}",
+    "{{- range .Pages -}}",
+    "    add({{ .Title }});",
+    "{{- end }}",
+].join("\n");
 
 {
     const refused = [];
     const got = insertAt(FIXTURE_IN, planSemicolons(FIXTURE_IN, "fixture", refused));
-    const hugo = insertAt(HUGO_IN, planSemicolons(maskHugo(HUGO_IN, true), "hugo fixture", refused));
+    const hugo = insertAt(HUGO_IN, planBody(HUGO_IN, "hugo fixture", refused));
 
     if (got !== FIXTURE_OUT || hugo !== HUGO_OUT || refused.length) {
         console.error("Control failed: a fixture did not reach its known answer.");
-        console.error(got, hugo, refused);
+        console.error(got, "\n---\n" + hugo, refused);
         process.exit(2);
     }
 }

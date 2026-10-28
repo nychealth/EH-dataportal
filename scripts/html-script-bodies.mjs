@@ -5,15 +5,22 @@
 
 // ----- Hugo actions masked, keeping every offset and line number ----- //
 
-// `{{ … }}` becomes `/*___*/` by default: string text inside a JS string, a comment
-// outside one. An action standing in for a value — `const x = {{ .Data | jsonify }};`
-// — leaves nothing to parse as a comment, so `asValue` turns single-line actions into
-// a same-length identifier `____` instead. Multi-line actions stay comments either way
-export const maskHugo = (text, asValue = false) =>
+// Each action is masked by its role. A control action (`if`, `range`, `end`, a `$x :=`
+// assignment, a `{{/* */}}` comment …) renders no JS of its own, so it becomes a
+// same-length comment `/*___*/`. Any other single-line action renders a value —
+// `const x = {{ .Data | jsonify }}`, `return {{ .x }}` — so it becomes a same-length
+// identifier `____`. Masking every action in a body one way misreads the other kind:
+// as comments, `return {{ .x }}` is a bare `return`; as values, `{{- end }}` is a
+// statement that takes a `;`. A multi-line action stays a comment
+const CONTROL_ACTION = /^(?:(?:if|else|end|range|with|define|block|break|continue)\b|\$[A-Za-z_]\w*\s*:?=|\/\*)/;
+
+const isControl = (action) => CONTROL_ACTION.test(action.slice(2, -2).replace(/^-?\s*/, ""));
+
+export const maskHugo = (text) =>
     text.replace(/\{\{[\s\S]*?\}\}/g, (m) =>
-        asValue && !m.includes("\n")
-            ? "_".repeat(m.length)
-            : "/*" + m.slice(2, -2).replace(/[^\n]/g, "_") + "*/");
+        m.includes("\n") || isControl(m)
+            ? "/*" + m.slice(2, -2).replace(/[^\n]/g, "_") + "*/"
+            : "_".repeat(m.length));
 
 
 // ----- <script> bodies, as [startLine, endLine) pairs ----- //

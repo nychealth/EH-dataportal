@@ -86,20 +86,31 @@ for (const [before, after, equal] of controls) {
 
 const HUGO_ACTION = /\{\{[\s\S]*?\}\}/g;
 
-// Both sides must parse under the same mask; returns null when neither mask reads both
+// Returns null when either side does not parse
 const sameBody = (before, after) => {
 
-    for (const asValue of [false, true]) {
-        try {
-            return same(syntax(maskHugo(before, asValue)), syntax(maskHugo(after, asValue)));
-        } catch {
-            // try the other mask
-        }
+    try {
+        return same(syntax(maskHugo(before)), syntax(maskHugo(after)));
+    } catch {
+        return null;
     }
 
-    return null;
-
 };
+
+// A layout body's comparison must see a semicolon that moves a value action out of a
+// `return`, and one appended after a control action, which renders as a stray `;`
+const bodyControls = [
+    ["function f() {\n    return {{ .x }}\n}", "function f() {\n    return; {{ .x }}\n}", false],
+    ["{{- range .Pages -}}\nadd({{ .Title }})\n{{- end }}", "{{- range .Pages -}};\nadd({{ .Title }});\n{{- end }};", false],
+    ["const d = {{ .x }}\nuse(d)", "const d = {{ .x }};\nuse(d);", true],
+];
+
+for (const [before, after, equal] of bodyControls) {
+    if (sameBody(before, after) !== equal) {
+        console.error(`Control failed: body ${JSON.stringify(before)} vs ${JSON.stringify(after)} should ${equal ? "" : "not "}compare equal.`);
+        process.exit(2);
+    }
+}
 
 const checkHtml = (before, after) => {
 

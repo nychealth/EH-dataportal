@@ -250,23 +250,13 @@ const processFile = (path, failures) => {
         const slice = lines.slice(start, end);
         const text = slice.join("\n");
 
-        // A layout body is tried with actions as comments, then as values
-        const attempts = isHtml ? [maskHugo(text), maskHugo(text, true)] : [text];
+        // A layout body is read with each Hugo action masked by its role
+        let plan;
 
-        let plan = null;
-        let firstError = null;
-
-        for (const source of attempts) {
-            try {
-                plan = planEdits(source, slice);
-                break;
-            } catch (err) {
-                firstError ??= err;
-            }
-        }
-
-        if (!plan) {
-            failures.push(`${path}:${start + 1}  ${firstError.message}`);
+        try {
+            plan = planEdits(isHtml ? maskHugo(text) : text, slice);
+        } catch (err) {
+            failures.push(`${path}:${start + 1}  ${err.message}`);
             continue;
         }
 
