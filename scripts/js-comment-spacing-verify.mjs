@@ -7,9 +7,10 @@
 // template text included) against HEAD, so a changed string fails it.
 //
 // Also covers the <script> bodies of changed .html layouts, read through
-// html-script-bodies.mjs: Hugo actions are masked as comments, so they are
-// compared as nothing, and a body that still cannot be tokenized is named and
-// fails the run rather than passing unchecked. Serves js-brace-padding.mjs too.
+// html-script-bodies.mjs: Hugo actions are masked at their own length, as a
+// comment or an identifier by role, so their text is not compared, and a body that
+// still cannot be tokenized is named and fails the run rather than passing
+// unchecked. Serves js-brace-padding.mjs too.
 //
 // espree is ESLint's parser, installed as its dependency rather than declared in
 // package.json.
@@ -68,9 +69,16 @@ const htmlTokens = (source) => {
 
 // ----- compare every changed .js and .html file against HEAD ----- //
 
-const changed = execFileSync("git", ["diff", "--name-only", "--diff-filter=M", "--", "*.js", "*.html"], { encoding: "utf8" })
+// Against HEAD, not the index: a plain `git diff` lists nothing once a sweep's edits
+// are staged, and the run would pass having compared nothing
+const changed = execFileSync("git", ["diff", "--name-only", "--diff-filter=M", "HEAD", "--", "*.js", "*.html"], { encoding: "utf8" })
     .split("\n")
     .filter(Boolean);
+
+if (!changed.length) {
+    console.error("No changed .js/.html file to compare against HEAD; nothing was checked.");
+    process.exit(2);
+}
 
 const nonBlank = (source) => source.replace(/\r\n/g, "\n").split("\n").filter((l) => l.trim()).join("\n");
 
