@@ -589,7 +589,7 @@ Key per-environment variables: `baseURL` and `data_branch`.
 
 ## Coding conventions
 
-- 4-space indentation in all files.
+- 4-space indentation in all files, except YAML at 2 (`.editorconfig`), where indentation is meaningful.
 - Browser-side JS: no new frameworks or build dependencies. Keep it lightweight, readable, and explicitly branched.
 - Comments should be brief and intent-focused. Explain *why*, not *what*. Bias towards adding more comments, not fewer.
 - **Orientation comments before code blocks:** add a brief comment before each meaningful code block (function, object, initialization section) explaining what it does at a high level — even if the name alone makes it obvious. Know what's coming before reading the code, not just after.

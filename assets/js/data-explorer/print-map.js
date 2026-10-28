@@ -39,10 +39,12 @@ const EXPORT_MAP_HEIGHT = 1080;
 // Strips filesystem-illegal characters so the value is safe to use as a download filename.
 
 const sanitizeFilename = (value) => {
+
     return (value || 'visualization')
         .replace(/[<>:"/\\|?*]+/g, '')
         .replace(/\s+/g, ' ')
         .trim();
+
 };
 
 
@@ -62,9 +64,7 @@ const buildWrappedPrintLines = (value, shouldStartNewLine) => {
 
     const sourceText = normalizePrintTextInput(value);
 
-    if (!sourceText) {
-        return [];
-    }
+    if (!sourceText) return [];
 
     const words = sourceText.split(/\s+/);
     const lines = [];
@@ -84,9 +84,7 @@ const buildWrappedPrintLines = (value, shouldStartNewLine) => {
 
     });
 
-    if (currentLine) {
-        lines.push(currentLine);
-    }
+    if (currentLine) lines.push(currentLine);
 
     return lines;
 
@@ -101,7 +99,6 @@ const splitTextIntoPrintLines = (value, maxLength = 88) => {
         value,
         (nextLine, currentLine) => nextLine.length > maxLength && Boolean(currentLine)
     );
-
 };
 
 
@@ -113,7 +110,6 @@ const splitCanvasTextIntoLines = (ctx, value, maxWidth) => {
         value,
         (nextLine, currentLine) => Boolean(currentLine) && ctx.measureText(nextLine).width > maxWidth
     );
-
 };
 
 
@@ -128,9 +124,7 @@ const buildSourceHTML = (values = [], warning = '') => {
 
     const htmlLines = [...sourceLines, warning].filter(Boolean);
 
-    if (!htmlLines.length) {
-        return '';
-    }
+    if (!htmlLines.length) return '';
 
     return htmlLines.map(line => `<div>${line}</div>`).join('');
 
@@ -147,6 +141,7 @@ const buildWarningHTML = (warning = '') => {
 // Returns the fixed canvas dimensions used for map exports, independent of the live map's viewport size.
 
 const getFixedMapExportSize = () => {
+
     return {
         width: EXPORT_MAP_WIDTH,
         height: EXPORT_MAP_HEIGHT
@@ -188,7 +183,6 @@ const getMapExportHeaderLayout = (ctx, width, paddingX, title, subtitle) => {
         gapAfterTitle,
         height
     };
-
 };
 
 
@@ -241,9 +235,13 @@ const getMapExportSources = () => {
     const sourceValues = [];
 
     if (Array.isArray(DE.print.vizSource)) {
+
         sourceValues.push(...DE.print.vizSource.filter(Boolean));
+
     } else if (typeof DE.print.vizSource === 'string' && DE.print.vizSource.trim()) {
+
         sourceValues.push(DE.print.vizSource.trim());
+
     }
 
     sourceValues.push(MAP_EXPORT_BASEMAP_ATTRIBUTION);
@@ -300,9 +298,7 @@ const waitForLeafletIdle = (mapInstance) => {
 
         const finalize = () => {
 
-            if (isResolved) {
-                return;
-            }
+            if (isResolved) return;
 
             isResolved = true;
             window.clearTimeout(fallbackTimer);
@@ -310,7 +306,6 @@ const waitForLeafletIdle = (mapInstance) => {
             window.requestAnimationFrame(() => {
                 window.requestAnimationFrame(resolve);
             });
-
         };
 
         const fallbackTimer = window.setTimeout(finalize, 3000);
@@ -318,7 +313,6 @@ const waitForLeafletIdle = (mapInstance) => {
         mapInstance.once('idle', finalize);
 
     });
-
 };
 
 
@@ -338,17 +332,18 @@ const getBoundsViewportBox = (mapInstance, bounds) => {
         width: southEast.x - northWest.x,
         height: southEast.y - northWest.y
     };
-
 };
 
 
 // Checks whether a viewport box fits inside the frame, with the given edge buffer on all sides.
 
 const isViewportBoxInsideFrame = (viewportBox, width, height, edgeBuffer) => {
+
     return viewportBox.left >= edgeBuffer &&
         viewportBox.top >= edgeBuffer &&
         viewportBox.right <= (width - edgeBuffer) &&
         viewportBox.bottom <= (height - edgeBuffer);
+
 };
 
 
@@ -356,6 +351,7 @@ const isViewportBoxInsideFrame = (viewportBox, width, height, edgeBuffer) => {
 // can read like a single flow instead of a series of paired ternaries.
 
 const getExportBoundsTuning = (bubbleMapExport) => {
+
     return bubbleMapExport
         ? {
             padRatio: EXPORT_BUBBLE_BOUNDS_PAD_RATIO,
@@ -372,9 +368,7 @@ const getExportBoundsTuning = (bubbleMapExport) => {
 
 const ensureBoundsWithinExportViewport = (mapInstance, bounds, width, height) => {
 
-    if (!bounds || !bounds.isValid()) {
-        return;
-    }
+    if (!bounds || !bounds.isValid()) return;
 
     const maxAdjustments = 8;
     const visibleEdgeTolerance = EXPORT_FEATURE_EDGE_BUFFER_PX;
@@ -392,21 +386,16 @@ const ensureBoundsWithinExportViewport = (mapInstance, bounds, width, height) =>
             visibleEdgeTolerance
         );
 
-        if (boundsAreVisible) {
-            return;
-        }
+        if (boundsAreVisible) return;
 
         const currentZoom = mapInstance.getZoom();
         const zoomedOutLevel = Math.max(mapMinZoom, currentZoom - 0.25);
 
-        if (zoomedOutLevel === currentZoom) {
-            return;
-        }
+        if (zoomedOutLevel === currentZoom) return;
 
         mapInstance.setView(bounds.getCenter(), zoomedOutLevel, { animate: false });
 
     }
-
 };
 
 
@@ -434,6 +423,7 @@ const getLoadedTileCoverageBounds = (mapElement, mapRect) => {
     const loadedTiles = getLoadedTileImages(mapElement);
 
     if (!loadedTiles.length) {
+
         return {
             hasCoverage: false,
             totalTileCount: tileImages.length,
@@ -474,7 +464,6 @@ const getLoadedTileCoverageBounds = (mapElement, mapRect) => {
         minY,
         maxY
     };
-
 };
 
 
@@ -482,15 +471,11 @@ const getLoadedTileCoverageBounds = (mapElement, mapRect) => {
 
 const areExportBoundsCoveredByTiles = (mapInstance, bounds, mapElement, mapRect) => {
 
-    if (!bounds || !bounds.isValid()) {
-        return true;
-    }
+    if (!bounds || !bounds.isValid()) return true;
 
     const tileCoverage = getLoadedTileCoverageBounds(mapElement, mapRect);
 
-    if (!tileCoverage.hasCoverage) {
-        return false;
-    }
+    if (!tileCoverage.hasCoverage) return false;
 
     const viewportBox = getBoundsViewportBox(mapInstance, bounds);
     const coverageBuffer = EXPORT_TILE_COVERAGE_BUFFER_PX;
@@ -509,9 +494,7 @@ const ensureTileCoverageForExport = async (mapInstance, mapElement, mapRect, bou
 
     // ----- guard: nothing to cover without valid bounds ----- //
 
-    if (!bounds || !bounds.isValid()) {
-        return true;
-    }
+    if (!bounds || !bounds.isValid()) return true;
 
     // ----- tuning setup ----- //
 
@@ -544,9 +527,7 @@ const ensureTileCoverageForExport = async (mapInstance, mapElement, mapRect, bou
         const currentZoom = mapInstance.getZoom();
         const zoomedOutLevel = Math.max(mapMinZoom, currentZoom - 0.25);
 
-        if (zoomedOutLevel === currentZoom) {
-            break;
-        }
+        if (zoomedOutLevel === currentZoom) break;
 
         mapInstance.setView(bounds.getCenter(), zoomedOutLevel, { animate: false });
         ensureBoundsWithinExportViewport(mapInstance, bounds, width, height);
@@ -615,6 +596,7 @@ const buildTemporaryLeafletExport = async (width, height) => {
         // the export bounds calculation so the fitted view leaves room for both.
 
         const exportGeojsonLayer = L.geoJson(exportGeojson, {
+
             renderer: exportRenderer,
             style: () => ({
                 fillColor: '#eee',
@@ -628,9 +610,7 @@ const buildTemporaryLeafletExport = async (width, height) => {
 
         const geojsonBounds = exportGeojsonLayer.getBounds();
 
-        if (geojsonBounds.isValid()) {
-            exportBounds = geojsonBounds;
-        }
+        if (geojsonBounds.isValid()) exportBounds = geojsonBounds;
 
         const radiusScale = d3.scaleSqrt()
             .domain(minValue === maxValue ? [0, maxValue || 1] : [minValue, maxValue])
@@ -657,13 +637,15 @@ const buildTemporaryLeafletExport = async (width, height) => {
             pendingLayers.push(bubbleMarker);
 
             if (exportBounds) {
+
                 exportBounds.extend(latLng);
+
             } else {
+
                 exportBounds = L.latLngBounds(latLng, latLng);
+
             }
-
         });
-
     } else {
 
         // - - - choropleth branch: filled geometry only - - - //
@@ -672,6 +654,7 @@ const buildTemporaryLeafletExport = async (width, height) => {
         // directly from the export GeoJSON layer.
 
         const exportGeojsonLayer = L.geoJson(exportGeojson, {
+
             renderer: exportRenderer,
             style: feature => {
 
@@ -683,7 +666,6 @@ const buildTemporaryLeafletExport = async (width, height) => {
                     color: 'black',
                     fillOpacity: 0.65
                 };
-
             }
         });
 
@@ -691,15 +673,14 @@ const buildTemporaryLeafletExport = async (width, height) => {
 
         const geojsonBounds = exportGeojsonLayer.getBounds();
 
-        if (geojsonBounds.isValid()) {
-            exportBounds = geojsonBounds;
-        }
+        if (geojsonBounds.isValid()) exportBounds = geojsonBounds;
 
     }
 
     // ----- fit/frame the export view to bounds ----- //
 
     if (exportBounds && exportBounds.isValid()) {
+
         const {
             padRatio: exportBoundsPadRatio,
             zoomBonus: exportZoomBonus
@@ -716,6 +697,7 @@ const buildTemporaryLeafletExport = async (width, height) => {
         // ratio or relying on the live viewport size.
 
         if (exportZoomBonus > 0) {
+
             exportMap.setView(
                 exportBounds.getCenter(),
                 Math.min(exportMap.getZoom() + exportZoomBonus, EXPORT_MAP_MAX_ZOOM),
@@ -727,8 +709,11 @@ const buildTemporaryLeafletExport = async (width, height) => {
         // never clipped and each visible feature has basemap tiles underneath.
 
         ensureBoundsWithinExportViewport(exportMap, exportBounds, width, height);
+
     } else {
+
         exportMap.setView([40.700142, -73.921546], EXPORT_MAP_MAX_ZOOM);
+
     }
 
     // ----- add layers to the map and wait for render idle ----- //
@@ -771,7 +756,6 @@ const buildTemporaryLeafletExport = async (width, height) => {
         maxLabel: document.getElementById('maxVal')?.textContent || 'Max',
         tileCoverageIsComplete
     };
-
 };
 
 
@@ -798,7 +782,6 @@ const waitForLoadedImages = (images) => {
         image.addEventListener('error', finalize, { once: true });
 
     })));
-
 };
 
 
@@ -808,15 +791,12 @@ const parseLeafletTransform = (transformValue = '') => {
 
     const match = transformValue.match(/translate3d\(([-\d.]+)px,\s*([-\d.]+)px,\s*[-\d.]+px\)/);
 
-    if (!match) {
-        return null;
-    }
+    if (!match) return null;
 
     return {
         x: Number(match[1]),
         y: Number(match[2])
     };
-
 };
 
 
@@ -827,6 +807,7 @@ const getLeafletLayerDrawBox = (layerElement, mapRect, options = {}) => {
     const { useRenderedBounds = false } = options;
 
     if (useRenderedBounds) {
+
         // Tile images inherit scale from their parent tile container, so their
         // rendered box is the only reliable source of export coordinates.
 
@@ -843,6 +824,7 @@ const getLeafletLayerDrawBox = (layerElement, mapRect, options = {}) => {
     const transformedPosition = parseLeafletTransform(layerElement.style.transform || '');
 
     if (transformedPosition) {
+
         return {
             x: transformedPosition.x,
             y: transformedPosition.y,
@@ -859,7 +841,6 @@ const getLeafletLayerDrawBox = (layerElement, mapRect, options = {}) => {
         width: layerRect.width,
         height: layerRect.height
     };
-
 };
 
 
@@ -886,11 +867,14 @@ const drawLeafletTiles = async (ctx, mapElement, mapRect, offsetY) => {
         const y = tileBox.y + offsetY;
 
         try {
-            ctx.drawImage(tileImage, x, y, tileBox.width, tileBox.height);
-        } catch (error) {
-            skippedTiles = true;
-        }
 
+            ctx.drawImage(tileImage, x, y, tileBox.width, tileBox.height);
+
+        } catch (error) {
+
+            skippedTiles = true;
+
+        }
     });
 
     return { skippedTiles };
@@ -911,7 +895,6 @@ const loadImage = (src) => {
         image.src = src;
 
     });
-
 };
 
 
@@ -932,9 +915,7 @@ const drawLeafletSvgLayers = async (ctx, mapElement, mapRect, offsetY) => {
         // Leaflet root SVG overlays already encode the pane offset via viewBox.
         // Removing the CSS translate avoids applying that offset a second time.
 
-        if (hasLeafletPaneOffset) {
-            svgClone.removeAttribute('style');
-        }
+        if (hasLeafletPaneOffset) svgClone.removeAttribute('style');
 
         const svgMarkup = new XMLSerializer().serializeToString(svgClone);
         const normalizedSvgMarkup = svgMarkup.includes('xmlns=')
@@ -945,17 +926,19 @@ const drawLeafletSvgLayers = async (ctx, mapElement, mapRect, offsetY) => {
         const objectURL = URL.createObjectURL(svgBlob);
 
         try {
+
             const svgImage = await loadImage(objectURL);
             const x = hasLeafletPaneOffset ? 0 : svgRect.left - mapRect.left;
             const y = hasLeafletPaneOffset ? offsetY : svgRect.top - mapRect.top + offsetY;
 
             ctx.drawImage(svgImage, x, y, svgRect.width, svgRect.height);
+
         } finally {
+
             URL.revokeObjectURL(objectURL);
+
         }
-
     }
-
 };
 
 
@@ -1086,6 +1069,7 @@ const exportLeafletMap = async () => {
     });
 
     if (headerLayout.subtitleLines.length) {
+
         textBaselineY += headerLayout.gapAfterTitle;
         ctx.fillStyle = '#475569';
         ctx.font = '16px Arial';
@@ -1164,6 +1148,7 @@ const exportLeafletMap = async () => {
     drawMapLegend(ctx, paddingX, headerHeight + exportHeight + 30, legendWidth, minLabel, maxLabel);
 
     if (sourceLines.length) {
+
         ctx.fillStyle = '#4b5563';
         ctx.font = '12px Arial';
 
@@ -1180,7 +1165,6 @@ const exportLeafletMap = async () => {
             ? 'Some basemap tiles were unavailable in part of the export area. The exporter attempted to zoom out to recover coverage; if this persists, retry in a moment.'
             : ''
     };
-
 };
 
 
@@ -1191,6 +1175,7 @@ const renderMapPreview = async () => {
     showPrintLoadingState('Preparing a PNG preview of the current map.');
 
     try {
+
         const { dataURL, tileWarning } = await exportLeafletMap();
 
         setPrintModalState({
@@ -1203,7 +1188,8 @@ const renderMapPreview = async () => {
             downloadLabel: 'Download PNG'
         });
     } catch (error) {
-        showPrintErrorState(error.message || 'The map could not be exported.');
-    }
 
+        showPrintErrorState(error.message || 'The map could not be exported.');
+
+    }
 };

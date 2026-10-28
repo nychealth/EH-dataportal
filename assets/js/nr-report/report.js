@@ -54,11 +54,9 @@ const renderSectionNotes = (container, rows) => {
     wrapper.className = 'nr-section-notes px-2 pt-2 pb-1';
 
     notes.forEach(note => {
-
         const line = document.createElement('p');
         line.textContent = note;
         wrapper.appendChild(line);
-
     });
 
     container.appendChild(wrapper);
@@ -82,26 +80,33 @@ const renderSection = (section, neighborhoodName) => {
     }
 
     // Neighborhood-level rows are pre-grouped during loadSection
+
     const byNeighborhood = sectionData[section.id] || {};
     const rows = byNeighborhood[neighborhoodName] || [];
 
     // Reset section contents before re-rendering cards
+
     container.innerHTML = '';
 
     // A failed fetch is not an absence of data, and saying so would tell the reader this
     // neighborhood has nothing to report
+
     if (failedSections.has(section.id)) {
+
         debugLog('renderSection: branch-load-failed:', section.id);
         container.innerHTML =
             '<p class="text-muted px-2 pb-2 mb-0">This section could not be loaded. Please try again later.</p>';
         return;
+
     }
 
     if (!rows.length) {
+
         debugLog('renderSection: branch-no-rows:', { sectionId: section.id, neighborhoodName });
         container.innerHTML =
             '<p class="text-muted px-2 pb-2 mb-0">No data available for this neighborhood.</p>';
         return;
+
     }
 
     rows.forEach(row => {
@@ -112,12 +117,14 @@ const renderSection = (section, neighborhoodName) => {
         // escaped field by field: the data carries & and < as text today ("N/A<1%*"), which
         // already renders as written, and DOMPurify leaves that, and every tag and attribute
         // the card itself emits, as it was while dropping anything executable a value might bring
+
         card.innerHTML = DOMPurify.sanitize(buildIndicatorCard(row, neighborhoodName));
         container.appendChild(card);
 
     });
 
     // Last, so the legend sits beneath the cards whose markers it explains
+
     renderSectionNotes(container, rows);
 
 };
@@ -144,9 +151,7 @@ const resolveGeocode = (neighborhoodName, mapGeocode) => {
                 debugLog('resolveGeocode: branch-found-geocode-in-section:', { sectionId: sid, geocode: gj });
                 return gj;
             }
-
         }
-
     }
 
     // ----- from the map click ----- //
@@ -185,7 +190,6 @@ const updateDocumentTitle = neighborhoodName => {
         document.title = reportConfig.seoShortName + ' in ' + neighborhoodName +
             (reportConfig.siteTitle ? ' – ' + reportConfig.siteTitle : '');
     }
-
 };
 
 
@@ -238,6 +242,7 @@ const renderAll = (neighborhoodName, mapGeocode, fromHistory = false) => {
     renderedPanels = {};
 
     // The panels these charts sit in are about to be rebuilt (chart.js keeps them)
+
     chartViews.forEach(view => view.finalize());
     chartViews = [];
     accordionCounter = 0;
@@ -263,24 +268,26 @@ const renderAll = (neighborhoodName, mapGeocode, fromHistory = false) => {
     const reportHeader = document.getElementById('nr-report-header');
     const headerNeighborhood = document.getElementById('nr-header-neighborhood');
 
-    if (reportHeader) {
-        reportHeader.style.display = '';
-    }
+    if (reportHeader) reportHeader.style.display = '';
 
     if (headerNeighborhood) {
         headerNeighborhood.textContent = neighborhoodName;
     }
 
     // The narrow layout carries its own copy of the title
+
     const mobileTitle = document.getElementById('nr-mobile-title');
     const mobileNeighborhood = document.getElementById('nr-mobile-neighborhood');
 
     if (mobileTitle) mobileTitle.style.display = '';
-    if (mobileNeighborhood) mobileNeighborhood.textContent = neighborhoodName;
+    if (mobileNeighborhood) {
+        mobileNeighborhood.textContent = neighborhoodName;
+    }
 
     // ----- demographics and deep-link state ----- //
 
     // Sidebar metrics are keyed by geocode, so this has to follow the resolution above
+
     renderDemographics(currentGeocode);
 
     // ----- history, head and analytics ----- //
@@ -289,6 +296,7 @@ const renderAll = (neighborhoodName, mapGeocode, fromHistory = false) => {
     // is already standing on its entry and must not add another. fromHistory wins even on
     // a first render: tryInitialRender sets it when the address bar has already moved off
     // the served neighborhood, and a replace then would rewrite that entry's path
+
     const historyMode = fromHistory ? 'none' : (!previousNeighborhood ? 'replace' : 'push');
     setNeighborhoodInURL(neighborhoodName, historyMode);
 
@@ -317,9 +325,7 @@ const renderAll = (neighborhoodName, mapGeocode, fromHistory = false) => {
     // neighborhood in place — so it has to be regenerated from the rewritten URL rather
     // than once at load. Defined in nr-report.html, which owns the qrcode library
 
-    if (typeof renderQRCode === 'function') {
-        renderQRCode();
-    }
+    if (typeof renderQRCode === 'function') renderQRCode();
 
     // ----- announce ----- //
 

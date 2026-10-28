@@ -57,9 +57,11 @@ const attachMapInterop = ({ highlight, reset }) => {
 // map handler can call it unconditionally.
 
 const setBarSelection = (geoID) => {
+
     if (!window.myVegaView) return;
 
     window.myVegaView.signal("selectedGeo", geoID).run();
+
 };
 
 // Points the contract back at the no-ops. Called synchronously at the start of every render so
@@ -108,10 +110,12 @@ const initBaseMap = () => {
 // Removes any bubble overlays left from number-map rendering.
 
 const clearBubbles = () => {
+
     currentBubbleMarkers.forEach(marker => {
         currentMap.removeLayer(marker);
     });
     currentBubbleMarkers = [];
+
 };
 
 // ----------------------------------------------------------------------- //
@@ -121,16 +125,19 @@ const clearBubbles = () => {
 // Builds a plain object mapping each row's GeoID to the row itself, for O(1) lookup when joining data onto GeoJSON features.
 
 const createDataLookup = (data) => {
+
     const dataLookup = {};
     data.forEach(item => {
         dataLookup[item.GeoID] = item;
     });
     return dataLookup;
+
 };
 
 // Reuses the base map instance while clearing old geometry overlays between renders.
 
 const resetMapForRender = () => {
+
     mapRenderGeneration += 1;
 
     detachMapInterop();
@@ -167,11 +174,13 @@ const resetMapForRender = () => {
         currentGeojsonLayer = null;
     }
     return currentMap;
+
 };
 
 // Calculates legend bounds from the currently filtered map rows.
 
 const getMapStats = (data) => {
+
     const values = data.map(d => d.Value).filter(v => v != null);
     return {
         values,
@@ -183,6 +192,7 @@ const getMapStats = (data) => {
 // Prints current legend endpoints using the active display units.
 
 const setMapLegendValues = (minValue, maxValue, digits) => {
+
     const minFormatted = minValue.toLocaleString(undefined, {
         minimumFractionDigits: digits,
         maximumFractionDigits: digits
@@ -198,6 +208,7 @@ const setMapLegendValues = (minValue, maxValue, digits) => {
     // Screen readers can't infer a data range from a color gradient; describe it in words instead.
 
     document.getElementById('viridisRect').setAttribute('aria-label', `Legend: ${minFormatted} (low) to ${maxFormatted} (high)`);
+
 };
 
 // Uses a reversed Viridis scale so larger values remain visually darker.
@@ -211,23 +222,24 @@ const createColorScale = (minValue, maxValue) => {
 // Centralizes map value formatting for tooltips, legend hover, and popups.
 
 const formatMapValue = (value, digits) => {
+
     return value != null
         ? value.toLocaleString(undefined, {
             minimumFractionDigits: digits,
             maximumFractionDigits: digits
         }) + displayType
         : '—';
+
 };
 
 // Builds shared popup markup for both choropleth polygons and bubble markers.
 
 const createMapPopupContent = (properties, metadata, options = {}) => {
+
     const requireGeoRank = options.requireGeoRank ?? true;
     const valueDigits = options.valueDigits ?? 1;
 
-    if (requireGeoRank && !properties.GeoRank) {
-        return;
-    }
+    if (requireGeoRank && !properties.GeoRank) return;
 
     if (!requireGeoRank && properties.Value == null && !properties.GeoRank) {
         return;
@@ -257,6 +269,7 @@ const createMapPopupContent = (properties, metadata, options = {}) => {
             ${note}
         </div>
     `;
+
 };
 
 
@@ -265,9 +278,7 @@ const createMapPopupContent = (properties, metadata, options = {}) => {
 // screen with blank endpoints still implies a scale that doesn't exist.
 
 const setMapLegendVisible = (visible) => {
-
     document.querySelector('.de-legend')?.classList.toggle('d-none', !visible);
-
 };
 
 // Shows or hides the Save map control. The export path (print-map.js) builds its own off-screen
@@ -277,9 +288,7 @@ const setMapLegendVisible = (visible) => {
 // produce a misleading artifact. d-none, so it leaves the tab order too.
 
 const setSaveMapVisible = (visible) => {
-
     document.getElementById('deSaveMapButton')?.classList.toggle('d-none', !visible);
-
 };
 
 // Resets the legend hover panel to its idle, no-selection state. Module-level rather than
@@ -287,28 +296,30 @@ const setSaveMapVisible = (visible) => {
 // it before the incoming render's helpers exist.
 
 const clearHoverUI = () => {
+
     document.getElementById('hoveredGeo').textContent = 'Hover for details';
     document.getElementById('hoveredValue').textContent = '';
     document.getElementById('hoveredUnits').textContent = '';
     document.getElementById('legend-tick').style.display = 'none';
+
 };
 
 // Coordinates legend hover text and tick placement with hovered map features.
 
 const createHoverUIHelpers = (metadata, minValue, maxValue, digits) => {
+
     // Converts a value into a 0-100 percent position along the legend's color range.
 
     const calculatePercent = (x) => {
         const range = maxValue - minValue;
-        if (range === 0 || x == null) {
-            return 0;
-        }
+        if (range === 0 || x == null) return 0;
         return 100 * (x - minValue) / range;
     };
 
     // Updates the legend hover panel and tick position to reflect the hovered feature.
 
     const updateHoverUI = (props) => {
+
         document.getElementById('hoveredGeo').textContent = props.Geography || 'Unknown';
         document.getElementById('hoveredValue').textContent = formatMapValue(props.Value, digits);
         document.getElementById('hoveredUnits').textContent = metadata[0].DisplayType.toLowerCase();
@@ -324,6 +335,7 @@ const createHoverUIHelpers = (metadata, minValue, maxValue, digits) => {
 
         legendTick.style.display = 'block';
         document.querySelector('.viridis-tick').style.left = calculatePercent(props.Value) + '%';
+
     };
 
     return {
@@ -339,15 +351,19 @@ const createHoverUIHelpers = (metadata, minValue, maxValue, digits) => {
 // of the same geotype. See loadMapGeojson below.
 
 const attachDataToGeojsonFeatures = (geojson, dataLookup) => {
+
     geojson.features.forEach((feature) => {
+
         const geoID = feature.properties.GEOCODE;
         const matchedData = dataLookup[geoID];
 
         feature.properties = matchedData
             ? { ...feature.properties, ...matchedData }
             : { ...feature.properties, dataValue: null };
+
     });
     return geojson;
+
 };
 
 // Fetches the geotype's TopoJSON, converts it to GeoJSON, and joins the filtered rows onto its features.
@@ -356,6 +372,7 @@ const attachDataToGeojsonFeatures = (geojson, dataLookup) => {
 // render, rebuilding the GeoJSON wrapper so each render gets its own features to attach data to.
 
 const loadMapGeojson = (topoFile, dataLookup) => {
+
     return loadOnce(topoFile, () =>
         fetch(`${data_repo}${data_branch}/geography/${topoFile}`).then(response => response.json())
     )
@@ -372,6 +389,7 @@ const loadMapGeojson = (topoFile, dataLookup) => {
 // Builds popup markup specifically for citywide-only data
 
 const createCitywidePopupContent = (citywideData, metadata) => {
+
     return `
         <div class="popup-content">
             <div class="popup-header">
@@ -392,6 +410,7 @@ const createCitywidePopupContent = (citywideData, metadata) => {
             <div class="popup-note fs-xs">This dataset isn't available broken down by neighborhood.</div>
         </div>
     `;
+
 };
 
 // Roughly lower Manhattan — anchors the citywide popup over the middle of the city.
@@ -413,11 +432,14 @@ const switchToTrendTabOnce = () => {
     const element = document.getElementById('v-pills-trends-tab');
 
     if (element) {
-        element.click();
-    } else {
-        console.warn("Trend tab element not found for citywide map click-through.");
-    }
 
+        element.click();
+
+    } else {
+
+        console.warn("Trend tab element not found for citywide map click-through.");
+
+    }
 };
 
 // Opens the citywide popup at the city center and nudges the user to the trend tab.
@@ -499,18 +521,14 @@ const showUnmappedHintOnce = (map) => {
 // moving to a measure that *is* mapped can't leave a hint pointing at nothing.
 
 const clearVisBarHighlight = () => {
-
     document.getElementById('v-pills-tab')?.classList.remove('vis-bar-required');
-
 };
 
 // Bound once, on the bar container rather than its five links, so any click inside the bar
 // dismisses the hint — including the Data Sources link and the mobile Take Action button.
 
 const bindVisBarHighlightDismissal = () => {
-
     document.getElementById('v-pills-tab')?.addEventListener('click', clearVisBarHighlight);
-
 };
 
 // Draws the citywide outline in gray with no value, no legend range, and an automatic message.
@@ -574,9 +592,13 @@ const renderUnmappedCitywide = (metadata) => {
 initBaseMap();
 
 if (document.readyState === 'loading') {
+
     document.addEventListener('DOMContentLoaded', bindVisBarHighlightDismissal);
+
 } else {
+
     bindVisBarHighlightDismissal();
+
 }
 
 // Derives shared time/geo/measurement metadata from the filtered data, then dispatches to renderBubbleMap or renderChoroplethMap.
@@ -627,9 +649,7 @@ const renderMap = (
     const isCitywideOnly = availableGeoTypes.length === 1 &&
                            availableGeoTypes[0] === 'Citywide';
 
-    if (isCitywideOnly) {
-        debugLog("** renderMap: citywide only");
-    }
+    if (isCitywideOnly) debugLog("** renderMap: citywide only");
 
     // ----- determine map type based on measurement type ----- //
 
@@ -649,8 +669,8 @@ const renderMap = (
         // - - - choropleth map rendering - - - //
 
         return renderChoroplethMap(data, metadata, mapGeoType, mapTime, topoFile, isCitywideOnly);
-    }
 
+    }
 };
 
 // ----------------------------------------------------------------------- //
@@ -677,6 +697,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
     // Colors each polygon by its value using the shared color scale, falling back to gray when data is missing.
 
     const styleFeature = (feature) => {
+
         const value = feature.properties.Value;
         return {
             fillColor: value != null ? colorScale(value) : '#ccc',
@@ -701,6 +722,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
     // Applies the hover-highlight outline, clearing any previous highlight, and brings the feature to the front of the layer stack.
 
     const highlightFeature = (e) => {
+
         const layer = e.target;
 
         if (highlightedLayer && highlightedLayer !== layer) {
@@ -718,26 +740,28 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
         }
 
         highlightedLayer = layer;
+
     };
 
     // Restores a layer's base style. Falls back to the tracked layer so callers that don't hold a
     // reference (or pass a stale one) still clear the highlight that is actually on screen.
 
     const resetHighlight = (layer) => {
+
         const target = layer ?? highlightedLayer;
 
         if (!target || !geojsonLayer) return;
 
         geojsonLayer.resetStyle(target);
 
-        if (target === highlightedLayer) {
-            highlightedLayer = null;
-        }
+        if (target === highlightedLayer) highlightedLayer = null;
+
     };
 
     // Builds popup markup for a feature, substituting the citywide popup when the data is citywide-only.
 
     const createPopupContent = (properties) => {
+
         // Use citywide-specific popup if this is citywide-only data
 
         if (isCitywideOnly) {
@@ -777,6 +801,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
                     // Register both joined GeoID and source GEOCODE in raw and string form.
 
                     [joinedGeoID, featureGeoCode].forEach((candidate) => {
+
                         if (candidate !== undefined && candidate !== null && candidate !== '') {
                             geoIDtoLayer[candidate] = layer;
                             geoIDtoLayer[String(candidate)] = layer;
@@ -788,21 +813,20 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
                     layer.bindPopup(createPopupContent(feature.properties));
                     
                     layer.on('click', (e) => {
+
                         const props = feature.properties;
                         debugLog("** click", feature.properties);
 
-                        if (isCitywideOnly) {
-                            switchToTrendTabOnce();
-                        }
+                        if (isCitywideOnly) switchToTrendTabOnce();
 
                         const linkedGeoID = props.GeoID ?? props.GEOCODE;
 
-                        if (linkedGeoID != null) {
-                            setBarSelection(linkedGeoID);
-                        }
+                        if (linkedGeoID != null) setBarSelection(linkedGeoID);
+
                     });
 
                     layer.on('mouseover', (e) => {
+
                         const props = feature.properties;
                         const linkedGeoID = props.GeoID ?? props.GEOCODE;
                         const hasMappedValue = props.Value != null;
@@ -816,29 +840,30 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
                         // Do not push no-data geographies into the linked bar highlight.
 
                         setBarSelection(hasMappedValue && linkedGeoID != null ? linkedGeoID : null);
+
                     });
                     
                     layer.on('mouseout', (e) => {
+
                         resetHighlight(e.target);
                         clearHoverUI();
 
                         setBarSelection(null);
+
                     });
-                    
                 }
             }).addTo(map);
 
             currentGeojsonLayer = geojsonLayer;
 
-            if (isCitywideOnly) {
-                handleCitywideOnly(map, data, metadata);
-            }
+            if (isCitywideOnly) handleCitywideOnly(map, data, metadata);
 
             // ----- publish the hover contract for bar.js ----- //
 
             attachMapInterop({
 
                 highlight: (geoID) => {
+
                     // The lookup registers both GeoID and GEOCODE, raw and stringified, so a
                     // single fallback covers the number-vs-string mismatch between the two sources.
 
@@ -848,18 +873,19 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
 
                     highlightFeature({ target: layer });
                     updateHoverUI(layer.feature.properties);
+
                 },
 
                 reset: () => {
+
                     // No argument: resetHighlight falls back to whichever layer is tracked, so a
                     // highlight from either source (map hover or bar chart) clears correctly.
 
                     resetHighlight();
                     clearHoverUI();
+
                 }
-
             });
-
         })
         .catch(error => {
             console.log(error);
@@ -874,6 +900,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
     DE.print.chartType = 'map';
 
     return mapRenderPromise;
+
 };
 
 // ----------------------------------------------------------------------- //
@@ -883,6 +910,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
 // Renders the number/total map variant, joining data to circle markers sized and colored by value, with popup, hover, and click interactions mirroring the choropleth map.
 
 const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywideOnly = false) => {
+
     const dataLookup = createDataLookup(data);
     const map = resetMapForRender();
     const generation = mapRenderGeneration;
@@ -910,6 +938,7 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
     // Builds popup markup for a bubble or polygon, substituting the citywide popup when the data is citywide-only.
 
     const createPopupContent = (properties) => {
+
         // Use citywide-specific popup if this is citywide-only data
 
         if (isCitywideOnly) {
@@ -945,7 +974,10 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
             // Applies the hover-highlight style to a marker entry, clearing any previous one.
 
             const highlightMarker = (markerEntry) => {
-                if (!markerEntry || markerEntry === highlightedMarker) return;
+
+                if (!markerEntry || markerEntry === highlightedMarker) {
+                    return;
+                }
 
                 if (highlightedMarker) {
                     highlightedMarker.marker.setStyle(highlightedMarker.originalStyle);
@@ -958,27 +990,31 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                 });
 
                 highlightedMarker = markerEntry;
+
             };
 
             // Restores whichever marker is currently highlighted, whoever highlighted it.
 
             const resetMarkerHighlight = () => {
+
                 if (!highlightedMarker) return;
 
                 highlightedMarker.marker.setStyle(highlightedMarker.originalStyle);
                 highlightedMarker = null;
+
             };
 
             // ----- Add the GeoJSON overlay (light gray polygons) ----- //
 
             const geojsonLayer = L.geoJson(geojson, {
+
                 style: styleFeature,
                 onEachFeature: (feature, layer) => {
+
                     layer.bindPopup(createPopupContent(feature.properties));
 
-                    if (isCitywideOnly) {
-                        layer.on('click', switchToTrendTabOnce);
-                    }
+                    if (isCitywideOnly) layer.on('click', switchToTrendTabOnce);
+
                 }
             }).addTo(map);
 
@@ -987,7 +1023,9 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
             // ----- Add bubbles on top ----- //
 
             data.forEach(item => {
+
                 if (item.Lat != null && item.Long != null && item.Value != null) {
+
                     const latlng = [item.Lat, item.Long];
                     const circle = L.circleMarker(latlng, {
                         radius: radiusScale(item.Value),
@@ -1026,57 +1064,59 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                     // - - - Add hover and click interactions to bubbles - - - //
 
                     circle.on('click', (e) => {
+
                         debugLog("** click", item);
 
-                        if (isCitywideOnly) {
-                            switchToTrendTabOnce();
-                        }
+                        if (isCitywideOnly) switchToTrendTabOnce();
 
                         setBarSelection(item.GeoID);
+
                     });
 
                     circle.on('mouseover', (e) => {
+
                         highlightMarker(markerEntry);
 
                         updateHoverUI(item);
 
                         setBarSelection(item.GeoID);
+
                     });
 
                     circle.on('mouseout', (e) => {
+
                         resetMarkerHighlight();
 
                         clearHoverUI();
 
                         setBarSelection(null);
+
                     });
                 }
             });
 
-            if (isCitywideOnly) {
-                handleCitywideOnly(map, data, metadata);
-            }
+            if (isCitywideOnly) handleCitywideOnly(map, data, metadata);
 
             // ----- publish the hover contract for bar.js ----- //
 
             attachMapInterop({
 
                 highlight: (geoID) => {
+
                     const markerEntry = circleMarkers.find(c => c.geoID === geoID);
 
                     if (!markerEntry) return;
 
                     highlightMarker(markerEntry);
                     updateHoverUI(markerEntry.row);
+
                 },
 
                 reset: () => {
                     resetMarkerHighlight();
                     clearHoverUI();
                 }
-
             });
-
         })
         .catch(error => {
             console.log(error);
@@ -1091,4 +1131,5 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
     DE.print.chartType = 'bubble-map';
 
     return mapRenderPromise;
+
 };

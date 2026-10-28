@@ -9,6 +9,7 @@
 // The URL slug for a neighborhood's display name. Read off the `neighborhoods` global, which
 // lib-uhflist emits from data/globals/uhflist.json, the same rows the content adapter
 // generates the report pages from, so the slug is the one the page's own URL carries
+
 const slugForNeighborhood = name => {
 
     const entry = neighborhoods.find(n => n.UHF_name === name);
@@ -23,6 +24,7 @@ const slugForNeighborhood = name => {
 // entry's state, is what Back and Forward restore: an entry a #fragment link added carries
 // no state, and an entry popped before the first render has not been re-rendered yet.
 // Undefined when the path carries no known neighborhood slug
+
 const getNeighborhoodFromURL = () => {
 
     if (typeof neighborhoods === 'undefined') return undefined;
@@ -40,6 +42,7 @@ const getNeighborhoodFromURL = () => {
 
 
 // Resolves the neighborhood for this page load
+
 const getPageNeighborhood = () => {
 
     // Every report page is generated for one neighborhood and says so in its config, so
@@ -48,6 +51,7 @@ const getPageNeighborhood = () => {
     // landing page. Both existed because the report page lived at <topic>/ and had to be told
     // which neighborhood to draw; it is now served at <nbhd>/<topic>/, so the server
     // always knows and neither fallback had a writer left
+
     debugLog('getPageNeighborhood: enter:', reportConfig.neighborhood);
 
     return reportConfig.neighborhood;
@@ -63,17 +67,14 @@ const setNeighborhoodInURL = (name, historyMode) => {
     debugLog('setNeighborhoodInURL: enter:', { name, historyMode });
 
     // The browser has already moved the address bar to the entry being re-rendered
-    if (historyMode === 'none') {
-        return;
-    }
+
+    if (historyMode === 'none') return;
 
     // ----- resolve the slug for this neighborhood ----- //
 
     const slug = slugForNeighborhood(name);
 
-    if (!slug) {
-        return;
-    }
+    if (!slug) return;
 
     // ----- rewrite the segment before the topic ----- //
 
@@ -83,14 +84,14 @@ const setNeighborhoodInURL = (name, historyMode) => {
     // now yields a three-deep path with nothing behind it.
     // Rebuilding from the topic's index rather than appending preserves any site path
     // prefix (e.g. /dev-prod/) and is idempotent when a slug is already in place
+
     const pathParts = window.location.pathname.replace(/\/$/, '').split('/').filter(Boolean);
     const topicIdx = pathParts.findIndex(p => p === reportConfig.topicSlug);
 
     // Index 2 is the shallowest a report page can sit at — neighborhood-reports/<nbhd>/<topic>
     // with no site path prefix. Anything shallower is not a path this should be rewriting
-    if (topicIdx < 2) {
-        return;
-    }
+
+    if (topicIdx < 2) return;
 
     const newPath = '/' + pathParts.slice(0, topicIdx - 1).concat(slug, reportConfig.topicSlug).join('/') + '/';
 
@@ -109,11 +110,14 @@ const setNeighborhoodInURL = (name, historyMode) => {
     // Clicking the neighborhood already shown leaves the path unchanged and adds no entry
 
     if (historyMode === 'push' && newPath !== window.location.pathname) {
-        history.pushState(state, '', url);
-    } else {
-        history.replaceState(state, '', url);
-    }
 
+        history.pushState(state, '', url);
+
+    } else {
+
+        history.replaceState(state, '', url);
+
+    }
 };
 
 
@@ -157,6 +161,7 @@ const updateHeadMetadata = (neighborhoodName, previousNeighborhood) => {
 
 
 // Repoints every topic tab at the current neighborhood's copy of that topic
+
 const updateTopicLinks = neighborhoodName => {
 
     debugLog('updateTopicLinks: enter:', neighborhoodName);
@@ -166,11 +171,10 @@ const updateTopicLinks = neighborhoodName => {
     // segment is rewritten here — the same swap setNeighborhoodInURL makes to the address
     // bar, applied to the five links. No sessionStorage hand-off is involved: every one of
     // these URLs is now a page that exists
+
     const slug = slugForNeighborhood(neighborhoodName);
 
-    if (!slug) {
-        return;
-    }
+    if (!slug) return;
 
     document.querySelectorAll('.nr-topic-link').forEach(a => {
 
@@ -178,19 +182,18 @@ const updateTopicLinks = neighborhoodName => {
             .replace(/\/$/, '').split('/').filter(Boolean);
 
         // Last segment is the destination topic, the one before it the neighborhood
-        if (parts.length < 2) {
-            return;
-        }
+
+        if (parts.length < 2) return;
 
         parts[parts.length - 2] = slug;
         a.href = '/' + parts.join('/') + '/';
 
     });
-
 };
 
 
 // Repoints the breadcrumb's neighborhood item at the current neighborhood
+
 const updateNeighborhoodCrumb = neighborhoodName => {
 
     debugLog('updateNeighborhoodCrumb: enter:', neighborhoodName);
@@ -198,15 +201,15 @@ const updateNeighborhoodCrumb = neighborhoodName => {
     // Same staleness as the topic tabs: the template renders this crumb for the
     // neighborhood the page was generated for, so after an in-place switch it named
     // and linked the old one while the h1 and address bar named the new one
+
     const slug = slugForNeighborhood(neighborhoodName);
     const crumb = document.querySelector('.nr-breadcrumb-neighborhood');
 
-    if (!slug || !crumb) {
-        return;
-    }
+    if (!slug || !crumb) return;
 
     // Its href is the neighborhood index, neighborhood-reports/<nbhd>/, so the
     // neighborhood is the last segment. Rewriting that one keeps any site path prefix
+
     const parts = new URL(crumb.href, window.location.origin).pathname
         .replace(/\/$/, '').split('/').filter(Boolean);
 

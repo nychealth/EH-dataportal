@@ -64,7 +64,6 @@ const parseSelectionFromURL = () => {
     const rawOverlay = params.get('overlay');
 
     return {
-
         id:           toNumber(params.get('id')),
         MeasureID:    toNumber(params.get('MeasureID')),
 
@@ -76,9 +75,7 @@ const parseSelectionFromURL = () => {
 
         // 'map' is the legacy spelling of the bar overlay.
         overlay:      rawOverlay === 'map' ? 'bar' : (rawOverlay || null)
-
     };
-
 };
 
 
@@ -87,11 +84,18 @@ const parseSelectionFromURL = () => {
 
 const applySelectionToState = (selection) => {
 
-    if (selection.MeasureID)    DE.state.MeasureID    = selection.MeasureID;
-    if (selection.GeoType)      DE.state.GeoType      = selection.GeoType;
-    if (selection.TimePeriodID) DE.state.TimePeriodID = selection.TimePeriodID;
-    if (selection.overlay)      DE.state.overlay      = selection.overlay;
-
+    if (selection.MeasureID) {
+        DE.state.MeasureID    = selection.MeasureID;
+    }
+    if (selection.GeoType) {
+        DE.state.GeoType      = selection.GeoType;
+    }
+    if (selection.TimePeriodID) {
+        DE.state.TimePeriodID = selection.TimePeriodID;
+    }
+    if (selection.overlay) {
+        DE.state.overlay      = selection.overlay;
+    }
 };
 
 
@@ -142,6 +146,7 @@ const writeSelectionToURL = (historyMethod = 'pushState') => {
         TimePeriodID: DE.state.TimePeriodID,
         overlay: DE.state.overlay
     }, url);
+
 };
 
 // Adds a history entry — what every user-initiated change (dropdown, tab, close) does.
@@ -162,9 +167,7 @@ const normalizeLegacyGeoTypeURL = () => {
     const nextURL = new URL(window.location.href);
     const rawSearch = nextURL.search.replace(/^\?/, '');
 
-    if (!rawSearch) {
-        return;
-    }
+    if (!rawSearch) return;
 
     // ----- split into parts, detect canonical GeoType ----- //
 
@@ -182,15 +185,14 @@ const normalizeLegacyGeoTypeURL = () => {
     // Rewrite each key=value pair while preserving everything unrelated to GeoType.
 
     const normalizedParts = searchParts.flatMap(part => {
+
         const [key, ...rest] = part.split('=');
         const value = rest.join('=');
 
         // Leave unrelated params untouched so future query params survive this rewrite.
         // pass non-GeoTypeID params through unchanged
 
-        if (key !== 'GeoTypeID') {
-            return [part];
-        }
+        if (key !== 'GeoTypeID') return [part];
 
         didChange = true;
         // capture the first GeoTypeID value for the history state
@@ -199,20 +201,17 @@ const normalizeLegacyGeoTypeURL = () => {
 
         // - - - drop duplicate GeoTypeID when GeoType already exists - - - //
 
-        if (hasCanonicalGeoType) {
-            return [];
-        }
+        if (hasCanonicalGeoType) return [];
 
         // - - - otherwise rename GeoTypeID to GeoType - - - //
 
         return [`GeoType=${value}`];
+
     });
 
     // ----- exit early if nothing changed ----- //
 
-    if (!didChange) {
-        return;
-    }
+    if (!didChange) return;
 
     // ----- commit normalized URL ----- //
 
@@ -237,9 +236,7 @@ const normalizeLegacyOverlayURL = () => {
 
     // 'map' was an old overlay value; 'bar' is its current equivalent
 
-    if (nextURL.searchParams.get('overlay') !== 'map') {
-        return;
-    }
+    if (nextURL.searchParams.get('overlay') !== 'map') return;
 
     nextURL.searchParams.set('overlay', 'bar');
 
@@ -277,9 +274,7 @@ const normalizeLegacyHashOverlayURL = () => {
 
     const nextOverlay = legacyOverlayByHash[window.location.hash];
 
-    if (!nextOverlay) {
-        return;
-    }
+    if (!nextOverlay) return;
 
     const nextURL = new URL(window.location.href);
     let didChange = false;
@@ -306,9 +301,7 @@ const normalizeLegacyHashOverlayURL = () => {
 
     // ----- commit if changed ----- //
 
-    if (!didChange) {
-        return;
-    }
+    if (!didChange) return;
 
     // This is a normalization pass, not a user navigation event, so replaceState keeps history
     // clean while still making the URL canonical for refreshes and copied links.
@@ -323,11 +316,9 @@ const normalizeLegacyHashOverlayURL = () => {
 // Hash first: it can add an overlay param that the query-param passes then canonicalize.
 
 const normalizeLegacyURL = () => {
-
     normalizeLegacyHashOverlayURL();
     normalizeLegacyGeoTypeURL();
     normalizeLegacyOverlayURL();
-
 };
 
 // Runs at parse time, before checkURL() boots the app from the template, so every
@@ -354,9 +345,7 @@ let pendingTableOverlayToken = 0;
 
 const runOverlayRenderer = (renderer) => {
 
-    if (typeof renderer !== 'function') {
-        return false;
-    }
+    if (typeof renderer !== 'function') return false;
 
     renderer();
 
@@ -376,7 +365,9 @@ const scheduleTableOverlayRender = (afterRender = Promise.resolve()) => {
     Promise.resolve(afterRender)
         .catch(() => null)
         .then(() => {
+
             window.requestAnimationFrame(() => {
+
                 window.requestAnimationFrame(() => {
                     if (DE.state.overlay === 'table' && token === pendingTableOverlayToken) {
                         showTable();
@@ -384,7 +375,6 @@ const scheduleTableOverlayRender = (afterRender = Promise.resolve()) => {
                 });
             });
         });
-
 };
 
 // Routes to the show* renderer for the current overlay after kicking off the optional map redraw promise.
@@ -425,6 +415,7 @@ const renderCurrentView = (updateMap = false) => {
             const tabContent = document.querySelector('#v-pills-tabContent');
             if (tabContent) tabContent.style.display = 'none';
             break;
+
         }
 
         case 'bar':
@@ -435,9 +426,13 @@ const renderCurrentView = (updateMap = false) => {
             // If the map also changed, let that redraw settle before starting heavy table work.
 
             if (updateMap) {
+
                 scheduleTableOverlayRender(mapRenderPromise);
+
             } else {
+
                 runOverlayRenderer(showTable);
+
             }
             break;
 
@@ -460,6 +455,7 @@ const renderCurrentView = (updateMap = false) => {
 
             runOverlayRenderer(showBar);
             break;
+
     }
 };
 
@@ -520,9 +516,7 @@ const loadAndRenderIndicator = async (id, { selection = null, history = 'push' }
 
     resetSelectionForNewIndicator();
 
-    if (selection) {
-        applySelectionToState(selection);
-    }
+    if (selection) applySelectionToState(selection);
 
     // ----- paint what metadata alone can render ----- //
 
@@ -586,7 +580,6 @@ window.addEventListener('popstate', async (event) => {
     // writing it again would stack a duplicate on top of it.
 
     if (selection.id && selection.id !== DE.state.IndicatorID) {
-
         await loadAndRenderIndicator(selection.id, { selection, history: 'none' });
         return;
     }
@@ -670,9 +663,9 @@ document.addEventListener("DOMContentLoaded", () => {
             renderCurrentView();
 
             trackDataExplorerEvent('click_tab', { tab: value });
+
         });
     });
-
 });
 
 // ----------------------------------------------------------------------- //
@@ -690,11 +683,14 @@ $("#groupByBoroughToggle").on("change", (e) => {
     //  first-render path so we never build into a still-hidden pane.
 
     if (DE.table.tableData && $.fn.dataTable.isDataTable('#tableID')) {
-        renderTable(DE.table.tableData);
-    } else {
-        DE.table.tableNeedsRender = true;
-    }
 
+        renderTable(DE.table.tableData);
+
+    } else {
+
+        DE.table.tableNeedsRender = true;
+
+    }
 });
 
 

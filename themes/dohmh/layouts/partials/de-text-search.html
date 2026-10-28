@@ -72,9 +72,7 @@
 
             const generated = document.getElementById($input.attr('id') + '-flexdatalist');
 
-            if (generated) {
-                wireComboboxState(generated);
-            }
+            if (generated) wireComboboxState(generated);
 
 
             // ----- add flexdatalist select handler -------------------------------------------------- //
@@ -84,12 +82,15 @@
                 // run page print (for data reference)
 
                 if (typeof printToPage === "function") {
-                    printToPage(set) // on indicator-catalog.html
+
+                    printToPage(set); // on indicator-catalog.html
+
                 } else {
-                    sendToIndicator(set) // for section.html
+
+                    sendToIndicator(set); // for section.html
+
                 }
-                
-            })
+            });
             
             
             // ----- add clear button handler -------------------------------------------------- //
@@ -98,26 +99,25 @@
                 
                 // console.log("e [clear click]", e);
                 
-                $($input).find("~input").val("").trigger( "focus" )
-                
-            })
-            
-        })
-        
-    }
+                $($input).find("~input").val("").trigger( "focus" );
+
+            });
+        });
+    };
     
     // ----- call loader function -------------------------------------------------- //
     
-    load_flexdatalist()
+    load_flexdatalist();
     
     // ----- send to DE output page ----------------------------------------- //
     
     function sendToIndicator(x) {
-        
-        var id = x.IndicatorID
+
+        var id = x.IndicatorID;
         
         const topics = topicIndicatorsTable.filter((ind) => ind.IndicatorID === x.IndicatorID);
-        window.location.href = {{ relURL (printf "%s/" .Section) }} + topics[0].topic + '/?id=' + x.IndicatorID 
+        window.location.href = {{ relURL (printf "%s/" .Section) }} + topics[0].topic + '/?id=' + x.IndicatorID; 
+
     }
     
 </script>

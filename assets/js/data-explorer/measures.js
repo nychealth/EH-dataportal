@@ -15,9 +15,7 @@
 // Finds the first measure in visArray whose MeasurementType satisfies typeMatcher.
 
 const findFirstMeasureByType = (visArray, typeMatcher) => {
-
     return visArray.find(measure => typeMatcher(measure.MeasurementType || ''));
-
 };
 
 
@@ -25,9 +23,7 @@ const findFirstMeasureByType = (visArray, typeMatcher) => {
 
 const pickDefaultMeasureByPriority = (visArray) => {
 
-    if (!visArray.length) {
-        return null;
-    }
+    if (!visArray.length) return null;
 
     // Keep explicit case handling so behavior matches legacy priority checks.
 
@@ -35,9 +31,7 @@ const pickDefaultMeasureByPriority = (visArray) => {
         measurementType.includes('Age-adjusted rate') && measurementType.includes('Total')
     );
 
-    if (ageAdjustedRateTotal) {
-        return ageAdjustedRateTotal;
-    }
+    if (ageAdjustedRateTotal) return ageAdjustedRateTotal;
 
     const priorityMatchers = [
         measurementType => measurementType.includes('Age-adjusted rate'),
@@ -51,9 +45,7 @@ const pickDefaultMeasureByPriority = (visArray) => {
     for (const matcher of priorityMatchers) {
         const matchedMeasure = findFirstMeasureByType(visArray, matcher);
 
-        if (matchedMeasure) {
-            return matchedMeasure;
-        }
+        if (matchedMeasure) return matchedMeasure;
     }
 
     return visArray[0];
@@ -86,7 +78,7 @@ const setDefaultMapMeasure = (visArray) => {
 
     // console.log(">> defaultMapMetadata", DE.map.defaultMapMetadata);
 
-}
+};
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -103,7 +95,7 @@ const setDefaultTrendMeasure = (visArray) => {
 
     // console.log(">> defaultTrendMetadata", defaultTrendMetadata);
 
-}
+};
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -118,9 +110,7 @@ const setDefaultLinksMeasure = async (visArray) => {
 
     const defaultArray = buildDefaultMetadataArray(visArray);
 
-    if (!defaultArray.length) {
-        return;
-    }
+    if (!defaultArray.length) return;
 
     const defaultPrimaryMeasureId = defaultArray[0].MeasureID;
     const defaultSecondaryMeasureId = defaultArray[0].VisOptions[0].Links[0].Measures[0]?.MeasureID;
@@ -135,7 +125,7 @@ const setDefaultLinksMeasure = async (visArray) => {
 
     // using await here because createJoinedLinksData calls fetch, and we need that data
 
-    const defaultLinksDataMetadata = await createJoinedLinksData(defaultPrimaryMeasureId, defaultSecondaryMeasureId)
+    const defaultLinksDataMetadata = await createJoinedLinksData(defaultPrimaryMeasureId, defaultSecondaryMeasureId);
 
     if (!isIndicatorLoadCurrent(loadToken)) return;
 
@@ -150,8 +140,9 @@ const setDefaultLinksMeasure = async (visArray) => {
 
     DE.links.selectedPrimaryMeasureMetadata = defaultLinksDataMetadata.primaryMeasureMetadata;
     DE.links.selectedSecondaryMeasureMetadata = defaultLinksDataMetadata.secondaryMeasureMetadata;
-    DE.links.joinedLinksDataObjects = defaultLinksDataMetadata.data
-}
+    DE.links.joinedLinksDataObjects = defaultLinksDataMetadata.data;
+
+};
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -167,8 +158,8 @@ const setDefaultDisparitiesMeasure = (visArray) => {
     DE.disparities.defaultDisparitiesMetadata = buildDefaultMetadataArray(visArray);
 
     // console.log(">> defaultDisparitiesMetadata", defaultDisparitiesMetadata);
-    
-}
+
+};
 
 
 // ----------------------------------------------------------------------- //
@@ -204,9 +195,7 @@ const getMeasureLinksMetadata = (measureId) => {
 // Reads the active map measure metadata even before the map finishes a redraw.
 
 const getActiveMapMeasureMetadata = () => {
-
     return getMeasureMetadataById(DE.state.MeasureID)[0] || DE.map.selectedMapMetadata || null;
-
 };
 
 
@@ -226,9 +215,7 @@ const getActiveMapMeasureLabel = () => {
 // Whether the current map measure exposes at least one correlate in metadata.
 
 const activeMapMeasureSupportsLinks = () => {
-
     return getMeasureLinksMetadata(DE.state.MeasureID).length > 0;
-
 };
 
 
@@ -290,11 +277,9 @@ const getDefaultDisparitiesPrimaryMeasureId = () => {
 // Validates that the selected primary measure can link to the selected secondary measure.
 
 const primaryLinksToSecondary = (primaryMeasureId, secondaryMeasureId) => {
-
     return getMeasureLinksMetadata(primaryMeasureId).some(link =>
         Number(link.MeasureID) === Number(secondaryMeasureId)
     ) || false;
-
 };
 
 
@@ -309,7 +294,6 @@ const getSecondaryMeasureIndicator = (secondaryMeasureId) => {
     return indicators.filter(indicator =>
         indicator.Measures.some(measure => Number(measure.MeasureID) === Number(secondaryMeasureId))
     );
-
 };
 
 
@@ -334,9 +318,7 @@ const bindCorrelateControls = () => {
 
     // ----- guard: no-op if disparities toggle missing ----- //
 
-    if (!correlatePillRow) {
-        return;
-    }
+    if (!correlatePillRow) return;
 
     // ----- rebind: unbind stale handler, bind fresh click handler ----- //
 
@@ -356,9 +338,7 @@ const bindCorrelateControls = () => {
 
         if (button.matches('#show-disparities')) {
 
-            if (!DE.lookups.disparitiesMeasures.length) {
-                return;
-            }
+            if (!DE.lookups.disparitiesMeasures.length) return;
 
             const activePrimaryMeasureId = DE.links.selectedLinksPrimaryMeasureId == null
                 ? Number(DE.state.MeasureID)
@@ -368,9 +348,7 @@ const bindCorrelateControls = () => {
                 ? activePrimaryMeasureId
                 : getDefaultDisparitiesPrimaryMeasureId();
 
-            if (nextPrimaryMeasureId == null) {
-                return;
-            }
+            if (nextPrimaryMeasureId == null) return;
 
             DE.links.selectedLinksMeasure = true;
             DE.disparities.selectedDisparity = true;
@@ -412,8 +390,7 @@ const bindCorrelateControls = () => {
         showLinks();
 
     });
-
-}
+};
 
 
 // ----------------------------------------------------------------------- //
@@ -423,32 +400,34 @@ const bindCorrelateControls = () => {
 // Resolves tab button references on demand for startup paths that run before app.js assigns the shared globals in its DOMContentLoaded handler.
 
 const resolveTabReferences = () => {
+
     tabBar ??= document.querySelector('#v-pills-bar-tab');
     tabTrends ??= document.querySelector('#v-pills-trends-tab');
     tabCorrelate ??= document.querySelector('#v-pills-correlate-tab');
     tabTable ??= document.querySelector('#v-pills-table-tab');
+
 };
 
 // Marks a Bootstrap tab as disabled when that view has no usable data.
 
 const disableTab = (el) => {
-    if (!el) {
-        return;
-    }
+
+    if (!el) return;
 
     el.classList.add('disabled');
     el.setAttribute('aria-disabled', true);
+
 };
 
 // Re-enables a Bootstrap tab when the current indicator supports that view.
 
 const enableTab = (el) => {
-    if (!el) {
-        return;
-    }
+
+    if (!el) return;
 
     el.classList.remove('disabled');
     el.setAttribute('aria-disabled', false);
+
 };
 
 
@@ -463,9 +442,7 @@ const enableTab = (el) => {
 
 const setBadgePillState = (button, isActive, isDisabled = false) => {
 
-    if (!button) {
-        return;
-    }
+    if (!button) return;
 
     button.classList.toggle('active', isActive && !isDisabled);
     button.classList.remove('badge-primary', 'badge-light', 'text-white');
@@ -495,9 +472,7 @@ const createBadgePillButton = ({
     button.className = `badge badge-pill badge-light border-0 de-viz-pill-button ${buttonClass}`;
     button.textContent = label;
 
-    if (title) {
-        button.title = title;
-    }
+    if (title) button.title = title;
 
     Object.entries(dataAttributes).forEach(([key, value]) => {
         button.dataset[key] = value;
@@ -579,7 +554,6 @@ const createBadgePillDropdown = ({
         button,
         menu
     };
-
 };
 
 
@@ -587,9 +561,7 @@ const createBadgePillDropdown = ({
 
 const setDropdownMenuItemState = (button, isActive) => {
 
-    if (!button) {
-        return;
-    }
+    if (!button) return;
 
     button.classList.toggle('active', isActive);
     button.setAttribute('aria-selected', isActive ? 'true' : 'false');
@@ -613,12 +585,14 @@ let linksToggleLabel;
 let showDisparitiesButton;
 
 const resolveMeasuresPillRefs = () => {
+
     trendMeasurePills    ??= document.getElementById('trendMeasurePills');
     trendComparisonPills ??= document.getElementById('trendComparisonPills');
     linksDropdownMenu    ??= document.getElementById('linksDropdownMenu');
     linksDropdownToggle  ??= document.getElementById('linksDropdownToggle');
     linksToggleLabel     ??= document.getElementById('linksToggleLabel');
     showDisparitiesButton ??= document.getElementById('show-disparities');
+
 };
 
 
@@ -634,9 +608,7 @@ const resolveMeasuresPillRefs = () => {
 
 const getSyncedComparisonId = () => {
 
-    if (!DE.lookups.comparisonMetadata?.length) {
-        return null;
-    }
+    if (!DE.lookups.comparisonMetadata?.length) return null;
 
     const matchingMeasureComparison = DE.lookups.comparisonMetadata.find(comp =>
         comp.Indicators?.some(ind =>
@@ -683,9 +655,7 @@ const getComparisonIdForLegendTitle = (legendTitle) => {
 
     const comparisonRows = getComparisonRowsForLegendTitle(legendTitle);
 
-    if (!comparisonRows.length) {
-        return null;
-    }
+    if (!comparisonRows.length) return null;
 
     const matchingMeasureRow = comparisonRows.find(row =>
         Number(row.IndicatorID) === Number(DE.state.IndicatorID) &&
@@ -802,7 +772,6 @@ const clearTrendButtonState = () => {
     trendComparisonPills?.querySelectorAll('.trendmode-button').forEach(button => {
         setBadgePillState(button, false);
     });
-
 };
 
 
@@ -831,9 +800,7 @@ const setTrendButtonState = () => {
 
     const trendButton = trendMeasurePills?.querySelector('.trendmode-button[data-trend-mode="geography"]');
 
-    if (trendButton) {
-        setBadgePillState(trendButton, true);
-    }
+    if (trendButton) setBadgePillState(trendButton, true);
 
 };
 
@@ -866,9 +833,7 @@ const updateTrendSelectionSummary = () => {
                 ? `${legendTitle} comparison button. Current selection.`
                 : `${legendTitle} comparison button.`
         );
-
     });
-
 };
 
 
@@ -940,9 +905,7 @@ const buildTrendSelectionControls = () => {
 
             const comparisonId = getComparisonIdForLegendTitle(title);
 
-            if (comparisonId == null) {
-                return;
-            }
+            if (comparisonId == null) return;
 
             const comparisonButton = createBadgePillButton({
                 buttonClass: 'trendmode-button',
@@ -1000,11 +963,9 @@ const buildTrendSelectionControls = () => {
 // Sums the secondary link options across all currently visible links measures.
 
 const getLinksOptionCount = () => {
-
     return getVisibleLinksMeasures().reduce((count, measure) => {
         return count + (measure?.VisOptions?.[0]?.Links?.[0]?.Measures?.length || 0);
     }, 0);
-
 };
 
 
@@ -1012,9 +973,7 @@ const getLinksOptionCount = () => {
 
 const updateLinksSelectionSummary = () => {
 
-    if (!linksDropdownToggle || !linksToggleLabel) {
-        return;
-    }
+    if (!linksDropdownToggle || !linksToggleLabel) return;
 
     const linksOptionCount = getLinksOptionCount();
     const linksSwitcherDisabled = DE.lookups.linksMeasures.length === 0 || !activeMapMeasureSupportsLinks();
@@ -1024,14 +983,17 @@ const updateLinksSelectionSummary = () => {
     linksDropdownToggle.setAttribute('aria-disabled', String(linksSwitcherDisabled));
 
     if (hasMultipleLinksOptions) {
+
         linksDropdownToggle.setAttribute('data-toggle', 'dropdown');
         linksDropdownToggle.setAttribute('aria-haspopup', 'true');
+
     } else {
+
         linksDropdownToggle.removeAttribute('data-toggle');
         linksDropdownToggle.removeAttribute('aria-haspopup');
         linksDropdownToggle.setAttribute('aria-expanded', 'false');
-    }
 
+    }
 };
 
 
@@ -1058,6 +1020,7 @@ const getSyncedLinksState = () => {
     // Tier 1: map measure supports links — sync links to it.
 
     if (measureSupportsLinks(syncedMapMeasureId)) {
+
         const syncedPrimaryMeasureId = syncedMapMeasureId;
 
         return {
@@ -1070,6 +1033,7 @@ const getSyncedLinksState = () => {
     // Tier 2: map measure exists but has no links — links view with no secondary.
 
     if (syncedMapMeasureId != null) {
+
         return {
             primaryMeasureId: syncedMapMeasureId,
             secondaryMeasureId: null,
@@ -1080,6 +1044,7 @@ const getSyncedLinksState = () => {
     // Tier 3: no map measure but links measures exist — use the default links pair.
 
     if (DE.lookups.linksMeasures.length) {
+
         const defaultPrimaryMeasureId = getDefaultLinksPrimaryMeasureId();
 
         return {
@@ -1092,6 +1057,7 @@ const getSyncedLinksState = () => {
     // Tier 4: only disparities measures exist — fall back to the disparities view.
 
     if (DE.lookups.disparitiesMeasures.length) {
+
         return {
             primaryMeasureId: getDefaultDisparitiesPrimaryMeasureId(),
             secondaryMeasureId: DE_MEASURE_RULES.disparitiesSecondaryMeasureId,
@@ -1106,7 +1072,6 @@ const getSyncedLinksState = () => {
         secondaryMeasureId: null,
         view: 'links'
     };
-
 };
 
 
@@ -1151,6 +1116,7 @@ const getActiveLinksState = () => {
         && measureSupportsDisparities(manualPrimaryMeasureId);
 
     if (hasManualDisparities) {
+
         return {
             primaryMeasureId: manualPrimaryMeasureId,
             secondaryMeasureId: DE_MEASURE_RULES.disparitiesSecondaryMeasureId,
@@ -1169,6 +1135,7 @@ const getActiveLinksState = () => {
         && primaryLinksToSecondary(manualPrimaryMeasureId, manualSecondaryMeasureId);
 
     if (hasManualLinks) {
+
         return {
             primaryMeasureId: manualPrimaryMeasureId,
             secondaryMeasureId: manualSecondaryMeasureId,
@@ -1196,6 +1163,7 @@ const setLinksButtonState = () => {
     });
 
     if (activeLinksState.view === 'links' && !linksSwitcherDisabled) {
+
         const activeLinksButton = document.querySelector(`.linksbutton[data-primary-measure-id='${activeLinksState.primaryMeasureId}'][data-secondary-measure-id='${activeLinksState.secondaryMeasureId}']`);
 
         if (activeLinksButton) {
@@ -1211,6 +1179,7 @@ const setLinksButtonState = () => {
     );
 
     if (showDisparitiesButton) {
+
         setBadgePillState(
             showDisparitiesButton,
             activeLinksState.view === 'disparities' && DE.lookups.disparitiesMeasures.length > 0,
@@ -1231,6 +1200,7 @@ syncLinksSelectionsToMapSelection = (force = false) => {
     const syncedLinksState = getSyncedLinksState();
 
     if (force || !DE.links.selectedLinksMeasure) {
+
         if (DE.links.selectedLinksPrimaryMeasureId !== syncedLinksState.primaryMeasureId) {
             DE.links.selectedLinksPrimaryMeasureId = syncedLinksState.primaryMeasureId;
             didChange = true;
@@ -1249,6 +1219,7 @@ syncLinksSelectionsToMapSelection = (force = false) => {
         }
 
         DE.links.selectedLinksMeasure = false;
+
     }
 
     setLinksButtonState();
@@ -1265,9 +1236,7 @@ const buildLinksSelectionControls = () => {
 
     // ----- clear existing dropdown contents ----- //
 
-    if (linksDropdownMenu) {
-        linksDropdownMenu.innerHTML = '';
-    }
+    if (linksDropdownMenu) linksDropdownMenu.innerHTML = '';
 
     // ----- build header and link buttons per visible measure ----- //
 
@@ -1302,7 +1271,6 @@ const buildLinksSelectionControls = () => {
                 linksDropdownMenu.appendChild(button);
 
             });
-
         });
 
         // - - - wire the dropdown click handler - - - //
@@ -1311,9 +1279,7 @@ const buildLinksSelectionControls = () => {
 
             const button = event.target.closest('.linksbutton');
 
-            if (!button) {
-                return;
-            }
+            if (!button) return;
 
             DE.links.selectedLinksMeasure = true;
             DE.disparities.selectedDisparity = false;
@@ -1325,7 +1291,6 @@ const buildLinksSelectionControls = () => {
             showLinks();
 
         };
-
     } else if (linksDropdownMenu) {
 
         linksDropdownMenu.onclick = null;
@@ -1365,9 +1330,7 @@ const renderSelectedCorrelate = async (primaryMeasureId, secondaryMeasureId) => 
 
         const selectedLinksDataMetadata = await createJoinedLinksData(primaryMeasureId, secondaryMeasureId);
 
-        if (!selectedLinksDataMetadata?.data?.length) {
-            return false;
-        }
+        if (!selectedLinksDataMetadata?.data?.length) return false;
 
         DE.links.selectedPrimaryMeasureMetadata = selectedLinksDataMetadata.primaryMeasureMetadata;
         DE.links.selectedSecondaryMeasureMetadata = selectedLinksDataMetadata.secondaryMeasureMetadata;
@@ -1426,9 +1389,7 @@ const renderSelectedDisparities = async (primaryMeasureId) => {
 
     const primaryMeasureMetadata = getMeasureMetadataById(primaryMeasureId);
 
-    if (!primaryMeasureMetadata.length) {
-        return false;
-    }
+    if (!primaryMeasureMetadata.length) return false;
 
     // This replaces half of the correlate cache's key (see setDefaultLinksMeasure) with no rows to
     // match it, so drop the rows: otherwise a later correlate render for this primary and the old
@@ -1463,9 +1424,7 @@ const adjustVisibleSummaryTable = () => {
 
     // On first page load the lazy table may not exist yet, so skip until it does.
 
-    if (!$.fn.dataTable.isDataTable('#tableID')) {
-        return;
-    }
+    if (!$.fn.dataTable.isDataTable('#tableID')) return;
 
     $('#tableID').DataTable().columns.adjust();
 
@@ -1474,7 +1433,6 @@ const adjustVisibleSummaryTable = () => {
     if (typeof lockSummaryTableScrollBodyHeight === 'function') {
         lockSummaryTableScrollBodyHeight();
     }
-
 };
 
 
@@ -1512,24 +1470,31 @@ showTable = (e) => {
 
     const tableContainer = document.getElementById('summary-table');
     if (DE.table.tableData && (!tableContainer.querySelector('table') || DE.table.tableNeedsRender)) {
+
         renderTable(DE.table.tableData);
         didRenderTable = true;
+
     } else if (DE.table.tableData && typeof renderTableFilterControls === 'function' && typeof applyTableFilters === 'function') {
+
         // Reopen path: keep the existing DataTable and just resync controls + hidden searches.
 
         renderTableFilterControls(DE.table.tableData);
         applyTableFilters(DE.table.tableData);
+
     }
 
     // updateChartPlotSize();
 
     const dataTables = $.fn.dataTable.tables(false);
     if (didRenderTable && dataTables.length) {
+
         // First-open path still initializes while pane is hidden, so headers need one
         // follow-up width pass after Bootstrap finishes showing the panel.
 
         scheduleVisibleSummaryTableAdjust();
+
     } else if (!didRenderTable && dataTables.length) {
+
         $(dataTables)
             .DataTable()
             .columns.adjust();
@@ -1537,8 +1502,8 @@ showTable = (e) => {
         // Reopen width fixes belong only to existing tables; first render sizes itself during init.
 
         scheduleVisibleSummaryTableAdjust();
-    }
 
+    }
 };
 
 
@@ -1638,15 +1603,19 @@ showTrend = (e) => {
     // Use comparison mode when no borough trend data exists or comparison mode is already active.
 
     if ((DE.lookups.trendMeasures.length === 0 && DE.lookups.comparisonMetadata?.length) || (DE.trend.showingComparisonTrend && DE.lookups.comparisonMetadata?.length)) {
+
         showComparisonTrend();
+
     } else if (DE.lookups.trendMeasures.length > 0) {
+
         showBoroughTrend();
+
     }
 
     setTrendButtonState();
     updateTrendSelectionSummary();
 
-}
+};
 
 // Renders the standard borough trend chart for the selected measure.
 
@@ -1666,9 +1635,7 @@ showBoroughTrend = (e) => {
     const resolvedTrendMetadata = trendMetadataArr.length ? trendMetadataArr : DE.trend.defaultTrendMetadata;
     const resolvedTrendMeasureId = resolvedTrendMetadata?.[0]?.MeasureID;
 
-    if (resolvedTrendMeasureId == null) {
-        return;
-    }
+    if (resolvedTrendMeasureId == null) return;
 
     DE.trend.aqSelectedTrendMetadata = aq.from(resolvedTrendMetadata)
         .derive({
@@ -1695,13 +1662,11 @@ showBoroughTrend = (e) => {
         DE.trend.aqFilteredTrendData = aq.from(
             DE.trend.filteredTrendData.filter(d => d.TimePeriod.startsWith('Annual Average'))
         );
-
     } else if (measureIdsSummer.includes(resolvedTrendMeasureId)) {
 
         DE.trend.aqFilteredTrendData = aq.from(
             DE.trend.filteredTrendData.filter(d => d.TimePeriod.startsWith('Summer'))
         );
-
     } else {
 
         DE.trend.aqFilteredTrendData = aq.from(DE.trend.filteredTrendData);
@@ -1732,12 +1697,14 @@ showComparisonTrend = (e) => {
     const comparisonId = getActiveComparisonId();
 
     if (comparisonId == null || !DE.lookups.aqComparisonMetadata || !DE.lookups.aqComparisonIndicatorData) {
+
         if (DE.lookups.trendMeasures.length > 0) {
             DE.trend.showingComparisonTrend = false;
             showBoroughTrend();
         }
 
         return;
+
     }
 
     // ----- build about and sources text ----- //
@@ -1775,11 +1742,13 @@ showComparisonTrend = (e) => {
     const hasQuarters = DE_MEASURE_RULES.quarterlyComparisonMeasureIds;
 
     if (DE.trend.aqFilteredComparisonMetadata.array("MeasureID").some(m => hasQuarters.includes(m))) {
+
         DE.trend.aqFilteredComparisonData = DE.trend.aqFilteredComparisonData
             .derive({ "year": d => op.year(d.end_period) })
             .filter(d => d.year > op.max(d.year) - 3)
             .select(aq.not("TimePeriodID", "year"))
             .reify();
+
     }
 
     // ----- render and update selection state ----- //
@@ -1795,7 +1764,7 @@ showComparisonTrend = (e) => {
     setTrendButtonState();
     updateTrendSelectionSummary();
 
-}
+};
 
 
 // Renders the links view, or shows a metadata-driven empty state when no correlates exist.
@@ -1817,10 +1786,12 @@ showLinks = async (e) => {
     const activeLinksState = getActiveLinksState();
 
     if (activeLinksState.view === 'links' && !activeMapMeasureSupportsLinks()) {
+
         renderNoCorrelatesMessage(getActiveMapMeasureLabel());
         setLinksButtonState();
         updateLinksSelectionSummary();
         return;
+
     }
 
     // ----- try the disparities render first ----- //
@@ -1848,11 +1819,13 @@ showLinks = async (e) => {
         // - - - commit the fallback selection before rendering - - - //
 
         if (fallbackPrimaryMeasureId != null) {
+
             DE.disparities.selectedDisparity = true;
             DE.links.selectedLinksPrimaryMeasureId = fallbackPrimaryMeasureId;
             DE.links.selectedLinksSecondaryMeasureId = DE_MEASURE_RULES.disparitiesSecondaryMeasureId;
 
             didRender = await renderSelectedDisparities(fallbackPrimaryMeasureId);
+
         }
     }
 
@@ -1907,11 +1880,17 @@ const renderMeasures = async () => {
     const selectedTableTime = DE.lookups.timeLookup[DE.state.TimePeriodID]?.TimePeriod;
 
     if (selectedTableTime && tableTimes.includes(selectedTableTime)) {
+
         DE.table.selectedTableTimes = [selectedTableTime];
+
     } else if (tableTimes.length) {
+
         DE.table.selectedTableTimes = [tableTimes[0]];
+
     } else {
+
         DE.table.selectedTableTimes = [];
+
     }
 
 
@@ -1927,11 +1906,17 @@ const renderMeasures = async () => {
     // Default the table to the currently selected geography when available.
 
     if (DE.state.GeoType && dropdownTableGeoTypes.includes(DE.state.GeoType)) {
+
         DE.table.selectedTableGeography = [DE.state.GeoType];
+
     } else if (dropdownTableGeoTypes.length) {
+
         DE.table.selectedTableGeography = [dropdownTableGeoTypes[0]];
+
     } else {
+
         DE.table.selectedTableGeography = [];
+
     }
 
     DE.table.tableTimeFilterIsManual = false;
@@ -1941,9 +1926,7 @@ const renderMeasures = async () => {
     // Force first table-tab visit to rebuild table and filter controls for this indicator.
 
     const tableContainer = document.getElementById('summary-table');
-    if (tableContainer) {
-        tableContainer.innerHTML = '';
-    }
+    if (tableContainer) tableContainer.innerHTML = '';
 
 
     // ----- populate per-tab measure arrays ----- //
@@ -1971,8 +1954,9 @@ const renderMeasures = async () => {
         if (map)         DE.lookups.mapMeasures.push(measure);
         if (trend)       DE.lookups.trendMeasures.push(measure);
         if (links)       DE.lookups.linksMeasures.push(measure);
-        if (disparities) DE.lookups.disparitiesMeasures.push(measure);
-
+        if (disparities) {
+            DE.lookups.disparitiesMeasures.push(measure);
+        }
     });
 
 
@@ -2011,9 +1995,13 @@ const renderMeasures = async () => {
     // Disable the bar tab when there is no map-compatible measure metadata.
 
     if (DE.lookups.mapMeasures.length === 0) {
+
         disableTab(tabBar);
+
     } else {
+
         enableTab(tabBar);
+
     }
 
     // - - - trend — disable if no trend measures (or only 1 time period) and no comparisons - - - //
@@ -2023,9 +2011,13 @@ const renderMeasures = async () => {
     // Disable the trend tab when there is neither a meaningful trend nor a comparison fallback.
 
     if ((DE.lookups.trendMeasures.length === 0 || onlyOneTime) && (typeof DE.lookups.comparisonMetadata === 'undefined' || DE.lookups.comparisonMetadata.length === 0)) {
+
         disableTab(tabTrends);
+
     } else {
+
         enableTab(tabTrends);
+
     }
 
     // - - - links + disparities - - - //
@@ -2033,9 +2025,13 @@ const renderMeasures = async () => {
     // Disable the correlate tab only when both links and disparities are unavailable.
 
     if (DE.lookups.linksMeasures.length === 0 && DE.lookups.disparitiesMeasures.length === 0) {
+
         disableTab(tabCorrelate);
+
     } else {
+
         enableTab(tabCorrelate);
+
     }
 
 
@@ -2045,7 +2041,7 @@ const renderMeasures = async () => {
 
     showOverlayTab();
 
-}
+};
 
 
 // Opens the tab and pane matching DE.state.overlay, or closes them all for 'none'. Called after
@@ -2082,7 +2078,6 @@ const showOverlayTab = () => {
         tabPanes.forEach(pane => {
             pane.classList.remove('show', 'active');
         });
-
     };
 
     const target = DE.state.overlay !== 'none'
@@ -2096,20 +2091,19 @@ const showOverlayTab = () => {
     // Re-open the tab that matches the restored overlay after menus are rebuilt.
 
     if (DE.state.overlay !== 'none') {
+
         resetOverlayTabState();
 
-        if (tabContent) {
-            tabContent.style.display = 'block';
-        }
+        if (tabContent) tabContent.style.display = 'block';
 
         $(target).tab('show');
+
     } else {
+
         resetOverlayTabState();
 
-        if (tabContent) {
-            tabContent.style.display = 'none';
-        }
-    }
+        if (tabContent) tabContent.style.display = 'none';
 
+    }
 };
 

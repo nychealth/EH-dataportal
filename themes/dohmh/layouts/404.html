@@ -2,35 +2,35 @@
 
 <article class="container-fluid overflow-hidden" id="primary-content" data-pagefind-ignore="all">
   
-  <div class="row">
-    <div class="col-md-10 col-sm-12 mx-auto">
+    <div class="row">
+        <div class="col-md-10 col-sm-12 mx-auto">
       
-      <!--start main column-->
-      <div class="chunk row my-4 mb-6" id="main404">
-        <div class="col-9 mx-auto mb-6">
-          <h1>Oops!</h1>
-          <p>This isn't a page on this site. </p>
-          <p>
-            {{- with .Site.GetPage "_index.md" -}}
-            You'll be redirected to the <a href="{{ .RelPermalink }}">
-              Environment and Health Data Portal Home Page</a> in <span id="sec">a few</span> seconds.{{- end -}}</p>
-            </div>
-          </div>
+            <!--start main column-->
+            <div class="chunk row my-4 mb-6" id="main404">
+                <div class="col-9 mx-auto mb-6">
+                    <h1>Oops!</h1>
+                    <p>This isn't a page on this site. </p>
+                    <p>
+                        {{- with .Site.GetPage "_index.md" -}}
+                        You'll be redirected to the <a href="{{ .RelPermalink }}">
+                            Environment and Health Data Portal Home Page</a> in <span id="sec">a few</span> seconds.{{- end -}}</p>
+                        </div>
+                    </div>
           
-          <div class="chunk row my-4 hide mb-6" id="redirectBeta">
-            <div class="col-9 mx-auto mb-6">
-              <h1>Time to update your bookmarks!</h1>
-              <p>We're no longer at <code class="text-secondary">/beta</code>. We'll send you to your correct URL.</p>
+                    <div class="chunk row my-4 hide mb-6" id="redirectBeta">
+                        <div class="col-9 mx-auto mb-6">
+                            <h1>Time to update your bookmarks!</h1>
+                            <p>We're no longer at <code class="text-secondary">/beta</code>. We'll send you to your correct URL.</p>
               
-            </div>
+                        </div>
+
+                </div>
+
+
 
         </div>
-
-
-
+        <!--end main column-->
     </div>
-    <!--end main column-->
-  </div>
 
 <script>
 const url = window.location.href;
@@ -43,32 +43,41 @@ document.querySelectorAll('.chunk').forEach(x => x.classList.add('hide'));
 // report reaching this template is a genuine 404 and should be treated as one.
 
 if (url.includes('beta')) {
-  removeBeta(url);
+
+    removeBeta(url);
+
 } else {
-  redirectHome();
+
+    redirectHome();
+
 }
 
 // ----------  remove /beta from URL and redirect to otherwise same URL -------------------- //
 
 function removeBeta(x) {
-  document.getElementById('redirectBeta').classList.remove('hide');
-  setTimeout(() => { window.location.href = x.replace('/beta', ''); }, 2000);
+    document.getElementById('redirectBeta').classList.remove('hide');
+    setTimeout(() => { window.location.href = x.replace('/beta', ''); }, 2000);
 }
 
 // ----------  redirect to Home Page -------------------------------------------------------- //
 
 function redirectHome() {
-  document.getElementById('main404').classList.remove('hide');
-  countDown(5);
+    document.getElementById('main404').classList.remove('hide');
+    countDown(5);
 }
 
 function countDown(x) {
-  if (x > 0) {
-    document.getElementById('sec').innerHTML = x;
-    setTimeout(() => { countDown(x - 1); }, 1000);
-  } else {
-    setTimeout(() => { window.location.href = {{ relURL "" }}; }, 1000);
-  }
+
+    if (x > 0) {
+
+        document.getElementById('sec').innerHTML = x;
+        setTimeout(() => { countDown(x - 1); }, 1000);
+
+    } else {
+
+        setTimeout(() => { window.location.href = {{ relURL "" }}; }, 1000);
+
+    }
 }
 
 </script>

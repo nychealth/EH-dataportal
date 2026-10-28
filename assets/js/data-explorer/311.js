@@ -37,15 +37,15 @@ const render311Links = (indicator_id) => {
             // Three destinations render on an explorer page: the desktop header dropdown, the
             // mobile tab-bar dropdown, and the take-action partial. Drive them all off the class.
 
-            let dest = document.querySelectorAll('.destination311')
+            let dest = document.querySelectorAll('.destination311');
 
-            dest.forEach(element => element.innerHTML = '')
+            dest.forEach(element => element.innerHTML = '');
 
             // ----- filter crosswalk to current indicator ----- //
 
             // Narrows the full crosswalk to the rows relevant to the indicator being drawn.
 
-            filteredCrosswalk = crosswalk.filter(indicator => indicator.IndicatorID == indicator_id )
+            filteredCrosswalk = crosswalk.filter(indicator => indicator.IndicatorID == indicator_id );
 
             // console.log(filteredCrosswalk)
 
@@ -55,13 +55,13 @@ const render311Links = (indicator_id) => {
 
             if (filteredCrosswalk.length > 0) {
 
-                document.getElementById('contact311Label').innerHTML = 'Contact 311 about:'
-                dest.forEach(element => element.classList.remove('hide'))
+                document.getElementById('contact311Label').innerHTML = 'Contact 311 about:';
+                dest.forEach(element => element.classList.remove('hide'));
 
             } else {
 
-                document.getElementById('contact311Label').innerHTML = ''
-                dest.forEach(element => element.classList.add('hide'))
+                document.getElementById('contact311Label').innerHTML = '';
+                dest.forEach(element => element.classList.add('hide'));
 
             };
 
@@ -90,7 +90,7 @@ const render311Links = (indicator_id) => {
     })
     .catch(error => {
         console.log(error);
-    })
-}
+    });
+};
 
 

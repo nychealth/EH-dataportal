@@ -42,11 +42,13 @@ let indicatorSelectionConfirmed = false;
 const indicatorsPromise = fetch(`${data_repo}${data_branch}/indicators/metadata/metadata.json`)
     .then(response => response.json())
     .then(data => {
+
         debugLog("* fetch metadata.json");
         indicators = data; 
         // console.log(">> indicators [fetch]", indicators);
 
         return data; // resolve promise
+
     })
     .catch(error => console.error("# Error loading metadata.json:", error));
 
@@ -70,8 +72,7 @@ const ensureIndicatorsLoaded = async (topic) => {
         return await indicatorsPromise; 
 
     }
-
-}
+};
 
 
 // Clears the temporary required-selection hint around the topic trigger.
@@ -94,7 +95,6 @@ const clearTopicSelectorPrompt = () => {
         topicSelectorPrompt.classList.add('d-none');
         topicSelectorPrompt.setAttribute('aria-hidden', 'true');
     }
-
 };
 
 
@@ -129,7 +129,6 @@ const clearIndicatorSelectorPrompt = () => {
         prompt.classList.add('d-none');
         prompt.setAttribute('aria-hidden', 'true');
     });
-
 };
 
 
@@ -138,6 +137,7 @@ const clearIndicatorSelectorPrompt = () => {
 const showIndicatorSelectorPrompt = () => {
 
     document.querySelectorAll('.indicator-selector-trigger-wrap').forEach(wrapper => {
+
         const button = wrapper.querySelector('.indicator-selector-trigger');
         const prompt = wrapper.querySelector('.indicator-selector-prompt');
 
@@ -152,7 +152,6 @@ const showIndicatorSelectorPrompt = () => {
             prompt.setAttribute('aria-hidden', 'false');
         }
     });
-
 };
 
 
@@ -176,7 +175,6 @@ const showTopicSelectorPrompt = () => {
         topicSelectorPrompt.classList.remove('d-none');
         topicSelectorPrompt.setAttribute('aria-hidden', 'false');
     }
-
 };
 
 
@@ -216,7 +214,7 @@ const getIndicatorsForTopic = (title, indicatorsJSON, dest) => {
 
     renderIndicatorList(indicators, dest);
 
-}
+};
 
 
 // Wires topic/indicator modal prompts, topic-link clicks, relaunch, and indicator selection once on load.
@@ -231,6 +229,7 @@ const bindTopicSelectorControls = () => {
     // ----- wire topic-selector modal show/hidden handlers ----- //
 
     if (topicSelectorModal) {
+
         $('#topicSelector').on('show.bs.modal', () => {
             clearTopicSelectorPrompt();
         });
@@ -246,34 +245,34 @@ const bindTopicSelectorControls = () => {
 
             // - - - skip prompt: the SPA isn't loaded on this page - - - //
 
-            if (typeof loadAndRenderIndicator === 'function') {
-                return;
-            }
+            if (typeof loadAndRenderIndicator === 'function') return;
 
             // - - - otherwise nudge the user back toward the topic trigger - - - //
 
             showTopicSelectorPrompt();
+
         });
     }
 
     // ----- wire indicator-selector modal show/hidden handlers ----- //
 
     if (indicatorSelectorModal) {
+
         $('#indicatorSelector').on('show.bs.modal', () => {
             clearIndicatorSelectorPrompt();
         });
 
         $('#indicatorSelector').on('hidden.bs.modal', () => {
+
             if (indicatorSelectionConfirmed) {
                 indicatorSelectionConfirmed = false;
                 return;
             }
 
-            if (!isTopicLandingPageWithoutIndicator()) {
-                return;
-            }
+            if (!isTopicLandingPageWithoutIndicator()) return;
 
             showIndicatorSelectorPrompt();
+
         });
     }
 
@@ -285,7 +284,9 @@ const bindTopicSelectorControls = () => {
     const topicLinks = document.querySelectorAll('.de-topic-indicator-link[data-indicators][data-topic-title][data-topic-destination]');
 
     topicLinks.forEach(link => {
+
         link.addEventListener('click', event => {
+
             event.preventDefault();
             getIndicatorsForTopic(
                 link.dataset.topicTitle,
@@ -310,21 +311,21 @@ const bindTopicSelectorControls = () => {
     const indicatorDestination = document.getElementById('indicatorDestination');
 
     if (indicatorDestination) {
+
         // The indicator list is rebuilt with innerHTML on every topic change,
         // so delegate from the stable modal container.
 
         indicatorDestination.addEventListener('click', event => {
+
             const indicatorButton = event.target.closest('.de-select-indicator-button[data-indicator-id]');
 
-            if (!indicatorButton) {
-                return;
-            }
+            if (!indicatorButton) return;
 
             selectIndicator(indicatorButton.dataset.indicatorId);
+
         });
     }
-
-}
+};
 
 
 // ----------------------------------------------------------------------- //
@@ -376,7 +377,9 @@ const renderIndicatorList = async (indList, destination) => {
 
         // - - - guard: skip empty sections - - - //
 
-        if (!section.indicators || section.indicators.length === 0) return;
+        if (!section.indicators || section.indicators.length === 0) {
+            return;
+        }
 
         // - - - build header (optional) - - - //
 
@@ -385,11 +388,13 @@ const renderIndicatorList = async (indList, destination) => {
         // - - - build each indicator card, with recently-updated badge - - - //
 
         const indicatorsHtml = section.indicators.map(id => {
+
             // Look up the indicator object in the global indicators array
 
             const indicator = indicators.find(ind => ind.IndicatorID === id);
             
             if (!indicator) {
+
                 // Skip broken front-matter references without breaking the rest of the modal.
 
                 console.warn(`Indicator with ID ${id} not found.`);
@@ -413,6 +418,7 @@ const renderIndicatorList = async (indList, destination) => {
                     <p class="mb-0" style="font-size: 14px;">${indicator.IndicatorDescription}</p>
                 </div>
             `;
+
         }).join('');
         
         // - - - wrap section HTML and append to destination - - - //
@@ -427,8 +433,7 @@ const renderIndicatorList = async (indList, destination) => {
         indicatorDestination.innerHTML += sectionHtml;
 
     });
-
-}
+};
 
 
 // ----------------------------------------------------------------------- //
@@ -454,9 +459,7 @@ const dismissIndicatorModal = () => {
 
 const relaunchTopicSelector = (event) => {
 
-    if (event) {
-        event.preventDefault();
-    }
+    if (event) event.preventDefault();
 
     // Section pages use hash-based modal history, so go back there instead
     // of forcing a second manual modal transition.
@@ -478,9 +481,13 @@ const relaunchTopicSelector = (event) => {
 
 
 if (document.readyState === 'loading') {
+
     document.addEventListener('DOMContentLoaded', bindTopicSelectorControls);
+
 } else {
+
     bindTopicSelectorControls();
+
 }
 
 
@@ -518,16 +525,14 @@ const renderIndicatorInfo = async (IndicatorID) => {
     const showRecentlyUpdatedIcon = recentlyUpdatedIndicatorIds.includes(normalizedIndicatorId);
 
     debugLog('This indicator:');
-    debugLog(indicator)
+    debugLog(indicator);
 
     // ----- guard: reopen chooser if not found ----- //
 
     if (!indicator) {
-
         console.warn("No indicator found for ID:", IndicatorID);
         $('#indicatorSelector').modal('show'); // fire Indicator Selection Modal
         return;
-
     }
 
     // ----- fill name field(s) ----- //
@@ -538,17 +543,20 @@ const renderIndicatorInfo = async (IndicatorID) => {
     // Updated indicators get the clock icon inline with the title instead of a separate badge.
 
     nameHolders.forEach(el => {
+
         el.replaceChildren(document.createTextNode(indicator.IndicatorName ?? ""));
 
         // - - - append recently-updated icon - - - //
 
         if (showRecentlyUpdatedIcon) {
+
             const icon = document.createElement('i');
             icon.className = 'fa-regular fa-clock ml-1 fs-sm';
             icon.setAttribute('aria-hidden', 'true');
             icon.setAttribute('aria-label', 'Recently updated');
             icon.setAttribute('title', 'Recently updated');
             el.appendChild(icon);
+
         }
     });
 
@@ -578,24 +586,18 @@ const renderIndicatorInfo = async (IndicatorID) => {
         p.innerHTML = DOMPurify.sanitize(`<strong>${measure.MeasurementType}:</strong> ${measure.how_calculated}`);
         howCalculatedEl.appendChild(p);
 
-        if (measure.Sources) {
-            uniqueSources.add(measure.Sources);
-        }
+        if (measure.Sources) uniqueSources.add(measure.Sources);
 
     });
 
     // ----- render collected sources ----- //
 
     uniqueSources.forEach(source => {
-
         const p = document.createElement('p');
         p.textContent = source;
         dataSourcesEl.appendChild(p);
-
     });
-    
-    
-}
+};
 
 
 // ----------------------------------------------------------------------- //
@@ -700,5 +702,5 @@ const checkURL = async () => {
 
     await loadAndRenderIndicator(chosenIndicator, { selection, history: 'replace' });
 
-}
+};
 

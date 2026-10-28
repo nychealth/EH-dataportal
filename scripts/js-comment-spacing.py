@@ -28,9 +28,9 @@ tree and prove the diff is empty-line insertions and nothing else:
 
 The first two cannot see a blank line inserted inside a template literal, which
 changes the string while still being an empty-line insertion; the third compares
-each changed .js file's token stream against HEAD and can. It does not cover the
-<script> bodies of .html targets, whose Go-template syntax a JS tokenizer cannot
-read — review those insertions by eye.
+each changed .js file's token stream against HEAD and can. It covers the
+<script> bodies of .html targets too, with Hugo actions masked, and names any it
+cannot tokenize.
 
 Targets come from `git ls-files`, not a directory walk: the checks above read
 `git diff`, which cannot show an edit to an untracked file, so a walk would rewrite
@@ -56,13 +56,26 @@ DECL_BLOCK   = re.compile(r'^\s*(?:const|let|var)\s+[\w$]+\s*=\s*(?:async\s+)?(?
 OBJ_PROP     = re.compile(r'''^\s*(?:["'][^"']*["']|[\w$-]+)\s*:''')
 CONTINUATION = re.compile(r'^\s*(?:[.)\]}?:,+]|&&|\|\||else\b|catch\b|finally\b|break\b|continue\b)')
 
-# Vendored third-party files, which are not ours to restyle. Hand-maintained: a
-# vendored file added after this list was written will be reformatted like our own.
+# Vendored third-party files and generated ones, which are not ours to restyle.
+# Hand-maintained: a file added after this list was written will be reformatted like
+# our own. VENDORED, EXEMPT_DIRS and TARGET_ROOTS are mirrored in
+# scripts/js-sweep-targets.mjs; change them in both.
 VENDORED = (
     "assets/js/L.colorIcon.js",                  # Leaflet.ColorIcon, MIT
+    "assets/js/ccd-to-uhf42.js",                 # generated crosswalk (js-conventions.md § Scope)
+    "assets/js/cd-to-uhf42.js",                  # generated crosswalk
     "assets/js/color-convert.js",                # from a public gist
     "assets/js/naturalSort.js",                  # Jim Palmer's natural sort, MIT
+    "content/data-features/healthy-homes-info/source/assets/js/bootstrap.js",  # Bootstrap 4.1.3, minified
     "content/data-features/healthy-homes-info/source/assets/js/plugins.js",  # HTML5 Boilerplate
+    "content/data-features/healthy-homes-info/source/assets/js/popper.js",   # Popper, minified
+)
+
+# The retiring explorer, exempt in documents/js-conventions.md § Scope: its JS and
+# the layouts that carry its inline scripts
+EXEMPT_DIRS = (
+    "assets/js/data-explorer-old/",
+    "themes/dohmh/layouts/data-explorer-old/",
 )
 
 TARGET_ROOTS = (
@@ -91,19 +104,57 @@ def in_template_literal(lines, upto):
     return sum(l.count('`') for l in lines[:upto]) % 2 == 1
 
 
-# Bound the edit to <script> bodies in an HTML file, so nothing lands in markup
+HUGO_ACTION = re.compile(r'\{\{[\s\S]*?\}\}')
+NOT_JS_TYPE = re.compile(r'''type=["']?(application/(ld\+)?json|text/template)''')
+
+
+# Bound the edit to <script> bodies in an HTML file, so nothing lands in markup.
+# A port of scriptRegions in html-script-bodies.mjs, which the verifier reads with;
+# the two must find the same bodies. Hugo actions are blanked first (same length,
+# newlines kept), so a Hugo comment that mentions <script> opens nothing. A src-only
+# script has no body, and a JSON or template script is not JavaScript; an opening tag
+# split over several lines is read to its `>` before deciding either
 def script_regions(lines):
 
-    out, start = [], None
+    masked = HUGO_ACTION.sub(lambda m: re.sub(r'[^\n]', '_', m.group()), '\n'.join(lines)).split('\n')
 
-    for i, l in enumerate(lines):
+    out, start, open_tag = [], None, None
+
+    # The opening tag is complete: no body if `</script>` follows on the same line,
+    # -1 for a script that is not JavaScript
+    def close_tag(tag, i):
+
+        if '</script' in tag:
+            return None
+
+        return -1 if NOT_JS_TYPE.search(tag) else i + 1
+
+    for i, l in enumerate(masked):
 
         low = l.lower()
 
-        if start is None and '<script' in low and '</script' not in low:
-            start = i + 1
+        if open_tag is not None:
+
+            open_tag += ' ' + low
+
+            if '>' in low:
+                start = close_tag(open_tag, i)
+                open_tag = None
+
+        elif start is None and '<script' in low and '</script' not in low:
+
+            tag = low[low.index('<script'):]
+
+            if '>' in tag:
+                start = close_tag(tag, i)
+            else:
+                open_tag = tag
+
         elif start is not None and '</script' in low:
-            out.append((start, i))
+
+            if start >= 0:
+                out.append((start, i))
+
             start = None
 
     return out
@@ -175,7 +226,8 @@ def process(path):
     return len(inserts)
 
 
-if __name__ == '__main__':
+def sweep_targets(filter_=None):
+    """The files this sweep may edit, as js-sweep-targets.mjs's sweepTargets lists them."""
 
     targets = []
 
@@ -183,16 +235,21 @@ if __name__ == '__main__':
     for root, exts in TARGET_ROOTS:
         listed = subprocess.run(["git", "ls-files", "-z", "--", root],
                                 capture_output=True, check=True).stdout.decode("utf-8")
-        targets += [p for p in listed.split("\0") if p.endswith(exts)]
+        targets += [p for p in listed.split("\0") if p.endswith(exts) and not p.endswith(".min.js")]
 
-    targets = [t for t in targets if t not in VENDORED]
+    targets = [t for t in targets if t not in VENDORED and not t.startswith(EXEMPT_DIRS)]
 
-    if len(sys.argv) > 1:
-        targets = [t for t in targets if sys.argv[1] in t]
+    if filter_:
+        targets = [t for t in targets if filter_ in t]
+
+    return sorted(targets)
+
+
+if __name__ == '__main__':
 
     total, files = 0, 0
 
-    for t in sorted(targets):
+    for t in sweep_targets(sys.argv[1] if len(sys.argv) > 1 else None):
 
         n = process(t)
 

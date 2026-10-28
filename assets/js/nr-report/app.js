@@ -7,17 +7,20 @@
 // ----------------------------------------------------------------------- //
 
 // Exports the active neighborhood's rows from the viz table as a CSV download
+
 const downloadCSV = () => {
 
     debugLog('downloadCSV: enter:', { hasVizTable: !!vizTable, currentNeighborhood });
 
     // Export only if both the viz table and active neighborhood are available
+
     if (!vizTable || !currentNeighborhood) {
         debugLog('downloadCSV: branch-missing-prereqs');
         return;
     }
 
     // Remove columns that are not useful in the public CSV export
+
     const csv = vizTable
         .select(aq.not('report_id', 'indicator_id', 'indicator_data_name', 'start_date', 'end_date'))
         .filter(aq.escape(d => d.neighborhood === currentNeighborhood))
@@ -27,6 +30,7 @@ const downloadCSV = () => {
         (reportConfig.reportName || 'Report') + ' - ' + currentNeighborhood + '.csv';
 
     // Use Blob URL download flow for broad browser compatibility
+
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
@@ -36,6 +40,7 @@ const downloadCSV = () => {
     link.click();
 
     // Same payload production's downloadData() sent
+
     trackNREvent('file_download', {
         file_name: filename,
         file_extension: '.csv',
@@ -46,6 +51,7 @@ const downloadCSV = () => {
     // the blob before its URL goes away. HYPOTHESIS (unverified): an immediate revoke can
     // cancel the download in some browsers; only Chromium was available to test, and it
     // downloads either way
+
     setTimeout(() => URL.revokeObjectURL(url), 0);
 
 };
@@ -59,10 +65,12 @@ window.nrDownloadCSV = downloadCSV;
 // ----------------------------------------------------------------------- //
 
 // Returns the indicator detail panels within the report's accordion sections
+
 const getAccordionPanels = () => $('.nr-report-accordion .collapse');
 
 
 // Synchronizes the bulk-control label with the current expansion state
+
 const updateAccordionToggle = () => {
 
     const button = document.getElementById('nr-toggle-accordions');
@@ -78,18 +86,21 @@ const updateAccordionToggle = () => {
 
     // The visible label already flips between "Expand all" and "Collapse all"; without this
     // the group state it controls reaches the accessibility tree through that text alone
+
     button.setAttribute('aria-expanded', allExpanded ? 'true' : 'false');
 
     if (icon) {
         icon.className = 'fas ' + (allExpanded ? 'fa-compress-alt' : 'fa-expand-alt') + ' mr-1';
     }
 
-    if (label) label.textContent = allExpanded ? 'Collapse all' : 'Expand all';
-
+    if (label) {
+        label.textContent = allExpanded ? 'Collapse all' : 'Expand all';
+    }
 };
 
 
 // Opens every indicator panel unless they are already all open, then closes them
+
 const toggleAllAccordions = () => {
 
     const panels = getAccordionPanels();
@@ -105,6 +116,7 @@ const toggleAllAccordions = () => {
 // ----------------------------------------------------------------------- //
 
 // Entry point: verifies the page contract, then wires events and starts the loads
+
 const bootstrap = () => {
 
     debugLog('bootstrap: start');
@@ -125,14 +137,18 @@ const bootstrap = () => {
     // loadTopicIndicators each report a completed fetch on every path, including the one
     // where they are not configured. Counting the viz table only when vizUrl was set let a
     // page without one reach the total a fetch early, and render with a section still missing
+
     totalFetches = reportConfig.sections.length + 1 + 1;
 
     // Hook accordion expansion before data arrives so first open can render immediately
+
     $(document).on('shown.bs.collapse', '.collapse', onAccordionExpand);
     $(document).on('shown.bs.collapse hidden.bs.collapse', '.nr-report-accordion .collapse', updateAccordionToggle);
 
     const accordionToggle = document.getElementById('nr-toggle-accordions');
-    if (accordionToggle) accordionToggle.addEventListener('click', toggleAllAccordions);
+    if (accordionToggle) {
+        accordionToggle.addEventListener('click', toggleAllAccordions);
+    }
 
     // Back and Forward across in-place switches re-render the neighborhood the address bar now
     // names. Not the entry's state alone: an entry a #fragment link added (the header's
@@ -161,6 +177,7 @@ const bootstrap = () => {
     });
 
     // Start map and data loads in parallel
+
     initLeafletMap();
 
     reportConfig.sections.forEach(section => {
