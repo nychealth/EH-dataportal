@@ -12,8 +12,8 @@
 // still cannot be tokenized is named and fails the run rather than passing
 // unchecked. Serves js-brace-padding.mjs too.
 //
-// espree is ESLint's parser, installed as its dependency rather than declared in
-// package.json.
+// espree is ESLint's parser, declared in package.json at the range ESLint itself
+// asks for, so the two share one copy.
 //
 // Run from the repo root, after the spacing script and before committing:
 //   node scripts/js-comment-spacing-verify.mjs     (exit 0 = no token changed)
