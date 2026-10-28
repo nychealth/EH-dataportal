@@ -22,7 +22,7 @@
 
 import { readFileSync, writeFileSync } from "node:fs";
 import { Linter } from "eslint";
-import { maskHugo, scriptRegions } from "./html-script-bodies.mjs";
+import { jsBodies } from "./html-script-bodies.mjs";
 import { sweepTargets } from "./js-sweep-targets.mjs";
 
 
@@ -65,9 +65,6 @@ const planSemicolons = (source, path, refused) => {
 const insertAt = (text, offsets) =>
     [...offsets].sort((a, b) => b - a).reduce((t, o) => t.slice(0, o) + ";" + t.slice(o), text);
 
-// A layout's <script> body, each Hugo action masked by its role
-const planBody = (body, path, refused) => planSemicolons(maskHugo(body), path, refused);
-
 
 // ----- one file ----- //
 
@@ -77,46 +74,26 @@ const processFile = (path, failures, refused) => {
 
     // Keep the file's own line endings
     const nl = raw.includes("\r\n") ? "\r\n" : "\n";
-    const text = raw.replace(/\r\n/g, "\n");
-
-    if (!path.endsWith(".html")) {
-
-        let offsets;
-
-        try {
-            offsets = planSemicolons(text, path, refused);
-        } catch (err) {
-            failures.push(`${path}  ${err.message}`);
-            return 0;
-        }
-
-        if (offsets.length) writeFileSync(path, insertAt(text, offsets).replace(/\n/g, nl));
-
-        return offsets.length;
-
-    }
-
-    // A layout: each <script> body separately
-    const lines = text.split("\n");
+    const lines = raw.replace(/\r\n/g, "\n").split("\n");
     let count = 0;
 
-    // Bottom-up, so an edit never moves a body not yet edited
-    for (const [start, end] of scriptRegions(text).reverse()) {
+    // Bottom-up, so an edit never moves a body not yet edited. A .js file is one body
+    for (const { start, end, text, source } of jsBodies(path, raw, lines).reverse()) {
 
-        const body = lines.slice(start, end).join("\n");
+        const label = path.endsWith(".html") ? `${path}:${start + 1}` : path;
 
         let offsets;
 
         try {
-            offsets = planBody(body, `${path}:${start + 1}`, refused);
+            offsets = planSemicolons(source, label, refused);
         } catch (err) {
-            failures.push(`${path}:${start + 1}  ${err.message}`);
+            failures.push(`${label}  ${err.message}`);
             continue;
         }
 
         if (!offsets.length) continue;
 
-        lines.splice(start, end - start, ...insertAt(body, offsets).split("\n"));
+        lines.splice(start, end - start, ...insertAt(text, offsets).split("\n"));
         count += offsets.length;
 
     }
@@ -187,7 +164,10 @@ const HUGO_OUT = [
 {
     const refused = [];
     const got = insertAt(FIXTURE_IN, planSemicolons(FIXTURE_IN, "fixture", refused));
-    const hugo = insertAt(HUGO_IN, planBody(HUGO_IN, "hugo fixture", refused));
+    // Read as a layout's one <script> body, the way processFile reads one
+    const page = `<script>\n${HUGO_IN}\n</script>`;
+    const [body] = jsBodies("fixture.html", page, page.split("\n"));
+    const hugo = insertAt(body.text, planSemicolons(body.source, "hugo fixture", refused));
 
     if (got !== FIXTURE_OUT || hugo !== HUGO_OUT || refused.length) {
         console.error("Control failed: a fixture did not reach its known answer.");
