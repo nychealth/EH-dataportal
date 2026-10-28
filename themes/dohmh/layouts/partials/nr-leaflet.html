@@ -372,10 +372,10 @@
     // generates the report URLs from, so the two cannot disagree. The landing page's topic
     // buttons use the same keys as their ids (neighborhood-reports/section.html)
 
-    {{- $topicSlugs := dict -}};
-    {{- range site.Data.globals.NR_topics -}};
-        {{- $topicSlugs = merge $topicSlugs (dict .key .slug) -}};
-    {{- end }};
+    {{- $topicSlugs := dict -}}
+    {{- range site.Data.globals.NR_topics -}}
+        {{- $topicSlugs = merge $topicSlugs (dict .key .slug) -}}
+    {{- end }}
 
     const topicSlugs = {{ $topicSlugs }};
     
