@@ -44,9 +44,9 @@ All four answered 2026-10-28: Chris took each recommendation ("go").
 | 16 | — | **DONE 2026-10-28** | `[2026-10-28 at 38ec743279: pull_request runs 40716776779 (Smoke check) and 40716776739 (Site characterization check), both success]`. #1515 retargeted to `production`; `git merge-tree --write-tree origin/production HEAD` clean, and `production` has no commit this branch lacks. `[2026-10-28 at b7e48267ac: npm run smoke:prod_prod exit 0, 1,187 pages clean, Pagefind index served]`. The retarget alone starts no run: neither sweep workflow lists `types`, so both take `opened`/`synchronize`/`reopened`, and `b7e48267ac` carried `[skip ci]`. The ledger commit after it is pushed without the marker to start both. PR body rewritten |
 | 17 | — | **DONE 2026-10-28** | `C:/temp/r1515/base`, `C:/temp/r1515/head` and this plan's `C:/temp/t2base` each had 0 changed files, and were removed with `git worktree remove`; their build output under `C:/temp` deleted |
 
-**Next command:** none in this plan; #1515 is ready for review. Open, outside it: the formatting
-ledger's deferred `script_regions` fix in `js-comment-spacing.py`, whose trigger ("when that script
-is next run or edited") Tasks 7 and 8 met.
+**Next command:** none in this plan; #1515 is ready for review. The formatting ledger's deferred
+`script_regions` fix in `js-comment-spacing.py`, whose trigger Tasks 7 and 8 met, is done; that
+ledger's paragraph on it has the proof.
 
 Tasks 1–12 are tool and config changes. None of them may change a tracked file outside `scripts/`,
 `.editorconfig` or `package*.json`, except Task 2 (`nr-leaflet.html`) and Task 8 (the two crosswalk
