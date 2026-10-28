@@ -163,6 +163,10 @@ const planEdits = (source, lines) => {
         return lo;
     };
 
+    // Token index by start offset, to find the tokens beside a block's own braces
+    const tokenAt = new Map(ast.tokens.map((t, i) => [t.range[0], i]));
+    const tokenLine = (i) => (i >= 0 && i < ast.tokens.length ? lineOf(ast.tokens[i].range[0]) : null);
+
     const insertAfter = new Set();
     const remove = new Set();
 
@@ -172,10 +176,21 @@ const planEdits = (source, lines) => {
 
         const [openLine, closeLine] = braceLines(node, ast.tokens, lineOf);
 
-        // Only a brace that ends its line and a brace that starts its line can be padded
+        // Only a brace that ends its line and a brace that starts its line can be padded.
+        // The line text alone is not enough: a line can end in a template literal's `{`
+        // that is not the block's, so the block's own `{` must be its line's last token
+        // and its `}` its line's first
         if (closeLine <= openLine + 1) return;
         if (!lines[openLine].trimEnd().endsWith("{")) return;
         if (!/^\s*}/.test(lines[closeLine])) return;
+
+        const openIndex = tokenAt.get(node.type === "SwitchStatement"
+            ? ast.tokens.find((t) => t.range[0] >= node.discriminant.range[1] && t.value === "{").range[0]
+            : node.range[0]);
+        const closeIndex = tokenAt.get(node.range[1] - 1);
+
+        if (tokenLine(openIndex + 1) === openLine) return;
+        if (tokenLine(closeIndex - 1) === closeLine) return;
 
         let first = openLine + 1;
         while (first < closeLine && !lines[first].trim()) first++;
@@ -444,6 +459,28 @@ if (w) {
 
     if (got !== FIXTURE_OUT) {
         console.error("Control failed: the fixture did not produce its expected output. Got:\n" + got);
+        process.exit(2);
+    }
+}
+
+// A block whose first line ends in a template literal's `{`, not its own, is left
+// alone: a blank line there would land inside the string
+{
+    const TEMPLATE_IN = [
+        "if (s) { el.innerHTML = `<style>.a {",
+        "    color: red;",
+        "}</style>`;",
+        "    a();",
+        "    b();",
+        "    c();",
+        "}",
+    ].join("\n");
+
+    const lines = TEMPLATE_IN.split("\n");
+    const got = applyEdits(lines, planEdits(TEMPLATE_IN, lines)).join("\n");
+
+    if (got !== TEMPLATE_IN) {
+        console.error("Control failed: a brace inside a template literal was padded. Got:\n" + got);
         process.exit(2);
     }
 }
