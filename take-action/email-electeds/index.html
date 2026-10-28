@@ -70,7 +70,7 @@
     <link href=/IndicatorPublic/css/nyc-basic-lib-v1.2.79.css rel="stylesheet">
 <script src="/IndicatorPublic/node_modules/jquery/dist/jquery.min.9d6bd9b75ea55acc.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR&#43;8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/css/all.min.c2b5ea5c3ed56d7e.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck&#43;w&#43;/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous"/>
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.c708c023f9041fb51d9ddc3e03764386fa55881a8e9d875d7531c5bebeb8885df85856db71636878c250dcfd6be780762dbc453e0924fabd78748d47a7253c2a.css" integrity="sha512-xwjAI/kEH7Udndw&#43;A3ZDhvpViBqOnYdddTHFvr64iF34WFbbcWNoeMJQ3P1r54B2LbxFPgkk&#43;r14dI1HpyU8Kg==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.76d32e5ad67edaebe99ca6def818f2b3095f4863c7c9fd7b7f76e80ecb519c6eda92103a7a228b301a523dcd335e6e6d96d2170b6198fe69ef511b2f24997af1.css" integrity="sha512-dtMuWtZ&#43;2uvpnKbe&#43;BjyswlfSGPHyf17f3boDstRnG7akhA6eiKLMBpSPc0zXm5tltIXC2GY/mnvURsvJJl68Q==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
 
 
 
@@ -102,7 +102,9 @@
     let DE_DEBUG_OVERRIDE = null;
 
     try {
+
         DE_DEBUG_OVERRIDE = localStorage.getItem('de_debug');
+
     } catch (e) {}
 
     const DE_DEBUG = DE_DEBUG_OVERRIDE !== null
@@ -610,8 +612,9 @@
             
             var map;
             function drawMap() {
-                document.getElementById('mapLocator').innerHTML = ''
-                document.getElementById('searchHolder').innerHTML = `<input class="rad-all form-control form-control-lg" placeholder="Search Address" id="map-search">`
+
+                document.getElementById('mapLocator').innerHTML = '';
+                document.getElementById('searchHolder').innerHTML = `<input class="rad-all form-control form-control-lg" placeholder="Search Address" id="map-search">`;
                 
                 map = new nyc.ol.FrameworkMap({
                     mapTarget: '#mapLocator',
@@ -625,24 +628,20 @@
                 
             }
             
-            drawMap()
+            drawMap();
             
             
 
-            document.getElementById('map-search').addEventListener("change", getData)
+            document.getElementById('map-search').addEventListener("change", getData);
             
             let searchButton = document.querySelector('.btn.btn-srch');
             
             
 
             if (searchButton) {
-                
                 searchButton.onclick = function() {
-                    
-                    $("#map-search").parent().trigger("submit")
-                    
+                    $("#map-search").parent().trigger("submit");
                 };
-                
             }
             
             
@@ -660,28 +659,31 @@
             
             
             async function getData() {
-                console.log('*** Getting data:')
+
+                console.log('*** Getting data:');
                 waitForGlobal("map.location.name", function() {
+
                     console.log("map.location [post]", map.location);
                     
                     
 
-                    getDataFor(map.location)
+                    getDataFor(map.location);
                     
                     
 
-                    document.getElementById('map-search').disabled = true
+                    document.getElementById('map-search').disabled = true;
                     let button = document.querySelector('#searchHolder button');
                     
                     
 
                     if (button) {
-                        button.innerHTML = 'Start over'
+
+                        button.innerHTML = 'Start over';
                         button.onclick = function() {
                             location.reload(); 
                         };
                     }
-                })
+                });
             }
             
             
@@ -689,52 +691,60 @@
             
             
             function getDataFor(x) {
-                console.log('**** Getting data for:')
-                console.log(map.location.name)
+
+                console.log('**** Getting data for:');
+                console.log(map.location.name);
                 
                 
 
-                window.location.hash = map.location.name
+                window.location.hash = map.location.name;
                 
                 
 
-                var linkURL = `https://www.mygovnyc.org/?addr=${map.location.name}`
-                document.getElementById('link').setAttribute("href",linkURL)
+                var linkURL = `https://www.mygovnyc.org/?addr=${map.location.name}`;
+                document.getElementById('link').setAttribute("href",linkURL);
                 
-                let loc   = map.location
-                let data  = map.location.data
+                let loc   = map.location;
+                let data  = map.location.data;
                 
                 
 
-                document.getElementById('outputRow').classList.remove('hide')
-                document.getElementById('contactContainer').classList.remove('hide')
+                document.getElementById('outputRow').classList.remove('hide');
+                document.getElementById('contactContainer').classList.remove('hide');
                 
                 
 
                 retrieveAPIData('Mayor',null,null);
                 retrieveAPIData('NYC Public Advocate',null,null);
-                retrieveAPIData('NYC Comptroller',null,null)
+                retrieveAPIData('NYC Comptroller',null,null);
                 
-                retrieveAPIData('City Council',removeLeadingZero(data.cityCouncilDistrict),'lwvnyc_council')
-                retrieveAPIData('Community Board',removeLeadingZero(data.communityDistrict),'nyccommboard')
-                retrieveAPIData('Borough President',removeLeadingZero(data.bblBoroughCode),'lwvnyc_borough')
-                retrieveAPIData('State Assembly Member',removeLeadingZero(data.assemblyDistrict),'lwvnyc_nyassembly')
-                retrieveAPIData('State Senator', removeLeadingZero(data.stateSenatorialDistrict),'lwvnyc_nysenate')
-                retrieveAPIData('US Representative', removeLeadingZero(data.congressionalDistrict),'lwvnyc_congress')
-                retrieveAPIData('US Senator',null,null)
+                retrieveAPIData('City Council',removeLeadingZero(data.cityCouncilDistrict),'lwvnyc_council');
+                retrieveAPIData('Community Board',removeLeadingZero(data.communityDistrict),'nyccommboard');
+                retrieveAPIData('Borough President',removeLeadingZero(data.bblBoroughCode),'lwvnyc_borough');
+                retrieveAPIData('State Assembly Member',removeLeadingZero(data.assemblyDistrict),'lwvnyc_nyassembly');
+                retrieveAPIData('State Senator', removeLeadingZero(data.stateSenatorialDistrict),'lwvnyc_nysenate');
+                retrieveAPIData('US Representative', removeLeadingZero(data.congressionalDistrict),'lwvnyc_congress');
+                retrieveAPIData('US Senator',null,null);
+
             }
             
             async function retrieveAPIData(x,y,z) {
-                let xEncode = encodeURIComponent(x)
+
+                let xEncode = encodeURIComponent(x);
                 let url;
                 
                 if (y === null) {
+
                     url = `https://www.mygovnyc.org/api/v1/query/lwvnyc_other?columns=*&filter=districttitle%3D'${xEncode}'`;
+
                 } else {
+
                     url = `https://www.mygovnyc.org/api/v1/query/${z}?columns=*&filter=district%3D'${y}'`;
+
                 }
                 
                 try {
+
                     const response = await fetch(url);
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -745,18 +755,17 @@
                     
                     
 
-                    printData(data,x)    
+                    printData(data,x);    
                     
                 } catch (error) {
+
                     console.error("Error fetching data:", error);
+
                 }
-                
             }
             
             function removeLeadingZero(str) {
-                if (str.startsWith('0')) {
-                    return str.slice(1);
-                }
+                if (str.startsWith('0')) return str.slice(1);
                 return str;
             }
             
@@ -765,28 +774,44 @@
             
             
             function printData(data, office) {
+
                 console.log('*** printing data');
                 
                 let sort;
                 if (office.includes('US ')) {
+
                     sort = 10;
+
                 } else if (office.includes('State')) {
+
                     sort = 9;
+
                 } else if (office.includes('Borough')) {
+
                     sort = 6;
+
                 }  else if (office.includes('Community')) {
-                    sort = 5
+
+                    sort = 5;
+
                 } else if (office.includes ('Council')) {
-                    sort = 4
+
+                    sort = 4;
+
                 } else if (office.includes('NYC')) {
-                    sort = 3
+
+                    sort = 3;
+
                 } else if (office.includes('Mayor')) {
-                    sort = 1
+
+                    sort = 1;
+
                 }
                 
                 let tableBody = document.getElementById('newTableBody');
                 
                 for (let i = 0; i < data.length; i++) {
+
                     
 
                     let row = document.createElement('tr');
@@ -794,13 +819,21 @@
                     let cell_office = document.createElement('td');
                     
                     if (office.includes('Council')) {
-                        cell_office.innerHTML = office + ' District ' + data[i].district
+
+                        cell_office.innerHTML = office + ' District ' + data[i].district;
+
                     } else if (office.includes('Community')) {
-                        cell_office.innerHTML = office + ' ' + data[i].district
+
+                        cell_office.innerHTML = office + ' ' + data[i].district;
+
                     } else if (office.includes('Borough')) {
-                        cell_office.innerHTML = data[i].districttitle
+
+                        cell_office.innerHTML = data[i].districttitle;
+
                     } else {
-                        cell_office.innerHTML = office
+
+                        cell_office.innerHTML = office;
+
                     }
                     
                     
@@ -816,9 +849,13 @@
                     let cell_email = document.createElement('td');
                     let email = data[i].email;
                     if (isValidEmail(email) === true) {
-                        cell_email.innerHTML =  `<strong><a href="mailto:${email}">${email}</a></strong>`
+
+                        cell_email.innerHTML =  `<strong><a href="mailto:${email}">${email}</a></strong>`;
+
                     } else {
-                        cell_email.innerHTML =  `<strong><a href="${email}" target="_blank"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Contact page</a></strong>`
+
+                        cell_email.innerHTML =  `<strong><a href="${email}" target="_blank"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Contact page</a></strong>`;
+
                     }
                     
                     
@@ -834,6 +871,7 @@
                     let rows = tableBody.getElementsByTagName("tr");
                     
                     for (let j = 0; j < rows.length; j++) {
+
                         let existingSort = rows[j].getAttribute("data-sort"); 
                         if (existingSort && parseInt(existingSort) > sort) {
                             tableBody.insertBefore(row, rows[j]); 
@@ -847,6 +885,7 @@
                     }
                     
                     row.setAttribute("data-sort", sort); 
+
                 }
             }
             
@@ -857,30 +896,37 @@
             
 
                 const checkNested = function(obj, args) {
+
                     for (var i = 0; i < args.length; i++) {
-                        if (!obj || !obj.hasOwnProperty(args[i])) {
-                            return false;
-                        }
+                        if (!obj || !obj.hasOwnProperty(args[i])) return false;
                         obj = obj[args[i]];
                     }
                     return true;
-                }
+
+                };
                 
                 const waitForGlobal = function(keyPath, callback) {
+
                     var args = keyPath.split('.');
                     if (checkNested(window, args)) {
+
                         callback();
+
                     } else {
+
                         setTimeout(function() {
+
                             
 
                             waitForGlobal(keyPath, callback);
+
                         }, 100);
+
                     }
-                }
+                };
                 
                 function startOver() {
-                    location.reload()
+                    location.reload();
                 }
                 
                 function isValidEmail(email) {
@@ -919,6 +965,7 @@
                 <div id="search"></div>
                 <script>
                     window.addEventListener('DOMContentLoaded', () => {
+
                         const search_modal = document.getElementById('searchModal');
                         const search_root = document.getElementById('search');
 
@@ -927,6 +974,7 @@
                         }
 
                         new PagefindUI({
+
                             element: '#search',
                             showSubResults: true,
                             showImages: false,
@@ -934,6 +982,7 @@
                             showEmptyFilters: true,
                             debounceTimeoutMs: 500,
                             processTerm: function (term) {
+
                                 if (typeof gtag === 'function') {
                                     gtag('event', 'search', {
                                         search_term: term
@@ -941,31 +990,35 @@
                                 }
 
                                 return term;
+
                             },
                             processResult: function (result) {
+
                                 result.meta.title = result.meta.title
                                     .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                     .replaceAll('&amp;', '&');
 
                                 result.sub_results.forEach(sub => {
+
                                     sub.url = sub.url.replace('#IndicatorID-', '?id=');
 
                                     sub.title = sub.title
                                         .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                         .replaceAll('&amp;', '&');
+
                                 });
                             }
                         });
 
                         $(search_modal).on('shown.bs.modal', () => {
+
                             const search_input = search_modal.querySelector('.pagefind-ui__search-input');
 
-                            if (!search_input) {
-                                return;
-                            }
+                            if (!search_input) return;
 
                             search_input.focus();
                             search_input.select();
+
                         });
                     });
                 </script>
@@ -1177,6 +1230,7 @@
 
 <script>
     function googleTranslateElementInit() {
+
         new google.translate.TranslateElement(
         {
             pageLanguage: "en",
@@ -1189,6 +1243,7 @@
         document
             .querySelectorAll("div[class^=VI] svg")
             .forEach((e) => (e.outerHTML = ""));
+
     }
 </script>
 
@@ -1196,14 +1251,14 @@
 
 <script
     type="text/javascript"
-    src="/IndicatorPublic/js/main.2cb27f09f10c76c3.js"
-    integrity="sha512-iaICTR6PWG4zbrmL69MtiVybfawXimbAI5YPb5CrDb&#43;QRgiX/4W11J6utqdl8wGY0zO9BbT110dFS2VhHYr60w=="
+    src="/IndicatorPublic/js/main.b5a4bb39c6f9e956.js"
+    integrity="sha512-IFR/T14MliYqj1FjEKKn&#43;KuzTQPEROIUZdo&#43;GWL1LkQyonV&#43;Ph1RiQ4kBd/tu&#43;DIek2FPl3gWTZT3V&#43;gpjkwRw=="
 ></script>
 
 <script
     type="text/javascript"
-    src="/IndicatorPublic/js/site.0c406db6f0a34e1e.js"
-    integrity="sha512-Fe3P28eMLfzi8orYmRJ8kTiQB2LyFObFD/0wbjn9C1QqIausui3C0NL1lI26wcL0L0r60YRX2APG59LjFox1xQ=="
+    src="/IndicatorPublic/js/site.5059925e078263ff.js"
+    integrity="sha512-lx6l6X2f4LZTW6z7Uuht0oUdZKl6qI6CVWVHHakMNAhTGoMy4V525mqnSG3e7biz3oH3HbcyrpR/AARk9XsYQQ=="
 ></script>
 
     

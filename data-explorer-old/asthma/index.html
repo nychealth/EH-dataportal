@@ -67,7 +67,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/","name":"The Environment and Health Data Portal: Home page","position":1},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer-old/","name":"Data Explorer","position":2},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer-old/asthma/","name":"Asthma","position":3}]}</script>
 <script src="/IndicatorPublic/node_modules/jquery/dist/jquery.min.9d6bd9b75ea55acc.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR&#43;8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/css/all.min.c2b5ea5c3ed56d7e.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck&#43;w&#43;/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous"/>
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.c708c023f9041fb51d9ddc3e03764386fa55881a8e9d875d7531c5bebeb8885df85856db71636878c250dcfd6be780762dbc453e0924fabd78748d47a7253c2a.css" integrity="sha512-xwjAI/kEH7Udndw&#43;A3ZDhvpViBqOnYdddTHFvr64iF34WFbbcWNoeMJQ3P1r54B2LbxFPgkk&#43;r14dI1HpyU8Kg==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.76d32e5ad67edaebe99ca6def818f2b3095f4863c7c9fd7b7f76e80ecb519c6eda92103a7a228b301a523dcd335e6e6d96d2170b6198fe69ef511b2f24997af1.css" integrity="sha512-dtMuWtZ&#43;2uvpnKbe&#43;BjyswlfSGPHyf17f3boDstRnG7akhA6eiKLMBpSPc0zXm5tltIXC2GY/mnvURsvJJl68Q==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
 
 
 
@@ -99,7 +99,9 @@
     let DE_DEBUG_OVERRIDE = null;
 
     try {
+
         DE_DEBUG_OVERRIDE = localStorage.getItem('de_debug');
+
     } catch (e) {}
 
     const DE_DEBUG = DE_DEBUG_OVERRIDE !== null
@@ -2584,6 +2586,7 @@
                 <div id="search"></div>
                 <script>
                     window.addEventListener('DOMContentLoaded', () => {
+
                         const search_modal = document.getElementById('searchModal');
                         const search_root = document.getElementById('search');
 
@@ -2592,6 +2595,7 @@
                         }
 
                         new PagefindUI({
+
                             element: '#search',
                             showSubResults: true,
                             showImages: false,
@@ -2599,6 +2603,7 @@
                             showEmptyFilters: true,
                             debounceTimeoutMs: 500,
                             processTerm: function (term) {
+
                                 if (typeof gtag === 'function') {
                                     gtag('event', 'search', {
                                         search_term: term
@@ -2606,31 +2611,35 @@
                                 }
 
                                 return term;
+
                             },
                             processResult: function (result) {
+
                                 result.meta.title = result.meta.title
                                     .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                     .replaceAll('&amp;', '&');
 
                                 result.sub_results.forEach(sub => {
+
                                     sub.url = sub.url.replace('#IndicatorID-', '?id=');
 
                                     sub.title = sub.title
                                         .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                         .replaceAll('&amp;', '&');
+
                                 });
                             }
                         });
 
                         $(search_modal).on('shown.bs.modal', () => {
+
                             const search_input = search_modal.querySelector('.pagefind-ui__search-input');
 
-                            if (!search_input) {
-                                return;
-                            }
+                            if (!search_input) return;
 
                             search_input.focus();
                             search_input.select();
+
                         });
                     });
                 </script>
@@ -2842,6 +2851,7 @@
 
 <script>
     function googleTranslateElementInit() {
+
         new google.translate.TranslateElement(
         {
             pageLanguage: "en",
@@ -2854,6 +2864,7 @@
         document
             .querySelectorAll("div[class^=VI] svg")
             .forEach((e) => (e.outerHTML = ""));
+
     }
 </script>
 
@@ -2861,14 +2872,14 @@
 
 <script
     type="text/javascript"
-    src="/IndicatorPublic/js/main.2cb27f09f10c76c3.js"
-    integrity="sha512-iaICTR6PWG4zbrmL69MtiVybfawXimbAI5YPb5CrDb&#43;QRgiX/4W11J6utqdl8wGY0zO9BbT110dFS2VhHYr60w=="
+    src="/IndicatorPublic/js/main.b5a4bb39c6f9e956.js"
+    integrity="sha512-IFR/T14MliYqj1FjEKKn&#43;KuzTQPEROIUZdo&#43;GWL1LkQyonV&#43;Ph1RiQ4kBd/tu&#43;DIek2FPl3gWTZT3V&#43;gpjkwRw=="
 ></script>
 
 <script
     type="text/javascript"
-    src="/IndicatorPublic/js/site.0c406db6f0a34e1e.js"
-    integrity="sha512-Fe3P28eMLfzi8orYmRJ8kTiQB2LyFObFD/0wbjn9C1QqIausui3C0NL1lI26wcL0L0r60YRX2APG59LjFox1xQ=="
+    src="/IndicatorPublic/js/site.5059925e078263ff.js"
+    integrity="sha512-lx6l6X2f4LZTW6z7Uuht0oUdZKl6qI6CVWVHHakMNAhTGoMy4V525mqnSG3e7biz3oH3HbcyrpR/AARk9XsYQQ=="
 ></script>
 
     <script type="text/javascript" src="/IndicatorPublic/js/accessible-autocomplete.min.20e7e606a030b0c1.js" integrity="sha512-oo28/kU49CzsZKQudUKfhzvYZkH&#43;oLMms6SAC1mRe5m4d9NxWwdAX/NpF&#43;2ePMCHP3tYplkF/1CM1C6MQnpfmg=="></script><script src="/IndicatorPublic/node_modules/arquero/dist/arquero.min.7d016e4b24d47a0f.js" integrity="sha512-2mGOsKuhJM952DEP&#43;f1bIw&#43;YqERehwv8otcrFxOHpJxHTX36YE&#43;BdlmqGbJ&#43;NC9ThzCPdxk2pbehhP6XEan1jg=="></script>
@@ -3206,14 +3217,14 @@
             
         }
 
-    </script><script type="text/javascript" src="/IndicatorPublic/js/data-explorer-old/global.cb3dcd02111e4ab6.js" integrity="sha512-PsQQvr1ezwnAyJgKJE2XxT5QJ0mPqth&#43;p0boB/mSLGNEMqKLlCW6pB4SGImnwHoztkzVx7CjrBJKFGsviNjJEg=="></script>
+    </script><script type="text/javascript" src="/IndicatorPublic/js/data-explorer-old/global.e618f70a5b8af045.js" integrity="sha512-OcyfrMaTJ7BIdZuNoGnERZDQry1UMimDamPKy9suOEtf/HpvsHHHd22QUX3r9kd3&#43;aSuhavuwS6vjCWNtU0i8g=="></script>
     <script type="text/javascript" src="/IndicatorPublic/js/data-explorer-old/data.ddc60a7e2997bd94.js" integrity="sha512-Mqpve431mnFWhaD7PtVhZBPDWLyhgox/wBHhXAW7JB8X9r3PAR2Y1QfOLweN5IKuHaoWh1pqsURQ8VBj&#43;&#43;IUkg=="></script>
     <script type="text/javascript" src="/IndicatorPublic/js/data-explorer-old/measures.4f690a9820803d71.js" integrity="sha512-MtglxTxadbpHCRtQKlmNbLLQs5auPiJGdygBqC6aaMLWXGejYXFJu8a/y25c6uyXMxG8slsU4PVUE5tZPIzDgw=="></script>
     <script type="text/javascript" src="/IndicatorPublic/js/data-explorer-old/table.cccf5c00a8c99b10.js" integrity="sha512-rrjGTU9wsS5bwuNDpCdm6&#43;r1crrupR2K91&#43;dh0LsxUMRmIfOC/p9Zh7mqO8H1okuuRKt6ceAYEHY9WU1hbbGjg=="></script>
     <script type="text/javascript" src="/IndicatorPublic/js/data-explorer-old/map.def0dee50ee68b4e.js" integrity="sha512-GoM/RVlzW1m03tVPq1c7JWFjTyslG4HPZ1CmTtZ1w4EGQUptHrwm5tl7Wc&#43;WeaE08XQaLWTUuJqfDJFZ6e&#43;LXA=="></script>
-    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer-old/links.04b365920f8a1448.js" integrity="sha512-qiCWn5l/EJhj4X1y2n1HthEueoBHMm3pHh&#43;OQYZEBTe/yMxKCGXxI8lyNphgH&#43;&#43;LXEXNtbH5Dt8BNVQt2dRy3A=="></script>
+    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer-old/links.048de4876b559b1e.js" integrity="sha512-94HVyWfrup6cz3Fw4KHaqbnkvYfnBe5mnc51hv477u/gFHeyqMAnmq/2vZpc/W/wNd6KCq5aaXkuRb84iEY1Aw=="></script>
     <script type="text/javascript" src="/IndicatorPublic/js/data-explorer-old/disparities.f1e5d4afb4f25626.js" integrity="sha512-Ms3bb4&#43;Li9IwpzIzZdAsBe0RspjCpWRvZIpn7Z&#43;Q3I8u7XN&#43;XUXDMozz0muXPPD4LgK2PapvqZtLedGgrxJVIg=="></script>
-    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer-old/trend.96b0c12730326ffa.js" integrity="sha512-syjY7MWZYhdqmwwyCCLjYkyRrVn6U4lmcTAoxNZwXL4HQaQITq2Us&#43;WttoEm4Cu5ejHJ1sumUI1VIsdXRluNDw=="></script>
+    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer-old/trend.f8840f3aefc50039.js" integrity="sha512-XvB2JHkKiCWs7eWc/IEYE7n7AIAFEDWFmscRhdaaZ&#43;LUgkjK3Y3//Y8ab2b7&#43;1xjfVeBXsee0Khu4D0rYuDO1w=="></script>
     <script type="text/javascript" src="/IndicatorPublic/js/data-explorer-old/app.8c2f2e86aa5fd5f3.js" integrity="sha512-Rdo2A4r8JWUo1XaoDAuRkGuQ4JhTFbH2DyIiEBsjhNuv&#43;UGi2WwPAOTwXnqnd8RYyUjyrUodRkqYtogs&#43;tE2zA=="></script>
     <script type="text/javascript" src="/IndicatorPublic/js/data-explorer-old/print.63b63c9d448b2d87.js" integrity="sha512-TRf9P3EWGFrltQau1BRQbMRRusljhZzf7f9p10lOeVz/9ysaMEP5yeKgQVVREHItvbfagU&#43;wArYcjYyvHuInPw=="></script>
 

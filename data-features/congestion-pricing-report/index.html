@@ -70,7 +70,7 @@
     <link href=/IndicatorPublic/css/nyc-basic-lib-v1.2.79.css rel="stylesheet">
 <script src="/IndicatorPublic/node_modules/jquery/dist/jquery.min.9d6bd9b75ea55acc.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR&#43;8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/css/all.min.c2b5ea5c3ed56d7e.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck&#43;w&#43;/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous"/>
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.c708c023f9041fb51d9ddc3e03764386fa55881a8e9d875d7531c5bebeb8885df85856db71636878c250dcfd6be780762dbc453e0924fabd78748d47a7253c2a.css" integrity="sha512-xwjAI/kEH7Udndw&#43;A3ZDhvpViBqOnYdddTHFvr64iF34WFbbcWNoeMJQ3P1r54B2LbxFPgkk&#43;r14dI1HpyU8Kg==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.76d32e5ad67edaebe99ca6def818f2b3095f4863c7c9fd7b7f76e80ecb519c6eda92103a7a228b301a523dcd335e6e6d96d2170b6198fe69ef511b2f24997af1.css" integrity="sha512-dtMuWtZ&#43;2uvpnKbe&#43;BjyswlfSGPHyf17f3boDstRnG7akhA6eiKLMBpSPc0zXm5tltIXC2GY/mnvURsvJJl68Q==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
 
 
 
@@ -102,7 +102,9 @@
     let DE_DEBUG_OVERRIDE = null;
 
     try {
+
         DE_DEBUG_OVERRIDE = localStorage.getItem('de_debug');
+
     } catch (e) {}
 
     const DE_DEBUG = DE_DEBUG_OVERRIDE !== null
@@ -1032,6 +1034,7 @@
                 <div id="search"></div>
                 <script>
                     window.addEventListener('DOMContentLoaded', () => {
+
                         const search_modal = document.getElementById('searchModal');
                         const search_root = document.getElementById('search');
 
@@ -1040,6 +1043,7 @@
                         }
 
                         new PagefindUI({
+
                             element: '#search',
                             showSubResults: true,
                             showImages: false,
@@ -1047,6 +1051,7 @@
                             showEmptyFilters: true,
                             debounceTimeoutMs: 500,
                             processTerm: function (term) {
+
                                 if (typeof gtag === 'function') {
                                     gtag('event', 'search', {
                                         search_term: term
@@ -1054,31 +1059,35 @@
                                 }
 
                                 return term;
+
                             },
                             processResult: function (result) {
+
                                 result.meta.title = result.meta.title
                                     .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                     .replaceAll('&amp;', '&');
 
                                 result.sub_results.forEach(sub => {
+
                                     sub.url = sub.url.replace('#IndicatorID-', '?id=');
 
                                     sub.title = sub.title
                                         .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                         .replaceAll('&amp;', '&');
+
                                 });
                             }
                         });
 
                         $(search_modal).on('shown.bs.modal', () => {
+
                             const search_input = search_modal.querySelector('.pagefind-ui__search-input');
 
-                            if (!search_input) {
-                                return;
-                            }
+                            if (!search_input) return;
 
                             search_input.focus();
                             search_input.select();
+
                         });
                     });
                 </script>
@@ -1290,6 +1299,7 @@
 
 <script>
     function googleTranslateElementInit() {
+
         new google.translate.TranslateElement(
         {
             pageLanguage: "en",
@@ -1302,6 +1312,7 @@
         document
             .querySelectorAll("div[class^=VI] svg")
             .forEach((e) => (e.outerHTML = ""));
+
     }
 </script>
 
@@ -1309,14 +1320,14 @@
 
 <script
     type="text/javascript"
-    src="/IndicatorPublic/js/main.2cb27f09f10c76c3.js"
-    integrity="sha512-iaICTR6PWG4zbrmL69MtiVybfawXimbAI5YPb5CrDb&#43;QRgiX/4W11J6utqdl8wGY0zO9BbT110dFS2VhHYr60w=="
+    src="/IndicatorPublic/js/main.b5a4bb39c6f9e956.js"
+    integrity="sha512-IFR/T14MliYqj1FjEKKn&#43;KuzTQPEROIUZdo&#43;GWL1LkQyonV&#43;Ph1RiQ4kBd/tu&#43;DIek2FPl3gWTZT3V&#43;gpjkwRw=="
 ></script>
 
 <script
     type="text/javascript"
-    src="/IndicatorPublic/js/site.0c406db6f0a34e1e.js"
-    integrity="sha512-Fe3P28eMLfzi8orYmRJ8kTiQB2LyFObFD/0wbjn9C1QqIausui3C0NL1lI26wcL0L0r60YRX2APG59LjFox1xQ=="
+    src="/IndicatorPublic/js/site.5059925e078263ff.js"
+    integrity="sha512-lx6l6X2f4LZTW6z7Uuht0oUdZKl6qI6CVWVHHakMNAhTGoMy4V525mqnSG3e7biz3oH3HbcyrpR/AARk9XsYQQ=="
 ></script>
 
     
@@ -1340,13 +1351,13 @@
 <script src="/IndicatorPublic/js/lib-vega-bundle.7bffeead9d7ff2c7.js" integrity="sha512-82fs/ltAJzEZhVokTuXByj29e5hwgiHtObtyA9WdVVAW&#43;22LOx4Tnw9r3peJklc&#43;FniFTaG5s5UiSRCXIw/HCQ=="></script>
 
 <script src="/IndicatorPublic/node_modules/d3/dist/d3.min.e8ba02e52482bcd1.js" integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs&#43;/u5c3&#43;1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/congestion-pricing-report/shared.ac657e296dfe69ba.js" integrity="sha512-XH8R7NomHDQ3XnF8ncM4&#43;34TMJXqjfYAQtk3zcLtzSDINFxQGVV8PlA2cwYa4ZgU99CXRh0fwkNdCAxz6&#43;OKjA=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/congestion-pricing-report/map-monitoring.80b160ad0dc69f5d.js" integrity="sha512-sIAE3ehG/1h9UQajSf0gV0uUOF2r&#43;dwpFRz&#43;Ypr&#43;mRHjKVEd8u4wb7sLIq/&#43;JoNbKqaI9aryY/BX4scP325Ojw=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/congestion-pricing-report/map-regional.e02cf7d74cd0a695.js" integrity="sha512-U1l7Lf92XKfnSHnw1Cx6nW2&#43;UUaX9kXpgZQmgj9ZZJ/l7vdL/Gn&#43;g5CFPgktuVctloScGbcKmLvhz/DvxAMwbw=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/congestion-pricing-report/chart-ej.e6e2a6f1a5d25970.js" integrity="sha512-dX6OQZzQbnmvpRO4BjC2YZOaEMI7fCFTnlxqGBaTb&#43;Dtl1YYJqf8KyXr1xiABMnXRqhxeIyfQjSaUeQ1ZzebKg=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/congestion-pricing-report/chart-tod.7a5d1ff65ee654e6.js" integrity="sha512-VeuRPQBeI1wATV2/1JTMrdKSAPRpvzBtFeWbuJSrpdmMinaIKaQZDZxyXDrqNxrRTPsW7gXqmLE9JiR7qqxazg=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/congestion-pricing-report/chart-crz.b91094abb5b7adcf.js" integrity="sha512-61KtemUrNrzi3ndjvDKLzPQSp&#43;CfbLumb&#43;oRhk7KFkzxTJonGUqtDYHTdCnT&#43;5KxFuCEF43J6gKGn7b1vXWiyg=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/congestion-pricing-report/sticky-header.09736154d2df28a1.js" integrity="sha512-nc9tzezaeEt1mdSGtk9znXzKBekYEzeVtkcPstBHEoitoV9KQdqwMLBE9A9R4Hdzs38KyvY7uqdStCjHzlSa4Q=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/congestion-pricing-report/shared.62eb908eb13ca405.js" integrity="sha512-dDXMC6HNkJFYe4pq98/cNHZzC41zidkJB2LoxdPjQ6QiqLI4F1FPj2jS1k9y7WZPhMfdSGG2skk61&#43;Us3LZY0w=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/congestion-pricing-report/map-monitoring.6edf90430fac4bf5.js" integrity="sha512-FEzrZQ21d&#43;4qV1p4gGyW3bBn6wR7Utf6ZoNFIvAWzBLJLc2auvhY9Pmj8Ej6LxHjspQUj1EbwgZuha4R3Z4MDg=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/congestion-pricing-report/map-regional.654aeead84ab1ed0.js" integrity="sha512-vKfujOZH&#43;us4uu10rwXrt2DRmIox1sUbXptrrdP9Jr5sJ6KcdfOHY03i5K&#43;gKQPmpO7cKO50eZ90NZhc8VGO0A=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/congestion-pricing-report/chart-ej.5643090d9ea6bb11.js" integrity="sha512-NabuG3EXKWIeCvwVMorv7yExnTxs5O4ewnCKkXiFAGmR5HSO9ebFg&#43;x&#43;bbFaI7Sb0Ggk3AHUoqntsRRhYl2OwQ=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/congestion-pricing-report/chart-tod.2acaed98c7369c96.js" integrity="sha512-xUSr7dQwaQJEvDIo4hNBt5fmgzwsliSo6L/Fs0SUDgfJ2yJZSAynDJE67J3W9bOxt3JZxw3FDorxOMuG4&#43;dKYw=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/congestion-pricing-report/chart-crz.c449935e18a8a25c.js" integrity="sha512-dGv7r6jHeQaINpE6WVMWxYYhDHan&#43;nmJZmmrZwCovOD/FyLNFIlXBuQB1y6OVkgI7aSCjG2wLQP7RmKzNbXCmg=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/congestion-pricing-report/sticky-header.655dccac28494685.js" integrity="sha512-uuqMUlJI3AqdU663fC5j9deGbNJ43FVpzpz0PjV6BaBzXx2IKoszs&#43;5hkeaw0A5Vo/Ko3Lz2PBNbEZMlQ1lQow=="></script>
 
 
 

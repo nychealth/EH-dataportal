@@ -67,7 +67,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/","name":"The Environment and Health Data Portal: Home page","position":1},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/","name":"Data Features","position":2},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/","name":"2026 NYC Heat-Related Mortality Report","position":3}]}</script>
 <script src="/IndicatorPublic/node_modules/jquery/dist/jquery.min.9d6bd9b75ea55acc.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR&#43;8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/css/all.min.c2b5ea5c3ed56d7e.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck&#43;w&#43;/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous"/>
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.c708c023f9041fb51d9ddc3e03764386fa55881a8e9d875d7531c5bebeb8885df85856db71636878c250dcfd6be780762dbc453e0924fabd78748d47a7253c2a.css" integrity="sha512-xwjAI/kEH7Udndw&#43;A3ZDhvpViBqOnYdddTHFvr64iF34WFbbcWNoeMJQ3P1r54B2LbxFPgkk&#43;r14dI1HpyU8Kg==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.76d32e5ad67edaebe99ca6def818f2b3095f4863c7c9fd7b7f76e80ecb519c6eda92103a7a228b301a523dcd335e6e6d96d2170b6198fe69ef511b2f24997af1.css" integrity="sha512-dtMuWtZ&#43;2uvpnKbe&#43;BjyswlfSGPHyf17f3boDstRnG7akhA6eiKLMBpSPc0zXm5tltIXC2GY/mnvURsvJJl68Q==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
 
 
 
@@ -99,7 +99,9 @@
     let DE_DEBUG_OVERRIDE = null;
 
     try {
+
         DE_DEBUG_OVERRIDE = localStorage.getItem('de_debug');
+
     } catch (e) {}
 
     const DE_DEBUG = DE_DEBUG_OVERRIDE !== null
@@ -468,27 +470,27 @@
 </div></header>
 
     <main id="skip-header-target" tabindex="-1" role="main" data-pagefind-body><article class="container-fluid">
-  <div class="row">
-    <div class="col-md-7 col-sm-12 mx-auto mb-4">
-      <div class="row">
-        <div class="col-12 mt-2 mb-3">
-          <nav aria-label="breadcrumb" class="mb-4">
-            <ul class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/">Home</a></li>
-              <li class="breadcrumb-item">
-                <a href="..">Data Features </a>
-              </li><li class="breadcrumb-item active" aria-current="page">
-                2026 NYC Heat-Related Mortality Report
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <div class="col-md-2 mr-auto"></div>
-      </div>
+    <div class="row">
+        <div class="col-md-7 col-sm-12 mx-auto mb-4">
+            <div class="row">
+                <div class="col-12 mt-2 mb-3">
+                    <nav aria-label="breadcrumb" class="mb-4">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item">
+                                <a href="..">Data Features </a>
+                            </li><li class="breadcrumb-item active" aria-current="page">
+                                2026 NYC Heat-Related Mortality Report
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-md-2 mr-auto"></div>
+            </div>
 
-      <h1><span class="df-accent"><i class="fas fa-chart-bar mr-2" aria-hidden="true"></i></span>2026 NYC Heat-Related Mortality Report</h1>
+            <h1><span class="df-accent"><i class="fas fa-chart-bar mr-2" aria-hidden="true"></i></span>2026 NYC Heat-Related Mortality Report</h1>
 
-      <p>Each summer, on average, approximately <strong>500 New Yorkers die prematurely because of hot weather</strong> in New York City. Of those deaths:</p>
+            <p>Each summer, on average, approximately <strong>500 New Yorkers die prematurely because of hot weather</strong> in New York City. Of those deaths:</p>
 <ul>
 <li>
 <p>There was an average of <strong>7 heat-stress deaths</strong> (caused directly by heat) per year from 2016-2025. A record-breaking heat event in June 2025 resulted in 19 heat-stress deaths.</p>
@@ -519,27 +521,27 @@
 </ul>
 <p>We report estimated trends in heat-exacerbated deaths for the current and past several decades (1974-2023) in 10-year rolling time windows to provide more stable estimates than previous 5-year aggregation and align with the 10-year period used to describe the temperature-risk relationship in this report. For heat-stress deaths, we report counts and the annual average for the past ten years (2016-2025). Please refer to the <a href="#note-on-years-of-data-included">footnote</a> on available data for more information about the years included in this report. <a href="#previous-reports">Read reports from previous years.</a></p>
 </div>
-  </div>
-
-  <div class="row">
-    <div class="col-10 mx-auto">
-      <hr class="my-2 px-6" />
-    </div>
-  </div>
-
-  <div class="row my-3">
-    <div class="col-md-10 col-sm-12 mx-auto my-1">
-      <h2>Heat-Stress Deaths</h2>
     </div>
 
-    <div class="col-md-5 ml-auto col-sm-12"><p>The NYC Health Department examined heat-stress deaths occurring during the warm season months of May through September from 2016-2025. We reviewed death certificates and medical examiner investigation reports in cases where heat was recognized as a cause of death. <a href="2026-Heat-Mortality-Report-Appendix.pdf">A more detailed description of methods and data sources can be found in the Appendix Methods and Supplemental Data</a>.</p>
+    <div class="row">
+        <div class="col-10 mx-auto">
+            <hr class="my-2 px-6" />
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-md-10 col-sm-12 mx-auto my-1">
+            <h2>Heat-Stress Deaths</h2>
+        </div>
+
+        <div class="col-md-5 ml-auto col-sm-12"><p>The NYC Health Department examined heat-stress deaths occurring during the warm season months of May through September from 2016-2025. We reviewed death certificates and medical examiner investigation reports in cases where heat was recognized as a cause of death. <a href="2026-Heat-Mortality-Report-Appendix.pdf">A more detailed description of methods and data sources can be found in the Appendix Methods and Supplemental Data</a>.</p>
 <p>Among NYC residents, there were 71 heat-stress deaths from 2016-2025 (Figure 1), with an average of 7 deaths per year over the 10-year period.</p>
 <h4>2025 Heat Wave</h4>
 <p>During the 2025 warm season (May to September), <a href="https://www.nyc.gov/assets/doh/downloads/pdf/han/alert/2025/han-alert-1-extreme-heat.pdf">NYC experienced a severe four-day heat wave</a> on June 22 through June 25. Heat indices at LaGuardia Airport peaked at 103°F on June 24. Temperatures also reached 98°F at Central Park, breaking the record from June 24, 1888, for that weather station. In addition, heat was building prior to June 22, with four hot but not extreme heat days leading up to the heat wave, with temperatures at LaGuardia Airport ranging from 85-90°F.</p>
 <p>As of March 2026, there were 21 heat-stress deaths among NYC residents in 2025, 19 of which resulted from exposure to the June heat wave. 2025 numbers are provisional and subject to change, because mortality records are not yet finalized. Risk factors and demographic factors associated with the 2025 heat-stress deaths, including lack of access to home cooling and disproportionate impacts on New Yorkers of color, were similar to previous years. For example, among the 21 deaths in 2025, the largest proportion and highest rates of death occurred among Black (n=10, 48%) and Latino New Yorkers (n=9, 43%).</p>
 </div>
 
-    <div class="col-md-5 mr-auto col-sm-12"><div class="p-2 border">
+        <div class="col-md-5 mr-auto col-sm-12"><div class="p-2 border">
 <strong>Figure 1</strong>: Heat-stress deaths by year, NYC residents (2016-2025).
 <div class="my-2">
 <div style="min-height:317px" id="datawrapper-vis-6FsDa"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/6FsDa/embed.js" charset="utf-8" data-target="#datawrapper-vis-6FsDa"></script><noscript><img src="https://datawrapper.dwcdn.net/6FsDa/full.png" alt="Column Chart" /></noscript></div>
@@ -547,13 +549,13 @@
 <div class="fs-sm px-0 py-1 mb-2"><strong>Notes:</strong> The number of heat-stress deaths for 2024 and 2025 are provisional. If additional deaths are certified, the number will be updated in future reports.  The average annual number of heat-stress deaths increased from 5 to 7, largely due to a record-breaking heat event in June 2025.</div>
 </div>
 </div>
-  </div>
-
-  <div class="row my-3">
-    <div class="col-md-10 col-sm-12 mx-auto my-1">
-      <h3 class="h4">Demographics</h3>
     </div>
-    <div class="col-md-5 ml-auto col-sm-12"><ul>
+
+    <div class="row my-3">
+        <div class="col-md-10 col-sm-12 mx-auto my-1">
+            <h3 class="h4">Demographics</h3>
+        </div>
+        <div class="col-md-5 ml-auto col-sm-12"><ul>
 <li>Black and Latino New Yorkers had higher age-adjusted heat-stress death rates compared with white New Yorkers (1.2 and 1.0 deaths per million, respectively, compared with 0.4 deaths per million) from 2016-2025. This inequity is rooted in systemic racism <a href="https://www.sciencedirect.com/science/article/pii/S014067361730569X?via%3Dihub">[1]</a> that disproportionately impairs access to resources for New Yorkers of color — for example, jobs that pay a living wage, affordable and healthy housing with air conditioning, and health care.</li>
 <li>Death rates were highest in neighborhoods with more than 20% of residents having a household income below the federal poverty level compared with wealthier neighborhoods.</li>
 <li>Heat-stress deaths occurred among all age groups, with the lowest rates among people ages 20 and younger and the highest among people ages 60 and older.</li>
@@ -563,33 +565,33 @@
 <div class="asidebox"><strong>Note on race and ethnicity:</strong> Deaths are grouped into four race and ethnicity categories due to the small sample size of deaths and the availability of denominator data. However, these categories represent an oversimplification of the ethnically and racially diverse population found in NYC. The Hispanic/Latino category includes people of any race. Differences in mortality rates among racial and ethnic groups are due to long-term structural racism, not biological or personal traits. Structural racism — centuries of racist policies and discriminatory practices across institutions, including government agencies, and society — prevents communities of color from accessing vital resources (such as health care and healthy housing) and opportunities (such as employment and education), and negatively affects overall health and well-being. <a href="2026-Heat-Mortality-Report-Appendix.pdf">See Appendix Methods and Supplemental Data for more information on numbers and percentages of death by race and ethnicity</a>.</div>
 </div>
 
-    <div class="col-md-5 mr-auto col-sm-12">
-      <div class="p-2 border"><p><strong>Figure 2:</strong> Demographic characteristics of heat-stress decedents (2016-2025).</p>
+        <div class="col-md-5 mr-auto col-sm-12">
+            <div class="p-2 border"><p><strong>Figure 2:</strong> Demographic characteristics of heat-stress decedents (2016-2025).</p>
 <p><span style="color:red"><div style="min-height:738px" id="datawrapper-vis-BJc4t"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/BJc4t/embed.js" charset="utf-8" data-target="#datawrapper-vis-BJc4t"></script><noscript><img src="https://datawrapper.dwcdn.net/BJc4t/full.png" alt="Bar Chart" /></noscript></div></span></p>
 </div>
+        </div>
     </div>
-  </div>
 
-  <div class="row my-3">
-    <div class="col-md-10 col-sm-12 mx-auto my-1">
-      <h3 class="h4">Health Risk Factors</h3>
-    </div>
-    <div class="col-md-5 ml-auto col-sm-12"><p>Among decedents with detailed medical examiner records available, 88% had at least one chronic health condition.</p>
+    <div class="row my-3">
+        <div class="col-md-10 col-sm-12 mx-auto my-1">
+            <h3 class="h4">Health Risk Factors</h3>
+        </div>
+        <div class="col-md-5 ml-auto col-sm-12"><p>Among decedents with detailed medical examiner records available, 88% had at least one chronic health condition.</p>
 <p>Common conditions included cardiovascular disease, substance or alcohol use, mental health or cognitive conditions, a history of diabetes, and lung conditions.</p>
 </div>
 
-    <div class="col-md-5 mr-auto col-sm-12">
-      <div class="p-2 border"><p><strong>Table 1:</strong> Medical characteristics among subset with review of health conditions in the medical examiner records (n=68) (2016-2025).</p>
+        <div class="col-md-5 mr-auto col-sm-12">
+            <div class="p-2 border"><p><strong>Table 1:</strong> Medical characteristics among subset with review of health conditions in the medical examiner records (n=68) (2016-2025).</p>
 <p><span style="color:red"><div style="min-height:341px" id="datawrapper-vis-Pzjzy"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/Pzjzy/embed.js" charset="utf-8" data-target="#datawrapper-vis-Pzjzy"></script><noscript><img src="https://datawrapper.dwcdn.net/Pzjzy/full.png" alt="Table" /></noscript></div></span></p>
 </div>
+        </div>
     </div>
-  </div>
 
-  <div class="row my-3">
-    <div class="col-md-10 col-sm-12 mx-auto my-1">
-      <h3 class="h4">Heat Exposure Circumstances</h3>
-    </div>
-    <div class="col-md-5 ml-auto col-sm-12"><p>People who died from heat stress were most often exposed to dangerous heat in homes (48%, n=31 of 64 records with detailed information available about onset place). Among New Yorkers exposed in homes with information about the presence or absence of an AC (n=25), none had or were using AC. <a href="https://journals.ametsoc.org/view/journals/bams/99/12/bams-d-16-0280.1.xml">Without AC, indoor temperatures can be much higher than outdoors, especially at night, and can continue for days after a heat wave</a> [2].</p>
+    <div class="row my-3">
+        <div class="col-md-10 col-sm-12 mx-auto my-1">
+            <h3 class="h4">Heat Exposure Circumstances</h3>
+        </div>
+        <div class="col-md-5 ml-auto col-sm-12"><p>People who died from heat stress were most often exposed to dangerous heat in homes (48%, n=31 of 64 records with detailed information available about onset place). Among New Yorkers exposed in homes with information about the presence or absence of an AC (n=25), none had or were using AC. <a href="https://journals.ametsoc.org/view/journals/bams/99/12/bams-d-16-0280.1.xml">Without AC, indoor temperatures can be much higher than outdoors, especially at night, and can continue for days after a heat wave</a> [2].</p>
 <p>Of people exposed to dangerous heat at home, about a quarter (n=7, 23%) had an electric fan present and on, indicating that using an electric fan without an AC cannot always prevent death during extreme heat for people who are at highest heat risk.</p>
 <p>According to the 2022 NYC Household Energy and Health Survey, about 9% of adult New Yorkers did not have air conditioning and another 14% used their air conditioning half the time, less than half the time, or never when it was hot because of concerns about the cost <a href="https://www.healthaffairs.org/doi/10.1377/hlthaff.2023.01052">[3]</a>. Not being able to afford to buy or run air conditioning when needed is one indicator that a household is unable to adequately meet its energy needs, also known as energy insecurity. In NYC, <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/energy-insecurity/">nearly 3 in 10 adults experienced energy insecurity in 2022.</a> Black and Latino New Yorkers, renters, households with children, and recent immigrants are more likely to experience energy insecurity.</p>
 <p>The next most common place of heat exposure was outdoors (n=28, 44%). Another 5% (n=3) were exposed in parked cars, and 2% (n=1) were exposed indoors at a worksite.</p>
@@ -597,24 +599,24 @@
 <p>Most deaths occurred in July (44%), followed by June (34%), August (13%), September (6%), and May (4%). See the Appendix Methods and Supplemental Data for more heat stress death information.</p>
 </div>
 
-    <div class="col-md-5 mr-auto col-sm-12">
-      <div class="p-2 border"><p><strong>Table 2:</strong> Air conditioning presence among heat-stress decedents exposed to heat in homes (2016-2025).</p>
+        <div class="col-md-5 mr-auto col-sm-12">
+            <div class="p-2 border"><p><strong>Table 2:</strong> Air conditioning presence among heat-stress decedents exposed to heat in homes (2016-2025).</p>
 <div style="min-height:212px" id="datawrapper-vis-GOFed"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/GOFed/embed.js" charset="utf-8" data-target="#datawrapper-vis-GOFed"></script><noscript><img src="https://datawrapper.dwcdn.net/GOFed/full.png" alt="Table" /></noscript></div>
 </div>
+        </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-10 mx-auto">
-      <hr class="my-2 px-6" />
+    <div class="row">
+        <div class="col-10 mx-auto">
+            <hr class="my-2 px-6" />
+        </div>
     </div>
-  </div>
 
-  <div class="row mt-1 mb-3">
-    <div class="col-md-10 col-sm-12 mx-auto my-1">
-      <h2>Heat-Exacerbated Deaths</h2>
-    </div>
-    <div class="col-md-5 ml-auto col-sm-12"><p>Deaths from chronic conditions that are not recognized as heat-related on death certificates can be estimated using statistical models. There are many more of these deaths than those from heat stress. They are called “excess deaths” or “heat-exacerbated deaths.” Unlike heat-stress deaths, which can be individually identified and investigated, excess deaths can be estimated only as aggregate counts. However, estimating heat-exacerbated deaths — or “mortality” — better captures the true extent of how many New Yorkers are dying due to heat.</p>
+    <div class="row mt-1 mb-3">
+        <div class="col-md-10 col-sm-12 mx-auto my-1">
+            <h2>Heat-Exacerbated Deaths</h2>
+        </div>
+        <div class="col-md-5 ml-auto col-sm-12"><p>Deaths from chronic conditions that are not recognized as heat-related on death certificates can be estimated using statistical models. There are many more of these deaths than those from heat stress. They are called “excess deaths” or “heat-exacerbated deaths.” Unlike heat-stress deaths, which can be individually identified and investigated, excess deaths can be estimated only as aggregate counts. However, estimating heat-exacerbated deaths — or “mortality” — better captures the true extent of how many New Yorkers are dying due to heat.</p>
 <p>In the previous three annual reports, we estimated the annual average number of heat-exacerbated deaths for 5-year periods (e.g., 2018-2022 for the 2025 report). Starting this year, we report estimated heat-exacerbated deaths for the current and historical data in 10-year rolling time windows, which allows for characterization of trends with more stability and aligns with the 10-year period used to characterize the temperature-risk relationship.</p>
 <p>In the summary, we round point estimates to the nearest 10, to avoid conveying a false sense of precision about modeled estimates. The average overall natural death count per year was about 19,000 for May through September for the most recent 10-year period (2014-2023). We used time-series statistical models to compare deaths on hot days with those on cooler days. We estimated heat-exacerbated deaths using:</p>
 <ul>
@@ -633,41 +635,41 @@
 <!-- correction in case we need (<a href="/IndicatorPublic/pdf/memo_heat_mort_2024.pdf" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none; height:500px;">The number of heat-exacerbated deaths in last year’s report was corrected to 570</a>).-->
 </div>
 
-    <div class="col-md-5 mr-auto col-sm-12">
-      <div class="p-2 border"><p><span style="font-weight:bold">Figure 3:</span> Annual average heat-exacerbated deaths for <span style="color:red;font-weight:bold">Extreme Heat Event days</span>, and <span style="color:orange;font-weight:bold">days at or above 82°F</span> in 10-year moving time windows (e.g., “2023” for 2014-2023).</p>
+        <div class="col-md-5 mr-auto col-sm-12">
+            <div class="p-2 border"><p><span style="font-weight:bold">Figure 3:</span> Annual average heat-exacerbated deaths for <span style="color:red;font-weight:bold">Extreme Heat Event days</span>, and <span style="color:orange;font-weight:bold">days at or above 82°F</span> in 10-year moving time windows (e.g., “2023” for 2014-2023).</p>
 <div style="min-height:563px" id="datawrapper-vis-AzLIP"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/AzLIP/embed.js" charset="utf-8" data-target="#datawrapper-vis-AzLIP"></script><noscript><img src="https://datawrapper.dwcdn.net/AzLIP/full.png" alt="Scatter Plot" /></noscript></div>
 <hr class="my-4">
 <p><strong>Figure 4:</strong> <span>cumulative relative risk</span> and <span>95% confidence intervals</span> of heat-exacerbated deaths for daily maximum temperature over same-day and three previous days, May-September (2014-2023). <img alt="Figure 4" class="p-2" src="fig-4.jpg" /></p>
 </div>
+        </div>
     </div>
-  </div>
 
-  <div class="row my-3">
-    <div class="col-md-10 col-sm-12 mx-auto my-1">
-      <h3 class="h4">Risk Factors Associated With Heat-Exacerbated Deaths</h3>
-    </div>
-    <div class="col-md-5 ml-auto col-sm-12"><p>Our updated analyses of heat-exacerbated deaths continue to confirm the elevated risk of dying at home, as well as higher odds of death among Black New Yorkers compared with other groups.</p>
+    <div class="row my-3">
+        <div class="col-md-10 col-sm-12 mx-auto my-1">
+            <h3 class="h4">Risk Factors Associated With Heat-Exacerbated Deaths</h3>
+        </div>
+        <div class="col-md-5 ml-auto col-sm-12"><p>Our updated analyses of heat-exacerbated deaths continue to confirm the elevated risk of dying at home, as well as higher odds of death among Black New Yorkers compared with other groups.</p>
 <p>In previous analyses, heat-exacerbated deaths occurring at home increased during and shortly after extreme heat events (i.e., at or above the NYC heat advisory threshold), and Black New Yorkers had higher odds of death compared to other New Yorkers during the years 2000-2011 <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4492264/">[5]</a>.</p>
 <p>We repeated this case-only analysis with recent data (May through September of 2014-2023). We also examined at-home deaths (approximately 31% of all deaths during the study period) to see how the proportion of at-home deaths changes by temperature across the entire warm season temperature range. For this analysis, we used five temperature ranges (quintiles of the average of the same day through the previous three days daily maximum temperature). <a href="2026-Heat-Mortality-Report-Appendix.pdf">See the Appendix Methods and Supplemental Data for more information</a>.</p>
 <p>Similar to previous analyses, we found elevated risk of death for Black New Yorkers. The odds of death for Black New Yorkers on extreme heat days during 2014-2023 was 1.06 (95% CI: 1.02, 1.11). There is also elevated risk of dying at home due to heat exacerbation. The overall odds ratio for at-home deaths during 2014-2023 was 1.05 (95% CI: 1.01, 1.10). Figure 5 shows the odds of dying at-home when temperature falls in to each of the five temperature ranges compared to days lower than 74°F. Although the odds ratio — the proportion of at-home deaths during the temperature range relative to that on days with daily maximum temperature lower than 74°F — was highest for the hottest temperature range (&gt;86°F), and the other temperature ranges also show elevated odds of dying at home. This suggests that the risk of dying at home increases as the temperature increases — both at hot and extreme temperatures.</p>
 <p>At-home risk was elevated across racial and ethnic groups, further underscoring the importance of at-home cooling, irrespective of race and ethnicity. The proportion of at-home deaths for non-Latino White, Black, and Latino New Yorkers was highest on days in the hottest temperature range (Figure 6). The number of deaths for Asian decedents — about nine percent of all deaths — and decedents of other races and ethnicities were too small to estimate results with precision.</p>
 </div>
 
-    <div class="col-md-5 mr-auto col-sm-12">
-      <div class="p-2 border"><p><strong>Figure 5:</strong> Odds ratios (relative to &lt; 74°F range) and 95% confidence bands of at-home deaths as a function of range (quintiles) of daily maximum temperature averaged over the date of death and three previous days.</p>
+        <div class="col-md-5 mr-auto col-sm-12">
+            <div class="p-2 border"><p><strong>Figure 5:</strong> Odds ratios (relative to &lt; 74°F range) and 95% confidence bands of at-home deaths as a function of range (quintiles) of daily maximum temperature averaged over the date of death and three previous days.</p>
 <div style="min-height:433px" id="datawrapper-vis-5Mqvy"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/5Mqvy/embed.js" charset="utf-8" data-target="#datawrapper-vis-5Mqvy"></script><noscript><img src="https://datawrapper.dwcdn.net/5Mqvy/full.png" alt="Scatter Plot" /></noscript></div>
 <div class="my-4">
 <strong>Figure 6:</strong>  Odds ratios (relative to < 74°F range) and 95% confidence bands of at-home deaths by race/ethnicity as a function of range (quintiles) of daily maximum temperature averaged over the date of death and three previous days.
 <div style="min-height:530px" id="datawrapper-vis-kFC7E"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/kFC7E/embed.js" charset="utf-8" data-target="#datawrapper-vis-kFC7E"></script><noscript><img src="https://datawrapper.dwcdn.net/kFC7E/full.png" alt="Scatter Plot" /></noscript></div>
 </div>
+        </div>
     </div>
-  </div>
 
-  <div class="row my-3">
-    <div class="col-md-10 mx-auto col-sm-12 my-1">
-      <h3 class="h4">Hotter summers</h3>
-    </div>
-    <div class="col-md-5 ml-auto col-sm-12"><p>The five average temperature range categories (of 0-3 days average of daily maximum temperature) used in the analysis above each account for approximately 20% of days (i.e., quintiles) in the warm months (May through September) during 2014-2023. Figure 7 shows the average number of days over rolling 10-year time windows for each of the five temperature ranges since 1974. Due to climate change, the proportion of the number of days in the higher temperature ranges have been increasing.</p>
+    <div class="row my-3">
+        <div class="col-md-10 mx-auto col-sm-12 my-1">
+            <h3 class="h4">Hotter summers</h3>
+        </div>
+        <div class="col-md-5 ml-auto col-sm-12"><p>The five average temperature range categories (of 0-3 days average of daily maximum temperature) used in the analysis above each account for approximately 20% of days (i.e., quintiles) in the warm months (May through September) during 2014-2023. Figure 7 shows the average number of days over rolling 10-year time windows for each of the five temperature ranges since 1974. Due to climate change, the proportion of the number of days in the higher temperature ranges have been increasing.</p>
 <ul>
 <li>
 <p>The number of days in the two hotter temperature ranges (84-86°F and &gt;86°F) have been increasing, while the number of days in the two cooler temperature ranges (&lt;74°F and 74-79°F) have been declining. In particular, the hottest temperature range (&gt;86°F) had the fastest increase, with the number of days &gt;86°F more than doubling from an average of 14 to 32 days per summer over the five decades, with a steadily increasing trend.</p>
@@ -680,31 +682,31 @@
 </li>
 </ul>
 </div>
-    <div class="col-md-5 mr-auto">
-      <div class="p-2 border"><p><strong>Figure 7:</strong> Trend in the number of days per warm season (May-September, 153 days) for the 4-day average daily maximum temperature across five temperature ranges. Each point represents the average number of days of that year and previous nine years of data in 10-year rolling time windows.</p>
+        <div class="col-md-5 mr-auto">
+            <div class="p-2 border"><p><strong>Figure 7:</strong> Trend in the number of days per warm season (May-September, 153 days) for the 4-day average daily maximum temperature across five temperature ranges. Each point represents the average number of days of that year and previous nine years of data in 10-year rolling time windows.</p>
 <div style="min-height:561px" id="datawrapper-vis-CPF5a"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/CPF5a/embed.js" charset="utf-8" data-target="#datawrapper-vis-CPF5a"></script><noscript><img src="https://datawrapper.dwcdn.net/CPF5a/full.png" alt="Line chart" /></noscript></div>
 </div>
+        </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-10 mx-auto">
-      <hr class="my-2 px-6" />
+    <div class="row">
+        <div class="col-10 mx-auto">
+            <hr class="my-2 px-6" />
+        </div>
     </div>
-  </div>
 
-  <div class="row my-3">
-    <div class="col-md-10 mx-auto col-sm-12 my-1">
-      <h2>Community-Level Impacts</h2>
-    </div>
-    <div class="col-md-5 ml-auto col-sm-12"><p>The Heat Vulnerability Index (HVI) shows differences in community-level heat impacts during and shortly after extreme heat events <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4492264/">[5]</a>. The HVI combines environmental factors (measures of a neighborhood’s average surface temperature and percentage of green space) with social factors (percentage of homes with air conditioning, residents’ median income, and the percentage of residents who are Black) to develop a relative measure of a neighborhood vulnerability to heat.</p>
+    <div class="row my-3">
+        <div class="col-md-10 mx-auto col-sm-12 my-1">
+            <h2>Community-Level Impacts</h2>
+        </div>
+        <div class="col-md-5 ml-auto col-sm-12"><p>The Heat Vulnerability Index (HVI) shows differences in community-level heat impacts during and shortly after extreme heat events <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4492264/">[5]</a>. The HVI combines environmental factors (measures of a neighborhood’s average surface temperature and percentage of green space) with social factors (percentage of homes with air conditioning, residents’ median income, and the percentage of residents who are Black) to develop a relative measure of a neighborhood vulnerability to heat.</p>
 <p>Neighborhoods with elevated risk identified by the index are those areas with elevated heat-exacerbated deaths during extreme heat events. HVI scores range from 1 (lowest risk) to 5 (highest risk). <a href="https://www.nyc.gov/content/planning/pages/resources/datasets/neighborhood-tabulation">Explore the relative heat mortality risk of each Neighborhood Tabulation Area (NTA).</a></p>
 <p>Including race in the HVI analysis is critical to understanding the impact of heat. Structural racism has resulted in neighborhood disinvestment, racist housing policies, fewer job opportunities and lower pay, and limited access to high-quality education and health care, all of which are associated with health risks including those related to heat. Read more about how structural racism affects <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/housing/"> housing and public health</a> and the <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/redlining/index.html">history of redlining and how it impacts public health</a> in NYC.</p>
 <p>The HVI (map 1), which shows differences in heat-exacerbated mortality risk, is a more reliable indicator of heat vulnerability than neighborhood differences in direct heat-stress deaths. The number of heat-stress deaths by NTA (map 2) should be interpreted with caution. The number deaths at this smaller neighborhood level are small, so it is difficult to tell whether differences between areas are due to random fluctuation or a difference in risk. <a href="2026-Heat-Mortality-Report-Appendix.pdf">See the Appendix Methods and Supplemental Data for more information</a>. Risk factor data are currently being assessed with mortality data for future updates to the HVI.</p>
 </div>
 
-    <div class="col-md-5 mr-auto col-sm-12">
-      <div class="p-2 border mt-2"><p><button id="btn1" class="btn btn-sm btn-outline-primary active" onclick="map(1)">Heat vulnerability index</button>
+        <div class="col-md-5 mr-auto col-sm-12">
+            <div class="p-2 border mt-2"><p><button id="btn1" class="btn btn-sm btn-outline-primary active" onclick="map(1)">Heat vulnerability index</button>
 <button id="btn2" class="btn btn-sm btn-outline-primary" onclick="map(2)">Heat stress deaths</button></p>
 <div id="map1" class="">
 <iframe title="2024 - Heat vulnerability index" aria-label="Map" id="datawrapper-chart-OEVex" src="https://datawrapper.dwcdn.net/OEVex/6/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="655" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
@@ -726,11 +728,11 @@ function map(x) {
 }
 </script>
 </div>
+        </div>
     </div>
-  </div>
 
-  <div class="row my-3">
-    <div class="col-md-7 mx-auto col-sm-12"><h2>Conclusion</h2>
+    <div class="row my-3">
+        <div class="col-md-7 mx-auto col-sm-12"><h2>Conclusion</h2>
 <p>Heat contributes to the deaths of approximately 500 New Yorkers, on average, each year during the warm season of May through September. Inequities by race and income persist in the people and neighborhoods most impacted. Deaths across all races, however, were more common at home, underscoring the importance of access to and affordability of home cooling to prevent death.</p>
 <p>To prepare for a hotter future and prevent heat-related deaths, the City needs long-lasting, structural interventions alongside heat emergency preparedness and response. Adapting to a hotter climate means the City must:</p>
 <ul>
@@ -780,7 +782,7 @@ function map(x) {
 <li><a href="/IndicatorPublic/data-features/heat-report-archive/2021/">2021 Heat Mortality Report</a></li>
 </ul>
 </div>
-  </div>
+    </div>
 </article>
 
 
@@ -999,6 +1001,7 @@ function map(x) {
                 <div id="search"></div>
                 <script>
                     window.addEventListener('DOMContentLoaded', () => {
+
                         const search_modal = document.getElementById('searchModal');
                         const search_root = document.getElementById('search');
 
@@ -1007,6 +1010,7 @@ function map(x) {
                         }
 
                         new PagefindUI({
+
                             element: '#search',
                             showSubResults: true,
                             showImages: false,
@@ -1014,6 +1018,7 @@ function map(x) {
                             showEmptyFilters: true,
                             debounceTimeoutMs: 500,
                             processTerm: function (term) {
+
                                 if (typeof gtag === 'function') {
                                     gtag('event', 'search', {
                                         search_term: term
@@ -1021,31 +1026,35 @@ function map(x) {
                                 }
 
                                 return term;
+
                             },
                             processResult: function (result) {
+
                                 result.meta.title = result.meta.title
                                     .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                     .replaceAll('&amp;', '&');
 
                                 result.sub_results.forEach(sub => {
+
                                     sub.url = sub.url.replace('#IndicatorID-', '?id=');
 
                                     sub.title = sub.title
                                         .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                         .replaceAll('&amp;', '&');
+
                                 });
                             }
                         });
 
                         $(search_modal).on('shown.bs.modal', () => {
+
                             const search_input = search_modal.querySelector('.pagefind-ui__search-input');
 
-                            if (!search_input) {
-                                return;
-                            }
+                            if (!search_input) return;
 
                             search_input.focus();
                             search_input.select();
+
                         });
                     });
                 </script>
@@ -1257,6 +1266,7 @@ function map(x) {
 
 <script>
     function googleTranslateElementInit() {
+
         new google.translate.TranslateElement(
         {
             pageLanguage: "en",
@@ -1269,6 +1279,7 @@ function map(x) {
         document
             .querySelectorAll("div[class^=VI] svg")
             .forEach((e) => (e.outerHTML = ""));
+
     }
 </script>
 
@@ -1276,14 +1287,14 @@ function map(x) {
 
 <script
     type="text/javascript"
-    src="/IndicatorPublic/js/main.2cb27f09f10c76c3.js"
-    integrity="sha512-iaICTR6PWG4zbrmL69MtiVybfawXimbAI5YPb5CrDb&#43;QRgiX/4W11J6utqdl8wGY0zO9BbT110dFS2VhHYr60w=="
+    src="/IndicatorPublic/js/main.b5a4bb39c6f9e956.js"
+    integrity="sha512-IFR/T14MliYqj1FjEKKn&#43;KuzTQPEROIUZdo&#43;GWL1LkQyonV&#43;Ph1RiQ4kBd/tu&#43;DIek2FPl3gWTZT3V&#43;gpjkwRw=="
 ></script>
 
 <script
     type="text/javascript"
-    src="/IndicatorPublic/js/site.0c406db6f0a34e1e.js"
-    integrity="sha512-Fe3P28eMLfzi8orYmRJ8kTiQB2LyFObFD/0wbjn9C1QqIausui3C0NL1lI26wcL0L0r60YRX2APG59LjFox1xQ=="
+    src="/IndicatorPublic/js/site.5059925e078263ff.js"
+    integrity="sha512-lx6l6X2f4LZTW6z7Uuht0oUdZKl6qI6CVWVHHakMNAhTGoMy4V525mqnSG3e7biz3oH3HbcyrpR/AARk9XsYQQ=="
 ></script>
 
     

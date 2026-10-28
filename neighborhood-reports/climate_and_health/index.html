@@ -67,7 +67,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/","name":"The Environment and Health Data Portal: Home page","position":1},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/neighborhood-reports/","name":"Neighborhood Reports","position":2},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/neighborhood-reports/climate_and_health/","name":"Climate and Health","position":3}]}</script>
 <script src="/IndicatorPublic/node_modules/jquery/dist/jquery.min.9d6bd9b75ea55acc.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR&#43;8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/css/all.min.c2b5ea5c3ed56d7e.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck&#43;w&#43;/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous"/>
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.c708c023f9041fb51d9ddc3e03764386fa55881a8e9d875d7531c5bebeb8885df85856db71636878c250dcfd6be780762dbc453e0924fabd78748d47a7253c2a.css" integrity="sha512-xwjAI/kEH7Udndw&#43;A3ZDhvpViBqOnYdddTHFvr64iF34WFbbcWNoeMJQ3P1r54B2LbxFPgkk&#43;r14dI1HpyU8Kg==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.76d32e5ad67edaebe99ca6def818f2b3095f4863c7c9fd7b7f76e80ecb519c6eda92103a7a228b301a523dcd335e6e6d96d2170b6198fe69ef511b2f24997af1.css" integrity="sha512-dtMuWtZ&#43;2uvpnKbe&#43;BjyswlfSGPHyf17f3boDstRnG7akhA6eiKLMBpSPc0zXm5tltIXC2GY/mnvURsvJJl68Q==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
 
 
 
@@ -99,7 +99,9 @@
     let DE_DEBUG_OVERRIDE = null;
 
     try {
+
         DE_DEBUG_OVERRIDE = localStorage.getItem('de_debug');
+
     } catch (e) {}
 
     const DE_DEBUG = DE_DEBUG_OVERRIDE !== null
@@ -468,9 +470,9 @@
 </div></header>
 
     <main id="skip-header-target" tabindex="-1" role="main" data-pagefind-body><article class="container-fluid">
-
     <div class="row">
-        <div class="col-lg-12 mx-auto col-12">
+        <div class="col-lg-10 mx-auto col-12">
+
             <nav aria-label="breadcrumb" class="mt-2 mb-3">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href=/IndicatorPublic/>Home</a></li>
@@ -479,9 +481,134 @@
                 </ul>
             </nav>
 
-            <div class="row mb-4">
-                <div class="col-md-4">
-                    <div class="border" style="height: 450px; width:100%">
+            
+            <div class="nr-landing-grid">
+                <div class="nr-landing-chooser mb-4">
+
+                    <div class="d-xl-none">
+                        
+
+<div class="dropdown nr-topic-dropdown d-md-none d-print-none my-2" data-pagefind-ignore="all">
+
+    <button class="btn btn-sm btn-block btn-outline-primary btn-light-green-bg py-2 dropdown-toggle"
+            type="button"
+            id="nr-topic-dropdown"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false">
+        <span class="sr-only">Report: </span>Climate
+    </button>
+
+    <div class="dropdown-menu w-100" aria-labelledby="nr-topic-dropdown">
+
+            
+            <a class="dropdown-item nr-topic-link"
+               href="/IndicatorPublic/neighborhood-reports/active_design_physical_activity_and_health/">
+                Active Design
+            </a>
+
+            
+            <a class="dropdown-item nr-topic-link"
+               href="/IndicatorPublic/neighborhood-reports/asthma_and_the_environment/">
+                Asthma
+            </a>
+
+            
+            <a class="dropdown-item nr-topic-link font-weight-bold"
+               href="/IndicatorPublic/neighborhood-reports/climate_and_health/" aria-current="page">
+                Climate
+            </a>
+
+            
+            <a class="dropdown-item nr-topic-link"
+               href="/IndicatorPublic/neighborhood-reports/housing_and_health/">
+                Housing
+            </a>
+
+            
+            <a class="dropdown-item nr-topic-link"
+               href="/IndicatorPublic/neighborhood-reports/outdoor_air_and_health/">
+                Outdoor Air
+            </a>
+    </div>
+
+</div>
+<div class="row no-gutters d-none d-md-flex d-print-none mb-2" data-pagefind-ignore="all"><div class="col-sm mb-2 mr-1 mb-lg-0">
+            <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-link"
+               href="/IndicatorPublic/neighborhood-reports/active_design_physical_activity_and_health/">
+                Active Design
+            </a>
+        </div><div class="col-sm mb-2 mr-1 mb-lg-0">
+            <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-link"
+               href="/IndicatorPublic/neighborhood-reports/asthma_and_the_environment/">
+                Asthma
+            </a>
+        </div><div class="col-sm mb-2 mr-1 mb-lg-0">
+            <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-link active"
+               href="/IndicatorPublic/neighborhood-reports/climate_and_health/">
+                Climate
+            </a>
+        </div><div class="col-sm mb-2 mr-1 mb-lg-0">
+            <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-link"
+               href="/IndicatorPublic/neighborhood-reports/housing_and_health/">
+                Housing
+            </a>
+        </div><div class="col-sm mb-2 mr-1 mb-lg-0">
+            <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-link"
+               href="/IndicatorPublic/neighborhood-reports/outdoor_air_and_health/">
+                Outdoor Air
+            </a>
+        </div></div>
+
+                    </div>
+
+                    
+                    <h1 class="h2 mt-3 mt-xl-0"><span class="nr-accent"><i class="fas fa-map-marked-alt mr-2" aria-hidden="true"></i></span>Climate and Health</h1>
+
+                    <div class="row">
+                        <div class="col-xl-5 d-none d-xl-block">
+                            
+
+<div class="d-print-none" data-pagefind-ignore="all">
+
+        <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 mb-2 nr-topic-link"
+           href="/IndicatorPublic/neighborhood-reports/active_design_physical_activity_and_health/">
+            Active Design
+        </a>
+
+        <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 mb-2 nr-topic-link"
+           href="/IndicatorPublic/neighborhood-reports/asthma_and_the_environment/">
+            Asthma
+        </a>
+
+        <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 mb-2 nr-topic-link active"
+           href="/IndicatorPublic/neighborhood-reports/climate_and_health/" aria-current="page">
+            Climate
+        </a>
+
+        <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 mb-2 nr-topic-link"
+           href="/IndicatorPublic/neighborhood-reports/housing_and_health/">
+            Housing
+        </a>
+
+        <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 mb-2 nr-topic-link"
+           href="/IndicatorPublic/neighborhood-reports/outdoor_air_and_health/">
+            Outdoor Air
+        </a>
+
+</div>
+
+                        </div>
+                        <div class="col-xl-7">
+                            <div class="report-description fs-lg my-2 mt-xl-0"><p>As the climate changes, we track New York City&rsquo;s risk for extreme heat, storms and flooding, and episodes of elevated ozone. These have important public health impacts: already, heat kills more people than all other natural disasters.</p>
+</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                
+                
 
 
 <link rel="stylesheet" href="/IndicatorPublic/node_modules/leaflet/dist/leaflet.6fc0beab3f024150.css" integrity="sha512-xwwBn7YBII4WryXcPpa1qciCiCLEWFVIPijj9DwNnq9JOGmYW4VM4geg&#43;v0pZBkfp/cXkr6W1YYxlNN8U4QY9g==" />
@@ -489,8 +616,38 @@
 
 <script src="/IndicatorPublic/node_modules/leaflet/dist/leaflet.74a58ca6295ebc05.js" integrity="sha512-BwHfrr4c9kmRkLw6iXFdzcdWV/PGkVgiIyIWLLlTSXzWQzxuSg4DiQUCpauz/EWjgk5TYQqX/kvn9pG1NpYfqg=="></script>
 
-<script type="text/javascript" src="/IndicatorPublic/js/uhflist.d39e03b10574a48b.js" integrity="sha512-0JWYC5dKTOQY9ASwT0RnzTGtAyLWqL13OPvbJyWh9JVm2kA79l2X6m6mp4rq/OmrfkWGw/7vtvOAQGUIpaLchQ=="></script>
-<div id="map" style="width: 100%; height:100%"></div>
+
+
+
+<link rel="stylesheet" href="/IndicatorPublic/node_modules/leaflet-easybutton/src/easy-button.3c89cb9ecde941f8.css" integrity="sha512-aiVWmB2G8oV&#43;XfHo1CR6hEAxzCl48Lrl3UBzQ6P&#43;BEMkT8qY1tGecdQx6x/X8i9cCVrwQU9ipsOsZlNkRh9n7w==" />
+
+
+<script src="/IndicatorPublic/node_modules/leaflet-easybutton/src/easy-button.2aafa39ced85dc51.js" integrity="sha512-nMxgrgYu7vo/LNe5NFHZOIkwbodaU13UdYiDoDCuo3P2sryEyffrk1R3c2tFGbZ83AqaMbO19yhKnVgHztuqAw=="></script>
+
+
+<script src="/IndicatorPublic/js/L.colorIcon.7c4343ea3f751533.js" integrity="sha512-wIyMqf8gl4m2CZ7lhU0bkB53Dr8zO30wdKqWVAS1VBnm166LqrN&#43;EjYFMQhiy5goEZe6kBqpUEOL6ZYuoHxHEQ=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/uhflist-data.0d6ddfbfb4b4d479.js" integrity="sha512-Cf1WmfJcPqimJdtDQ&#43;lVBK8V1H5RQjz7twF1mfqReEVelMwnV33OBw0LUPMFq8tQm75TBRCwFaBHAPqrXRMgBg=="></script>
+
+
+                <div class="nr-landing-picker mb-4">
+                    
+
+
+<h2 class="h3" id="nr-search-heading" data-pagefind-ignore="all">Choose Neighborhood</h2>
+
+<div class="btn-group w-100" role="group" aria-labelledby="nr-search-heading" data-pagefind-ignore="all">
+    <input
+        id="flex_search"
+        type="search"
+        class="flexdatalist form-control"
+        name="indicator_name_suggestion"
+        placeholder="Search name or ZIP code"
+    />
+    <button id="clear" type="button" class="btn btn-md btn-primary">Clear</button>
+</div>
+
+
+<div class="nr-selector-map border mt-2" aria-hidden="true" data-pagefind-ignore="all"><div id="map" style="width: 100%; height:100%"></div>
 
 <style>
     #map:hover {
@@ -509,12 +666,33 @@
     let lat = 40.715554;
     let lng = -74.0026642;
     let zoom = 10;
+
+    
+    
+
+    let ownNeighborhoodLayer = null;
+
+    const OWN_NEIGHBORHOOD_STYLE = {
+        weight: 3,
+        color: "#008939",
+        dashArray: "3",
+        fillOpacity: 0.5,
+    };
     
     
     
     
     
-    let map = L.map("map", { zoomControl: false }).setView([lat, lng], zoom); 
+    
+    
+    
+    
+    
+    
+    
+    
+
+    let map = L.map("map", { fadeAnimation: false }).setView([lat, lng], zoom); 
 
     L.tileLayer(
         'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=cb1_2vaf_1_f87644104deb54c869cef554',
@@ -529,7 +707,35 @@
         position: "bottomleft",
     })
     .addTo(map);
+
     
+    
+
+    const resetZoom = L.easyButton({
+        position: "bottomleft",
+        states: [{
+            title: "Reset zoom",
+            icon: "fas fa-undo",
+            onClick: () => {
+                if (uhf_geojson) {
+                    map.fitBounds(uhf_geojson.getBounds(), { padding: [10, 10], animate: false });
+                }
+            }
+        }]
+    }).addTo(map);
+
+    
+    
+
+    resetZoom.button.setAttribute("aria-label", "Reset zoom");
+    resetZoom.button.querySelectorAll(".fas").forEach((i) => i.setAttribute("aria-hidden", "true"));
+
+    
+    
+    
+
+    removeHiddenMapFromTabOrder();
+
     
     
     let uhf_geojson;
@@ -543,74 +749,118 @@
             const data = JSON.parse(text);
 
             uhf_geojson = L.geoJSON(data, {
-
                 style: style,
                 onEachFeature: onEachFeature,
                 filter: (feature) => feature.properties.GEOCODE != 0
-
             }).addTo(map);
+
+            
+
+            nameNeighborhoodPolygons();
+
+
             
             
-            
-                
+
             if (geocode && geocode.trim() !== "") {
 
                 
-                
+
                 const targetLayer = Object.values(uhf_geojson._layers).find(
-                
+
                     (layer) => layer.feature.properties.GEOCODE == geocode
-                    
+
                 );
 
-                
-                
                 if (targetLayer) {
 
                     
-                    
+
                     uhf_geojson.resetStyle();
+
                     
+
+                    ownNeighborhoodLayer = targetLayer;
+                    targetLayer.setStyle(OWN_NEIGHBORHOOD_STYLE);
+
                     
-                    
-                    targetLayer.setStyle({
-                        weight: 3,
-                        color: "#008939",
-                        dashArray: "3",
-                        fillOpacity: 0.5,
-                    });
+
+                    const ownPath = targetLayer.getElement();
+                    if (ownPath) ownPath.setAttribute("aria-current", "page");
 
                     
 
                     targetLayer.bringToFront();
 
-                    
-
-                    setTimeout(() => {
-                        
-                        map.flyToBounds(targetLayer.getBounds(), {duration: 0.5});
-
-                    }, 500);
-                
-                    
                 } else {
-                    
+
                     console.warn("No matching GEOCODE found:", geocode);
-                    
+
                 }
-                
-            } else {
-                
-                console.log("No geocode provided; skipping zoom.");
-                
             }
+
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            map.options.zoomSnap = 0;
+
+            
+            
+            
+            
+            
+            
+
+            map.fitBounds(uhf_geojson.getBounds(), { padding: [10, 10], animate: false });
+            if (ownNeighborhoodLayer) {
+                map.flyToBounds(ownNeighborhoodLayer.getBounds(), { padding: [10, 10], duration: 0.5 });
+            }
+
+            removeHiddenMapFromTabOrder();
+
         })
         .catch((err) => console.error("Error loading GeoJSON:", err));
 
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+
+    function removeHiddenMapFromTabOrder() {
+
+        const container = map.getContainer();
+
+        if (!container.closest('[aria-hidden="true"]')) return;
+
+        container.setAttribute("tabindex", "-1");
+
+        container
+            .querySelectorAll("a, button, path, [tabindex]")
+            .forEach((el) => el.setAttribute("tabindex", "-1"));
+
+    }
+
+    
+
     function style(feature) {
+
         return {
             weight: 1.5,
             opacity: 1,
@@ -624,21 +874,77 @@
     
 
     function onEachFeature(feature, layer) {
-        
-        
-        
-        layer.bindTooltip(feature.properties.GEONAME, {permanent: false, opacity: 0.9, className: "fs-md"});
 
         
         
+
+        layer.bindTooltip(neighborhoodDisplayName(feature), {permanent: false, opacity: 0.9, className: "fs-md"});
+
+        
+
         layer.on({
-            
             mouseover: highlightFeature,
             mouseout: resetHighlight,
             click: selectNeighborhood,
-            
+            keydown: onNeighborhoodKeyDown,
         });
+    }
+
+    
+    
+    
+    
+    
+
+    function neighborhoodDisplayName(feature) {
+
+        const geocode = feature.properties.GEOCODE;
+
+        const match = typeof neighborhoods !== "undefined"
+            && neighborhoods.find(n => n.UHF_id == geocode);
+
+        return (match && match.UHF_name) || feature.properties.GEONAME;
+
+    }
+
+    
+    
+    
+    
+    
+    
+
+    function nameNeighborhoodPolygons() {
+
+        uhf_geojson.eachLayer(layer => {
+
+            const el = layer.getElement();
+
+            if (!el) return;
+
+            el.setAttribute("role", "button");
+            el.setAttribute("aria-label", neighborhoodDisplayName(layer.feature));
+
+        });
+    }
+
+    
+    
+
+    function onNeighborhoodKeyDown(e) {
+
+        const key = e.originalEvent && e.originalEvent.key;
+
+        if (key !== "Enter" && key !== " " && key !== "Spacebar") {
+            return;
+        }
+
         
+
+        e.originalEvent.preventDefault();
+
+        selectNeighborhood(e);
+
     }
 
     
@@ -667,18 +973,26 @@
 
     
     
+    
+    
+    
+
     function resetHighlight(e) {
 
         const layer = e.target;
 
         
-        
+
+        if (layer === ownNeighborhoodLayer) {
+            layer.setStyle(OWN_NEIGHBORHOOD_STYLE);
+            return;
+        }
+
         layer.setStyle({
             weight: 1.5,
             color: "black",
             dashArray: "1",
         });
-
     }
     
     
@@ -692,7 +1006,7 @@
     
     
 
-    var intendedDestinationName
+    var intendedDestinationName;
     
     
     
@@ -703,13 +1017,11 @@
     
     
 
-    const topicSlugs = {
-        Active: "active_design_physical_activity_and_health",
-        Asthma: "asthma_and_the_environment",
-        Climate: "climate_and_health",
-        Housing: "housing_and_health",
-        Outdoor: "outdoor_air_and_health",
-    };
+    
+    
+    
+
+    const topicSlugs = {"Active_Design_Physical_Activity_and_Health":"active_design_physical_activity_and_health","Asthma_and_the_Environment":"asthma_and_the_environment","Climate_and_Health":"climate_and_health","Housing_and_Health":"housing_and_health","Outdoor_Air_and_Health":"outdoor_air_and_health"};
     
     const topicValues = Object.values(topicSlugs);
     
@@ -717,10 +1029,8 @@
 
     function getReportAndNeighborhood(x) {
 
-        console.log("** getReportAndNeighborhood");
-
-        const url = window.location.pathname.match(/neighborhood-reports.*/)[0]
-        let urlPieces = url.split("/")
+        const url = window.location.pathname.match(/neighborhood-reports.*/)[0];
+        let urlPieces = url.split("/");
 
         
         
@@ -728,60 +1038,25 @@
 
         if (topicValues.includes(urlPieces[1])) {
 
-            chosenNeighborhood = null
+            chosenNeighborhood = null;
             chosenReport = (urlPieces[1] && urlPieces[1].length > 2) ? urlPieces[1] : null;
 
         } else {
 
-            chosenNeighborhood = (urlPieces[1] && urlPieces[1].length > 2) ? urlPieces[1] : null
+            chosenNeighborhood = (urlPieces[1] && urlPieces[1].length > 2) ? urlPieces[1] : null;
             chosenReport = (urlPieces[2] && urlPieces[2].length > 2) ? urlPieces[2] : null;
 
         }
-        
-        console.log('Neighborhood: ', chosenNeighborhood)
-        console.log('GeoCode: ', chosenGeo)
-        console.log('Report:', chosenReport)
-        
-        pageTypeID();
-
     }
-    
-    getReportAndNeighborhood(window.location.href)
-    
-    
 
-    function pageTypeID() {
+    getReportAndNeighborhood(window.location.href);
 
-        console.log('*** WHAT KIND OF PAGE IS THIS?')
-
-        if (chosenNeighborhood == null && chosenReport == null) {
-
-            console.log("NR Landing page")
-
-        } else if (chosenNeighborhood && chosenReport) {
-
-            console.log("Output for: ", chosenNeighborhood, chosenReport)
-
-        } else if (chosenReport && !chosenNeighborhood) {
-
-            console.log("Topic landing for: ", chosenReport)
-
-        } else {
-
-            console.log("Neighborhood landing for: ", chosenNeighborhood)
-
-        }
-        
-    }
-    
     
     
     
     
     
     function selectNeighborhood(e) {
-
-        console.log("selectNeighborhood");
 
         uhf_geojson.resetStyle();
 
@@ -799,6 +1074,7 @@
         const geocodeClicked = layer.feature.properties.GEOCODE;
         
         
+        
 
         const match = neighborhoods.find(
             n => n.UHF_id == geocodeClicked
@@ -809,494 +1085,193 @@
         if (match && match.page_name) {
 
             
-
-            const parts = window.location.pathname.split("/");
-            
             
 
-            parts[3] = match.page_name;
+            const dest = intendedDestinationName || chosenReport;
+
+            
             
             
 
-            const dest = intendedDestinationName ? intendedDestinationName : (chosenReport ? chosenReport : '/');
-            
-            
-            
-            const buildURL = "/IndicatorPublic/neighborhood-reports/" + parts[3] + "/" + dest + '/'
-            
+            const buildURL = dest
+                ? "/IndicatorPublic/neighborhood-reports/" + match.page_name + '/' + dest + '/'
+                : "/IndicatorPublic/neighborhood-reports/" + match.page_name + '/';
+
             
 
             window.location.href = buildURL;
             
-            
+
         } else {
+
             console.warn("No matching neighborhood for GEOCODE:", geocodeClicked);
+
         }
     }
     
     
-</script>
-                    </div>
-                    <div class="btn-group" role="group" style="width:100%!important;">
+</script></div>
 
-                        <input
-                            id="flex_search"
-                            type='search'
-                            class='flexdatalist form-control'
-                            name='indicator_name_suggestion'
-                            style="width:100%;"
-                        />
-
-                        <button id="clear" class="btn btn-md btn-warning">Clear</button>
-
-                    </div>
-
-                    
-                    <button class="d-flex btn btn-md text-left btn-outline-primary mt-1 w-100 text-decoration-none neighborhood-list-button p-2" onclick="showNeighborhoods()">
+                    <button class="d-flex btn btn-md text-left btn-outline-primary mt-2 w-100 text-decoration-none neighborhood-list-button nr-list-toggle collapsed p-2"
+        type="button"
+        data-pagefind-ignore="all"
+        data-toggle="collapse"
+        data-target="#nr-neighborhood-list"
+        aria-expanded="false"
+        aria-controls="nr-neighborhood-list">
     <span class="flex-grow-1 text-lg">See neighborhood list</span>
     <span class="plus">&plus;</span>
     <span class="minus">&minus;</span>
 </button>
-<div class="hide" id="showNeighbs">
-    <ul class="list-unstyled p-2 border border-top-0 border-primary neighborhood-list" id="neighborhoodList2"></ul>
+
+
+<div class="collapse" id="nr-neighborhood-list" data-pagefind-ignore="all">
+    <ul class="list-unstyled row neighborhood-list border border-top-0 border-primary p-3 m-0"><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/kingsbridge_riverdale/climate_and_health/" data-nbhd="kingsbridge_riverdale">Kingsbridge - Riverdale</a>
+                <span class="fs-sm text-muted d-block">10463, 10471</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/northeast_bronx/climate_and_health/" data-nbhd="northeast_bronx">Northeast Bronx</a>
+                <span class="fs-sm text-muted d-block">10466, 10469, 10475</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/fordham_bronx_pk/climate_and_health/" data-nbhd="fordham_bronx_pk">Fordham - Bronx Pk</a>
+                <span class="fs-sm text-muted d-block">10458, 10467, 10468, 10470</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/pelham_throgs_neck/climate_and_health/" data-nbhd="pelham_throgs_neck">Pelham - Throgs Neck</a>
+                <span class="fs-sm text-muted d-block">10461, 10462, 10464, 10465, 10472, 10473</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/crotona_tremont/climate_and_health/" data-nbhd="crotona_tremont">Crotona - Tremont</a>
+                <span class="fs-sm text-muted d-block">10453, 10457, 10460</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/high_bridge_morrisania/climate_and_health/" data-nbhd="high_bridge_morrisania">High Bridge - Morrisania</a>
+                <span class="fs-sm text-muted d-block">10451, 10452, 10456</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/hunts_point_mott_haven/climate_and_health/" data-nbhd="hunts_point_mott_haven">Hunts Point - Mott Haven</a>
+                <span class="fs-sm text-muted d-block">10454, 10455, 10459, 10474</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/greenpoint/climate_and_health/" data-nbhd="greenpoint">Greenpoint</a>
+                <span class="fs-sm text-muted d-block">11211, 11222</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/downtown_heights_slope/climate_and_health/" data-nbhd="downtown_heights_slope">Downtown - Heights - Slope</a>
+                <span class="fs-sm text-muted d-block">11201, 11205, 11215, 11217, 11231</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/bedford_stuyvesant_crown_heights/climate_and_health/" data-nbhd="bedford_stuyvesant_crown_heights">Bedford Stuyvesant - Crown Heights</a>
+                <span class="fs-sm text-muted d-block">11212, 11213, 11216, 11233, 11238</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/east_new_york/climate_and_health/" data-nbhd="east_new_york">East New York</a>
+                <span class="fs-sm text-muted d-block">11207, 11208</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/sunset_park/climate_and_health/" data-nbhd="sunset_park">Sunset Park</a>
+                <span class="fs-sm text-muted d-block">11220, 11232</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/borough_park/climate_and_health/" data-nbhd="borough_park">Borough Park</a>
+                <span class="fs-sm text-muted d-block">11204, 11218, 11219, 11230</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/east_flatbush_flatbush/climate_and_health/" data-nbhd="east_flatbush_flatbush">East Flatbush - Flatbush</a>
+                <span class="fs-sm text-muted d-block">11203, 11210, 11225, 11226</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/canarsie_flatlands/climate_and_health/" data-nbhd="canarsie_flatlands">Canarsie - Flatlands</a>
+                <span class="fs-sm text-muted d-block">11234, 11236, 11239</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/bensonhurst_bay_ridge/climate_and_health/" data-nbhd="bensonhurst_bay_ridge">Bensonhurst - Bay Ridge</a>
+                <span class="fs-sm text-muted d-block">11209, 11214, 11228, 11425</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/coney_island_sheepshead_bay/climate_and_health/" data-nbhd="coney_island_sheepshead_bay">Coney Island - Sheepshead Bay</a>
+                <span class="fs-sm text-muted d-block">11223, 11224, 11229, 11235</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/williamsburg_bushwick/climate_and_health/" data-nbhd="williamsburg_bushwick">Williamsburg - Bushwick</a>
+                <span class="fs-sm text-muted d-block">11206, 11221, 11237</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/washington_heights/climate_and_health/" data-nbhd="washington_heights">Washington Heights</a>
+                <span class="fs-sm text-muted d-block">10031, 10032, 10033, 10034, 10040</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/central_harlem_morningside_heights/climate_and_health/" data-nbhd="central_harlem_morningside_heights">Central Harlem - Morningside Heights</a>
+                <span class="fs-sm text-muted d-block">10026, 10027, 10030, 10037, 10039, 10115</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/east_harlem/climate_and_health/" data-nbhd="east_harlem">East Harlem</a>
+                <span class="fs-sm text-muted d-block">10029, 10035</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/upper_west_side/climate_and_health/" data-nbhd="upper_west_side">Upper West Side</a>
+                <span class="fs-sm text-muted d-block">10023, 10024, 10025, 10069</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/upper_east_side/climate_and_health/" data-nbhd="upper_east_side">Upper East Side</a>
+                <span class="fs-sm text-muted d-block">10021, 10028, 10044, 10065, 10075, 10128, 10162</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/chelsea_clinton/climate_and_health/" data-nbhd="chelsea_clinton">Chelsea - Clinton</a>
+                <span class="fs-sm text-muted d-block">10001, 10011, 10018, 10019, 10020, 10036, 10103, 10110, 10111, 10112, 10119, 10199</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/gramercy_park_murray_hill/climate_and_health/" data-nbhd="gramercy_park_murray_hill">Gramercy Park - Murray Hill</a>
+                <span class="fs-sm text-muted d-block">10010, 10016, 10017, 10022, 10152, 10153, 10154, 10165, 10167, 10168, 10169, 10170, 10171, 10172, 10173, 10174, 10177</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/greenwich_village_soho/climate_and_health/" data-nbhd="greenwich_village_soho">Greenwich Village - SoHo</a>
+                <span class="fs-sm text-muted d-block">10012, 10013, 10014</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/union_square_lower_east_side/climate_and_health/" data-nbhd="union_square_lower_east_side">Union Square - Lower East Side</a>
+                <span class="fs-sm text-muted d-block">10002, 10003, 10009</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/lower_manhattan/climate_and_health/" data-nbhd="lower_manhattan">Lower Manhattan</a>
+                <span class="fs-sm text-muted d-block">10005, 10006, 10007, 10038, 10271, 10278, 10279, 10280, 10282</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/long_island_city_astoria/climate_and_health/" data-nbhd="long_island_city_astoria">Long Island City - Astoria</a>
+                <span class="fs-sm text-muted d-block">11101, 11102, 11103, 11104, 11105, 11106, 11109</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/west_queens/climate_and_health/" data-nbhd="west_queens">West Queens</a>
+                <span class="fs-sm text-muted d-block">11369, 11370, 11372, 11373, 11377, 11378</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/flushing_clearview/climate_and_health/" data-nbhd="flushing_clearview">Flushing - Clearview</a>
+                <span class="fs-sm text-muted d-block">11351, 11354, 11355, 11356, 11357, 11358, 11359, 11360, 11368</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/bayside_little_neck/climate_and_health/" data-nbhd="bayside_little_neck">Bayside - Little Neck</a>
+                <span class="fs-sm text-muted d-block">11361, 11362, 11363, 11364</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/ridgewood_forest_hills/climate_and_health/" data-nbhd="ridgewood_forest_hills">Ridgewood - Forest Hills</a>
+                <span class="fs-sm text-muted d-block">11374, 11375, 11379, 11385</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/fresh_meadows/climate_and_health/" data-nbhd="fresh_meadows">Fresh Meadows</a>
+                <span class="fs-sm text-muted d-block">11365, 11366, 11367</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/southwest_queens/climate_and_health/" data-nbhd="southwest_queens">Southwest Queens</a>
+                <span class="fs-sm text-muted d-block">11414, 11415, 11416, 11417, 11418, 11419, 11420, 11421, 11424</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/jamaica/climate_and_health/" data-nbhd="jamaica">Jamaica</a>
+                <span class="fs-sm text-muted d-block">11412, 11423, 11432, 11433, 11434, 11435, 11436, 11451</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/southeast_queens/climate_and_health/" data-nbhd="southeast_queens">Southeast Queens</a>
+                <span class="fs-sm text-muted d-block">11004, 11005, 11411, 11413, 11422, 11426, 11427, 11428, 11429</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/rockaways/climate_and_health/" data-nbhd="rockaways">Rockaways</a>
+                <span class="fs-sm text-muted d-block">11691, 11692, 11694, 11697</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/port_richmond/climate_and_health/" data-nbhd="port_richmond">Port Richmond</a>
+                <span class="fs-sm text-muted d-block">10302, 10303, 10310</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/stapleton_st_george/climate_and_health/" data-nbhd="stapleton_st_george">Stapleton - St. George</a>
+                <span class="fs-sm text-muted d-block">10301, 10304, 10305</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/willowbrook/climate_and_health/" data-nbhd="willowbrook">Willowbrook</a>
+                <span class="fs-sm text-muted d-block">10311, 10314</span>
+            </li><li class="col-md-4 col-sm-6 mb-2">
+                <a href="/IndicatorPublic/neighborhood-reports/south_beach_tottenville/climate_and_health/" data-nbhd="south_beach_tottenville">South Beach - Tottenville</a>
+                <span class="fs-sm text-muted d-block">10306, 10307, 10308, 10309, 10312</span>
+            </li></ul>
 </div>
 
-
-<div class="row sr-only">
-<h2>Select neighborhood</h2>
-    <ul id="neighborhoodList">
-
-    </ul>
-</div>
-
-<script>
-    
-
-    var ul = document.getElementById("neighborhoodList");
-    var ul2 = document.getElementById("neighborhoodList2");
-
-    neighborhoods.forEach(function (neighborhood) {
-        var li = document.createElement("li");
-        li.innerHTML = "<a href='" + "/IndicatorPublic/neighborhood-reports/" + neighborhood.page_name + "/climate_and_health/" + "'>" + neighborhood.UHF_name + "</a>: " + neighborhood.Zipcodes
-        ul.appendChild(li);
-        
-        
-
-        ul2.appendChild(li.cloneNode(true));
-    });
-
-    function showNeighborhoods() {
-        document.getElementById('showNeighbs').classList.toggle('hide')
-        document.getElementById('showNeighbs').classList.toggle('show')
-        let button = document.querySelector('.neighborhood-list-button');
-        button.classList.toggle('active');
-
-    }
-</script>
                 </div>
 
-                <div class="col-md-8">
-                    <div class="row no-gutters d-print-none">
-                        <div class="col-sm mb-2 mr-1 mb-lg-0">
-                            
-                            <a href="/IndicatorPublic/neighborhood-reports/active_design_physical_activity_and_health/" class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Active">Active design</a>
-                            
-                        </div>
-                        <div class="col-sm mb-2 mr-1 mb-lg-0">
-                            
-                            <a href="/IndicatorPublic/neighborhood-reports/asthma_and_the_environment/" class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Asthma">Asthma</a>
-                                                        </div>
-                        <div class="col-sm mb-2 mr-1 mb-lg-0">
-                            
-                            <a href="/IndicatorPublic/neighborhood-reports/climate_and_health/" class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Climate">Climate</a>
-                                                        </div>
-                        <div class="col-sm mb-2 mr-1 mb-lg-0">
-                            
-                            <a href="/IndicatorPublic/neighborhood-reports/housing_and_health/" class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Housing">Housing</a>
-                                                        </div>
-                        <div class="col-sm mb-2 mr-1 mb-lg-0">
-                            
-                            <a href="/IndicatorPublic/neighborhood-reports/outdoor_air_and_health/" class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Outdoor">Outdoor Air</a>
-                            
-                        </div>
-                    </div>
+            </div>
 
-                    <h1 class="h2 mt-3" id="nrtitle"><span class="nr-accent"><i class="fas fa-map-marked-alt mr-2" aria-hidden="true"></i></span>Climate and Health</h1>
-                    <p class="report-description fs-lg my-2"><p>As the climate changes, we track New York City&rsquo;s risk for extreme heat, storms and flooding, and episodes of elevated ozone. These have important public health impacts: already, heat kills more people than all other natural disasters.</p>
-</p>
-
-                    <p class="font-weight-bold"><i class="fa-solid fa-arrow-left mr-1 text-primary"></i>Choose a neighborhood from the map to get a report.</p>
-
-
-                </div>
-        </div>
         </div>
     </div>
-
-
-
-</article>
-
-<style>
-
-     
-     
-     
-
-    .flexdatalist-results span:not(:first-child):not(.highlight) {
-        padding-left: 10px;
-        display: inline-block;
-        font-size: 90%;
-        color: rgba(0, 0, 0, 0.90);
-    }
-    .flexdatalist-results li.active span:not(:first-child):not(.highlight) {
-        color: rgba(255, 255, 255, 0.70);
-    }
-    .flexdatalist-results li span.highlight {
-        font-weight: 500;
-        text-decoration: none;
-        color: #000000;
-        background: #feff7f;
-    }
-
-    .flex_search-flexdatalist input:placeholder-shown {
-        background-color: white;
-    }
-    .flex_search-flexdatalist input::placeholder {
-        color: gray;
-        font-weight: normal;
-        font-style: italic;
-    }
-
-
-</style>
-
-
-
-
-
-
-
-
-
-
-    <h1 class="d-none">
-        Homes near structures rated good or excellent
-    </h1>
-    <h2 class="d-none">
-        Building quality predicts the number of housing maintenance problems in a residence that place residents at increased risk of acute or chronic health problems.
-    </h2>
-
-    <h1 class="d-none">
-        Vegetative cover
-    </h1>
-    <h2 class="d-none">
-        Land covered by trees, grass, or other plants. Vegetative cover reduces temperatures in the immediate area, and may increase air quality.
-    </h2>
-
-    <h1 class="d-none">
-        Older adults with air conditioners (age 65&#43;)
-    </h1>
-    <h2 class="d-none">
-        Older adults (over 65) are more vulnerable to hot weather and heat stress. Air conditioning reduces the risk of heat stroke and other heat-related illness.
-    </h2>
-
-    <h1 class="d-none">
-        Residents living in a hurricane evacuation zone
-    </h1>
-    <h2 class="d-none">
-        Hurricane Evacuation Zones are determined by New York City Emergency Management and indicate varying threat levels of coastal flooding from storm surge. Evacuation orders may be given during hurricanes or coastal flooding events. There are six zones, ranked by storm surge risk. Zone 1 is the highest risk for flooding. Residents in these zones may receive evacuation orders during hurricanes or tropical storms.
-    </h2>
-
-    <h1 class="d-none">
-        Daytime summer surface temperature
-    </h1>
-    <h2 class="d-none">
-        Spatial average of surface temperature, measured by satellite. Surface temperatures vary because of vegetative cover (which promotes cooling), and paved roads, sidewalks, and buildings (which retain heat). Hotter neighborhoods tend to have more heat-exacerbated deaths associated with extreme heat events.
-    </h2>
-
-    <h1 class="d-none">
-        Asthma emergency department visits (age 5 to 17)
-    </h1>
-    <h2 class="d-none">
-        Emergency department visits for asthma. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma.
-    </h2>
-
-    <h1 class="d-none">
-        Neighborhood poverty
-    </h1>
-    <h2 class="d-none">
-        Households with incomes below the federal poverty level. Households without sufficient resources are often deprived of access to health care, good quality housing, and other resources that protect health.
-    </h2>
-
-    <h1 class="d-none">
-        Serious psychological distress
-    </h1>
-    <h2 class="d-none">
-        Mental health conditions like series psychological distress can be worsened by extreme weather such as heat waves and coastal storms.
-    </h2>
-
-    <h1 class="d-none">
-        Independent living difficulty (adults)
-    </h1>
-    <h2 class="d-none">
-        Adults reporting independent living difficulty due to a physical, mental, or emotional problem. People with disabilities may need additional support during extreme weather. For example, extra planning for safe travel out of evacuation zones during a hurricane, or back-up electricity to support medical equipment during power outages.
-    </h2>
-
-    <h1 class="d-none">
-        Older adults living alone (65&#43;)
-    </h1>
-    <h2 class="d-none">
-        People age 65&#43; living alone. People living alone may have more difficulty getting resources they need in an emergency, and are at higher risk of weather-related illnesses like heat stroke and hypothermia.
-    </h2><link rel="stylesheet" href="/IndicatorPublic/node_modules/jquery-flexdatalist/jquery.flexdatalist.min.7c47e131626ef38f.css" integrity="sha512-whyrKXwg2DLWL8B1UdQJGDSHgtJHZ1cu2xBG67Ir/SJ5vNHpeGG3P/66dtedcEKGv1FNT2G58&#43;PQeKlazrCdzA=="/><script type="text/javascript" src="/IndicatorPublic/node_modules/jquery-flexdatalist/jquery.flexdatalist.min.7b71bc9c0531a188.js" integrity="sha512-wucPHMfvNwMJ/mS272PEkxBZlnyp59&#43;Gm1dwl04cD0tFgdA9hjbfcLjqoUmKQzoMqtx58jgLxtQ1ukM4Q7IEcw=="></script>
-
-<script type="text/javascript">
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    function wireComboboxState(input) {
-
-        
-        
-        
-
-        const RESULTS_ID = input.id + '-results';
-
-        input.setAttribute('role', 'combobox');
-        input.setAttribute('aria-haspopup', 'listbox');
-        input.setAttribute('aria-expanded', 'false');
-
-        let watched = null;
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        let dismissed = false;
-
-        
-        
-        
-
-        input.addEventListener('keydown', e => { dismissed = e.key === 'Escape'; });
-        input.addEventListener('mousedown', () => { dismissed = false; });
-        input.addEventListener('blur', () => { dismissed = false; });
-        input.addEventListener('focus', () => { dismissed = false; });
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        const sync = () => {
-
-            let list = document.getElementById(RESULTS_ID);
-
-            
-            
-
-            if (dismissed && list) {
-                list.remove();
-                list = null;
-            }
-
-            const options = list ? list.querySelectorAll('li') : [];
-
-            input.setAttribute('aria-expanded', options.length ? 'true' : 'false');
-
-            if (!options.length) {
-                input.removeAttribute('aria-activedescendant');
-                input.removeAttribute('aria-controls');
-                input.removeAttribute('aria-owns');
-                return;
-            }
-
-            input.setAttribute('aria-controls', RESULTS_ID);
-            input.setAttribute('aria-owns', RESULTS_ID);
-
-            
-            
-
-            let active = null;
-
-            options.forEach((li, i) => {
-
-                if (!li.id) li.id = RESULTS_ID + '-option-' + i;
-                if (li.classList.contains('active')) active = li;
-
-            });
-
-            if (active) {
-                input.setAttribute('aria-activedescendant', active.id);
-            } else {
-                input.removeAttribute('aria-activedescendant');
-            }
-
-        };
-
-        
-        
-        
-
-        const listObserver = new MutationObserver(sync);
-
-        const bodyObserver = new MutationObserver(() => {
-
-            const list = document.getElementById(RESULTS_ID);
-
-            
-            
-
-            if (list && list !== watched) {
-                watched = list;
-                listObserver.observe(list, {
-                    childList: true,
-                    attributes: true,
-                    subtree: true,
-                    attributeFilter: ['class']
-                });
-            }
-
-            sync();
-
-        });
-
-        bodyObserver.observe(document.body, { childList: true });
-
-    }
-
-</script>
-<script type="text/javascript">
-
-    var title = document.getElementById('nrtitle').innerHTML
-    
-
-    var reportURL
-
-    if (title.includes("Asthma")) {
-        reportURL = '/asthma_and_the_environment/'
-        document.getElementById("Asthma").classList.add("active")
-    } else if (title.includes("Active")) {
-        reportURL = '/active_design_physical_activity_and_health/'
-        document.getElementById("Active").classList.add("active")
-    } else if (title.includes("Climate")) {
-        reportURL = '/climate_and_health/'
-        document.getElementById("Climate").classList.add("active")
-    } else if (title.includes("Outdoor")) {
-        reportURL = '/outdoor_air_and_health/'
-        document.getElementById("Outdoor").classList.add("active")
-    } else if (title.includes("Housing")) {
-        reportURL = '/housing_and_health/'
-        document.getElementById("Housing").classList.add("active")
-    } else {}
-
-
-    
-
-    function loadList() {
-
-        
-
-        
-
-        let $input = $('.flexdatalist').flexdatalist({
-            minLength: 0,
-            valueProperty: ["UHF_id", "UHF_name"],
-            textProperty: "{UHF_name}",
-            selectionRequired: false,
-            focusFirstResult: true,
-            visibleProperties: ["UHF_id", "UHF_name", "Zipcodes"],
-            searchIn: ["UHF_name", "Zipcodes"],
-            searchContain: true,
-            searchByWord: true,
-            redoSearchOnFocus: true,
-            toggleSelected: true,
-            cache: false,
-            data: neighborhoods
-        });
-
-        
-
-        
-
-        
-        
-        
-
-        const generated = document.getElementById($input.attr('id') + '-flexdatalist');
-
-        if (generated) {
-            wireComboboxState(generated);
-        }
-
-        
-
-        $input.on('select:flexdatalist', (e, set) => {
-
-            
-
-            
-
-            
-            
-
-            window.location.href = "/IndicatorPublic/neighborhood-reports/" + set.page_name + reportURL
-
-        })
-
-        
-
-        $("#clear").on("click", (e) => {
-
-            
-
-            $($input).find("~input").val("").trigger( "focus" )
-
-        })
-
-    }
-
-    loadList()
-
-    
-    
-    
-    
-
-</script><ul id="results"></ul>
+</article><h1 class="d-none">Homes near structures rated good or excellent</h1>
+    <h2 class="d-none">Building quality predicts the number of housing maintenance problems in a residence that place residents at increased risk of acute or chronic health problems.</h2><h1 class="d-none">Vegetative cover</h1>
+    <h2 class="d-none">Land covered by trees, grass, or other plants. Vegetative cover reduces temperatures in the immediate area, and may increase air quality.</h2><h1 class="d-none">Older adults with air conditioners (age 65&#43;)</h1>
+    <h2 class="d-none">Older adults (over 65) are more vulnerable to hot weather and heat stress. Air conditioning reduces the risk of heat stroke and other heat-related illness.</h2><h1 class="d-none">Residents living in a hurricane evacuation zone</h1>
+    <h2 class="d-none">Hurricane Evacuation Zones are determined by New York City Emergency Management and indicate varying threat levels of coastal flooding from storm surge. Evacuation orders may be given during hurricanes or coastal flooding events. There are six zones, ranked by storm surge risk. Zone 1 is the highest risk for flooding. Residents in these zones may receive evacuation orders during hurricanes or tropical storms.</h2><h1 class="d-none">Daytime summer surface temperature</h1>
+    <h2 class="d-none">Spatial average of surface temperature, measured by satellite. Surface temperatures vary because of vegetative cover (which promotes cooling), and paved roads, sidewalks, and buildings (which retain heat). Hotter neighborhoods tend to have more heat-exacerbated deaths associated with extreme heat events.</h2><h1 class="d-none">Asthma emergency department visits (age 5 to 17)</h1>
+    <h2 class="d-none">Emergency department visits for asthma. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma.</h2><h1 class="d-none">Neighborhood poverty</h1>
+    <h2 class="d-none">Households with incomes below the federal poverty level. Households without sufficient resources are often deprived of access to health care, good quality housing, and other resources that protect health.</h2><h1 class="d-none">Serious psychological distress</h1>
+    <h2 class="d-none">Mental health conditions like series psychological distress can be worsened by extreme weather such as heat waves and coastal storms.</h2><h1 class="d-none">Independent living difficulty (adults)</h1>
+    <h2 class="d-none">Adults reporting independent living difficulty due to a physical, mental, or emotional problem. People with disabilities may need additional support during extreme weather. For example, extra planning for safe travel out of evacuation zones during a hurricane, or back-up electricity to support medical equipment during power outages.</h2><h1 class="d-none">Older adults living alone (65&#43;)</h1>
+    <h2 class="d-none">People age 65&#43; living alone. People living alone may have more difficulty getting resources they need in an emergency, and are at higher risk of weather-related illnesses like heat stroke and hypothermia.</h2><ul id="results"></ul>
     </main>
 <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
@@ -1313,6 +1288,7 @@
                 <div id="search"></div>
                 <script>
                     window.addEventListener('DOMContentLoaded', () => {
+
                         const search_modal = document.getElementById('searchModal');
                         const search_root = document.getElementById('search');
 
@@ -1321,6 +1297,7 @@
                         }
 
                         new PagefindUI({
+
                             element: '#search',
                             showSubResults: true,
                             showImages: false,
@@ -1328,6 +1305,7 @@
                             showEmptyFilters: true,
                             debounceTimeoutMs: 500,
                             processTerm: function (term) {
+
                                 if (typeof gtag === 'function') {
                                     gtag('event', 'search', {
                                         search_term: term
@@ -1335,31 +1313,35 @@
                                 }
 
                                 return term;
+
                             },
                             processResult: function (result) {
+
                                 result.meta.title = result.meta.title
                                     .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                     .replaceAll('&amp;', '&');
 
                                 result.sub_results.forEach(sub => {
+
                                     sub.url = sub.url.replace('#IndicatorID-', '?id=');
 
                                     sub.title = sub.title
                                         .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                         .replaceAll('&amp;', '&');
+
                                 });
                             }
                         });
 
                         $(search_modal).on('shown.bs.modal', () => {
+
                             const search_input = search_modal.querySelector('.pagefind-ui__search-input');
 
-                            if (!search_input) {
-                                return;
-                            }
+                            if (!search_input) return;
 
                             search_input.focus();
                             search_input.select();
+
                         });
                     });
                 </script>
@@ -1571,6 +1553,7 @@
 
 <script>
     function googleTranslateElementInit() {
+
         new google.translate.TranslateElement(
         {
             pageLanguage: "en",
@@ -1583,6 +1566,7 @@
         document
             .querySelectorAll("div[class^=VI] svg")
             .forEach((e) => (e.outerHTML = ""));
+
     }
 </script>
 
@@ -1590,17 +1574,241 @@
 
 <script
     type="text/javascript"
-    src="/IndicatorPublic/js/main.2cb27f09f10c76c3.js"
-    integrity="sha512-iaICTR6PWG4zbrmL69MtiVybfawXimbAI5YPb5CrDb&#43;QRgiX/4W11J6utqdl8wGY0zO9BbT110dFS2VhHYr60w=="
+    src="/IndicatorPublic/js/main.b5a4bb39c6f9e956.js"
+    integrity="sha512-IFR/T14MliYqj1FjEKKn&#43;KuzTQPEROIUZdo&#43;GWL1LkQyonV&#43;Ph1RiQ4kBd/tu&#43;DIek2FPl3gWTZT3V&#43;gpjkwRw=="
 ></script>
 
 <script
     type="text/javascript"
-    src="/IndicatorPublic/js/site.0c406db6f0a34e1e.js"
-    integrity="sha512-Fe3P28eMLfzi8orYmRJ8kTiQB2LyFObFD/0wbjn9C1QqIausui3C0NL1lI26wcL0L0r60YRX2APG59LjFox1xQ=="
+    src="/IndicatorPublic/js/site.5059925e078263ff.js"
+    integrity="sha512-lx6l6X2f4LZTW6z7Uuht0oUdZKl6qI6CVWVHHakMNAhTGoMy4V525mqnSG3e7biz3oH3HbcyrpR/AARk9XsYQQ=="
 ></script>
 
+    <script type="text/javascript">
+
+        
+        
+
+        function nrPickerDestination() { return 'climate_and_health'; }
+
+    </script>
+
+    <link rel="stylesheet" href="/IndicatorPublic/node_modules/jquery-flexdatalist/jquery.flexdatalist.min.7c47e131626ef38f.css" integrity="sha512-whyrKXwg2DLWL8B1UdQJGDSHgtJHZ1cu2xBG67Ir/SJ5vNHpeGG3P/66dtedcEKGv1FNT2G58&#43;PQeKlazrCdzA=="/><script type="text/javascript" src="/IndicatorPublic/node_modules/jquery-flexdatalist/jquery.flexdatalist.min.7b71bc9c0531a188.js" integrity="sha512-wucPHMfvNwMJ/mS272PEkxBZlnyp59&#43;Gm1dwl04cD0tFgdA9hjbfcLjqoUmKQzoMqtx58jgLxtQ1ukM4Q7IEcw=="></script>
+
+<script type="text/javascript">
+
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    function wireComboboxState(input) {
+
+        
+        
+        
+
+        const RESULTS_ID = input.id + '-results';
+
+        input.setAttribute('role', 'combobox');
+        input.setAttribute('aria-haspopup', 'listbox');
+        input.setAttribute('aria-expanded', 'false');
+
+        let watched = null;
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        let dismissed = false;
+
+        
+        
+        
+
+        input.addEventListener('keydown', e => { dismissed = e.key === 'Escape'; });
+        input.addEventListener('mousedown', () => { dismissed = false; });
+        input.addEventListener('blur', () => { dismissed = false; });
+        input.addEventListener('focus', () => { dismissed = false; });
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        const sync = () => {
+
+            let list = document.getElementById(RESULTS_ID);
+
+            
+            
+
+            if (dismissed && list) {
+                list.remove();
+                list = null;
+            }
+
+            const options = list ? list.querySelectorAll('li') : [];
+
+            input.setAttribute('aria-expanded', options.length ? 'true' : 'false');
+
+            if (!options.length) {
+
+                input.removeAttribute('aria-activedescendant');
+                input.removeAttribute('aria-controls');
+                input.removeAttribute('aria-owns');
+                return;
+
+            }
+
+            input.setAttribute('aria-controls', RESULTS_ID);
+            input.setAttribute('aria-owns', RESULTS_ID);
+
+            
+            
+
+            let active = null;
+
+            options.forEach((li, i) => {
+                if (!li.id) li.id = RESULTS_ID + '-option-' + i;
+                if (li.classList.contains('active')) active = li;
+            });
+
+            if (active) {
+
+                input.setAttribute('aria-activedescendant', active.id);
+
+            } else {
+
+                input.removeAttribute('aria-activedescendant');
+
+            }
+        };
+
+        
+        
+        
+
+        const listObserver = new MutationObserver(sync);
+
+        const bodyObserver = new MutationObserver(() => {
+
+            const list = document.getElementById(RESULTS_ID);
+
+            
+            
+
+            if (list && list !== watched) {
+
+                watched = list;
+                listObserver.observe(list, {
+                    childList: true,
+                    attributes: true,
+                    subtree: true,
+                    attributeFilter: ['class']
+                });
+            }
+
+            sync();
+
+        });
+
+        bodyObserver.observe(document.body, { childList: true });
+
+    }
+
+</script>
+<script type="text/javascript">
+
+    
+    
+    
+
+    function loadNeighborhoodSearch() {
+
+        const $input = $('.flexdatalist').flexdatalist({
+            minLength: 0,
+            valueProperty: ["UHF_id", "UHF_name"],
+            textProperty: "{UHF_name}",
+            selectionRequired: false,
+            focusFirstResult: true,
+            visibleProperties: ["UHF_id", "UHF_name", "Zipcodes"],
+            searchIn: ["UHF_name", "Zipcodes"],
+            searchContain: true,
+            searchByWord: true,
+            redoSearchOnFocus: true,
+            toggleSelected: true,
+            cache: false,
+            data: neighborhoods
+        });
+
+        
+        
+        
+
+        $input.on('select:flexdatalist', (e, set) => {
+            window.location.href = "/IndicatorPublic/neighborhood-reports/" + set.page_name + '/' + nrPickerDestination() + '/';
+        });
+
+        
+        
+
+        $("#clear").on("click", () => {
+            $($input).find("~input").val("").trigger("focus");
+        });
+
+        
+        
+        
+        
+        
+
+        const generated = document.getElementById('flex_search-flexdatalist');
+
+        if (generated) {
+            generated.setAttribute('aria-labelledby', 'nr-search-heading');
+            wireComboboxState(generated);
+        }
+    }
+
+    loadNeighborhoodSearch();
+
+</script>
+
 
 </body>
 </html>

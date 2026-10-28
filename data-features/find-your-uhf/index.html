@@ -67,7 +67,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/","name":"The Environment and Health Data Portal: Home page","position":1},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/","name":"Data Features","position":2},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/find-your-uhf/","name":"Find your UHF neighborhood","position":3}]}</script>
 <script src="/IndicatorPublic/node_modules/jquery/dist/jquery.min.9d6bd9b75ea55acc.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR&#43;8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/css/all.min.c2b5ea5c3ed56d7e.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck&#43;w&#43;/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous"/>
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.c708c023f9041fb51d9ddc3e03764386fa55881a8e9d875d7531c5bebeb8885df85856db71636878c250dcfd6be780762dbc453e0924fabd78748d47a7253c2a.css" integrity="sha512-xwjAI/kEH7Udndw&#43;A3ZDhvpViBqOnYdddTHFvr64iF34WFbbcWNoeMJQ3P1r54B2LbxFPgkk&#43;r14dI1HpyU8Kg==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.76d32e5ad67edaebe99ca6def818f2b3095f4863c7c9fd7b7f76e80ecb519c6eda92103a7a228b301a523dcd335e6e6d96d2170b6198fe69ef511b2f24997af1.css" integrity="sha512-dtMuWtZ&#43;2uvpnKbe&#43;BjyswlfSGPHyf17f3boDstRnG7akhA6eiKLMBpSPc0zXm5tltIXC2GY/mnvURsvJJl68Q==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
 
 
 
@@ -99,7 +99,9 @@
     let DE_DEBUG_OVERRIDE = null;
 
     try {
+
         DE_DEBUG_OVERRIDE = localStorage.getItem('de_debug');
+
     } catch (e) {}
 
     const DE_DEBUG = DE_DEBUG_OVERRIDE !== null
@@ -570,12 +572,12 @@
 
         <strong><i class="far fa-square mr-1" style="color:red" aria-hidden="true"></i>Overlapping UHF neighborhoods:</strong>
         <div id="overlaps" class="">
-                      
+                        
         </div>
         <hr class="my-2">
 
         <div class="fs-sm hide" id="prompt">
-          <em>Click to view Neigborhood Reports for overlapping UHF neighborhoods.</em>
+            <em>Click to view Neigborhood Reports for overlapping UHF neighborhoods.</em>
         </div>
     </div>
 </div>
@@ -588,25 +590,25 @@
 
 <script>
 
-  
+    
 
-  var geojsonURLs = [
-    {
-        "name": "CD",
-        "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/CD.geojson",
-        "property": "GEOCODE"
-    },
-    {
-        "name": "CCD",
-        "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/CityCouncilDistrict.geojson",
-        "property": "CounDist"
-    },
+    var geojsonURLs = [
         {
-        "name": "UHF42",
-        "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/UHF42.geojson",
-        "property": "tbd"
-    }
-  ]
+            "name": "CD",
+            "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/CD.geojson",
+            "property": "GEOCODE"
+        },
+        {
+            "name": "CCD",
+            "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/CityCouncilDistrict.geojson",
+            "property": "CounDist"
+        },
+            {
+            "name": "UHF42",
+            "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/UHF42.geojson",
+            "property": "tbd"
+        }
+    ];
 
 
 
@@ -617,6 +619,7 @@
 
 
     function initializeMap() {
+
         
 
         L.tileLayer(
@@ -633,36 +636,35 @@
             states: [{
                 title: "Reset",
                 icon: "fas fa-undo",
-                
+            
                 onClick: function() {
-                    
                     reset();
                 }
             }]
         }).addTo(map);    
+
     }
 
     initializeMap();
 
     function reset() {
-      console.log('Reset')
-      
 
-      document.getElementById('overlaps').innerHTML = ''
-      document.getElementById('neighbHolder').innerHTML = ''
-      document.getElementById('prompt').classList.add('hide')
+        console.log('Reset');
+        
+
+        document.getElementById('overlaps').innerHTML = '';
+        document.getElementById('neighbHolder').innerHTML = '';
+        document.getElementById('prompt').classList.add('hide');
 
 
-      var radioButtons = document.querySelectorAll('input[name="inlineRadioOptions"]');
-      var selectedValue = null;
+        var radioButtons = document.querySelectorAll('input[name="inlineRadioOptions"]');
+        var selectedValue = null;
 
-      radioButtons.forEach(rb => {
-        if (rb.checked) {
-          selectedValue = rb.value;
-        }
-      });
+        radioButtons.forEach(rb => {
+            if (rb.checked) selectedValue = rb.value;
+        });
 
-      loadGeoJSON(selectedValue)
+        loadGeoJSON(selectedValue);
 
     }
 
@@ -676,134 +678,149 @@
     
 
     function loadGeoJSON(name) {
-      const match = geojsonURLs.find(d => d.name === name);
-      if (!match) {
-        console.error("No matching GeoJSON for", name);
-        return;
-      }
 
-      
+        const match = geojsonURLs.find(d => d.name === name);
+        if (!match) {
+            console.error("No matching GeoJSON for", name);
+            return;
+        }
 
-      currentProperty = match.property;
+        
 
-      
+        currentProperty = match.property;
 
-      if (geojsonLayer) {
-        map.removeLayer(geojsonLayer);
-      }
+        
+
+        if (geojsonLayer) map.removeLayer(geojsonLayer);
 
         
 
         if (UHFLayer) {
             map.removeLayer(UHFLayer);
-            UHFLayer = null
+            UHFLayer = null;
         }
 
 
-      selectedID = null; 
+        selectedID = null; 
 
-      
+        
 
-      fetch(match.url)
+        fetch(match.url)
         .then(response => response.json())
         .then(data => {
-          geojsonLayer = L.geoJSON(data, {
-            style: function (feature) {
-              
 
-              return {
-                color: "#333",
-                weight: 1,
-                fillColor: "#66c2a5",
-                fillOpacity: 0.4
-              };
-            },
-            onEachFeature: function (feature, layer) {
+            geojsonLayer = L.geoJSON(data, {
 
-                
+                style: function (feature) {
 
-                let tooltipLabel;
-                if (name === 'CD') {
-                  tooltipLabel = feature.properties.GEONAME;
-                } else if (name === 'CCD') {
-                  tooltipLabel = 'Council District #' + feature.properties[currentProperty];
-                } else {
-                  tooltipLabel = feature.properties[currentProperty];
-                }
-
-                
-
-                layer.bindTooltip(`<b>${tooltipLabel}</b>`, { sticky: true });
-
-
-
-              
-
-              layer.on("click", function () {
-                const id = feature.properties[currentProperty];
-                let neighborhoodName;
-
-                if (name === 'CD') {
-                  neighborhoodName = feature.properties.GEONAME;
-                  getUHFs('CD', id);
-                } else if (name === 'CCD') {
-                  neighborhoodName = 'Council District #' + id;
-                  getUHFs('CCD', id);
-                }
-
-                document.getElementById('neighbHolder').innerHTML = neighborhoodName;
-
-                
-
-                const popupContent = `<b>${neighborhoodName}</b>`;
-                layer.bindPopup(popupContent);
-
-                selectedID = id;
-
-                
-
-                geojsonLayer.eachLayer(function (l) {
-                  if (l !== layer) {
-                    l.unbindTooltip();
-                  }
-                });
-
-                
-
-                geojsonLayer.setStyle(function (f) {
-                  if (f.properties[currentProperty] === selectedID) {
                     
 
                     return {
-                      color: "#333",
-                      weight: 2,
-                      fillColor: "#66c2a5",
-                      fillOpacity: 0.6
+                        color: "#333",
+                        weight: 1,
+                        fillColor: "#66c2a5",
+                        fillOpacity: 0.4
                     };
-                  } else {
+                },
+                onEachFeature: function (feature, layer) {
+
                     
 
-                    return {
-                      color: "#e5e5e5",
-                      weight: 1,
-                      fillColor: "transparent",
-                      fillOpacity: 0
-                    };
-                  }
-                });
+                    let tooltipLabel;
+                    if (name === 'CD') {
 
-                
+                        tooltipLabel = feature.properties.GEONAME;
 
-                map.fitBounds(layer.getBounds());
-                layer.openPopup();
-              });
+                    } else if (name === 'CCD') {
 
-            }
-          }).addTo(map);
+                        tooltipLabel = 'Council District #' + feature.properties[currentProperty];
 
-          
+                    } else {
 
-          map.fitBounds(geojsonLayer.getBounds());
+                        tooltipLabel = feature.properties[currentProperty];
+
+                    }
+
+                    
+
+                    layer.bindTooltip(`<b>${tooltipLabel}</b>`, { sticky: true });
+
+
+
+                    
+
+                    layer.on("click", function () {
+
+                        const id = feature.properties[currentProperty];
+                        let neighborhoodName;
+
+                        if (name === 'CD') {
+
+                            neighborhoodName = feature.properties.GEONAME;
+                            getUHFs('CD', id);
+
+                        } else if (name === 'CCD') {
+
+                            neighborhoodName = 'Council District #' + id;
+                            getUHFs('CCD', id);
+
+                        }
+
+                        document.getElementById('neighbHolder').innerHTML = neighborhoodName;
+
+                        
+
+                        const popupContent = `<b>${neighborhoodName}</b>`;
+                        layer.bindPopup(popupContent);
+
+                        selectedID = id;
+
+                        
+
+                        geojsonLayer.eachLayer(function (l) {
+                            if (l !== layer) l.unbindTooltip();
+                        });
+
+                        
+
+                        geojsonLayer.setStyle(function (f) {
+
+                            if (f.properties[currentProperty] === selectedID) {
+
+                                
+
+                                return {
+                                    color: "#333",
+                                    weight: 2,
+                                    fillColor: "#66c2a5",
+                                    fillOpacity: 0.6
+                                };
+                            } else {
+
+                                
+
+                                return {
+                                    color: "#e5e5e5",
+                                    weight: 1,
+                                    fillColor: "transparent",
+                                    fillOpacity: 0
+                                };
+                            }
+                        });
+
+                        
+
+                        map.fitBounds(layer.getBounds());
+                        layer.openPopup();
+
+                    });
+                }
+            }).addTo(map);
+
+            
+
+            map.fitBounds(geojsonLayer.getBounds());
+
         });
     }
 
@@ -811,12 +828,14 @@
 
     const radios = document.querySelectorAll('input[name="inlineRadioOptions"]');
     radios.forEach(radio => {
-      radio.addEventListener('change', function () {
-        if (this.checked) {
-          console.log("Loading:", this.value);
-          loadGeoJSON(this.value);
-        }
-      });
+
+        radio.addEventListener('change', function () {
+
+            if (this.checked) {
+                console.log("Loading:", this.value);
+                loadGeoJSON(this.value);
+            }
+        });
     });
 
     
@@ -825,128 +844,134 @@
 
 function drawUHFs(UHF_ids) {
 
-  
+    
 
-  if (UHFLayer) {
-    map.removeLayer(UHFLayer);
-    UHFLayer = null;
-  }
+    if (UHFLayer) {
+        map.removeLayer(UHFLayer);
+        UHFLayer = null;
+    }
 
-  
+    
 
-  fetch("https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/UHF42.geojson")
-    .then(response => response.json())
-    .then(data => {
-      
+    fetch("https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/UHF42.geojson")
+        .then(response => response.json())
+        .then(data => {
 
-      const features = data.features.filter(f => UHF_ids.includes(f.properties.GEOCODE));
-      if (features.length === 0) {
-        console.warn("No matching UHF polygons for:", UHF_ids);
-        return;
-      }
+            
 
-      
+            const features = data.features.filter(f => UHF_ids.includes(f.properties.GEOCODE));
+            if (features.length === 0) {
+                console.warn("No matching UHF polygons for:", UHF_ids);
+                return;
+            }
 
-      UHFLayer = L.geoJSON(features, {
-        style: {
-          color: "red",
-          weight: 1,
-          dashArray: "3,5",
-          fillColor: "transparent",
-          fillOpacity: 0
-        },
-        onEachFeature: function (feature, layer) {
-          const tooltipContent = `UHF42:<br>
-                                  ${feature.properties.GEONAME}`;
-          layer.bindTooltip(tooltipContent, {
-            permanent: true,
-            direction: "center",   
-            className: "uhf-label" 
-          }); 
-        }
-      }).addTo(map);
+        
 
-      
+        UHFLayer = L.geoJSON(features, {
 
-      map.fitBounds(UHFLayer.getBounds());
+            style: {
+                color: "red",
+                weight: 1,
+                dashArray: "3,5",
+                fillColor: "transparent",
+                fillOpacity: 0
+            },
+            onEachFeature: function (feature, layer) {
 
-      
+                const tooltipContent = `UHF42:<br>${feature.properties.GEONAME}`;
+                layer.bindTooltip(tooltipContent, {
+                    permanent: true,
+                    direction: "center",   
+                    className: "uhf-label" 
+                }); 
+            }
+        }).addTo(map);
 
-      geojsonLayer.eachLayer(layer => {
-        layer.off("click"); 
-      });
+        
+
+        map.fitBounds(UHFLayer.getBounds());
+
+        
+
+        geojsonLayer.eachLayer(layer => {
+            layer.off("click"); 
+        });
     });
 }
 
 
 
-    var thisOverlap ;
-    function getUHFs(from, geo) {
+var thisOverlap ;
+function getUHFs(from, geo) {
 
-        document.getElementById('prompt').classList.remove('hide')
+    document.getElementById('prompt').classList.remove('hide');
 
-        var overlaps = document.getElementById('overlaps')
-        overlaps.innerHTML = ''
+    var overlaps = document.getElementById('overlaps');
+    overlaps.innerHTML = '';
 
-        if (from === 'CCD') {
+    if (from === 'CCD') {
 
-            console.log('Getting UHFs for City Council District ' + geo)
-
-
-            
-
-            thisOverlap = CCDtoUHF.filter(neighborhood => neighborhood.CCD == geo)
-
-        } else if (from === 'CD') {
-
-            console.log('Getting UHFs for Community District ' + geo)
-
-            
-
-            thisOverlap = CDtoUHF.filter(cd => cd.CD == geo)
-
-        } else {
-
-            console.log('Error.')
-
-        }
-
-        console.log('Overlapping neighborhoods:')
-        console.log(thisOverlap[0].matchingUHFs)
-        const uhfIds = thisOverlap[0].matchingUHFs.map(item => item.UHF_id);
-        drawUHFs(uhfIds)
+        console.log('Getting UHFs for City Council District ' + geo);
 
 
         
 
-        thisOverlap[0].matchingUHFs.forEach(ol => {
+        thisOverlap = CCDtoUHF.filter(neighborhood => neighborhood.CCD == geo);
 
-            var uhfid = ol.UHF_id
-            var name = ol.GEONAME
-            var overl = ol.percent.toFixed(1)
-            var dest = ol.page_name
-            var popol = (from === 'CCD') 
-                ? ol.pop_pct_of_ccd.toFixed(1) 
-                : (from === 'CD') 
-                    ? ol.pop_pct_of_cd.toFixed(1) 
-                    : null;
+    } else if (from === 'CD') {
 
-            
+        console.log('Getting UHFs for Community District ' + geo);
 
-            if (overl < 0.1) {
-                return
-                } else {
-                overlaps.innerHTML += `
+        
+
+        thisOverlap = CDtoUHF.filter(cd => cd.CD == geo);
+
+    } else {
+
+        console.log('Error.');
+
+    }
+
+    console.log('Overlapping neighborhoods:');
+    console.log(thisOverlap[0].matchingUHFs);
+    const uhfIds = thisOverlap[0].matchingUHFs.map(item => item.UHF_id);
+    drawUHFs(uhfIds);
+
+
+    
+
+    thisOverlap[0].matchingUHFs.forEach(ol => {
+
+        var uhfid = ol.UHF_id;
+        var name = ol.GEONAME;
+        var overl = ol.percent.toFixed(1);
+        var dest = ol.page_name;
+        var popol = (from === 'CCD') 
+            ? ol.pop_pct_of_ccd.toFixed(1) 
+            : (from === 'CD') 
+                ? ol.pop_pct_of_cd.toFixed(1) 
+                : null;
+
+        
+
+        if (overl < 0.1) {
+
+            return;
+
+            } else {
+
+            overlaps.innerHTML += `
                 <a href="https:\/\/a816-dohbesp.nyc.gov\/IndicatorPublic\/neighborhood-reports/${dest}" class="dropdown-item text-primary">
                     <span class="font-weight-bold">
                     ${name} 
                     </span> <br>
                     Overlap: ${overl}% area | ${popol}% population
-                </a>`
-                }
+                </a>`;
+
             }
-        )
-    }
+        }
+    );
+}
 
       
 </script>
@@ -1045,6 +1070,7 @@ function drawUHFs(UHF_ids) {
                 <div id="search"></div>
                 <script>
                     window.addEventListener('DOMContentLoaded', () => {
+
                         const search_modal = document.getElementById('searchModal');
                         const search_root = document.getElementById('search');
 
@@ -1053,6 +1079,7 @@ function drawUHFs(UHF_ids) {
                         }
 
                         new PagefindUI({
+
                             element: '#search',
                             showSubResults: true,
                             showImages: false,
@@ -1060,6 +1087,7 @@ function drawUHFs(UHF_ids) {
                             showEmptyFilters: true,
                             debounceTimeoutMs: 500,
                             processTerm: function (term) {
+
                                 if (typeof gtag === 'function') {
                                     gtag('event', 'search', {
                                         search_term: term
@@ -1067,31 +1095,35 @@ function drawUHFs(UHF_ids) {
                                 }
 
                                 return term;
+
                             },
                             processResult: function (result) {
+
                                 result.meta.title = result.meta.title
                                     .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                     .replaceAll('&amp;', '&');
 
                                 result.sub_results.forEach(sub => {
+
                                     sub.url = sub.url.replace('#IndicatorID-', '?id=');
 
                                     sub.title = sub.title
                                         .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                         .replaceAll('&amp;', '&');
+
                                 });
                             }
                         });
 
                         $(search_modal).on('shown.bs.modal', () => {
+
                             const search_input = search_modal.querySelector('.pagefind-ui__search-input');
 
-                            if (!search_input) {
-                                return;
-                            }
+                            if (!search_input) return;
 
                             search_input.focus();
                             search_input.select();
+
                         });
                     });
                 </script>
@@ -1303,6 +1335,7 @@ function drawUHFs(UHF_ids) {
 
 <script>
     function googleTranslateElementInit() {
+
         new google.translate.TranslateElement(
         {
             pageLanguage: "en",
@@ -1315,6 +1348,7 @@ function drawUHFs(UHF_ids) {
         document
             .querySelectorAll("div[class^=VI] svg")
             .forEach((e) => (e.outerHTML = ""));
+
     }
 </script>
 
@@ -1322,14 +1356,14 @@ function drawUHFs(UHF_ids) {
 
 <script
     type="text/javascript"
-    src="/IndicatorPublic/js/main.2cb27f09f10c76c3.js"
-    integrity="sha512-iaICTR6PWG4zbrmL69MtiVybfawXimbAI5YPb5CrDb&#43;QRgiX/4W11J6utqdl8wGY0zO9BbT110dFS2VhHYr60w=="
+    src="/IndicatorPublic/js/main.b5a4bb39c6f9e956.js"
+    integrity="sha512-IFR/T14MliYqj1FjEKKn&#43;KuzTQPEROIUZdo&#43;GWL1LkQyonV&#43;Ph1RiQ4kBd/tu&#43;DIek2FPl3gWTZT3V&#43;gpjkwRw=="
 ></script>
 
 <script
     type="text/javascript"
-    src="/IndicatorPublic/js/site.0c406db6f0a34e1e.js"
-    integrity="sha512-Fe3P28eMLfzi8orYmRJ8kTiQB2LyFObFD/0wbjn9C1QqIausui3C0NL1lI26wcL0L0r60YRX2APG59LjFox1xQ=="
+    src="/IndicatorPublic/js/site.5059925e078263ff.js"
+    integrity="sha512-lx6l6X2f4LZTW6z7Uuht0oUdZKl6qI6CVWVHHakMNAhTGoMy4V525mqnSG3e7biz3oH3HbcyrpR/AARk9XsYQQ=="
 ></script>
 
     

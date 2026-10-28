@@ -67,7 +67,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/","name":"The Environment and Health Data Portal: Home page","position":1},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/","name":"Data Features","position":2},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/hvi/","name":"Interactive Heat Vulnerability Index","position":3}]}</script>
 <script src="/IndicatorPublic/node_modules/jquery/dist/jquery.min.9d6bd9b75ea55acc.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR&#43;8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/css/all.min.c2b5ea5c3ed56d7e.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck&#43;w&#43;/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous"/>
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.c708c023f9041fb51d9ddc3e03764386fa55881a8e9d875d7531c5bebeb8885df85856db71636878c250dcfd6be780762dbc453e0924fabd78748d47a7253c2a.css" integrity="sha512-xwjAI/kEH7Udndw&#43;A3ZDhvpViBqOnYdddTHFvr64iF34WFbbcWNoeMJQ3P1r54B2LbxFPgkk&#43;r14dI1HpyU8Kg==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.76d32e5ad67edaebe99ca6def818f2b3095f4863c7c9fd7b7f76e80ecb519c6eda92103a7a228b301a523dcd335e6e6d96d2170b6198fe69ef511b2f24997af1.css" integrity="sha512-dtMuWtZ&#43;2uvpnKbe&#43;BjyswlfSGPHyf17f3boDstRnG7akhA6eiKLMBpSPc0zXm5tltIXC2GY/mnvURsvJJl68Q==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
 
 
 
@@ -99,7 +99,9 @@
     let DE_DEBUG_OVERRIDE = null;
 
     try {
+
         DE_DEBUG_OVERRIDE = localStorage.getItem('de_debug');
+
     } catch (e) {}
 
     const DE_DEBUG = DE_DEBUG_OVERRIDE !== null
@@ -573,7 +575,7 @@
             <p>Remember, a neighborhood with low vulnerability does not mean no risk. All neighborhoods have residents at risk for heat illness and death. 
             </p>
         </div>
-            </div>
+        </div>
 
         </div>
 
@@ -591,118 +593,119 @@
                     <col style="width: 50%;">
                 </colgroup>
                 <thead class="sr-only">
-                <tr>
-                  <th>Factor<br></th>
-                  <th style="width:45%">Value<br></th>
-                </tr></thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <h4 class="h5">Temperature</h4>
-                    <div class="fs-sm"><a href=/IndicatorPublic/data-explorer/climate/?id&#61;2141>Daytime summer surface temperature</a> is different from air temperature, and varies more by neighborhood: some neighborhoods are hotter than others. A higher surface temperature is associated with a higher risk of death from heat waves.                         
+                    <tr>
+                        <th>Factor<br></th>
+                        <th style="width:45%">Value<br></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <h4 class="h5">Temperature</h4>
+                            <div class="fs-sm"><a href=/IndicatorPublic/data-explorer/climate/?id&#61;2141>
+                                Daytime summer surface temperature</a> is different from air temperature, and varies more by neighborhood: some neighborhoods are hotter than others. A higher surface temperature is associated with a higher risk of death from heat waves.                         
+                            </div>
+
+                        </td>
+                        <td>
+                            <div class="p-3">
+                                The daytime summer surface temperature in your neighborhood is <span id="tempVal" class="text-primary font-weight-bold">--° F</span>. 
+                                <br>This is <span id="tempTert"><span class="badge badge-light">--- than most neighborhoods</span></span>. 
+                                <hr class="my-1"> 
+                                <span class="badge">Median neighborhood: 87.0° F</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4 class="h5">Air conditioning</h4>
+                            <div class="fs-sm">
+                                Air conditioning is as necessary during extreme heat as heating is in winter. A neighborhood with a high percentage of <a href=/IndicatorPublic/data-explorer/climate/?id&#61;2104>households with air conditioners</a> means that more of its residents can be protected from extreme heat. 
+                            
+
+                            </div>
+                        </td>
+                        <td>
+                            <div class="p-3">
+                                <span id="acVal" class="text-primary font-weight-bold">--%</span> of households in your neighborhood have AC. 
+                                <br>This is <span id="acTert"><span class="badge badge-light">--- than most neighborhoods</span></span>.
+                                <hr class="my-1"> 
+                                <span class="badge">Citywide: 91.0%</span>
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4 class="h5">Green space</h4>
+                            <div class="fs-sm">
+                                Green space is <a href=/IndicatorPublic/data-explorer/active-design/?id&#61;2157>tree</a>, <a href=/IndicatorPublic/data-explorer/active-design/?id&#61;2143>grass, or shrub cover</a>. Green space helps cool a neighborhood, address the <a href=/IndicatorPublic/data-stories/urban-heat-island target="_blank">UHI</a>, and create a resilient city. It also has a small association with heat mortality, weaker than other components in the index.
+
+                            </div>
+                        </td>
+                        <td>
+                            <div class="p-3">
+                                <span id="greenVal" class="text-primary font-weight-bold">--%</span> of your neighborhood is green space. 
+                                <br>This is <span id="greenTert"><span class="badge badge-light">--- than most neighborhoods</span></span>.                        
+                                    <hr class="my-1"> 
+                                <span class="badge">Median neighborhood: 25.0%</span>
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4 class="h5">Median income</h4>
+                            <div class="fs-sm">
+                                Low income is a social factor that places people at risk of death during heat waves for many reasons. One reason is that people with limited financial resources may be less likely to afford owning or using an air conditioner during heat waves.
                         
-                    </div>
 
-                  </td>
-                  <td>
-                    <div class="p-3">
-                        The daytime summer surface temperature in your neighborhood is <span id="tempVal" class="text-primary font-weight-bold">--° F</span>. 
-                        <br>This is <span id="tempTert"><span class="badge badge-light">--- than most neighborhoods</span></span>. 
-                          <hr class="my-1"> 
-                        <span class="badge">Median neighborhood: 87.0° F</span>
-                    </div>
-                    </td>
-                </tr>
-                <tr>
-                  <td>
-                    <h4 class="h5">Air conditioning</h4>
-                    <div class="fs-sm">
-                        Air conditioning is as necessary during extreme heat as heating is in winter. A neighborhood with a high percentage of <a href=/IndicatorPublic/data-explorer/climate/?id&#61;2104>households with air conditioners</a> means that more of its residents can be protected from extreme heat. 
-                        
-
-                    </div>
-                </td>
-                  <td>
-                    <div class="p-3">
-                        <span id="acVal" class="text-primary font-weight-bold">--%</span> of households in your neighborhood have AC. 
-                        <br>This is <span id="acTert"><span class="badge badge-light">--- than most neighborhoods</span></span>.
-                          <hr class="my-1"> 
-                        <span class="badge">Citywide: 91.0%</span>
-
-                    </div>
-                </td>
-                </tr>
-                <tr>
-                  <td>
-                    <h4 class="h5">Green space</h4>
-                    <div class="fs-sm">
-                        Green space is <a href=/IndicatorPublic/data-explorer/active-design/?id&#61;2157>tree</a>, <a href=/IndicatorPublic/data-explorer/active-design/?id&#61;2143>grass, or shrub cover</a>. Green space helps cool a neighborhood, address the <a href=/IndicatorPublic/data-stories/urban-heat-island target="_blank">UHI</a>, and create a resilient city. It also has a small association with heat mortality, weaker than other components in the index.
-
-                    </div>
-                  </td>
-                  <td>
-                    <div class="p-3">
-                        <span id="greenVal" class="text-primary font-weight-bold">--%</span> of your neighborhood is green space. 
-                        <br>This is <span id="greenTert"><span class="badge badge-light">--- than most neighborhoods</span></span>.                        
-                          <hr class="my-1"> 
-                        <span class="badge">Median neighborhood: 25.0%</span>
-
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <h4 class="h5">Median income</h4>
-                    <div class="fs-sm">
-                        Low income is a social factor that places people at risk of death during heat waves for many reasons. One reason is that people with limited financial resources may be less likely to afford owning or using an air conditioner during heat waves.
-                       
-
-                    </div>
-                  </td>
-                  <td>
-                    <div class="p-3">
-                        The median income in your neighborhood is <span id="incVal" class="text-primary font-weight-bold">$--</span>. 
-                        <br>This is <span id="incTert"><span class="badge badge-light">--- than most neighborhoods</span></span>.
-                        <hr class="my-1">  
-                        <span class="badge">Citywide: $67,046</span>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-              </table>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="p-3">
+                                The median income in your neighborhood is <span id="incVal" class="text-primary font-weight-bold">$--</span>. 
+                                <br>This is <span id="incTert"><span class="badge badge-light">--- than most neighborhoods</span></span>.
+                                <hr class="my-1">  
+                                <span class="badge">Citywide: $67,046</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
         </div>
     </div>
 
 
 
-        <div class="row mt-4">
-            <div class="col-md-7 mx-auto col-sm-12">
-                <h4>Racial inequities in heat impacts</h4>
-                <p>In NYC, Black people die of heat-related illness at a disproportionately high rate. Because of this, neighborhoods with more Black residents are more greatly impacted by extreme heat.
-                </p>
-                <div class="my-2 py-2 border-top border-bottom">
-                    <div style="min-height:321px" id="datawrapper-vis-HTMjf"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/HTMjf/embed.js" charset="utf-8" data-target="#datawrapper-vis-HTMjf"></script><noscript><img src="https://datawrapper.dwcdn.net/HTMjf/full.png" alt="" /></noscript></div>
-                </div>
-
-
-                <p>Black New Yorkers suffer these disproportionate health impacts from heat due to social and economic disparities. These disparities stem from structural racism, which includes neighborhood disinvestment, racist housing policies, fewer job opportunities and lower pay, and less access to high-quality education and health care.  </p>
-                <p>Overall, these systems limit access to resources that protect health. While many factors affect a neighborhood's heat risk, Black New Yorkers are subjected to higher rates of poverty and lower access to air conditioning, green space, and neighborhood cooling resources.
-                </p>
-
-                <div class="asidebox p-2 my-2">
-                    <p>In NYC, an <strong>extreme heat event</strong> is 2 or more days with a heat index reaching 95 °F, or 1 or more days reaching 100 °F. To learn more about heat and health, visit <a href="https://www1.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-heat.page">Extreme Heat and Health</a>. To stay safe in the heat, visit <a href="https://www1.nyc.gov/assets/em/html/beat-the-heat/beattheheat.html">Beat the Heat</a>.</p>
-
-                    <p>You can also learn more about what the City is doing to address extreme heat and how the HVI is guiding that work in the <a href="https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/">2023 PlaNYC: Getting Sustainability Done</a> report and at <a href="https://www1.nyc.gov/assets/orr/pdf/Cool_Neighborhoods_NYC_Report.pdf">Cool Neighborhoods NYC</a>. Communities can also use the index to advocate for services and resources.</p>
-
-                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/25782056/">Read more at <em>A Case-Only Study of Vulnerability to Heat Wave-Related Mortality in New York City (2000-2011)</em></a>.</p>
-                </div>
-
-
-
+    <div class="row mt-4">
+        <div class="col-md-7 mx-auto col-sm-12">
+            <h4>Racial inequities in heat impacts</h4>
+            <p>In NYC, Black people die of heat-related illness at a disproportionately high rate. Because of this, neighborhoods with more Black residents are more greatly impacted by extreme heat.
+            </p>
+            <div class="my-2 py-2 border-top border-bottom">
+                <div style="min-height:321px" id="datawrapper-vis-HTMjf"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/HTMjf/embed.js" charset="utf-8" data-target="#datawrapper-vis-HTMjf"></script><noscript><img src="https://datawrapper.dwcdn.net/HTMjf/full.png" alt="" /></noscript></div>
             </div>
+
+
+            <p>Black New Yorkers suffer these disproportionate health impacts from heat due to social and economic disparities. These disparities stem from structural racism, which includes neighborhood disinvestment, racist housing policies, fewer job opportunities and lower pay, and less access to high-quality education and health care.  </p>
+            <p>Overall, these systems limit access to resources that protect health. While many factors affect a neighborhood's heat risk, Black New Yorkers are subjected to higher rates of poverty and lower access to air conditioning, green space, and neighborhood cooling resources.
+            </p>
+
+            <div class="asidebox p-2 my-2">
+                <p>In NYC, an <strong>extreme heat event</strong> is 2 or more days with a heat index reaching 95 °F, or 1 or more days reaching 100 °F. To learn more about heat and health, visit <a href="https://www1.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-heat.page">Extreme Heat and Health</a>. To stay safe in the heat, visit <a href="https://www1.nyc.gov/assets/em/html/beat-the-heat/beattheheat.html">Beat the Heat</a>.</p>
+
+                <p>You can also learn more about what the City is doing to address extreme heat and how the HVI is guiding that work in the <a href="https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/">2023 PlaNYC: Getting Sustainability Done</a> report and at <a href="https://www1.nyc.gov/assets/orr/pdf/Cool_Neighborhoods_NYC_Report.pdf">Cool Neighborhoods NYC</a>. Communities can also use the index to advocate for services and resources.</p>
+
+                <p><a href="https://pubmed.ncbi.nlm.nih.gov/25782056/">Read more at <em>A Case-Only Study of Vulnerability to Heat Wave-Related Mortality in New York City (2000-2011)</em></a>.</p>
+            </div>
+
+
+
         </div>
-        
+    </div>
+    
 
     </article>
 
@@ -857,6 +860,8 @@
         
         
         
+        
+        
 
         let dismissed = false;
 
@@ -869,6 +874,8 @@
         input.addEventListener('blur', () => { dismissed = false; });
         input.addEventListener('focus', () => { dismissed = false; });
 
+        
+        
         
         
         
@@ -896,10 +903,12 @@
             input.setAttribute('aria-expanded', options.length ? 'true' : 'false');
 
             if (!options.length) {
+
                 input.removeAttribute('aria-activedescendant');
                 input.removeAttribute('aria-controls');
                 input.removeAttribute('aria-owns');
                 return;
+
             }
 
             input.setAttribute('aria-controls', RESULTS_ID);
@@ -911,18 +920,19 @@
             let active = null;
 
             options.forEach((li, i) => {
-
                 if (!li.id) li.id = RESULTS_ID + '-option-' + i;
                 if (li.classList.contains('active')) active = li;
-
             });
 
             if (active) {
-                input.setAttribute('aria-activedescendant', active.id);
-            } else {
-                input.removeAttribute('aria-activedescendant');
-            }
 
+                input.setAttribute('aria-activedescendant', active.id);
+
+            } else {
+
+                input.removeAttribute('aria-activedescendant');
+
+            }
         };
 
         
@@ -939,6 +949,7 @@
             
 
             if (list && list !== watched) {
+
                 watched = list;
                 listObserver.observe(list, {
                     childList: true,
@@ -981,6 +992,7 @@
                 <div id="search"></div>
                 <script>
                     window.addEventListener('DOMContentLoaded', () => {
+
                         const search_modal = document.getElementById('searchModal');
                         const search_root = document.getElementById('search');
 
@@ -989,6 +1001,7 @@
                         }
 
                         new PagefindUI({
+
                             element: '#search',
                             showSubResults: true,
                             showImages: false,
@@ -996,6 +1009,7 @@
                             showEmptyFilters: true,
                             debounceTimeoutMs: 500,
                             processTerm: function (term) {
+
                                 if (typeof gtag === 'function') {
                                     gtag('event', 'search', {
                                         search_term: term
@@ -1003,31 +1017,35 @@
                                 }
 
                                 return term;
+
                             },
                             processResult: function (result) {
+
                                 result.meta.title = result.meta.title
                                     .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                     .replaceAll('&amp;', '&');
 
                                 result.sub_results.forEach(sub => {
+
                                     sub.url = sub.url.replace('#IndicatorID-', '?id=');
 
                                     sub.title = sub.title
                                         .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                         .replaceAll('&amp;', '&');
+
                                 });
                             }
                         });
 
                         $(search_modal).on('shown.bs.modal', () => {
+
                             const search_input = search_modal.querySelector('.pagefind-ui__search-input');
 
-                            if (!search_input) {
-                                return;
-                            }
+                            if (!search_input) return;
 
                             search_input.focus();
                             search_input.select();
+
                         });
                     });
                 </script>
@@ -1239,6 +1257,7 @@
 
 <script>
     function googleTranslateElementInit() {
+
         new google.translate.TranslateElement(
         {
             pageLanguage: "en",
@@ -1251,6 +1270,7 @@
         document
             .querySelectorAll("div[class^=VI] svg")
             .forEach((e) => (e.outerHTML = ""));
+
     }
 </script>
 
@@ -1258,14 +1278,14 @@
 
 <script
     type="text/javascript"
-    src="/IndicatorPublic/js/main.2cb27f09f10c76c3.js"
-    integrity="sha512-iaICTR6PWG4zbrmL69MtiVybfawXimbAI5YPb5CrDb&#43;QRgiX/4W11J6utqdl8wGY0zO9BbT110dFS2VhHYr60w=="
+    src="/IndicatorPublic/js/main.b5a4bb39c6f9e956.js"
+    integrity="sha512-IFR/T14MliYqj1FjEKKn&#43;KuzTQPEROIUZdo&#43;GWL1LkQyonV&#43;Ph1RiQ4kBd/tu&#43;DIek2FPl3gWTZT3V&#43;gpjkwRw=="
 ></script>
 
 <script
     type="text/javascript"
-    src="/IndicatorPublic/js/site.0c406db6f0a34e1e.js"
-    integrity="sha512-Fe3P28eMLfzi8orYmRJ8kTiQB2LyFObFD/0wbjn9C1QqIausui3C0NL1lI26wcL0L0r60YRX2APG59LjFox1xQ=="
+    src="/IndicatorPublic/js/site.5059925e078263ff.js"
+    integrity="sha512-lx6l6X2f4LZTW6z7Uuht0oUdZKl6qI6CVWVHHakMNAhTGoMy4V525mqnSG3e7biz3oH3HbcyrpR/AARk9XsYQQ=="
 ></script>
 
     

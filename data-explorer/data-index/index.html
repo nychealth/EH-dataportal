@@ -67,7 +67,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/","name":"The Environment and Health Data Portal: Home page","position":1},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/","name":"Data Explorer","position":2},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/data-index/","name":"Data index","position":3}]}</script>
 <script src="/IndicatorPublic/node_modules/jquery/dist/jquery.min.9d6bd9b75ea55acc.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR&#43;8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/css/all.min.c2b5ea5c3ed56d7e.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck&#43;w&#43;/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous"/>
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.c708c023f9041fb51d9ddc3e03764386fa55881a8e9d875d7531c5bebeb8885df85856db71636878c250dcfd6be780762dbc453e0924fabd78748d47a7253c2a.css" integrity="sha512-xwjAI/kEH7Udndw&#43;A3ZDhvpViBqOnYdddTHFvr64iF34WFbbcWNoeMJQ3P1r54B2LbxFPgkk&#43;r14dI1HpyU8Kg==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.76d32e5ad67edaebe99ca6def818f2b3095f4863c7c9fd7b7f76e80ecb519c6eda92103a7a228b301a523dcd335e6e6d96d2170b6198fe69ef511b2f24997af1.css" integrity="sha512-dtMuWtZ&#43;2uvpnKbe&#43;BjyswlfSGPHyf17f3boDstRnG7akhA6eiKLMBpSPc0zXm5tltIXC2GY/mnvURsvJJl68Q==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
 
 
 
@@ -99,7 +99,9 @@
     let DE_DEBUG_OVERRIDE = null;
 
     try {
+
         DE_DEBUG_OVERRIDE = localStorage.getItem('de_debug');
+
     } catch (e) {}
 
     const DE_DEBUG = DE_DEBUG_OVERRIDE !== null
@@ -559,7 +561,7 @@
         <script>
 
             let indicators;
-            let indicatorIndex = []
+            let indicatorIndex = [];
             let time_periods;
 
 
@@ -582,9 +584,9 @@
 
                             time_periods = tp;
 
-                            loopThroughIndicators() 
+                            loopThroughIndicators(); 
 
-                        })
+                        });
                 });
 
 
@@ -609,17 +611,17 @@
                     
 
                     let row_i = document.createElement('tr'); 
-                    let cell_1 = document.createElement('td') 
+                    let cell_1 = document.createElement('td'); 
 
                     
 
                     if (topics.length > 0) {
 
-                        cell_1.innerHTML = "<a href='" + "/IndicatorPublic/data-explorer" + "/" + topics[0].topic + "/" + "?id=" + indicators[i].IndicatorID + "'>" + indicators[i].IndicatorName + "</a>"
+                        cell_1.innerHTML = "<a href='" + "/IndicatorPublic/data-explorer" + "/" + topics[0].topic + "/" + "?id=" + indicators[i].IndicatorID + "'>" + indicators[i].IndicatorName + "</a>";
 
                     } else {
 
-                        cell_1.innerHTML = indicators[i].IndicatorName 
+                        cell_1.innerHTML = indicators[i].IndicatorName; 
 
                     }
 
@@ -634,10 +636,10 @@
 
                     
 
-                    let cell_2 = document.createElement('td')
+                    let cell_2 = document.createElement('td');
 
                     let st_li = document.createElement('ul');
-                    st_li.classList.add('no-bullets')
+                    st_li.classList.add('no-bullets');
                     cell_2.appendChild(st_li);
 
                     
@@ -645,20 +647,21 @@
                     for (st = 0; st < topics.length; st++) {
 
                         let li = document.createElement('li');
-                        li.innerHTML = "<a href='" + "/IndicatorPublic/data-explorer" + "/" + topics[st].topic + "/'>" + topics[st].topic_name + "</a>"
+                        li.innerHTML = "<a href='" + "/IndicatorPublic/data-explorer" + "/" + topics[st].topic + "/'>" + topics[st].topic_name + "</a>";
                         
 
-                        st_li.appendChild(li)
+                        st_li.appendChild(li);
+
                     }
 
                     row_i.appendChild(cell_2);
 
                     
 
-                    let cell_3 = document.createElement('td')
-                    let cell_4 = document.createElement('td')
-                    let cell_5 = document.createElement('td')
-                    let cell_6 = document.createElement('td')
+                    let cell_3 = document.createElement('td');
+                    let cell_4 = document.createElement('td');
+                    let cell_5 = document.createElement('td');
+                    let cell_6 = document.createElement('td');
 
                     
 
@@ -666,18 +669,16 @@
 
                         
 
-                        measurements.push(indicators[i].Measures[n].MeasurementType)
+                        measurements.push(indicators[i].Measures[n].MeasurementType);
 
                         
                         
 
                         for (let y = 0; y < indicators[i].Measures[n].AvailableGeoTypes.length; y++) {
-
-                            geographies.push(indicators[i].Measures[n].AvailableGeoTypes[y])
+                            geographies.push(indicators[i].Measures[n].AvailableGeoTypes[y]);
 
                             
                             
-
                         }
 
                         
@@ -694,7 +695,7 @@
 
                         
 
-                        sources.push(indicators[i].Measures[n].Sources)
+                        sources.push(indicators[i].Measures[n].Sources);
 
                     }
 
@@ -703,13 +704,13 @@
                     
 
                     let unique_measurements = [...new Set(measurements)];
-                    let ums = document.createElement('ul')
-                    ums.classList.add('no-bullets')
+                    let ums = document.createElement('ul');
+                    ums.classList.add('no-bullets');
                     cell_3.appendChild(ums);
                     for (m = 0; m < unique_measurements.length; m++) {
-                        let li = document.createElement('li')
-                        li.innerHTML = unique_measurements[m]
-                        ums.appendChild(li)
+                        let li = document.createElement('li');
+                        li.innerHTML = unique_measurements[m];
+                        ums.appendChild(li);
                     }
 
                     row_i.appendChild(cell_3);
@@ -740,46 +741,48 @@
                     
 
                     unique_geographies.sort(function(a, b){
-                        return geos_order.indexOf(a) - geos_order.indexOf(b)
+                        return geos_order.indexOf(a) - geos_order.indexOf(b);
                     });
 
-                    let geobullets = document.createElement('ul')
-                    geobullets.classList.add('no-bullets')
-                    cell_4.appendChild(geobullets)
+                    let geobullets = document.createElement('ul');
+                    geobullets.classList.add('no-bullets');
+                    cell_4.appendChild(geobullets);
 
                     
 
-                    let pretty_unique_geographies = [...new Set(unique_geographies.map(geo => prettifyGeoType(geo)))]
+                    let pretty_unique_geographies = [...new Set(unique_geographies.map(geo => prettifyGeoType(geo)))];
 
                     for (l = 0; l < pretty_unique_geographies.length; l++) {
 
-                        let li = document.createElement('li')
+                        let li = document.createElement('li');
 
                         
 
                         li.innerHTML = pretty_unique_geographies[l];
                         li.setAttribute("geo", pretty_unique_geographies[l]);
-                        li.classList.add("btn", "btn-sm", "geobullets", pretty_unique_geographies[l])
+                        li.classList.add("btn", "btn-sm", "geobullets", pretty_unique_geographies[l]);
 
                         
 
                         li.addEventListener('click', e => {
+
                             
 
                             toggle_button(e);
+
                         });
 
                         geobullets.appendChild(li);
 
                     }
 
-                    row_i.appendChild(cell_4)
+                    row_i.appendChild(cell_4);
 
                     
 
                     maxTime = new Date(Math.max(...times));
                     cell_5.innerHTML = maxTime.getFullYear();
-                    row_i.appendChild(cell_5)
+                    row_i.appendChild(cell_5);
 
                     
 
@@ -787,32 +790,34 @@
                     
 
                     let unique_sources = [...new Set(sources)];
-                    let usrc = document.createElement('ul')
-                    usrc.classList.add('no-bullets')
+                    let usrc = document.createElement('ul');
+                    usrc.classList.add('no-bullets');
                     cell_6.appendChild(usrc);
 
                     for (src = 0; src < unique_sources.length; src++) {
-                        let li = document.createElement('li')
-                        li.innerHTML = unique_sources[src]
-                        usrc.appendChild(li)
+                        let li = document.createElement('li');
+                        li.innerHTML = unique_sources[src];
+                        usrc.appendChild(li);
                     }
 
                     row_i.appendChild(cell_6);
 
                     
 
-                    document.getElementById('tablebody').appendChild(row_i)
+                    document.getElementById('tablebody').appendChild(row_i);
                 }
 
                 
 
-                initializeDataTables()
+                initializeDataTables();
 
             }
 
 
             function initializeDataTables() {
+
                 let table = new DataTable('#indicators', {
+
                     
                     scrollY: 600,
                     scrollX: true,
@@ -829,7 +834,7 @@
 
                 
 
-                $('#indicators').DataTable().column(":contains(Geographies)").search(active_geo.join('|'), true, false, false).draw()
+                $('#indicators').DataTable().column(":contains(Geographies)").search(active_geo.join('|'), true, false, false).draw();
 
                 
 
@@ -844,7 +849,6 @@
                         geo_buttons[i].classList.add("active");
                     }
                 }
-
             }
 
             function toggle_button(e) {
@@ -854,6 +858,7 @@
                 var button = e.target;
 
                 if (button.classList.contains("active") == false) {
+
                     
 
                     
@@ -863,9 +868,9 @@
                     for (let i = 0; i < geo_buttons.length; i++) {
                         geo_buttons[i].classList.add("active");
                     }
-
                 }
                 else if (button.classList.contains("active") == true) {
+
                     
 
                     
@@ -875,18 +880,14 @@
                     for (let i = 0; i < geo_buttons.length; i++) {
                         geo_buttons[i].classList.remove("active");
                     }
-
                 }
 
                 let active = document.querySelectorAll("li.active");
                 let active_geos = [];
 
                 for (let i = 0; i < active.length; i++) {
-
                     if (typeof active[i].attributes.geo != "undefined") {
-
                         active_geos.push(active[i].attributes.geo.value);
-
                     }
                 }
 
@@ -933,7 +934,7 @@
                         return GeoType;
 
                 }
-            }
+            };
 
             
 
@@ -960,14 +961,16 @@
                         
                         
 
-                        let string = `"` + removeTags(cols[j].innerHTML) + `"`
+                        let string = `"` + removeTags(cols[j].innerHTML) + `"`;
 
                         csvrow.push(string); 
+
                     }
 
                     
 
                     csv_data.push(csvrow.join(","));
+
                 }
                 
 
@@ -977,6 +980,7 @@
                 
 
                 downloadCSVFile(csv_data);
+
             }
 
             
@@ -1008,10 +1012,12 @@
 
                 temp_link.click();
                 document.body.removeChild(temp_link);
+
             }
 
 
             function removeTags(str) {
+
                 if ((str === null) || (str === ''))
                     return false;
                 else
@@ -1024,6 +1030,7 @@
                 
 
                 return str.replace(/(<([^>]+)>)/ig, '');
+
             }
 
 
@@ -1033,7 +1040,8 @@
 
             var object = [];
             function createMeasureMetadata() {
-                console.log('object of indicators, measures, and text metadata:')
+
+                console.log('object of indicators, measures, and text metadata:');
                 
 
                 for (let i = 0; i < indicators.length; i++) {
@@ -1041,86 +1049,96 @@
                     for (let j = 0; j < indicators[i].Measures.length; j ++) {
 
                         var measure = {};
-                        measure.indicatorName    = indicators[i].IndicatorName
-                        measure.indicatorID      = indicators[i].IndicatorID
-                        measure.indicatorDesc    = indicators[i].IndicatorDescription
-                        measure.measureName      = indicators[i].Measures[j].MeasureName
-                        measure.measureID        = indicators[i].Measures[j].MeasureID
-                        measure.measurementType  = indicators[i].Measures[j].MeasurementType
-                        measure.displayType      = indicators[i].Measures[j].DisplayType
+                        measure.indicatorName    = indicators[i].IndicatorName;
+                        measure.indicatorID      = indicators[i].IndicatorID;
+                        measure.indicatorDesc    = indicators[i].IndicatorDescription;
+                        measure.measureName      = indicators[i].Measures[j].MeasureName;
+                        measure.measureID        = indicators[i].Measures[j].MeasureID;
+                        measure.measurementType  = indicators[i].Measures[j].MeasurementType;
+                        measure.displayType      = indicators[i].Measures[j].DisplayType;
 
-                        object.push(measure)
+                        object.push(measure);
+
                     }
-
                 }
 
-                console.log(object)
+                console.log(object);
+
             }
 
             function getNoMaps() {
+
                 var noMapObject = [];
-                console.log('indicators without a mapped measure:')
+                console.log('indicators without a mapped measure:');
                 
 
                 for (let i = 0; i < indicators.length; i++) {
+
                     var maps = [];
                     
 
                     for (let j = 0; j < indicators[i].Measures.length; j ++) {
+
                         
 
-                        maps.push(indicators[i].Measures[j].VisOptions[0].Map[0].GeoType)
+                        maps.push(indicators[i].Measures[j].VisOptions[0].Map[0].GeoType);
                         }
 
                         
 
-                        const isNull = (geotype) => geotype == null
+                        const isNull = (geotype) => geotype == null;
                         if (maps.every(isNull) == true) {
+
                             
 
-                            var indicator = {}
-                            indicator.indicatorName    = indicators[i].IndicatorName
-                            indicator.indicatorID      = indicators[i].IndicatorID
+                            var indicator = {};
+                            indicator.indicatorName    = indicators[i].IndicatorName;
+                            indicator.indicatorID      = indicators[i].IndicatorID;
 
-                            noMapObject.push(indicator)
+                            noMapObject.push(indicator);
+
                         } else {}
 
                     }
-                    console.log(noMapObject)
+                    console.log(noMapObject);
+
             }
 
             var inds = [];
             var fullInds = [];
             function indicatorsWithFullViews() {
-                console.log('object of indicators with a full-view measure')
+
+                console.log('object of indicators with a full-view measure');
                 
 
                 for (let i = 0; i < indicators.length; i++) {
+
                     var thisIndicator = [];
 
                     
 
                     for (let j = 0; j < indicators[i].Measures.length; j ++) {
+
                         
 
                         var thisMeasure = {};
-                        if (indicators[i].Measures[j].VisOptions[0].Map[0].GeoType != null) {thisMeasure.map = 1} else {thisMeasure.map = 0}
-                        if (indicators[i].Measures[j].VisOptions[0].Trend[0].GeoType != null) {thisMeasure.trend = 1} else {thisMeasure.trend = 0}
+                        if (indicators[i].Measures[j].VisOptions[0].Map[0].GeoType != null) {thisMeasure.map = 1;} else {thisMeasure.map = 0;}
+                        if (indicators[i].Measures[j].VisOptions[0].Trend[0].GeoType != null) {thisMeasure.trend = 1;} else {thisMeasure.trend = 0;}
                             let links;
                             let disparities;
-                            if (indicators[i].Measures[j].VisOptions[0].Links[0].Measures[0].MeasureID != null) {links = 1} else {links = 0}
-                            if (indicators[i].Measures[j].VisOptions[0].Links[0].Disparities == 1) {disparities = 1} else {disparities = 0}
-                            thisMeasure.LD = links + disparities
-                        thisMeasure.measureName    = indicators[i].Measures[j].MeasureName
-                        thisMeasure.measureID      = indicators[i].Measures[j].MeasureID
-                        thisMeasure.measureViewSum = thisMeasure.map + thisMeasure.trend + thisMeasure.LD
+                            if (indicators[i].Measures[j].VisOptions[0].Links[0].Measures[0].MeasureID != null) {links = 1;} else {links = 0;}
+                            if (indicators[i].Measures[j].VisOptions[0].Links[0].Disparities == 1) {disparities = 1;} else {disparities = 0;}
+                            thisMeasure.LD = links + disparities;
+                        thisMeasure.measureName    = indicators[i].Measures[j].MeasureName;
+                        thisMeasure.measureID      = indicators[i].Measures[j].MeasureID;
+                        thisMeasure.measureViewSum = thisMeasure.map + thisMeasure.trend + thisMeasure.LD;
                         
 
-                        thisIndicator.push(thisMeasure)
+                        thisIndicator.push(thisMeasure);
 
                     } 
 
-                    inds.push(thisIndicator)
+                    inds.push(thisIndicator);
 
                 }  
 
@@ -1128,27 +1146,31 @@
                 
 
                 for (let i = 0; i < inds.length; i++) {
+
                     var thisIndicator = {};
-                    var count = 0
+                    var count = 0;
                             
 
                             for (let j = 0; j < inds[i].length; j ++) {
-                                if (inds[i][j].measureViewSum > 1) {
-                                    count = count+1
-                                }
+                                if (inds[i][j].measureViewSum > 1) count = count+1;
                             }
-                    inds[i].measuresTwoPlus = count
+                    inds[i].measuresTwoPlus = count;
                     if (inds[i].measuresTwoPlus > 0) {
-                        fullInds.push(inds[i])
+
+                        fullInds.push(inds[i]);
+
                     } else {}
+
                 }
-                console.log(inds)
-                console.log(fullInds)
+                console.log(inds);
+                console.log(fullInds);
+
             }
 
             function measureViewSummary() {
+
                 var mvs = [];
-                console.log('object of indicators, measures, and text metadata:')
+                console.log('object of indicators, measures, and text metadata:');
                 
 
                 for (let i = 0; i < indicators.length; i++) {
@@ -1156,34 +1178,35 @@
                     for (let j = 0; j < indicators[i].Measures.length; j ++) {
 
                         var measure = {};
-                        measure.indicatorName    = indicators[i].IndicatorName
-                        measure.indicatorID      = indicators[i].IndicatorID
+                        measure.indicatorName    = indicators[i].IndicatorName;
+                        measure.indicatorID      = indicators[i].IndicatorID;
                         
 
-                        measure.measureName      = indicators[i].Measures[j].MeasureName
-                        measure.measureID        = indicators[i].Measures[j].MeasureID
+                        measure.measureName      = indicators[i].Measures[j].MeasureName;
+                        measure.measureID        = indicators[i].Measures[j].MeasureID;
 
-                        if (indicators[i].Measures[j].VisOptions[0].Map[0].GeoType != null) {measure.map = 1} else {measure.map = 0}
+                        if (indicators[i].Measures[j].VisOptions[0].Map[0].GeoType != null) {measure.map = 1;} else {measure.map = 0;}
 
-                        if (indicators[i].Measures[j].VisOptions[0].Trend[0].GeoType != null) {measure.trend = 1} else {measure.trend = 0}
+                        if (indicators[i].Measures[j].VisOptions[0].Trend[0].GeoType != null) {measure.trend = 1;} else {measure.trend = 0;}
 
-                        if (indicators[i].Measures[j].VisOptions[0].Links[0].Measures[0].MeasureID != null) {measure.links = 1} else {measure.links = 0}
+                        if (indicators[i].Measures[j].VisOptions[0].Links[0].Measures[0].MeasureID != null) {measure.links = 1;} else {measure.links = 0;}
 
-                        if (indicators[i].Measures[j].VisOptions[0].Links[0].Disparities == 1) {measure.disparities = 1} else {measure.disparities = 0}
-
-                        
-
+                        if (indicators[i].Measures[j].VisOptions[0].Links[0].Disparities == 1) {measure.disparities = 1;} else {measure.disparities = 0;}
 
                         
 
 
+                        
 
-                        mvs.push(measure)
+
+
+                        mvs.push(measure);
+
                     }
-
                 }
 
-                console.log(mvs)
+                console.log(mvs);
+
             }
 
         </script><ul id="results"></ul>
@@ -1203,6 +1226,7 @@
                 <div id="search"></div>
                 <script>
                     window.addEventListener('DOMContentLoaded', () => {
+
                         const search_modal = document.getElementById('searchModal');
                         const search_root = document.getElementById('search');
 
@@ -1211,6 +1235,7 @@
                         }
 
                         new PagefindUI({
+
                             element: '#search',
                             showSubResults: true,
                             showImages: false,
@@ -1218,6 +1243,7 @@
                             showEmptyFilters: true,
                             debounceTimeoutMs: 500,
                             processTerm: function (term) {
+
                                 if (typeof gtag === 'function') {
                                     gtag('event', 'search', {
                                         search_term: term
@@ -1225,31 +1251,35 @@
                                 }
 
                                 return term;
+
                             },
                             processResult: function (result) {
+
                                 result.meta.title = result.meta.title
                                     .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                     .replaceAll('&amp;', '&');
 
                                 result.sub_results.forEach(sub => {
+
                                     sub.url = sub.url.replace('#IndicatorID-', '?id=');
 
                                     sub.title = sub.title
                                         .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                         .replaceAll('&amp;', '&');
+
                                 });
                             }
                         });
 
                         $(search_modal).on('shown.bs.modal', () => {
+
                             const search_input = search_modal.querySelector('.pagefind-ui__search-input');
 
-                            if (!search_input) {
-                                return;
-                            }
+                            if (!search_input) return;
 
                             search_input.focus();
                             search_input.select();
+
                         });
                     });
                 </script>
@@ -1461,6 +1491,7 @@
 
 <script>
     function googleTranslateElementInit() {
+
         new google.translate.TranslateElement(
         {
             pageLanguage: "en",
@@ -1473,6 +1504,7 @@
         document
             .querySelectorAll("div[class^=VI] svg")
             .forEach((e) => (e.outerHTML = ""));
+
     }
 </script>
 
@@ -1480,14 +1512,14 @@
 
 <script
     type="text/javascript"
-    src="/IndicatorPublic/js/main.2cb27f09f10c76c3.js"
-    integrity="sha512-iaICTR6PWG4zbrmL69MtiVybfawXimbAI5YPb5CrDb&#43;QRgiX/4W11J6utqdl8wGY0zO9BbT110dFS2VhHYr60w=="
+    src="/IndicatorPublic/js/main.b5a4bb39c6f9e956.js"
+    integrity="sha512-IFR/T14MliYqj1FjEKKn&#43;KuzTQPEROIUZdo&#43;GWL1LkQyonV&#43;Ph1RiQ4kBd/tu&#43;DIek2FPl3gWTZT3V&#43;gpjkwRw=="
 ></script>
 
 <script
     type="text/javascript"
-    src="/IndicatorPublic/js/site.0c406db6f0a34e1e.js"
-    integrity="sha512-Fe3P28eMLfzi8orYmRJ8kTiQB2LyFObFD/0wbjn9C1QqIausui3C0NL1lI26wcL0L0r60YRX2APG59LjFox1xQ=="
+    src="/IndicatorPublic/js/site.5059925e078263ff.js"
+    integrity="sha512-lx6l6X2f4LZTW6z7Uuht0oUdZKl6qI6CVWVHHakMNAhTGoMy4V525mqnSG3e7biz3oH3HbcyrpR/AARk9XsYQQ=="
 ></script>
 
     

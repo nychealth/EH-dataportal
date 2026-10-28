@@ -44,11 +44,11 @@
 <title>NYC Environment and Health Data Portal</title>
 
 
-<meta name="build_datetime" content='Saturday, October 24, 2026, 10:52:23 am EDT'>
+<meta name="build_datetime" content='Wednesday, October 28, 2026, 2:06:36 pm EDT'>
 <meta name="build_environment" content='prod_prod'>
 <meta name="git_branch" content='production'>
-<meta name="git_last_hash" content='0af87258b9'>
-<meta name="git_last_msg" content='Merge pull request #1519 from nychealth:docs-characterization-rebaseline-conflict'>
+<meta name="git_last_hash" content='56c80d7672'>
+<meta name="git_last_msg" content='Merge pull request #1515 from nychealth:feature-js-formatting'>
 
 
         <link rel="alternate" hreflang="es" href="/IndicatorPublic/es/" title="Español">
@@ -77,7 +77,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://a816-dohbesp.nyc.gov/IndicatorPublic/#organization","@type":"Organization","name":"NYC Department of Health and Mental Hygiene","sameAs":["https://twitter.com/nycHealthy"],"url":"https://www.nyc.gov/site/doh/index.page"},{"@id":"https://a816-dohbesp.nyc.gov/IndicatorPublic/#website","@type":"WebSite","description":"Explore data on how environments shape health in New York City's neighborhoods.","inLanguage":"en","name":"Environment \u0026 Health Data Portal","publisher":{"@id":"https://a816-dohbesp.nyc.gov/IndicatorPublic/#organization"},"url":"https://a816-dohbesp.nyc.gov/IndicatorPublic/"}]}</script>
 <script src="/IndicatorPublic/node_modules/jquery/dist/jquery.min.9d6bd9b75ea55acc.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR&#43;8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/css/all.min.c2b5ea5c3ed56d7e.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck&#43;w&#43;/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous"/>
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.c708c023f9041fb51d9ddc3e03764386fa55881a8e9d875d7531c5bebeb8885df85856db71636878c250dcfd6be780762dbc453e0924fabd78748d47a7253c2a.css" integrity="sha512-xwjAI/kEH7Udndw&#43;A3ZDhvpViBqOnYdddTHFvr64iF34WFbbcWNoeMJQ3P1r54B2LbxFPgkk&#43;r14dI1HpyU8Kg==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.76d32e5ad67edaebe99ca6def818f2b3095f4863c7c9fd7b7f76e80ecb519c6eda92103a7a228b301a523dcd335e6e6d96d2170b6198fe69ef511b2f24997af1.css" integrity="sha512-dtMuWtZ&#43;2uvpnKbe&#43;BjyswlfSGPHyf17f3boDstRnG7akhA6eiKLMBpSPc0zXm5tltIXC2GY/mnvURsvJJl68Q==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
 
 
 
@@ -109,7 +109,9 @@
     let DE_DEBUG_OVERRIDE = null;
 
     try {
+
         DE_DEBUG_OVERRIDE = localStorage.getItem('de_debug');
+
     } catch (e) {}
 
     const DE_DEBUG = DE_DEBUG_OVERRIDE !== null
@@ -480,19 +482,19 @@
     <main id="skip-header-target" tabindex="-1" role="main" data-pagefind-body>
 
 <style>
-  .content-card a {
-    text-decoration: none!important;
-    color: inherit;
-  }
+    .content-card a {
+        text-decoration: none!important;
+        color: inherit;
+    }
 
-  .card-content:hover {
-    
-    transform: scale(1.01)
-  }
+    .card-content:hover {
+         
+        transform: scale(1.01)
+    }
 </style>
 
 <article class="container-fluid p-0 overflow-hidden" id="primary-content">
-  
+    
 
 <div id="de-announcement-home" class="alert alert-warning d-flex align-items-center fs-md mb-0 rounded-0" role="region" aria-label="Data Explorer announcement" data-pagefind-ignore="all">
 
@@ -530,6 +532,7 @@
         const key = "de-announcement-home-dismissed";
 
         try {
+
             if (localStorage.getItem(key)) {
                 banner.remove();
                 return;
@@ -540,322 +543,321 @@
             banner.remove();
             try { localStorage.setItem(key, "1"); } catch (e) {}
         });
-
     })();
 
 </script>
 
-  <div class="row no-gutters">
-    <div class="container wide">
-      <div class="py-4 mb-4 border-bottom">
-        <div class="row">
-          <div class="col-md-6 px-20">
-            <div class="row px-2">
-              <h2 class="">Explore your city - through data.</h2>
-              <p class="text-muted my-2">
-                <span class="font-weight-bold">The environment is everything around us</span> - our air and water, the climate, our city's buildings and streets, and the society that we live in:
-              </p>
-            </div>
+    <div class="row no-gutters">
+        <div class="container wide">
+            <div class="py-4 mb-4 border-bottom">
+                <div class="row">
+                    <div class="col-md-6 px-20">
+                        <div class="row px-2">
+                            <h2 class="">Explore your city - through data.</h2>
+                            <p class="text-muted my-2">
+                                <span class="font-weight-bold">The environment is everything around us</span> - our air and water, the climate, our city's buildings and streets, and the society that we live in:
+                            </p>
+                        </div>
 
-            <div class="row" data-homepage-section="topics">
-              <div class="col-md-6 px-20">
-                <ul class="list-unstyled font-weight-bold">
-                  <li class="link-w-underline px-0"><a href=/IndicatorPublic/key-topics/accessibility>Accessibility</a></li>
-                  <li class="link-w-underline px-0"><a href=/IndicatorPublic/key-topics/airquality>Air quality</a></li>
-                  <li class="link-w-underline px-0"><a href=/IndicatorPublic/key-topics/childhealth>Child health</a></li>
-                  <li class="link-w-underline px-0"><a href=/IndicatorPublic/key-topics/climatehealth>Climate</a></li>
-                  <li class="link-w-underline px-0"><a href=/IndicatorPublic/key-topics/foodanddrink>Food and drink</a></li>
-                  <li class="link-w-underline px-0" style="border-bottom: none"><a href=/IndicatorPublic/key-topics/healthoutcomes>Health outcomes</a></li>
-                </ul>
-              </div>
-              <div class="col-md-6 px-20">
-                <ul class="list-unstyled font-weight-bold">
-                  <li class="link-w-underline px-0"><a href=/IndicatorPublic/key-topics/housing>Housing</a></li>
-                  <li class="link-w-underline px-0"><a href=/IndicatorPublic/key-topics/social>Inequality</a></li>
-                  <li class="link-w-underline px-0"><a href=/IndicatorPublic/key-topics/injury-and-violence>Injury and violence</a></li>
-                  <li class="link-w-underline px-0"><a href=/IndicatorPublic/key-topics/pests>Pests</a></li>
-                  <li class="link-w-underline px-0"><a href=/IndicatorPublic/key-topics/transportation>Public space</a></li>
-                  <li class="link-w-underline px-0" style="border-bottom: none"><a class="" href=/IndicatorPublic/key-topics>See all topics<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
-</li>
+                        <div class="row" data-homepage-section="topics">
+                            <div class="col-md-6 px-20">
+                                <ul class="list-unstyled font-weight-bold">
+                                    <li class="link-w-underline px-0"><a href=/IndicatorPublic/key-topics/accessibility>Accessibility</a></li>
+                                    <li class="link-w-underline px-0"><a href=/IndicatorPublic/key-topics/airquality>Air quality</a></li>
+                                    <li class="link-w-underline px-0"><a href=/IndicatorPublic/key-topics/childhealth>Child health</a></li>
+                                    <li class="link-w-underline px-0"><a href=/IndicatorPublic/key-topics/climatehealth>Climate</a></li>
+                                    <li class="link-w-underline px-0"><a href=/IndicatorPublic/key-topics/foodanddrink>Food and drink</a></li>
+                                    <li class="link-w-underline px-0" style="border-bottom: none"><a href=/IndicatorPublic/key-topics/healthoutcomes>Health outcomes</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 px-20">
+                                <ul class="list-unstyled font-weight-bold">
+                                    <li class="link-w-underline px-0"><a href=/IndicatorPublic/key-topics/housing>Housing</a></li>
+                                    <li class="link-w-underline px-0"><a href=/IndicatorPublic/key-topics/social>Inequality</a></li>
+                                    <li class="link-w-underline px-0"><a href=/IndicatorPublic/key-topics/injury-and-violence>Injury and violence</a></li>
+                                    <li class="link-w-underline px-0"><a href=/IndicatorPublic/key-topics/pests>Pests</a></li>
+                                    <li class="link-w-underline px-0"><a href=/IndicatorPublic/key-topics/transportation>Public space</a></li>
+                                    <li class="link-w-underline px-0" style="border-bottom: none"><a class="" href=/IndicatorPublic/key-topics>See all topics<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a></li>
 
-                </ul>
-              </div>
-              
+                                </ul>
+                            </div>
+                            
 
-            </div>
-          </div>
-          <div class="col-md-6 px-20">
-            <div class="card content-card" id="featured-homepage" data-homepage-section="featured">
-              <a href="/IndicatorPublic/data-features/congestion-pricing-report/" data-homepage-label="Air quality impacts of congestion relief zone tolling">
-              <div class="card-content primary">
-
-                
-                
-                <div class="position-relative" style='height: 330px; width: 100%; background-image: url(/IndicatorPublic/images/CP-report-banner_hu_1541f0f7b347b98c.jpg); background-position: center; background-size: cover;'>
-
-                  
-                  
+                        </div>
+                    </div>
+                    <div class="col-md-6 px-20">
+                        <div class="card content-card" id="featured-homepage" data-homepage-section="featured">
+                            <a href="/IndicatorPublic/data-features/congestion-pricing-report/" data-homepage-label="Air quality impacts of congestion relief zone tolling">
+                                <div class="card-content primary">
                     
-                  
-
-                  <div class="overlay-map">
+                                    
+                                    
+                                    <div class="position-relative"
+                                        style='height: 330px; width: 100%; background-image: url(/IndicatorPublic/images/CP-report-banner_hu_1541f0f7b347b98c.jpg); background-position: center; background-size: cover;'>
                     
-                  </div>
+                                        
+                                        
+                                        
+                                        
+                    
+                                        <div class="overlay-map">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h3>Air quality impacts of congestion relief zone tolling</h3>
+                                        <p>Read the most complete evaluation to date of the effects of congestion pricing on air quality in NYC.</p>
+                                        <div class="d-flex justify-content-end mb-4 mb-md-0">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </a>
                 </div>
-                <div class="card-body">
-                  <h3>Air quality impacts of congestion relief zone tolling</h3>
-                  <p>Read the most complete evaluation to date of the effects of congestion pricing on air quality in NYC.</p>
-                  <div class="d-flex justify-content-end mb-4 mb-md-0">
-                    
-                  </div>
-                </div>
-              </div>
             </div>
-            </a>
-          </div>
         </div>
-      </div>
-    </div>
+</div>
 
-    <div class="container wide">
-      <div class="row">
+<div class="container wide">
+    <div class="row">
         <div class="col-lg-4 px-20" data-homepage-section="data-stories">
-          <h2 class="fs-xl data-stories border-bottom pb-2"><i class="fas fa-passport mr-1" aria-hidden="true"></i>New data stories</h2>
-          <div class="mb-4 ds-card">
-            <div><a href="/IndicatorPublic/data-stories/food-safety-101/" class="row no-gutters border-bottom py-3" data-homepage-label="Tracking food poisoning outbreaks in NYC restaurants—what makes us sick and why">
-                <div class="col-4">
-                  
-                  
-                  <img src="/IndicatorPublic/data-stories/food-safety-101/Kitchenwhitehouse_hu_938ca40a35088711.jpg" alt="">
-                </div>
+            <h2 class="fs-xl data-stories border-bottom pb-2"><i class="fas fa-passport mr-1" aria-hidden="true"></i>New data stories</h2>
+            <div class="mb-4 ds-card">
+                <div><a href="/IndicatorPublic/data-stories/food-safety-101/" class="row no-gutters border-bottom py-3" data-homepage-label="Tracking food poisoning outbreaks in NYC restaurants—what makes us sick and why">
+                        <div class="col-4">
+                            
+                            
+                            <img src="/IndicatorPublic/data-stories/food-safety-101/Kitchenwhitehouse_hu_938ca40a35088711.jpg" alt="">
+                        </div>
 
-                <div class="col-8 ml-auto h-100 pl-2">
-                  <p class="text-black fs-md"><span class="font-weight-bold">Tracking food poisoning outbreaks in NYC restaurants—what makes us sick and why</span> Each year, the NYC Health Department receives thousands of complaints of foodborne illness, commonly … </p>
-                </div>
-              </a><a href="/IndicatorPublic/data-stories/federal-funding/" class="row no-gutters border-bottom py-3" data-homepage-label="NYC is working to protect your health — but we can’t do it alone">
-                <div class="col-4">
-                  
-                  
-                  <img src="/IndicatorPublic/data-stories/federal-funding/NYC_bridge_hu_f00c3d4d48e8aac7.jpg" alt="">
-                </div>
+                        <div class="col-8 ml-auto h-100 pl-2">
+                            <p class="text-black fs-md"><span class="font-weight-bold">Tracking food poisoning outbreaks in NYC restaurants—what makes us sick and why</span> Each year, the NYC Health Department receives thousands of complaints of foodborne illness, commonly … </p>
+                        </div>
+                    </a><a href="/IndicatorPublic/data-stories/federal-funding/" class="row no-gutters border-bottom py-3" data-homepage-label="NYC is working to protect your health — but we can’t do it alone">
+                        <div class="col-4">
+                            
+                            
+                            <img src="/IndicatorPublic/data-stories/federal-funding/NYC_bridge_hu_f00c3d4d48e8aac7.jpg" alt="">
+                        </div>
 
-                <div class="col-8 ml-auto h-100 pl-2">
-                  <p class="text-black fs-md"><span class="font-weight-bold">NYC is working to protect your health — but we can’t do it alone</span> New Yorkers benefit from one of the largest health departments in the world. And at the NYC Health … </p>
-                </div>
-              </a><a href="/IndicatorPublic/data-stories/vectorborne-diseases-and-health/" class="row no-gutters border-bottom py-3" data-homepage-label="What climate change means for vector-borne disease in NYC">
-                <div class="col-4">
-                  
-                  
-                  <img src="/IndicatorPublic/data-stories/vectorborne-diseases-and-health/NY_forest_hu_30e399da484d4219.jpg" alt="">
-                </div>
+                        <div class="col-8 ml-auto h-100 pl-2">
+                            <p class="text-black fs-md"><span class="font-weight-bold">NYC is working to protect your health — but we can’t do it alone</span> New Yorkers benefit from one of the largest health departments in the world. And at the NYC Health … </p>
+                        </div>
+                    </a><a href="/IndicatorPublic/data-stories/vectorborne-diseases-and-health/" class="row no-gutters border-bottom py-3" data-homepage-label="What climate change means for vector-borne disease in NYC">
+                        <div class="col-4">
+                            
+                            
+                            <img src="/IndicatorPublic/data-stories/vectorborne-diseases-and-health/NY_forest_hu_30e399da484d4219.jpg" alt="">
+                        </div>
 
-                <div class="col-8 ml-auto h-100 pl-2">
-                  <p class="text-black fs-md"><span class="font-weight-bold">What climate change means for vector-borne disease in NYC</span> Mosquitoes and ticks can cause serious diseases for New Yorkers Bugs play an important role in our … </p>
-                </div>
-              </a><div class="d-flex justify-content-end mt-1 mb-4 mb-md-0">
-                  <a href=/IndicatorPublic/data-stories class="font-weight-bold">All data stories <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                        <div class="col-8 ml-auto h-100 pl-2">
+                            <p class="text-black fs-md"><span class="font-weight-bold">What climate change means for vector-borne disease in NYC</span> Mosquitoes and ticks can cause serious diseases for New Yorkers Bugs play an important role in our … </p>
+                        </div>
+                    </a><div class="d-flex justify-content-end mt-1 mb-4 mb-md-0">
+                        <a href=/IndicatorPublic/data-stories class="font-weight-bold">All data stories <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                    </div>
                 </div>
             </div>
-          </div>
         </div>
         <div class="col-lg-4 px-20" data-homepage-section="recently-updated-data">
 
-          <h2 class="fs-xl data-explorer border-bottom pb-2"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Recently updated data</h2><div class="link-w-underline">
-            <a href=/IndicatorPublic/data-explorer/air-quality/?id&#61;2023>Fine particles (PM 2.5)</a>
-          </div><div class="link-w-underline">
-            <a href=/IndicatorPublic/data-explorer/air-quality/?id&#61;2024>Black carbon</a>
-          </div><div class="link-w-underline">
-            <a href=/IndicatorPublic/data-explorer/air-quality/?id&#61;2028>Nitric oxide (NO)</a>
-          </div><div class="link-w-underline">
-            <a href=/IndicatorPublic/data-explorer/air-quality/?id&#61;2025>Nitrogen dioxide (NO2)</a>
-          </div><div class="link-w-underline">
-            <a href=/IndicatorPublic/data-explorer/air-quality/?id&#61;2027>Ozone (O3)</a>
-          </div><div class="link-w-underline">
-            <a href=/IndicatorPublic/data-explorer/mice-and-rats/?id&#61;2433>Rat indexing in Rat Mitigation Zones (RMZs)</a>
-          </div><div class="link-w-underline">
-            <a href=/IndicatorPublic/data-explorer/social-conditions/?id&#61;14>Foreign-born population</a>
-          </div><div class="link-w-underline">
-            <a href=/IndicatorPublic/data-explorer/chronic-disease/?id&#61;2465>Adults with diabetes</a>
-          </div><div class="link-w-underline">
-            <a href=/IndicatorPublic/data-explorer/chronic-disease/?id&#61;2466>Adults with very high blood sugar levels (A1C &gt; 9%)</a>
-          </div><div class="link-w-underline">
-            <a href=/IndicatorPublic/data-explorer/chronic-disease/?id&#61;2467>Lower extremity amputations (diabetes-related)</a>
-          </div><div class="link-w-underline">
-            <a href=/IndicatorPublic/data-explorer/chronic-disease/?id&#61;2468>Dialysis patients (diabetes-related)</a>
-          </div><div class="link-w-underline">
-            <a href=/IndicatorPublic/data-explorer/climate/?id&#61;2140>Residents living in a hurricane evacuation zone</a>
-          </div><div class="link-w-underline">
-            <a href=/IndicatorPublic/data-explorer/accessibility/?id&#61;2458>Walking distance to an accessible subway station</a>
-          </div><div class="d-flex justify-content-end mt-1 mb-4">
-            <a class="font-weight-bold" href=/IndicatorPublic/data-explorer>All data <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
-          </div>
+            <h2 class="fs-xl data-explorer border-bottom pb-2"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Recently updated data</h2><div class="link-w-underline">
+                <a href=/IndicatorPublic/data-explorer/air-quality/?id&#61;2023>Fine particles (PM 2.5)</a>
+            </div><div class="link-w-underline">
+                <a href=/IndicatorPublic/data-explorer/air-quality/?id&#61;2024>Black carbon</a>
+            </div><div class="link-w-underline">
+                <a href=/IndicatorPublic/data-explorer/air-quality/?id&#61;2028>Nitric oxide (NO)</a>
+            </div><div class="link-w-underline">
+                <a href=/IndicatorPublic/data-explorer/air-quality/?id&#61;2025>Nitrogen dioxide (NO2)</a>
+            </div><div class="link-w-underline">
+                <a href=/IndicatorPublic/data-explorer/air-quality/?id&#61;2027>Ozone (O3)</a>
+            </div><div class="link-w-underline">
+                <a href=/IndicatorPublic/data-explorer/mice-and-rats/?id&#61;2433>Rat indexing in Rat Mitigation Zones (RMZs)</a>
+            </div><div class="link-w-underline">
+                <a href=/IndicatorPublic/data-explorer/social-conditions/?id&#61;14>Foreign-born population</a>
+            </div><div class="link-w-underline">
+                <a href=/IndicatorPublic/data-explorer/chronic-disease/?id&#61;2465>Adults with diabetes</a>
+            </div><div class="link-w-underline">
+                <a href=/IndicatorPublic/data-explorer/chronic-disease/?id&#61;2466>Adults with very high blood sugar levels (A1C &gt; 9%)</a>
+            </div><div class="link-w-underline">
+                <a href=/IndicatorPublic/data-explorer/chronic-disease/?id&#61;2467>Lower extremity amputations (diabetes-related)</a>
+            </div><div class="link-w-underline">
+                <a href=/IndicatorPublic/data-explorer/chronic-disease/?id&#61;2468>Dialysis patients (diabetes-related)</a>
+            </div><div class="link-w-underline">
+                <a href=/IndicatorPublic/data-explorer/climate/?id&#61;2140>Residents living in a hurricane evacuation zone</a>
+            </div><div class="link-w-underline">
+                <a href=/IndicatorPublic/data-explorer/accessibility/?id&#61;2458>Walking distance to an accessible subway station</a>
+            </div><div class="d-flex justify-content-end mt-1 mb-4">
+                <a class="font-weight-bold" href=/IndicatorPublic/data-explorer>All data <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+            </div>
 
 
         </div>
         <div class="col-lg-4 px-20">
-          <div class="shadow-sm mb-3 p-3 card-left-border">
-            <div class="row no-gutters">
-              <div class="col-11">
-                <h3 class="text-black fs-xl pr-2 mb-2">Get updates and announcements</h3>
-              </div>
-              <div class="col-1">
-                <i class="fas fa-bullhorn h2 text-primary" aria-hidden="true"></i>
-              </div>
-            </div>
-            <p class="text-black mb-4"><a class="font-weight-bold" href="#" data-subscribe-click="homepage" data-toggle="modal" data-target="#subscribeModal">Sign up here!</a> We won't share your email address.</p>
-          </div>
-
-          <div class="shadow-sm mb-3 p-3 card-left-border" data-homepage-section="site-search">
-            <div class="row no-gutters">
-              <div class="col-11">
-                <h3 class="text-black fs-xl pr-2 mb-2">Find what you need</h3>
-              </div>
-              <div class="col-1">
-                <i class="fas fa-search h2 text-primary" aria-hidden="true"></i>
-
-              </div>
-            </div>
-            <button type="button" class="btn btn-primary btn-block mt-1" data-toggle="modal" data-target="#searchModal" title="Search">
-              <i class="fas fa-search mr-1" aria-hidden="true"></i>Search the site
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container wide">
-      <div class="row" data-homepage-section="tools">
-        <div class="col-12 mb-2">
-          <h3>Tools</h3>
-        </div>
-
-        <div class="col-lg-3 col-sm-6">
-          <div class="card content-card">
-            <a class="position-relative" href=/IndicatorPublic/data-stories data-homepage-label="Data stories">
-            <div class="card-content data-stories mb-4">
-                <div class="tab-data-stories h-100 w-100 position-absolute"></div>
-                
-                
-                <img class="card-img-top" src="/IndicatorPublic/images/image_tab_data_stories_hu_d40f4ef294557d22.jpg" alt="">
-              <div class="card-body">
-                <h3 class="card-title">Data stories</h3>
-                <p>Explainers on important health issues.</p>
-              </div>
-
-            </div>
-          </a>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-sm-6">
-          <div class="card content-card">
-            <a class="position-relative" href=/IndicatorPublic/data-features data-homepage-label="Data Features">
-            <div class="card-content data-features mb-4">
-                <div class="tab-data-features h-100 w-100 position-absolute"></div>
-                
-                
-                <img class="card-img-top" src="/IndicatorPublic/images/image_tab_data_features_hu_59734dfde578cd24.jpg" alt="">
-              
-              <div class="card-body">
-                <h3 class="card-title">Data Features</h3>
-                <p>Custom interactives, dashboards and reports.</p>
-              </div>
-                            
-            </div>
-            </a>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-sm-6">
-          <div class="card content-card">
-            <a class="position-relative" href=/IndicatorPublic/neighborhood-reports data-homepage-label="Neighborhood Reports">
-            <div class="card-content n-reports mb-4">
-                <div class="tab-neighborhood-reports h-100 w-100 position-absolute"></div>
-                
-                
-                <img class="card-img-top" src="/IndicatorPublic/images/image_tab_neighborhood_reports_hu_73d982f9034e9dab.jpg" alt="">
-           
-              <div class="card-body">
-                <h3 class="card-title">Neighborhood Reports</h3>
-                <p>Data on key issues for your neighborhood.</p>
-              </div>
-
-            </div>
-          </a>
-          </div>
-        </div>
-
-
-
-        <div class="col-lg-3 col-sm-6">
-          <div class="card content-card">
-            <a class="position-relative" href=/IndicatorPublic/data-explorer data-homepage-label="Data Explorer">
-            <div class="card-content data-explorer mb-4">
-                <div class="tab-data-explorer h-100 w-100 position-absolute"></div>
-                
-                
-                <img class="card-img-top" src="/IndicatorPublic/images/image_tab_data_explorer_hu_1b67140e7943b799.jpg" alt="">
-              
-              <div class="card-body">
-                <h3 class="card-title">Data Explorer</h3>
-                <p>Maps, trends, tables, and more: hundreds of datasets.</p>
-              </div>
-
-            </div>
-            </a>
-          </div>
-        </div>
-
-
-      </div>
-
-    </div>
-
-    <div class="mt-4 py-4 w-100" style="background-color: #EEEDEA;">
-      <div class="container wide">
-        <div class="row">
-          <div class="col-md-11 mx-auto">
-            <div class="row" data-homepage-section="secondary-links">
-              <div class="col-md-4 my-2">
-                <div class="card card-left-border shadow-sm h-100">
-                  <div class="card-body">
-                    <h5 class="card-title fs-sm mb-1">About us</h5>
-                    <p class="fs-sm flex-grow-1">Learn more about the Environment & Health Data Portal, and the Health Department team behind it.</p><div class="d-flex justify-content-end">
-                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/about/">About Us<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
-                      </div></div>
+            <div class="shadow-sm mb-3 p-3 card-left-border">
+                <div class="row no-gutters">
+                    <div class="col-11">
+                        <h3 class="text-black fs-xl pr-2 mb-2">Get updates and announcements</h3>
+                    </div>
+                    <div class="col-1">
+                        <i class="fas fa-bullhorn h2 text-primary" aria-hidden="true"></i>
+                    </div>
                 </div>
-              </div>
+                <p class="text-black mb-4"><a class="font-weight-bold" href="#" data-subscribe-click="homepage" data-toggle="modal" data-target="#subscribeModal">Sign up here!</a> We won't share your email address.</p>
+            </div>
 
-              <div class="col-md-4 my-2">
-                <div class="card card-left-border shadow-sm h-100">
-                  <div class="card-body">
-                    <h5 class="card-title fs-sm mb-1">Visit our Github repo</h5>
-                    <p class="fs-sm flex-grow-1">Found a bug? Know code? Visit our Github repo to get code, file an issue, or download data.</p>
-                    <div class="d-flex justify-content-end">
-                      <a class="fs-sm font-weight-bold" href="https://www.github.com/nychealth/EH-dataportal">Github<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+            <div class="shadow-sm mb-3 p-3 card-left-border" data-homepage-section="site-search">
+                <div class="row no-gutters">
+                    <div class="col-11">
+                        <h3 class="text-black fs-xl pr-2 mb-2">Find what you need</h3>
+                    </div>
+                    <div class="col-1">
+                        <i class="fas fa-search h2 text-primary" aria-hidden="true"></i>
+
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary btn-block mt-1" data-toggle="modal" data-target="#searchModal" title="Search">
+                    <i class="fas fa-search mr-1" aria-hidden="true"></i>Search the site
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container wide">
+    <div class="row" data-homepage-section="tools">
+        <div class="col-12 mb-2">
+            <h3>Tools</h3>
+        </div>
+
+        <div class="col-lg-3 col-sm-6">
+            <div class="card content-card">
+                <a class="position-relative" href=/IndicatorPublic/data-stories data-homepage-label="Data stories">
+                <div class="card-content data-stories mb-4">
+                    <div class="tab-data-stories h-100 w-100 position-absolute"></div>
+                    
+                    
+                    <img class="card-img-top" src="/IndicatorPublic/images/image_tab_data_stories_hu_d40f4ef294557d22.jpg" alt="">
+                    <div class="card-body">
+                        <h3 class="card-title">Data stories</h3>
+                        <p>Explainers on important health issues.</p>
                     </div>
 
-                  </div>
                 </div>
-              </div>
-
-              <div class="col-md-4 my-2">
-                <div class="card card-left-border shadow-sm h-100">
-                  <div class="card-body">
-                    <h5 class="card-title fs-sm mb-1">Join our team</h5>
-                    <p class="fs-sm flex-grow-1">Passionate about health, environmental justice, and technology? Check out our open positions.</p><div class="d-flex justify-content-end">
-                        <a href="/IndicatorPublic/about/jobs/" class="fs-sm font-weight-bold">Jobs <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
-                      </div></div>
-                </div>
-              </div>
+            </a>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-    
+        <div class="col-lg-3 col-sm-6">
+            <div class="card content-card">
+                <a class="position-relative" href=/IndicatorPublic/data-features data-homepage-label="Data Features">
+                <div class="card-content data-features mb-4">
+                    <div class="tab-data-features h-100 w-100 position-absolute"></div>
+                    
+                    
+                    <img class="card-img-top" src="/IndicatorPublic/images/image_tab_data_features_hu_59734dfde578cd24.jpg" alt="">
+              
+                    <div class="card-body">
+                        <h3 class="card-title">Data Features</h3>
+                        <p>Custom interactives, dashboards and reports.</p>
+                    </div>
+                            
+                </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-sm-6">
+            <div class="card content-card">
+                <a class="position-relative" href=/IndicatorPublic/neighborhood-reports data-homepage-label="Neighborhood Reports">
+                <div class="card-content n-reports mb-4">
+                    <div class="tab-neighborhood-reports h-100 w-100 position-absolute"></div>
+                    
+                    
+                    <img class="card-img-top" src="/IndicatorPublic/images/image_tab_neighborhood_reports_hu_73d982f9034e9dab.jpg" alt="">
+           
+                    <div class="card-body">
+                        <h3 class="card-title">Neighborhood Reports</h3>
+                        <p>Data on key issues for your neighborhood.</p>
+                    </div>
+
+                </div>
+            </a>
+            </div>
+        </div>
+
+
+
+        <div class="col-lg-3 col-sm-6">
+            <div class="card content-card">
+                <a class="position-relative" href=/IndicatorPublic/data-explorer data-homepage-label="Data Explorer">
+                <div class="card-content data-explorer mb-4">
+                    <div class="tab-data-explorer h-100 w-100 position-absolute"></div>
+                    
+                    
+                    <img class="card-img-top" src="/IndicatorPublic/images/image_tab_data_explorer_hu_1b67140e7943b799.jpg" alt="">
+              
+                    <div class="card-body">
+                        <h3 class="card-title">Data Explorer</h3>
+                        <p>Maps, trends, tables, and more: hundreds of datasets.</p>
+                    </div>
+
+                </div>
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+<div class="mt-4 py-4 w-100" style="background-color: #EEEDEA;">
+    <div class="container wide">
+        <div class="row">
+            <div class="col-md-11 mx-auto">
+                <div class="row" data-homepage-section="secondary-links">
+                    <div class="col-md-4 my-2">
+                        <div class="card card-left-border shadow-sm h-100">
+                            <div class="card-body">
+                                <h5 class="card-title fs-sm mb-1">About us</h5>
+                                <p class="fs-sm flex-grow-1">Learn more about the Environment & Health Data Portal, and the Health Department team behind it.</p><div class="d-flex justify-content-end">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/about/">About Us<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                                    </div></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 my-2">
+                        <div class="card card-left-border shadow-sm h-100">
+                            <div class="card-body">
+                                <h5 class="card-title fs-sm mb-1">Visit our Github repo</h5>
+                                <p class="fs-sm flex-grow-1">Found a bug? Know code? Visit our Github repo to get code, file an issue, or download data.</p>
+                                <div class="d-flex justify-content-end">
+                                    <a class="fs-sm font-weight-bold" href="https://www.github.com/nychealth/EH-dataportal">Github<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 my-2">
+                        <div class="card card-left-border shadow-sm h-100">
+                            <div class="card-body">
+                                <h5 class="card-title fs-sm mb-1">Join our team</h5>
+                                <p class="fs-sm flex-grow-1">Passionate about health, environmental justice, and technology? Check out our open positions.</p><div class="d-flex justify-content-end">
+                                        <a href="/IndicatorPublic/about/jobs/" class="fs-sm font-weight-bold">Jobs <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                                    </div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+  
   <button id="openModalBtnWeather" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#weatherModal">Open Modal</button>
 
     <div class="modal" tabindex="-1" role="dialog" id="weatherModal">
@@ -961,8 +963,11 @@
         let aqi = null;
 
         try {
+
             const aqiRes = await fetch('https://www.airnowapi.org/aq/observation/current/ziplatLong?format=application/json&zipCode=10032&api_key=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F');
-            if (!aqiRes.ok) throw new Error(`AirNow returned HTTP ${aqiRes.status}`);
+            if (!aqiRes.ok) {
+                throw new Error(`AirNow returned HTTP ${aqiRes.status}`);
+            }
 
             const aqiData = await aqiRes.json();
             const categories = (Array.isArray(aqiData) ? aqiData : [])
@@ -971,11 +976,14 @@
                 .filter(number => number !== null);
 
             if (categories.length) aqi = Math.max(...categories);
+
         } catch (error) {
+
             
             
 
             console.warn(`Air quality unavailable: ${error.message}`);
+
         }
 
         const isBadAQ = aqi !== null && aqi > 2;
@@ -985,7 +993,6 @@
         if (isHot || isCold || isBadAQ) {
             fireWeatherModal({ isHot, isCold, isBadAQ, high, low, aqi });
         }
-
     };
 
 
@@ -1005,13 +1012,16 @@
     
 
     const getAqiInterpretation = (aqi) => {
+
         switch (String(aqi)) {
+
             case '1': return { text: 'Good', bgColor: '#00E400' };
             case '2': return { text: 'Moderate', bgColor: '#FFFF00' };
             case '3': return { text: 'Unhealthy for sensitive groups', bgColor: '#FF7E00' };
             case '4': return { text: 'Unhealthy', bgColor: '#FF0000', color: 'white' };
             case '5': return { text: 'Very unhealthy', bgColor: '#993399', color: 'white' };
             case '6': return { text: 'Hazardous', bgColor: '#7E0023', color: 'white' };
+
         }
     };
 
@@ -1042,21 +1052,29 @@
         }
 
         if (isBadAQ) {
+
             const aqiMeaning = document.getElementById('aqimeaning');
             const interpretation = getAqiInterpretation(aqi);
 
             aqiMeaning.style['background-color'] = interpretation.bgColor;
             aqiMeaning.style.color = interpretation.color || '';
             aqiMeaning.textContent = interpretation.text;
+
         }
 
         
 
         const activeEvents = [];
 
-        if (isHot) activeEvents.push({ icon: 'fa-temperature-high', label: "It's hot!" });
-        if (isCold) activeEvents.push({ icon: 'fa-temperature-high', label: "It's cold!" });
-        if (isBadAQ) activeEvents.push({ icon: 'fa-smog', label: 'Air quality alert!' });
+        if (isHot) {
+            activeEvents.push({ icon: 'fa-temperature-high', label: "It's hot!" });
+        }
+        if (isCold) {
+            activeEvents.push({ icon: 'fa-temperature-high', label: "It's cold!" });
+        }
+        if (isBadAQ) {
+            activeEvents.push({ icon: 'fa-smog', label: 'Air quality alert!' });
+        }
 
         const icons = activeEvents
             .map(event => `<i class="fas ${event.icon} mr-1" aria-hidden="true"></i>`)
@@ -1104,6 +1122,7 @@
                 <div id="search"></div>
                 <script>
                     window.addEventListener('DOMContentLoaded', () => {
+
                         const search_modal = document.getElementById('searchModal');
                         const search_root = document.getElementById('search');
 
@@ -1112,6 +1131,7 @@
                         }
 
                         new PagefindUI({
+
                             element: '#search',
                             showSubResults: true,
                             showImages: false,
@@ -1119,6 +1139,7 @@
                             showEmptyFilters: true,
                             debounceTimeoutMs: 500,
                             processTerm: function (term) {
+
                                 if (typeof gtag === 'function') {
                                     gtag('event', 'search', {
                                         search_term: term
@@ -1126,31 +1147,35 @@
                                 }
 
                                 return term;
+
                             },
                             processResult: function (result) {
+
                                 result.meta.title = result.meta.title
                                     .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                     .replaceAll('&amp;', '&');
 
                                 result.sub_results.forEach(sub => {
+
                                     sub.url = sub.url.replace('#IndicatorID-', '?id=');
 
                                     sub.title = sub.title
                                         .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                         .replaceAll('&amp;', '&');
+
                                 });
                             }
                         });
 
                         $(search_modal).on('shown.bs.modal', () => {
+
                             const search_input = search_modal.querySelector('.pagefind-ui__search-input');
 
-                            if (!search_input) {
-                                return;
-                            }
+                            if (!search_input) return;
 
                             search_input.focus();
                             search_input.select();
+
                         });
                     });
                 </script>
@@ -1362,6 +1387,7 @@
 
 <script>
     function googleTranslateElementInit() {
+
         new google.translate.TranslateElement(
         {
             pageLanguage: "en",
@@ -1374,6 +1400,7 @@
         document
             .querySelectorAll("div[class^=VI] svg")
             .forEach((e) => (e.outerHTML = ""));
+
     }
 </script>
 
@@ -1381,17 +1408,17 @@
 
 <script
     type="text/javascript"
-    src="/IndicatorPublic/js/main.2cb27f09f10c76c3.js"
-    integrity="sha512-iaICTR6PWG4zbrmL69MtiVybfawXimbAI5YPb5CrDb&#43;QRgiX/4W11J6utqdl8wGY0zO9BbT110dFS2VhHYr60w=="
+    src="/IndicatorPublic/js/main.b5a4bb39c6f9e956.js"
+    integrity="sha512-IFR/T14MliYqj1FjEKKn&#43;KuzTQPEROIUZdo&#43;GWL1LkQyonV&#43;Ph1RiQ4kBd/tu&#43;DIek2FPl3gWTZT3V&#43;gpjkwRw=="
 ></script>
 
 <script
     type="text/javascript"
-    src="/IndicatorPublic/js/site.0c406db6f0a34e1e.js"
-    integrity="sha512-Fe3P28eMLfzi8orYmRJ8kTiQB2LyFObFD/0wbjn9C1QqIausui3C0NL1lI26wcL0L0r60YRX2APG59LjFox1xQ=="
+    src="/IndicatorPublic/js/site.5059925e078263ff.js"
+    integrity="sha512-lx6l6X2f4LZTW6z7Uuht0oUdZKl6qI6CVWVHHakMNAhTGoMy4V525mqnSG3e7biz3oH3HbcyrpR/AARk9XsYQQ=="
 ></script>
 
-    <script type="text/javascript" src="/IndicatorPublic/js/accessible-autocomplete.min.20e7e606a030b0c1.js" integrity="sha512-oo28/kU49CzsZKQudUKfhzvYZkH&#43;oLMms6SAC1mRe5m4d9NxWwdAX/NpF&#43;2ePMCHP3tYplkF/1CM1C6MQnpfmg=="></script><script type="text/javascript" src="/IndicatorPublic/js/uhflist.d39e03b10574a48b.js" integrity="sha512-0JWYC5dKTOQY9ASwT0RnzTGtAyLWqL13OPvbJyWh9JVm2kA79l2X6m6mp4rq/OmrfkWGw/7vtvOAQGUIpaLchQ=="></script>
+    <script type="text/javascript" src="/IndicatorPublic/js/accessible-autocomplete.min.20e7e606a030b0c1.js" integrity="sha512-oo28/kU49CzsZKQudUKfhzvYZkH&#43;oLMms6SAC1mRe5m4d9NxWwdAX/NpF&#43;2ePMCHP3tYplkF/1CM1C6MQnpfmg=="></script>
 
 </body>
 </html>

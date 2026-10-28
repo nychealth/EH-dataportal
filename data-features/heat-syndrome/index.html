@@ -67,7 +67,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/","name":"The Environment and Health Data Portal: Home page","position":1},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/","name":"Data Features","position":2},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-syndrome/","name":"Real-time heat-related illness","position":3}]}</script>
 <script src="/IndicatorPublic/node_modules/jquery/dist/jquery.min.9d6bd9b75ea55acc.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR&#43;8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/css/all.min.c2b5ea5c3ed56d7e.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck&#43;w&#43;/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous"/>
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.c708c023f9041fb51d9ddc3e03764386fa55881a8e9d875d7531c5bebeb8885df85856db71636878c250dcfd6be780762dbc453e0924fabd78748d47a7253c2a.css" integrity="sha512-xwjAI/kEH7Udndw&#43;A3ZDhvpViBqOnYdddTHFvr64iF34WFbbcWNoeMJQ3P1r54B2LbxFPgkk&#43;r14dI1HpyU8Kg==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.76d32e5ad67edaebe99ca6def818f2b3095f4863c7c9fd7b7f76e80ecb519c6eda92103a7a228b301a523dcd335e6e6d96d2170b6198fe69ef511b2f24997af1.css" integrity="sha512-dtMuWtZ&#43;2uvpnKbe&#43;BjyswlfSGPHyf17f3boDstRnG7akhA6eiKLMBpSPc0zXm5tltIXC2GY/mnvURsvJJl68Q==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
 
 
 
@@ -99,7 +99,9 @@
     let DE_DEBUG_OVERRIDE = null;
 
     try {
+
         DE_DEBUG_OVERRIDE = localStorage.getItem('de_debug');
+
     } catch (e) {}
 
     const DE_DEBUG = DE_DEBUG_OVERRIDE !== null
@@ -469,7 +471,7 @@
 
     <main id="skip-header-target" tabindex="-1" role="main" data-pagefind-body><article class="container-fluid">
 
-  <div class="row">
+    <div class="row">
     <div class="col-md-11 mx-auto mt-2">
         <nav aria-label="breadcrumb" class="">
             <ul class="breadcrumb">
@@ -512,104 +514,102 @@
 </div>
 
 
-    <div class="row" data-pagefind-weight="7.0">
+        <div class="row" data-pagefind-weight="7.0">
 
-        
-        <div class="sr-only">
-          <div style="min-height:569px" id="datawrapper-vis-azZ94"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/azZ94/embed.js" charset="utf-8" data-target="#datawrapper-vis-azZ94"></script><noscript><img src="https://datawrapper.dwcdn.net/azZ94/full.png" alt="" /></noscript></div>
-        </div>
-      </div>
-
-    <div class="row">
-      <div class="col-md-11 mx-auto">
-      <p><strong>More info about:</strong> <a href="#syndromicmodal" data-toggle="modal">syndromic surveillance</a> | <a href="#heatmodal" data-toggle="modal">heat syndrome</a> | <a href="#whatmodal" data-toggle="modal">how we use these data</a></p>
-      </div>
-    </div>
-
-    <div class="row mt-2" aria-hidden="true">
-      <div class="col-11 mx-auto">
-        <div class="row" style="background-color:#f1f1f1; padding: 10px; border-radius: 5px;">
-          <h3>Daily data: <span id="yearHeader">2023</span></h3>
-
-          <div id="yearButtonHolder" class="float-right ml-auto">
-
-          </div>
-
+            
+            <div class="sr-only">
+                <div style="min-height:569px" id="datawrapper-vis-azZ94"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/azZ94/embed.js" charset="utf-8" data-target="#datawrapper-vis-azZ94"></script><noscript><img src="https://datawrapper.dwcdn.net/azZ94/full.png" alt="" /></noscript></div>
+            </div>
         </div>
 
-        <div class="row my-2" id="vis1">
-          
+        <div class="row">
+            <div class="col-md-11 mx-auto">
+            <p><strong>More info about:</strong> <a href="#syndromicmodal" data-toggle="modal">syndromic surveillance</a> | <a href="#heatmodal" data-toggle="modal">heat syndrome</a> | <a href="#whatmodal" data-toggle="modal">how we use these data</a></p>
+            </div>
         </div>
 
-        <div class="row mt-4" style="background-color:#f1f1f1; padding: 10px; border-radius: 5px;">
-          <H4>Data since 2017</H4>
+        <div class="row mt-2" aria-hidden="true">
+            <div class="col-11 mx-auto">
+                <div class="row" style="background-color:#f1f1f1; padding: 10px; border-radius: 5px;">
+                    <h3>Daily data: <span id="yearHeader">2023</span></h3>
 
-          <div class="float-right ml-auto">
-            <button class="btn btn-sm btn-outline-secondary mr-1 yearButtons" id="scattertoggle" onclick="toggleScatter(1)">Show time</button>
-          </div>
-      </div>
+                    <div id="yearButtonHolder" class="float-right ml-auto"></div>
 
-      <div class="row my-2" id="vis2">
-        
-      </div>
+                </div>
 
-      </div>
+                <div class="row my-2" id="vis1">
+                    
+                </div>
+
+                <div class="row mt-4" style="background-color:#f1f1f1; padding: 10px; border-radius: 5px;">
+                    <H4>Data since 2017</H4>
+
+                    <div class="float-right ml-auto">
+                        <button class="btn btn-sm btn-outline-secondary mr-1 yearButtons" id="scattertoggle" onclick="toggleScatter(1)">Show time</button>
+                    </div>
+                </div>
+
+                <div class="row my-2" id="vis2">
+                    
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 ml-auto">
+                <div class="mt-4" style="border-radius: 5px;">
+
+                    <a class="weatherwidget-io" href="https://forecast7.com/en/40d71n74d01/new-york/?unit=us" data-label_1="NEW YORK CITY" data-label_2="WEATHER" data-theme="original" >NEW YORK CITY WEATHER</a>
+                    <script>
+                    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+                    </script>
+                </div>
+            </div>
+            <div class="col-md-5 mr-auto">
+                <div class="mt-4 asidebox p-2 fs-md">
+                    <p>Extreme heat is dangerous. It can cause illness, make chronic conditions worse, and even kill. Heat-related illnesses - including heat exhaustion, muscle cramps, fainting, and heat stroke (the most serious form) - happen when the body cannot cool down enough. Heat can also worsen chronic conditions, such as cardiovascular diseases or kidney conditions.</p>
+
+                    <p>To learn more about heat and health, visit <a href="https://www1.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-heat.page">Extreme Heat and Health</a>. To stay safe in the heat, visit <a href="https://www1.nyc.gov/assets/em/html/beat-the-heat/beattheheat.html">Beat the Heat</a>.</p>
+                </div>
+        </div>
     </div>
 
-    <div class="row">
-    <div class="col-md-6 ml-auto">
-      <div class="mt-4" style="border-radius: 5px;">
 
-        <a class="weatherwidget-io" href="https://forecast7.com/en/40d71n74d01/new-york/?unit=us" data-label_1="NEW YORK CITY" data-label_2="WEATHER" data-theme="original" >NEW YORK CITY WEATHER</a>
-        <script>
-        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-        </script>
-      </div>
-    </div>
-      <div class="col-md-5 mr-auto">
-        <div class="mt-4 asidebox p-2 fs-md">
-          <p>Extreme heat is dangerous. It can cause illness, make chronic conditions worse, and even kill. Heat-related illnesses - including heat exhaustion, muscle cramps, fainting, and heat stroke (the most serious form) - happen when the body cannot cool down enough. Heat can also worsen chronic conditions, such as cardiovascular diseases or kidney conditions.</p>
-
-          <p>To learn more about heat and health, visit <a href="https://www1.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-heat.page">Extreme Heat and Health</a>. To stay safe in the heat, visit <a href="https://www1.nyc.gov/assets/em/html/beat-the-heat/beattheheat.html">Beat the Heat</a>.</p>
+<div class="modal fade" id="syndromicmodal" tabindex="-1" role="dialog" aria-labelledby="syndromicmodaltitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="syndromicmodaltitle" data-pagefind-ignore="all">Syndromic surveillance</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" data-pagefind-weight="5.0">
+                <p>The Centers for Disease Control and Prevention (CDC) defines surveillance as "the ongoing, systematic collection, analysis, and interpretation of health-related data essential to planning, implementation, and evaluation of public health practice, closely integrated with the timely dissemination of these data to those responsible for prevention and control." A syndrome is a group of signs (something a health care provider can observe, like a rash, or body temperature) and symptoms (something a patient feels - like pain, or fatigue) that are often associated with a particular disease or condition.
+                </p>
+                <p>Heat syndrome is identified in surveillance data by looking for diagnostic codes for heat-related illness and by searching chief complaints (descriptions of why patients are at the ED) for words related to heat exposure and heat-related illness, such as overheating, sunstroke, and similar terms.
+                </p>
+                <p>Syndrome data are inherently non-specific and are not based on diagnostic testing. While the NYC syndromic surveillance system captures data on 100% of ED visits in the city (as of 5/1/16), the data are not comprehensive because some residents seek care outside the city. These data are not exact measures and should be used to understand trends, rather than to count cases. In addition, recent data are not final and are subject to change. In addition, heat-related illness cases in syndromic surveillance data provide a useful indicator of the lethal impacts of extreme heat events, but the number of HRI cases does not reflect the full burden of health impacts, such as increases in death or hospital visits for heat-sensitive chronic conditions, which are not available in near-real time.
+                    </p>
+                    <p>For more syndromes tracked by the Health Department, visit <a href="https://a816-health.nyc.gov/hdi/epiquery/visualizations?PageType=ps&PopulationSource=Syndromic">EpiQuery</a>.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
         </div>
     </div>
 </div>
 
-  
-  <div class="modal fade" id="syndromicmodal" tabindex="-1" role="dialog" aria-labelledby="syndromicmodaltitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="syndromicmodaltitle" data-pagefind-ignore="all">Syndromic surveillance</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" data-pagefind-weight="5.0">
-            <p>The Centers for Disease Control and Prevention (CDC) defines surveillance as "the ongoing, systematic collection, analysis, and interpretation of health-related data essential to planning, implementation, and evaluation of public health practice, closely integrated with the timely dissemination of these data to those responsible for prevention and control." A syndrome is a group of signs (something a health care provider can observe, like a rash, or body temperature) and symptoms (something a patient feels - like pain, or fatigue) that are often associated with a particular disease or condition.
-            </p>
-            <p>Heat syndrome is identified in surveillance data by looking for diagnostic codes for heat-related illness and by searching chief complaints (descriptions of why patients are at the ED) for words related to heat exposure and heat-related illness, such as overheating, sunstroke, and similar terms.
-            </p>
-            <p>Syndrome data are inherently non-specific and are not based on diagnostic testing. While the NYC syndromic surveillance system captures data on 100% of ED visits in the city (as of 5/1/16), the data are not comprehensive because some residents seek care outside the city. These data are not exact measures and should be used to understand trends, rather than to count cases. In addition, recent data are not final and are subject to change. In addition, heat-related illness cases in syndromic surveillance data provide a useful indicator of the lethal impacts of extreme heat events, but the number of HRI cases does not reflect the full burden of health impacts, such as increases in death or hospital visits for heat-sensitive chronic conditions, which are not available in near-real time.
-                </p>
-                <p>For more syndromes tracked by the Health Department, visit <a href="https://a816-health.nyc.gov/hdi/epiquery/visualizations?PageType=ps&PopulationSource=Syndromic">EpiQuery</a>.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
-      
-      <div class="modal fade" id="heatmodal" tabindex="-1" role="dialog" aria-labelledby="heatmodaltitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-          <div class="modal-content">
+<div class="modal fade" id="heatmodal" tabindex="-1" role="dialog" aria-labelledby="heatmodaltitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="heatmodaltitle" data-pagefind-ignore="all">Heat syndrome</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+                <h5 class="modal-title" id="heatmodaltitle" data-pagefind-ignore="all">Heat syndrome</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body" data-pagefind-weight="5.0">
                 <p>A heat syndrome is identified in surveillance data by looking for diagnostic codes for heat-related illness and by searching chief complaints (descriptions of why patients are at the ED) for words related to heat, such as overheating, sunstroke, and similar terms.                </p>
@@ -619,32 +619,32 @@
                 </p>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
+</div>
 
-    
-    <div class="modal fade" id="whatmodal" tabindex="-1" role="dialog" aria-labelledby="whatmodaltitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-          <div class="modal-content">
+
+<div class="modal fade" id="whatmodal" tabindex="-1" role="dialog" aria-labelledby="whatmodaltitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="whatmodaltitle" data-pagefind-ignore="all">What do we use these data for?</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+                <h5 class="modal-title" id="whatmodaltitle" data-pagefind-ignore="all">What do we use these data for?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body" data-pagefind-weight="5.0">
-              <p>Tracking heat-related illness (HRI) in near-real time can help provide situational awareness, supplementing the weather forecast as an indicator of public health risk. HRI detected in emergency department syndromic surveillance data are strongly associated with hot weather and highly correlated with daily counts of HRI hospital discharge data. However, HRI counts detected in the ED syndromic surveillance data represent suspected rather than confirmed illness, and are most useful to track trends. For example, some records may be counted as cases when they are not HRI, while other HRI cases may go undetected due to differences in hospital coding practices or because of what patients say when they describe what is bothering them.</p>
+                <p>Tracking heat-related illness (HRI) in near-real time can help provide situational awareness, supplementing the weather forecast as an indicator of public health risk. HRI detected in emergency department syndromic surveillance data are strongly associated with hot weather and highly correlated with daily counts of HRI hospital discharge data. However, HRI counts detected in the ED syndromic surveillance data represent suspected rather than confirmed illness, and are most useful to track trends. For example, some records may be counted as cases when they are not HRI, while other HRI cases may go undetected due to differences in hospital coding practices or because of what patients say when they describe what is bothering them.</p>
             </p>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
+    </div>
 
 </article>
 
@@ -769,6 +769,7 @@
                 <div id="search"></div>
                 <script>
                     window.addEventListener('DOMContentLoaded', () => {
+
                         const search_modal = document.getElementById('searchModal');
                         const search_root = document.getElementById('search');
 
@@ -777,6 +778,7 @@
                         }
 
                         new PagefindUI({
+
                             element: '#search',
                             showSubResults: true,
                             showImages: false,
@@ -784,6 +786,7 @@
                             showEmptyFilters: true,
                             debounceTimeoutMs: 500,
                             processTerm: function (term) {
+
                                 if (typeof gtag === 'function') {
                                     gtag('event', 'search', {
                                         search_term: term
@@ -791,31 +794,35 @@
                                 }
 
                                 return term;
+
                             },
                             processResult: function (result) {
+
                                 result.meta.title = result.meta.title
                                     .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                     .replaceAll('&amp;', '&');
 
                                 result.sub_results.forEach(sub => {
+
                                     sub.url = sub.url.replace('#IndicatorID-', '?id=');
 
                                     sub.title = sub.title
                                         .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                         .replaceAll('&amp;', '&');
+
                                 });
                             }
                         });
 
                         $(search_modal).on('shown.bs.modal', () => {
+
                             const search_input = search_modal.querySelector('.pagefind-ui__search-input');
 
-                            if (!search_input) {
-                                return;
-                            }
+                            if (!search_input) return;
 
                             search_input.focus();
                             search_input.select();
+
                         });
                     });
                 </script>
@@ -1027,6 +1034,7 @@
 
 <script>
     function googleTranslateElementInit() {
+
         new google.translate.TranslateElement(
         {
             pageLanguage: "en",
@@ -1039,6 +1047,7 @@
         document
             .querySelectorAll("div[class^=VI] svg")
             .forEach((e) => (e.outerHTML = ""));
+
     }
 </script>
 
@@ -1046,14 +1055,14 @@
 
 <script
     type="text/javascript"
-    src="/IndicatorPublic/js/main.2cb27f09f10c76c3.js"
-    integrity="sha512-iaICTR6PWG4zbrmL69MtiVybfawXimbAI5YPb5CrDb&#43;QRgiX/4W11J6utqdl8wGY0zO9BbT110dFS2VhHYr60w=="
+    src="/IndicatorPublic/js/main.b5a4bb39c6f9e956.js"
+    integrity="sha512-IFR/T14MliYqj1FjEKKn&#43;KuzTQPEROIUZdo&#43;GWL1LkQyonV&#43;Ph1RiQ4kBd/tu&#43;DIek2FPl3gWTZT3V&#43;gpjkwRw=="
 ></script>
 
 <script
     type="text/javascript"
-    src="/IndicatorPublic/js/site.0c406db6f0a34e1e.js"
-    integrity="sha512-Fe3P28eMLfzi8orYmRJ8kTiQB2LyFObFD/0wbjn9C1QqIausui3C0NL1lI26wcL0L0r60YRX2APG59LjFox1xQ=="
+    src="/IndicatorPublic/js/site.5059925e078263ff.js"
+    integrity="sha512-lx6l6X2f4LZTW6z7Uuht0oUdZKl6qI6CVWVHHakMNAhTGoMy4V525mqnSG3e7biz3oH3HbcyrpR/AARk9XsYQQ=="
 ></script>
 
     

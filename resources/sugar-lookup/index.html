@@ -67,7 +67,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/","name":"The Environment and Health Data Portal: Home page","position":1},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/resources/","name":"Resources","position":2},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/resources/sugar-lookup/","name":"The Department’s Pre-calculations Sugar Lookup Tool","position":3}]}</script>
 <script src="/IndicatorPublic/node_modules/jquery/dist/jquery.min.9d6bd9b75ea55acc.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR&#43;8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/css/all.min.c2b5ea5c3ed56d7e.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck&#43;w&#43;/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous"/>
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.c708c023f9041fb51d9ddc3e03764386fa55881a8e9d875d7531c5bebeb8885df85856db71636878c250dcfd6be780762dbc453e0924fabd78748d47a7253c2a.css" integrity="sha512-xwjAI/kEH7Udndw&#43;A3ZDhvpViBqOnYdddTHFvr64iF34WFbbcWNoeMJQ3P1r54B2LbxFPgkk&#43;r14dI1HpyU8Kg==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.76d32e5ad67edaebe99ca6def818f2b3095f4863c7c9fd7b7f76e80ecb519c6eda92103a7a228b301a523dcd335e6e6d96d2170b6198fe69ef511b2f24997af1.css" integrity="sha512-dtMuWtZ&#43;2uvpnKbe&#43;BjyswlfSGPHyf17f3boDstRnG7akhA6eiKLMBpSPc0zXm5tltIXC2GY/mnvURsvJJl68Q==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
 
 
 
@@ -99,7 +99,9 @@
     let DE_DEBUG_OVERRIDE = null;
 
     try {
+
         DE_DEBUG_OVERRIDE = localStorage.getItem('de_debug');
+
     } catch (e) {}
 
     const DE_DEBUG = DE_DEBUG_OVERRIDE !== null
@@ -468,34 +470,34 @@
 </div></header>
 
     <main id="skip-header-target" tabindex="-1" role="main" data-pagefind-body><style>
-  .combo-cell {
-  padding: 6px 0;
+    .combo-cell {
+    padding: 6px 0;
 }
 
 .combo-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 3px 0;            
-  border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3px 0;            
+    border-bottom: 1px solid #ddd;
 }
 
 .combo-row:last-child {
-  border-bottom: none; 
+    border-bottom: none; 
 }
 
 .combo-label {
-  font-size: 0.85rem;
-  color: #303030;
-  margin-right: 10px;
+    font-size: 0.85rem;
+    color: #303030;
+    margin-right: 10px;
 }
 
 .combo-value {
-  font-weight: 700;           
-  font-size: 0.95rem;
-  color: #000;
-  text-align: right;
-  white-space: nowrap;
+    font-weight: 700;           
+    font-size: 0.95rem;
+    color: #000;
+    text-align: right;
+    white-space: nowrap;
 }
 
 </style>
@@ -574,157 +576,168 @@
 let sugarData = [];
 
 d3.csv("sugar-items-data.csv").then(function(data) {
-  sugarData = data;
-  renderFullSugarTable();
+    sugarData = data;
+    renderFullSugarTable();
 });
 
 function renderFullSugarTable() {
-  if (!sugarData || sugarData.length === 0) return;
 
-  const columns = Object.keys(sugarData[0]); 
+    if (!sugarData || sugarData.length === 0) return;
 
-  
-
-  $("#fullSugarTable thead").empty().append(
-    $("<tr>").append([
-      ...columns.map(c => $("<th>").text(c)),
-      $("<th>").text("Sugar info")  
-    ])
-  );
-
-  
-
-  const tbody = $("#fullSugarTable tbody").empty();
-  sugarData.forEach(row => {
-    const tr = $("<tr>");
+    const columns = Object.keys(sugarData[0]); 
 
     
 
-    columns.forEach(col => {
-      tr.append($("<td>").text(row[col]));
+    $("#fullSugarTable thead").empty().append(
+        $("<tr>").append([
+            ...columns.map(c => $("<th>").text(c)),
+            $("<th>").text("Sugar info")  
+        ])
+    );
+
+    
+
+    const tbody = $("#fullSugarTable tbody").empty();
+    sugarData.forEach(row => {
+
+        const tr = $("<tr>");
+
+        
+
+        columns.forEach(col => {
+            tr.append($("<td>").text(row[col]));
+        });
+
+        
+
+        tr.append($("<td>"));
+
+        tbody.append(tr);
+
     });
 
     
 
-    tr.append($("<td>"));
+    const numericCols = columns
+        .map((c, i) => ({ index: i, sample: sugarData[0][c] }))
+        .filter(col => !isNaN(parseFloat(col.sample)));
 
-    tbody.append(tr);
-  });
+    
 
-  
+    const table = $("#fullSugarTable").DataTable({
+        paging: true,
+        searching: true,
+        pageLength: 25,
+        lengthChange: false,
+        ordering: false,
+        autoWidth: false,
+        destroy: true,
 
-  const numericCols = columns
-    .map((c, i) => ({ index: i, sample: sugarData[0][c] }))
-    .filter(col => !isNaN(parseFloat(col.sample)));
+        columnDefs: [
+            {
+                targets: 0,         
+                render: function (data, type, row) {
 
-  
+                    const original = row[0]; 
 
-  const table = $("#fullSugarTable").DataTable({
-    paging: true,
-    searching: true,
-    pageLength: 25,
-    lengthChange: false,
-    ordering: false,
-    autoWidth: false,
-    destroy: true,
-
-    columnDefs: [
-      {
-        targets: 0,         
-        render: function (data, type, row) {
-          const original = row[0]; 
-
-          return `
+                    return `
             <span class="fs-rg font-weight-bold">${original}</span>
           `;
-        }
-      },
 
-      {
-        targets: 1,         
-        render: function (data, type, row) {
-          const original = row[1]; 
+                }
+            },
 
-          return `
+            {
+                targets: 1,         
+                render: function (data, type, row) {
+
+                    const original = row[1]; 
+
+                    return `
             <span class="fs-sm font-weight-bold">${original}</span>
           `;
-        }
-      },
 
-      
+                }
+            },
 
-      { targets: [2, 3, 4], visible: false },
+            
 
-      
+            { targets: [2, 3, 4], visible: false },
 
-      {
-        targets: 5,
-        data: null,
-        render: function (data, type, row) {
-          const c3 = row[2]; 
-          const c4 = row[3]; 
-          const c5 = row[4]; 
+            
 
-          return `
-            <div class="combo-cell">
-              <div class="combo-row">
-                <span class="combo-label">NFL: Added Sugars:</span>
-                <span class="combo-value">${c5}</span>
-              </div>
+            {
+                targets: 5,
+                data: null,
+                render: function (data, type, row) {
 
-              <div class="combo-row">
-                <span class="combo-label">NFL: Calories:</span>
-                <span class="combo-value">${c4}</span>
-              </div>
+                    const c3 = row[2]; 
+                    const c4 = row[3]; 
+                    const c5 = row[4]; 
 
-              <div class="combo-row">
-                <span class="combo-label">Calories needed for 50g of added sugar:</span>
-                <span class="combo-value">${c3}</span>
-              </div>
-            </div>
-          `;
-        }
-      }
-    ]
-  });
+                    return `
+                        <div class="combo-cell">
+                            <div class="combo-row">
+                                <span class="combo-label">NFL: Added Sugars:</span>
+                                <span class="combo-value">${c5}</span>
+                            </div>
 
-  
+                            <div class="combo-row">
+                                <span class="combo-label">NFL: Calories:</span>
+                                <span class="combo-value">${c4}</span>
+                            </div>
 
-  const dtFilter = $("#fullSugarTable_filter");
-  $("#searchContainer").append(dtFilter);
+                            <div class="combo-row">
+                                <span class="combo-label">Calories needed for 50g of added sugar:</span>
+                                <span class="combo-value">${c3}</span>
+                            </div>
+                        </div>
+                    `;
 
-  const label = dtFilter.find("label");
-  const input = label.find("input");
+                }
+            }
+        ]
+    });
 
-  dtFilter.empty();
-  input.appendTo(dtFilter);
-  input.addClass("form-control form-control-sm w-100");
+    
 
-  input.on("input", function () {
-    table.search(this.value).draw();
-  });
+    const dtFilter = $("#fullSugarTable_filter");
+    $("#searchContainer").append(dtFilter);
 
-  
+    const label = dtFilter.find("label");
+    const input = label.find("input");
 
-  const brandFilter = $("#brandFilter");
+    dtFilter.empty();
+    input.appendTo(dtFilter);
+    input.addClass("form-control form-control-sm w-100");
 
-  sugarData.forEach(d => d["Brand Name"] = d["Brand Name"].trim());
-  const uniqueBrands = [...new Set(sugarData.map(d => d["Brand Name"]))].sort();
+    input.on("input", function () {
+        table.search(this.value).draw();
+    });
 
-  uniqueBrands.forEach(b => brandFilter.append(`<option value="${b}">${b}</option>`));
+    
 
-  brandFilter.on("change", function() {
-    const val = $(this).val();
-    table.column(columns.indexOf("Brand Name"))
-        .search(val || "", true, false) 
-        .draw();
-  });
+    const brandFilter = $("#brandFilter");
+
+    sugarData.forEach(d => d["Brand Name"] = d["Brand Name"].trim());
+    const uniqueBrands = [...new Set(sugarData.map(d => d["Brand Name"]))].sort();
+
+    uniqueBrands.forEach(b => brandFilter.append(`<option value="${b}">${b}</option>`));
+
+    brandFilter.on("change", function() {
+
+        const val = $(this).val();
+        table.column(columns.indexOf("Brand Name"))
+            .search(val || "", true, false) 
+            .draw();
+
+    });
 
 
-  $("#clearBrandFilter").on("click", function() {
-    brandFilter.val("");
-    table.column(columns.indexOf("Brand Name")).search("").draw();
-  });
+    $("#clearBrandFilter").on("click", function() {
+        brandFilter.val("");
+        table.column(columns.indexOf("Brand Name")).search("").draw();
+    });
 }
 </script><ul id="results"></ul>
     </main>
@@ -743,6 +756,7 @@ function renderFullSugarTable() {
                 <div id="search"></div>
                 <script>
                     window.addEventListener('DOMContentLoaded', () => {
+
                         const search_modal = document.getElementById('searchModal');
                         const search_root = document.getElementById('search');
 
@@ -751,6 +765,7 @@ function renderFullSugarTable() {
                         }
 
                         new PagefindUI({
+
                             element: '#search',
                             showSubResults: true,
                             showImages: false,
@@ -758,6 +773,7 @@ function renderFullSugarTable() {
                             showEmptyFilters: true,
                             debounceTimeoutMs: 500,
                             processTerm: function (term) {
+
                                 if (typeof gtag === 'function') {
                                     gtag('event', 'search', {
                                         search_term: term
@@ -765,31 +781,35 @@ function renderFullSugarTable() {
                                 }
 
                                 return term;
+
                             },
                             processResult: function (result) {
+
                                 result.meta.title = result.meta.title
                                     .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                     .replaceAll('&amp;', '&');
 
                                 result.sub_results.forEach(sub => {
+
                                     sub.url = sub.url.replace('#IndicatorID-', '?id=');
 
                                     sub.title = sub.title
                                         .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                         .replaceAll('&amp;', '&');
+
                                 });
                             }
                         });
 
                         $(search_modal).on('shown.bs.modal', () => {
+
                             const search_input = search_modal.querySelector('.pagefind-ui__search-input');
 
-                            if (!search_input) {
-                                return;
-                            }
+                            if (!search_input) return;
 
                             search_input.focus();
                             search_input.select();
+
                         });
                     });
                 </script>
@@ -1001,6 +1021,7 @@ function renderFullSugarTable() {
 
 <script>
     function googleTranslateElementInit() {
+
         new google.translate.TranslateElement(
         {
             pageLanguage: "en",
@@ -1013,6 +1034,7 @@ function renderFullSugarTable() {
         document
             .querySelectorAll("div[class^=VI] svg")
             .forEach((e) => (e.outerHTML = ""));
+
     }
 </script>
 
@@ -1020,14 +1042,14 @@ function renderFullSugarTable() {
 
 <script
     type="text/javascript"
-    src="/IndicatorPublic/js/main.2cb27f09f10c76c3.js"
-    integrity="sha512-iaICTR6PWG4zbrmL69MtiVybfawXimbAI5YPb5CrDb&#43;QRgiX/4W11J6utqdl8wGY0zO9BbT110dFS2VhHYr60w=="
+    src="/IndicatorPublic/js/main.b5a4bb39c6f9e956.js"
+    integrity="sha512-IFR/T14MliYqj1FjEKKn&#43;KuzTQPEROIUZdo&#43;GWL1LkQyonV&#43;Ph1RiQ4kBd/tu&#43;DIek2FPl3gWTZT3V&#43;gpjkwRw=="
 ></script>
 
 <script
     type="text/javascript"
-    src="/IndicatorPublic/js/site.0c406db6f0a34e1e.js"
-    integrity="sha512-Fe3P28eMLfzi8orYmRJ8kTiQB2LyFObFD/0wbjn9C1QqIausui3C0NL1lI26wcL0L0r60YRX2APG59LjFox1xQ=="
+    src="/IndicatorPublic/js/site.5059925e078263ff.js"
+    integrity="sha512-lx6l6X2f4LZTW6z7Uuht0oUdZKl6qI6CVWVHHakMNAhTGoMy4V525mqnSG3e7biz3oH3HbcyrpR/AARk9XsYQQ=="
 ></script>
 
     

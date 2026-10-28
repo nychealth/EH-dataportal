@@ -67,7 +67,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/","name":"The Environment and Health Data Portal: Home page","position":1},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/","name":"Data Explorer","position":2},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/mice-and-rats/","name":"Mice and rats","position":3}]}</script>
 <script src="/IndicatorPublic/node_modules/jquery/dist/jquery.min.9d6bd9b75ea55acc.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR&#43;8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/css/all.min.c2b5ea5c3ed56d7e.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck&#43;w&#43;/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous"/>
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.c708c023f9041fb51d9ddc3e03764386fa55881a8e9d875d7531c5bebeb8885df85856db71636878c250dcfd6be780762dbc453e0924fabd78748d47a7253c2a.css" integrity="sha512-xwjAI/kEH7Udndw&#43;A3ZDhvpViBqOnYdddTHFvr64iF34WFbbcWNoeMJQ3P1r54B2LbxFPgkk&#43;r14dI1HpyU8Kg==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.76d32e5ad67edaebe99ca6def818f2b3095f4863c7c9fd7b7f76e80ecb519c6eda92103a7a228b301a523dcd335e6e6d96d2170b6198fe69ef511b2f24997af1.css" integrity="sha512-dtMuWtZ&#43;2uvpnKbe&#43;BjyswlfSGPHyf17f3boDstRnG7akhA6eiKLMBpSPc0zXm5tltIXC2GY/mnvURsvJJl68Q==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
 
 
 
@@ -99,7 +99,9 @@
     let DE_DEBUG_OVERRIDE = null;
 
     try {
+
         DE_DEBUG_OVERRIDE = localStorage.getItem('de_debug');
+
     } catch (e) {}
 
     const DE_DEBUG = DE_DEBUG_OVERRIDE !== null
@@ -1304,6 +1306,7 @@
         const key = "de-announcement-explorer-dismissed";
 
         try {
+
             if (localStorage.getItem(key)) {
                 banner.remove();
                 return;
@@ -1314,7 +1317,6 @@
             banner.remove();
             try { localStorage.setItem(key, "1"); } catch (e) {}
         });
-
     })();
 
 </script>
@@ -1798,7 +1800,7 @@
                     Mice and rats data: 
                     <span class="indicator-name"></span>. 
                     Accessed at <span class="citation-url">https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/mice-and-rats/</span> on
-                    <span class="citation-date">Oct 24, 2026</span>.
+                    <span class="citation-date">Oct 28, 2026</span>.
                     </span>
                     <span class="float-right">
                     <a href="#" id="citeButton" class="de-copy-citation-button" data-citation-target="citeText"><i class="fas fa-copy mr-1" aria-hidden="true"></i>Copy citation.</a>
@@ -1808,7 +1810,7 @@
 
         </div>
     </div>
-</div><script type="text/javascript" src="/IndicatorPublic/js/data-explorer/de-tab-content.267ed4b944e3708e.js" integrity="sha512-mvbahZX8k8FCtx43ueYughXKslL2Be/S1b6esjY6yKuSDDfREtpS93cUsgUWSj96eABNoZxw5qxJDBnjxD0c7w=="></script>
+</div><script type="text/javascript" src="/IndicatorPublic/js/data-explorer/de-tab-content.0c5f9c9207c3f777.js" integrity="sha512-&#43;bNiIMAwYhq39nxqklYQaTTHo9qob0Q67jQSBjo/7P5hHCmvli8atQz98BwGX7OAQ8UBM31BKE&#43;IMI/3dj8rHw=="></script>
 
 <style>
          
@@ -2083,22 +2085,22 @@
 <script type="text/javascript" src="/IndicatorPublic/js/naturalSort.ea08f0d721e54282.js" integrity="sha512-hQhumJPdtYDwyuIoXLVeAmV5VJ7FNwV/sEtkmK9DhOjAbutswmwBfaQN5qzuovmcmsAOdzjLpdTcu2ugGptfFw=="></script>
 
 
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/global.c332bc173c1977a5.js" integrity="sha512-2RHb/cI2Csn1x/Gmbm1SXw8ORme5e&#43;/hZIMrpCQKbDLtjOTKlkuIElB5axhsgKCvmn49btREEAm0N9Mjk/spPw=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/app.3e10484b8b985359.js" integrity="sha512-J2uv0MDQvCWom4h1bEqT1eipC7zONVf8i0XDIe3PzUKulflnNWF/aKykvdWok85tH/3AdfAVka0wcNDOhpy0Sg=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/data.f06958b0f3250075.js" integrity="sha512-7BrSeaD&#43;u7JKWooM&#43;VpYaNKAlkJuHgdGCPCqffX61qT/S0RSG6v2&#43;jToP&#43;RadIXL7FjZJNAs3HJTiPV5pY6EzQ=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/measures.cf08a30e58b2020a.js" integrity="sha512-R7meXIGjuea63KOU1D0w5gsq6fRpoWE8o1v&#43;fv8lnwW3alO/vNDPmiAbl&#43;2NBvXnnmWwI/3HijhoKy28irmuNw=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/table.b6ebabe68a2418b2.js" integrity="sha512-qHj8BO0oCk4IXz7Ol&#43;wMquVX6CdWwP7GAhXdy6021cG/U1PJPVDqcNFbQIzdEj5vNRklCAEnDItxoOOYILGs2Q=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/map.fb37c15a379dd6cd.js" integrity="sha512-BofvZDBb7cNoEZUBouEh116ngy4pBS8xE36X4bob6QUY6pWkzjjb9d0&#43;AI0NECXqM1rf7zbY3CinSaVS9eupfw=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/311.47dff3e847cf0c34.js" integrity="sha512-G&#43;uiutuOMB5pEIe9POzrV/zPzfuwssncHG9EC/IS9xYi3Nihg8rNrale4gF7&#43;Mc7P7RtL71WkMKA1BfVkYG1ew=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/topic-indicator-selector.67c179c3b6d9b5c3.js" integrity="sha512-7S/sWpUrhFtD3RTOgVrtS2Ex9MvUurcxU1eTl7vEpc6jIIsGiabR1QoPtbwILJ&#43;aWup8TE2QfWG07nA1cCIlqw=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/menu.26b899e7aef995bd.js" integrity="sha512-vGJEWj9LDbGypKRTgRBmFmFGw/jW&#43;LjNmWW3ceONPHqh26otMMug9KWC1LvvLAeKTOoT5PBOlt9cGXJkcWFlBw=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/bar.6ed5732edab330f9.js" integrity="sha512-pMktEAFtE1W49vCK0utx4t9jtpcvNOYlFNm23noztUFNBhuJ2Ts74RTsZmf70j6D8ZNhpTa4fewwZ0PhBbhBCg=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/trend.e7f8b39964eab814.js" integrity="sha512-Ax4YxIu0Kh3F4hLSQ9JBP33lRuCwn7&#43;T36SjdrLxojEzfhweu0E9UHUOxn1aOdNnu&#43;CQm6eM592TkvEJRlsXoA=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/correlate.5c2e4622885d4bba.js" integrity="sha512-uMwKITa6d5yyEJSN0/MIGo7Iy6&#43;UoHEDeENw1DY6UAIZeV1ij5MK/ZF2pFp4D3U8HeE1MJeddT67bHgBZyPrZQ=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/disparities.407f5163ed9f0616.js" integrity="sha512-AlVGRsSUoCJjjaPTgND417NQ19b&#43;36X&#43;NUF1gWRolS&#43;7pQvonaIiYnIgGk1OL1mX5zi769Ue21eWm3WKG8Qnjg=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/global.e107fa142c37c568.js" integrity="sha512-OkK/e&#43;UVl4aIyyuNT1qrgFvgYix1xbETjLobpbRNZ3&#43;rOyNlKxrrdDwDonbdXxdLlGxA5nIediJ3c1Mx3G2IcQ=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/app.75a5f71015b26721.js" integrity="sha512-P7zbv1cfrujoZnl8jN1EJ9a7UhjteLG1TZocYDMI11s4LKI7aLfnQHQa9UM6&#43;xNFkSyHLDycfzt7e9skbBcnNg=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/data.d886ff2a8e65705e.js" integrity="sha512-ekU0DrLlxqI3AFHznKgqHhEVYXsEAGoOLPhKPVDyyP4S9alb14TvDY5nKhDoPxJpAKlxt2cb1JjCfqGAeGgTFg=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/measures.dbb84ec31ee3dfa5.js" integrity="sha512-uWj7kq&#43;TS8NDsQzzaMxxBMrr3i5YDMBV7HJJ2T5gu2tXFUu7Vnf5VQL3VBHYKhxntp4K5KqZ4nAxVY7eVQzSzw=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/table.a09d081e7d7bbe91.js" integrity="sha512-cPBhJ65FKva7s11ZxJ1/YK1F5qC6nAMHNBRpXW&#43;2R69YeJhx2RinhKuMnY6E4mnt2NIzWksv8d4ZnrGy7pkn1A=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/map.91c53cd3a794f996.js" integrity="sha512-fB4Q2jwrSbAh7bjCDUbUAfnAPdJEWX&#43;vsJDhvFTS41C1PGcZVwGHywPL/yrP9ctvVmb9GFYr7Z4l8vxKM5NMyw=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/311.02bf62b1af6500ce.js" integrity="sha512-GyTrLU5LNh0jZXyEh&#43;Wb1cNov9wWaLETaJefaXdVl8tvo&#43;EiNhDrw&#43;1pKE4uEH4Lh6uzt6&#43;GyeAxE2kOLFM4NA=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/topic-indicator-selector.03deac7f9c2efb37.js" integrity="sha512-J6O6yS69ySbWDjlSbG2kIe831lqg8BV2aZKVtyb/4XPXXddIAMnDrRVHKf89jaj/YhbOKg6C1yG3tkqkrFB2TA=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/menu.c644a819b673dbee.js" integrity="sha512-G&#43;V0LWMO02xm88f&#43;gILs1JZkv5/NMnsNM/WIdZxjqZKWwZv9EWM1vP1qKFxBcAfr1y/vZn2ugkWpO67tMHK7vg=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/bar.1fa0ff09eef624e8.js" integrity="sha512-j5WORjrAFwPXXF3dNxKzyGjFbDMrCvLxKYEViGlFa9/fFxjL5YCX&#43;BtZAlZw7EUc3QooILH&#43;6ToizFmoNkV5Uw=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/trend.c29d3312049365aa.js" integrity="sha512-LdI4y45GBamkDUIPqdjR9TjHuYlhmFLojk21HZSDQ6NMdyxi0xgLINMajsoI3oWVmao5vTNHQt4akKBOPbddiA=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/correlate.2e2c30e60462eeba.js" integrity="sha512-YeyZjd9EpIeMNDprslLj2XAI0s6bquUfLvKujS05scVA8TvVHNjy8iGUAjEokkJzy3S70AkOmfR3Y0TDA22FTw=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/disparities.18a1b15773b5d42a.js" integrity="sha512-BOrWk5r&#43;Azi89WLEcEu7B28qtHcVmoQfavO58dv2LWKS28TFSwxgHOkB21H3FBZeBtA/z1WBS66xGnMZROkZjA=="></script>
 
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/print-map.ac817e2b4e985345.js" integrity="sha512-JQw&#43;vpeMTvBRzdjE75eUtBli3h53RzRekeQuGVs1eOH4TxplO5m8PA5snlrnrFkek0Ki2&#43;KJkpWttJ/IGtTY5Q=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/print.a8bf818bdf036ab3.js" integrity="sha512-RH3QoVskvoBf6l8sQEt8NRMyaS8S1Xj25bNy5ZOajg&#43;kROZAeS&#43;hEl&#43;v4cMr8cT6fL3Pd9wZ36SvC4crri/1UA=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/print-map.16dd6dfddef9c02a.js" integrity="sha512-hQVnKvGQKtffaCQaWEdtpImk0iumyzD2pBkovwgP8X5Wk76HYMN6YYkjNPq4ybtRRz5Cc0joxOVaS3d6pnmi1w=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/print.47852e471e510b57.js" integrity="sha512-WL2uM&#43;etf2oRArCO92jKofdn7utfsKPSTuI0d5FutXQdIQZjzBUN0dxs/RdTz6T1FQt/L9&#43;CXABDuSo7yASG6A=="></script>
 
 
 <script>
@@ -2110,7 +2112,7 @@
 
     renderIndicatorList(these_indicators, "\/IndicatorPublic\/data-explorer\/mice-and-rats\/");
 
-    checkURL()
+    checkURL();
     
 </script>
 
@@ -2131,6 +2133,7 @@
                 <div id="search"></div>
                 <script>
                     window.addEventListener('DOMContentLoaded', () => {
+
                         const search_modal = document.getElementById('searchModal');
                         const search_root = document.getElementById('search');
 
@@ -2139,6 +2142,7 @@
                         }
 
                         new PagefindUI({
+
                             element: '#search',
                             showSubResults: true,
                             showImages: false,
@@ -2146,6 +2150,7 @@
                             showEmptyFilters: true,
                             debounceTimeoutMs: 500,
                             processTerm: function (term) {
+
                                 if (typeof gtag === 'function') {
                                     gtag('event', 'search', {
                                         search_term: term
@@ -2153,31 +2158,35 @@
                                 }
 
                                 return term;
+
                             },
                             processResult: function (result) {
+
                                 result.meta.title = result.meta.title
                                     .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                     .replaceAll('&amp;', '&');
 
                                 result.sub_results.forEach(sub => {
+
                                     sub.url = sub.url.replace('#IndicatorID-', '?id=');
 
                                     sub.title = sub.title
                                         .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                         .replaceAll('&amp;', '&');
+
                                 });
                             }
                         });
 
                         $(search_modal).on('shown.bs.modal', () => {
+
                             const search_input = search_modal.querySelector('.pagefind-ui__search-input');
 
-                            if (!search_input) {
-                                return;
-                            }
+                            if (!search_input) return;
 
                             search_input.focus();
                             search_input.select();
+
                         });
                     });
                 </script>
@@ -2206,6 +2215,7 @@
 
 <script>
     function googleTranslateElementInit() {
+
         new google.translate.TranslateElement(
         {
             pageLanguage: "en",
@@ -2218,6 +2228,7 @@
         document
             .querySelectorAll("div[class^=VI] svg")
             .forEach((e) => (e.outerHTML = ""));
+
     }
 </script>
 
@@ -2225,14 +2236,14 @@
 
 <script
     type="text/javascript"
-    src="/IndicatorPublic/js/main.2cb27f09f10c76c3.js"
-    integrity="sha512-iaICTR6PWG4zbrmL69MtiVybfawXimbAI5YPb5CrDb&#43;QRgiX/4W11J6utqdl8wGY0zO9BbT110dFS2VhHYr60w=="
+    src="/IndicatorPublic/js/main.b5a4bb39c6f9e956.js"
+    integrity="sha512-IFR/T14MliYqj1FjEKKn&#43;KuzTQPEROIUZdo&#43;GWL1LkQyonV&#43;Ph1RiQ4kBd/tu&#43;DIek2FPl3gWTZT3V&#43;gpjkwRw=="
 ></script>
 
 <script
     type="text/javascript"
-    src="/IndicatorPublic/js/site.0c406db6f0a34e1e.js"
-    integrity="sha512-Fe3P28eMLfzi8orYmRJ8kTiQB2LyFObFD/0wbjn9C1QqIausui3C0NL1lI26wcL0L0r60YRX2APG59LjFox1xQ=="
+    src="/IndicatorPublic/js/site.5059925e078263ff.js"
+    integrity="sha512-lx6l6X2f4LZTW6z7Uuht0oUdZKl6qI6CVWVHHakMNAhTGoMy4V525mqnSG3e7biz3oH3HbcyrpR/AARk9XsYQQ=="
 ></script>
 
     

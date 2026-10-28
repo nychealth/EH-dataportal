@@ -67,7 +67,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/","name":"The Environment and Health Data Portal: Home page","position":1},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/neighborhood-reports/","name":"Neighborhood Reports","position":2},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/neighborhood-reports/borough_park/","name":"Borough Park","position":3},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/neighborhood-reports/borough_park/climate_and_health/","name":"Climate and Health","position":4}]}</script>
 <script src="/IndicatorPublic/node_modules/jquery/dist/jquery.min.9d6bd9b75ea55acc.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR&#43;8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/css/all.min.c2b5ea5c3ed56d7e.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck&#43;w&#43;/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous"/>
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.c708c023f9041fb51d9ddc3e03764386fa55881a8e9d875d7531c5bebeb8885df85856db71636878c250dcfd6be780762dbc453e0924fabd78748d47a7253c2a.css" integrity="sha512-xwjAI/kEH7Udndw&#43;A3ZDhvpViBqOnYdddTHFvr64iF34WFbbcWNoeMJQ3P1r54B2LbxFPgkk&#43;r14dI1HpyU8Kg==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.76d32e5ad67edaebe99ca6def818f2b3095f4863c7c9fd7b7f76e80ecb519c6eda92103a7a228b301a523dcd335e6e6d96d2170b6198fe69ef511b2f24997af1.css" integrity="sha512-dtMuWtZ&#43;2uvpnKbe&#43;BjyswlfSGPHyf17f3boDstRnG7akhA6eiKLMBpSPc0zXm5tltIXC2GY/mnvURsvJJl68Q==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
 
 
 
@@ -99,7 +99,9 @@
     let DE_DEBUG_OVERRIDE = null;
 
     try {
+
         DE_DEBUG_OVERRIDE = localStorage.getItem('de_debug');
+
     } catch (e) {}
 
     const DE_DEBUG = DE_DEBUG_OVERRIDE !== null
@@ -467,55 +469,439 @@
     </div>
 </div></header>
 
-    <main id="skip-header-target" tabindex="-1" role="main" data-pagefind-body><style>
-    .card-header {
-        padding: 0.5rem 0.5rem; 
-        background: white!important;
+    <main id="skip-header-target" tabindex="-1" role="main" data-pagefind-body>
+
+
+
+
+<section class="container-fluid" data-pagefind-ignore="all">
+    <div class="row">
+        <div class="col-lg-10 mx-auto col-12">
+
+            
+            <nav aria-label="breadcrumb" class="mt-2 mb-2 d-print-none">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item d-none d-sm-block"><a href="/IndicatorPublic/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/IndicatorPublic/neighborhood-reports">Neighborhood Reports</a></li>
+                    <li class="breadcrumb-item"><a class="nr-breadcrumb-neighborhood" href="/IndicatorPublic/neighborhood-reports/borough_park/">Borough Park</a></li>
+                    <li class="breadcrumb-item active d-none d-sm-block" aria-current="page">Climate and Health</li>
+                </ul>
+            </nav>
+
+            
+            <div id="nr-report-status" role="status" class="sr-only"></div>
+
+            
+            <div class="row d-md-none">
+                
+                <div class="col-12 mb-2" id="nr-mobile-title">
+                    <h1 class="h2 nr-report-heading">
+                        <span class="nr-accent"><i class="fas fa-map-marked-alt mr-2" aria-hidden="true"></i></span>Climate and Health <span style="font-weight:normal">in</span>
+                        <span class="h2 text-primary" id="nr-mobile-neighborhood">Borough Park</span>
+                    </h1>
+                </div>
+            </div>
+
+            <div class="row">
+
+                
+                <div class="col-md-4 mb-1 d-print-none">
+
+                    
+                    
+
+<div class="dropdown nr-topic-dropdown d-md-none d-print-none my-2" data-pagefind-ignore="all">
+
+    <button class="btn btn-sm btn-block btn-outline-primary btn-light-green-bg py-2 dropdown-toggle"
+            type="button"
+            id="nr-topic-dropdown"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false">
+        <span class="sr-only">Report: </span>Climate
+    </button>
+
+    <div class="dropdown-menu w-100" aria-labelledby="nr-topic-dropdown">
+
+            
+            <a class="dropdown-item nr-topic-link"
+               href="/IndicatorPublic/neighborhood-reports/borough_park/active_design_physical_activity_and_health/">
+                Active Design
+            </a>
+
+            
+            <a class="dropdown-item nr-topic-link"
+               href="/IndicatorPublic/neighborhood-reports/borough_park/asthma_and_the_environment/">
+                Asthma
+            </a>
+
+            
+            <a class="dropdown-item nr-topic-link font-weight-bold"
+               href="/IndicatorPublic/neighborhood-reports/borough_park/climate_and_health/" aria-current="page">
+                Climate
+            </a>
+
+            
+            <a class="dropdown-item nr-topic-link"
+               href="/IndicatorPublic/neighborhood-reports/borough_park/housing_and_health/">
+                Housing
+            </a>
+
+            
+            <a class="dropdown-item nr-topic-link"
+               href="/IndicatorPublic/neighborhood-reports/borough_park/outdoor_air_and_health/">
+                Outdoor Air
+            </a>
+    </div>
+
+</div>
+
+
+                    
+                    <div id="nr-map" class="border" style="height: 450px; width: 100%;"></div>
+
+                    
+                    <div class="fs-md my-1" id="nr-zip-codes">
+                        <span style="font-weight:bold;color:darkslategrey">ZIP Codes:</span>
+                        <span id="nr-zip-list">11204, 11218, 11219, 11230</span>
+                    </div>
+
+                    
+                    <div id="nr-demographics" class="report-section my-2" style="display:none;">
+
+                        
+                        <button class="d-flex d-md-none btn btn-md text-left btn-outline-primary w-100 text-decoration-none neighborhood-list-button nr-list-toggle collapsed p-2"
+                                type="button"
+                                data-toggle="collapse"
+                                data-target="#nr-demographics-body"
+                                aria-expanded="false"
+                                aria-controls="nr-demographics-body">
+                            <span class="flex-grow-1">Demographics</span>
+                            <span class="plus" aria-hidden="true">&plus;</span>
+                            <span class="minus" aria-hidden="true">&minus;</span>
+                        </button>
+
+                        <div class="collapse d-md-block card-body-no-top" id="nr-demographics-body">
+                            <table class="table fs-sm" style="color:darkslategrey">
+                                
+                                <thead class="sr-only">
+                                    <tr><th scope="col">Metric</th><th scope="col">Value</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><th scope="row"><strong>Population</strong></th><td id="nr-pop" class="text-right"></td></tr>
+                                    <tr><th scope="row"><strong>Over age 65</strong></th><td id="nr-old" class="text-right"></td></tr>
+                                    <tr><th scope="row"><strong>Under age 18</strong></th><td id="nr-young" class="text-right"></td></tr>
+                                    <tr><th scope="row"><strong>Poverty</strong></th><td id="nr-pov" class="text-right"></td></tr>
+                                    <tr><th scope="row"><strong>Graduated high school</strong></th><td id="nr-grad" class="text-right"></td></tr>
+                                    <tr><th scope="row"><strong>Limited English</strong></th><td id="nr-eng" class="text-right"></td></tr>
+                                    <tr><th scope="row"><strong>Owner-occupied homes</strong></th><td id="nr-own" class="text-right"></td></tr>
+                                    <tr><th scope="row"><strong>Rent-burdened households</strong></th><td id="nr-rent" class="text-right"></td></tr>
+                                </tbody>
+                            </table>
+                            <span class="fs-xs" style="color:darkslategray;"><strong>Source:</strong> American Community Survey (2019-2023)</span>
+                        </div>
+                    </div>
+
+                    <hr class="my-2">
+                    
+                    <div class="asidebox m-2 pxy-2 text-muted" data-pagefind-ignore="all">
+                        <strong>Indicator rankings</strong>
+                        <p class="leading-sm">For each dataset, we divide neighborhoods up into <strong>tertiles</strong>, or thirds. This provides a rough comparison of this neighborhood, to all other NYC neighborhoods, for this indicator.</p>
+                        <div class="row no-gutters">
+                            <div class="col-4 mr-auto fs-xs" style="line-height: 100%">
+                                <strong>Lower</strong>: for that dataset, the neighborhood is in the lowest third of all neighborhoods.
+                            </div>
+                            <div class="col-4 ml-auto fs-xs" style="line-height: 100%;">
+                                <strong>Higher</strong>: for that dataset, the neighborhood is in the upper third of all neighborhoods.
+                            </div>
+                        </div>
+                        <img class="my-1" src="https://a816-dohbesp.nyc.gov/IndicatorPublic/images/edited_tertile.jpg" style="width:100%" alt="An example bar chart. The one-third of neighborhoods with the lowest values are labelled Lower. The one-third of neighborhoods with the highest values are labelled Higher.">
+                        <p class="leading-sm"><span class="fs-xs">These are only based on the distribution of data values, not the range. The absolute values of indicators in different categories may not be all that different.</span></p>
+                    </div>
+
+                </div>
+
+                
+                <div class="col-md-8 col-print-12">
+
+                    
+                    
+
+<div class="row no-gutters d-none d-md-flex d-print-none mb-2" data-pagefind-ignore="all"><div class="col-sm mb-2 mr-1 mb-lg-0">
+            <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-link"
+               href="/IndicatorPublic/neighborhood-reports/borough_park/active_design_physical_activity_and_health/">
+                Active Design
+            </a>
+        </div><div class="col-sm mb-2 mr-1 mb-lg-0">
+            <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-link"
+               href="/IndicatorPublic/neighborhood-reports/borough_park/asthma_and_the_environment/">
+                Asthma
+            </a>
+        </div><div class="col-sm mb-2 mr-1 mb-lg-0">
+            <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-link active"
+               href="/IndicatorPublic/neighborhood-reports/borough_park/climate_and_health/">
+                Climate
+            </a>
+        </div><div class="col-sm mb-2 mr-1 mb-lg-0">
+            <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-link"
+               href="/IndicatorPublic/neighborhood-reports/borough_park/housing_and_health/">
+                Housing
+            </a>
+        </div><div class="col-sm mb-2 mr-1 mb-lg-0">
+            <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-link"
+               href="/IndicatorPublic/neighborhood-reports/borough_park/outdoor_air_and_health/">
+                Outdoor Air
+            </a>
+        </div></div>
+
+
+                    
+                    <div id="nr-report-header">
+                        <div class="d-none d-md-block">
+                            <h1 class="h2 mt-3 nr-report-heading"><span class="nr-accent"><i class="fas fa-map-marked-alt mr-2" aria-hidden="true"></i></span>Climate and Health <span style="font-weight:normal">in</span>
+                                <span class="h2 text-primary" id="nr-header-neighborhood">Borough Park</span>
+                            </h1>
+                        </div>
+
+                        <div class="d-md-none my-1">
+                            <strong>Climate and Health</strong>
+                        </div>
+
+                        <hr class="mb-2 mt-1">
+                        
+                        <div class="mb-2"><p>As the climate changes, we track New York City&rsquo;s risk for extreme heat, storms and flooding, and episodes of elevated ozone. These have important public health impacts: already, heat kills more people than all other natural disasters.</p>
+</div>
+
+                        
+                        <div class="d-flex flex-wrap d-print-none">
+                            <button onclick="window.print()" class="btn btn-sm btn-report mt-2 mr-1"><i class="fas fa-print mr-1" aria-hidden="true"></i>Print</button>
+                            <button id="nr-download-csv" onclick="window.nrDownloadCSV()" class="btn btn-sm btn-report mt-2 mr-1"><i class="fa fa-download mr-1" aria-hidden="true"></i>Download <span class="sr-only">(downloads a CSV file)</span></button>
+                            <div class="ml-auto">
+                                <button id="nr-toggle-accordions" type="button" class="btn btn-sm btn-report mt-2"
+                                        aria-expanded="false" aria-controls="nr-accordion-0 nr-accordion-1 nr-accordion-2 nr-accordion-3" disabled>
+                                    <i class="fas fa-expand-alt mr-1" aria-hidden="true"></i><span class="nr-accordion-toggle-label">Expand all</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                        <div class="accordion nr-report-accordion mt-2 mb-4 report-section pt-2 border-left border-right border-bottom" id="nr-accordion-0">
+                            <div class="px-2 pb-2">
+                                
+                                <h2 class="h4 fs-rg">
+                                    Climate hazards
+                                </h2>
+                                <p class="fs-sm">
+                                    Some neighborhoods are hotter than others, which can make it costly or difficult to stay healthy for those residents
+                                </p>
+                            </div>
+                            <div id="nr-section-0">
+                            </div>
+                        </div>
+                        <div class="accordion nr-report-accordion mt-2 mb-4 report-section pt-2 border-left border-right border-bottom" id="nr-accordion-1">
+                            <div class="px-2 pb-2">
+                                
+                                <h2 class="h4 fs-rg">
+                                    Health outcomes
+                                </h2>
+                                <p class="fs-sm">
+                                    Health outcomes that can be affected by conditions in the home or neighborhood.
+                                </p>
+                            </div>
+                            <div id="nr-section-1">
+                            </div>
+                        </div>
+                        <div class="accordion nr-report-accordion mt-2 mb-4 report-section pt-2 border-left border-right border-bottom" id="nr-accordion-2">
+                            <div class="px-2 pb-2">
+                                
+                                <h2 class="h4 fs-rg">
+                                    Built environment
+                                </h2>
+                                <p class="fs-sm">
+                                    Access to AC, green space, and well-insulated homes can effect how easy it is to stay cool.
+                                </p>
+                            </div>
+                            <div id="nr-section-2">
+                            </div>
+                        </div>
+                        <div class="accordion nr-report-accordion mt-2 mb-4 report-section pt-2 border-left border-right border-bottom" id="nr-accordion-3">
+                            <div class="px-2 pb-2">
+                                
+                                <h2 class="h4 fs-rg">
+                                    Priority populations
+                                </h2>
+                                <p class="fs-sm">
+                                    Some populations may be more vulnerable to health outcomes associated with climate.
+                                </p>
+                            </div>
+                            <div id="nr-section-3">
+                            </div>
+                        </div>
+                    <h1 class="d-none">Homes near structures rated good or excellent</h1>
+    <h2 class="d-none">Building quality predicts the number of housing maintenance problems in a residence that place residents at increased risk of acute or chronic health problems.</h2><h1 class="d-none">Vegetative cover</h1>
+    <h2 class="d-none">Land covered by trees, grass, or other plants. Vegetative cover reduces temperatures in the immediate area, and may increase air quality.</h2><h1 class="d-none">Older adults with air conditioners (age 65&#43;)</h1>
+    <h2 class="d-none">Older adults (over 65) are more vulnerable to hot weather and heat stress. Air conditioning reduces the risk of heat stroke and other heat-related illness.</h2><h1 class="d-none">Residents living in a hurricane evacuation zone</h1>
+    <h2 class="d-none">Hurricane Evacuation Zones are determined by New York City Emergency Management and indicate varying threat levels of coastal flooding from storm surge. Evacuation orders may be given during hurricanes or coastal flooding events. There are six zones, ranked by storm surge risk. Zone 1 is the highest risk for flooding. Residents in these zones may receive evacuation orders during hurricanes or tropical storms.</h2><h1 class="d-none">Daytime summer surface temperature</h1>
+    <h2 class="d-none">Spatial average of surface temperature, measured by satellite. Surface temperatures vary because of vegetative cover (which promotes cooling), and paved roads, sidewalks, and buildings (which retain heat). Hotter neighborhoods tend to have more heat-exacerbated deaths associated with extreme heat events.</h2><h1 class="d-none">Asthma emergency department visits (age 5 to 17)</h1>
+    <h2 class="d-none">Emergency department visits for asthma. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma.</h2><h1 class="d-none">Neighborhood poverty</h1>
+    <h2 class="d-none">Households with incomes below the federal poverty level. Households without sufficient resources are often deprived of access to health care, good quality housing, and other resources that protect health.</h2><h1 class="d-none">Serious psychological distress</h1>
+    <h2 class="d-none">Mental health conditions like series psychological distress can be worsened by extreme weather such as heat waves and coastal storms.</h2><h1 class="d-none">Independent living difficulty (adults)</h1>
+    <h2 class="d-none">Adults reporting independent living difficulty due to a physical, mental, or emotional problem. People with disabilities may need additional support during extreme weather. For example, extra planning for safe travel out of evacuation zones during a hurricane, or back-up electricity to support medical equipment during power outages.</h2><h1 class="d-none">Older adults living alone (65&#43;)</h1>
+    <h2 class="d-none">People age 65&#43; living alone. People living alone may have more difficulty getting resources they need in an emergency, and are at higher risk of weather-related illnesses like heat stroke and hypothermia.</h2>
+
+                    
+                    
+                    <div class="row print-only" data-pagefind-ignore="all">
+                        <div class="col-12">
+                            <p class="text-center">View this report online:</p>
+                        </div>
+                    </div>
+                    <div class="row print-only">
+                        <div class="col-12">
+                            <div id="qrcode" class="text-center"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            
+            <section data-pagefind-ignore="all" class="mt-lg-5 d-print-none">
+    <div class="container-fluid mb-5">
+        <div class="row">
+            <div class="col-lg-4 ml-auto pr-lg-3">
+                <div class="related-border mb-2">
+                    <div class="mt-2">
+                        <h2 class="h4">What is the City doing?</h2>
+                        <hr class="my-2">
+                    </div>
+                    <div class="fs-lg"><div class="text-black">Plants trees, funds Cool Roof projects, and supports heat awareness trainings and more to address extreme heat.</div>
+                        <hr class="my-2"><div class="text-black"><a href="https://onenyc.cityofnewyork.us/">Set a goal to achieve carbon neutrality by 2050 using the OneNYC strategic plan.</a></div>
+                        <hr class="my-2"><div class="text-black"><a href="https://access.nyc.gov/programs/cooling-assistance-benefit/">Helps low-income households buy and install air conditioners.</a></div>
+                        <hr class="my-2"><div class="text-black">Operates the largest electric municipal fleet in the nation.</div>
+                        <hr class="my-2"><div class="text-black">Supports energy-efficiency changes in municipal and community buildings.</div>
+                        <hr class="my-2"></div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 pl-lg-3 h-100">
+                <div class="related-border mb-2">
+                    <div class="mt-2">
+                        <h2 class="h4">What you can do</h2>
+                        <hr class="my-2">
+                    </div>
+                    <div class="fs-lg"><div class="text-black"><a href="https://www.nyc.gov/site/doh/health/emergency-preparedness/cold-weather-be-a-buddy.page">Be a Buddy and check in on neighbors to help them stay cool when it’s hot.</a></div>
+                        <hr class="my-2"><div class="text-black"><a href="https://www.nyc.gov/site/severeweather/index.page">Get info during weather emergencies.</a></div>
+                        <hr class="my-2"><div class="text-black"><a href="https://www.nycgovparks.org/trees/street-tree-planting/request">Request a street tree to help cool your neighborhood.</a></div>
+                        <hr class="my-2"></div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 mr-auto">
+                <div class="related-border mb-2">
+                    <div class="mt-2">
+                        <h2 class="h4">More about</h2>
+                        <hr class="my-2">
+                    </div>
+                    <div class="fs-lg"><a href=/IndicatorPublic/key-topics/climatehealth/>Climate and health</a>
+                        <hr class="my-2"><a href=/IndicatorPublic/key-topics/housing/>Housing</a>
+                        <hr class="my-2"></div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+        </div>
+    </div>
+</section>
+
+<script>
+    window.NR_REPORT_CONFIG = {
+        reportName: "Climate and Health",
+        
+        
+        
+        
+        seoShortName: "Climate and Health",
+        
+        
+        siteTitle: "Environment \u0026 Health Data Portal",
+        
+        
+        neighborhood: "Borough Park",
+        geojsonUrl: "\/IndicatorPublic\/geojson\/UHF42.geojson",
+        vizUrl: "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/production\/neighborhood-reports\/data\/viz\/Climate_and_Health.json",
+        
+        
+        
+        
+        
+        
+        topicIndicatorsUrl: "\/IndicatorPublic\/IndicatorMetadata\/topic_indicators.json",
+        dataExplorerUrl: "\/IndicatorPublic\/data-explorer\/",
+        dataRepo: "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/",
+        dataBranch: "production",
+        sections: [{
+                    "id": "0",
+                    "containerId": "nr-section-0",
+                    "reportUrl": "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/production\/neighborhood-reports\/data\/report\/Climate_and_Health%20Climate%20hazards.json"
+                },{
+                    "id": "1",
+                    "containerId": "nr-section-1",
+                    "reportUrl": "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/production\/neighborhood-reports\/data\/report\/Climate_and_Health%20Health%20outcomes.json"
+                },{
+                    "id": "2",
+                    "containerId": "nr-section-2",
+                    "reportUrl": "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/production\/neighborhood-reports\/data\/report\/Climate_and_Health%20Built%20environment.json"
+                },{
+                    "id": "3",
+                    "containerId": "nr-section-3",
+                    "reportUrl": "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/production\/neighborhood-reports\/data\/report\/Climate_and_Health%20Priority%20populations.json"
+                }],
+        
+        
+        
+        topicSlug: "climate_and_health"
+    };
+</script>
+
+
+<script src="/IndicatorPublic/node_modules/qrcode-generator/dist/qrcode.8dc9e698760d5699.js" integrity="sha512-K0lYrsz0aEkpUuvFglUXQTLSzK5OOT4HMO5FAIyGK/EHIuMoGSDd7NYrLrAnp/IirYF5LTnR2RLI0IpXLCERTQ==" crossorigin="anonymous"></script>
+<script>
+    
+    
+
+    function renderQRCode() {
+
+        const destination = document.getElementById('qrcode');
+
+        if (!destination || typeof qrcode !== 'function') return;
+
+        
+        
+        
+        
+
+        const reportUrl = location.origin + location.pathname;
+
+        
+        
+
+        const code = qrcode(10, 'M');
+        code.addData(reportUrl);
+        code.make();
+
+        
+        
+
+        destination.innerHTML = code.createImgTag(2, 8, 'QR code linking to this report at ' + reportUrl);
+
     }
+</script>
 
-    .card-header a {
-        color: black;
-        text-decoration: none;
-    }
 
-    .report-section {
-        border-top: 5px solid #008939!important;
-    }
-
-    .card-header:hover {
-        background-color: #EFFAF4 !important;
-        text-decoration: none;
-    }
-
-    .card-header .btn:hover {
-        text-decoration: none;
-    }
-
-     
-
-    .no-bullets li {
-        list-style:none;
-        padding-left: 0px;
-    }
-
-    .card-body-no-top {
-        padding-top: 0px!important;
-        padding-left: 12px!important;
-    }
-
-    .leading-sm {
-        line-height: 105%;
-        font-size: small
-    }
-
-    @media print {
-        .col-print-12 {
-            max-width: 100%;
-            flex: 0 0 100%;
-        }
-    }
-
-</style>
 
 
 <link rel="stylesheet" href="/IndicatorPublic/node_modules/leaflet/dist/leaflet.6fc0beab3f024150.css" integrity="sha512-xwwBn7YBII4WryXcPpa1qciCiCLEWFVIPijj9DwNnq9JOGmYW4VM4geg&#43;v0pZBkfp/cXkr6W1YYxlNN8U4QY9g==" />
@@ -523,3364 +909,32 @@
 
 <script src="/IndicatorPublic/node_modules/leaflet/dist/leaflet.74a58ca6295ebc05.js" integrity="sha512-BwHfrr4c9kmRkLw6iXFdzcdWV/PGkVgiIyIWLLlTSXzWQzxuSg4DiQUCpauz/EWjgk5TYQqX/kvn9pG1NpYfqg=="></script>
 
+
+
+
+<link rel="stylesheet" href="/IndicatorPublic/node_modules/leaflet-easybutton/src/easy-button.3c89cb9ecde941f8.css" integrity="sha512-aiVWmB2G8oV&#43;XfHo1CR6hEAxzCl48Lrl3UBzQ6P&#43;BEMkT8qY1tGecdQx6x/X8i9cCVrwQU9ipsOsZlNkRh9n7w==" />
+
+
+<script src="/IndicatorPublic/node_modules/leaflet-easybutton/src/easy-button.2aafa39ced85dc51.js" integrity="sha512-nMxgrgYu7vo/LNe5NFHZOIkwbodaU13UdYiDoDCuo3P2sryEyffrk1R3c2tFGbZ83AqaMbO19yhKnVgHztuqAw=="></script>
+
+
+<script src="/IndicatorPublic/js/L.colorIcon.7c4343ea3f751533.js" integrity="sha512-wIyMqf8gl4m2CZ7lhU0bkB53Dr8zO30wdKqWVAS1VBnm166LqrN&#43;EjYFMQhiy5goEZe6kBqpUEOL6ZYuoHxHEQ=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/uhflist-data.0d6ddfbfb4b4d479.js" integrity="sha512-Cf1WmfJcPqimJdtDQ&#43;lVBK8V1H5RQjz7twF1mfqReEVelMwnV33OBw0LUPMFq8tQm75TBRCwFaBHAPqrXRMgBg=="></script>
 <script src="/IndicatorPublic/js/lib-vega-bundle.7bffeead9d7ff2c7.js" integrity="sha512-82fs/ltAJzEZhVokTuXByj29e5hwgiHtObtyA9WdVVAW&#43;22LOx4Tnw9r3peJklc&#43;FniFTaG5s5UiSRCXIw/HCQ=="></script>
-
-<script src="/IndicatorPublic/node_modules/d3/dist/d3.min.e8ba02e52482bcd1.js" integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs&#43;/u5c3&#43;1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A=="></script>
 <script src="/IndicatorPublic/node_modules/arquero/dist/arquero.min.7d016e4b24d47a0f.js" integrity="sha512-2mGOsKuhJM952DEP&#43;f1bIw&#43;YqERehwv8otcrFxOHpJxHTX36YE&#43;BdlmqGbJ&#43;NC9ThzCPdxk2pbehhP6XEan1jg=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/uhflist.d39e03b10574a48b.js" integrity="sha512-0JWYC5dKTOQY9ASwT0RnzTGtAyLWqL13OPvbJyWh9JVm2kA79l2X6m6mp4rq/OmrfkWGw/7vtvOAQGUIpaLchQ=="></script>
 
-<script src="/IndicatorPublic/node_modules/qrcode-generator/dist/qrcode.8dc9e698760d5699.js" integrity="sha512-K0lYrsz0aEkpUuvFglUXQTLSzK5OOT4HMO5FAIyGK/EHIuMoGSDd7NYrLrAnp/IirYF5LTnR2RLI0IpXLCERTQ==" crossorigin="anonymous"></script>
 
-<script>
-    let topicIndicators;
-    let sti;
-    let thisInd;
-    let NeighborhoodName = "Borough Park"; 
 
-    
-
-    async function get_topic_indicators() {
-        d3.json('\/IndicatorPublic\/IndicatorMetadata\/topic_indicators.json').then(data => {
-            topicIndicators = data
-        });
-    }
-
-    get_topic_indicators();
-
-    
-
-    const getURL = async (indID, dataname) => {
-
-        console.log("getURL:", indID, dataname);
-
-        let thisTopic = '';
-        let topicArray = [];
-        let ind = Number(indID)
-        let URL;
-
-        
-
-        for (let y in topicIndicators) {
-
-            topicArray = topicIndicators[y].IndicatorID
-
-            if (topicArray.includes(ind)) {
-
-                thisTopic = y
-                
-
-                URL = "/IndicatorPublic/data-explorer/" + thisTopic + "/?id=" + ind; 
-                document.getElementById(indID).style.display = "inline-block";
-                document.getElementById(indID).href = URL; 
-
-                return
-
-            } else {
-                
-                
-            }
-        }
-    }
-
-    
-
-    
-
-    let summarySpec;
-
-    d3.json("/IndicatorPublic/js/neighborhood-reports/spec/summarySpec.json" ).then(data => {
-
-        summarySpec = data;
-
-        
-
-        summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
-
-    })
-
-    
-
-    let mapSpec;
-
-    d3.json("/IndicatorPublic/js/neighborhood-reports/spec/mapSpec.json" ).then(data => {
-
-        mapSpec = data;
-
-        
-
-        mapSpec.layer[2].encoding.stroke.condition.test = "datum.neighborhood == '" + NeighborhoodName + "'";
-
-        
-
-        mapSpec.transform[0].from['data'].url = "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/production/geography/UHF42.topo.json"
-        mapSpec.layer[0].data.url = "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/production/geography/borough.topo.json"
-
-    });
-
-    
-
-    let trendSpec;
-
-    d3.json("/IndicatorPublic/js/neighborhood-reports/spec/trendSpec.json" ).then(data => {
-
-        trendSpec = data;
-
-        
-
-        trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
-
-    });
-
-</script>
-
-<section class="container-fluid" data-pagefind-ignore="all">
-
-    <div class="row">
-        <div class="col-lg-12 mx-auto col-12">
-            <nav aria-label="breadcrumb" class="mt-2 mb-3 d-print-none">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item d-none d-sm-block"><a href=/IndicatorPublic/>Home</a></li>
-                    <li class="breadcrumb-item"><a href=/IndicatorPublic/neighborhood-reports>Neighborhood Reports</a></li>
-                    <li class="breadcrumb-item"><a href="../" id="neighbLink">Borough Park</a></li>
-                    <li class="breadcrumb-item active d-none d-sm-block"><a href="/IndicatorPublic/neighborhood-reports/borough_park/climate_and_health/">Climate and Health</a></li>
-                </ul>
-            </nav>
-
-             
-            <div class="row d-md-none">
-                <div class="col-12 mb-2">
-                    <h1 class="h2"><span class="nr-accent"><i class="fas fa-map-marked-alt mr-2" aria-hidden="true"></i></span>Climate and Health <span style="font-weight:normal">in</span></h1>
-                        <span class="h2 sub-title text-primary">Borough Park</span>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4 d-print-none">
-                    <div class="border" style="height: 450px; width:100%">
-                        <div id="map" style="width: 100%; height:100%"></div>
-
-<style>
-    #map:hover {
-        cursor: pointer;
-    }
-</style>
-
-<script>
-    
-    
-    
-    
-    
-    let geocode = `206`;
-    
-    let lat = 40.715554;
-    let lng = -74.0026642;
-    let zoom = 10;
-    
-    
-    
-    
-    
-    let map = L.map("map", { zoomControl: false }).setView([lat, lng], zoom); 
-
-    L.tileLayer(
-        'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=cb1_2vaf_1_f87644104deb54c869cef554',
-    {
-        maxZoom: 15,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-     }).addTo(map);
-    
-    L.control
-    .scale({
-        metric: false,
-        position: "bottomleft",
-    })
-    .addTo(map);
-    
-    
-    
-    let uhf_geojson;
-    
-    fetch("/IndicatorPublic/geojson/UHF42.geojson")
-        .then((response) => response.text())
-        .then((text) => {
-
-            
-            
-            const data = JSON.parse(text);
-
-            uhf_geojson = L.geoJSON(data, {
-
-                style: style,
-                onEachFeature: onEachFeature,
-                filter: (feature) => feature.properties.GEOCODE != 0
-
-            }).addTo(map);
-            
-            
-            
-                
-            if (geocode && geocode.trim() !== "") {
-
-                
-                
-                const targetLayer = Object.values(uhf_geojson._layers).find(
-                
-                    (layer) => layer.feature.properties.GEOCODE == geocode
-                    
-                );
-
-                
-                
-                if (targetLayer) {
-
-                    
-                    
-                    uhf_geojson.resetStyle();
-                    
-                    
-                    
-                    targetLayer.setStyle({
-                        weight: 3,
-                        color: "#008939",
-                        dashArray: "3",
-                        fillOpacity: 0.5,
-                    });
-
-                    
-
-                    targetLayer.bringToFront();
-
-                    
-
-                    setTimeout(() => {
-                        
-                        map.flyToBounds(targetLayer.getBounds(), {duration: 0.5});
-
-                    }, 500);
-                
-                    
-                } else {
-                    
-                    console.warn("No matching GEOCODE found:", geocode);
-                    
-                }
-                
-            } else {
-                
-                console.log("No geocode provided; skipping zoom.");
-                
-            }
-            
-        })
-        .catch((err) => console.error("Error loading GeoJSON:", err));
-
-    
-    
-    function style(feature) {
-        return {
-            weight: 1.5,
-            opacity: 1,
-            color: "black",
-            dashArray: "1",
-            fillOpacity: 0.05,
-            fillColor: "#008939"
-        };
-    }
-    
-    
-
-    function onEachFeature(feature, layer) {
-        
-        
-        
-        layer.bindTooltip(feature.properties.GEONAME, {permanent: false, opacity: 0.9, className: "fs-md"});
-
-        
-        
-        layer.on({
-            
-            mouseover: highlightFeature,
-            mouseout: resetHighlight,
-            click: selectNeighborhood,
-            
-        });
-        
-    }
-
-    
-    
-    function highlightFeature(e) {
-        
-        
-        
-        const layer = e.target;
-        
-        layer.setStyle({
-            weight: 5,
-            color: "#444",
-            dashArray: "",
-            
-        });
-        
-        layer.bringToFront();
-
-        
-        
-        
-        
-        
-    }
-
-    
-    
-    function resetHighlight(e) {
-
-        const layer = e.target;
-
-        
-        
-        layer.setStyle({
-            weight: 1.5,
-            color: "black",
-            dashArray: "1",
-        });
-
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    var intendedDestinationName
-    
-    
-    
-    let chosenNeighborhood; 
-    let chosenGeo =  206 ;
-    let chosenReport;       
-    let chosenButton;       
-    
-    
-
-    const topicSlugs = {
-        Active: "active_design_physical_activity_and_health",
-        Asthma: "asthma_and_the_environment",
-        Climate: "climate_and_health",
-        Housing: "housing_and_health",
-        Outdoor: "outdoor_air_and_health",
-    };
-    
-    const topicValues = Object.values(topicSlugs);
-    
-    
-
-    function getReportAndNeighborhood(x) {
-
-        console.log("** getReportAndNeighborhood");
-
-        const url = window.location.pathname.match(/neighborhood-reports.*/)[0]
-        let urlPieces = url.split("/")
-
-        
-        
-        
-
-        if (topicValues.includes(urlPieces[1])) {
-
-            chosenNeighborhood = null
-            chosenReport = (urlPieces[1] && urlPieces[1].length > 2) ? urlPieces[1] : null;
-
-        } else {
-
-            chosenNeighborhood = (urlPieces[1] && urlPieces[1].length > 2) ? urlPieces[1] : null
-            chosenReport = (urlPieces[2] && urlPieces[2].length > 2) ? urlPieces[2] : null;
-
-        }
-        
-        console.log('Neighborhood: ', chosenNeighborhood)
-        console.log('GeoCode: ', chosenGeo)
-        console.log('Report:', chosenReport)
-        
-        pageTypeID();
-
-    }
-    
-    getReportAndNeighborhood(window.location.href)
-    
-    
-
-    function pageTypeID() {
-
-        console.log('*** WHAT KIND OF PAGE IS THIS?')
-
-        if (chosenNeighborhood == null && chosenReport == null) {
-
-            console.log("NR Landing page")
-
-        } else if (chosenNeighborhood && chosenReport) {
-
-            console.log("Output for: ", chosenNeighborhood, chosenReport)
-
-        } else if (chosenReport && !chosenNeighborhood) {
-
-            console.log("Topic landing for: ", chosenReport)
-
-        } else {
-
-            console.log("Neighborhood landing for: ", chosenNeighborhood)
-
-        }
-        
-    }
-    
-    
-    
-    
-    
-    
-    function selectNeighborhood(e) {
-
-        console.log("selectNeighborhood");
-
-        uhf_geojson.resetStyle();
-
-        const layer = e.target;
-        
-        layer.setStyle({
-            weight: 3,
-            color: '#008939',
-            dashArray: "3",
-            fillOpacity: 0.5,
-        });
-        
-        layer.bringToFront();
-        
-        const geocodeClicked = layer.feature.properties.GEOCODE;
-        
-        
-
-        const match = neighborhoods.find(
-            n => n.UHF_id == geocodeClicked
-        );
-        
-        
-        
-        if (match && match.page_name) {
-
-            
-
-            const parts = window.location.pathname.split("/");
-            
-            
-
-            parts[3] = match.page_name;
-            
-            
-
-            const dest = intendedDestinationName ? intendedDestinationName : (chosenReport ? chosenReport : '/');
-            
-            
-            
-            const buildURL = "/IndicatorPublic/neighborhood-reports/" + parts[3] + "/" + dest + '/'
-            
-            
-
-            window.location.href = buildURL;
-            
-            
-        } else {
-            console.warn("No matching neighborhood for GEOCODE:", geocodeClicked);
-        }
-    }
-    
-    
-</script>
-                        
-                    </div>
-
-                    <div class="fs-md my-1">
-                        <span style="font-weight:bold;color:darkslategrey">ZIP Codes:</span> <span id="zips">11204, 11218, 11219, 11230.</span>
-
-                    </div>
-
-
-                    <div class="report-section card-body-no-top my-2">
-
-                        <table class="table fs-sm" style="color:darkslategrey">
-                        <thead class="sr-only">
-                        <tr>
-                            <th>Metric</th>
-                            <th>Value</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            <td><strong>Population</strong></td>
-                            <td id="popPrint" class="text-right">XX,XXX</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Over age 65</strong></td>
-                            <td id="oldPrint" class="text-right">YY%</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Under age 18</strong></td>
-                            <td id="youngPrint" class="text-right">YY%</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Poverty</strong></td>
-                            <td id="povPrint" class="text-right">YY%</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Graduated high school</strong></td>
-                            <td id="gradPrint"  class="text-right">YY%</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Limited English</strong></td>
-                            <td id="engPrint"  class="text-right">YY%</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Owner-occupied homes</strong></td>
-                            <td id="ownPrint"  class="text-right">YY%</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Rent-burdened households</strong></td>
-                            <td id="rentPrint" class="text-right">YY%</td>
-                        </tr>
-                        </tbody>
-                        </table>
-                        <span class="fs-xs" style="color:darkslategray;"><strong>Source:</strong> American Community Survey (2019-2023) </span>
-
-                    </div>
-
-                    <hr class="my-2">
-                            <div class="asidebox m-2 pxy-2 text-muted">
-                            <strong>Indicator rankings</strong>
-                            <p class="leading-sm">For each dataset, we divide neighborhoods up into <strong>tertiles</strong>, or thirds. This provides a rough comparison of this neighborhood, to all other NYC neighborhoods, for this indicator.</p>
-
-                            <div class="row no-gutters">
-                                <div class="col-4 mr-auto fs-xs" style="line-height: 100%">
-                                    <strong>Lower</strong>: for that dataset, the neighborhood is in the lowest third of all neighborhoods.
-                                </div>
-                                <div class="col-4 ml-auto fs-xs" style="line-height: 100%;">
-                                    <strong>Higher</strong>: for that dataset, the neighborhood is in the upper third of all neighborhoods. </div>
-                            </div>
-                            <img class="my-1" src="https://a816-dohbesp.nyc.gov/IndicatorPublic/images/edited_tertile.jpg" style="width:100%" alt="An example bar chart. The one-third of neighborhoods with the lowest values are labelled Lower. The one-third of neighborhoods with the highest values are labelled Higher.">
-
-                            <p class="leading-sm"><span class="fs-xs">These are only based on the distribution of data values, not the range. The absolute values of indicators in different categories may not be all that different.</span></p>
-
-                            </div>
-
-                </div>
-
-                <div class="col-md-8 col-print-12">
-                    <div class="row no-gutters d-print-none">
-                        <div class="col-sm mb-2 mr-1 mb-lg-0">
-                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" dest="Active" id="Active">Active design</button>
-                        </div>
-                        <div class="col-sm mb-2 mr-1 mb-lg-0">
-                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" dest="Asthma" id="Asthma">Asthma</button>
-                        </div>
-                        <div class="col-sm mb-2 mr-1 mb-lg-0">
-                        <button class="btn btn-sm  btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" dest="Climate" id="Climate">Climate</button>
-                        </div>
-                        <div class="col-sm mb-2 mr-1 mb-lg-0">
-                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" dest="Housing" id="Housing">Housing</button>
-                        </div>
-                        <div class="col-sm mb-2 mr-1 mb-lg-0">
-                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" dest="Outdoor" id="Outdoor">Outdoor Air</button>
-                        </div>
-                    </div>
-
-                    <div class="d-none d-md-block">
-                        <h1 class="h2 mt-3"><span class="nr-accent"><i class="fas fa-map-marked-alt mr-2" aria-hidden="true"></i></span>Climate and Health <span style="font-weight:normal">in</span></h1>
-                            <span class="h2 sub-title text-primary">Borough Park</span>
-                    </div>
-
-                    <div class="d-md-none my-1">
-                        <strong>Climate and Health</strong>
-                    </div>
-
-                    <hr>
-                    
-                        
-                        
-
-                        <p><p>As the climate changes, we track New York City&rsquo;s risk for extreme heat, storms and flooding, and episodes of elevated ozone. These have important public health impacts: already, heat kills more people than all other natural disasters.</p>
-</p>
-                    
-                            
-                        
-
-                    <div class="d-print-none">
-                        <button onclick="window.print()" class="btn btn-sm btn-report mt-2" target="_blank"><i class="fas fa-print mr-1"></i>Print</button>
-                        <button onclick="downloadData()" class="btn btn-sm btn-report mt-2" target="_blank"><i class="fa fa-download mr-1"></i>Download <span class="sr-only">(opens in a new tab)</span></button>
-                    </div>
-
-
-                    
-                        
-                        <div class="accordion my-4 report-section pt-2 border-left border-right border-bottom" id="accordion-0">
-
-                            <div class="px-2 pb-2">
-                                <h3 class="h4 fs-rg">
-                                    Climate hazards</h3>
-                                <p class="fs-sm">Some neighborhoods are hotter than others, which can make it costly or difficult to stay healthy for those residents</p>
-                            </div>
-
-                                        
-
-                                        
-
-                                        
-
-                                        
-
-                                        
-                                            
-                                        
-
-                                        
-
-
-
-
-
-  <div class="card-header border-top" id="heading-Area687">
-    <h2 class="mb-0">
-      <button
-        class="btn btn-block btn-sm text-left"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapse-Area687"
-        aria-expanded="true"
-        aria-controls="collapse-Area687"
-        onclick="getURL( 2140 , 'Area687')"
-      >
-        
-        <div class="row no-gutters" style="width: 100%">
-          <div class="col-7 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >Coastal flood risk</span
-            ><br />
-            <span class="fs-sm font-weight-normal"
-              >Residents living in a hurricane evacuation zone, 2024</span
-            >
-          </div>
-          <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >17.5</span
-            >
-            <br />
-            <span class="fs-sm font-weight-normal"
-              >Percent </span
-            >
-          </div>
-
-          
-
-          <div class="col-2 d-print-none">
-              <div class="float-right mt-1">
-              <span
-                    class="better">Lower</span>
-            </div>
-          </div>
-
-          
-          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
-
-            
-            <div style="width:50%;" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                Coastal flood risk
-              </span><br />
-              <span class="fs-sm font-weight-normal">Residents living in a hurricane evacuation zone, 2024</span>
-            </div>
-
-            
-            <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                17.5
-              </span><br />
-              <span class="fs-xs font-weight-normal">
-                Percent 
-              </span>
-            </div>
-
-            
-
-            
-            
-            <div style="width:25%;" class="pl-1 font-weight-normal">
-              <span class="comp-good">Lower</span> than most neighborhoods
-            </div>
-
-          </div>
-
-        </div>
-      </button>
-    </h2>
-  </div>
-
-
-  <div
-    id="collapse-Area687"
-    class="collapse border-bottom "
-    aria-labelledby="heading-Area687"
-    data-parent="#accordion-0"
-    data-indicator-name="Area687"
-    data-count="1"
-  >
-    <div class="card-body card-body-no-top">
-
-      <div class="row no-gutters fs-sm">
-        <div class="col-12">
-            
-            <p class="fs-md mt-1 mb-2">Hurricane Evacuation Zones are determined by New York City Emergency Management and indicate varying threat levels of coastal flooding from storm surge. Evacuation orders may be given during hurricanes or coastal flooding events. There are six zones, ranked by storm surge risk. Zone 1 is the highest risk for flooding. Residents in these zones may receive evacuation orders during hurricanes or tropical storms.</p>
-        </div>
-
-                <div class="col-md-7 border-right h-100">
-                
-                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Area687-1">
-                    ...map is loading...
-                </div><div class="data-note mt-1"></div></div>
-        
-        
-        
-        
-
-        
-
-        <div class="col-md-5 h-100 p-1 ">
-
-            <p class="fs-rg">
-                Coastal flood risk in <strong>Borough Park</strong>:
-                <div class=" fs-md">
-                  <p>
-                    <span class="comp-good">Lower</span> than most neighborhoods
-                  </p>
-
-                  <p>
-                    <span class="comp-good">Lower</span> than
-
-                    the <strong>Brooklyn average</strong>
-                    <br>
-                    <span class="fs-sm pl-3">(47.8%)</span>
-                  </p>
-
-                  <p>
-                    <span class="comp-good">Lower</span> than
-
-                    the <strong>Citywide average</strong>
-                    <br>
-                    <span class="fs-sm pl-3">(39%)</span>
-                  </p>
-
-                    </div>
-                
-            </p>
-
-             
-            <div id="trend" class="hide">
-            <p>In <strong>Brooklyn</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
-            </div>
-
-            
-
-            <span id="year-coastal-flood-risk" class="sr-only">YEAR</span>
-
-          
-
-        </div>
-
-      </div>
-      <div class="row no-gutters">
-        <div class="col-7">
-            <p class="fs-xs"><strong>Source:</strong> New York City Office of Emergency Management</p>
-
-        </div>
-        <div class="col-5">
-            <p class="float-right"><a id="2140" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<script>
-    
-
-    (function(x, y) {
-        var endDate = new Date(x);
-        var year = endDate.getFullYear(); 
-        document.getElementById(y).innerHTML = year;
-    })(`2024-12-31`, `year-coastal-flood-risk`);
-</script>
-
-
-
-
-<script type="text/javascript">
-
-    $( "#collapse-Area687" ).on('shown.bs.collapse', function() {
-
-        
-
-        gtag('event', 'click_modal', {
-                'modal_name': 'Coastal flood risk'
-            });
-
-        var opt = {"renderer": "svg"};
-
-            
-
-            
-
-            var summaryData =
-                arqTable
-                .filter(d => d.indicator_data_name == "Area687")
-                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
-                .dedupe()
-                .groupby("neighborhood")
-                .orderby("neighborhood", aq.desc("end_date"))
-                .slice(0,1) 
-                .ungroup()
-                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
-                .orderby("unmodified_data_value_geo_entity") 
-                .select(aq.not("end_date"))
-                .objects()
-
-
-            
-
-            
-
-            var mapData = summaryData;
-
-            renderNRMap(mapData,  "#map-Area687-1", "Percent ","Coastal flood risk",geocode)
-
-    });
-
-    </script>
-
-
-
-
-
-  <div class="card-header border-top" id="heading-Dayt688">
-    <h2 class="mb-0">
-      <button
-        class="btn btn-block btn-sm text-left"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapse-Dayt688"
-        aria-expanded="true"
-        aria-controls="collapse-Dayt688"
-        onclick="getURL( 2141 , 'Dayt688')"
-      >
-        
-        <div class="row no-gutters" style="width: 100%">
-          <div class="col-7 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >Surface temperature</span
-            ><br />
-            <span class="fs-sm font-weight-normal"
-              >Daytime summer surface temperature, 2018</span
-            >
-          </div>
-          <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >98.6</span
-            >
-            <br />
-            <span class="fs-sm font-weight-normal"
-              >Degrees Fahrenheit </span
-            >
-          </div>
-
-          
-
-          <div class="col-2 d-print-none">
-              <div class="float-right mt-1">
-              <span
-                    class="worse">Higher</span>
-            </div>
-          </div>
-
-          
-          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
-
-            
-            <div style="width:50%;" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                Surface temperature
-              </span><br />
-              <span class="fs-sm font-weight-normal">Daytime summer surface temperature, 2018</span>
-            </div>
-
-            
-            <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                98.6
-              </span><br />
-              <span class="fs-xs font-weight-normal">
-                Degrees Fahrenheit 
-              </span>
-            </div>
-
-            
-
-            
-            
-            <div style="width:25%;" class="pl-1 font-weight-normal">
-              <span class="comp-bad">Higher</span> than most neighborhoods
-            </div>
-
-          </div>
-
-        </div>
-      </button>
-    </h2>
-  </div>
-
-
-  <div
-    id="collapse-Dayt688"
-    class="collapse border-bottom "
-    aria-labelledby="heading-Dayt688"
-    data-parent="#accordion-0"
-    data-indicator-name="Dayt688"
-    data-count="2"
-  >
-    <div class="card-body card-body-no-top">
-
-      <div class="row no-gutters fs-sm">
-        <div class="col-12">
-            
-            <p class="fs-md mt-1 mb-2">Spatial average of surface temperature, measured by satellite. Surface temperatures vary because of vegetative cover (which promotes cooling), and paved roads, sidewalks, and buildings (which retain heat). Hotter neighborhoods tend to have more heat-exacerbated deaths associated with extreme heat events.</p>
-        </div>
-
-                <div class="col-md-7 border-right h-100">
-                
-                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Dayt688-2">
-                    ...map is loading...
-                </div><div class="data-note mt-1"></div></div>
-        
-        
-        
-        
-
-        
-
-        <div class="col-md-5 h-100 p-1 ">
-
-            <p class="fs-rg">
-                Surface temperature in <strong>Borough Park</strong>:
-                <div class=" fs-md">
-                  <p>
-                    <span class="comp-bad">Higher</span> than most neighborhoods
-                  </p>
-
-                  <p>
-                    <span class="comp-null">Equal</span> to
-
-                    the <strong>Brooklyn average</strong>
-                    <br>
-                    <span class="fs-sm pl-3">(98.6 )</span>
-                  </p>
-
-                  <p>
-                    <span class="comp-null">Equal</span> to
-
-                    the <strong>Citywide average</strong>
-                    <br>
-                    <span class="fs-sm pl-3">(98.6 )</span>
-                  </p>
-
-                    </div>
-                
-            </p>
-
-             
-            <div id="trend" class="hide">
-            <p>In <strong>Brooklyn</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
-            </div>
-
-            
-
-            <span id="year-surface-temperature" class="sr-only">YEAR</span>
-
-          
-
-        </div>
-
-      </div>
-      <div class="row no-gutters">
-        <div class="col-7">
-            <p class="fs-xs"><strong>Source:</strong> U.S. Geological Survey</p>
-
-        </div>
-        <div class="col-5">
-            <p class="float-right"><a id="2141" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<script>
-    
-
-    (function(x, y) {
-        var endDate = new Date(x);
-        var year = endDate.getFullYear(); 
-        document.getElementById(y).innerHTML = year;
-    })(`2018-12-31`, `year-surface-temperature`);
-</script>
-
-
-
-
-<script type="text/javascript">
-
-    $( "#collapse-Dayt688" ).on('shown.bs.collapse', function() {
-
-        
-
-        gtag('event', 'click_modal', {
-                'modal_name': 'Surface temperature'
-            });
-
-        var opt = {"renderer": "svg"};
-
-            
-
-            
-
-            var summaryData =
-                arqTable
-                .filter(d => d.indicator_data_name == "Dayt688")
-                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
-                .dedupe()
-                .groupby("neighborhood")
-                .orderby("neighborhood", aq.desc("end_date"))
-                .slice(0,1) 
-                .ungroup()
-                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
-                .orderby("unmodified_data_value_geo_entity") 
-                .select(aq.not("end_date"))
-                .objects()
-
-
-            
-
-            
-
-            var mapData = summaryData;
-
-            renderNRMap(mapData,  "#map-Dayt688-2", "Degrees Fahrenheit ","Surface temperature",geocode)
-
-    });
-
-    </script></div>
-                        
-                        <div class="accordion my-4 report-section pt-2 border-left border-right border-bottom" id="accordion-1">
-
-                            <div class="px-2 pb-2">
-                                <h3 class="h4 fs-rg">
-                                    Health outcomes</h3>
-                                <p class="fs-sm">Health outcomes that can be affected by conditions in the home or neighborhood.</p>
-                            </div>
-
-                                        
-
-                                        
-
-                                        
-
-                                        
-
-                                        
-                                            
-                                        
-
-                                        
-
-
-
-
-
-  <div class="card-header border-top" id="heading-Asth1196">
-    <h2 class="mb-0">
-      <button
-        class="btn btn-block btn-sm text-left"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapse-Asth1196"
-        aria-expanded="true"
-        aria-controls="collapse-Asth1196"
-        onclick="getURL( 2379 , 'Asth1196')"
-      >
-        
-        <div class="row no-gutters" style="width: 100%">
-          <div class="col-7 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >Asthma ED visits (age 5 to 17)</span
-            ><br />
-            <span class="fs-sm font-weight-normal"
-              >Asthma emergency department visits (age 5 to 17), 2023</span
-            >
-          </div>
-          <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >29.2</span
-            >
-            <br />
-            <span class="fs-sm font-weight-normal"
-              >Estimated annual rate per 10,000</span
-            >
-          </div>
-
-          
-
-          <div class="col-2 d-print-none">
-              <div class="float-right mt-1">
-              <span
-                    class="better">Lower</span>
-            </div>
-          </div>
-
-          
-          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
-
-            
-            <div style="width:50%;" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                Asthma ED visits (age 5 to 17)
-              </span><br />
-              <span class="fs-sm font-weight-normal">Asthma emergency department visits (age 5 to 17), 2023</span>
-            </div>
-
-            
-            <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                29.2
-              </span><br />
-              <span class="fs-xs font-weight-normal">
-                Estimated annual rate per 10,000
-              </span>
-            </div>
-
-            
-
-            
-            
-            <div style="width:25%;" class="pl-1 font-weight-normal">
-              <span class="comp-good">Lower</span> than most neighborhoods
-            </div>
-
-          </div>
-
-        </div>
-      </button>
-    </h2>
-  </div>
-
-
-  <div
-    id="collapse-Asth1196"
-    class="collapse border-bottom "
-    aria-labelledby="heading-Asth1196"
-    data-parent="#accordion-1"
-    data-indicator-name="Asth1196"
-    data-count="1"
-  >
-    <div class="card-body card-body-no-top">
-
-      <div class="row no-gutters fs-sm">
-        <div class="col-12">
-            
-            <p class="fs-md mt-1 mb-2">Emergency department visits for asthma. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma.</p>
-        </div>
-
-                <div class="col-md-7 border-right h-100">
-                
-                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Asth1196-1">
-                    ...map is loading...
-                </div><div class="data-note mt-1"></div></div>
-        
-        
-        
-        
-
-        
-
-        <div class="col-md-5 h-100 p-1 ">
-
-            <p class="fs-rg">
-                Asthma ED visits (age 5 to 17) in <strong>Borough Park</strong>:
-                <div class=" fs-md">
-                  <p>
-                    <span class="comp-good">Lower</span> than most neighborhoods
-                  </p>
-
-                  <p>
-                    <span class="comp-good">Lower</span> than
-
-                    the <strong>Brooklyn average</strong>
-                    <br>
-                    <span class="fs-sm pl-3">(125.4 per 10,000)</span>
-                  </p>
-
-                  <p>
-                    <span class="comp-good">Lower</span> than
-
-                    the <strong>Citywide average</strong>
-                    <br>
-                    <span class="fs-sm pl-3">(143.7 per 10,000)</span>
-                  </p>
-
-                    </div>
-                
-            </p>
-
-             
-            <div id="trend" class="hide">
-            <p>In <strong>Brooklyn</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
-            </div>
-
-            
-
-            <span id="year-asthma-ed-visits-age-5-to-17" class="sr-only">YEAR</span>
-
-          
-
-        </div>
-
-      </div>
-      <div class="row no-gutters">
-        <div class="col-7">
-            <p class="fs-xs"><strong>Source:</strong> New York State Statewide Planning and Research Cooperative System (SPARCS) Deidentified Hospital Discharge Data</p>
-
-        </div>
-        <div class="col-5">
-            <p class="float-right"><a id="2379" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<script>
-    
-
-    (function(x, y) {
-        var endDate = new Date(x);
-        var year = endDate.getFullYear(); 
-        document.getElementById(y).innerHTML = year;
-    })(`2023-12-31`, `year-asthma-ed-visits-age-5-to-17`);
-</script>
-
-
-
-
-<script type="text/javascript">
-
-    $( "#collapse-Asth1196" ).on('shown.bs.collapse', function() {
-
-        
-
-        gtag('event', 'click_modal', {
-                'modal_name': 'Asthma ED visits (age 5 to 17)'
-            });
-
-        var opt = {"renderer": "svg"};
-
-            
-
-            
-
-            var summaryData =
-                arqTable
-                .filter(d => d.indicator_data_name == "Asth1196")
-                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
-                .dedupe()
-                .groupby("neighborhood")
-                .orderby("neighborhood", aq.desc("end_date"))
-                .slice(0,1) 
-                .ungroup()
-                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
-                .orderby("unmodified_data_value_geo_entity") 
-                .select(aq.not("end_date"))
-                .objects()
-
-
-            
-
-            
-
-            var mapData = summaryData;
-
-            renderNRMap(mapData,  "#map-Asth1196-1", "Estimated annual rate per 10,000","Asthma ED visits (age 5 to 17)",geocode)
-
-    });
-
-    </script></div>
-                        
-                        <div class="accordion my-4 report-section pt-2 border-left border-right border-bottom" id="accordion-2">
-
-                            <div class="px-2 pb-2">
-                                <h3 class="h4 fs-rg">
-                                    Built environment</h3>
-                                <p class="fs-sm">Access to AC, green space, and well-insulated homes can effect how easy it is to stay cool.</p>
-                            </div>
-
-                                        
-
-                                        
-
-                                        
-
-                                        
-
-                                        
-                                            
-                                        
-
-                                        
-
-
-
-
-
-  <div class="card-header border-top" id="heading-Home88">
-    <h2 class="mb-0">
-      <button
-        class="btn btn-block btn-sm text-left"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapse-Home88"
-        aria-expanded="true"
-        aria-controls="collapse-Home88"
-        onclick="getURL( 46 , 'Home88')"
-      >
-        
-        <div class="row no-gutters" style="width: 100%">
-          <div class="col-7 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >Neighborhood building quality</span
-            ><br />
-            <span class="fs-sm font-weight-normal"
-              >Homes near structures rated good or excellent, 2017</span
-            >
-          </div>
-          <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >87.3</span
-            >
-            <br />
-            <span class="fs-sm font-weight-normal"
-              >Percent </span
-            >
-          </div>
-
-          
-
-          <div class="col-2 d-print-none">
-              <div class="float-right mt-1">
-              <span
-                    class="better">Higher</span>
-            </div>
-          </div>
-
-          
-          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
-
-            
-            <div style="width:50%;" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                Neighborhood building quality
-              </span><br />
-              <span class="fs-sm font-weight-normal">Homes near structures rated good or excellent, 2017</span>
-            </div>
-
-            
-            <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                87.3
-              </span><br />
-              <span class="fs-xs font-weight-normal">
-                Percent 
-              </span>
-            </div>
-
-            
-
-            
-            
-            <div style="width:25%;" class="pl-1 font-weight-normal">
-              <span class="comp-good">Higher</span> than most neighborhoods
-            </div>
-
-          </div>
-
-        </div>
-      </button>
-    </h2>
-  </div>
-
-
-  <div
-    id="collapse-Home88"
-    class="collapse border-bottom "
-    aria-labelledby="heading-Home88"
-    data-parent="#accordion-2"
-    data-indicator-name="Home88"
-    data-count="1"
-  >
-    <div class="card-body card-body-no-top">
-
-      <div class="row no-gutters fs-sm">
-        <div class="col-12">
-            
-            <p class="fs-md mt-1 mb-2">Building quality predicts the number of housing maintenance problems in a residence that place residents at increased risk of acute or chronic health problems.</p>
-        </div>
-
-                <div class="col-md-7 border-right h-100">
-                
-                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Home88-1">
-                    ...map is loading...
-                </div><div class="data-note mt-1"></div></div>
-        
-        
-        
-        
-
-        
-
-        <div class="col-md-5 h-100 p-1 ">
-
-            <p class="fs-rg">
-                Neighborhood building quality in <strong>Borough Park</strong>:
-                <div class=" fs-md">
-                  <p>
-                    <span class="comp-good">Higher</span> than most neighborhoods
-                  </p>
-
-                  <p>
-                    <span class="comp-good">Higher</span> than
-
-                    the <strong>Brooklyn average</strong>
-                    <br>
-                    <span class="fs-sm pl-3">(80.4%)</span>
-                  </p>
-
-                  <p>
-                    <span class="comp-good">Higher</span> than
-
-                    the <strong>Citywide average</strong>
-                    <br>
-                    <span class="fs-sm pl-3">(80.7%)</span>
-                  </p>
-
-                    </div>
-                
-            </p>
-
-             
-            <div id="trend" class="hide">
-            <p>In <strong>Brooklyn</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
-            </div>
-
-            
-
-            <span id="year-neighborhood-building-quality" class="sr-only">YEAR</span>
-
-          
-
-        </div>
-
-      </div>
-      <div class="row no-gutters">
-        <div class="col-7">
-            <p class="fs-xs"><strong>Source:</strong> New York City Housing and Vacancy Survey (NYCHVS)</p>
-
-        </div>
-        <div class="col-5">
-            <p class="float-right"><a id="46" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<script>
-    
-
-    (function(x, y) {
-        var endDate = new Date(x);
-        var year = endDate.getFullYear(); 
-        document.getElementById(y).innerHTML = year;
-    })(`2017-12-31`, `year-neighborhood-building-quality`);
-</script>
-
-
-
-
-<script type="text/javascript">
-
-    $( "#collapse-Home88" ).on('shown.bs.collapse', function() {
-
-        
-
-        gtag('event', 'click_modal', {
-                'modal_name': 'Neighborhood building quality'
-            });
-
-        var opt = {"renderer": "svg"};
-
-            
-
-            
-
-            var summaryData =
-                arqTable
-                .filter(d => d.indicator_data_name == "Home88")
-                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
-                .dedupe()
-                .groupby("neighborhood")
-                .orderby("neighborhood", aq.desc("end_date"))
-                .slice(0,1) 
-                .ungroup()
-                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
-                .orderby("unmodified_data_value_geo_entity") 
-                .select(aq.not("end_date"))
-                .objects()
-
-
-            
-
-            
-
-            var mapData = summaryData;
-
-            renderNRMap(mapData,  "#map-Home88-1", "Percent ","Neighborhood building quality",geocode)
-
-    });
-
-    </script>
-
-
-
-
-
-  <div class="card-header border-top" id="heading-Vege690">
-    <h2 class="mb-0">
-      <button
-        class="btn btn-block btn-sm text-left"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapse-Vege690"
-        aria-expanded="true"
-        aria-controls="collapse-Vege690"
-        onclick="getURL( 2143 , 'Vege690')"
-      >
-        
-        <div class="row no-gutters" style="width: 100%">
-          <div class="col-7 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >Grass and tree cover</span
-            ><br />
-            <span class="fs-sm font-weight-normal"
-              >Vegetative cover, 2017</span
-            >
-          </div>
-          <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >24.0</span
-            >
-            <br />
-            <span class="fs-sm font-weight-normal"
-              >Percent </span
-            >
-          </div>
-
-          
-
-          <div class="col-2 d-print-none">
-              <div class="float-right mt-1">
-              <span
-                    class="worse">Lower</span>
-            </div>
-          </div>
-
-          
-          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
-
-            
-            <div style="width:50%;" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                Grass and tree cover
-              </span><br />
-              <span class="fs-sm font-weight-normal">Vegetative cover, 2017</span>
-            </div>
-
-            
-            <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                24.0
-              </span><br />
-              <span class="fs-xs font-weight-normal">
-                Percent 
-              </span>
-            </div>
-
-            
-
-            
-            
-            <div style="width:25%;" class="pl-1 font-weight-normal">
-              <span class="comp-bad">Lower</span> than most neighborhoods
-            </div>
-
-          </div>
-
-        </div>
-      </button>
-    </h2>
-  </div>
-
-
-  <div
-    id="collapse-Vege690"
-    class="collapse border-bottom "
-    aria-labelledby="heading-Vege690"
-    data-parent="#accordion-2"
-    data-indicator-name="Vege690"
-    data-count="2"
-  >
-    <div class="card-body card-body-no-top">
-
-      <div class="row no-gutters fs-sm">
-        <div class="col-12">
-            
-            <p class="fs-md mt-1 mb-2">Land covered by trees, grass, or other plants. Vegetative cover reduces temperatures in the immediate area, and may increase air quality.</p>
-        </div>
-
-                <div class="col-md-7 border-right h-100">
-                
-                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Vege690-2">
-                    ...map is loading...
-                </div><div class="data-note mt-1"></div></div>
-        
-        
-        
-        
-
-        
-
-        <div class="col-md-5 h-100 p-1 ">
-
-            <p class="fs-rg">
-                Grass and tree cover in <strong>Borough Park</strong>:
-                <div class=" fs-md">
-                  <p>
-                    <span class="comp-bad">Lower</span> than most neighborhoods
-                  </p>
-
-                  <p>
-                    <span class="comp-bad">Lower</span> than
-
-                    the <strong>Brooklyn average</strong>
-                    <br>
-                    <span class="fs-sm pl-3">(28%)</span>
-                  </p>
-
-                  <p>
-                    <span class="comp-bad">Lower</span> than
-
-                    the <strong>Citywide average</strong>
-                    <br>
-                    <span class="fs-sm pl-3">(38%)</span>
-                  </p>
-
-                    </div>
-                
-            </p>
-
-             
-            <div id="trend" class="hide">
-            <p>In <strong>Brooklyn</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
-            </div>
-
-            
-
-            <span id="year-grass-and-tree-cover" class="sr-only">YEAR</span>
-
-          
-
-        </div>
-
-      </div>
-      <div class="row no-gutters">
-        <div class="col-7">
-            <p class="fs-xs"><strong>Source:</strong> University of Vermont remote sensing LiDAR data, assessed using methodology described in: MacFaden, S.W., O&#39;Neil-Dunne, J.P.M., Royer, A.R., Lu, J.W.T., &amp; Rundle, A.G. (2012). High-resolution tree canopy mapping for New York City using LiDAR and object-based image analysis. Journal of Applied Remote Sensing, 6(1).</p>
-
-        </div>
-        <div class="col-5">
-            <p class="float-right"><a id="2143" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<script>
-    
-
-    (function(x, y) {
-        var endDate = new Date(x);
-        var year = endDate.getFullYear(); 
-        document.getElementById(y).innerHTML = year;
-    })(`2017-12-31`, `year-grass-and-tree-cover`);
-</script>
-
-
-
-
-<script type="text/javascript">
-
-    $( "#collapse-Vege690" ).on('shown.bs.collapse', function() {
-
-        
-
-        gtag('event', 'click_modal', {
-                'modal_name': 'Grass and tree cover'
-            });
-
-        var opt = {"renderer": "svg"};
-
-            
-
-            
-
-            var summaryData =
-                arqTable
-                .filter(d => d.indicator_data_name == "Vege690")
-                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
-                .dedupe()
-                .groupby("neighborhood")
-                .orderby("neighborhood", aq.desc("end_date"))
-                .slice(0,1) 
-                .ungroup()
-                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
-                .orderby("unmodified_data_value_geo_entity") 
-                .select(aq.not("end_date"))
-                .objects()
-
-
-            
-
-            
-
-            var mapData = summaryData;
-
-            renderNRMap(mapData,  "#map-Vege690-2", "Percent ","Grass and tree cover",geocode)
-
-    });
-
-    </script>
-
-
-
-
-
-  <div class="card-header border-top" id="heading-Adul706">
-    <h2 class="mb-0">
-      <button
-        class="btn btn-block btn-sm text-left"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapse-Adul706"
-        aria-expanded="true"
-        aria-controls="collapse-Adul706"
-        onclick="getURL( 2155 , 'Adul706')"
-      >
-        
-        <div class="row no-gutters" style="width: 100%">
-          <div class="col-7 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >Older adults with AC</span
-            ><br />
-            <span class="fs-sm font-weight-normal"
-              >Older adults with air conditioners (age 65&#43;), 2013</span
-            >
-          </div>
-          <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >75.7*</span
-            >
-            <br />
-            <span class="fs-sm font-weight-normal"
-              >Percent </span
-            >
-          </div>
-
-          
-
-          <div class="col-2 d-print-none">
-              <div class="float-right mt-1">
-              <span
-                    class="worse">Lower</span>
-            </div>
-          </div>
-
-          
-          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
-
-            
-            <div style="width:50%;" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                Older adults with AC
-              </span><br />
-              <span class="fs-sm font-weight-normal">Older adults with air conditioners (age 65&#43;), 2013</span>
-            </div>
-
-            
-            <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                75.7*
-              </span><br />
-              <span class="fs-xs font-weight-normal">
-                Percent 
-              </span>
-            </div>
-
-            
-
-            
-            
-            <div style="width:25%;" class="pl-1 font-weight-normal">
-              <span class="comp-bad">Lower</span> than most neighborhoods
-            </div>
-
-          </div>
-
-        </div>
-      </button>
-    </h2>
-  </div>
-
-
-  <div
-    id="collapse-Adul706"
-    class="collapse border-bottom "
-    aria-labelledby="heading-Adul706"
-    data-parent="#accordion-2"
-    data-indicator-name="Adul706"
-    data-count="3"
-  >
-    <div class="card-body card-body-no-top">
-
-      <div class="row no-gutters fs-sm">
-        <div class="col-12">
-            
-            <p class="fs-md mt-1 mb-2">Older adults (over 65) are more vulnerable to hot weather and heat stress. Air conditioning reduces the risk of heat stroke and other heat-related illness.</p>
-        </div>
-
-                <div class="col-md-7 border-right h-100">
-                
-                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Adul706-3">
-                    ...map is loading...
-                </div><div class="data-note mt-1">* Estimate is based on small numbers so should be interpreted with caution.</div></div>
-        
-        
-        
-        
-
-        
-
-        <div class="col-md-5 h-100 p-1 ">
-
-            <p class="fs-rg">
-                Older adults with AC in <strong>Borough Park</strong>:
-                <div class=" fs-md">
-                  <p>
-                    <span class="comp-bad">Lower</span> than most neighborhoods
-                  </p>
-
-                  <p>
-                    <span class="comp-bad">Lower</span> than
-
-                    the <strong>Brooklyn average</strong>
-                    <br>
-                    <span class="fs-sm pl-3">(86.7%)</span>
-                  </p>
-
-                  <p>
-                    <span class="comp-bad">Lower</span> than
-
-                    the <strong>Citywide average</strong>
-                    <br>
-                    <span class="fs-sm pl-3">(87.7%)</span>
-                  </p>
-
-                    </div>
-                
-            </p>
-
-             
-            <div id="trend" class="hide">
-            <p>In <strong>Brooklyn</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
-            </div>
-
-            
-
-            <span id="year-older-adults-with-ac" class="sr-only">YEAR</span>
-
-          
-
-        </div>
-
-      </div>
-      <div class="row no-gutters">
-        <div class="col-7">
-            <p class="fs-xs"><strong>Source:</strong> New York City Community Health Survey (CHS)</p>
-
-        </div>
-        <div class="col-5">
-            <p class="float-right"><a id="2155" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<script>
-    
-
-    (function(x, y) {
-        var endDate = new Date(x);
-        var year = endDate.getFullYear(); 
-        document.getElementById(y).innerHTML = year;
-    })(`2013-12-31`, `year-older-adults-with-ac`);
-</script>
-
-
-
-
-<script type="text/javascript">
-
-    $( "#collapse-Adul706" ).on('shown.bs.collapse', function() {
-
-        
-
-        gtag('event', 'click_modal', {
-                'modal_name': 'Older adults with AC'
-            });
-
-        var opt = {"renderer": "svg"};
-
-            
-
-            
-
-            var summaryData =
-                arqTable
-                .filter(d => d.indicator_data_name == "Adul706")
-                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
-                .dedupe()
-                .groupby("neighborhood")
-                .orderby("neighborhood", aq.desc("end_date"))
-                .slice(0,1) 
-                .ungroup()
-                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
-                .orderby("unmodified_data_value_geo_entity") 
-                .select(aq.not("end_date"))
-                .objects()
-
-
-            
-
-            
-
-            var mapData = summaryData;
-
-            renderNRMap(mapData,  "#map-Adul706-3", "Percent ","Older adults with AC",geocode)
-
-    });
-
-    </script></div>
-                        
-                        <div class="accordion my-4 report-section pt-2 border-left border-right border-bottom" id="accordion-3">
-
-                            <div class="px-2 pb-2">
-                                <h3 class="h4 fs-rg">
-                                    Priority populations</h3>
-                                <p class="fs-sm">Some populations may be more vulnerable to health outcomes associated with climate.</p>
-                            </div>
-
-                                        
-
-                                        
-
-                                        
-
-                                        
-
-                                        
-                                            
-                                        
-
-                                        
-
-
-
-
-
-  <div class="card-header border-top" id="heading-Olde693">
-    <h2 class="mb-0">
-      <button
-        class="btn btn-block btn-sm text-left"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapse-Olde693"
-        aria-expanded="true"
-        aria-controls="collapse-Olde693"
-        onclick="getURL( 2146 , 'Olde693')"
-      >
-        
-        <div class="row no-gutters" style="width: 100%">
-          <div class="col-7 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >Older adults living alone (65&#43;)</span
-            ><br />
-            <span class="fs-sm font-weight-normal"
-              >Older adults living alone (65&#43;), 2017-21</span
-            >
-          </div>
-          <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >26.1</span
-            >
-            <br />
-            <span class="fs-sm font-weight-normal"
-              >Percent </span
-            >
-          </div>
-
-          
-
-          <div class="col-2 d-print-none">
-              <div class="float-right mt-1">
-              <span class="middle d-none"></span>
-            </div>
-          </div>
-
-          
-          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
-
-            
-            <div style="width:50%;" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                Older adults living alone (65&#43;)
-              </span><br />
-              <span class="fs-sm font-weight-normal">Older adults living alone (65&#43;), 2017-21</span>
-            </div>
-
-            
-            <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                26.1
-              </span><br />
-              <span class="fs-xs font-weight-normal">
-                Percent 
-              </span>
-            </div>
-
-            
-
-            
-            
-            <div style="width:25%;" class="pl-1 font-weight-normal">
-              <span class="comp-null">In the middle</span> of neighborhoods
-            </div>
-
-          </div>
-
-        </div>
-      </button>
-    </h2>
-  </div>
-
-
-  <div
-    id="collapse-Olde693"
-    class="collapse border-bottom "
-    aria-labelledby="heading-Olde693"
-    data-parent="#accordion-3"
-    data-indicator-name="Olde693"
-    data-count="1"
-  >
-    <div class="card-body card-body-no-top">
-
-      <div class="row no-gutters fs-sm">
-        <div class="col-12">
-            
-            <p class="fs-md mt-1 mb-2">People age 65+ living alone. People living alone may have more difficulty getting resources they need in an emergency, and are at higher risk of weather-related illnesses like heat stroke and hypothermia.</p>
-        </div>
-
-                <div class="col-md-7 border-right h-100">
-                
-                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Olde693-1">
-                    ...map is loading...
-                </div><div class="data-note mt-1"></div></div>
-        
-        
-        
-        
-
-        
-
-        <div class="col-md-5 h-100 p-1 ">
-
-            <p class="fs-rg">
-                Older adults living alone (65&#43;) in <strong>Borough Park</strong>:
-                <div class=" fs-md">
-                  <p>
-                    <span class="comp-null">In the middle</span> of neighborhoods
-                  </p>
-
-                  <p>
-                    <span class="comp-good">Lower</span> than
-
-                    the <strong>Brooklyn average</strong>
-                    <br>
-                    <span class="fs-sm pl-3">(27.3%)</span>
-                  </p>
-
-                  <p>
-                    <span class="comp-good">Lower</span> than
-
-                    the <strong>Citywide average</strong>
-                    <br>
-                    <span class="fs-sm pl-3">(29.3%)</span>
-                  </p>
-
-                    </div>
-                
-            </p>
-
-             
-            <div id="trend" class="hide">
-            <p>In <strong>Brooklyn</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
-            </div>
-
-            
-
-            <span id="year-older-adults-living-alone-65&#43;" class="sr-only">YEAR</span>
-
-          
-
-        </div>
-
-      </div>
-      <div class="row no-gutters">
-        <div class="col-7">
-            <p class="fs-xs"><strong>Source:</strong> American Community Survey</p>
-
-        </div>
-        <div class="col-5">
-            <p class="float-right"><a id="2146" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<script>
-    
-
-    (function(x, y) {
-        var endDate = new Date(x);
-        var year = endDate.getFullYear(); 
-        document.getElementById(y).innerHTML = year;
-    })(`2021-12-31`, `year-older-adults-living-alone-65\u002b`);
-</script>
-
-
-
-
-<script type="text/javascript">
-
-    $( "#collapse-Olde693" ).on('shown.bs.collapse', function() {
-
-        
-
-        gtag('event', 'click_modal', {
-                'modal_name': 'Older adults living alone (65\u002b)'
-            });
-
-        var opt = {"renderer": "svg"};
-
-            
-
-            
-
-            var summaryData =
-                arqTable
-                .filter(d => d.indicator_data_name == "Olde693")
-                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
-                .dedupe()
-                .groupby("neighborhood")
-                .orderby("neighborhood", aq.desc("end_date"))
-                .slice(0,1) 
-                .ungroup()
-                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
-                .orderby("unmodified_data_value_geo_entity") 
-                .select(aq.not("end_date"))
-                .objects()
-
-
-            
-
-            
-
-            var mapData = summaryData;
-
-            renderNRMap(mapData,  "#map-Olde693-1", "Percent ","Older adults living alone (65\u002b)",geocode)
-
-    });
-
-    </script>
-
-
-
-
-
-  <div class="card-header border-top" id="heading-poveACSP">
-    <h2 class="mb-0">
-      <button
-        class="btn btn-block btn-sm text-left"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapse-poveACSP"
-        aria-expanded="true"
-        aria-controls="collapse-poveACSP"
-        onclick="getURL( 103 , 'poveACSP')"
-      >
-        
-        <div class="row no-gutters" style="width: 100%">
-          <div class="col-7 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >Poverty</span
-            ><br />
-            <span class="fs-sm font-weight-normal"
-              >Neighborhood poverty, 2019-23</span
-            >
-          </div>
-          <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >21.5</span
-            >
-            <br />
-            <span class="fs-sm font-weight-normal"
-              >Percent </span
-            >
-          </div>
-
-          
-
-          <div class="col-2 d-print-none">
-              <div class="float-right mt-1">
-              <span
-                    class="worse">Higher</span>
-            </div>
-          </div>
-
-          
-          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
-
-            
-            <div style="width:50%;" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                Poverty
-              </span><br />
-              <span class="fs-sm font-weight-normal">Neighborhood poverty, 2019-23</span>
-            </div>
-
-            
-            <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                21.5
-              </span><br />
-              <span class="fs-xs font-weight-normal">
-                Percent 
-              </span>
-            </div>
-
-            
-
-            
-            
-            <div style="width:25%;" class="pl-1 font-weight-normal">
-              <span class="comp-bad">Higher</span> than most neighborhoods
-            </div>
-
-          </div>
-
-        </div>
-      </button>
-    </h2>
-  </div>
-
-
-  <div
-    id="collapse-poveACSP"
-    class="collapse border-bottom "
-    aria-labelledby="heading-poveACSP"
-    data-parent="#accordion-3"
-    data-indicator-name="poveACSP"
-    data-count="2"
-  >
-    <div class="card-body card-body-no-top">
-
-      <div class="row no-gutters fs-sm">
-        <div class="col-12">
-            
-            <p class="fs-md mt-1 mb-2">Households with incomes below the federal poverty level. Households without sufficient resources are often deprived of access to health care, good quality housing, and other resources that protect health.</p>
-        </div>
-
-                <div class="col-md-7 border-right h-100">
-                
-                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-poveACSP-2">
-                    ...map is loading...
-                </div><div class="data-note mt-1"></div></div>
-        
-        
-        
-        
-
-        
-
-        <div class="col-md-5 h-100 p-1 ">
-
-            <p class="fs-rg">
-                Poverty in <strong>Borough Park</strong>:
-                <div class=" fs-md">
-                  <p>
-                    <span class="comp-bad">Higher</span> than most neighborhoods
-                  </p>
-
-                  <p>
-                    <span class="comp-bad">Higher</span> than
-
-                    the <strong>Brooklyn average</strong>
-                    <br>
-                    <span class="fs-sm pl-3">(18.9%)</span>
-                  </p>
-
-                  <p>
-                    <span class="comp-bad">Higher</span> than
-
-                    the <strong>Citywide average</strong>
-                    <br>
-                    <span class="fs-sm pl-3">(17.4%)</span>
-                  </p>
-
-                    </div>
-                
-            </p>
-
-             
-            <div id="trend" class="hide">
-            <p>In <strong>Brooklyn</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
-            </div>
-
-            
-
-            <span id="year-poverty" class="sr-only">YEAR</span>
-
-          
-
-        </div>
-
-      </div>
-      <div class="row no-gutters">
-        <div class="col-7">
-            <p class="fs-xs"><strong>Source:</strong> American Community Survey</p>
-
-        </div>
-        <div class="col-5">
-            <p class="float-right"><a id="103" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<script>
-    
-
-    (function(x, y) {
-        var endDate = new Date(x);
-        var year = endDate.getFullYear(); 
-        document.getElementById(y).innerHTML = year;
-    })(`2023-12-31`, `year-poverty`);
-</script>
-
-
-
-
-<script type="text/javascript">
-
-    $( "#collapse-poveACSP" ).on('shown.bs.collapse', function() {
-
-        
-
-        gtag('event', 'click_modal', {
-                'modal_name': 'Poverty'
-            });
-
-        var opt = {"renderer": "svg"};
-
-            
-
-            
-
-            var summaryData =
-                arqTable
-                .filter(d => d.indicator_data_name == "poveACSP")
-                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
-                .dedupe()
-                .groupby("neighborhood")
-                .orderby("neighborhood", aq.desc("end_date"))
-                .slice(0,1) 
-                .ungroup()
-                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
-                .orderby("unmodified_data_value_geo_entity") 
-                .select(aq.not("end_date"))
-                .objects()
-
-
-            
-
-            
-
-            var mapData = summaryData;
-
-            renderNRMap(mapData,  "#map-poveACSP-2", "Percent ","Poverty",geocode)
-
-    });
-
-    </script>
-
-
-
-
-
-  <div class="card-header border-top" id="heading-Seri691">
-    <h2 class="mb-0">
-      <button
-        class="btn btn-block btn-sm text-left"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapse-Seri691"
-        aria-expanded="true"
-        aria-controls="collapse-Seri691"
-        onclick="getURL( 2144 , 'Seri691')"
-      >
-        
-        <div class="row no-gutters" style="width: 100%">
-          <div class="col-7 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >Psychological distress</span
-            ><br />
-            <span class="fs-sm font-weight-normal"
-              >Serious psychological distress, 2012</span
-            >
-          </div>
-          <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >7.4*</span
-            >
-            <br />
-            <span class="fs-sm font-weight-normal"
-              >Percent </span
-            >
-          </div>
-
-          
-
-          <div class="col-2 d-print-none">
-              <div class="float-right mt-1">
-              <span
-                    class="worse">Higher</span>
-            </div>
-          </div>
-
-          
-          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
-
-            
-            <div style="width:50%;" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                Psychological distress
-              </span><br />
-              <span class="fs-sm font-weight-normal">Serious psychological distress, 2012</span>
-            </div>
-
-            
-            <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                7.4*
-              </span><br />
-              <span class="fs-xs font-weight-normal">
-                Percent 
-              </span>
-            </div>
-
-            
-
-            
-            
-            <div style="width:25%;" class="pl-1 font-weight-normal">
-              <span class="comp-bad">Higher</span> than most neighborhoods
-            </div>
-
-          </div>
-
-        </div>
-      </button>
-    </h2>
-  </div>
-
-
-  <div
-    id="collapse-Seri691"
-    class="collapse border-bottom "
-    aria-labelledby="heading-Seri691"
-    data-parent="#accordion-3"
-    data-indicator-name="Seri691"
-    data-count="3"
-  >
-    <div class="card-body card-body-no-top">
-
-      <div class="row no-gutters fs-sm">
-        <div class="col-12">
-            
-            <p class="fs-md mt-1 mb-2">Mental health conditions like series psychological distress can be worsened by extreme weather such as heat waves and coastal storms.</p>
-        </div>
-
-                <div class="col-md-7 border-right h-100">
-                
-                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Seri691-3">
-                    ...map is loading...
-                </div><div class="data-note mt-1">* Estimate is based on small numbers so should be interpreted with caution.</div></div>
-        
-        
-        
-        
-
-        
-
-        <div class="col-md-5 h-100 p-1 ">
-
-            <p class="fs-rg">
-                Psychological distress in <strong>Borough Park</strong>:
-                <div class=" fs-md">
-                  <p>
-                    <span class="comp-bad">Higher</span> than most neighborhoods
-                  </p>
-
-                  <p>
-                    <span class="comp-bad">Higher</span> than
-
-                    the <strong>Brooklyn average</strong>
-                    <br>
-                    <span class="fs-sm pl-3">(6%)</span>
-                  </p>
-
-                  <p>
-                    <span class="comp-bad">Higher</span> than
-
-                    the <strong>Citywide average</strong>
-                    <br>
-                    <span class="fs-sm pl-3">(5.5%)</span>
-                  </p>
-
-                    </div>
-                
-            </p>
-
-             
-            <div id="trend" class="hide">
-            <p>In <strong>Brooklyn</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
-            </div>
-
-            
-
-            <span id="year-psychological-distress" class="sr-only">YEAR</span>
-
-          
-
-        </div>
-
-      </div>
-      <div class="row no-gutters">
-        <div class="col-7">
-            <p class="fs-xs"><strong>Source:</strong> New York City Community Health Survey (CHS)</p>
-
-        </div>
-        <div class="col-5">
-            <p class="float-right"><a id="2144" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<script>
-    
-
-    (function(x, y) {
-        var endDate = new Date(x);
-        var year = endDate.getFullYear(); 
-        document.getElementById(y).innerHTML = year;
-    })(`2012-12-31`, `year-psychological-distress`);
-</script>
-
-
-
-
-<script type="text/javascript">
-
-    $( "#collapse-Seri691" ).on('shown.bs.collapse', function() {
-
-        
-
-        gtag('event', 'click_modal', {
-                'modal_name': 'Psychological distress'
-            });
-
-        var opt = {"renderer": "svg"};
-
-            
-
-            
-
-            var summaryData =
-                arqTable
-                .filter(d => d.indicator_data_name == "Seri691")
-                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
-                .dedupe()
-                .groupby("neighborhood")
-                .orderby("neighborhood", aq.desc("end_date"))
-                .slice(0,1) 
-                .ungroup()
-                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
-                .orderby("unmodified_data_value_geo_entity") 
-                .select(aq.not("end_date"))
-                .objects()
-
-
-            
-
-            
-
-            var mapData = summaryData;
-
-            renderNRMap(mapData,  "#map-Seri691-3", "Percent ","Psychological distress",geocode)
-
-    });
-
-    </script>
-
-
-
-
-
-  <div class="card-header border-top" id="heading-Adul692">
-    <h2 class="mb-0">
-      <button
-        class="btn btn-block btn-sm text-left"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapse-Adul692"
-        aria-expanded="true"
-        aria-controls="collapse-Adul692"
-        onclick="getURL( 2145 , 'Adul692')"
-      >
-        
-        <div class="row no-gutters" style="width: 100%">
-          <div class="col-7 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >Independence difficulty</span
-            ><br />
-            <span class="fs-sm font-weight-normal"
-              >Independent living difficulty (adults), 2017-21</span
-            >
-          </div>
-          <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >6.6</span
-            >
-            <br />
-            <span class="fs-sm font-weight-normal"
-              >Percent </span
-            >
-          </div>
-
-          
-
-          <div class="col-2 d-print-none">
-              <div class="float-right mt-1">
-              <span
-                    class="worse">Higher</span>
-            </div>
-          </div>
-
-          
-          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
-
-            
-            <div style="width:50%;" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                Independence difficulty
-              </span><br />
-              <span class="fs-sm font-weight-normal">Independent living difficulty (adults), 2017-21</span>
-            </div>
-
-            
-            <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                6.6
-              </span><br />
-              <span class="fs-xs font-weight-normal">
-                Percent 
-              </span>
-            </div>
-
-            
-
-            
-            
-            <div style="width:25%;" class="pl-1 font-weight-normal">
-              <span class="comp-bad">Higher</span> than most neighborhoods
-            </div>
-
-          </div>
-
-        </div>
-      </button>
-    </h2>
-  </div>
-
-
-  <div
-    id="collapse-Adul692"
-    class="collapse border-bottom "
-    aria-labelledby="heading-Adul692"
-    data-parent="#accordion-3"
-    data-indicator-name="Adul692"
-    data-count="4"
-  >
-    <div class="card-body card-body-no-top">
-
-      <div class="row no-gutters fs-sm">
-        <div class="col-12">
-            
-            <p class="fs-md mt-1 mb-2">Adults reporting independent living difficulty due to a physical, mental, or emotional problem. People with disabilities may need additional support during extreme weather. For example, extra planning for safe travel out of evacuation zones during a hurricane, or back-up electricity to support medical equipment during power outages.</p>
-        </div>
-
-                <div class="col-md-7 border-right h-100">
-                
-                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Adul692-4">
-                    ...map is loading...
-                </div><div class="data-note mt-1"></div></div>
-        
-        
-        
-        
-
-        
-
-        <div class="col-md-5 h-100 p-1 ">
-
-            <p class="fs-rg">
-                Independence difficulty in <strong>Borough Park</strong>:
-                <div class=" fs-md">
-                  <p>
-                    <span class="comp-bad">Higher</span> than most neighborhoods
-                  </p>
-
-                  <p>
-                    <span class="comp-bad">Higher</span> than
-
-                    the <strong>Brooklyn average</strong>
-                    <br>
-                    <span class="fs-sm pl-3">(5.8%)</span>
-                  </p>
-
-                  <p>
-                    <span class="comp-bad">Higher</span> than
-
-                    the <strong>Citywide average</strong>
-                    <br>
-                    <span class="fs-sm pl-3">(5.8%)</span>
-                  </p>
-
-                    </div>
-                
-            </p>
-
-             
-            <div id="trend" class="hide">
-            <p>In <strong>Brooklyn</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
-            </div>
-
-            
-
-            <span id="year-independence-difficulty" class="sr-only">YEAR</span>
-
-          
-
-        </div>
-
-      </div>
-      <div class="row no-gutters">
-        <div class="col-7">
-            <p class="fs-xs"><strong>Source:</strong> American Community Survey</p>
-
-        </div>
-        <div class="col-5">
-            <p class="float-right"><a id="2145" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<script>
-    
-
-    (function(x, y) {
-        var endDate = new Date(x);
-        var year = endDate.getFullYear(); 
-        document.getElementById(y).innerHTML = year;
-    })(`2021-12-31`, `year-independence-difficulty`);
-</script>
-
-
-
-
-<script type="text/javascript">
-
-    $( "#collapse-Adul692" ).on('shown.bs.collapse', function() {
-
-        
-
-        gtag('event', 'click_modal', {
-                'modal_name': 'Independence difficulty'
-            });
-
-        var opt = {"renderer": "svg"};
-
-            
-
-            
-
-            var summaryData =
-                arqTable
-                .filter(d => d.indicator_data_name == "Adul692")
-                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
-                .dedupe()
-                .groupby("neighborhood")
-                .orderby("neighborhood", aq.desc("end_date"))
-                .slice(0,1) 
-                .ungroup()
-                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
-                .orderby("unmodified_data_value_geo_entity") 
-                .select(aq.not("end_date"))
-                .objects()
-
-
-            
-
-            
-
-            var mapData = summaryData;
-
-            renderNRMap(mapData,  "#map-Adul692-4", "Percent ","Independence difficulty",geocode)
-
-    });
-
-    </script></div>
-
-                    <div class="row print-only">
-                        <div class="col-12">
-                            <p class="text-center">View this report online:</p>
-                        </div>
-                    </div>
-
-                    <div class="row print-only">
-                        <div class="col-12">
-
-                            <div id="qrcode" class="text-center">
-
-                                <script>
-
-                                    let qr = qrcode(10, "M");
-
-                                    qr.addData(location.href);
-                                    qr.make();
-
-                                    document.getElementById('qrcode').innerHTML = qr.createImgTag();
-                                    
-                                </script>
-                            
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-            <section data-pagefind-ignore="all" class="mt-lg-5 d-print-none">
-    <div class="container-fluid mb-5">
-        <div class="row">
-            <div class="col-lg-4 ml-auto pr-lg-3">
-                <div class="related-border mb-2">
-                  <div class="mt-2">
-                    <h4>What is the City doing?</h4>
-                    <hr class="my-2">
-                  </div>
-                  <div class="fs-lg"><a class="text-black">Plants trees, funds Cool Roof projects, and supports heat awareness trainings and more to address extreme heat.</li>
-                    <hr class="my-2"><a class="text-black"><a
-                        href="https://onenyc.cityofnewyork.us/">Set a goal to achieve carbon neutrality by 2050 using the OneNYC strategic plan.</a></li>
-                    <hr class="my-2"><a class="text-black"><a
-                        href="https://access.nyc.gov/programs/cooling-assistance-benefit/">Helps low-income households buy and install air conditioners.</a></li>
-                    <hr class="my-2"><a class="text-black">Operates the largest electric municipal fleet in the nation.</li>
-                    <hr class="my-2"><a class="text-black">Supports energy-efficiency changes in municipal and community buildings.</li>
-                    <hr class="my-2"></div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 pl-lg-3 h-100">
-                <div class="related-border mb-2">
-                  <div class="mt-2">
-                    <h4>What you can do</h4>
-                    <hr class="my-2">
-                  </div>
-                  <div class="fs-lg"><a class="text-black"><a
-                        href="https://www.nyc.gov/site/doh/health/emergency-preparedness/cold-weather-be-a-buddy.page">Be a Buddy and check in on neighbors to help them stay cool when it’s hot.</a></li>
-                    <hr class="my-2"><a class="text-black"><a
-                        href="https://www.nyc.gov/site/severeweather/index.page">Get info during weather emergencies.</a></li>
-                    <hr class="my-2"><a class="text-black"><a
-                        href="https://www.nycgovparks.org/trees/street-tree-planting/request">Request a street tree to help cool your neighborhood.</a></li>
-                    <hr class="my-2"></div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 mr-auto">
-                <div class="related-border mb-2">
-                  <div class="mt-2">
-                    <h4>More about</h4>
-                    <hr class="my-2">
-                  </div>
-                  <div class="fs-lg"><a href=/IndicatorPublic/key-topics/climatehealth/>Climate and health</a>
-                    <hr class="my-2"><a href=/IndicatorPublic/key-topics/housing/>Housing</a>
-                    <hr class="my-2"></div>
-                </div>
-            </div>
-        </div>
-
-    </section>
-
-
-
-
-
-
-        
-        </div>
-
-
-
-    </div>
-
-    <script>
-
-        let report_name = "Climate and Health"
-
-        
-
-        let arqTable;
-        let downloadLoc = "https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/data/viz/Climate_and_Health.json"
-
-        
-
-        aq.loadJSON(
-            downloadLoc,
-            { autoMax: 10000,  parse: { time: String } }
-        )
-        .then(data => {
-
-            arqTable = data
-
-            
-
-        })
-
-        
-
-        let reportData;
-        let download;
-
-        
-
-        function downloadData() {
-
-            download = arqTable
-                .select(aq.not('report_id','indicator_id','indicator_data_name','start_date','end_date')) 
-                .filter(d => d.neighborhood == 'Borough Park')
-
-            let downloadTableCSV = download.toCSV(); 
-            
-
-            let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(downloadTableCSV);
-            let hiddenElement = document.createElement('a');
-            hiddenElement.href = csvData;
-            hiddenElement.target = '_blank';
-            hiddenElement.download = 'NYC EH Data Portal - Neighborhood Report - ' + report_name + " - Borough Park.csv";
-            hiddenElement.click();
-
-            gtag('event', 'file_download', {
-                'file_name': hiddenElement.download,
-                'file_extension': '.csv',
-                'link_text': 'Download Report Data'
-            });
-
-        };
-
-    </script>
-
-</section>
-
-
-
-
-<div class="modal fade report-modal" id="modal-rank" tabindex="-1" role="dialog" aria-labelledby="rankModalLabel"
-     aria-hidden="true" data-pagefind-ignore="all">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="modal-title h4" id="rankModalLabel">Indicator ranking</div>
-                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-                    <span class="fas fa-times-circle"></span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>For each dataset, we divide neighborhoods up into <strong>tertiles</strong>, or thirds.</p>
-                <p><strong>Higher</strong> means that for that dataset, the neighborhood is in the lowest third of all neighborhoods. </p>
-                <p><strong>Lower</strong> means that for that dataset, the neighborhood is in the lowest third of all neighborhoods.</p>
-
-                <p>These are only based on the distribution of data values, not the range. The absolute values of
-                    indicators in different categories may not be all that different.</p>
-
-                <img src="https://a816-dohbesp.nyc.gov/IndicatorPublic/images/tertile-example.png" style="width:100%" alt="An example bar chart. The one-third of neighborhoods with the lowest values are labelled Lower. The one-third of neighborhoods with the highest values are labelled Higher.">
-
-            </div>
-            
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<script>
-
-
-
-console.log('**getting report topic')
-
-    
-
-    let matchingKey = null;
-
-    for (const [key, value] of Object.entries(topicSlugs)) {
-    if (value === chosenReport) {
-        matchingKey = key;
-        break;
-    }
-    }
-
-    document.getElementById(matchingKey).classList.add('active')
-
-
-
-const buttons = document.querySelectorAll('.output-topic-button');
-
-buttons.forEach(button => {
-    button.addEventListener('click', () => {
-        console.log('button clicked for: ', button.id)
-
-        
-
-        const reportDestination = topicSlugs[button.id] || null;
-
-        
-
-        const pageURL = window.location.pathname.match(/neighborhood-reports.*/)[0]
-        var urlParts = pageURL.split('/')
-
-            urlParts.pop();
-            urlParts.pop();
-            console.log(urlParts)
-
-        var newURL = `https:\/\/a816-dohbesp.nyc.gov\/IndicatorPublic\/` + urlParts[0] + '/' + urlParts[1] + '/' + reportDestination + '/'
-        console.log(newURL)
-
-        window.location.href = newURL
-
-    });
-});
-
-
-</script>
-
-
-
-
-
-
-<script>
-   $(document).on('shown.bs.collapse', '.collapse', function (e) {
-    console.log('Any accordion opened:', e.target.id);
-  });
-
-
-
-const renderNRMap = (
-    data,
-    destination,
-    legendLabel,
-    indicatorTitle,
-    geocode
-) => {
-
-    console.log('running renderNRMap in ', destination)
-
-    let mapSpec = {
-        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-        "title": {
-            "text": '',
-            "subtitlePadding": 10,
-            "fontWeight": "bold",
-            "anchor": "start",
-            "fontSize": 14,
-            "font": "sans-serif",
-            "baseline": "top",
-            "subtitle": '',
-            "subtitleFontSize": 13
-        },
-        "data": {
-            "values": data,
-            "format": { "parse": { "Value": "number" } }
-        },
-        "config": {
-            "concat": { "spacing": 20 },
-            "view": { "stroke": "transparent" },
-            "axisY": { "domain": false, "ticks": false, "labelBaseline": "bottom" },
-            "legend": { "disable": true },
-            "scale": { "invalid": { "color": { "value": "#808080" } } }
-        },
-        "projection": { "type": "mercator" },
-        "transform": [{ "calculate": "datum.DisplayValue + ' %'", "as": "valueLabel" }],
-        "vconcat": [
-            {
-                "layer": [
-                    {
-                        "height": 350,
-                        "width": "container",
-                        "data": {
-                            "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/borough.topo.json",
-                            "format": { "type": "topojson", "feature": "collection" }
-                        },
-                        "mark": {
-                            "type": "geoshape",
-                            "stroke": "#fafafa",
-                            "fill": "#C5C5C5",
-                            "strokeWidth": 0.5
-                        }
-                    },
-                    {
-                        "height": 350,
-                        "width": "container",
-                        "data": {
-                            "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/UHF42.topo.json",
-                            "format": { "type": "topojson", "feature": "collection" }
-                        },
-                        "mark": {
-                            "type": "geoshape",
-                            "stroke": "#a2a2a2",
-                            "fill": "#e7e7e7",
-                            "strokeWidth": 0.5
-                        }
-                    },
-                    {
-                        "height": 350,
-                        "width": "container",
-                        "mark": { "type": "geoshape", "invalid": null },
-                        "params": [
-                            {
-                                "name": "highlight",
-                                "select": {
-                                    "type": "point",
-                                    "on": "mouseover",
-                                    "clear": "mouseout"
-                                }
-                            }
-                        ],
-                        "transform": [
-                            {
-                                "lookup": "geo_join_id",
-                                "from": {
-                                    "data": {
-                                        "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/UHF42.topo.json",
-                                        "format": { "type": "topojson", "feature": "collection" }
-                                    },
-                                    "key": "properties.GEOCODE"
-                                },
-                                "as": "geo"
-                            }
-                        ],
-                        "encoding": {
-                            "shape": { "field": "geo", "type": "geojson" },
-                            "color": {
-                                "bin": false,
-                                "field": "unmodified_data_value_geo_entity",
-                                "type": "quantitative",
-                                "scale": { "scheme": { "name": "viridis", "extent": [1, 0] } },
-                                "legend": {
-                                    "direction": "horizontal",
-                                    "orient": "top-left",
-                                    "title": legendLabel,
-                                    "fontWeight": "normal",
-                                    "tickCount": 3,
-                                    "offset": -25,
-                                    "gradientLength": 200
-                                }
-                            },
-                            "order": {
-                                "condition": {
-                                    "test": `datum.geo_join_id == ${geocode}`,
-                                    "value": 1
-                                },
-                                "value": 0
-                            },
-                            "stroke": {
-                                "condition": {
-                                    "test": `datum.geo_join_id == ${geocode}`,
-                                    "value": "cyan"
-                                },
-                                "value": "#2d2d2d"
-                            },
-                            "strokeWidth": {
-                                "condition": {
-                                    "test": `datum.geo_join_id == ${geocode}`,
-                                    "value": 2.5
-                                },
-                                "value": 0.5
-                            },
-                            "tooltip": [
-                                { "field": "neighborhood", "title": "Neighborhood", "type": "nominal" },
-                                { "field": "unmodified_data_value_geo_entity", "title": legendLabel, "type": "quantitative" }
-                            ]
-                        }
-                    }
-                ]
-            },
-            {
-                "height": 100,
-                "width": "container",
-                "config": { "axisY": { "labelAngle": 0, "labelFontSize": 13 } },
-                "mark": { "type": "bar", "tooltip": true, "stroke": "#161616" },
-                "params": [
-                    {
-                        "name": "highlight",
-                        "select": { "type": "point", "on": "mouseover", "clear": "mouseout" }
-                    }
-                ],
-                "encoding": {
-                    "y": {
-                        "field": "unmodified_data_value_geo_entity",
-                        "type": "quantitative",
-                        "title": null,
-                        "axis": { "labelAngle": 0, "labelFontSize": 11, "tickCount": 3 }
-                    },
-                    "tooltip": [
-                        { "field": "neighborhood", "title": "Neighborhood", "type": "nominal" },
-                        { "field": "unmodified_data_value_geo_entity", "title": legendLabel, "type": "quantitative" }
-                    ],
-                    "x": { "field": "geo_join_id", "sort": "y", "axis": null },
-                    "color": {
-                        "bin": false,
-                        "field": "unmodified_data_value_geo_entity",
-                        "type": "quantitative",
-                        "scale": { "scheme": { "name": "viridis", "extent": [1, 0] } },
-                        "legend": false
-                    },
-                    "order": {
-                        "condition": {
-                            "test": `datum.geo_join_id == ${geocode}`,
-                            "value": 1
-                        },
-                        "value": 0
-                    },
-                    "stroke": {
-                        "condition": {
-                            "test": `datum.geo_join_id == ${geocode}`,
-                            "value": "cyan"
-                        },
-                        "value": "#2d2d2d"
-                    },
-                    "strokeWidth": {
-                        "condition": {
-                            "test": `datum.geo_join_id == ${geocode}`,
-                            "value": 2.5
-                        },
-                        "value": 0
-                    }
-                }
-            }
-        ]
-    }
-
-    vegaEmbed(destination, mapSpec, { renderer: "svg", actions: true })
-}
-
-    
-   function renderDemographics(x,y) {
-        const here = x.filter((neighb) => neighb.UHF_id == y)
-
-        console.log(here[0])
-
-        document.getElementById('popPrint').innerHTML = Number(here[0].TotalPopulation).toLocaleString()
-        document.getElementById('oldPrint').innerHTML = Number(here[0].PercentOver65).toFixed(1) + '%'
-        document.getElementById('youngPrint').innerHTML = Number(here[0].PercentUnder18).toFixed(1) + '%'
-        document.getElementById('povPrint').innerHTML = Number(here[0].PovertyPercent).toFixed(1) + '%'
-        document.getElementById('gradPrint').innerHTML = Number(here[0].PercentGraduatedHighSchool).toFixed(1) + '%'
-        document.getElementById('engPrint').innerHTML = Number(here[0].PercentLimitedEnglish).toFixed(1) + '%'
-        document.getElementById('ownPrint').innerHTML = Number(here[0].PercentOwnerOccupied).toFixed(1) + '%'
-        document.getElementById('rentPrint').innerHTML = Number(here[0].PercentRentBurdened).toFixed(1) + '%'
-
-    }
-
-    renderDemographics(neighborhoods, chosenGeo)
-    
-
-</script><ul id="results"></ul>
+<script src="/IndicatorPublic/js/nr-report/global.dd04ffc8101c06b6.js" integrity="sha512-GIHRsPEj7JODLvBdxkFZNPaVtQ6RtkND4&#43;UPnJI0j8cfG0tEAy8wWpyFmK96sDmVk8ctcR8K8I/TdB57Er4iXQ==" crossorigin="anonymous"></script>
+<script src="/IndicatorPublic/js/nr-report/url.6985f4aa68302fef.js" integrity="sha512-G/QGla/qZF2rnv60DNLUXd0S7ki9aDHI6tzRkDByvVJQKuwDupTwESDl47UYI4g&#43;NSQTq/MYfwfqCQlTu2mt/g==" crossorigin="anonymous"></script>
+<script src="/IndicatorPublic/js/nr-report/tertiles.b29f8b8c4fffc39a.js" integrity="sha512-pxjtkqvvhIYN&#43;G17&#43;KQlBsp9wL1wC3C5MifA/cwFGKQalo4bx3RJjIUjuOQbKG3f8VrqHBF3ByJfDxCFA875mw==" crossorigin="anonymous"></script>
+<script src="/IndicatorPublic/js/nr-report/demographics.f7929f41211dcb42.js" integrity="sha512-PEdwqyYbTFjKlmSFZSiYk7jpZs/IcIvcEk3duoNDzLBc/f76ChUsMrDKpqe10XQ38BJS08GF/KcIoMbZuPMzCA==" crossorigin="anonymous"></script>
+<script src="/IndicatorPublic/js/nr-report/cards.7b81de69bedcbd45.js" integrity="sha512-k&#43;Ny86MHlkC2LpTcfZQ2KS8dboZfA4y6WdP8d1kiLYUdcNKHM5p8/EG5mTlCk/mviI&#43;5mVOBewy3MsXGmDI7AA==" crossorigin="anonymous"></script>
+<script src="/IndicatorPublic/js/nr-report/report.fce4645e49a7a411.js" integrity="sha512-upx&#43;S6OFTxg3DFLDnbSAdNC/tjVeuBEzFIvuMPb8zZzKUGzwaUbxTkPGRWg7eqslYaDhnwf25hiblDfOdjio1Q==" crossorigin="anonymous"></script>
+<script src="/IndicatorPublic/js/nr-report/chart.24d8460cb896ade4.js" integrity="sha512-bhKMIe8wrNudavsisAmkpSMdRHPqA8X2Ncx/NXN8pC6/G3sfWyj1rkwvfI0jm9x1Dh&#43;PnpGaWKaRxB5BPv3RCg==" crossorigin="anonymous"></script>
+<script src="/IndicatorPublic/js/nr-report/map.bc7507f526a2a22f.js" integrity="sha512-tHzgHHkitCOmGU9I3Okx&#43;DYYSa/HaJqEWtxeSMnImbWD63aThx7BHvsBDxc33b7Dd/MKqLJO0icPhspY9yiwCA==" crossorigin="anonymous"></script>
+<script src="/IndicatorPublic/js/nr-report/data.9dd1da4f4edd5542.js" integrity="sha512-&#43;4NQIXwuObyAnu/mFRHEAd/2xUrjAeteImzVj4G3bgCIfNadR8t98ouGKJHiZIHEJNgZdD/GRdVdP3gjhobnTw==" crossorigin="anonymous"></script>
+<script src="/IndicatorPublic/js/nr-report/app.7389da5ac3e201b9.js" integrity="sha512-iTNKzF/bHJ3ThSsCDP&#43;4YDr6qSlML2yr72BlSln2eyDBwQiwj22c3Z4rs3bD2S/1xGzBtE0D9wUOpPTHEU5/zw==" crossorigin="anonymous"></script><ul id="results"></ul>
     </main>
 <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
@@ -3897,6 +951,7 @@ const renderNRMap = (
                 <div id="search"></div>
                 <script>
                     window.addEventListener('DOMContentLoaded', () => {
+
                         const search_modal = document.getElementById('searchModal');
                         const search_root = document.getElementById('search');
 
@@ -3905,6 +960,7 @@ const renderNRMap = (
                         }
 
                         new PagefindUI({
+
                             element: '#search',
                             showSubResults: true,
                             showImages: false,
@@ -3912,6 +968,7 @@ const renderNRMap = (
                             showEmptyFilters: true,
                             debounceTimeoutMs: 500,
                             processTerm: function (term) {
+
                                 if (typeof gtag === 'function') {
                                     gtag('event', 'search', {
                                         search_term: term
@@ -3919,31 +976,35 @@ const renderNRMap = (
                                 }
 
                                 return term;
+
                             },
                             processResult: function (result) {
+
                                 result.meta.title = result.meta.title
                                     .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                     .replaceAll('&amp;', '&');
 
                                 result.sub_results.forEach(sub => {
+
                                     sub.url = sub.url.replace('#IndicatorID-', '?id=');
 
                                     sub.title = sub.title
                                         .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                         .replaceAll('&amp;', '&');
+
                                 });
                             }
                         });
 
                         $(search_modal).on('shown.bs.modal', () => {
+
                             const search_input = search_modal.querySelector('.pagefind-ui__search-input');
 
-                            if (!search_input) {
-                                return;
-                            }
+                            if (!search_input) return;
 
                             search_input.focus();
                             search_input.select();
+
                         });
                     });
                 </script>
@@ -4155,6 +1216,7 @@ const renderNRMap = (
 
 <script>
     function googleTranslateElementInit() {
+
         new google.translate.TranslateElement(
         {
             pageLanguage: "en",
@@ -4167,6 +1229,7 @@ const renderNRMap = (
         document
             .querySelectorAll("div[class^=VI] svg")
             .forEach((e) => (e.outerHTML = ""));
+
     }
 </script>
 
@@ -4174,14 +1237,14 @@ const renderNRMap = (
 
 <script
     type="text/javascript"
-    src="/IndicatorPublic/js/main.2cb27f09f10c76c3.js"
-    integrity="sha512-iaICTR6PWG4zbrmL69MtiVybfawXimbAI5YPb5CrDb&#43;QRgiX/4W11J6utqdl8wGY0zO9BbT110dFS2VhHYr60w=="
+    src="/IndicatorPublic/js/main.b5a4bb39c6f9e956.js"
+    integrity="sha512-IFR/T14MliYqj1FjEKKn&#43;KuzTQPEROIUZdo&#43;GWL1LkQyonV&#43;Ph1RiQ4kBd/tu&#43;DIek2FPl3gWTZT3V&#43;gpjkwRw=="
 ></script>
 
 <script
     type="text/javascript"
-    src="/IndicatorPublic/js/site.0c406db6f0a34e1e.js"
-    integrity="sha512-Fe3P28eMLfzi8orYmRJ8kTiQB2LyFObFD/0wbjn9C1QqIausui3C0NL1lI26wcL0L0r60YRX2APG59LjFox1xQ=="
+    src="/IndicatorPublic/js/site.5059925e078263ff.js"
+    integrity="sha512-lx6l6X2f4LZTW6z7Uuht0oUdZKl6qI6CVWVHHakMNAhTGoMy4V525mqnSG3e7biz3oH3HbcyrpR/AARk9XsYQQ=="
 ></script>
 
     
