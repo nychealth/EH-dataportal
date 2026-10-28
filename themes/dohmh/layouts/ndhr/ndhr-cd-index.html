@@ -39,15 +39,16 @@
                 <nav aria-label="breadcrumb" class="mt-2 mb-3">
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
-                        <li class="breadcrumb-item"><a href={{ relURL "ndhr" }}>Neighborhood Development Health Report</a></li>
+                        <li class="breadcrumb-item"><a href={{ relURL "ndhr" }}>Healthy Places Toolkit</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
                     </ul>
                 </nav>
 
                 {{/* The district name is the one string that makes this page findable as
-                     itself, so it carries the search weight. First mention on the page takes
-                     the long form with the abbreviation, per DECIDED-8. */}}
-                <h1 class="report-title border-bottom">{{ partial "section-icon.html" $.Section }}Neighborhood Development Health Report (NDHR) for
+                     itself, so it carries the search weight. The prefix is the tool's public
+                     name, "Healthy Places Toolkit", since 2026-10-28; the NDHR name and its
+                     abbreviation are retired from every visible string. */}}
+                <h1 class="report-title border-bottom">{{ partial "section-icon.html" $.Section }}Healthy Places Toolkit for
                     <span class="sub-title" data-pagefind-weight="10">{{ .Title }}</span>
                 </h1>
 

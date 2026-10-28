@@ -52,8 +52,8 @@
             "cdta_id"         $cd.CDTA_id
             "puma2020_id"     $cd.PUMA2020_id
             "borough"         $cd.borough
-            "seo_title"       (printf "%s | Neighborhood Development Health Report" $cd.CD_name)
-            "seo_description" (printf "Neighborhood Development Health Report data for %s, a community district in %s." $cd.CD_name $cd.borough)
+            "seo_title"       (printf "%s | Healthy Places Toolkit" $cd.CD_name)
+            "seo_description" (printf "Healthy Places Toolkit data for %s, a community district in %s." $cd.CD_name $cd.borough)
         )
     ) -}}
 
@@ -81,7 +81,7 @@
                 "borough"                 $cd.borough
                 "content_yml"             $category.key
                 "facilities_layer"        $category.facilities_layer
-                "seo_title"               (printf "%s in %s | Neighborhood Development Health Report" $category.seo_short_name $cd.CD_name)
+                "seo_title"               (printf "%s in %s | Healthy Places Toolkit" $category.seo_short_name $cd.CD_name)
                 "seo_short_name"          $category.seo_short_name
                 "seo_description"         (printf "%s data for %s, a community district in %s." $category.seo_short_name $cd.CD_name $cd.borough)
             )

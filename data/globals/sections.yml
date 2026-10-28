@@ -27,7 +27,7 @@ neighborhood-reports:
 # The NDHR prototype borrows Neighborhood Reports' icon and accent — its landing
 # page (ndhr/section.html) already hand-rolls the same fa-map-marked-alt icon.
 ndhr:
-    name: Neighborhood Development Health Report
+    name: Healthy Places Toolkit
     icon: fa-map-marked-alt
     accent: nr-accent
 

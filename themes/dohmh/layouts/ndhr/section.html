@@ -5,8 +5,9 @@
 
     Rendered for content/ndhr/_index.md. Laid out like a Key Topics page
     (themes/dohmh/layouts/key-topics/single.html) on reviewer request, 2026-10-27: the
-    page's text in a wide column, and beside it a link list with an accent header — here
-    the five category pages, then a contact box.
+    page's text and photo in a wide column, and beside it a "Take me to the tool" button
+    and a contact box. The five-category link list that sat there first was replaced by the
+    single button on a later review, 2026-10-28.
 
     That request also REMOVED what this page used to be: a five-button category selector,
     the district typeahead, the picker map and the 59-district list, all of which were
@@ -19,9 +20,8 @@
     With the picker gone this page loads no Leaflet, no topojson, no cdlist and no
     flexdatalist, and has no js_bot block at all.
 
-    The five category links are ranged over NDHR_categories.yml rather than hardcoded, so
-    the labels cannot drift from the category menu on the report pages, which reads the
-    same menu_label.
+    The button's target is read from NDHR_categories.yml (its first entry) rather than
+    hardcoded, so reordering the categories moves it too.
 
     NOT indexed, unlike the NR landing page: data-pagefind-ignore="all" sits on the wrapper
     below, and the same attribute sits on all four NDHR layouts. The whole section is out of
@@ -62,42 +62,39 @@
     <div class="row mt-1 py-4 mb-4">
 
         <div class="col-12 mb-3">
-            {{/* First mention carries the long form with the abbreviation, per
-                 DECIDED-8. .Title is already the long form, so the h1 adds only the
-                 abbreviation. h2 sizing, as on the Key Topics pages */}}
-            <h1 class="h2">{{ partial "section-icon.html" $.Section }}{{ .Title }} (NDHR)</h1>
+            {{/* Just the title, "Healthy Places Toolkit" — the NDHR name and abbreviation
+                 were retired on reviewer request, 2026-10-28. h2 sizing, as on the Key
+                 Topics pages */}}
+            <h1 class="h2">{{ partial "section-icon.html" $.Section }}{{ .Title }}</h1>
         </div>
 
         {{/* The page's text, from content/ndhr/_index.md, including the "How it works"
-             shortcode */}}
+             shortcode. The photo is the bundle image the front matter's `image` names,
+             resized as key-topics/single.html does; `with` so a page without one still
+             renders. alt="" because it is decorative, as on the Key Topics pages */}}
         <div class="col-md-12 col-lg-8 pr-xl-4 mb-4">
+
+            {{- with .Params.image }}
+                {{- with $.Resources.GetMatch . }}
+                    {{- $image := .Resize "x800" }}
+                    <img src="{{ $image.RelPermalink }}" class="mb-3" alt="">
+                {{- end }}
+            {{- end }}
 
             {{- .Content -}}
 
         </div>
 
-        {{/* Sidebar: the five category pages, the community district note, then the
-             contact box. The note stays in the template because it explains the reports'
-             geography rather than the program. Real h2s where the Key Topics sidebar uses styled
-             divs, so both link blocks are in the page outline */}}
+        {{/* Sidebar: one way into the tool, then the contact box. The reviewer asked for a
+             single "Take me to the tool" link in place of the five-category list
+             (2026-10-28). It lands on the first category's index, whose button menu
+             switches between all five, so no category is out of reach */}}
         <div class="col-md-12 col-lg-4 pl-xl-4">
 
-            <div class="nr-accent">
-                <h2 class="h3 fs-lg"><i class="fas fa-map-marked-alt pr-1" aria-hidden="true"></i>Reports by category</h2>
-            </div>
-
-            <ul class="list-unstyled mt-2 mb-4">
-                {{- range $i, $category := site.Data.globals.NDHR_categories }}
-                <li>
-                    <a class="font-weight-bold" href="{{ relURL (printf "ndhr/%s/" $category.slug) }}">{{ $category.title }}</a>
-                    <hr class="{{ if eq (add $i 1) (len site.Data.globals.NDHR_categories) }}strong-hr {{ end }}my-1">
-                </li>
-                {{- end }}
-            </ul>
-
-            <!--<div class="mb-4">
-                {{ partial "ndhr-about-districts.html" . }}
-            </div> -->
+            {{- $firstCategory := index site.Data.globals.NDHR_categories 0 }}
+            <a class="btn btn-primary btn-lg btn-block mb-4" href="{{ relURL (printf "ndhr/%s/" $firstCategory.slug) }}">
+                Take me to the tool<i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
+            </a>
 
             {{/* The address is front matter so an editor can change it in CloudCannon */}}
             {{- with .Params.contact_email }}
