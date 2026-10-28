@@ -22,7 +22,7 @@
 
 import { readFileSync, writeFileSync } from "node:fs";
 import { Linter } from "eslint";
-import { jsBodies } from "./html-script-bodies.mjs";
+import { jsBodies, reportUnparseable } from "./html-script-bodies.mjs";
 import { sweepTargets } from "./js-sweep-targets.mjs";
 
 
@@ -211,9 +211,6 @@ if (refused.length) {
     refused.forEach((r) => console.log(`  ${r}`));
 }
 
-if (failures.length) {
-    console.log(`\n${failures.length} sources could not be parsed and were left untouched:`);
-    failures.forEach((f) => console.log(`  ${f}`));
-}
+const unparsed = reportUnparseable(failures, targets);
 
-if (refused.length || failures.length) process.exitCode = 1;
+if (refused.length || unparsed) process.exitCode = 1;

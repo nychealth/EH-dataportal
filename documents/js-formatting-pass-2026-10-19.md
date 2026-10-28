@@ -105,9 +105,10 @@ over v1. Do not run `node scripts/indent-normalize.mjs` to re-indent now: the fi
 the transform of HEAD, so it would re-indent the hand pass and `--verify` fails by design. A
 whitespace-only commit is proved as 9a was. Then push, `npm run smoke:prod_prod`, and a PR.
 
-The three step-5 tools exit 1 naming
-`themes/dohmh/layouts/partials/render-table.html:69` and nothing else, and that exit is expected
-(step 5's row). Any other file named is new.
+The three step-5 tools exit 0 when the only body they cannot parse is
+`themes/dohmh/layouts/partials/render-table.html:69`, which `KNOWN_UNPARSEABLE` in
+`scripts/html-script-bodies.mjs` lists and each run prints. Until 2026-10-28 they exited 1 on it
+(step 5's row). Exit 1 now means a new unparseable body, or a listed one that parses.
 
 To change a rule later, re-run its tool: `node scripts/js-guard-braces.mjs` (cap: `MAX_LENGTH`,
 steps in its header), `node scripts/js-brace-padding.mjs`, `node scripts/js-semicolons.mjs`,
@@ -122,7 +123,7 @@ that script is next run or edited.
 
 A re-run of 5a: `node scripts/js-brace-padding.mjs`, then `node scripts/js-comment-spacing-verify.mjs`
 (exit 0) and the build comparison in `scripts/build-output-diff.py`'s docstring (exit 0). The tool
-exits 1 naming `render-table.html`, as above. A guard or semicolon run changes
+exits 0, printing `render-table.html` as known, as above. A guard or semicolon run changes
 tokens, so the build comparison reports changed pages for it; read what it names rather than
 expecting 0.
 

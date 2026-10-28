@@ -33,7 +33,7 @@
 
 import { readFileSync, writeFileSync } from "node:fs";
 import * as espree from "espree";
-import { jsBodies, lineIndex } from "./html-script-bodies.mjs";
+import { jsBodies, lineIndex, reportUnparseable } from "./html-script-bodies.mjs";
 import { sweepTargets } from "./js-sweep-targets.mjs";
 
 
@@ -498,8 +498,4 @@ for (const path of targets) {
 
 console.log(`\n${targets.length} target files; ${files} changed: ${inserted} blank lines inserted, ${removed} removed`);
 
-if (failures.length) {
-    console.log(`\n${failures.length} script bodies could not be parsed and were left untouched:`);
-    failures.forEach((f) => console.log(`  ${f}`));
-    process.exitCode = 1;
-}
+if (reportUnparseable(failures, targets)) process.exitCode = 1;

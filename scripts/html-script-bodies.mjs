@@ -126,3 +126,42 @@ export const lineIndex = (source) => {
     return { lineStarts, lineOf };
 
 };
+
+
+// ----- bodies no sweep tool can parse, on purpose ----- //
+
+// Each is left untouched and reported, but does not fail a run, so that exit 0 means
+// clean. Fixed by hand when its rule changes; an entry that starts to parse fails the
+// run, so a file cannot stay listed after it is fixed
+export const KNOWN_UNPARSEABLE = new Map([
+    ["themes/dohmh/layouts/partials/render-table.html", "its {{ if }}…{{ else }}…{{ end }} sits inside a JS value"],
+]);
+
+// Prints a run's parse failures ("<path>[:line]  <message>"), known entries apart from
+// new ones. Returns true when the run should fail: a new failure, or a known entry
+// among `targets` that parsed
+export const reportUnparseable = (failures, targets) => {
+
+    const pathOf = (f) => f.match(/^[^:\s]+/)[0];
+
+    const known = failures.filter((f) => KNOWN_UNPARSEABLE.has(pathOf(f)));
+    const unknown = failures.filter((f) => !KNOWN_UNPARSEABLE.has(pathOf(f)));
+
+    const failed = new Set(known.map(pathOf));
+    const stale = [...KNOWN_UNPARSEABLE.keys()].filter((p) => targets.includes(p) && !failed.has(p));
+
+    known.forEach((f) => console.log(`\nKnown unparseable, left untouched (${KNOWN_UNPARSEABLE.get(pathOf(f))}):\n  ${f}`));
+
+    if (unknown.length) {
+        console.log(`\n${unknown.length} script bodies could not be parsed and were left untouched:`);
+        unknown.forEach((f) => console.log(`  ${f}`));
+    }
+
+    if (stale.length) {
+        console.log(`\nListed in KNOWN_UNPARSEABLE (html-script-bodies.mjs) but parsed; remove the entry:`);
+        stale.forEach((p) => console.log(`  ${p}`));
+    }
+
+    return unknown.length > 0 || stale.length > 0;
+
+};
