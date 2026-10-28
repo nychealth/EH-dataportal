@@ -107,7 +107,11 @@ commit's message counts, and that skipped checks stay Pending, which blocks a me
 are required (docs.github.com, "Skipping workflow runs", read 2026-10-22). `production` requires
 none: its branch protection has no required status checks and there are no rulesets `[checked
 2026-10-22]`. It held on `029eb9fce4`, a PR head carrying the marker: 0 runs, where the push before
-it (`cf9d58fc4d`) started both. The automatic alternative, not built
+it (`cf9d58fc4d`) started both. **The marker also cancels the deploy build if that commit is still
+the PR's head when it merges**, because `hugo-build-to-prod-prod.yml` runs on `pull_request: closed`,
+which reads the same head commit. Push an ordinary commit after it before merging, or run
+`gh workflow run hugo-build-to-prod-prod.yml --ref production` afterwards `[2026-10-28: #1515 merged
+with head `2bfcfde380` carrying the marker; no prod-prod run started]`. The automatic alternative, not built
 (Chris, 2026-10-22): a first job diffs `github.event.before..github.sha`, the files that one push
 changed, and the two sweep jobs run only when it touches something outside the ignored paths. It
 has to run the sweeps anyway when `before` is not an ancestor of the new head (a force-push or
