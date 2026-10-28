@@ -33,7 +33,7 @@
 
 import { readFileSync, writeFileSync } from "node:fs";
 import * as espree from "espree";
-import { maskHugo, scriptRegions } from "./html-script-bodies.mjs";
+import { jsBodies, lineIndex } from "./html-script-bodies.mjs";
 import { sweepTargets } from "./js-sweep-targets.mjs";
 
 
@@ -151,17 +151,7 @@ const planEdits = (source, lines) => {
         ecmaVersion: "latest", sourceType: "script", range: true, tokens: true,
     });
 
-    const lineStarts = [0];
-    for (let i = 0; i < source.length; i++) if (source[i] === "\n") lineStarts.push(i + 1);
-
-    const lineOf = (offset) => {
-        let lo = 0, hi = lineStarts.length - 1;
-        while (lo < hi) {
-            const mid = (lo + hi + 1) >> 1;
-            if (lineStarts[mid] <= offset) lo = mid; else hi = mid - 1;
-        }
-        return lo;
-    };
+    const { lineOf } = lineIndex(source);
 
     // Token index by start offset, to find the tokens beside a block's own braces
     const tokenAt = new Map(ast.tokens.map((t, i) => [t.range[0], i]));
@@ -257,19 +247,12 @@ const processFile = (path, failures) => {
     const insertAfter = new Set();
     const remove = new Set();
 
-    const isHtml = path.endsWith(".html");
-    const regions = isHtml ? scriptRegions(raw) : [[0, lines.length]];
+    for (const { start, end, source } of jsBodies(path, raw, lines)) {
 
-    for (const [start, end] of regions) {
-
-        const slice = lines.slice(start, end);
-        const text = slice.join("\n");
-
-        // A layout body is read with each Hugo action masked by its role
         let plan;
 
         try {
-            plan = planEdits(isHtml ? maskHugo(text) : text, slice);
+            plan = planEdits(source, lines.slice(start, end));
         } catch (err) {
             failures.push(`${path}:${start + 1}  ${err.message}`);
             continue;

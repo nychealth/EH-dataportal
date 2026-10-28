@@ -1,6 +1,7 @@
-// The JavaScript inside a Hugo layout, in a form espree can read. Shared by
-// js-brace-padding.mjs, which edits it, and js-comment-spacing-verify.mjs, which
-// proves an edit changed no token — both must read a layout the same way.
+// The JavaScript inside a Hugo layout, in a form espree can read. Shared by the sweep
+// tools that edit it (js-brace-padding, js-guard-braces, js-semicolons) and the
+// verifiers that prove an edit (js-comment-spacing-verify, js-guard-braces-verify) —
+// all must read a layout the same way.
 
 
 // ----- Hugo actions masked, keeping every offset and line number ----- //
@@ -80,5 +81,48 @@ export const scriptRegions = (source) => {
     });
 
     return out;
+
+};
+
+
+// ----- the JS bodies of one sweep target ----- //
+
+// A .js file is one body; a layout has one per <script>, read with its Hugo actions
+// masked. `lines` is the file split on "\n" once CRLF is normalized, and each body's
+// [start, end) indexes it. `source` is what to parse, `text` what to edit
+export const jsBodies = (path, raw, lines) => {
+
+    const isHtml = path.endsWith(".html");
+    const regions = isHtml ? scriptRegions(raw) : [[0, lines.length]];
+
+    return regions.map(([start, end]) => {
+
+        const text = lines.slice(start, end).join("\n");
+
+        return { start, end, text, source: isHtml ? maskHugo(text) : text };
+
+    });
+
+};
+
+
+// ----- offsets to line numbers in one source ----- //
+
+// lineOf(offset) is the 0-based line holding that offset
+export const lineIndex = (source) => {
+
+    const lineStarts = [0];
+    for (let i = 0; i < source.length; i++) if (source[i] === "\n") lineStarts.push(i + 1);
+
+    const lineOf = (offset) => {
+        let lo = 0, hi = lineStarts.length - 1;
+        while (lo < hi) {
+            const mid = (lo + hi + 1) >> 1;
+            if (lineStarts[mid] <= offset) lo = mid; else hi = mid - 1;
+        }
+        return lo;
+    };
+
+    return { lineStarts, lineOf };
 
 };
