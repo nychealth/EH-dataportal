@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="21px" height="21px" viewBox="0 0 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon</title>
+    <defs>
+        <path d="M0,0 L1440,0 L1440,1125 L0,1125 L0,0 Z" id="path-1"></path>
+    </defs>
+    <g id="Data-Explorer-Designs---APPROVED" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Designs-v3:A---Data-and-View-Controls-closed" transform="translate(-1374, -28)" xlink:href="#path-1">
+            <path stroke="#DFDFDF" d="M1439.5,0.5 L1439.5,1124.5 L0.5,1124.5 L0.5,0.5 L1439.5,0.5 Z" stroke-linejoin="square"></path>
+            <g id="Nav-bar-" fill-rule="evenodd" transform="translate(-1, -2)">
+                <g id="Take-Action" transform="translate(1275, 29)">
+                    <g id="icon" transform="translate(100, 1)">
+                        <path d="M0,10.5 C0,4.70076923 4.70076923,0 10.5,0 C16.2992308,0 21,4.70076923 21,10.5 C21,16.2992308 16.2992308,21 10.5,21 C4.70076923,21 0,16.2992308 0,10.5 Z" id="Path" fill="#00923E"></path>
+                        <path d="M6.40473589,8.26557259 L10.4893556,12.403873 L14.5739753,8.26557259 C14.779272,8.0423567 15.0884568,7.95047308 15.3802363,8.02596774 C15.6720158,8.10146239 15.8998537,8.33229459 15.9743691,8.6279087 C16.0488845,8.92352281 15.9581927,9.23677097 15.7378723,9.44476571 L11.0713041,14.1726626 C10.7497857,14.4980013 10.2289255,14.4980013 9.9074071,14.1726626 L5.24083888,9.44476571 C4.91972037,9.1190219 4.91972037,8.5913164 5.24083888,8.26557259 C5.56235724,7.9402339 6.08321753,7.9402339 6.40473589,8.26557259 Z" id="Path" fill="#F7F7F7" fill-rule="nonzero"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

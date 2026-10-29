@@ -566,10 +566,12 @@ async function draw_crz() {
 document.addEventListener("DOMContentLoaded", async () => {
 
     if (typeof vegaEmbed !== "function") {
+
         console.error(
             "vegaEmbed not available. Are the Vega scripts loaded above this script?",
         );
         return;
+
     }
 
     await draw_crz();

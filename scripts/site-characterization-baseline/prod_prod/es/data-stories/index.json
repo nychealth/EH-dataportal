@@ -40,8 +40,8 @@
             3,
             3,
             3,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 1,
         "landmarks": {
@@ -102,7 +102,7 @@
     "content": {
         "title": "Data-Stories – Environment & Health Data Portal",
         "headingText": [
-            "Data Stories",
+            "Data-Stories",
             "Latest data stories",
             "Por qué la violencia es un problema de salud pública",
             "Salud, vivienda e historia",
@@ -123,14 +123,13 @@
             "Salud, vivienda e historia",
             "Una breve historia del redlining",
             "Por qué el asma es un problema de justicia social",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",
             "/data-explorer/",
             "/data-features/",
-            "/data-stories",
             "/data-stories/",
             "/es/data-stories/",
             "/es/data-stories/air-quality-and-covid/",

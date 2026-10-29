@@ -23,10 +23,10 @@
             4,
             4,
             4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 3,
@@ -89,8 +89,8 @@
             "Interactive Heat Vulnerability Index",
             "Your Neighborhood's Air Quality",
             "Real-Time Air Quality: PM2.5 in NYC",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",
