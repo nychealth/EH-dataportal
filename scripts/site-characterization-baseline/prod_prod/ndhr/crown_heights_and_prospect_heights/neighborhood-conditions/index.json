@@ -43,8 +43,8 @@
             3,
             3,
             3,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 2,
         "landmarks": {
@@ -82,14 +82,14 @@
             "zeroSize": 1
         },
         "links": {
-            "internal": 81,
+            "internal": 83,
             "external": 21,
-            "emptyHref": 29,
+            "emptyHref": 31,
             "noAccessibleText": 0
         },
         "controls": {
             "button": 14,
-            "input": 1,
+            "input": 7,
             "select": 0,
             "textarea": 0,
             "noAccessibleName": 0
@@ -113,8 +113,8 @@
             "Unhealthy food accessUnhealthy food access, 201625Ratio Bodegas to supermarketsHigherHigher than most community districtsUnhealthy food accessUnhealthy food access, 201625Ratio Bodegas to supermarketsHigher than most community districtsPromote food access programs such as FRESH, green carts, shop healthy, and other food-related strategies from the Health Department",
             "School absenteeismSchool absenteeism, 2013-201428.0PercentHigherHigher than most community districtsSchool absenteeismSchool absenteeism, 2013-201428.0PercentHigher than most community districtsImplement programs that enable students to complete their degrees, access advanced courses, or address social-emotional learning",
             "Litter basket coverageLitter basket coverage, 2022162.6Density per square mileHigherHigher than most community districtsLitter basket coverageLitter basket coverage, 2022162.6Density per square mileHigher than most community districtsReport dirty conditions and request location for litter baskets",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

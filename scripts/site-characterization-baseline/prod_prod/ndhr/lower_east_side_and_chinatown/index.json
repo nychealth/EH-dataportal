@@ -30,8 +30,8 @@
             2,
             2,
             2,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 1,
         "landmarks": {
@@ -69,9 +69,9 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 79,
+            "internal": 81,
             "external": 21,
-            "emptyHref": 29,
+            "emptyHref": 31,
             "noAccessibleText": 0
         },
         "controls": {
@@ -90,17 +90,17 @@
         "overflowX": false
     },
     "content": {
-        "title": "Lower East Side and Chinatown (CD3) | Neighborhood Development Health Report – Environment & Health Data Portal",
+        "title": "Lower East Side and Chinatown (CD3) | Healthy Places Toolkit – Environment & Health Data Portal",
         "headingText": [
-            "Neighborhood Development Health Report (NDHR) for Lower East Side and Chinatown (CD3)",
+            "Healthy Places Toolkit for Lower East Side and Chinatown (CD3)",
             "Climate and Active Design",
             "Housing",
             "Neighborhood Conditions",
             "Health Outcomes and Care Access",
             "Mental Health",
             "Lower East Side and Chinatown (CD3) on the map",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",
@@ -139,6 +139,6 @@
             "www.openstreetmap.org",
             "www1.nyc.gov"
         ],
-        "metaDescription": "Neighborhood Development Health Report data for Lower East Side and Chinatown (CD3), a community district in Manhattan."
+        "metaDescription": "Healthy Places Toolkit data for Lower East Side and Chinatown (CD3), a community district in Manhattan."
     }
 }

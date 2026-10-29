@@ -37,8 +37,8 @@
         "headingLevels": [
             1,
             1,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 1,
         "landmarks": {
@@ -76,9 +76,9 @@
             "zeroSize": 1
         },
         "links": {
-            "internal": 75,
+            "internal": 77,
             "external": 21,
-            "emptyHref": 29,
+            "emptyHref": 31,
             "noAccessibleText": 0
         },
         "controls": {
@@ -101,8 +101,8 @@
         "headingText": [
             "Mental Health in Long Island City and Astoria (CD1)",
             "Mental Health in Long Island City and Astoria (CD1)",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

@@ -40,8 +40,8 @@
             3,
             3,
             3,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 2,
         "landmarks": {
@@ -79,14 +79,14 @@
             "zeroSize": 1
         },
         "links": {
-            "internal": 78,
+            "internal": 80,
             "external": 21,
-            "emptyHref": 29,
+            "emptyHref": 31,
             "noAccessibleText": 0
         },
         "controls": {
             "button": 11,
-            "input": 1,
+            "input": 7,
             "select": 0,
             "textarea": 0,
             "noAccessibleName": 0
@@ -107,8 +107,8 @@
             "Walking distance to a parkWalking distance to a park, 202379.1PercentLowerLower than most community districtsWalking distance to a parkWalking distance to a park, 202379.1PercentLower than most community districtsIncrease presence of parks or green spaces",
             "Heat vulnerability indexHeat vulnerability index, 20232Score out of 5CDTA areaLowerLower than most community district tabulation areasHeat vulnerability indexHeat vulnerability index, 20232Score out of 5CDTA areaLower than most community district tabulation areasIncrease shade, vegetation, or reflective surfaces to combat heat vulnerability",
             "Household air conditioningHousehold air conditioning, 2023N/A**Percent (with AC)PUMA areaHousehold air conditioningHousehold air conditioning, 2023N/A**Percent (with AC)PUMA areaIncrease access to cooling",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

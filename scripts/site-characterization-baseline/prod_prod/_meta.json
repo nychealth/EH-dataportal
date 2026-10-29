@@ -1,13 +1,13 @@
 {
-    "capturedAt": "2026-10-28T14:57:11.984Z",
-    "gitHead": "722ea6f50d30f7a679767d2a4923a85324c3bf9f",
+    "capturedAt": "2026-10-29T13:25:49.859Z",
+    "gitHead": "68573c5560f26251987bc2ddbd2e3d07e1029953",
     "baselineKey": "prod_prod",
     "hugoEnv": "prod_prod",
     "dataBranch": "production",
     "dataCommit": {
         "sha": "547482b9df589006543e13e8cdf6546e00ed9998",
         "date": "2026-10-24T03:19:55Z",
-        "fetchedAt": "2026-10-28T14:53:41.836Z"
+        "fetchedAt": "2026-10-29T13:20:27.361Z"
     },
     "pagefind": true,
     "hugo": {
@@ -16,8 +16,10 @@
     },
     "prefix": "/IndicatorPublic/",
     "mode": "all",
-    "pages": 924,
-    "arbitrated": [],
+    "pages": 1284,
+    "arbitrated": [
+        "ndhr/bay_ridge_and_dyker_heights/housing/"
+    ],
     "cleared": [],
     "capped": false,
     "viewport": {

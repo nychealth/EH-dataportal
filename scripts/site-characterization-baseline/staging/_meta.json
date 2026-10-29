@@ -1,13 +1,13 @@
 {
-    "capturedAt": "2026-10-28T15:01:32.545Z",
-    "gitHead": "722ea6f50d30f7a679767d2a4923a85324c3bf9f",
+    "capturedAt": "2026-10-29T13:31:56.498Z",
+    "gitHead": "68573c5560f26251987bc2ddbd2e3d07e1029953",
     "baselineKey": "staging",
     "hugoEnv": "dev_stage",
     "dataBranch": "staging",
     "dataCommit": {
         "sha": "005d8ff8fc83dfbf117933654648885925759fdd",
         "date": "2026-10-24T03:08:03Z",
-        "fetchedAt": "2026-10-28T14:57:52.111Z"
+        "fetchedAt": "2026-10-29T13:26:32.580Z"
     },
     "pagefind": true,
     "hugo": {
@@ -16,8 +16,10 @@
     },
     "prefix": "/dev-stage/",
     "mode": "all",
-    "pages": 924,
-    "arbitrated": [],
+    "pages": 1284,
+    "arbitrated": [
+        "ndhr/bay_ridge_and_dyker_heights/housing/"
+    ],
     "cleared": [],
     "capped": false,
     "viewport": {
