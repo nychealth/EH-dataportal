@@ -1,50 +1,52 @@
-    <!-- URL rewrite -->
+<!-- URL rewrite -->
+
+<rewrite>
     
-    <rewrite>
-      
-        <rewriteMaps>
-          
-          <!-- old portal subtopic to new portal topic -->
-          
-          <rewriteMap name="Subtopic-To-DE-Topic">
+    <rewriteMaps>
+        
+        <!-- old portal subtopic to new portal topic -->
+        
+        <rewriteMap name="Subtopic-To-DE-Topic">
             
             <add key="104" value="active-design" />
             <add key="122" value="air-quality" />
-            <add key="95"  value="alcohol-use" />
-            <add key="97"  value="alcohol-use" />
-            <add key="11"  value="asthma" />
-            <add key="92"  value="bed-bugs" />
-            <add key="16"  value="birth-defects" />
-            <add key="12"  value="birth-outcomes" />
-            <add key="39"  value="cancer" />
-            <add key="93"  value="cancers-in-children" />
-            <add key="51"  value="carbon-monoxide-incidents" />
-            <add key="15"  value="carbon-monoxide-incidents" />
-            <add key="3"   value="cigarette-smoke" />
-            <add key="1"   value="air-quality" />
+            <add key="95" value="alcohol-use" />
+            <add key="97" value="alcohol-use" />
+            <add key="11" value="asthma" />
+            <add key="92" value="bed-bugs" />
+            <add key="16" value="birth-defects" />
+            <add key="12" value="birth-outcomes" />
+            <add key="39" value="cancer" />
+            <add key="93" value="cancers-in-children" />
+            <add key="51" value="carbon-monoxide-incidents" />
+            <add key="15" value="carbon-monoxide-incidents" />
+            <add key="3" value="cigarette-smoke" />
+            <add key="1" value="air-quality" />
             <add key="107" value="climate" />
-            <add key="8"   value="cockroaches" />
-            <add key="52"  value="drinking-water-quality" />
+            <add key="8" value="cockroaches" />
+            <add key="52" value="drinking-water-quality" />
             <add key="108" value="falls-among-older-adults" />
             <add key="121" value="health-care" />
             <add key="103" value="health-impacts-of-air-pollution" />
             <add key="127" value="healthy-eating" />
-            <add key="36"  value="housing-maintenance" />
-            <add key="7"   value="mice-and-rats" />
+            <add key="36" value="housing-maintenance" />
+            <add key="7" value="mice-and-rats" />
             <add key="126" value="mortality" />
-            <add key="91"  value="air-quality" />
+            <add key="91" value="air-quality" />
             <add key="113" value="overweight" />
-            <add key="9"   value="pesticides" />
-            <add key="96"  value="physical-activity" />
+            <add key="9" value="pesticides" />
+            <add key="96" value="physical-activity" />
             <add key="106" value="social-conditions" />
-            <add key="98"  value="restaurant-food-safety" />
+            <add key="98" value="restaurant-food-safety" />
             <add key="109" value="social-conditions" />
             <add key="101" value="transportation-related-injuries" />
             <add key="116" value="vector-borne-disease" />
             <add key="125" value="violence" />
-            <add key="119" value="walking,-driving,-and-cycling" />
+            <add key="119" value="walking-driving-and-cycling" />
             <add key="100" value="weather-related-illness" />
             <add key="115" value="worker-health" />
+            <add key="14" value="lead" />
+            <add key="4" value="lead" />
             
             <!-- redirected to related topic above -->
             
@@ -56,7 +58,6 @@
             
             <!-- draft topic pages - no redirect for now -->
             
-            <!-- <add key="14" value="childhood-lead-exposure" /> -->
             <!-- <add key="123" value="chronic-obstructive-pulmonary-disease" /> -->
             <!-- <add key="94" value="solid-waste" /> -->
             <!-- <add key="102" value="sugary-drink-consumption" /> -->
@@ -65,252 +66,604 @@
             <!-- <add key="88" value="brownfields" /> -->
             <!-- <add key="13" value="heart-attacks" /> -->
             <!-- <add key="74" value="large-city-air-quality-comparison" /> -->
-            <!-- <add key="4" value="lead-hazards" /> -->
             
-          </rewriteMap>
-          
-          <!-- old portal data explorer tab to new -->
-          
-          <rewriteMap name="DE-Tab">
+        </rewriteMap>
+        
+        <!-- old portal data explorer tab to new -->
+        
+        <rewriteMap name="DE-Tab">
             
             <add key="Summarize" value="summary" />
             <add key="Map" value="map" />
             <add key="ChartOverTime" value="trend" />
             <add key="LinkData" value="links" />
             
-          </rewriteMap>
-          
-        </rewriteMaps>
+        </rewriteMap>
         
+        <!-- old portal indicator id to new portal topic, for VisualizationData.aspx links
+             whose subtopic or tab is not in the maps above. Generated from the deployed
+             IndicatorMetadata/topic_indicators.json (builds/prod-prod f1e44f21be,
+             2026-10-28); an indicator in several topics maps to the first one listed there.
+             Old portal ids no longer change, so this only needs revisiting if a topic is
+             renamed or an indicator leaves the site. -->
+             
+        <rewriteMap name="Indicator-To-DE-Topic">
+            
+            <add key="1" value="birth-outcomes" />
+            <add key="2" value="birth-outcomes" />
+            <add key="3" value="birth-outcomes" />
+            <add key="4" value="birth-outcomes" />
+            <add key="5" value="birth-outcomes" />
+            <add key="6" value="birth-outcomes" />
+            <add key="7" value="birth-outcomes" />
+            <add key="8" value="birth-outcomes" />
+            <add key="14" value="social-conditions" />
+            <add key="15" value="economic-conditions" />
+            <add key="16" value="lead" />
+            <add key="17" value="economic-conditions" />
+            <add key="18" value="asthma" />
+            <add key="22" value="cockroaches" />
+            <add key="24" value="mice-and-rats" />
+            <add key="25" value="cigarette-smoke" />
+            <add key="26" value="birth-defects" />
+            <add key="27" value="birth-defects" />
+            <add key="28" value="birth-defects" />
+            <add key="29" value="birth-defects" />
+            <add key="30" value="birth-defects" />
+            <add key="31" value="birth-defects" />
+            <add key="32" value="birth-defects" />
+            <add key="33" value="birth-defects" />
+            <add key="34" value="birth-defects" />
+            <add key="35" value="birth-defects" />
+            <add key="36" value="birth-defects" />
+            <add key="37" value="birth-defects" />
+            <add key="38" value="carbon-monoxide-incidents" />
+            <add key="40" value="housing-maintenance" />
+            <add key="41" value="housing-maintenance" />
+            <add key="42" value="housing-maintenance" />
+            <add key="45" value="housing-maintenance" />
+            <add key="46" value="housing-maintenance" />
+            <add key="47" value="housing-maintenance" />
+            <add key="48" value="asthma-triggers" />
+            <add key="55" value="air-quality" />
+            <add key="57" value="air-quality" />
+            <add key="60" value="cancer" />
+            <add key="63" value="cancer" />
+            <add key="64" value="cancer" />
+            <add key="66" value="cancer" />
+            <add key="71" value="cancer" />
+            <add key="73" value="cancer" />
+            <add key="74" value="cancer" />
+            <add key="84" value="asthma" />
+            <add key="91" value="pesticides" />
+            <add key="92" value="air-quality" />
+            <add key="93" value="pesticides" />
+            <add key="94" value="pesticides" />
+            <add key="96" value="pesticides" />
+            <add key="97" value="pesticides" />
+            <add key="98" value="pesticides" />
+            <add key="99" value="pesticides" />
+            <add key="100" value="pesticides" />
+            <add key="101" value="birth-defects" />
+            <add key="102" value="pesticides" />
+            <add key="103" value="economic-conditions" />
+            <add key="107" value="asthma-triggers" />
+            <add key="690" value="cancer" />
+            <add key="770" value="cancer" />
+            <add key="2017" value="cigarette-smoke" />
+            <add key="2019" value="cigarette-smoke" />
+            <add key="2020" value="cigarette-smoke" />
+            <add key="2021" value="cigarette-smoke" />
+            <add key="2023" value="air-quality" />
+            <add key="2024" value="air-quality" />
+            <add key="2025" value="air-quality" />
+            <add key="2026" value="air-quality" />
+            <add key="2027" value="air-quality" />
+            <add key="2028" value="air-quality" />
+            <add key="2030" value="bed-bugs" />
+            <add key="2031" value="cancers-in-children" />
+            <add key="2033" value="cancers-in-children" />
+            <add key="2035" value="cancers-in-children" />
+            <add key="2037" value="cancers-in-children" />
+            <add key="2039" value="cancers-in-children" />
+            <add key="2041" value="drinking-water-quality" />
+            <add key="2043" value="drinking-water-quality" />
+            <add key="2044" value="drinking-water-quality" />
+            <add key="2048" value="asthma" />
+            <add key="2049" value="alcohol-use" />
+            <add key="2050" value="alcohol-use" />
+            <add key="2051" value="alcohol-use" />
+            <add key="2055" value="alcohol-use" />
+            <add key="2056" value="alcohol-use" />
+            <add key="2057" value="alcohol-use" />
+            <add key="2058" value="physical-activity" />
+            <add key="2059" value="physical-activity" />
+            <add key="2060" value="physical-activity" />
+            <add key="2061" value="overweight" />
+            <add key="2062" value="overweight" />
+            <add key="2063" value="overweight" />
+            <add key="2064" value="overweight" />
+            <add key="2065" value="restaurant-food-safety" />
+            <add key="2074" value="weather-related-illness" />
+            <add key="2075" value="weather-related-illness" />
+            <add key="2076" value="weather-related-illness" />
+            <add key="2077" value="cancer" />
+            <add key="2084" value="climate" />
+            <add key="2086" value="transportation-related-injuries" />
+            <add key="2087" value="cancer" />
+            <add key="2088" value="cancer" />
+            <add key="2089" value="cancer" />
+            <add key="2090" value="cancer" />
+            <add key="2091" value="cancer" />
+            <add key="2092" value="transportation-related-injuries" />
+            <add key="2093" value="transportation-related-injuries" />
+            <add key="2094" value="transportation-related-injuries" />
+            <add key="2095" value="cancer" />
+            <add key="2096" value="cancer" />
+            <add key="2097" value="healthy-eating" />
+            <add key="2098" value="healthy-eating" />
+            <add key="2101" value="asthma-triggers" />
+            <add key="2104" value="climate" />
+            <add key="2108" value="health-impacts-of-air-pollution" />
+            <add key="2112" value="walking-driving-and-cycling" />
+            <add key="2113" value="walking-driving-and-cycling" />
+            <add key="2114" value="walking-driving-and-cycling" />
+            <add key="2117" value="health-impacts-of-air-pollution" />
+            <add key="2119" value="health-impacts-of-air-pollution" />
+            <add key="2120" value="health-impacts-of-air-pollution" />
+            <add key="2121" value="health-impacts-of-air-pollution" />
+            <add key="2122" value="health-impacts-of-air-pollution" />
+            <add key="2124" value="health-impacts-of-air-pollution" />
+            <add key="2132" value="economic-conditions" />
+            <add key="2133" value="active-design" />
+            <add key="2135" value="falls-among-older-adults" />
+            <add key="2136" value="falls-among-older-adults" />
+            <add key="2140" value="climate" />
+            <add key="2141" value="climate" />
+            <add key="2143" value="active-design" />
+            <add key="2145" value="accessibility" />
+            <add key="2146" value="social-conditions" />
+            <add key="2151" value="health-care" />
+            <add key="2157" value="active-design" />
+            <add key="2158" value="active-design" />
+            <add key="2168" value="carbon-monoxide-incidents" />
+            <add key="2172" value="walking-driving-and-cycling" />
+            <add key="2173" value="walking-driving-and-cycling" />
+            <add key="2174" value="weather-related-illness" />
+            <add key="2175" value="weather-related-illness" />
+            <add key="2176" value="economic-conditions" />
+            <add key="2179" value="housing-maintenance" />
+            <add key="2181" value="active-design" />
+            <add key="2184" value="lead" />
+            <add key="2185" value="climate" />
+            <add key="2189" value="lead" />
+            <add key="2191" value="climate" />
+            <add key="2207" value="drinking-water-quality" />
+            <add key="2208" value="worker-health" />
+            <add key="2209" value="lead" />
+            <add key="2210" value="worker-health" />
+            <add key="2211" value="worker-health" />
+            <add key="2214" value="worker-health" />
+            <add key="2215" value="worker-health" />
+            <add key="2216" value="lead" />
+            <add key="2218" value="vector-borne-disease" />
+            <add key="2232" value="health-care" />
+            <add key="2235" value="pesticides" />
+            <add key="2236" value="walking-driving-and-cycling" />
+            <add key="2237" value="walking-driving-and-cycling" />
+            <add key="2238" value="walking-driving-and-cycling" />
+            <add key="2239" value="worker-health" />
+            <add key="2312" value="pesticides" />
+            <add key="2317" value="social-conditions" />
+            <add key="2322" value="mortality" />
+            <add key="2323" value="social-conditions" />
+            <add key="2325" value="social-conditions" />
+            <add key="2334" value="social-conditions" />
+            <add key="2335" value="social-conditions" />
+            <add key="2336" value="economic-conditions" />
+            <add key="2337" value="economic-conditions" />
+            <add key="2338" value="cigarette-smoke" />
+            <add key="2339" value="asthma" />
+            <add key="2340" value="vector-borne-disease" />
+            <add key="2364" value="pesticides" />
+            <add key="2365" value="economic-conditions" />
+            <add key="2366" value="pesticides" />
+            <add key="2367" value="pesticides" />
+            <add key="2368" value="pesticides" />
+            <add key="2369" value="pesticides" />
+            <add key="2370" value="pesticides" />
+            <add key="2374" value="pesticides" />
+            <add key="2375" value="violence" />
+            <add key="2376" value="weather-related-illness" />
+            <add key="2377" value="accessibility" />
+            <add key="2378" value="asthma" />
+            <add key="2379" value="asthma" />
+            <add key="2380" value="asthma" />
+            <add key="2381" value="asthma" />
+            <add key="2382" value="asthma" />
+            <add key="2383" value="asthma" />
+            <add key="2384" value="asthma" />
+            <add key="2385" value="asthma" />
+            <add key="2386" value="asthma" />
+            <add key="2387" value="asthma" />
+            <add key="2388" value="active-design" />
+            <add key="2389" value="active-design" />
+            <add key="2390" value="active-design" />
+            <add key="2391" value="accessibility" />
+            <add key="2392" value="asthma" />
+            <add key="2393" value="asthma-triggers" />
+            <add key="2394" value="asthma-triggers" />
+            <add key="2395" value="housing-maintenance" />
+            <add key="2396" value="housing-maintenance" />
+            <add key="2398" value="carbon-monoxide-incidents" />
+            <add key="2399" value="housing-maintenance" />
+            <add key="2400" value="violence" />
+            <add key="2401" value="health-care" />
+            <add key="2404" value="cigarette-smoke" />
+            <add key="2405" value="carbon-monoxide-incidents" />
+            <add key="2406" value="carbon-monoxide-incidents" />
+            <add key="2408" value="accessibility" />
+            <add key="2409" value="falls-among-older-adults" />
+            <add key="2410" value="weather-related-illness" />
+            <add key="2411" value="climate" />
+            <add key="2414" value="asthma" />
+            <add key="2415" value="walking-driving-and-cycling" />
+            <add key="2416" value="active-design" />
+            <add key="2417" value="mental-health" />
+            <add key="2418" value="mental-health" />
+            <add key="2419" value="mental-health" />
+            <add key="2421" value="cigarette-smoke" />
+            <add key="2422" value="cigarette-smoke" />
+            <add key="2425" value="active-design" />
+            <add key="2426" value="active-design" />
+            <add key="2427" value="waterways" />
+            <add key="2428" value="waterways" />
+            <add key="2429" value="asthma" />
+            <add key="2430" value="asthma-triggers" />
+            <add key="2431" value="asthma" />
+            <add key="2432" value="healthy-eating" />
+            <add key="2433" value="mice-and-rats" />
+            <add key="2434" value="mice-and-rats" />
+            <add key="2435" value="violence" />
+            <add key="2436" value="violence" />
+            <add key="2437" value="violence" />
+            <add key="2438" value="violence" />
+            <add key="2439" value="violence" />
+            <add key="2440" value="violence" />
+            <add key="2441" value="vector-borne-disease" />
+            <add key="2442" value="vector-borne-disease" />
+            <add key="2443" value="weather-related-illness" />
+            <add key="2444" value="weather-related-illness" />
+            <add key="2445" value="weather-related-illness" />
+            <add key="2446" value="housing-maintenance" />
+            <add key="2447" value="mice-and-rats" />
+            <add key="2449" value="air-quality" />
+            <add key="2455" value="accessibility" />
+            <add key="2456" value="accessibility" />
+            <add key="2457" value="accessibility" />
+            <add key="2458" value="accessibility" />
+            <add key="2459" value="accessibility" />
+            <add key="2460" value="accessibility" />
+            <add key="2461" value="accessibility" />
+            <add key="2462" value="accessibility" />
+            <add key="2463" value="accessibility" />
+            <add key="2464" value="accessibility" />
+            <add key="2465" value="chronic-disease" />
+            <add key="2466" value="chronic-disease" />
+            <add key="2467" value="chronic-disease" />
+            <add key="2468" value="chronic-disease" />
+            
+        </rewriteMap>
         
-        <rules>
-
-    <!-- redirect the user testing url -->
-
-          <rule name="User testing redirect" stopProcessing="true">
-
-            <match url="/?test/?" />
-
-            <conditions logicalGrouping="MatchAll" trackAllCaptures="false" />
-
-            <serverVariables>
-
-              <set name="HTTP_COOKIE" value="want_old_site=true" />
-
-            </serverVariables>
-
-            <action type="Redirect" url="." appendQueryString="false" redirectType="Temporary" />
-
-          </rule>
-
-    <!-- if the user has requested the old site, give them that -->
-          
-          <rule name="no-redirect" stopProcessing="true">
+    </rewriteMaps>
+    
+    
+    <rules>
+        
+        <!-- ## retired beta prefix ## -->
+        
+        <!-- The new site ran under beta/ while the old portal held the root. Every
+             beta/ path in GA's 404 report resolves once the prefix is dropped
+             [checked 2026-10-28 against builds/prod-prod f1e44f21be], and no built
+             path starts with beta. The query string is kept, so ?id= survives. -->
             
-            <match url=".*" />
+        <rule name="beta-prefix" stopProcessing="true">
             
-            <conditions trackAllCaptures="true">
-              
-              <add input="{HTTP_COOKIE}" pattern="want_old_site=true" />
-              
-            </conditions>
+            <match url="^beta(?:/(.*))?$" />
+            <action type="Redirect" url="/IndicatorPublic/{R:1}" redirectType="Permanent" />
+                
+        </rule>
+                
             
-            <action type="None" />
+        <!-- ## mangled links ## -->
+        
+        <!-- Links pasted with punctuation, whitespace or an invisible character after the
+             final slash ("heat-report/ U+200B", "hvi/;", "housing-creates-health/U+2060").
+             Keep everything up to the last slash that the junk follows. URL Rewrite's
+             default ECMAScript syntax makes \s ASCII-only, hence the explicit code points. -->
+             
+        <rule name="trailing-junk" stopProcessing="true">
             
-          </rule>
-
-    <!-- ## home page ## -->
-          
-          <rule name="Home" stopProcessing="true">
+            <match url="^(.+/)[\s​‌‍⁠﻿;,()'&quot;]+.*$" />
+            <action type="Redirect" url="{R:1}" appendQueryString="false" redirectType="Permanent" />
+            
+        </rule>
+        
+        <rule name="data-explorer-misspelled" stopProcessing="true">
+            
+            <match url="^data[ _]?explorer/(.*)$" />
+            <action type="Redirect" url="data-explorer/{R:1}" redirectType="Permanent" />
+            
+        </rule>
+        
+        <!-- the comma form is what Subtopic-To-DE-Topic sent for subtopic 119 until
+             2026-10-28, as a 301, so browsers may still have it cached -->
+             
+        <rule name="data-explorer-walking-driving-cycling" stopProcessing="true">
+            
+            <match url="^data-explorer/walking,-driving,-and-cycling/?$" />
+            <action type="Redirect" url="data-explorer/walking-driving-and-cycling/" redirectType="Permanent" />
+            
+        </rule>
+        
+        <rule name="data-explorer-housing-safety" stopProcessing="true">
+            
+            <match url="^data-explorer/housing[ _]safety/?$" />
+            <action type="Redirect" url="data-explorer/housing-safety/" redirectType="Permanent" />
+            
+        </rule>
+        
+        <!-- ## home page ## -->
+        
+        <rule name="Home" stopProcessing="true">
             
             <match url="(PublicTracking.aspx)" />
             
-              <conditions logicalGrouping="MatchAll" trackAllCaptures="true">
-              
-              <add input="{HTTP_COOKIE}" pattern="want_old_site=true" negate="true" />
-              <add input="{UNENCODED_URL}" pattern="/?test/?" negate="true" />
-              <add input="{UNENCODED_URL}" pattern="/?#$" negate="true" />
-              
-            </conditions>
+            <action type="Redirect" url="/IndicatorPublic/" appendQueryString="false" redirectType="Permanent" />
             
-            <action type="Redirect" url="beta/" appendQueryString="false" redirectType="Temporary" />
-            
-          </rule>
-
-
-    <!-- ## hub pages ## -->
-
-    <!-- Heat Hub -->
-          
-          <rule name="heat-hub-index" stopProcessing="true">
+        </rule>
+        
+        
+        <!-- ## hub pages ## -->
+        
+        <!-- Heat Hub -->
+        
+        <rule name="heat-hub-index" stopProcessing="true">
             
             <match url="HeatHub/index.html" />
-            <action type="Redirect" url="beta/key-topics/climatehealth/" redirectType="Temporary" />
+            <action type="Redirect" url="key-topics/climatehealth/" redirectType="Permanent" />
             
-          </rule>
-          
-          <rule name="heat-hub-sub" stopProcessing="true">
+        </rule>
+        
+        <rule name="heat-hub-sub" stopProcessing="true">
             
             <match url="HeatHub/(hvi|syndromic)\.(html)" />
-            <action type="Redirect" url="beta/key-topics/climatehealth/{R:1}/" redirectType="Temporary" />
+            <action type="Redirect" url="key-topics/climatehealth/{R:1}/" redirectType="Permanent" />
             
-          </rule>
-
-    <!-- Air Quality Hub -->
-          
-          <rule name="aq-hub-index" stopProcessing="true">
+        </rule>
+        
+        <!-- Air Quality Hub -->
+        
+        <rule name="aq-hub-index" stopProcessing="true">
             
             <match url="AQHub/index.html" />
-            <action type="Redirect" url="beta/key-topics/airquality/" redirectType="Temporary" />
+            <action type="Redirect" url="key-topics/airquality/" redirectType="Permanent" />
             
-          </rule>
-          
-          <rule name="aq-hub-aqe" stopProcessing="true">
+        </rule>
+        
+        <rule name="aq-hub-aqe" stopProcessing="true">
             
             <match url="AQHub/explorer.html" />
-            <action type="Redirect" url="beta/key-topics/airquality/aqe/" redirectType="Temporary" />
+            <action type="Redirect" url="key-topics/airquality/aqe/" redirectType="Permanent" />
             
-          </rule>
-          
-          <rule name="aq-hub-realtime" stopProcessing="true">
+        </rule>
+        
+        <rule name="aq-hub-realtime" stopProcessing="true">
             
             <match url="AQHub/realtime.html" />
-            <action type="Redirect" url="beta/key-topics/airquality/realtime/" redirectType="Temporary" />
+            <action type="Redirect" url="key-topics/airquality/realtime/" redirectType="Permanent" />
             
-          </rule>
-
-
-    <!-- ## cold infographic ## -->
-          
-          <rule name="cold-infographic" stopProcessing="true">
+        </rule>
+        
+        
+        <!-- ## cold infographic ## -->
+        
+        <rule name="cold-infographic" stopProcessing="true">
             
             <match url="^cold/?$" />
-            <action type="Redirect" url="beta/data-stories/cold/" redirectType="Temporary" />
+            <action type="Redirect" url="data-stories/cold/" redirectType="Permanent" />
             
-          </rule>
-
-
-    <!-- ## data stories ## -->
-          
-          <rule name="data-stories" stopProcessing="true">
+        </rule>
+        
+        
+        <!-- ## data stories ## -->
+        
+        <rule name="data-stories" stopProcessing="true">
             
             <match url="Closerlook/([a-zA-Z]+)" />
-            <action type="Redirect" url="beta/data-stories/{R:1}/" redirectType="Temporary" />
+            <action type="Redirect" url="data-stories/{R:1}/" redirectType="Permanent" />
             
-          </rule>
-
-
-    <!-- ## data explorer topics, using rewrite map ## -->
-          
-          <rule name="data-explorer-topics" stopProcessing="true">
+        </rule>
+        
+        
+        <!-- ## data explorer topics, using rewrite map ## -->
+        
+        <rule name="data-explorer-topics" stopProcessing="true">
             
             <match url="Subtopic.aspx" />
             <conditions>
-              <add input="{QUERY_STRING}" pattern="subtopic_id=([0-9]+)" />
-              <add input="{Subtopic-To-DE-Topic:{C:1}}" pattern="(.+)" />
-              
+                <add input="{QUERY_STRING}" pattern="subtopic_id=([0-9]+)" />
+                <add input="{Subtopic-To-DE-Topic:{C:1}}" pattern="(.+)" />
+                
             </conditions>
-            <action type="Redirect" url="beta/data-explorer/{C:1}/" appendQueryString="False" redirectType="Temporary" />
+            <action type="Redirect" url="data-explorer/{C:1}/" appendQueryString="False" redirectType="Permanent" />
             
-          </rule>
-
-
-    <!-- ## Top-tier pages ## -->
-
-    <!-- data explorer landing page -->
-          
-          <rule name="data-explorer" stopProcessing="true">
+        </rule>
+        
+        
+        <!-- ## Top-tier pages ## -->
+        
+        <!-- data explorer landing page -->
+        
+        <rule name="data-explorer" stopProcessing="true">
             
             <match url="^Subtopic.aspx$" />
-            <action type="Redirect" url="beta/data-explorer/" appendQueryString="false" redirectType="Temporary" />
+            <action type="Redirect" url="data-explorer/" appendQueryString="false" redirectType="Permanent" />
             
-          </rule>
+        </rule>
 
-    <!-- learn more -->
-          
-          <rule name="learn-more" stopProcessing="true">
+        <!-- learn more -->
+        
+        <rule name="learn-more" stopProcessing="true">
             
-            <match url="^LearnMore.aspx$" />
-            <action type="Redirect" url="beta/" appendQueryString="false" redirectType="Temporary" />
+            <match url="^(LearnMore|MoreInformation|Glossary)\.aspx$" />
+            <action type="Redirect" url="about/" appendQueryString="false" redirectType="Permanent" />
             
-          </rule>
-
-    <!-- data story landing page -->
-          
-          <rule name="data-story-landing" stopProcessing="true">
+        </rule>
+        
+        <!-- data story landing page -->
+        
+        <rule name="data-story-landing" stopProcessing="true">
             
             <match url="^Infographic.aspx$" />
-            <action type="Redirect" url="beta/data-stories/" appendQueryString="false" redirectType="Temporary" />
+            <action type="Redirect" url="data-stories/" appendQueryString="false" redirectType="Permanent" />
             
-          </rule>
+        </rule>
+        
+        <!-- other old portal pages -->
+        
+        <rule name="quick-view" stopProcessing="true">
+            
+            <match url="^(New)?QuickView\.aspx$" />
+            <action type="Redirect" url="data-explorer/" appendQueryString="false" redirectType="Permanent" />
+            
+        </rule>
+        
+        <rule name="server-side-report" stopProcessing="true">
+            
+            <match url="^Report/ServerSideReport\.aspx$" />
+            <action type="Redirect" url="neighborhood-reports/" appendQueryString="false" redirectType="Permanent" />
+            
+        </rule>
+        
+        <rule name="community-districts" stopProcessing="true">
+            
+            <match url="^CommunityDistricts\.aspx?$" />
+            <action type="Redirect" url="data-stories/geographies/" appendQueryString="false" redirectType="Permanent" />
+            
+        </rule>
+        
+        
+        <!-- ## old portal downloads, to the page that now covers them ## -->
+        
+        <rule name="epht-geography-maps" stopProcessing="true">
+            
+            <match url="^EPHTPDF/(uhf34|uhf42|subboro)\.pdf$" />
+            <action type="Redirect" url="data-stories/geographies/" appendQueryString="false" redirectType="Permanent" />
+            
+        </rule>
+        
+        <rule name="epht-hvi-faq" stopProcessing="true">
+            
+            <match url="^EPHTPDF/HVI_?FAQ\.pdf$" />
+            <action type="Redirect" url="data-features/hvi/" appendQueryString="false" redirectType="Permanent" />
+            
+        </rule>
+        
+        <rule name="epht-lead-definitions" stopProcessing="true">
+            
+            <match url="^EPHTPDF/Childhood_Lead_Exposure_Definitions[^/]*\.pdf$" />
+            <action type="Redirect" url="data-explorer/lead/" appendQueryString="false" redirectType="Permanent" />
+            
+        </rule>
+        
+        <!--
+            Two NR SPA rules used to sit here and are deliberately gone.
 
-    <!-- full neighborhood reports path -->
-          
-          <rule name="neighborhood-reports" stopProcessing="true">
+            nr-spa-neighborhood-path rewrote /neighborhood-reports/{topic}/{neighborhood}
+            to the topic page, and nr-old-to-new-spa was a permanent 301 turning
+            /{neighborhood}/{topic}/ into /{topic}/{neighborhood}. Both existed because the
+            SPA served one page per topic and carried the neighborhood in the address bar.
+
+            Every /{neighborhood}/{topic}/ URL is now a real generated page, so the 301
+            would redirect away all 210 of them — it has stopProcessing="true" and fires
+            before IIS serves a static file. The topic-first shape it redirected *to* never
+            reached production and was never in a sitemap, so nothing is being left without
+            a redirect [decided 2026-08-06: team].
+        -->
+
+        <!-- full neighborhood reports path -->
+
+        <rule name="neighborhood-reports" stopProcessing="true">
             
             <match url="^neighborhood_reports/(.*)" />
-            <action type="Redirect" url="beta/neighborhood-reports/{R:1}" appendQueryString="false" redirectType="Temporary" />
+            <action type="Redirect" url="neighborhood-reports/{R:1}" appendQueryString="false" redirectType="Permanent" />
             
-          </rule>
-
-
-    <!-- ## data explorer tabs, using rewrite map ## -->
-          
-          <rule name="data-explorer-tabs" stopProcessing="true">
+        </rule>
+        
+        
+        <!-- ## data explorer tabs, using rewrite map ## -->
+        
+        <!-- Old links are VisualizationData.aspx?id=<IndicatorID>,<hash>,<subtopic_id>,<tab>.
+             The topic comes from the indicator, not the subtopic: an indicator's own topic
+             is the one page guaranteed to contain it. The rules run from most to least of
+             the link preserved, ending at the explorer landing page, so none reach 404.html.
+             Visual-?ization also catches the "Visual-izationData" typo that circulates. -->
+             
+        <rule name="data-explorer-tabs" stopProcessing="true">
             
-            <match url="VisualizationData.aspx" />
+            <match url="^Visual-?izationData\.aspx$" />
             <conditions trackAllCaptures="true">
-
-        <!--pattern => C:1 = internal_id/IndicatorID, C:2 = subtopic_id, C:3 = tab name -->
-              <add input="{QUERY_STRING}" pattern="id=([0-9]+),\w*,(\d*),([a-zA-Z]+)" /> 
-              <add input="{Subtopic-To-DE-Topic:{C:2}}" pattern="(.+)" /> <!-- pattern => C:4 = topic name -->
-              <add input="{DE-Tab:{C:3}}" pattern="(.+)" /> <!-- pattern => C:5 = new tab name -->
-              
+                
+                <!--pattern => C:1 = internal_id/IndicatorID, C:2 = tab name -->
+                <add input="{QUERY_STRING}" pattern="id=([0-9]+),\w*,\d*,([a-zA-Z]+)" />
+                <add input="{Indicator-To-DE-Topic:{C:1}}" pattern="(.+)" /> <!-- pattern => C:3 = topic name -->
+                <add input="{DE-Tab:{C:2}}" pattern="(.+)" /> <!-- pattern => C:4 = new tab name -->
+                
             </conditions>
-            <action type="Redirect" url="beta/data-explorer/{C:4}/?id={C:1}#display={C:5}" appendQueryString="False" redirectType="Temporary" />
+            <action type="Redirect" url="data-explorer/{C:3}/?id={C:1}#display={C:4}" appendQueryString="False" redirectType="Permanent" />
             
-          </rule>
-          
-        </rules>
+        </rule>
         
+        <!-- a tab the DE-Tab map does not know, or no tab at all -->
         
-        <outboundRules>
-
-    <!-- set cookie with original URL -->
-          
-          <rule name="set-url-cookie">
+        <rule name="data-explorer-indicator" stopProcessing="true">
             
-            <match serverVariable="RESPONSE_Set_Cookie" pattern=".*" />
-            
-            <conditions>
-              <add input="{UNENCODED_URL}" pattern="/beta" negate="true" />
-              <add input="{HTTP_COOKIE}" pattern="want_old_site=true" negate="true" />
-              
+            <match url="^Visual-?izationData\.aspx$" />
+            <conditions trackAllCaptures="true">
+                
+                <!--pattern => C:1 = IndicatorID -->
+                <add input="{QUERY_STRING}" pattern="id=([0-9]+)" />
+                <add input="{Indicator-To-DE-Topic:{C:1}}" pattern="(.+)" /> <!-- pattern => C:2 = topic name -->
+                
             </conditions>
+            <action type="Redirect" url="data-explorer/{C:2}/?id={C:1}" appendQueryString="False" redirectType="Permanent" />
             
-            <action type="Rewrite" value="original_url={UNENCODED_URL}; {R:0}" />
-            
-          </rule> 
-
-    <!-- set cookie with want old site -->
-
-          <rule name="want-old-site-true" stopProcessing="true">
-              <match filterByTags="None" serverVariable="RESPONSE_Set_Cookie" pattern=".*" />
-              <conditions>
-                  <add input="{UNENCODED_URL}" pattern="/?beta/?" negate="true" />
-              </conditions>
-              <action type="Rewrite" value="want_old_site=true" replace="true" />
-          </rule>
-          
-          <rule name="want-old-site-false">
-              <match serverVariable="RESPONSE_Set_Cookie" pattern=".*" />
-              <conditions>
-                  <add input="{UNENCODED_URL}" pattern="/?beta/?" />
-              </conditions>
-              <action type="Rewrite" value="want_old_site=false" />
-          </rule> 
-          
-          
-        </outboundRules>
+        </rule>
         
-      </rewrite>
+        <!-- the indicator is no longer on the site, so open its old subtopic's topic without it -->
+        
+        <rule name="data-explorer-subtopic-only" stopProcessing="true">
+            
+            <match url="^Visual-?izationData\.aspx$" />
+            <conditions trackAllCaptures="true">
+                
+                <!--pattern => C:1 = subtopic_id -->
+                <add input="{QUERY_STRING}" pattern="id=[0-9]*,\w*,([0-9]+)" />
+                <add input="{Subtopic-To-DE-Topic:{C:1}}" pattern="(.+)" /> <!-- pattern => C:2 = topic name -->
+                
+            </conditions>
+            <action type="Redirect" url="data-explorer/{C:2}/" appendQueryString="False" redirectType="Permanent" />
+            
+        </rule>
+        
+        <rule name="data-explorer-fallback" stopProcessing="true">
+            
+            <match url="^Visual-?izationData\.aspx$" />
+            <action type="Redirect" url="data-explorer/" appendQueryString="False" redirectType="Permanent" />
+            
+        </rule>
+        
+    </rules>
+    
+</rewrite>

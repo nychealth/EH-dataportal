@@ -71,9 +71,9 @@
         },
         "links": {
             "internal": 117,
-            "external": 31,
+            "external": 29,
             "emptyHref": 32,
-            "noAccessibleText": 4
+            "noAccessibleText": 2
         },
         "controls": {
             "button": 28,

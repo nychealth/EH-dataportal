@@ -17,6 +17,7 @@ let barResizeEventRegistered = false;
 // Defers Vega resize until the overlay pane has fully repainted.
 
 const scheduleBarViewResize = () => {
+
     if (!window.myVegaView || typeof window.myVegaView.resize !== 'function') {
         return;
     }
@@ -32,14 +33,10 @@ const scheduleBarViewResize = () => {
 
 const registerBarTabResizeHandler = () => {
 
-    if (barResizeEventRegistered) {
-        return;
-    }
+    if (barResizeEventRegistered) return;
 
     const barTab = document.getElementById('v-pills-bar-tab');
-    if (!barTab) {
-        return;
-    }
+    if (!barTab) return;
 
     barTab.addEventListener('shown.bs.tab', () => {
         if (DE.state.overlay === 'bar' && window.myVegaView && typeof window.myVegaView.resize === 'function') {
@@ -48,6 +45,7 @@ const registerBarTabResizeHandler = () => {
     });
 
     barResizeEventRegistered = true;
+
 };
 
 
@@ -107,7 +105,7 @@ const renderBar = (
     let topoFile = '';
     let barDisplay = [];
     let setHeight = 500;
-    let setCircleSize = 250
+    let setCircleSize = 250;
 
 
     // ----- display-rule resolution (CI detection, percent formatting) ----- //
@@ -119,7 +117,7 @@ const renderBar = (
 
     ({ isPercent, displayUnit: displayType, measurementDisplay: subtitle } = resolveMeasureDisplay(barMeasurementType, metadata[0]?.DisplayType));
 
-    debugLog('is percent? [bar.js]', isPercent)
+    debugLog('is percent? [bar.js]', isPercent);
 
 
     // ----- layer-variant selection (Mean / CI / plain) ----- //
@@ -224,8 +222,7 @@ const renderBar = (
                 }
                 }
                 */
-            ]  
-
+            ];  
         } else if (hasCI == true) {
 
             // - - - CI: gray error bar plus point-estimate marker for confidence-interval rows - - - //
@@ -364,7 +361,7 @@ const renderBar = (
                         }
                     }
                 }
-            ]
+            ];
         } else {
 
             // - - - Plain: standard single-layer ranked bar (no mean dot or CI) - - - //
@@ -435,8 +432,7 @@ const renderBar = (
                     }
                 }
                 */
-            ]   
-
+            ];   
         }
 
 
@@ -503,13 +499,13 @@ const renderBar = (
         // width lays out identically.
         "width": getChartContainerWidth('#barHolder') || "container",
         "layer": barDisplay
-    }
+    };
 
 
     // ----- compile & finalize spec ----- //
 
-    debugLog('vega-lite spec:')
-    debugLog(barSpec)
+    debugLog('vega-lite spec:');
+    debugLog(barSpec);
 
     const vegaSpec = vegaLite.compile(barSpec).spec;
 
@@ -518,9 +514,9 @@ const renderBar = (
     const geoSignal = {
         "name": "selectedGeo",
         "value": null
-    }
+    };
     
-    vegaSpec.signals.push(geoSignal)
+    vegaSpec.signals.push(geoSignal);
 
     DE.print.printSpec = vegaSpec;
     DE.print.vizSource = metadata[0]?.Sources;
@@ -541,7 +537,6 @@ const renderBar = (
     // ----- render & map-hover interop ----- //
 
     return vegaEmbed("#barHolder", vegaSpec, {
-
         renderer: "svg",
 
         actions: false
@@ -552,7 +547,6 @@ const renderBar = (
         //     compiled: false,
         //     editor: true
         // }
-
     }).then(result => {
 
         window.myVegaView = result.view; // store the vega view globally
@@ -572,6 +566,7 @@ const renderBar = (
             if (geoID == null || !window.mapInterop.ready) return;
 
             window.mapInterop.highlight(geoID);
+
         });
 
         // Clear the linked map highlight when the cursor leaves a bar or the chart.
@@ -581,8 +576,7 @@ const renderBar = (
             if (!window.mapInterop.ready) return;
 
             window.mapInterop.reset();
+
         });
-
     });
-
 };

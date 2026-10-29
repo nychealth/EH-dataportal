@@ -2,6 +2,7 @@
 title: "Interactive Heat Vulnerability Index"
 aliases:
   - /key-topics/climatehealth/hvi/
+  - /data-features/heat-vulnerability/
 date: 2021-08-25T10:49:05-04:00
 draft: false
 seo_title: "Interactive heat vulnerability index"

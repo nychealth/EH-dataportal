@@ -4,6 +4,7 @@
     "structure": {
         "lang": "en",
         "assets": [
+            "cdn.jsdelivr.net",
             "cdn.rawgit.com",
             "cdnjs.cloudflare.com",
             "data-features/rats-in-your-neighborhood/neighborhood-rats.js",

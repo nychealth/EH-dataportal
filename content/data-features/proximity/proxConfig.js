@@ -1,4 +1,4 @@
-console.log('Config ingested')
+console.log('Config ingested');
 
 var config = [
     {
@@ -123,4 +123,4 @@ var config = [
         "pin": "True or false; determines whether to show the exampel pins."
     },
     */
-]
+];
