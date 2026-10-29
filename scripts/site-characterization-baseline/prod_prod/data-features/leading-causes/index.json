@@ -67,7 +67,7 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 96,
+            "internal": 95,
             "external": 19,
             "emptyHref": 34,
             "noAccessibleText": 0
@@ -109,8 +109,7 @@
             "/data-features",
             "/data-features/",
             "/data-features/leading-causes/",
-            "/data-features/leading-causes/data/cause-descriptions.csv",
-            "/data-features/leading-causes/data/leading-causes.csv",
+            "/data-features/leading-causes/data/leading-causes.xlsx",
             "/data-stories/",
             "/data-stories/injury-deaths/",
             "/key-topics",
