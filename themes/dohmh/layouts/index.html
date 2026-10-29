@@ -1,305 +1,320 @@
 {{ define "main" }}
 
 <style>
-  .content-card a {
-    text-decoration: none!important;
-    color: inherit;
-  }
+    .content-card a {
+        text-decoration: none!important;
+        color: inherit;
+    }
 
-  .card-content:hover {
-   /* box-shadow: 5px 5px 5px lightgray;
-   border: 1px solid lightgray; */
-    transform: scale(1.01)
-  }
+    .card-content:hover {
+        /* box-shadow: 5px 5px 5px lightgray;
+        border: 1px solid lightgray; */
+        transform: scale(1.01)
+    }
 </style>
 
 <article class="container-fluid p-0 overflow-hidden" id="primary-content">
-  <div class="row no-gutters">
-    <div class="container wide">
-      <div class="py-4 mb-4 border-bottom">
-        <div class="row">
-          <div class="col-md-6 px-20">
-            <div class="row px-2">
-              <h2 class="">Explore your city - through data.</h2>
-              <p class="text-muted my-2">
-                <span class="font-weight-bold">The environment is everything around us</span> - our air and water, the climate, our city's buildings and streets, and the society that we live in:
-              </p>
-            </div>
+    {{/*  English only: the banner copy is untranslated, and the es/zh home pages render through this template too.  */}}
+    {{- if eq site.Language.Lang "en" }}
+        {{- partial "de-announcement.html" (dict "variant" "home") }}
+    {{- end }}
+    <div class="row no-gutters">
+        <div class="container wide">
+            <div class="py-4 mb-4 border-bottom">
+                <div class="row">
+                    <div class="col-md-6 px-20">
+                        <div class="row px-2">
+                            <h2 class="">Explore your city - through data.</h2>
+                            <p class="text-muted my-2">
+                                <span class="font-weight-bold">The environment is everything around us</span> - our air and water, the climate, our city's buildings and streets, and the society that we live in:
+                            </p>
+                        </div>
 
-            <div class="row" data-homepage-section="topics">
-              <div class="col-md-6 px-20">
-                <ul class="list-unstyled font-weight-bold">
-                  <li class="link-w-underline px-0"><a href={{ relURL "key-topics/accessibility" }}>Accessibility</a></li>
-                  <li class="link-w-underline px-0"><a href={{ relURL "key-topics/airquality" }}>Air quality</a></li>
-                  <li class="link-w-underline px-0"><a href={{ relURL "key-topics/childhealth" }}>Child health</a></li>
-                  <li class="link-w-underline px-0"><a href={{ relURL "key-topics/climatehealth" }}>Climate</a></li>
-                  <li class="link-w-underline px-0"><a href={{ relURL "key-topics/foodanddrink" }}>Food and drink</a></li>
-                  <li class="link-w-underline px-0" style="border-bottom: none"><a href={{ relURL "key-topics/healthoutcomes" }}>Health outcomes</a></li>
-                </ul>
-              </div>
-              <div class="col-md-6 px-20">
-                <ul class="list-unstyled font-weight-bold">
-                  <li class="link-w-underline px-0"><a href={{ relURL "key-topics/housing" }}>Housing</a></li>
-                  <li class="link-w-underline px-0"><a href={{ relURL "key-topics/social" }}>Inequality</a></li>
-                  <li class="link-w-underline px-0"><a href={{ relURL "key-topics/injury-and-violence" }}>Injury and violence</a></li>
-                  <li class="link-w-underline px-0"><a href={{ relURL "key-topics/pests" }}>Pests</a></li>
-                  <li class="link-w-underline px-0"><a href={{ relURL "key-topics/transportation" }}>Public space</a></li>
-                  <li class="link-w-underline px-0" style="border-bottom: none"><a class="" href={{ relURL "key-topics" }}>See all topics<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
-</li>
+                        <div class="row" data-homepage-section="topics">
+                            <div class="col-md-6 px-20">
+                                <ul class="list-unstyled font-weight-bold">
+                                    <li class="link-w-underline px-0"><a href={{ relURL "key-topics/accessibility" }}>Accessibility</a></li>
+                                    <li class="link-w-underline px-0"><a href={{ relURL "key-topics/airquality" }}>Air quality</a></li>
+                                    <li class="link-w-underline px-0"><a href={{ relURL "key-topics/childhealth" }}>Child health</a></li>
+                                    <li class="link-w-underline px-0"><a href={{ relURL "key-topics/climatehealth" }}>Climate</a></li>
+                                    <li class="link-w-underline px-0"><a href={{ relURL "key-topics/foodanddrink" }}>Food and drink</a></li>
+                                    <li class="link-w-underline px-0" style="border-bottom: none"><a href={{ relURL "key-topics/healthoutcomes" }}>Health outcomes</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 px-20">
+                                <ul class="list-unstyled font-weight-bold">
+                                    <li class="link-w-underline px-0"><a href={{ relURL "key-topics/housing" }}>Housing</a></li>
+                                    <li class="link-w-underline px-0"><a href={{ relURL "key-topics/social" }}>Inequality</a></li>
+                                    <li class="link-w-underline px-0"><a href={{ relURL "key-topics/injury-and-violence" }}>Injury and violence</a></li>
+                                    <li class="link-w-underline px-0"><a href={{ relURL "key-topics/pests" }}>Pests</a></li>
+                                    <li class="link-w-underline px-0"><a href={{ relURL "key-topics/transportation" }}>Public space</a></li>
+                                    <li class="link-w-underline px-0" style="border-bottom: none"><a class="" href={{ relURL "key-topics" }}>See all topics<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a></li>
 
-                </ul>
-              </div>
-              <!--
-              <div class="d-flex mt-3 w-100 mb-4 mb-md-0 pl-2">
-                <a class="btn btn-primary" href={{ relURL "key-topics" }}>See all topics<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
-              </div>
-              -->
+                                </ul>
+                            </div>
+                            <!--
+                            <div class="d-flex mt-3 w-100 mb-4 mb-md-0 pl-2">
+                                <a class="btn btn-primary" href={{ relURL "key-topics" }}>See all topics<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                            </div>
+                            -->
 
-            </div>
-          </div>
-          <div class="col-md-6 px-20">
-            <div class="card content-card" id="featured-homepage" data-homepage-section="featured">
-              <a href="{{ relURL .Params.featured_link }}" data-homepage-label="{{ .Params.featured_title }}">
-              <div class="card-content primary">
-
-                {{ $src := resources.GetMatch ( path.Join "**" .Params.featured_image )}}
-                {{ $image := $src.Resize "x1600 jpg q75"}}
-                <div class="position-relative" style='height: 330px; width: 100%; background-image: url({{ relURL $image.RelPermalink }}); background-position: center; background-size: cover;'>
-
-                  <div class="overlay-map">
-                    <!-- Can use overlay-trends, overlay-map or overlay-topics -->
-                  </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 px-20">
+                        <div class="card content-card" id="featured-homepage" data-homepage-section="featured">
+                            <a href="{{ relURL .Params.featured_link }}" data-homepage-label="{{ .Params.featured_title }}">
+                                <div class="card-content primary">
+                    
+                                    {{ $src := resources.GetMatch ( path.Join "**" .Params.featured_image )}}
+                                    {{ $image := $src.Resize "x1600 jpg q75"}}
+                                    <div class="position-relative"
+                                        style='height: 330px; width: 100%; background-image: url({{ relURL $image.RelPermalink }}); background-position: center; background-size: cover;'>
+                    
+                                        {{ $overlay := "" }}
+                                        {{ if eq .Params.featured_overlay "trends" }}
+                                        {{ $overlay = "overlay-trends" }}
+                                        {{ else if eq .Params.featured_overlay "map" }}
+                                        {{ $overlay = "overlay-map" }}
+                                        {{ else if eq .Params.featured_overlay "topics" }}
+                                        {{ $overlay = "overlay-topics" }}
+                                        {{ else  }}
+                                        {{ $overlay = .Params.featured_overlay }}
+                                        {{ end }}
+                    
+                                        <div class="{{- $overlay -}}">
+                                            <!-- Can use overlay-trends, overlay-map or overlay-topics -->
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h3>{{ .Params.featured_title }}</h3>
+                                        <p>{{ .Params.featured_text }}</p>
+                                        <div class="d-flex justify-content-end mb-4 mb-md-0">
+                                            <!-- <a class="fs-sm font-weight-bold" href={{ relURL "data-stories" }}>All data stories<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a> -->
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </a>
                 </div>
-                <div class="card-body">
-                  <h3>{{ .Params.featured_title }}</h3>
-                  <p>{{ .Params.featured_text }}</p>
-                  <div class="d-flex justify-content-end mb-4 mb-md-0">
-                    <!-- <a class="fs-sm font-weight-bold" href={{ relURL "data-stories" }}>All data stories<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a> -->
-                  </div>
-                </div>
-              </div>
             </div>
-            </a>
-          </div>
         </div>
-      </div>
-    </div>
+</div>
 
-    <div class="container wide">
-      <div class="row">
+<div class="container wide">
+    <div class="row">
         <div class="col-lg-4 px-20" data-homepage-section="data-stories">
-          <h2 class="fs-xl data-stories border-bottom pb-2"><i class="fas fa-passport mr-1" aria-hidden="true"></i>New data stories</h2>
-          <div class="mb-4 ds-card">
-            <div>
-              {{- range first 3 ((where .Site.RegularPages "Section" "data-stories")) -}}
+            <h2 class="fs-xl data-stories border-bottom pb-2"><i class="fas fa-passport mr-1" aria-hidden="true"></i>New data stories</h2>
+            <div class="mb-4 ds-card">
+                <div>
+                    {{- range first 3 ((where .Site.RegularPages "Section" "data-stories")) -}}
 
-              <a href="{{ .RelPermalink }}" class="row no-gutters border-bottom py-3" data-homepage-label="{{ .Title }}">
-                <div class="col-4">
-                  {{ $src := .Resources.GetMatch .Params.image }}
-                  {{ $image := $src.Resize "740x"}}
-                  <img src="{{ $image.RelPermalink }}">
-                </div>
+                    <a href="{{ .RelPermalink }}" class="row no-gutters border-bottom py-3" data-homepage-label="{{ .Title }}">
+                        <div class="col-4">
+                            {{ $src := .Resources.GetMatch .Params.image }}
+                            {{ $image := $src.Resize "740x"}}
+                            <img src="{{ $image.RelPermalink }}" alt="">
+                        </div>
 
-                <div class="col-8 ml-auto h-100 pl-2">
-                  <p class="text-black fs-md"><span class="font-weight-bold">{{ .Title }}</span> {{ .Content | plainify | htmlUnescape | truncate 100 }} </p>
-                </div>
-              </a>
+                        <div class="col-8 ml-auto h-100 pl-2">
+                            <p class="text-black fs-md"><span class="font-weight-bold">{{ .Title }}</span> {{ partial "card-summary.html" . | truncate 100 }} </p>
+                        </div>
+                    </a>
 
-                {{- end -}}
-                <div class="d-flex justify-content-end mt-1 mb-4 mb-md-0">
-                  <a href={{ relURL "data-stories" }} class="font-weight-bold">All data stories <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                    {{- end -}}
+                    <div class="d-flex justify-content-end mt-1 mb-4 mb-md-0">
+                        <a href={{ relURL "data-stories" }} class="font-weight-bold">All data stories <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                    </div>
                 </div>
             </div>
-          </div>
         </div>
         <div class="col-lg-4 px-20" data-homepage-section="recently-updated-data">
 
-          <h2 class="fs-xl data-explorer border-bottom pb-2"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Recently updated data</h2>
+            <h2 class="fs-xl data-explorer border-bottom pb-2"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Recently updated data</h2>
 
-          {{- range .Site.Data.recently_updated_data.featured -}}
-          <div class="link-w-underline">
-            <a href={{ relURL ( path.Join "data-explorer" .link ) }}>{{ .copy }}</a>
-          </div>
-          {{- end -}}
+            {{- range .Site.Data.recently_updated_data.featured -}}
+            <div class="link-w-underline">
+                <a href={{ relURL ( path.Join "data-explorer" .link ) }}>{{ .copy }}</a>
+            </div>
+            {{- end -}}
 
-          <div class="d-flex justify-content-end mt-1 mb-4">
-            <a class="font-weight-bold" href={{ relURL "data-explorer" }}>All data <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
-          </div>
+            <div class="d-flex justify-content-end mt-1 mb-4">
+                <a class="font-weight-bold" href={{ relURL "data-explorer" }}>All data <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+            </div>
 
 
         </div>
         <div class="col-lg-4 px-20">
-          <div class="shadow-sm mb-3 p-3 card-left-border">
-            <div class="row no-gutters">
-              <div class="col-11">
-                <h3 class="text-black fs-xl pr-2 mb-2">Get updates and announcements</h3>
-              </div>
-              <div class="col-1">
-                <i class="fas fa-bullhorn h2 text-primary" aria-hidden="true"></i>
-              </div>
-            </div>
-            <p class="text-black mb-4"><a class="font-weight-bold" href="#" data-subscribe-click="homepage" data-toggle="modal" data-target="#subscribeModal">Sign up here!</a> We won't share your email address.</p>
-          </div>
-
-          <div class="shadow-sm mb-3 p-3 card-left-border" data-homepage-section="site-search">
-            <div class="row no-gutters">
-              <div class="col-11">
-                <h3 class="text-black fs-xl pr-2 mb-2">Find what you need</h3>
-              </div>
-              <div class="col-1">
-                <i class="fas fa-search h2 text-primary" aria-hidden="true"></i>
-
-              </div>
-            </div>
-            <button type="button" class="btn btn-primary btn-block mt-1" data-toggle="modal" data-target="#searchModal" class="btn nav-item-search d-none d-lg-block" title="Search">
-              <i class="fas fa-search mr-1" aria-hidden="true"></i>Search the site
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container wide">
-      <div class="row" data-homepage-section="tools">
-        <div class="col-12 mb-2">
-          <h3>Tools</h3>
-        </div>
-
-        <div class="col-lg-3 col-sm-6">
-          <div class="card content-card">
-            <a class="position-relative" href={{ relURL "data-stories" }} data-homepage-label="Data stories">
-            <div class="card-content data-stories mb-4">
-                <div class="tab-data-stories h-100 w-100 position-absolute"></div>
-                {{ $src := resources.GetMatch ( path.Join "**/image_tab_data_stories.jpg" )}}
-                {{ $image := $src.Resize "x1200 jpg q75"}}
-                <img class="card-img-top" src="{{ relURL $image.RelPermalink }}">
-              <div class="card-body">
-                <h3 class="card-title">Data stories</h3>
-                <p>Explainers on important health issues.</p>
-              </div>
-
-            </div>
-          </a>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-sm-6">
-          <div class="card content-card">
-            <a class="position-relative" href={{ relURL "data-features" }} data-homepage-label="Data Features">
-            <div class="card-content data-features mb-4">
-                <div class="tab-data-features h-100 w-100 position-absolute"></div>
-                {{ $src := resources.GetMatch ( path.Join "**/image_tab_data_features.jpg" )}}
-                {{ $image := $src.Resize "x1200 jpg q75"}}
-                <img class="card-img-top" src="{{ relURL $image.RelPermalink }}">
-              
-              <div class="card-body">
-                <h3 class="card-title">Data Features</h3>
-                <p>Custom interactives, dashboards and reports.</p>
-              </div>
-                            
-            </div>
-            </a>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-sm-6">
-          <div class="card content-card">
-            <a class="position-relative" href={{ relURL "neighborhood-reports" }} data-homepage-label="Neighborhood Reports">
-            <div class="card-content n-reports mb-4">
-                <div class="tab-neighborhood-reports h-100 w-100 position-absolute"></div>
-                {{ $src := resources.GetMatch ( path.Join "**/image_tab_neighborhood_reports.jpg" )}}
-                {{ $image := $src.Resize "x1200 jpg q75"}}
-                <img class="card-img-top" src="{{ relURL $image.RelPermalink }}">
-           
-              <div class="card-body">
-                <h3 class="card-title">Neighborhood Reports</h3>
-                <p>Data on key issues for your neighborhood.</p>
-              </div>
-
-            </div>
-          </a>
-          </div>
-        </div>
-
-
-
-        <div class="col-lg-3 col-sm-6">
-          <div class="card content-card">
-            <a class="position-relative" href={{ relURL "data-explorer" }} data-homepage-label="Data Explorer">
-            <div class="card-content data-explorer mb-4">
-                <div class="tab-data-explorer h-100 w-100 position-absolute"></div>
-                {{ $src := resources.GetMatch ( path.Join "**/image_tab_data_explorer.jpg" )}}
-                {{ $image := $src.Resize "x1200 jpg q75"}}
-                <img class="card-img-top" src="{{ relURL $image.RelPermalink }}">
-              
-              <div class="card-body">
-                <h3 class="card-title">Data Explorer</h3>
-                <p>Maps, trends, tables, and more: hundreds of datasets.</p>
-              </div>
-
-            </div>
-            </a>
-          </div>
-        </div>
-
-
-      </div>
-
-    </div>
-
-    <div class="mt-4 py-4 w-100" style="background-color: #EEEDEA;">
-      <div class="container wide">
-        <div class="row">
-          <div class="col-md-11 mx-auto">
-            <div class="row" data-homepage-section="secondary-links">
-              <div class="col-md-4 my-2">
-                <div class="card card-left-border shadow-sm h-100">
-                  <div class="card-body">
-                    <h5 class="card-title fs-sm mb-1">About us</h5>
-                    <p class="fs-sm flex-grow-1">Learn more about the Environment & Health Data Portal, and the Health Department team behind it.</p>
-                    {{- with .Site.GetPage "about/_index.md" -}}
-                      <div class="d-flex justify-content-end">
-                        <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">About Us<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
-                      </div>
-                      {{- end -}}
-                  </div>
+            <div class="shadow-sm mb-3 p-3 card-left-border">
+                <div class="row no-gutters">
+                    <div class="col-11">
+                        <h3 class="text-black fs-xl pr-2 mb-2">Get updates and announcements</h3>
+                    </div>
+                    <div class="col-1">
+                        <i class="fas fa-bullhorn h2 text-primary" aria-hidden="true"></i>
+                    </div>
                 </div>
-              </div>
+                <p class="text-black mb-4"><a class="font-weight-bold" href="#" data-subscribe-click="homepage" data-toggle="modal" data-target="#subscribeModal">Sign up here!</a> We won't share your email address.</p>
+            </div>
 
-              <div class="col-md-4 my-2">
-                <div class="card card-left-border shadow-sm h-100">
-                  <div class="card-body">
-                    <h5 class="card-title fs-sm mb-1">Visit our Github repo</h5>
-                    <p class="fs-sm flex-grow-1">Found a bug? Know code? Visit our Github repo to get code, file an issue, or download data.</p>
-                    <div class="d-flex justify-content-end">
-                      <a class="fs-sm font-weight-bold" href="https://www.github.com/nychealth/EH-dataportal">Github<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+            <div class="shadow-sm mb-3 p-3 card-left-border" data-homepage-section="site-search">
+                <div class="row no-gutters">
+                    <div class="col-11">
+                        <h3 class="text-black fs-xl pr-2 mb-2">Find what you need</h3>
+                    </div>
+                    <div class="col-1">
+                        <i class="fas fa-search h2 text-primary" aria-hidden="true"></i>
+
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary btn-block mt-1" data-toggle="modal" data-target="#searchModal" title="Search">
+                    <i class="fas fa-search mr-1" aria-hidden="true"></i>Search the site
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container wide">
+    <div class="row" data-homepage-section="tools">
+        <div class="col-12 mb-2">
+            <h3>Tools</h3>
+        </div>
+
+        <div class="col-lg-3 col-sm-6">
+            <div class="card content-card">
+                <a class="position-relative" href={{ relURL "data-stories" }} data-homepage-label="Data stories">
+                <div class="card-content data-stories mb-4">
+                    <div class="tab-data-stories h-100 w-100 position-absolute"></div>
+                    {{ $src := resources.GetMatch ( path.Join "**/image_tab_data_stories.jpg" )}}
+                    {{ $image := $src.Resize "x1200 jpg q75"}}
+                    <img class="card-img-top" src="{{ relURL $image.RelPermalink }}" alt="">
+                    <div class="card-body">
+                        <h3 class="card-title">Data stories</h3>
+                        <p>Explainers on important health issues.</p>
                     </div>
 
-                  </div>
                 </div>
-              </div>
-
-              <div class="col-md-4 my-2">
-                <div class="card card-left-border shadow-sm h-100">
-                  <div class="card-body">
-                    <h5 class="card-title fs-sm mb-1">Join our team</h5>
-                    <p class="fs-sm flex-grow-1">Passionate about health, environmental justice, and technology? Check out our open positions.</p>
-                    {{- with .Site.GetPage "about/jobs.md" -}}
-                      <div class="d-flex justify-content-end">
-                        <a href="{{ .RelPermalink }}" class="fs-sm font-weight-bold">Jobs <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
-                      </div>
-                    {{- end -}}
-                  </div>
-                </div>
-              </div>
+            </a>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  {{ partial "temp-popup" .}}
+        <div class="col-lg-3 col-sm-6">
+            <div class="card content-card">
+                <a class="position-relative" href={{ relURL "data-features" }} data-homepage-label="Data Features">
+                <div class="card-content data-features mb-4">
+                    <div class="tab-data-features h-100 w-100 position-absolute"></div>
+                    {{ $src := resources.GetMatch ( path.Join "**/image_tab_data_features.jpg" )}}
+                    {{ $image := $src.Resize "x1200 jpg q75"}}
+                    <img class="card-img-top" src="{{ relURL $image.RelPermalink }}" alt="">
+              
+                    <div class="card-body">
+                        <h3 class="card-title">Data Features</h3>
+                        <p>Custom interactives, dashboards and reports.</p>
+                    </div>
+                            
+                </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-sm-6">
+            <div class="card content-card">
+                <a class="position-relative" href={{ relURL "neighborhood-reports" }} data-homepage-label="Neighborhood Reports">
+                <div class="card-content n-reports mb-4">
+                    <div class="tab-neighborhood-reports h-100 w-100 position-absolute"></div>
+                    {{ $src := resources.GetMatch ( path.Join "**/image_tab_neighborhood_reports.jpg" )}}
+                    {{ $image := $src.Resize "x1200 jpg q75"}}
+                    <img class="card-img-top" src="{{ relURL $image.RelPermalink }}" alt="">
+           
+                    <div class="card-body">
+                        <h3 class="card-title">Neighborhood Reports</h3>
+                        <p>Data on key issues for your neighborhood.</p>
+                    </div>
+
+                </div>
+            </a>
+            </div>
+        </div>
+
+
+
+        <div class="col-lg-3 col-sm-6">
+            <div class="card content-card">
+                <a class="position-relative" href={{ relURL "data-explorer" }} data-homepage-label="Data Explorer">
+                <div class="card-content data-explorer mb-4">
+                    <div class="tab-data-explorer h-100 w-100 position-absolute"></div>
+                    {{ $src := resources.GetMatch ( path.Join "**/image_tab_data_explorer.jpg" )}}
+                    {{ $image := $src.Resize "x1200 jpg q75"}}
+                    <img class="card-img-top" src="{{ relURL $image.RelPermalink }}" alt="">
+              
+                    <div class="card-body">
+                        <h3 class="card-title">Data Explorer</h3>
+                        <p>Maps, trends, tables, and more: hundreds of datasets.</p>
+                    </div>
+
+                </div>
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+<div class="mt-4 py-4 w-100" style="background-color: #EEEDEA;">
+    <div class="container wide">
+        <div class="row">
+            <div class="col-md-11 mx-auto">
+                <div class="row" data-homepage-section="secondary-links">
+                    <div class="col-md-4 my-2">
+                        <div class="card card-left-border shadow-sm h-100">
+                            <div class="card-body">
+                                <h5 class="card-title fs-sm mb-1">About us</h5>
+                                <p class="fs-sm flex-grow-1">Learn more about the Environment & Health Data Portal, and the Health Department team behind it.</p>
+                                {{- with .Site.GetPage "about/_index.md" -}}
+                                    <div class="d-flex justify-content-end">
+                                        <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">About Us<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                                    </div>
+                                    {{- end -}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 my-2">
+                        <div class="card card-left-border shadow-sm h-100">
+                            <div class="card-body">
+                                <h5 class="card-title fs-sm mb-1">Visit our Github repo</h5>
+                                <p class="fs-sm flex-grow-1">Found a bug? Know code? Visit our Github repo to get code, file an issue, or download data.</p>
+                                <div class="d-flex justify-content-end">
+                                    <a class="fs-sm font-weight-bold" href="https://www.github.com/nychealth/EH-dataportal">Github<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 my-2">
+                        <div class="card card-left-border shadow-sm h-100">
+                            <div class="card-body">
+                                <h5 class="card-title fs-sm mb-1">Join our team</h5>
+                                <p class="fs-sm flex-grow-1">Passionate about health, environmental justice, and technology? Check out our open positions.</p>
+                                {{- with .Site.GetPage "about/jobs.md" -}}
+                                    <div class="d-flex justify-content-end">
+                                        <a href="{{ .RelPermalink }}" class="fs-sm font-weight-bold">Jobs <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                                    </div>
+                                {{- end -}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{{ partial "temp-popup" .}}
 
 
 
@@ -317,7 +332,11 @@
 {{- $aa_js := resources.Get "js/accessible-autocomplete.min.js" | partial "short-fingerprint.html" -}}
 <script type="text/javascript" src="{{ $aa_js.RelPermalink }}" integrity="{{ $aa_js.Data.Integrity }}"></script>
 
-{{- $uhflist_js := resources.Get "js/uhflist.js" | partial "short-fingerprint.html" -}}
-<script type="text/javascript" src="{{ $uhflist_js.RelPermalink }}" integrity="{{ $uhflist_js.Data.Integrity }}"></script>
-
+{{- /*
+    A uhflist tag used to sit here. Nothing on this page reads the `neighborhoods` global it
+    defines, so the home page was fetching 20KB it never used [verified 2026-08-06: zero
+    references in the built home pages or in the only two scripts they load, main.js and
+    accessible-autocomplete]. Under the lib-* gating model the tag is per-template anyway
+    (partial "lib-uhflist.html"), so there is nothing here to opt out of — do not re-add it.
+*/ -}}
 {{- end -}}

@@ -18,7 +18,7 @@ keywords:
     "heat-related illness",
     "emergency room",
     "emergency department",
-    "ED visit",
+    "ed visit",
     "aqi",
     "airquality",
   ]

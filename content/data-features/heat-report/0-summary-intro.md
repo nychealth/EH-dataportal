@@ -3,11 +3,11 @@ _schema: default
 draft: false
 ---
 
-Each summer, on average, approximately **500 New Yorkers die prematurely because of hot weather** in New York City. Of those deaths:
+Each summer, on average, approximately **500 New Yorkers die prematurely because of hot weather** in New York City. Of those deaths:
 
-- There was an average of **7 heat-stress deaths** (caused directly by heat) per year from 2016-2025. A record-breaking heat event in June 2025 resulted in 19 heat-stress deaths.
+- There was an average of **7 heat-stress deaths** (caused directly by heat) per year from 2016-2025. A record-breaking heat event in June 2025 resulted in 19 heat-stress deaths.
 
-- There was an average of about **490 heat-exacerbated deaths** (caused indirectly by heat worsening an underlying illness) per year from 2014-2023. These heat-related deaths account for about 3% of all deaths over the warm season months of May through September.
+- There was an average of about **490 heat-exacerbated deaths** (caused indirectly by heat worsening an underlying illness) per year from 2014-2023. These heat-related deaths account for about 3% of all deaths over the warm season months of May through September.
 
 **Heat-exacerbated deaths have remained high in recent years, after increasing in the previous decade.** Increases were mainly due to hotter summers overall, with more “non-extreme hot days” from 82°F to below the extreme heat threshold (95°F).
 
@@ -19,7 +19,7 @@ The **average annual number of heat-stress deaths increased from 5 to 7** for 20
 
 **Lack of access to home cooling remains an important risk factor for heat-stress death.** People who died from heat stress were most frequently exposed to heat in homes. Heat-exacerbated deaths were also more likely to occur at home, underscoring the importance of access to cooling at home.
 
-NYC summers are getting hotter because of climate change.  **Emergency response to extreme heat must be coupled with equitable investments in structural interventions and heat mitigation measures that reduce risk throughout the season.** For example, all New Yorkers will need energy-efficient home cooling that they can afford to run, and tree planting and greening can help reduce local temperatures while providing shade.
+NYC summers are getting hotter because of climate change.  **Emergency response to extreme heat must be coupled with equitable investments in structural interventions and heat mitigation measures that reduce risk throughout the season.** For example, all New Yorkers will need energy-efficient home cooling that they can afford to run, and tree planting and greening can help reduce local temperatures while providing shade.
 
 ---
 

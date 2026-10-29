@@ -31,11 +31,15 @@
       }
 </style>
 
+{{- partial "lib-d3.html" . }}
+
 <script>
 // INGEST BIG AGENCY DATA FILE TO USE LATER
+
 var agencyData = [];
 
 // load CSV and assign to the global
+
 d3.csv("data/agency-totals.csv").then(function(data) {
     agencyData = data;                                      // assign to global variable
     console.log("CSV loaded:", agencyData);                 // print to console
@@ -43,28 +47,39 @@ d3.csv("data/agency-totals.csv").then(function(data) {
 });
 
 function renderAgencyTable(agencyName, targetId, noDataProvided) {
+
     // filter
+
     const filtered = agencyData.filter(d => d.Agency === agencyName);
 
     console.log('Printing for ' + agencyName);
     // console.log(noDataProvided);
 
     // delegate to shared table printer
+
     printTable(filtered, targetId, `{{ .Params.reportingYear }}`, noDataProvided);
+
 }
 
 function renderIntroTable(tableName, destination, standard, numeric) {
+
     const file = 'data/' + tableName + '.csv';
    
     d3.csv(file).then(function(data) {
+
         console.log('File loaded: ' + tableName);
         // console.log(data);
 
         if (standard) {
+
             // use same formatted table
+
             printTable(data, destination);
+
         } else {
+
             // fallback: just dump raw data
+
             let table = `<table cellpadding="5" class="table table-striped">
                             <thead><tr class="fs-sm">`;
             Object.keys(data[0]).forEach((col, i) => {
@@ -73,40 +88,48 @@ function renderIntroTable(tableName, destination, standard, numeric) {
             table += `</tr></thead><tbody>`;
 
             data.forEach(row => {
+
                 table += `<tr>`;
                 Object.values(row).forEach((val, i) => {
                     table += `<td${(numeric && i > 0) ? ' class="num"' : ''}>${val}</td>`;
                 });
                 table += `</tr>`;
+
             });
 
             table += `</tbody></table>`;
             document.getElementById(destination).innerHTML = table;
+
         }
     });
 }
 
 function printTable(data, destination, year, noDataProvided) {
+
     const container = document.getElementById(destination);
 
     // if agency explicitly provided *no data* at all
+
     if (noDataProvided === 'true') {
         container.innerHTML = `<p><em>No application data was provided for ${year}.</em></p>`;
         return;
     }
 
     // fallback if data array is empty
+
     if (!data || data.length === 0) {
         container.innerHTML = `<p><em>The agency reported that no pesticides were used in ${year}.</em></p>`;
         return;
     }
 
     // compute totals (convert strings -> numbers)
+
     const totalVolume = data.reduce((sum, row) => sum + parseFloat(row['Volume in Gallons'] || 0), 0);
     const totalWeight = data.reduce((sum, row) => sum + parseFloat(row['Weight in Pounds'] || 0), 0);
     const totalApps = data.reduce((sum, row) => sum + parseFloat(row['Total Applications'] || 0), 0);
 
     // build table element
+
     let table = `<table cellpadding="5" class="table table-striped">
                     <thead>
                     <tr class="fs-sm">
@@ -122,6 +145,7 @@ function printTable(data, destination, year, noDataProvided) {
                     <tbody>`;
 
     data.forEach(row => {
+
         const volume = parseFloat(row['Volume in Gallons'] || 0);
         const weight = parseFloat(row['Weight in Pounds'] || 0);
         const apps = parseFloat(row['Total Applications'] || 0);
@@ -141,9 +165,11 @@ function printTable(data, destination, year, noDataProvided) {
                     <td class="border-left num">${apps.toLocaleString()}</td>
                     <td class="num">${appsPct}</td>
                   </tr>`;
+
     });
 
     // totals row
+
     table += `<tr class="font-weight-bold border-top total-row">
                 <td>Total</td>
                 <td class="border-left num">${totalVolume.toLocaleString()}</td>
@@ -157,13 +183,15 @@ function printTable(data, destination, year, noDataProvided) {
     table += `</tbody></table>`;
 
     // inject into the DOM
+
     container.innerHTML = table;
+
 }
 
 
 </script>
 
-<article class="container-fluid" id="skip-header-target">
+<article class="container-fluid">
 
     <div class="row">
 
@@ -188,7 +216,7 @@ function printTable(data, destination, year, noDataProvided) {
             </div>
 
                 <h1 class="h2" data-pagefind-weight="10.0">
-                    {{ .Title }} in {{ .Params.reportingYear }}
+                    {{ partial "section-icon.html" $.Section }}{{ .Title }} in {{ .Params.reportingYear }}
                 </h1>
 
                 {{- .Content  -}}
@@ -227,6 +255,7 @@ function printTable(data, destination, year, noDataProvided) {
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
+
   const year = {{ .Params.reportingYear }};
 
   if (!year) return;

@@ -11,7 +11,7 @@ keywords:
   [
     "air quality",
     "pollution",
-    "PM2.5",
+    "pm2.5",
     "traffic",
     "breathing",
     "asthma",
@@ -36,7 +36,7 @@ related:
   {"src": "data-explorer/air-quality/?id=2023", "text": "Fine particles (PM2.5)"}
 ]` >}}
 
-The air we breathe can have a major effect on our health — air pollution can make asthma worse and can cause heart disease, lung disease, strokes, and even cancer.
+The air we breathe can have a major effect on our health—air pollution can make asthma worse and can cause heart disease, lung disease, strokes, and even cancer.
 
 Fortunately, New York City has made great strides in recent years to improve air quality. Let’s take a look.
 
@@ -80,7 +80,7 @@ One major component of air pollution? Fine particles in the air, called PM2.5. W
 
 In New York City, the current PM2.5 levels contribute to an estimated 2,300 deaths from lung and heart disease each year. That means about 1 out of every 20 deaths in New York City is due to this type of air pollution.
 
-So it’s good news that since monitoring neighborhood-level air pollution began in 2009, the levels of PM2.5 have steadily gone down — which you can see in the chart below.
+So it’s good news that since monitoring neighborhood-level air pollution began in 2009, the levels of PM2.5 have steadily gone down—which you can see in the chart below.
 
 </div>
 <div class="wide my-4" aria-hidden="true">
@@ -107,4 +107,4 @@ Average ozone levels in the summer haven't changed in the past 10 years
 There are higher levels of pollutants in areas of higher traffic density, building density, and in industrial areas
 Measuring air quality means we can track improvements and challenges, and push for changes in our city and the nation that will reduce air pollution and keep New Yorkers healthy.
 
-Here at the Health Department, we’ll continue monitoring air quality — just as we measure levels of asthma, heart disease, and lung disease that can be attributed in part to air pollution. As air quality improves, we expect decreases in disease rates: good news for us all.
+Here at the Health Department, we’ll continue monitoring air quality—just as we measure levels of asthma, heart disease, and lung disease that can be attributed in part to air pollution. As air quality improves, we expect decreases in disease rates: good news for us all.

@@ -1,21 +1,21 @@
 report_topics:
-  - report_topic: Climate Hazards
+  - report_topic: Climate hazards
     report_topic_description: "Some neighborhoods are hotter than others, which can make it costly or difficult to stay healthy for those residents"
     MeasureID:
       - 687
       - 688
-  - report_topic: Health Outcomes
+  - report_topic: Health outcomes
     report_topic_description: "Health outcomes that can be affected by conditions in the home or neighborhood."
     MeasureID:
       - 1196
       - 1284
-  - report_topic: Built Environment
+  - report_topic: Built environment
     report_topic_description: "Access to AC, green space, and well-insulated homes can effect how easy it is to stay cool."
     MeasureID:
       - 88
       - 690
       - 706
-  - report_topic: Priority Populations
+  - report_topic: Priority populations
     report_topic_description: "Some populations may be more vulnerable to health outcomes associated with climate."
     MeasureID:
       - 221

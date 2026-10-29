@@ -6,6 +6,13 @@ notes: "Decided to remove this 7/13/2022 with AQ team"
 seo_title: "Heart attacks data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of heart attacks in NYC."
+datatables: true
+arquero: true
+leaflet: true
+vega: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 tags: 
 categories: ["healthoutcomes"]
 keywords: ["heart","attacks","hospitalizations","emergency department visits"]
@@ -48,6 +55,6 @@ To reduce the risk of heart attacks, individuals, health care providers and publ
 
 ### Key Messages
 
-Heart disease is the leading cause of death, regardless of race or ethnicity for both men and women in NYC and nationwide. Heart attacks cause almost 3,000 deaths in NYC each year.  Over 12,000 hospitalizations for heart attacks occurred among NYC residents in 2007.   
+Heart disease is the leading cause of death, regardless of race or ethnicity for both men and women in NYC and nationwide. Heart attacks cause almost 3,000 deaths in NYC each year. Over 12,000 hospitalizations for heart attacks occurred among NYC residents in 2007.   
   
 Of the five boroughs, Staten Island has the highest age-adjusted hospitalization rate for heart attacks.

@@ -1,0 +1,2338 @@
+diff --git a/assets/js/congestion-pricing-report/chart-tod.js b/assets/js/congestion-pricing-report/chart-tod.js
+index 1fa0120e8e..e4ca095c02 100644
+--- a/assets/js/congestion-pricing-report/chart-tod.js
++++ b/assets/js/congestion-pricing-report/chart-tod.js
+@@ -41,6 +41,7 @@ const todBaseSpec = {
+     $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+ 
+     // Global chart styling — fonts, axis appearance, legend placement, color palette
++
+     config: {
+         header: {
+             labelAlign: "left",
+@@ -68,15 +69,19 @@ const todBaseSpec = {
+     },
+ 
+     // CSV data source (served as a Hugo static asset)
++
+     data: {
+         url: "data/rtpm_traffic.csv",
+     },
+ 
+     // Each facet panel gets its own y-axis scale so panels with different units are readable
++
+     resolve: { scale: { y: "independent" } },
+ 
+     // Data transformations applied before encoding — filtering, calculated fields, label mapping
++
+     transform: [
++
+         // Placeholder — replaced by specForTODSite() before each render
+ 
+         { filter: "datum.Site === 'BQE'" },
+@@ -96,6 +101,7 @@ const todBaseSpec = {
+     ],
+ 
+     // One panel per measure (e.g. Traffic, PM2.5), laid out as a row of small multiples
++
+     facet: {
+         field: "ParamWithUnit",
+         title: null,
+@@ -104,6 +110,7 @@ const todBaseSpec = {
+     },
+ 
+     // The repeated chart spec applied to each facet panel
++
+     spec: {
+         width: 300,
+         height: 200,
+@@ -116,6 +123,7 @@ const todBaseSpec = {
+             },
+         },
+         layer: [
++
+             // Layer 1: lines connecting Pre → Post for each TOD period
+ 
+             {
+@@ -239,6 +247,7 @@ function applyTODFacet(spec, { cols, pane }) {
+ // Clears the container and re-renders the chart for the given site.
+ 
+ async function renderTODChart(site) {
++
+     const el = document.getElementById(TOD_CONTAINER_ID);
+     if (!el) return;
+ 
+@@ -261,10 +270,13 @@ async function renderTODChart(site) {
+     }
+ 
+     try {
++
+         await embedFitted(el, () => specForTODSite(site), CP_FIT.tod, applyTODFacet);
++
+         // Release the lock now that the new chart is in place
+ 
+         el.style.minHeight = "";
++
+     } catch (err) {
+ 
+         // Release the lock even if the chart fails to render
+@@ -286,8 +298,11 @@ async function renderTODChart(site) {
+ async function handleTODSiteChange(site) {
+ 
+     todCurrentSite = site;
++
+     const todSiteTitleEl = document.getElementById("tod-site-name");
++
+     if (todSiteTitleEl) todSiteTitleEl.textContent = getSiteDisplayName(site);
++
+     await renderTODChart(site);
+     
+ }
+@@ -302,6 +317,7 @@ function renderTODButtons() {
+         wrapId: "todSiteButtons",
+         sites: tod_site_names,
+         idPrefix: "tod-",
++
+         getCurrent: () => todCurrentSite,
+         onChange: handleTODSiteChange,
+ 
+@@ -324,6 +340,8 @@ document.addEventListener("DOMContentLoaded", async () => {
+     // Re-render the chart on width changes; swap the select/button selector
+     // when crossing the 768px breakpoint.
+ 
+-    addResizeHandler(document.getElementById(TOD_CONTAINER_ID),
+-        () => renderTODChart(todCurrentSite), renderTODButtons);
++    addResizeHandler(
++        document.getElementById(TOD_CONTAINER_ID),
++        () => renderTODChart(todCurrentSite), renderTODButtons
++    );
+ });
+diff --git a/assets/js/congestion-pricing-report/sticky-header.js b/assets/js/congestion-pricing-report/sticky-header.js
+index abc925f551..333e1ca2e4 100644
+--- a/assets/js/congestion-pricing-report/sticky-header.js
++++ b/assets/js/congestion-pricing-report/sticky-header.js
+@@ -10,6 +10,7 @@
+ // ----------------------------------------------------------------------- //
+ 
+ $(function () {
++
+     var $window = $(window);
+     var $headers = $('.cp-sticky-header');
+ 
+@@ -63,6 +64,7 @@ $(function () {
+     // addResizeHandler debounce used by the chart blocks above).
+ 
+     var resizeTimer;
++
+     $(window).on('resize.cp-sticky', function () {
+         clearTimeout(resizeTimer);
+         resizeTimer = setTimeout(function () {
+@@ -74,21 +76,28 @@ $(function () {
+     // --- apply fixed/unfixed state on scroll --- //
+ 
+     function update() {
++
+         var scrollTop = $window.scrollTop();
+ 
+         $headers.each(function (i) {
++
+             var $h = $(this);
+             var origTop = $h.data('origTop');
+             var h = $h.data('origHeight');
+ 
+             if (scrollTop < origTop) {
++
+                 $h.removeClass('cp-is-fixed').css('top', '');
++
+             } else {
++
+                 var fixedTop = 0;
+                 var $next = $headers.eq(i + 1);
+ 
+                 if ($next.length) {
++
+                     var nextOrigTop = $next.data('origTop');
++
+                     if (scrollTop > nextOrigTop - h) {
+ 
+                         // Next header is displacing this one
+@@ -119,6 +128,7 @@ $(function () {
+         var siteKey = $(this).data('site');
+         var siteName = CP_BADGE_TO_SITE[siteKey];
+         var info = (siteName && CP_SITES[siteName].badgeInfo) || 'No information available for this site.';
++
+         $('#site-info-box').text(info);
+ 
+         // Highlight the clicked badge
+@@ -306,6 +316,7 @@ function drawExplainChart() {
+             }
+         ]
+     };
++
+     vegaEmbed('#explainChart', spec, { actions: false, renderer: "svg" });
+ 
+     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+@@ -525,10 +536,12 @@ function drawExplainChart() {
+ // ----------------------------------------------------------------------- //
+ 
+ document.addEventListener("DOMContentLoaded", () => {
++
+     if (typeof vegaEmbed !== "function") {
+         console.error("vegaEmbed not available. Are the Vega scripts loaded above this script?");
+         return;
+     }
+     
+     drawExplainChart();
++    
+ });
+diff --git a/assets/js/data-explorer/de-tab-content.js b/assets/js/data-explorer/de-tab-content.js
+index 85e664c8b5..00761b696e 100644
+--- a/assets/js/data-explorer/de-tab-content.js
++++ b/assets/js/data-explorer/de-tab-content.js
+@@ -16,10 +16,13 @@
+ // Clicking an already-active tab closes its pane and records the closed state.
+ 
+ document.addEventListener('DOMContentLoaded', function() {
++
+     const tabLinks = document.querySelectorAll('.nav-link[data-toggle="pill"]');
+ 
+     tabLinks.forEach(link => {
++
+         link.addEventListener('click', function(e) {
++
+             const targetId = this.getAttribute('href');
+             const targetPane = document.querySelector(targetId);
+ 
+@@ -30,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
+             // Check if this tab is already active
+ 
+             if (this.classList.contains('active') && targetPane.classList.contains('show')) {
++
+                 e.preventDefault();
+                 e.stopImmediatePropagation();
+ 
+@@ -53,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
+ 
+                 DE.state.overlay = 'none';
+                 if (typeof pushSelectionToURL === 'function') pushSelectionToURL();
++
+             }
+         });
+     });
+@@ -62,9 +67,13 @@ document.addEventListener('DOMContentLoaded', function() {
+     // Not for a disabled tab: Bootstrap won't open its pane, so this would reveal an empty container.
+ 
+     document.addEventListener('click', function(e) {
++
+         const tab = e.target.closest('.nav-link[data-toggle="pill"]');
++
+         if (tab && !tab.classList.contains('disabled')) {
++
+             const tabContent = document.querySelector('#v-pills-tabContent');
++
+             if (tabContent && tabContent.style.display === 'none') {
+                 tabContent.style.display = 'block';
+             }
+@@ -75,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
+                 top: 0,
+                 behavior: 'smooth'
+             });
++
+         }
+     });
+ });
+@@ -85,6 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
+ // ----------------------------------------------------------------------- //
+ 
+ const closeExplorerTabPane = (paneId) => {
++
+     const targetPane = document.querySelector('#' + paneId);
+     const targetTab = document.querySelector('[href="#' + paneId + '"]');
+ 
+@@ -122,18 +133,22 @@ document.addEventListener('DOMContentLoaded', function() {
+     const closeTabPaneButton = document.querySelector('.de-close-tab-button');
+ 
+     if (closeTabPaneButton) {
++
+         closeTabPaneButton.addEventListener('click', function() {
++
+             const openPane = document.querySelector('#v-pills-tabContent .tab-pane.show.active');
+ 
+             if (openPane?.id) {
+                 closeExplorerTabPane(openPane.id);
+             }
++
+         });
+     }
+ 
+     // close tab pane with Escape key
+ 
+     document.addEventListener('keydown', function(event) {
++
+         if (event.key !== 'Escape') {
+             return;
+         }
+@@ -150,6 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
+         if (detailsContent) {
+             $('#detailsContent').collapse('hide');
+         }
++
+     });
+ });
+ 
+@@ -162,6 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
+ // anywhere on the header bar toggle it, as the bar did when it was the collapse trigger itself.
+ 
+ document.addEventListener('DOMContentLoaded', function() {
++
+     const mobileAccordionHeader = document.querySelector('.mobile-details-header');
+     const mobileDetailsToggle = document.querySelector('.mobile-details-toggle');
+     const detailsContent = document.querySelector('#detailsContent');
+@@ -172,6 +189,7 @@ document.addEventListener('DOMContentLoaded', function() {
+         // Function to update icon state
+ 
+         function updateIconState(isOpen) {
++
+             if (isOpen) {
+                 toggleIcon.classList.remove('fa-plus');
+                 toggleIcon.classList.add('fa-minus');
+@@ -181,6 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
+                 toggleIcon.classList.add('fa-plus');
+                 mobileDetailsToggle.setAttribute('aria-expanded', 'false');
+             }
++
+         }
+ 
+         // A tap on the bar goes through the toggle button. Clicks on a button are left alone: the
+@@ -188,8 +207,10 @@ document.addEventListener('DOMContentLoaded', function() {
+         // details, which it did while the whole bar was the collapse trigger.
+ 
+         mobileAccordionHeader.addEventListener('click', function(e) {
++
+             if (e.target.closest('button')) return;
+             mobileDetailsToggle.click();
++
+         });
+ 
+         // Listen for Bootstrap collapse events
+@@ -210,10 +231,12 @@ document.addEventListener('DOMContentLoaded', function() {
+         // Also listen for click events on the header as a backup
+ 
+         mobileAccordionHeader.addEventListener('click', function() {
++
+             setTimeout(() => {
+                 const isCurrentlyOpen = detailsContent.classList.contains('show');
+                 updateIconState(isCurrentlyOpen);
+             }, 100);
++
+         });
+     }
+ });
+@@ -226,24 +249,29 @@ document.addEventListener('DOMContentLoaded', function() {
+ // Toggles .has-open-panel on .de-tabs whenever any pane opens or closes.
+ 
+ document.addEventListener('DOMContentLoaded', function() {
++
+     const deTabsElement = document.querySelector('.de-tabs');
+     const panelIds = ['v-pills-bar', 'v-pills-table', 'v-pills-trends', 'v-pills-correlate', 'v-pills-ds'];
+ 
+     function updateHasOpenPanelClass() {
++
+         let hasOpenPanel = false;
+ 
+         // Check if any panel is currently open
+ 
+         panelIds.forEach(panelId => {
++
+             const panel = document.querySelector('#' + panelId);
+             if (panel && panel.classList.contains('show') && panel.classList.contains('active')) {
+                 hasOpenPanel = true;
+             }
++
+         });
+ 
+         // Also check if tab content container is visible
+ 
+         const tabContent = document.querySelector('#v-pills-tabContent');
++
+         if (tabContent && tabContent.style.display !== 'none') {
+             hasOpenPanel = true;
+         }
+@@ -260,7 +288,9 @@ document.addEventListener('DOMContentLoaded', function() {
+     // Monitor all tab panes for show/hide events
+ 
+     panelIds.forEach(panelId => {
++
+         const panel = document.querySelector('#' + panelId);
++
+         if (panel) {
+ 
+             // Listen for Bootstrap show/hide events
+@@ -269,35 +299,45 @@ document.addEventListener('DOMContentLoaded', function() {
+             panel.addEventListener('hide.bs.tab', updateHasOpenPanelClass);
+             panel.addEventListener('shown.bs.tab', updateHasOpenPanelClass);
+             panel.addEventListener('hidden.bs.tab', updateHasOpenPanelClass);
++
+         }
+     });
+ 
+     // Monitor tab content container visibility
+ 
+     const tabContent = document.querySelector('#v-pills-tabContent');
++
+     if (tabContent) {
+ 
+         // Use MutationObserver to watch for style changes
+ 
+         const observer = new MutationObserver(function(mutations) {
++
+             mutations.forEach(function(mutation) {
++
+                 if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                     updateHasOpenPanelClass();
+                 }
++
+             });
+         });
++
+         observer.observe(tabContent, { attributes: true, attributeFilter: ['style'] });
++
+     }
+ 
+     // Monitor tab link clicks for immediate response
+ 
+     const tabLinks = document.querySelectorAll('.nav-link[data-toggle="pill"]');
++
+     tabLinks.forEach(link => {
++        
+         link.addEventListener('click', function() {
+ 
+             // Small delay to ensure Bootstrap has processed the click
+ 
+             setTimeout(updateHasOpenPanelClass, 50);
++
+         });
+     });
+ 
+diff --git a/assets/js/data-explorer/map.js b/assets/js/data-explorer/map.js
+index bee324e828..68b7ebe722 100644
+--- a/assets/js/data-explorer/map.js
++++ b/assets/js/data-explorer/map.js
+@@ -58,7 +58,6 @@ const attachMapInterop = ({ highlight, reset }) => {
+ 
+ const setBarSelection = (geoID) => {
+     if (!window.myVegaView) return;
+-
+     window.myVegaView.signal("selectedGeo", geoID).run();
+ };
+ 
+@@ -108,10 +107,12 @@ const initBaseMap = () => {
+ // Removes any bubble overlays left from number-map rendering.
+ 
+ const clearBubbles = () => {
++
+     currentBubbleMarkers.forEach(marker => {
+         currentMap.removeLayer(marker);
+     });
+     currentBubbleMarkers = [];
++
+ };
+ 
+ // ----------------------------------------------------------------------- //
+@@ -121,16 +122,19 @@ const clearBubbles = () => {
+ // Builds a plain object mapping each row's GeoID to the row itself, for O(1) lookup when joining data onto GeoJSON features.
+ 
+ const createDataLookup = (data) => {
++
+     const dataLookup = {};
+     data.forEach(item => {
+         dataLookup[item.GeoID] = item;
+     });
+     return dataLookup;
++
+ };
+ 
+ // Reuses the base map instance while clearing old geometry overlays between renders.
+ 
+ const resetMapForRender = () => {
++
+     mapRenderGeneration += 1;
+ 
+     detachMapInterop();
+@@ -167,26 +171,32 @@ const resetMapForRender = () => {
+         currentGeojsonLayer = null;
+     }
+     return currentMap;
++
+ };
+ 
+ // Calculates legend bounds from the currently filtered map rows.
+ 
+ const getMapStats = (data) => {
++
+     const values = data.map(d => d.Value).filter(v => v != null);
++
+     return {
+         values,
+         minValue: values.length ? Math.min(...values) : 0,
+         maxValue: values.length ? Math.max(...values) : 0
+     };
++
+ };
+ 
+ // Prints current legend endpoints using the active display units.
+ 
+ const setMapLegendValues = (minValue, maxValue, digits) => {
++
+     const minFormatted = minValue.toLocaleString(undefined, {
+         minimumFractionDigits: digits,
+         maximumFractionDigits: digits
+     }) + displayType;
++
+     const maxFormatted = maxValue.toLocaleString(undefined, {
+         minimumFractionDigits: digits,
+         maximumFractionDigits: digits
+@@ -198,30 +208,36 @@ const setMapLegendValues = (minValue, maxValue, digits) => {
+     // Screen readers can't infer a data range from a color gradient; describe it in words instead.
+ 
+     document.getElementById('viridisRect').setAttribute('aria-label', `Legend: ${minFormatted} (low) to ${maxFormatted} (high)`);
++
+ };
+ 
+ // Uses a reversed Viridis scale so larger values remain visually darker.
+ 
+ const createColorScale = (minValue, maxValue) => {
++
+     return d3.scaleSequential()
+         .domain([maxValue, minValue])
+         .interpolator(d3.interpolateViridis);
++
+ };
+ 
+ // Centralizes map value formatting for tooltips, legend hover, and popups.
+ 
+ const formatMapValue = (value, digits) => {
++
+     return value != null
+         ? value.toLocaleString(undefined, {
+             minimumFractionDigits: digits,
+             maximumFractionDigits: digits
+         }) + displayType
+         : '—';
++
+ };
+ 
+ // Builds shared popup markup for both choropleth polygons and bubble markers.
+ 
+ const createMapPopupContent = (properties, metadata, options = {}) => {
++
+     const requireGeoRank = options.requireGeoRank ?? true;
+     const valueDigits = options.valueDigits ?? 1;
+ 
+@@ -257,6 +273,7 @@ const createMapPopupContent = (properties, metadata, options = {}) => {
+             ${note}
+         </div>
+     `;
++
+ };
+ 
+ 
+@@ -287,10 +304,12 @@ const setSaveMapVisible = (visible) => {
+ // it before the incoming render's helpers exist.
+ 
+ const clearHoverUI = () => {
++
+     document.getElementById('hoveredGeo').textContent = 'Hover for details';
+     document.getElementById('hoveredValue').textContent = '';
+     document.getElementById('hoveredUnits').textContent = '';
+     document.getElementById('legend-tick').style.display = 'none';
++
+ };
+ 
+ // Coordinates legend hover text and tick placement with hovered map features.
+@@ -300,16 +319,19 @@ const createHoverUIHelpers = (metadata, minValue, maxValue, digits) => {
+     // Converts a value into a 0-100 percent position along the legend's color range.
+ 
+     const calculatePercent = (x) => {
++
+         const range = maxValue - minValue;
+         if (range === 0 || x == null) {
+             return 0;
+         }
+         return 100 * (x - minValue) / range;
++
+     };
+ 
+     // Updates the legend hover panel and tick position to reflect the hovered feature.
+ 
+     const updateHoverUI = (props) => {
++
+         document.getElementById('hoveredGeo').textContent = props.Geography || 'Unknown';
+         document.getElementById('hoveredValue').textContent = formatMapValue(props.Value, digits);
+         document.getElementById('hoveredUnits').textContent = metadata[0].DisplayType.toLowerCase();
+@@ -325,6 +347,7 @@ const createHoverUIHelpers = (metadata, minValue, maxValue, digits) => {
+ 
+         legendTick.style.display = 'block';
+         document.querySelector('.viridis-tick').style.left = calculatePercent(props.Value) + '%';
++
+     };
+ 
+     return {
+@@ -340,7 +363,9 @@ const createHoverUIHelpers = (metadata, minValue, maxValue, digits) => {
+ // of the same geotype. See loadMapGeojson below.
+ 
+ const attachDataToGeojsonFeatures = (geojson, dataLookup) => {
++
+     geojson.features.forEach((feature) => {
++
+         const geoID = feature.properties.GEOCODE;
+         const matchedData = dataLookup[geoID];
+ 
+@@ -348,7 +373,9 @@ const attachDataToGeojsonFeatures = (geojson, dataLookup) => {
+             ? { ...feature.properties, ...matchedData }
+             : { ...feature.properties, dataValue: null };
+     });
++
+     return geojson;
++
+ };
+ 
+ // Fetches the geotype's TopoJSON, converts it to GeoJSON, and joins the filtered rows onto its features.
+@@ -357,6 +384,7 @@ const attachDataToGeojsonFeatures = (geojson, dataLookup) => {
+ // render, rebuilding the GeoJSON wrapper so each render gets its own features to attach data to.
+ 
+ const loadMapGeojson = (topoFile, dataLookup) => {
++
+     return loadOnce(topoFile, () =>
+         fetch(`${data_repo}${data_branch}/geography/${topoFile}`).then(response => response.json())
+     )
+@@ -373,6 +401,7 @@ const loadMapGeojson = (topoFile, dataLookup) => {
+ // Builds popup markup specifically for citywide-only data
+ 
+ const createCitywidePopupContent = (citywideData, metadata) => {
++
+     return `
+         <div class="popup-content">
+             <div class="popup-header">
+@@ -393,6 +422,7 @@ const createCitywidePopupContent = (citywideData, metadata) => {
+             <div class="popup-note fs-xs">This dataset isn't available broken down by neighborhood.</div>
+         </div>
+     `;
++
+ };
+ 
+ // Roughly lower Manhattan — anchors the citywide popup over the middle of the city.
+@@ -702,6 +732,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
+     // Applies the hover-highlight outline, clearing any previous highlight, and brings the feature to the front of the layer stack.
+ 
+     const highlightFeature = (e) => {
++
+         const layer = e.target;
+ 
+         if (highlightedLayer && highlightedLayer !== layer) {
+@@ -725,6 +756,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
+     // reference (or pass a stale one) still clear the highlight that is actually on screen.
+ 
+     const resetHighlight = (layer) => {
++
+         const target = layer ?? highlightedLayer;
+ 
+         if (!target || !geojsonLayer) return;
+@@ -734,6 +766,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
+         if (target === highlightedLayer) {
+             highlightedLayer = null;
+         }
++
+     };
+ 
+     // Builds popup markup for a feature, substituting the citywide popup when the data is citywide-only.
+@@ -887,6 +920,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
+ // Renders the number/total map variant, joining data to circle markers sized and colored by value, with popup, hover, and click interactions mirroring the choropleth map.
+ 
+ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywideOnly = false) => {
++
+     const dataLookup = createDataLookup(data);
+     const map = resetMapForRender();
+     const generation = mapRenderGeneration;
+@@ -1096,4 +1130,5 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
+     DE.print.chartType = 'bubble-map';
+ 
+     return mapRenderPromise;
++    
+ };
+\ No newline at end of file
+diff --git a/assets/js/data-explorer/measures.js b/assets/js/data-explorer/measures.js
+index 40dd4aa8ae..4fdfcadca5 100644
+--- a/assets/js/data-explorer/measures.js
++++ b/assets/js/data-explorer/measures.js
+@@ -25,9 +25,7 @@ const findFirstMeasureByType = (visArray, typeMatcher) => {
+ 
+ const pickDefaultMeasureByPriority = (visArray) => {
+ 
+-    if (!visArray.length) {
+-        return null;
+-    }
++    if (!visArray.length) return null;
+ 
+     // Keep explicit case handling so behavior matches legacy priority checks.
+ 
+@@ -118,9 +116,7 @@ const setDefaultLinksMeasure = async (visArray) => {
+ 
+     const defaultArray = buildDefaultMetadataArray(visArray);
+ 
+-    if (!defaultArray.length) {
+-        return;
+-    }
++    if (!defaultArray.length) return;
+ 
+     const defaultPrimaryMeasureId = defaultArray[0].MeasureID;
+     const defaultSecondaryMeasureId = defaultArray[0].VisOptions[0].Links[0].Measures[0]?.MeasureID;
+@@ -334,9 +330,7 @@ const bindCorrelateControls = () => {
+ 
+     // ----- guard: no-op if disparities toggle missing ----- //
+ 
+-    if (!correlatePillRow) {
+-        return;
+-    }
++    if (!correlatePillRow) return;
+ 
+     // ----- rebind: unbind stale handler, bind fresh click handler ----- //
+ 
+@@ -423,32 +417,34 @@ const bindCorrelateControls = () => {
+ // Resolves tab button references on demand for startup paths that run before app.js assigns the shared globals in its DOMContentLoaded handler.
+ 
+ const resolveTabReferences = () => {
++
+     tabBar ??= document.querySelector('#v-pills-bar-tab');
+     tabTrends ??= document.querySelector('#v-pills-trends-tab');
+     tabCorrelate ??= document.querySelector('#v-pills-correlate-tab');
+     tabTable ??= document.querySelector('#v-pills-table-tab');
++
+ };
+ 
+ // Marks a Bootstrap tab as disabled when that view has no usable data.
+ 
+ const disableTab = (el) => {
+-    if (!el) {
+-        return;
+-    }
++
++    if (!el) return;
+ 
+     el.classList.add('disabled');
+     el.setAttribute('aria-disabled', true);
++
+ };
+ 
+ // Re-enables a Bootstrap tab when the current indicator supports that view.
+ 
+ const enableTab = (el) => {
+-    if (!el) {
+-        return;
+-    }
++
++    if (!el) return;
+ 
+     el.classList.remove('disabled');
+     el.setAttribute('aria-disabled', false);
++
+ };
+ 
+ 
+@@ -463,9 +459,7 @@ const enableTab = (el) => {
+ 
+ const setBadgePillState = (button, isActive, isDisabled = false) => {
+ 
+-    if (!button) {
+-        return;
+-    }
++    if (!button) return;
+ 
+     button.classList.toggle('active', isActive && !isDisabled);
+     button.classList.remove('badge-primary', 'badge-light', 'text-white');
+@@ -495,9 +489,7 @@ const createBadgePillButton = ({
+     button.className = `badge badge-pill badge-light border-0 de-viz-pill-button ${buttonClass}`;
+     button.textContent = label;
+ 
+-    if (title) {
+-        button.title = title;
+-    }
++    if (title) button.title = title;
+ 
+     Object.entries(dataAttributes).forEach(([key, value]) => {
+         button.dataset[key] = value;
+@@ -587,9 +579,7 @@ const createBadgePillDropdown = ({
+ 
+ const setDropdownMenuItemState = (button, isActive) => {
+ 
+-    if (!button) {
+-        return;
+-    }
++    if (!button) return;
+ 
+     button.classList.toggle('active', isActive);
+     button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+@@ -613,12 +603,14 @@ let linksToggleLabel;
+ let showDisparitiesButton;
+ 
+ const resolveMeasuresPillRefs = () => {
++
+     trendMeasurePills    ??= document.getElementById('trendMeasurePills');
+     trendComparisonPills ??= document.getElementById('trendComparisonPills');
+     linksDropdownMenu    ??= document.getElementById('linksDropdownMenu');
+     linksDropdownToggle  ??= document.getElementById('linksDropdownToggle');
+     linksToggleLabel     ??= document.getElementById('linksToggleLabel');
+     showDisparitiesButton ??= document.getElementById('show-disparities');
++    
+ };
+ 
+ 
+@@ -1058,6 +1050,7 @@ const getSyncedLinksState = () => {
+     // Tier 1: map measure supports links — sync links to it.
+ 
+     if (measureSupportsLinks(syncedMapMeasureId)) {
++
+         const syncedPrimaryMeasureId = syncedMapMeasureId;
+ 
+         return {
+@@ -1065,21 +1058,25 @@ const getSyncedLinksState = () => {
+             secondaryMeasureId: getDefaultLinksSecondaryMeasureId(syncedPrimaryMeasureId),
+             view: 'links'
+         };
++
+     }
+ 
+     // Tier 2: map measure exists but has no links — links view with no secondary.
+ 
+     if (syncedMapMeasureId != null) {
++
+         return {
+             primaryMeasureId: syncedMapMeasureId,
+             secondaryMeasureId: null,
+             view: 'links'
+         };
++
+     }
+ 
+     // Tier 3: no map measure but links measures exist — use the default links pair.
+ 
+     if (DE.lookups.linksMeasures.length) {
++
+         const defaultPrimaryMeasureId = getDefaultLinksPrimaryMeasureId();
+ 
+         return {
+@@ -1087,16 +1084,19 @@ const getSyncedLinksState = () => {
+             secondaryMeasureId: getDefaultLinksSecondaryMeasureId(defaultPrimaryMeasureId),
+             view: 'links'
+         };
++
+     }
+ 
+     // Tier 4: only disparities measures exist — fall back to the disparities view.
+ 
+     if (DE.lookups.disparitiesMeasures.length) {
++
+         return {
+             primaryMeasureId: getDefaultDisparitiesPrimaryMeasureId(),
+             secondaryMeasureId: DE_MEASURE_RULES.disparitiesSecondaryMeasureId,
+             view: 'disparities'
+         };
++
+     }
+ 
+     // Tier 5: nothing available — empty links state.
+@@ -1151,11 +1151,13 @@ const getActiveLinksState = () => {
+         && measureSupportsDisparities(manualPrimaryMeasureId);
+ 
+     if (hasManualDisparities) {
++
+         return {
+             primaryMeasureId: manualPrimaryMeasureId,
+             secondaryMeasureId: DE_MEASURE_RULES.disparitiesSecondaryMeasureId,
+             view: 'disparities'
+         };
++
+     }
+ 
+     // ----- return manual links override when valid ----- //
+@@ -1169,11 +1171,13 @@ const getActiveLinksState = () => {
+         && primaryLinksToSecondary(manualPrimaryMeasureId, manualSecondaryMeasureId);
+ 
+     if (hasManualLinks) {
++
+         return {
+             primaryMeasureId: manualPrimaryMeasureId,
+             secondaryMeasureId: manualSecondaryMeasureId,
+             view: 'links'
+         };
++
+     }
+ 
+     // ----- fall back to the synced default ----- //
+@@ -1196,6 +1200,7 @@ const setLinksButtonState = () => {
+     });
+ 
+     if (activeLinksState.view === 'links' && !linksSwitcherDisabled) {
++
+         const activeLinksButton = document.querySelector(`.linksbutton[data-primary-measure-id='${activeLinksState.primaryMeasureId}'][data-secondary-measure-id='${activeLinksState.secondaryMeasureId}']`);
+ 
+         if (activeLinksButton) {
+@@ -1211,11 +1216,13 @@ const setLinksButtonState = () => {
+     );
+ 
+     if (showDisparitiesButton) {
++
+         setBadgePillState(
+             showDisparitiesButton,
+             activeLinksState.view === 'disparities' && DE.lookups.disparitiesMeasures.length > 0,
+             DE.lookups.disparitiesMeasures.length === 0
+         );
++
+     }
+ 
+     updateLinksSelectionSummary();
+@@ -1231,6 +1238,7 @@ syncLinksSelectionsToMapSelection = (force = false) => {
+     const syncedLinksState = getSyncedLinksState();
+ 
+     if (force || !DE.links.selectedLinksMeasure) {
++
+         if (DE.links.selectedLinksPrimaryMeasureId !== syncedLinksState.primaryMeasureId) {
+             DE.links.selectedLinksPrimaryMeasureId = syncedLinksState.primaryMeasureId;
+             didChange = true;
+@@ -1249,6 +1257,7 @@ syncLinksSelectionsToMapSelection = (force = false) => {
+         }
+ 
+         DE.links.selectedLinksMeasure = false;
++
+     }
+ 
+     setLinksButtonState();
+@@ -1909,11 +1918,17 @@ const renderMeasures = async () => {
+     const selectedTableTime = DE.lookups.timeLookup[DE.state.TimePeriodID]?.TimePeriod;
+ 
+     if (selectedTableTime && tableTimes.includes(selectedTableTime)) {
++
+         DE.table.selectedTableTimes = [selectedTableTime];
++
+     } else if (tableTimes.length) {
++
+         DE.table.selectedTableTimes = [tableTimes[0]];
++
+     } else {
++
+         DE.table.selectedTableTimes = [];
++
+     }
+ 
+ 
+@@ -1929,11 +1944,17 @@ const renderMeasures = async () => {
+     // Default the table to the currently selected geography when available.
+ 
+     if (DE.state.GeoType && dropdownTableGeoTypes.includes(DE.state.GeoType)) {
++
+         DE.table.selectedTableGeography = [DE.state.GeoType];
++
+     } else if (dropdownTableGeoTypes.length) {
++
+         DE.table.selectedTableGeography = [dropdownTableGeoTypes[0]];
++
+     } else {
++
+         DE.table.selectedTableGeography = [];
++
+     }
+ 
+     DE.table.tableTimeFilterIsManual = false;
+@@ -1943,6 +1964,7 @@ const renderMeasures = async () => {
+     // Force first table-tab visit to rebuild table and filter controls for this indicator.
+ 
+     const tableContainer = document.getElementById('summary-table');
++
+     if (tableContainer) {
+         tableContainer.innerHTML = '';
+     }
+@@ -2098,6 +2120,7 @@ const showOverlayTab = () => {
+     // Re-open the tab that matches the restored overlay after menus are rebuilt.
+ 
+     if (DE.state.overlay !== 'none') {
++
+         resetOverlayTabState();
+ 
+         if (tabContent) {
+@@ -2105,7 +2128,9 @@ const showOverlayTab = () => {
+         }
+ 
+         $(target).tab('show');
++
+     } else {
++        
+         resetOverlayTabState();
+ 
+         if (tabContent) {
+diff --git a/assets/js/data-explorer/menu.js b/assets/js/data-explorer/menu.js
+index d1ba55bbe1..3844e7bcfe 100644
+--- a/assets/js/data-explorer/menu.js
++++ b/assets/js/data-explorer/menu.js
+@@ -121,11 +121,14 @@ const updateAllMenus = (indicator) => {
+     // whatever the catalog says. See withCitywideMapFallback in global.js for the metadata side.
+ 
+     (measure.VisOptions[0].Map || []).forEach(d => {
++
+         const pretty = prettifyGeoType(d.GeoType);
++
+         if (typeof pretty === 'string' && pretty && !seenGeos.has(pretty)) {
+             seenGeos.add(pretty);
+             geos.push({ label: pretty, value: pretty });
+         }
++
+     });
+ 
+     const availableGeoValues = geos.map(g => g.value);
+@@ -249,6 +252,7 @@ const renderMenuSection = (items, destination, type) => {
+             const item = items[Number(button.dataset.optionIndex)];
+ 
+             handleSelection(type, item.value, item.label);
++            
+         };
+     });
+ };
+diff --git a/assets/js/data-explorer/print-map.js b/assets/js/data-explorer/print-map.js
+index 061e52129f..125b3610c9 100644
+--- a/assets/js/data-explorer/print-map.js
++++ b/assets/js/data-explorer/print-map.js
+@@ -39,10 +39,12 @@ const EXPORT_MAP_HEIGHT = 1080;
+ // Strips filesystem-illegal characters so the value is safe to use as a download filename.
+ 
+ const sanitizeFilename = (value) => {
++
+     return (value || 'visualization')
+         .replace(/[<>:"/\\|?*]+/g, '')
+         .replace(/\s+/g, ' ')
+         .trim();
++
+ };
+ 
+ 
+@@ -50,9 +52,11 @@ const sanitizeFilename = (value) => {
+ // normalize arrays and plain strings the same way before wrapping.
+ 
+ const normalizePrintTextInput = (value) => {
++
+     return Array.isArray(value)
+         ? value.filter(Boolean).join(' ')
+         : String(value || '').trim();
++
+ };
+ 
+ 
+@@ -62,9 +66,7 @@ const buildWrappedPrintLines = (value, shouldStartNewLine) => {
+ 
+     const sourceText = normalizePrintTextInput(value);
+ 
+-    if (!sourceText) {
+-        return [];
+-    }
++    if (!sourceText) return [];
+ 
+     const words = sourceText.split(/\s+/);
+     const lines = [];
+@@ -75,9 +77,11 @@ const buildWrappedPrintLines = (value, shouldStartNewLine) => {
+         const nextLine = currentLine ? `${currentLine} ${word}` : word;
+ 
+         if (shouldStartNewLine(nextLine, currentLine)) {
++
+             lines.push(currentLine);
+             currentLine = word;
+             return;
++
+         }
+ 
+         currentLine = nextLine;
+@@ -165,11 +169,14 @@ const getMapExportHeaderLayout = (ctx, width, paddingX, title, subtitle) => {
+ 
+     ctx.save();
+     ctx.font = '700 30px Arial';
++
+     const titleLines = splitCanvasTextIntoLines(ctx, title, headerTextWidth);
+     ctx.font = '16px Arial';
++
+     const subtitleLines = subtitle
+         ? splitCanvasTextIntoLines(ctx, subtitle, headerTextWidth)
+         : [];
++
+     ctx.restore();
+ 
+     const titleLineHeight = 36;
+@@ -241,9 +248,13 @@ const getMapExportSources = () => {
+     const sourceValues = [];
+ 
+     if (Array.isArray(DE.print.vizSource)) {
++
+         sourceValues.push(...DE.print.vizSource.filter(Boolean));
++
+     } else if (typeof DE.print.vizSource === 'string' && DE.print.vizSource.trim()) {
++
+         sourceValues.push(DE.print.vizSource.trim());
++
+     }
+ 
+     sourceValues.push(MAP_EXPORT_BASEMAP_ATTRIBUTION);
+@@ -345,10 +356,12 @@ const getBoundsViewportBox = (mapInstance, bounds) => {
+ // Checks whether a viewport box fits inside the frame, with the given edge buffer on all sides.
+ 
+ const isViewportBoxInsideFrame = (viewportBox, width, height, edgeBuffer) => {
++
+     return viewportBox.left >= edgeBuffer &&
+         viewportBox.top >= edgeBuffer &&
+         viewportBox.right <= (width - edgeBuffer) &&
+         viewportBox.bottom <= (height - edgeBuffer);
++
+ };
+ 
+ 
+@@ -356,6 +369,7 @@ const isViewportBoxInsideFrame = (viewportBox, width, height, edgeBuffer) => {
+ // can read like a single flow instead of a series of paired ternaries.
+ 
+ const getExportBoundsTuning = (bubbleMapExport) => {
++
+     return bubbleMapExport
+         ? {
+             padRatio: EXPORT_BUBBLE_BOUNDS_PAD_RATIO,
+@@ -365,6 +379,7 @@ const getExportBoundsTuning = (bubbleMapExport) => {
+             padRatio: EXPORT_CHOROPLETH_BOUNDS_PAD_RATIO,
+             zoomBonus: EXPORT_CHOROPLETH_ZOOM_BONUS
+         };
++
+ };
+ 
+ 
+@@ -434,6 +449,7 @@ const getLoadedTileCoverageBounds = (mapElement, mapRect) => {
+     const loadedTiles = getLoadedTileImages(mapElement);
+ 
+     if (!loadedTiles.length) {
++
+         return {
+             hasCoverage: false,
+             totalTileCount: tileImages.length,
+@@ -443,6 +459,7 @@ const getLoadedTileCoverageBounds = (mapElement, mapRect) => {
+             minY: 0,
+             maxY: 0
+         };
++
+     }
+ 
+     // ----- accumulate min/max pixel bounds across loaded tiles ----- //
+@@ -573,6 +590,7 @@ const buildTemporaryLeafletExport = async (width, height) => {
+     }
+ 
+     const exportContainer = createHiddenExportMapContainer(width, height);
++
+     const exportMap = L.map(exportContainer, {
+         zoomControl: false,
+         attributionControl: false,
+@@ -583,6 +601,7 @@ const buildTemporaryLeafletExport = async (width, height) => {
+         zoomDelta: 0.25,
+         preferCanvas: true
+     });
++
+     const exportRenderer = L.canvas({ padding: 0 });
+ 
+     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}' + (L.Browser.retina ? '@2x.png' : '.png') + '?key=cb1_2vaf_1_f87644104deb54c869cef554', {
+@@ -672,6 +691,7 @@ const buildTemporaryLeafletExport = async (width, height) => {
+         // directly from the export GeoJSON layer.
+ 
+         const exportGeojsonLayer = L.geoJson(exportGeojson, {
++
+             renderer: exportRenderer,
+             style: feature => {
+ 
+@@ -685,6 +705,7 @@ const buildTemporaryLeafletExport = async (width, height) => {
+                 };
+ 
+             }
++
+         });
+ 
+         pendingLayers.push(exportGeojsonLayer);
+@@ -700,6 +721,7 @@ const buildTemporaryLeafletExport = async (width, height) => {
+     // ----- fit/frame the export view to bounds ----- //
+ 
+     if (exportBounds && exportBounds.isValid()) {
++
+         const {
+             padRatio: exportBoundsPadRatio,
+             zoomBonus: exportZoomBonus
+@@ -716,19 +738,24 @@ const buildTemporaryLeafletExport = async (width, height) => {
+         // ratio or relying on the live viewport size.
+ 
+         if (exportZoomBonus > 0) {
++
+             exportMap.setView(
+                 exportBounds.getCenter(),
+                 Math.min(exportMap.getZoom() + exportZoomBonus, EXPORT_MAP_MAX_ZOOM),
+                 { animate: false }
+             );
++
+         }
+ 
+         // Keep every feature inside the export viewport so polygon edges are
+         // never clipped and each visible feature has basemap tiles underneath.
+ 
+         ensureBoundsWithinExportViewport(exportMap, exportBounds, width, height);
++
+     } else {
++
+         exportMap.setView([40.700142, -73.921546], EXPORT_MAP_MAX_ZOOM);
++
+     }
+ 
+     // ----- add layers to the map and wait for render idle ----- //
+@@ -887,9 +914,13 @@ const drawLeafletTiles = async (ctx, mapElement, mapRect, offsetY) => {
+         const y = tileBox.y + offsetY;
+ 
+         try {
++
+             ctx.drawImage(tileImage, x, y, tileBox.width, tileBox.height);
++
+         } catch (error) {
++
+             skippedTiles = true;
++
+         }
+ 
+     });
+@@ -946,13 +977,17 @@ const drawLeafletSvgLayers = async (ctx, mapElement, mapRect, offsetY) => {
+         const objectURL = URL.createObjectURL(svgBlob);
+ 
+         try {
++
+             const svgImage = await loadImage(objectURL);
+             const x = hasLeafletPaneOffset ? 0 : svgRect.left - mapRect.left;
+             const y = hasLeafletPaneOffset ? offsetY : svgRect.top - mapRect.top + offsetY;
+ 
+             ctx.drawImage(svgImage, x, y, svgRect.width, svgRect.height);
++
+         } finally {
++
+             URL.revokeObjectURL(objectURL);
++
+         }
+ 
+     }
+@@ -1079,6 +1114,7 @@ const exportLeafletMap = async () => {
+     ctx.textBaseline = 'top';
+     ctx.fillStyle = '#0f172a';
+     ctx.font = '700 30px Arial';
++
+     let textBaselineY = headerLayout.topPadding;
+ 
+     headerLayout.titleLines.forEach(line => {
+@@ -1087,14 +1123,18 @@ const exportLeafletMap = async () => {
+     });
+ 
+     if (headerLayout.subtitleLines.length) {
++
+         textBaselineY += headerLayout.gapAfterTitle;
+         ctx.fillStyle = '#475569';
+         ctx.font = '16px Arial';
+ 
+         headerLayout.subtitleLines.forEach(line => {
++
+             ctx.fillText(line, paddingX, textBaselineY);
+             textBaselineY += headerLayout.subtitleLineHeight;
++
+         });
++
+     }
+ 
+     ctx.restore();
+@@ -1165,12 +1205,14 @@ const exportLeafletMap = async () => {
+     drawMapLegend(ctx, paddingX, headerHeight + exportHeight + 30, legendWidth, minLabel, maxLabel);
+ 
+     if (sourceLines.length) {
++
+         ctx.fillStyle = '#4b5563';
+         ctx.font = '12px Arial';
+ 
+         sourceLines.forEach((line, index) => {
+             ctx.fillText(line, paddingX, headerHeight + exportHeight + legendBlockHeight + 8 + (index * 16));
+         });
++
+     }
+ 
+     // ----- return export result ----- //
+@@ -1203,8 +1245,11 @@ const renderMapPreview = async () => {
+             downloadName: buildMapExportFilename(),
+             downloadLabel: 'Download PNG'
+         });
++
+     } catch (error) {
++
+         showPrintErrorState(error.message || 'The map could not be exported.');
++        
+     }
+ 
+ };
+diff --git a/assets/js/data-explorer/table.js b/assets/js/data-explorer/table.js
+index 551ebcb132..4e7b1821fa 100644
+--- a/assets/js/data-explorer/table.js
++++ b/assets/js/data-explorer/table.js
+@@ -63,6 +63,7 @@ const getTableColumnSearchValues = (rows) => {
+     const { availableTimes, availableGeos } = getTableFilterOptions(rows);
+ 
+     return {
++
+         // '(?!)' is an always-false regex, which intentionally shows zero rows when nothing is selected.
+         timeSearch: !DE.table.selectedTableTimes.length
+             ? '(?!)'
+@@ -75,6 +76,7 @@ const getTableColumnSearchValues = (rows) => {
+             : DE.table.selectedTableGeography.length === availableGeos.length
+                 ? ''
+                 : `^(${DE.table.selectedTableGeography.map(escapeRegexValue).join('|')})$`
++        
+     };
+ 
+ };
+@@ -135,6 +137,7 @@ const syncTableFiltersToMapSelection = (force = false) => {
+     // Respect manual overrides unless the caller explicitly forces a full resync.
+ 
+     if (force || !DE.table.tableTimeFilterIsManual) {
++
+         const sameTimeSelection = DE.table.selectedTableTimes.length === timeSelection.length &&
+             DE.table.selectedTableTimes.every((time, index) => time === timeSelection[index]);
+ 
+@@ -144,11 +147,13 @@ const syncTableFiltersToMapSelection = (force = false) => {
+         }
+ 
+         DE.table.tableTimeFilterIsManual = false;
++
+     }
+ 
+     // Geography sync follows the same rule so users can customize one dimension independently.
+ 
+     if (force || !DE.table.tableGeoFilterIsManual) {
++
+         const sameGeoSelection = DE.table.selectedTableGeography.length === geoSelection.length &&
+             DE.table.selectedTableGeography.every((geo, index) => geo === geoSelection[index]);
+ 
+@@ -158,6 +163,7 @@ const syncTableFiltersToMapSelection = (force = false) => {
+         }
+ 
+         DE.table.tableGeoFilterIsManual = false;
++
+     }
+ 
+     return didChange;
+@@ -425,6 +431,7 @@ const renderTableFilterControls = (rows) => {
+         holder.innerHTML = '';
+ 
+         options.forEach(option => {
++
+             const label = document.createElement('label');
+             const unavailable = isDisabled(option);
+ 
+@@ -455,6 +462,7 @@ const renderTableFilterControls = (rows) => {
+             label.appendChild(input);
+             label.appendChild(document.createTextNode(` ${option}`));
+             holder.appendChild(label);
++
+         });
+ 
+     };
+@@ -462,6 +470,7 @@ const renderTableFilterControls = (rows) => {
+     // ----- render time checkboxes ----- //
+ 
+     renderCheckboxes(timeHolder, availableTimes, DE.table.selectedTableTimes, 'checkbox-time', 'table-time', (value, checked) => {
++
+         const nextTimes = new Set(DE.table.selectedTableTimes);
+ 
+         if (checked) {
+@@ -477,6 +486,7 @@ const renderTableFilterControls = (rows) => {
+         trackDataExplorerOption('table_time');
+         renderTableFilterControls(rows);
+         applyTableFilters(rows);
++
+     });
+ 
+     // ----- render geography checkboxes ----- //
+@@ -512,6 +522,7 @@ const renderTableFilterControls = (rows) => {
+     const syncButton = document.getElementById('tableFilterSyncButton');
+ 
+     if (syncButton) {
++
+         syncButton.onclick = (event) => {
+ 
+             // The link's href="#" would otherwise add "#" to the URL, a history entry and a popstate.
+@@ -524,6 +535,7 @@ const renderTableFilterControls = (rows) => {
+             trackDataExplorerOption('table_sync');
+             renderTableFilterControls(rows);
+             applyTableFilters(rows);
++
+         };
+     }
+ 
+@@ -701,6 +713,7 @@ const renderTable = (tableData) => {
+     // - - - initialize the table - - - //
+ 
+     const dataTable = $('#tableID').DataTable({
++
+         scrollY: 500,
+         scrollX: true,
+         scrollCollapse: false,
+@@ -868,6 +881,7 @@ const renderTable = (tableData) => {
+ 
+             syncTableAreaSearchInput();
+         }
++        
+     });
+ 
+     // ----- lock scroll height + bind group-toggle handler + rebind search ----- //
+diff --git a/assets/js/data-explorer/topic-indicator-selector.js b/assets/js/data-explorer/topic-indicator-selector.js
+index 117a2974db..92bbfcbb1a 100644
+--- a/assets/js/data-explorer/topic-indicator-selector.js
++++ b/assets/js/data-explorer/topic-indicator-selector.js
+@@ -259,11 +259,13 @@ const bindTopicSelectorControls = () => {
+     // ----- wire indicator-selector modal show/hidden handlers ----- //
+ 
+     if (indicatorSelectorModal) {
++
+         $('#indicatorSelector').on('show.bs.modal', () => {
+             clearIndicatorSelectorPrompt();
+         });
+ 
+         $('#indicatorSelector').on('hidden.bs.modal', () => {
++
+             if (indicatorSelectionConfirmed) {
+                 indicatorSelectionConfirmed = false;
+                 return;
+@@ -274,6 +276,7 @@ const bindTopicSelectorControls = () => {
+             }
+ 
+             showIndicatorSelectorPrompt();
++
+         });
+     }
+ 
+@@ -285,6 +288,7 @@ const bindTopicSelectorControls = () => {
+     const topicLinks = document.querySelectorAll('.de-topic-indicator-link[data-indicators][data-topic-title][data-topic-destination]');
+ 
+     topicLinks.forEach(link => {
++
+         link.addEventListener('click', event => {
+             event.preventDefault();
+             getIndicatorsForTopic(
+@@ -293,6 +297,7 @@ const bindTopicSelectorControls = () => {
+                 link.dataset.topicDestination
+             );
+         });
++
+     });
+ 
+     // ----- bind relaunch-button clicks ----- //
+@@ -315,6 +320,7 @@ const bindTopicSelectorControls = () => {
+         // so delegate from the stable modal container.
+ 
+         indicatorDestination.addEventListener('click', event => {
++
+             const indicatorButton = event.target.closest('.de-select-indicator-button[data-indicator-id]');
+ 
+             if (!indicatorButton) {
+@@ -322,6 +328,7 @@ const bindTopicSelectorControls = () => {
+             }
+ 
+             selectIndicator(indicatorButton.dataset.indicatorId);
++
+         });
+     }
+ 
+@@ -357,12 +364,14 @@ const renderIndicatorList = async (indList, destination) => {
+     // ----- load metadata, resolve recently-updated IDs ----- //
+ 
+     const data = await ensureIndicatorsLoaded('indicator selection modal');
++
+     // console.log("Indicators ready to print to indicator selection modal!", data);
+ 
+     // Hugo exposes the curated updated-ID list on the shared indicator shell.
+     // Reuse it here so modal decorations match the main indicator header.
+ 
+     const indicatorInfoRoot = document.querySelector('.de-main-details');
++
+     const recentlyUpdatedIndicatorIds = JSON.parse(
+         indicatorInfoRoot?.dataset.recentlyUpdatedIds ?? '[]'
+     ).map(Number);
+@@ -416,6 +425,7 @@ const renderIndicatorList = async (indList, destination) => {
+                     <p class="mb-0" style="font-size: 14px;">${indicator.IndicatorDescription}</p>
+                 </div>
+             `;
++
+         }).join('');
+         
+         // - - - wrap section HTML and append to destination - - - //
+@@ -541,6 +551,7 @@ const renderIndicatorInfo = async (IndicatorID) => {
+     // Updated indicators get the clock icon inline with the title instead of a separate badge.
+ 
+     nameHolders.forEach(el => {
++
+         el.replaceChildren(document.createTextNode(indicator.IndicatorName ?? ""));
+ 
+         // - - - append recently-updated icon - - - //
+@@ -553,6 +564,7 @@ const renderIndicatorInfo = async (IndicatorID) => {
+             icon.setAttribute('title', 'Recently updated');
+             el.appendChild(icon);
+         }
++
+     });
+ 
+     // ----- fill description field(s) ----- //
+@@ -578,6 +590,7 @@ const renderIndicatorInfo = async (IndicatorID) => {
+     indicator.Measures.forEach(measure => {
+ 
+         const p = document.createElement('p');
++
+         p.innerHTML = DOMPurify.sanitize(`<strong>${measure.MeasurementType}:</strong> ${measure.how_calculated}`);
+         howCalculatedEl.appendChild(p);
+ 
+@@ -690,9 +703,11 @@ const checkURL = async () => {
+     // Wait for the window load event so Bootstrap has initialized before showing the modal.
+ 
+     if (chosenIndicator === null || Number.isNaN(chosenIndicator)) {
++
+         debugLog("No indicator ID in URL, opening indicator selector.");
+         window.addEventListener('load', () => $('#indicatorSelector').modal('show'), { once: true });
+         return;
++
+     }
+ 
+     // ----- run the full load pipeline ----- //
+@@ -703,5 +718,4 @@ const checkURL = async () => {
+ 
+     await loadAndRenderIndicator(chosenIndicator, { selection, history: 'replace' });
+ 
+-}
+-
++}
+\ No newline at end of file
+diff --git a/assets/js/nr-report/cards.js b/assets/js/nr-report/cards.js
+index b97118b638..ce6047bd3a 100644
+--- a/assets/js/nr-report/cards.js
++++ b/assets/js/nr-report/cards.js
+@@ -82,8 +82,10 @@ const buildIndicatorCard = (row, neighborhoodName) => {
+     // Build a compact units label from optional type and unit fields
+ 
+     const unitParts = [];
++
+     if (row.measurement_type) unitParts.push(row.measurement_type);
+     if (row.units) unitParts.push(row.units);
++    
+     const units = unitParts.join(' ').trim();
+ 
+     // ----- tertile pill ----- //
+diff --git a/assets/js/nr-report/chart.js b/assets/js/nr-report/chart.js
+index 959546a75b..57e33dc15e 100644
+--- a/assets/js/nr-report/chart.js
++++ b/assets/js/nr-report/chart.js
+@@ -54,6 +54,7 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode, indicator
+     // Vega-Lite spec combines a choropleth map with a compact sorted bar strip
+ 
+     const spec = {
++        
+         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+         // Becomes the aria-label on the .chart-wrapper vega emits with
+         // role="graphics-document"; without it every chart computes to "Vega visualization"
+diff --git a/assets/js/nr-report/tertiles.js b/assets/js/nr-report/tertiles.js
+index 764923383f..1769d76409 100644
+--- a/assets/js/nr-report/tertiles.js
++++ b/assets/js/nr-report/tertiles.js
+@@ -159,17 +159,23 @@ const getComparison = (neighVal, refVal, rankReverse) => {
+     // when the two tertile functions above it were not
+ 
+     if (n > r) {
++
+         word = 'Higher';
+         preposition = 'than';
+         cls = reverse ? 'comp-good' : 'comp-bad';
++
+     } else if (n < r) {
++
+         word = 'Lower';
+         preposition = 'than';
+         cls = reverse ? 'comp-bad' : 'comp-good';
++
+     } else {
++
+         word = 'Equal';
+         preposition = 'to';
+         cls = 'comp-null';
++        
+     }
+ 
+     return { word: word, preposition: preposition, cssClass: cls };
+diff --git a/content/data-features/cooling-info/cooling-info.js b/content/data-features/cooling-info/cooling-info.js
+index b707829fee..e5b25759bb 100644
+--- a/content/data-features/cooling-info/cooling-info.js
++++ b/content/data-features/cooling-info/cooling-info.js
+@@ -22,8 +22,6 @@ var tempLabel;
+ var warmSeason;
+ 
+ 
+-
+-
+ // ------------------------------------------------------------------ //
+ // ---------- First, ingest weather data and print to page ---------- //
+ // ------------------------------------------------------------------ //
+diff --git a/themes/dohmh/layouts/data-explorer/data-index.html b/themes/dohmh/layouts/data-explorer/data-index.html
+index 85fcee9ceb..f4d0bcf195 100644
+--- a/themes/dohmh/layouts/data-explorer/data-index.html
++++ b/themes/dohmh/layouts/data-explorer/data-index.html
+@@ -66,7 +66,6 @@
+             let indicatorIndex = []
+             let time_periods;
+ 
+-
+             // First, load metadata.json
+ 
+             d3.json('{{ site.Params.data_repo }}{{ site.Params.data_branch }}/indicators/metadata/metadata.json')
+@@ -92,13 +91,10 @@
+                 });
+ 
+ 
+-
+             // Separating json load from subsequent functions, so we can filter or modify later without reloading json
+ 
+             function loopThroughIndicators() {
+ 
+-
+-
+                 //  loop through indicators
+ 
+                 for (let i = 0; i < indicators.length; i++) {  // change the 1 to indicators.length to get back to normal
+@@ -139,8 +135,8 @@
+                     // topics
+ 
+                     let cell_2 = document.createElement('td')
+-
+                     let st_li = document.createElement('ul');
++
+                     st_li.classList.add('no-bullets')
+                     cell_2.appendChild(st_li);
+ 
+@@ -210,6 +206,7 @@
+                     let ums = document.createElement('ul')
+                     ums.classList.add('no-bullets')
+                     cell_3.appendChild(ums);
++
+                     for (m = 0; m < unique_measurements.length; m++) {
+                         let li = document.createElement('li')
+                         li.innerHTML = unique_measurements[m]
+@@ -239,6 +236,7 @@
+                         "NTA2020",
+                         "RMZ"
+                     ];
++
+                     let unique_geographies = [...new Set(geographies)];
+ 
+                     // sorting unique_geographies based on order of geos_order
+@@ -247,7 +245,8 @@
+                         return geos_order.indexOf(a) - geos_order.indexOf(b)
+                     });
+ 
+-                    let geobullets = document.createElement('ul')
++                    let geobullets = document.createElement('ul');
++
+                     geobullets.classList.add('no-bullets')
+                     cell_4.appendChild(geobullets)
+ 
+@@ -292,31 +291,32 @@
+                     // sources
+ 
+                     let unique_sources = [...new Set(sources)];
+-                    let usrc = document.createElement('ul')
+-                    usrc.classList.add('no-bullets')
++                    let usrc = document.createElement('ul');
++                    usrc.classList.add('no-bullets');
+                     cell_6.appendChild(usrc);
+ 
+                     for (src = 0; src < unique_sources.length; src++) {
+-                        let li = document.createElement('li')
+-                        li.innerHTML = unique_sources[src]
+-                        usrc.appendChild(li)
++                        let li = document.createElement('li');
++                        li.innerHTML = unique_sources[src];
++                        usrc.appendChild(li);
+                     }
+ 
+                     row_i.appendChild(cell_6);
+ 
+                     // Finally, place the row into the table body.
+ 
+-                    document.getElementById('tablebody').appendChild(row_i)
++                    document.getElementById('tablebody').appendChild(row_i);
+                 }
+ 
+                 // call DataTables.
+ 
+-                initializeDataTables()
++                initializeDataTables();
+ 
+             }
+ 
+ 
+             function initializeDataTables() {
++
+                 let table = new DataTable('#indicators', {
+                     // options
+                     scrollY: 600,
+@@ -325,6 +325,7 @@
+                     responsive: true,
+                     fixedColumns: true
+                 });
++
+             }
+ 
+ 
+@@ -453,6 +454,7 @@
+                 // Get each row data
+ 
+                 let rows = document.getElementsByTagName('tr');
++
+                 for (let i = 0; i < rows.length; i++) {
+ 
+                     // Get each column data
+@@ -462,6 +464,7 @@
+                     // Stores each csv row data
+ 
+                     let csvrow = [];
++
+                     for (let j = 0; j < cols.length; j++) {
+ 
+                         // Get the text data of each cell of
+@@ -503,6 +506,7 @@
+                 // Download csv file
+ 
+                 temp_link.download = "EHDP-data-index.csv";
++
+                 let url = window.URL.createObjectURL(CSVFile);
+                 temp_link.href = url;
+ 
+@@ -515,17 +519,21 @@
+ 
+                 temp_link.click();
+                 document.body.removeChild(temp_link);
++
+             }
+ 
+ 
+             function removeTags(str) {
+-                if ((str === null) || (str === ''))
++
++                if ((str === null) || (str === '')) {
+                     return false;
+-                else
++                } else {
+                     // append comma to </li> tags not followed by a <\ul> tag, so that it'll be a comma separated list when tags are removed
+ 
+                     str = str.toString().replace(/(<\/li>)/ig, '$1, ').replace(/(<\/li>, <\/ul>)/ig, '<\/li><\/ul>');
+ 
++                }
++
+                 // Regular expression to identify HTML tags in
+                 // the input string. Replacing the identified
+                 // HTML tag with a null string.
+@@ -539,7 +547,9 @@
+             // ------------------------------------------------------------------------------------- //
+ 
+             var object = [];
++
+             function createMeasureMetadata() {
++
+                 console.log('object of indicators, measures, and text metadata:')
+                 // create object of indicators, measures and text metadata
+ 
+@@ -565,11 +575,13 @@
+             }
+ 
+             function getNoMaps() {
++
+                 var noMapObject = [];
+                 console.log('indicators without a mapped measure:')
+                 // loop through indicators
+ 
+                 for (let i = 0; i < indicators.length; i++) {
++
+                     var maps = [];
+                     // loop through measures
+ 
+@@ -583,6 +595,7 @@
+                         // test if all values of maps is null
+ 
+                         const isNull = (geotype) => geotype == null
++
+                         if (maps.every(isNull) == true) {
+ 
+                             // send indicator info to object
+@@ -592,6 +605,7 @@
+                             indicator.indicatorID      = indicators[i].IndicatorID
+ 
+                             noMapObject.push(indicator)
++
+                         } else {}
+ 
+                     }
+@@ -600,11 +614,14 @@
+ 
+             var inds = [];
+             var fullInds = [];
++
+             function indicatorsWithFullViews() {
++
+                 console.log('object of indicators with a full-view measure')
+                 // for each indicator...
+ 
+                 for (let i = 0; i < indicators.length; i++) {
++                
+                     var thisIndicator = [];
+ 
+                     // loop through their measures
+@@ -638,16 +655,18 @@
+                 // then, loop through inds and return the number of measures that have a viewSum > 1.
+ 
+                 for (let i = 0; i < inds.length; i++) {
++
+                     var thisIndicator = {};
+                     var count = 0
+-                            // loop through inds[i].length
++                    // loop through inds[i].length
+ 
+-                            for (let j = 0; j < inds[i].length; j ++) {
+-                                if (inds[i][j].measureViewSum > 1) {
+-                                    count = count+1
+-                                }
+-                            }
++                    for (let j = 0; j < inds[i].length; j ++) {
++                        if (inds[i][j].measureViewSum > 1) {
++                            count = count+1
++                        }
++                    }
+                     inds[i].measuresTwoPlus = count
++
+                     if (inds[i].measuresTwoPlus > 0) {
+                         fullInds.push(inds[i])
+                     } else {}
+@@ -657,6 +676,7 @@
+             }
+ 
+             function measureViewSummary() {
++            
+                 var mvs = [];
+                 console.log('object of indicators, measures, and text metadata:')
+                 // create object of indicators, measures and text metadata
+diff --git a/themes/dohmh/layouts/data-explorer/indicator-catalog.html b/themes/dohmh/layouts/data-explorer/indicator-catalog.html
+index d917ba2a0f..a7320e3604 100644
+--- a/themes/dohmh/layouts/data-explorer/indicator-catalog.html
++++ b/themes/dohmh/layouts/data-explorer/indicator-catalog.html
+@@ -55,11 +55,9 @@
+                             <div id="sourceList"></div>
+                         </p>
+ 
+-
+                         <div id="repoLink"></div>
+ 
+ 
+-
+                     </div>
+ 
+                 </div>
+@@ -99,7 +97,6 @@
+ 
+                 }
+ 
+-
+                 // Print topics to page
+                 // console.log(topicIndicatorsTable)
+ 
+diff --git a/themes/dohmh/layouts/data-features/asthma-syndrome.html b/themes/dohmh/layouts/data-features/asthma-syndrome.html
+index b4f3ee79a3..a3fb616c66 100644
+--- a/themes/dohmh/layouts/data-features/asthma-syndrome.html
++++ b/themes/dohmh/layouts/data-features/asthma-syndrome.html
+@@ -101,7 +101,6 @@
+ 
+     <script type="text/javascript">
+ 
+-
+         const spec = {
+           "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+           "width": "container",
+@@ -173,14 +172,15 @@
+ 
+         var changeSpec = spec
+ 
+-
+-
+         vegaEmbed("#vis1", spec, {renderer: "svg"});
+ 
+         var smoothCount = 0
++
+         function smooth(x) {
++
+             changeSpec = spec
+             smoothCount = smoothCount + 1
++
+             if (smoothCount % 2 == 0) {
+                 changeSpec.encoding.y.field = 'Count'
+                 document.getElementById('smoothBtn').classList.remove('btn-secondary')
+@@ -191,10 +191,12 @@
+                 document.getElementById('smoothBtn').classList.add('btn-secondary')
+                 document.getElementById('smoothBtn').classList.remove('btn-outline-secondary')
+             }
++
+             vegaEmbed("#vis1", changeSpec, {renderer: "svg"});
+         }
+ 
+         function smoothed(x) {
++
+           changeSpec = spec
+           changeSpec.encoding.y.field = x
+           vegaEmbed("#vis1", changeSpec, {renderer: "svg"});
+@@ -209,10 +211,12 @@
+         }
+ 
+         function time(y) {
++
+           changeSpec.encoding.x.timeUnit = y
+           vegaEmbed("#vis1", changeSpec, {renderer: "svg"});
+ 
+           if (y == 'dayofyear') {
++
+             document.getElementById('dayBtn').classList.add('btn-primary')
+             document.getElementById('dayBtn').classList.remove('btn-outline-primary')
+             document.getElementById('monthBtn').classList.remove('btn-primary')
+@@ -220,7 +224,9 @@
+             document.getElementById('smoothBtn').classList.remove('hide')
+             document.getElementById('smoothBtn').classList.remove('btn-secondary')
+             document.getElementById('smoothBtn').classList.add('btn-outline-secondary')
++
+           } else {
++
+             changeSpec.encoding.y.field = 'Count'
+             document.getElementById('dayBtn').classList.remove('btn-primary')
+             document.getElementById('dayBtn').classList.add('btn-outline-primary')
+@@ -234,8 +240,11 @@
+ // #00FFFFFF
+ 
+         var count = 0
++
+         function toggle(x) {
++
+           count = count + x
++
+           if (count % 2 == 0) {
+ 
+             // changeSpec.transform[2].filter = `datum.Date > 1451624400000`;
+@@ -244,14 +253,17 @@
+             document.getElementById('toggle').innerHTML = 'Hide previous years'
+ 
+           } else {
++
+             document.getElementById('toggle').innerHTML = 'Show previous years'
+             changeSpec.encoding.color.scale.range = ["#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#12135b"]
+ 
+             // changeSpec.transform[2].filter = `datum.Date > 1672549200000`
++
+           };
+           // console.log(changeSpec)
+ 
+           vegaEmbed("#vis1", changeSpec, {renderer: "svg"});
++          
+         }
+ 
+       function changeYear(x) {
+diff --git a/themes/dohmh/layouts/neighborhood-reports/nr-report.html b/themes/dohmh/layouts/neighborhood-reports/nr-report.html
+index 2c999b2e47..a68100a007 100644
+--- a/themes/dohmh/layouts/neighborhood-reports/nr-report.html
++++ b/themes/dohmh/layouts/neighborhood-reports/nr-report.html
+@@ -16,6 +16,7 @@
+ */}}
+ 
+ {{/* Look up all report_topics for this Neighborhood Report content key */}}
++
+ {{- $contentKey := .Params.content_yml -}}
+ {{- $reportTopics := (index (index .Site.Data.globals.NR_content $contentKey) "report_topics") -}}
+ 
+@@ -49,6 +50,7 @@
+     effect while this one stands. They are kept because they are separately correct and the §5
+     test may bring them back into play.
+ */}}
++
+ <section class="container-fluid" data-pagefind-ignore="all">
+     <div class="row">
+         <div class="col-lg-10 mx-auto col-12">
+@@ -162,6 +164,7 @@
+                 </div>
+ 
+                 {{/* Right column: topic buttons + report header + sections */}}
++
+                 <div class="col-md-8 col-print-12">
+ 
+                     {{/*
+@@ -224,12 +227,15 @@
+                         Each section is wrapped in the production accordion container
+                         with the green top border and border styling.
+                     */}}
++
+                     {{- range $i, $rt := $reportTopics -}}
++
+                         {{/*
+                             Use the range index for DOM ids (nr-accordion-N / nr-section-N), not urlized titles.
+                             Topic titles can urlize to strings that are awkward for CSS selectors or can drift
+                             between Hugo versions; mismatched id vs NR_REPORT_CONFIG leaves sections empty.
+                         */}}
++
+                         <div class="accordion nr-report-accordion my-4 report-section pt-2 border-left border-right border-bottom" id="nr-accordion-{{ $i }}">
+                             <div class="px-2 pb-2">
+                                 {{/* h2, with .h4 carrying the visual size: these sections sit
+@@ -245,6 +251,7 @@
+                             <div id="nr-section-{{ $i }}">
+                             </div>
+                         </div>
++
+                     {{- end -}}
+ 
+                     {{/* Print-only QR code back to this report, carried over from
+@@ -254,6 +261,7 @@
+                     {{/* Ignored by Pagefind for the same reason as the tertile box: one identical
+                          caption on 210 pages. It is print-only markup, so it was never on screen
+                          for the searcher who landed on it either. */}}
++
+                     <div class="row print-only" data-pagefind-ignore="all">
+                         <div class="col-12">
+                             <p class="text-center">View this report online:</p>
+@@ -288,6 +296,7 @@
+     - reportName: page title for CSV download filenames.
+     - neighborhood: the neighborhood this page was generated for.
+ */}}
++
+ {{- $nrGlobal       := resources.Get "js/nr-report/global.js"       | partial "short-fingerprint.html" -}}
+ {{- $nrUrl          := resources.Get "js/nr-report/url.js"          | partial "short-fingerprint.html" -}}
+ {{- $nrTertiles     := resources.Get "js/nr-report/tertiles.js"     | partial "short-fingerprint.html" -}}
+@@ -300,8 +309,11 @@
+ {{- $nrApp          := resources.Get "js/nr-report/app.js"          | partial "short-fingerprint.html" -}}
+ 
+ {{- $vizUrl := print $.Site.Params.data_repo $.Site.Params.data_branch "/neighborhood-reports/data/viz/" $contentKey ".json" -}}
++
+ <script>
++
+     window.NR_REPORT_CONFIG = {
++
+         reportName: "{{ .Title }}",
+         // The topic half of <title>, which head.html renders from .Params.seo_title.
+         // Not reportName: that is .Title, and the two differ on Active Design, so an
+@@ -359,6 +371,7 @@
+             {{- end -}}
+         }
+     };
++
+ </script>
+ 
+ {{/* QR code generator for the print-only block above — mounted from node_modules, not a CDN */}}
+@@ -369,6 +382,7 @@
+     than in assets/js/nr-report/ because it is the template that owns the #qrcode element
+     and the library resource — the same reason data-explorer/single.html keeps
+     renderIndicatorDropdown inline. report.js calls it from renderAll(). */}}
++
+ <script src="{{ $qrcode.RelPermalink }}" integrity="{{ $qrcode.Data.Integrity }}" crossorigin="anonymous"></script>
+ <script>
+     // Redraws the print-only QR code from the current address, which renderAll() has just
+@@ -400,12 +414,14 @@
+         destination.innerHTML = code.createImgTag(2, 8, 'QR code linking to this report at ' + reportUrl);
+ 
+     }
++    
+ </script>
+ 
+ {{/* The libraries the ten report modules call at load, ahead of them for the same reason the
+     QR library sits ahead of renderQRCode. Leaflet for map.js, the neighborhoods global for
+     demographics.js and global.js, Vega for chart.js, Arquero for app.js/chart.js/data.js.
+     No d3 or DataTables: nothing under assets/js/nr-report/ references either. */}}
++
+ {{- partial "lib-leaflet.html" . }}
+ {{- partial "lib-uhflist.html" . }}
+ {{- partial "lib-vega.html" . }}
+@@ -419,6 +435,7 @@
+     the other nine declare. Everything else runs from bootstrap() or a DOM event,
+     by which point all ten have run.
+ */}}
++
+ <script src="{{ $nrGlobal.RelPermalink }}" integrity="{{ $nrGlobal.Data.Integrity }}" crossorigin="anonymous"></script>
+ <script src="{{ $nrUrl.RelPermalink }}" integrity="{{ $nrUrl.Data.Integrity }}" crossorigin="anonymous"></script>
+ <script src="{{ $nrTertiles.RelPermalink }}" integrity="{{ $nrTertiles.Data.Integrity }}" crossorigin="anonymous"></script>
+diff --git a/themes/dohmh/layouts/neighborhood-reports/nr-topic-index.html b/themes/dohmh/layouts/neighborhood-reports/nr-topic-index.html
+index e7ac470779..9b63110ed7 100644
+--- a/themes/dohmh/layouts/neighborhood-reports/nr-topic-index.html
++++ b/themes/dohmh/layouts/neighborhood-reports/nr-topic-index.html
+@@ -39,8 +39,10 @@
+                  the two read as one column and the map gets the width it was starved of in
+                  the old col-md-4. The picker partial carries its own "Choose Neighborhood"
+                  heading, so there is nothing to introduce it with here. */}}
++
+             <div class="row mt-3">
+                 <div class="col-md-8 mx-auto">
++
+                     {{/* No data-pagefind-weight here, deliberately. Weighting this <h1> at 10.0
+                          and the intro at 7.0 was tried on 2026-08-15 to lift the topic overview
+                          above the 42 per-neighborhood reports that share its vocabulary, and it
+@@ -49,6 +51,7 @@
+                          their titles — "Climate and Health | East Harlem" — and a body weight
+                          cannot outrank 42 of those. documents/nr-pagefind-parity-2026-08-15.md
+                          §2f has the A/B. */}}
++
+                     <h1 class="h2">{{ partial "section-icon.html" $.Section }}{{ .Title }}</h1>
+                     <div class="report-description fs-lg my-2">{{ .Content }}</div>
+                 </div>
+@@ -62,6 +65,7 @@
+             {{/* Libraries before the picker, not in js_bot: the picker renders nr-leaflet,
+                  whose inline script calls L.map() as the parser reaches it, and js_bot is
+                  emitted after main. */}}
++                 
+             {{- partial "lib-leaflet.html" . }}
+             {{- partial "lib-uhflist.html" . }}
+ 
+diff --git a/themes/dohmh/layouts/neighborhood-reports/section.html b/themes/dohmh/layouts/neighborhood-reports/section.html
+index da7b875844..6194a68062 100644
+--- a/themes/dohmh/layouts/neighborhood-reports/section.html
++++ b/themes/dohmh/layouts/neighborhood-reports/section.html
+@@ -7,6 +7,7 @@
+      they hang off. The 210 report pages are deliberately not indexed — nr-report.html
+      carries a page-level data-pagefind-ignore; documents/nr-pagefind-parity-2026-08-15.md
+      §2g has why. */}}
++
+ <article class="container-fluid overflow-hidden" id="primary-content">
+ 
+   <style>
+@@ -107,8 +108,6 @@
+             {{ partial "overlap-tool" . }}
+ 
+           </div>
+-
+-
+         </div>
+       </div>
+       <div class="modal-footer">
+@@ -146,118 +145,121 @@
+   Air pollution is one of the most important environmental threats to people who live in urban areas. Exposures are linked to respiratory and heart diseases, cancers, and premature deaths. Meanwhile, emissions, levels of exposure, and population vulnerability vary across neighborhoods.
+ </div>
+ 
+-
+-
+ </article>
+ 
+ 
+-
+ {{- end -}}
+ 
+ {{ define "js_bot" }}
+ 
+ <script type="text/javascript">
+ 
+-// we use these variables for report selection
++    // we use these variables for report selection
++
++    var intendedDestination;
++    var intendedDestinationName = null;
++
++    // MANAGES TOPIC BUTTONS ON HOME PAGE
++
++    function handleTopicButtons() {
+ 
+-var intendedDestination;
+-var intendedDestinationName = null;
++    const buttons = document.querySelectorAll('.nr-topic-button');
+ 
+-// MANAGES TOPIC BUTTONS ON HOME PAGE
++    buttons.forEach(button => {
+ 
+-function handleTopicButtons() {
+-  const buttons = document.querySelectorAll('.nr-topic-button');
++        button.addEventListener('click', () => {
+ 
+-  buttons.forEach(button => {
+-    button.addEventListener('click', () => {
++        // 1. Remove 'active' from all buttons
+ 
+-      // 1. Remove 'active' from all buttons
++        buttons.forEach(b => b.classList.remove('active'));
+ 
+-      buttons.forEach(b => b.classList.remove('active'));
++        // 2. Add 'active' to the clicked button
+ 
+-      // 2. Add 'active' to the clicked button
++        button.classList.add('active');
+ 
+-      button.classList.add('active');
++        // 3. Set intended destination
+ 
+-      // 3. Set intended destination
++        setIntendedDestination(button.id)
+ 
+-      setIntendedDestination(button.id)
++        changeHomeCopy(button.id)
+ 
+-      changeHomeCopy(button.id)
++        });
+ 
+     });
+-  });
+-}
++    }
++
++
++    function changeHomeCopy(x) {
++
++        var copyHolder = x + '-Descr'
+ 
++        if (document.getElementById(copyHolder)) {
++            var copy = document.getElementById(copyHolder).innerHTML
++            document.getElementById('descr').innerHTML = copy
++        } else {
++            console.log('Not home page; doing nothing.')
++        }
++    }
+ 
+-function changeHomeCopy(x) {
+-      var copyHolder = x + '-Descr'
+ 
+-      if (document.getElementById(copyHolder)) {
+-        var copy = document.getElementById(copyHolder).innerHTML
+-        document.getElementById('descr').innerHTML = copy
+-      } else {
+-        console.log('Not home page; doing nothing.')
+-      }
+-}
++    function setIntendedDestination(x) {
+ 
++    console.log('Intended destination: ', x)
++    intendedDestination = x
+ 
+-function setIntendedDestination(x) {
+-  console.log('Intended destination: ', x)
+-  intendedDestination = x
++    // look up intendedDestination in topicSlugs, and retrieve the URL Path for the intended destination
+ 
+-  // look up intendedDestination in topicSlugs, and retrieve the URL Path for the intended destination
++    if (topicSlugs.hasOwnProperty(intendedDestination)) {
++        intendedDestinationName = topicSlugs[intendedDestination];
++    }
+ 
+-  if (topicSlugs.hasOwnProperty(intendedDestination)) {
+-      intendedDestinationName = topicSlugs[intendedDestination];
+-  }
++    console.log('intended destination url: ', intendedDestinationName);
+ 
+-  console.log('intended destination url: ', intendedDestinationName);
++    updateNeighborhoodListLinks()
+ 
+-  updateNeighborhoodListLinks()
++    }
+ 
+-}
+ 
++    // The neighborhood list ships from Hugo with topic-less hrefs, so it works with JS off and
++    // gives crawlers a path to the 42 neighborhood index pages. Once a topic is active the links
++    // follow it, so clicking one lands where the map and the search box already send you.
+ 
+-// The neighborhood list ships from Hugo with topic-less hrefs, so it works with JS off and
+-// gives crawlers a path to the 42 neighborhood index pages. Once a topic is active the links
+-// follow it, so clicking one lands where the map and the search box already send you.
++    function updateNeighborhoodListLinks() {
+ 
+-function updateNeighborhoodListLinks() {
+-  const base = {{ relURL "neighborhood-reports/" }}
++    const base = {{ relURL "neighborhood-reports/" }}
+ 
+-  // Falls back to the neighborhood index when the lookup in setIntendedDestination missed:
+-  // intendedDestinationName stays null there, and null would otherwise land in the URL.
++    // Falls back to the neighborhood index when the lookup in setIntendedDestination missed:
++    // intendedDestinationName stays null there, and null would otherwise land in the URL.
+ 
+-  const suffix = intendedDestinationName ? intendedDestinationName + '/' : ''
++    const suffix = intendedDestinationName ? intendedDestinationName + '/' : ''
+ 
+-  document.querySelectorAll('#nr-neighborhood-list a[data-nbhd]').forEach(a => {
+-    a.href = base + a.dataset.nbhd + '/' + suffix
+-  })
+-}
++    document.querySelectorAll('#nr-neighborhood-list a[data-nbhd]').forEach(a => {
++        a.href = base + a.dataset.nbhd + '/' + suffix
++    })
+ 
+-// SET DEFAULTS FOR HOME PAGE
++    }
+ 
+-// Default: the first NR_topics.yml entry, the button rendered active above
++    // SET DEFAULTS FOR HOME PAGE
+ 
+-const defaultTopic = {{ (index site.Data.globals.NR_topics 0).key }}
+-setIntendedDestination(defaultTopic)
+-document.getElementById('descr').innerHTML = document.getElementById(defaultTopic + '-Descr').innerHTML
+-handleTopicButtons()
++    // Default: the first NR_topics.yml entry, the button rendered active above
+ 
++    const defaultTopic = {{ (index site.Data.globals.NR_topics 0).key }}
++    setIntendedDestination(defaultTopic);
++    document.getElementById('descr').innerHTML = document.getElementById(defaultTopic + '-Descr').innerHTML;
++    handleTopicButtons();
+ 
+-// ===== neighborhood picker destination ==================================== //
+ 
+-// Read at selection time rather than baked in the way the topic indexes bake theirs: here
+-// the destination is whichever topic button is active. Navigating straight to
+-// <nbhd>/<topic>/ is a page the content adapter generates, so the neighborhood no longer
+-// has to travel through sessionStorage to a topic page that would re-select it.
++    // ===== neighborhood picker destination ==================================== //
+ 
+-function nrPickerDestination() { return intendedDestinationName }
++    // Read at selection time rather than baked in the way the topic indexes bake theirs: here
++    // the destination is whichever topic button is active. Navigating straight to
++    // <nbhd>/<topic>/ is a page the content adapter generates, so the neighborhood no longer
++    // has to travel through sessionStorage to a topic page that would re-select it.
+ 
++    function nrPickerDestination() { return intendedDestinationName }
+ 
+-  </script>
++</script>
+ 
+-  {{ partial "nr-neighborhood-picker-js" . }}
++{{ partial "nr-neighborhood-picker-js" . }}
+ 
+ {{- end -}}
+diff --git a/themes/dohmh/layouts/partials/nr-leaflet.html b/themes/dohmh/layouts/partials/nr-leaflet.html
+index 6953957b6a..21706e8ae7 100644
+--- a/themes/dohmh/layouts/partials/nr-leaflet.html
++++ b/themes/dohmh/layouts/partials/nr-leaflet.html
+@@ -26,17 +26,18 @@
+ 
+     L.tileLayer(
+         'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=cb1_2vaf_1_f87644104deb54c869cef554',
+-    {
+-        maxZoom: 15,
+-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+-     }).addTo(map);
++        {
++            maxZoom: 15,
++            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
++        }
++     ).addTo(map);
+     
+     L.control
+-    .scale({
+-        metric: false,
+-        position: "bottomleft",
+-    })
+-    .addTo(map);
++        .scale({
++            metric: false,
++            position: "bottomleft",
++        })
++        .addTo(map);
+     
+     // add and style geographies
+     

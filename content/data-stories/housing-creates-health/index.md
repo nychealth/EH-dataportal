@@ -60,7 +60,7 @@ People living in higher-poverty neighborhoods are more likely to experience nega
 
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption figcaption class="mb-2">“Many people have moved to the neighborhood with different and higher incomes that may skew the definition of affordable housing, thereby creating a gap of income and services.”<span class="float-right"></span>   </figcaption>
+    <figcaption figcaption class="mb-2">“Many people have moved to the neighborhood with different and higher incomes that may skew the definition of affordable housing, thereby creating a gap of income and services.”<span class="float-right"></span>   </figcaption>
     <audio controls src="clip-gap-of-services.mp3" style="width:100%;" class="mt-2">
             <a href="clip-gap-of-services.mp3">
                 Download audio
@@ -86,7 +86,7 @@ A person who has a high rent burden is often confronting other housing challenge
 <div class="pullquote my-4">
 <figure class="">
     <figcaption figcaption class="mb-2"> "… like many people I choose between paying my internet or food…”<span class="float-right"></span>
- </figcaption>
+ </figcaption>
     <audio controls src="clip-internet-or-food.mp3" style="width:100%;" class="mt-2">
             <a href="clip-internet-or-food.mp3">
                 Download audio
@@ -152,7 +152,7 @@ function changeBoro(x) {
 </div>
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption figcaption class="mb-2"> “A lot of the young people I work with openly share that maybe they’re sharing a bed with several siblings.” <span class="float-right"></span> </figcaption>
+    <figcaption figcaption class="mb-2"> “A lot of the young people I work with openly share that maybe they’re sharing a bed with several siblings.” <span class="float-right"></span> </figcaption>
     <audio controls src="clip-sharing-space.mp3" style="width:100%;" class="mt-2">
             <a href="clip-sharing-space.mp3">
                 Download audio
@@ -167,7 +167,7 @@ When housing is unaffordable, options become limited, and people often end up in
 
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption figcaption class="mb-2"> “We didn’t have any heat for last year up until the middle of December. And then we didn’t have any air conditioning through the middle of August.” <span class="float-right"></span> </figcaption>
+    <figcaption figcaption class="mb-2"> “We didn’t have any heat for last year up until the middle of December. And then we didn’t have any air conditioning through the middle of August.” <span class="float-right"></span> </figcaption>
     <audio controls src="clip-ac-and-heat.mp3" style="width:100%;" class="mt-2">
             <a href="clip-ac-and-heat.mp3">
                 Download audio

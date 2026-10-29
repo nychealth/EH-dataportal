@@ -61,7 +61,19 @@ const load_flexdatalist = async () => {
             });
 
             // console.log("$input", $input);
-            
+
+            // ----- give the generated input a combobox role ----------------------------- //
+
+            // flexdatalist hides the authored input and renders its own; the generated one is
+            // what the reader focuses, and its id is the authored id + "-flexdatalist"
+            // (jquery.flexdatalist.js:475). wireComboboxState comes from the partial
+            // flexdatalist-combobox-js.html, which hvi.html loads — these are classic scripts
+            // sharing one global scope.
+
+            const generated = document.getElementById($input.attr('id') + '-flexdatalist');
+
+            if (generated) wireComboboxState(generated);
+
             // ----- add flexdatalist select handler -------------------------------------------------- //
 
             $input.on('select:flexdatalist', (e, set) => {
@@ -77,7 +89,7 @@ const load_flexdatalist = async () => {
 
                 dataChange(set.GEOCODE);
                 
-            })
+            });
 
             // ----- add clear button handler -------------------------------------------------- //
 
@@ -85,16 +97,15 @@ const load_flexdatalist = async () => {
 
                 // console.log("e [clear click]", e);
 
-                $($input).find("~input").val("").trigger( "focus" )
-                
-            })
+                $($input).find("~input").val("").trigger( "focus" );
 
-        })
-}
+            });
+        });
+};
 
 // ----- call loader function -------------------------------------------------- //
 
-load_flexdatalist()
+load_flexdatalist();
 
 // ----------------------------------------------------------------------- //
 // main functionality
@@ -117,6 +128,7 @@ d3.csv(hvi_url, d3.autoType).then(data => {
     buildMap('#mapvis', HVImapSpec, hvidata, nta_topojson, "");
 
     // console.log("hvidata", hvidata);
+
 }); 
 
 
@@ -133,7 +145,7 @@ function dataChange(GEOCODE) {
         // using numeric version of the NTACode for operations
         
         return hvi.GEOCODE == GEOCODE;
-        
+
     });
     
     // console.log("neighborhoodData", neighborhoodData);
@@ -159,11 +171,11 @@ function dataChange(GEOCODE) {
     document.querySelector("#hviVal").innerHTML = nHVI_RANK + ' out of 5';
 
     var cssClass = 'class-' + nHVI_RANK;
-    document.getElementById('hviVal').removeAttribute("class")    // remove old classes, if re-select
-    document.getElementById('NTA').removeAttribute("class")
+    document.getElementById('hviVal').removeAttribute("class");    // remove old classes, if re-select
+    document.getElementById('NTA').removeAttribute("class");
 
-    document.getElementById('hviVal').classList.add(cssClass)       // add classes
-    document.getElementById('NTA').classList.add(cssClass)
+    document.getElementById('hviVal').classList.add(cssClass);       // add classes
+    document.getElementById('NTA').classList.add(cssClass);
     
     document.querySelector("#tempVal").innerHTML = nSURFACE_TEMP + '° F';
     document.querySelector("#greenVal").innerHTML = nGREENSPACE + '%';
@@ -193,53 +205,64 @@ function tertileTranslate(tertileVal, category) {
     if (category == "tempTert") {
         
         if (tertileVal == 3) {
+
             return '<span class="badge badge-warning">Higher than most NYC neighborhoods</span>';
             
         } else if (tertileVal == 2) {
+
             return '<span class="badge badge-light">In the middle of NYC neighborhoods</span>';
             
         } else {
+
             return '<span class="badge badge-success">Lower than most NYC neighborhoods</span>';
+
         }
-        
     } else if (category == "acTert") {
         
         if (tertileVal == 3) {
+
             return '<span class="badge badge-success">more than most NYC neighborhoods</span>';
             
         } else if (tertileVal == 2) {
+
             return '<span class="badge badge-light">in the middle of NYC neighborhoods</span>';
             
         } else {
+
             return '<span class="badge badge-warning">less than most NYC neighborhoods</span>';
+
         }
-        
     } else if (category == "greenTert") {
         
         if (tertileVal == 3) {
+
             return '<span class="badge badge-success">more than most NYC neighborhoods</span>';
             
         } else if (tertileVal == 2) {
+
             return '<span class="badge badge-light">in the middle of NYC neighborhoods</span>';
             
         } else {
+
             return '<span class="badge badge-warning">less than most NYC neighborhoods</span>';
+
         }
-        
     } else if (category == "incTert") {
         
         if (tertileVal == 3) {
+
             return '<span class="badge badge-success">higher than most NYC neighborhoods</span>';
             
         } else if (tertileVal == 2) {
+
             return '<span class="badge badge-light">in the middle of NYC neighborhoods</span>';
             
         } else {
+
             return '<span class="badge badge-warning">lower than most NYC neighborhoods</span>';
+
         }
-        
     }
-    
 }
 
 
@@ -255,14 +278,14 @@ function buildMap(div, spec, csv, topo, nbr) {
         
         // get data object whose url is "topo"
         
-        let topo_url = spec.data.filter(data => {return data.url === "topo"})[0];
+        let topo_url = spec.data.filter(data => {return data.url === "topo";})[0];
         
         // update url element of this data array (which updates the spec), because
         //  top_url is a shallow copy / reference to the spec
         
         topo_url.url = topo;
         
-        vegaEmbed(div, spec, {actions: false}).then(async res => {
+        vegaEmbed(div, spec, {renderer: "svg", actions: false}).then(async res => {
                 
             let res_view = await res.view
                 .signal("selectedNTA", nbr)

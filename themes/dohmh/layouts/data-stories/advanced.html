@@ -15,7 +15,7 @@
 
         <div class="medium my-auto">
             <h1 class="titleheader py-2 px-4">
-                {{- .Title -}}
+                {{ partial "section-icon.html" $.Section }}{{- .Title -}}
             </h1>
         </div>
     </div>
@@ -32,7 +32,7 @@
     </div>
 </div>
 
-<article class="container-fluid" id="skip-header-target">
+<article class="container-fluid">
     
     <div class="row mt-2 mb-3">
         <div class="col-12">

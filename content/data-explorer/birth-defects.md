@@ -6,6 +6,14 @@ azlinks: "https://www.nyc.gov/site/doh/health/health-topics/pregnancy.page"
 seo_title: "Birth defects data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of birth defects data in NYC."
+blurb: "limb, heart, and genetic conditions"
+datatables: true
+arquero: true
+leaflet: true
+vega: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 tags:
 categories: ["childhealth", "healthoutcomes"]
 keywords: ["children", "birth", "birth defects", "babies", "pregnancy"]
@@ -38,7 +46,7 @@ relatedData:
     url: "cancers-in-children/"
 ---
 
-Birth defects (also called congenital malformations) are conditions that happen when a baby does not develop normally during pregnancy. Structural defects may include missing limbs, malformed hearts, spina bifida and genetic conditions like Down Syndrome. Most birth defects happen during the first three months of pregnancy and are detected within the first year of life. Some birth defects (such as cleft lip or clubfoot) are easy to see, but others (such as heart defects or hearing loss) are found using special tests (such as x-rays, CT scans, or hearing tests). Birth defects can vary from mild to severe.
+Birth defects (also called congenital malformations) are conditions that happen when a baby does not develop normally during pregnancy. Structural defects may include missing limbs, malformed hearts, spina bifida and genetic conditions like Down Syndrome. Most birth defects happen during the first three months of pregnancy and are detected within the first year of life. Some birth defects (such as cleft lip or clubfoot) are easy to see, but others (such as heart defects or hearing loss) are found using special tests (such as x-rays, CT scans, or hearing tests). Birth defects can vary from mild to severe.
 
 This site provides data on NYC children born with one or more of 12 major birth defects. Each of the 12 birth defects is defined in the glossary on this site. The data comes from the [NYS Department of Health Congenital Malformations Registry](http://www.health.state.ny.us/diseases/congenital_malformations/cmrhome.htm).
 
@@ -67,7 +75,7 @@ Not all birth defects can be prevented, but actions that increase the chance of 
 - Make sure that medical conditions like diabetes are under control.
 - Take a vitamin with folic acid before and during pregnancy.
 - Quit smoking and avoid exposure to secondhand smoke.
-- Damaged lead-containing paint in homes should be safely addressed by properly trained workers, ideally prior to pregnancy.  Pregnant women and small children should stay out of the home until lead paint projects are completed.
+- Damaged lead-containing paint in homes should be safely addressed by properly trained workers, ideally prior to pregnancy. Pregnant women and small children should stay out of the home until lead paint projects are completed.
 - Employers should provide workplaces free from unsafe chemical exposures and provide protective gear to workers when necessary. To learn more about the chemicals at work, employees can ask their employer for the Material Safety Data Sheets for the products used.
 
 ### Key Messages

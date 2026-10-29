@@ -38,7 +38,7 @@ Almost 3 in 10 of New Yorkers — 28% — experience three or more forms of ener
 
 [More than a fifth of New Yorkers (21%) have trouble paying utility bills](https://pubmed.ncbi.nlm.nih.gov/38315917/), and many New Yorkers are in debt to utility companies.
 
-#### Unaffordable energy can be a matter of life and death 
+#### Unaffordable energy can be a matter of life and death 
 
 [About one in three New Yorkers reported that their homes were too hot or too cold](https://pubmed.ncbi.nlm.nih.gov/38315917/) to be comfortable and safe. This can cause or trigger health issues , like asthma, heart problems, and mental health conditions.
 
@@ -85,7 +85,7 @@ New Yorkers who have trouble paying utility bills are more likely to be renters 
 <div style="min-height:973px" id="datawrapper-vis-A255F"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/A255F/embed.js" charset="utf-8" data-target="#datawrapper-vis-A255F"></script><noscript><img src="https://datawrapper.dwcdn.net/A255F/full.png" alt="" /></noscript></div>
 </div>
 
-### Black and Latino New Yorkers are more likely to experience energy insecurity 
+### Black and Latino New Yorkers are more likely to experience energy insecurity 
 
 Energy insecurity is not just about affordability; it is an equity issue. Black and Latino New Yorkers are more likely to experience energy insecurity and power outages, and are also more likely to live in housing in need of maintenance. And Black New Yorkers are twice as likely to die of heat-related illness than white New Yorkers. These disparities are a result of structural racism, driven by racist housing policies such as redlining, discriminatory neighborhood disinvestment and less access to quality resources.
 
@@ -98,7 +98,7 @@ Other New Yorkers more likely to be experiencing energy insecurity include New Y
 
 Fixing the equity gap in energy access means ensuring these New Yorkers are prioritized through policies and programs.
 
-### Lowering energy bills, equitable air conditioning access and addressing building conditions will increase health and energy access 
+### Lowering energy bills, equitable air conditioning access and addressing building conditions will increase health and energy access 
 
 But there are ways to make access to energy more equitable, which would also support safe and healthy housing. Social benefit programs that subsidize energy bills or provide equipment are critical to ensuring energy security. While New York City is still early in the process of tackling energy insecurity, [the City’s long-term energy plan includes reducing energy costs for low- and middle-income New Yorkers](https://climate.cityofnewyork.us/wp-content/uploads/2023/09/PowerUpNYC.pdf). The federal and state Home Energy Assistance Program (HEAP) provides assistance with winter energy costs and purchase of air conditioners in the summer, though its coverage would benefit more New Yorkers by expanding to include energy bills year-round. [The Energy Affordability Program (EAP) helps low-income consumers](https://dps.ny.gov/energy-affordability-program#:~:text=The%20EAP%20seeks%20to%20provide,affordable%20through%20monthly%20bill%20discounts.) with a discount on their utility bills. While some eligible New Yorkers — like recipients of HEAP — are automatically enrolled for EAP, many households, including those on Medicaid, must enroll separately to receive assistance.
 
@@ -108,7 +108,7 @@ Beneficial building electrification will reduce emissions that worsen climate ch
 
 With improvements to housing and energy assistance programs, we can work towards energy security for all New Yorkers.
 
-### Sign up for alerts and apply for assistance. 
+### Sign up for alerts and apply for assistance. 
 
 - [Register your electric medical equipment with Con Ed](https://www.coned.com/en/accounts-billing/payment-plans-assistance/special-services).
 - [Apply for energy bill assistance with Con-Ed](https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill).

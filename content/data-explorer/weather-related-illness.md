@@ -6,6 +6,14 @@ azlink: "https://www.nyc.gov/site/doh/health/emergency-preparedness/threats.page
 seo_title: "Weather-related illness data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of weather-related illness in NYC."
+blurb: "Heat- and cold-related illness and death"
+datatables: true
+arquero: true
+leaflet: true
+vega: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 tags:
 categories: ["inequality", "climatehealth", "healthoutcomes"]
 keywords:
@@ -92,7 +100,7 @@ _Living without heat or being outdoors in cold weather for a prolonged time can 
 
 - Check on neighbors, friends, and relatives.
 
-For more information on preparing for weather hazards– including heat, cold, coastal storms and power outages – visit the [DOHMH extreme weather website](http://www1.nyc.gov/site/doh/health/emergency-preparedness/threats.page).
+For more information on preparing for weather hazards – including heat, cold, coastal storms and power outages – visit the [DOHMH extreme weather website](http://www1.nyc.gov/site/doh/health/emergency-preparedness/threats.page).
 
 ### Key Messages
 

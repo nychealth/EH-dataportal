@@ -557,7 +557,7 @@
       "type": "Feature",
       "properties": {
         "GEOCODE": 202,
-        "GEONAME": "Downtown  - Heights - Slope",
+        "GEONAME": "Downtown - Heights - Slope",
         "BOROUGH": "Brooklyn"
       },
       "geometry": {
@@ -1472,7 +1472,7 @@
       "type": "Feature",
       "properties": {
         "GEOCODE": 307,
-        "GEONAME": "Gramercy Park -  Murray Hill",
+        "GEONAME": "Gramercy Park - Murray Hill",
         "BOROUGH": "Manhattan"
       },
       "geometry": {

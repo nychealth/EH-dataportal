@@ -4,20 +4,8 @@ $(document).ready(function () {
     // Shared helpers
     ////////////////////////////////////////
 
-    const trackSubscribeClick = function (event) {
-        if ( typeof gtag !== 'function' ) {
-            return;
-        }
-
-        const subscribe_target = event.currentTarget;
-
-        gtag('event', 'click_subscribe', {
-            page: window.location.pathname,
-            place: subscribe_target.dataset.subscribeClick,
-        });
-    };
-
     const queueSubscribeModal = function (subscribe_trigger) {
+
         const parent_modal_selector = subscribe_trigger.data('subscribe-parent-modal');
         const subscribe_modal = $('#subscribeModal');
 
@@ -37,6 +25,7 @@ $(document).ready(function () {
         });
 
         parent_modal.modal('hide');
+
     };
 
     ////////////////////////////////////////
@@ -46,14 +35,20 @@ $(document).ready(function () {
     const target = document.querySelector('html');
 
     const observer = new MutationObserver( function(mutations) {
+
         mutations.forEach( function() {
+
             const classes = target.getAttribute('class') || '';
             const single_class = 'translated-rtl';
 
             if ( classes.includes(single_class) ) {
+
                 target.setAttribute('dir', 'rtl');
+
             } else {
+
                 target.setAttribute('dir', 'ltr');
+
             }
         });
     });
@@ -61,7 +56,7 @@ $(document).ready(function () {
     const config = {
         attributes: true,
         attributeFilter: ['class']
-    }
+    };
 
     observer.observe(target, config);
 
@@ -107,10 +102,14 @@ $(document).ready(function () {
     const subscribe_triggers = $('[data-subscribe-click]');
 
     if ( subscribe_triggers.length ) {
-        subscribe_triggers.on('click', function (event) {
-            const subscribe_trigger = $(this);
 
-            trackSubscribeClick(event);
+        // Behaviour only. click_subscribe is fired by site.js, which delegates it for
+        // the same [data-subscribe-click] elements — binding it here too sent two events
+        // with two different schemas on every click [verified 2026-08-21 in-browser].
+
+        subscribe_triggers.on('click', function (event) {
+
+            const subscribe_trigger = $(this);
 
             if ( subscribe_trigger.data('subscribe-parent-modal') ) {
                 event.preventDefault();
@@ -124,6 +123,7 @@ $(document).ready(function () {
     if ( subscribe_modal.length ) {
 
         subscribe_modal.on('show.bs.modal', function () {
+
             const subscribe_form = $(this);
             const subscribe_modal_body = subscribe_form.find('.modal-body');
             const subscribe_placeholder = subscribe_modal_body.find('.subscribe-form-placeholder');
@@ -153,6 +153,7 @@ $(document).ready(function () {
 
             subscribe_iframe.attr('src', subscribe_form_url);
             subscribe_modal_body.append(subscribe_iframe);
+
         });
     }
 
@@ -176,14 +177,17 @@ $(document).ready(function () {
             const primary_content = $('#primary-content').offset().top;
 
             if ( window_scroll > primary_content ) {
+
                 $('#back-to-top').addClass('show');
+
             } else {
+
                 $('#back-to-top').removeClass('show');
+
             }
-
         }).scroll();
-    }
 
+    }
 });
 
 ////////////////////////////////////////
@@ -192,25 +196,33 @@ $(document).ready(function () {
 
 $('.lang-select').click(function (e) {
     e.preventDefault();
-    const lang = $(this).attr('data-lang')
+    const lang = $(this).attr('data-lang');
     setLanguage(lang);
 });
 
 function setLanguage(theLang) {
+
     const theSelect = $('.goog-te-combo');
     const db = theSelect.get(0);
     theSelect.val(theLang);
     fireEvent(db, 'change');
+
 }
 
 function fireEvent(element, event) {
+
     if (document.createEventObject) {
+
         const evt = document.createEventObject();
-        return element.fireEvent('on' + event, evt)
+        return element.fireEvent('on' + event, evt);
+
     } else {
+
         const evt = document.createEvent("HTMLEvents");
         // event type, bubbling, cancelable
+
         evt.initEvent(event, false, true); 
         return !element.dispatchEvent(evt);
+
     }
 }

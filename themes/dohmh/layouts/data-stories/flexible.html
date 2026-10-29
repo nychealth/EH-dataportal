@@ -3,7 +3,7 @@
 
 <!-- This flexible data story template puts content only within a row, and puts related content below -->
 
-<article class="container-fluid" id="skip-header-target">
+<article class="container-fluid">
 
     <!-- language selection -->
 
@@ -37,7 +37,7 @@
                     </nav>
                 </div>
 
-                <h1 class="h2 data-stories mb-3"><i class="fas fa-passport" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
+                <h1 class="h2 mb-3">{{ partial "section-icon.html" $.Section }}{{ .Title }}</h1>
                 <div class="">
 
                     {{ $src := .Resources.GetMatch .Params.image }}
