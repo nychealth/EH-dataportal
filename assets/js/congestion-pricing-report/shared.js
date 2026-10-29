@@ -82,10 +82,15 @@ function getSiteDisplayName(site) {
 
 // Keep CRZ first in the EJ selector while preserving the existing order for
 // the remaining sites.
+
 const site_names = ["CRZ", ...Object.keys(CP_SITES).filter((site) => site !== "CRZ")];
 const tod_site_names = site_names.filter(s => CP_SITES[s].hasTOD);
 const CP_BADGE_TO_SITE = {};
-site_names.forEach(s => { if (CP_SITES[s].badgeKey) CP_BADGE_TO_SITE[CP_SITES[s].badgeKey] = s; });
+site_names.forEach(s => {
+    if (CP_SITES[s].badgeKey) {
+        CP_BADGE_TO_SITE[CP_SITES[s].badgeKey] = s;
+    }
+});
 
 
 // ----------------------------------------------------------------------- //
@@ -98,6 +103,7 @@ site_names.forEach(s => { if (CP_SITES[s].badgeKey) CP_BADGE_TO_SITE[CP_SITES[s]
 // Shared by the EJ (#cpSiteButtons) and TOD (#todSiteButtons) charts.
 
 function createSiteSelector({ wrapId, sites, idPrefix, getCurrent, onChange }) {
+
     const btnWrap = document.getElementById(wrapId);
     if (!btnWrap) return;
     btnWrap.innerHTML = "";
@@ -136,11 +142,9 @@ function createSiteSelector({ wrapId, sites, idPrefix, getCurrent, onChange }) {
             if (site === current) btn.classList.add("active");
 
             btn.addEventListener("click", async () => {
-
                 [...btnWrap.querySelectorAll("button")].forEach((b) => b.classList.remove("active"));
                 btn.classList.add("active");
                 await onChange(site);
-
             });
 
             btnWrap.appendChild(btn);
@@ -173,6 +177,7 @@ function addResizeHandler(el, onResize, onBreakpoint) {
 
         const w = el.clientWidth;
         // The select/button swap is a viewport question, not a container one.
+
         const mobile = window.innerWidth < 768;
         if (w === lastW) return;
         const crossedBreakpoint = mobile !== lastMobile;
@@ -194,6 +199,7 @@ function addResizeHandler(el, onResize, onBreakpoint) {
     observer.observe(el);
 
     return observer;
+
 }
 
 
@@ -205,7 +211,6 @@ function addResizeHandler(el, onResize, onBreakpoint) {
 // where available, JSON round-trip as a fallback (specs are plain JSON).
 
 function cloneSpec(spec) {
-
     return typeof structuredClone === "function"
         ? structuredClone(spec)
         : JSON.parse(JSON.stringify(spec));
@@ -233,6 +238,7 @@ const CP_CSV_CACHE = new Map();
 function loadCsv(url) {
 
     if (!CP_CSV_CACHE.has(url)) {
+
         CP_CSV_CACHE.set(
             url,
             vega.loader().load(url).then((raw) => vega.read(raw, { type: "csv", parse: "auto" }))
@@ -240,6 +246,7 @@ function loadCsv(url) {
     }
 
     return CP_CSV_CACHE.get(url);
+
 }
 
 // Vega tags ingested row objects with its own tuple id, so two views sharing
@@ -248,9 +255,7 @@ function loadCsv(url) {
 // optimizing away.
 
 function csvRows(rows) {
-
     return rows.map((row) => ({ ...row }));
-
 }
 
 
@@ -295,16 +300,21 @@ function wrapText(text, maxPx, fontSize, fontFamily, fontWeight) {
         const candidate = line ? line + " " + word : word;
 
         if (line && measureTextWidth(candidate, fontSize, fontFamily, fontWeight) > maxPx) {
+
             lines.push(line);
             line = word;
+
         } else {
+
             line = candidate;
+
         }
     }
 
     if (line) lines.push(line);
 
     return lines;
+
 }
 
 // Wrap a spec's title + subtitle to the container width. On a wide container
@@ -367,6 +377,7 @@ const CP_FIT = {
 
 // Below Bootstrap's sm breakpoint the authored gutter (tuned for a 4-column
 // desktop row) becomes one wide gap that strands the width it was meant to fill.
+
 const CP_NARROW_SPACING = 20;
 
 const CP_FIT_TOLERANCE = 2;
@@ -409,6 +420,7 @@ function fitChart(spec, el, cfg, apply, paneOverride) {
     wrapTitle(spec, avail);
 
     return { cols, spacing, pane, avail, key, shrink, overridden: paneOverride != null };
+
 }
 
 // Render, then check what actually came out. Only ever trims: a chart whose cap
@@ -424,7 +436,9 @@ async function embedFitted(el, buildSpec, cfg, apply, paneOverride) {
 
     await vegaEmbed(el, spec, CP_EMBED_OPTS);
 
-    if (layout.overridden || CP_FLOOR_BOUND.has(layout.key)) return layout;
+    if (layout.overridden || CP_FLOOR_BOUND.has(layout.key)) {
+        return layout;
+    }
 
     const rendered = cpRenderedWidth(el);
     const overflow = rendered - el.clientWidth;
@@ -453,6 +467,7 @@ async function embedFitted(el, buildSpec, cfg, apply, paneOverride) {
     }
 
     return layout;
+
 }
 
 

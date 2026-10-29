@@ -23,10 +23,10 @@
             4,
             4,
             4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 3,
@@ -89,8 +89,8 @@
             "Energy is critical for health and climate resilience — but not all New Yorkers may be able to afford it",
             "What Hurricane Ida and Superstorm Sandy taught us about flooding and health",
             "Economic stability creates health",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",
