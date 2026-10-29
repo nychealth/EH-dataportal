@@ -18,9 +18,7 @@ const resetDisparitiesPaneLayout = () => {
     const correlateHolder = document.getElementById('correlateHolder');
     const linksChart = document.getElementById('links');
 
-    if (!correlateHolder || !linksChart) {
-        return;
-    }
+    if (!correlateHolder || !linksChart) return;
 
     // - - - remove some properties and classes - - - //
 
@@ -46,7 +44,6 @@ const scheduleDisparitiesViewResize = () => {
             updateChartPlotSize();
         });
     });
-
 };
 
 // Renders the disparities scatterplot for the selected primary measure.
@@ -60,9 +57,7 @@ const renderDisparitiesChart = async (
 
     // ----- guard clause, resolve DOM refs, reset pane layout ----- //
 
-    if (!primaryMetadata?.length) {
-        return;
-    }
+    if (!primaryMetadata?.length) return;
 
     const viewDescription = document.getElementById('viewDescription');
     const linksViewNote = document.getElementById('linksViewNote');
@@ -129,10 +124,12 @@ const renderDisparitiesChart = async (
 
         const aqDisparityData = await createJoinedLinksData(primaryMeasureId, disparityMeasureId)
             .then(res => {
+
                 return aq.from(res.data)
                     .derive({ PovRank: d => (d.Value_2 > 30 ? 4 : (d.Value_2 > 20 ? 3 : (d.Value_2 > 10 ? 2 : 1))) })
                     .derive({ PovCat: d => (d.PovRank == 4 ? 'Very high (> 30%)' : (d.PovRank == 3 ? 'High (20-30%)' : (d.PovRank == 2 ? 'Medium (10-20%)' : 'Low (0-10%)'))) })
                     .derive({ randomOffsetX: aq.escape(d => d.PovRank + (seededRandom() * 2 - 1)) });
+
             });
 
         DE.disparities.disparityData = aqDisparityData.objects();
@@ -219,7 +216,6 @@ const renderDisparitiesChart = async (
                 "labelBaseline": "bottom",
                 "labelExpr":
                     "(isObject(datum) ? datum.value : datum) === 0 ? '' : (isObject(datum) ? datum.value : datum)",
-
             },
             "view": { "stroke": "transparent" },
             "text": {
@@ -337,7 +333,6 @@ const renderDisparitiesChart = async (
                 }
             }
         ]
-
     };
 
     // ----- embed chart, cache print-export state, build downloadable CSV ----- //

@@ -1,0 +1,12 @@
+{{- /*
+    Plain-text summary of a page's body, for card blurbs. Callers truncate it themselves.
+
+    Strips any element carrying `data-card-exclude` first - the `updateflag` shortcode's notice
+    sits at the top of a story's body, so without this it becomes the card text. The regex
+    matches from that element's opening tag to the first `</div>`, so a marked element must
+    not contain a nested `div`. A notice written by hand without the attribute is not stripped;
+    use the shortcode.
+*/ -}}
+
+{{- $body := .Content | replaceRE `(?s)<div[^>]*data-card-exclude[^>]*>.*?</div>` "" -}}
+{{- return ($body | plainify | htmlUnescape) -}}

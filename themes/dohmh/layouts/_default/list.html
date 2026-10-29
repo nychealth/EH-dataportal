@@ -38,7 +38,7 @@
                             <div class="card-body">
                                 <h4 class="card-title">
                                     <a href="{{ .RelPermalink }}" class="text-primary fs-rg mb-1">{{ .Title }}</a></h4>
-                                    <p class="card-text mt-0">{{ .Content | plainify | htmlUnescape | truncate 150 }}</p>
+                                    <p class="card-text mt-0">{{ partial "card-summary.html" . | truncate 150 }}</p>
                                 </div>
                             </div>
                         </div>

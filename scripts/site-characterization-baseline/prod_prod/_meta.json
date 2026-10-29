@@ -1,13 +1,13 @@
 {
-    "capturedAt": "2026-10-16T03:25:10.069Z",
-    "gitHead": "28c635d9445286df5e3ded0323b046ce1f9228e8",
+    "capturedAt": "2026-10-28T14:57:11.984Z",
+    "gitHead": "722ea6f50d30f7a679767d2a4923a85324c3bf9f",
     "baselineKey": "prod_prod",
     "hugoEnv": "prod_prod",
     "dataBranch": "production",
     "dataCommit": {
-        "sha": "7b61f6653b841d581a3913c13be73aee9d8fa586",
-        "date": "2026-10-13T19:36:36Z",
-        "fetchedAt": "2026-10-16T03:21:39.139Z"
+        "sha": "547482b9df589006543e13e8cdf6546e00ed9998",
+        "date": "2026-10-24T03:19:55Z",
+        "fetchedAt": "2026-10-28T14:53:41.836Z"
     },
     "pagefind": true,
     "hugo": {
