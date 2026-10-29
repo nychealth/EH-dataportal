@@ -142,8 +142,9 @@
             
             var map;
             function drawMap() {
-                document.getElementById('mapLocator').innerHTML = ''
-                document.getElementById('searchHolder').innerHTML = `<input class="rad-all form-control form-control-lg" placeholder="Search Address" id="map-search">`
+
+                document.getElementById('mapLocator').innerHTML = '';
+                document.getElementById('searchHolder').innerHTML = `<input class="rad-all form-control form-control-lg" placeholder="Search Address" id="map-search">`;
                 
                 map = new nyc.ol.FrameworkMap({
                     mapTarget: '#mapLocator',
@@ -157,22 +158,20 @@
                 
             }
             
-            drawMap()
+            drawMap();
             
             // Add event listener on entry form
-            document.getElementById('map-search').addEventListener("change", getData)
+
+            document.getElementById('map-search').addEventListener("change", getData);
             
             let searchButton = document.querySelector('.btn.btn-srch');
             
             // Check if the button exists to avoid errors
+
             if (searchButton) {
-                
                 searchButton.onclick = function() {
-                    
-                    $("#map-search").parent().trigger("submit")
-                    
+                    $("#map-search").parent().trigger("submit");
                 };
-                
             }
             
             // Check hash for an existing address
@@ -181,6 +180,7 @@
             // ----------------------------------------------------------------------  //
             // ********** Runs data fetching if there's a url hash: ****************** //
             // ----------------------------------------------------------------------  //
+
             /*
             var hash = window.location.hash
             if (hash.length > 5) {
@@ -207,25 +207,31 @@
             // ----------------------------------------------------------------------  //
             
             async function getData() {
-                console.log('*** Getting data:')
+
+                console.log('*** Getting data:');
                 waitForGlobal("map.location.name", function() {
+
                     console.log("map.location [post]", map.location);
                     
                     // Get data
-                    getDataFor(map.location)
+
+                    getDataFor(map.location);
                     
                     // Next, set up reset
-                    document.getElementById('map-search').disabled = true
+
+                    document.getElementById('map-search').disabled = true;
                     let button = document.querySelector('#searchHolder button');
                     
                     // Turn search button into Start Over button
+
                     if (button) {
-                        button.innerHTML = 'Start over'
+
+                        button.innerHTML = 'Start over';
                         button.onclick = function() {
                             location.reload(); // Reload the page
                         };
                     }
-                })
+                });
             }
             
             // ----------------------------------------------------------------------  //
@@ -233,48 +239,60 @@
             // ----------------------------------------------------------------------  //
             
             function getDataFor(x) {
-                console.log('**** Getting data for:')
-                console.log(map.location.name)
+
+                console.log('**** Getting data for:');
+                console.log(map.location.name);
                 
                 // add hash
-                window.location.hash = map.location.name
+
+                window.location.hash = map.location.name;
                 
                 // add location to link to mygovnyc
-                var linkURL = `https://www.mygovnyc.org/?addr=${map.location.name}`
-                document.getElementById('link').setAttribute("href",linkURL)
+
+                var linkURL = `https://www.mygovnyc.org/?addr=${map.location.name}`;
+                document.getElementById('link').setAttribute("href",linkURL);
                 
-                let loc   = map.location
-                let data  = map.location.data
+                let loc   = map.location;
+                let data  = map.location.data;
                 
                 // First, un-hide elements
-                document.getElementById('outputRow').classList.remove('hide')
-                document.getElementById('contactContainer').classList.remove('hide')
+
+                document.getElementById('outputRow').classList.remove('hide');
+                document.getElementById('contactContainer').classList.remove('hide');
                 
                 // Passing in the name (must match LWV API), the district, and the LWV Api url string. And, order.
+
                 retrieveAPIData('Mayor',null,null);
                 retrieveAPIData('NYC Public Advocate',null,null);
-                retrieveAPIData('NYC Comptroller',null,null)
+                retrieveAPIData('NYC Comptroller',null,null);
                 
-                retrieveAPIData('City Council',removeLeadingZero(data.cityCouncilDistrict),'lwvnyc_council')
-                retrieveAPIData('Community Board',removeLeadingZero(data.communityDistrict),'nyccommboard')
-                retrieveAPIData('Borough President',removeLeadingZero(data.bblBoroughCode),'lwvnyc_borough')
-                retrieveAPIData('State Assembly Member',removeLeadingZero(data.assemblyDistrict),'lwvnyc_nyassembly')
-                retrieveAPIData('State Senator', removeLeadingZero(data.stateSenatorialDistrict),'lwvnyc_nysenate')
-                retrieveAPIData('US Representative', removeLeadingZero(data.congressionalDistrict),'lwvnyc_congress')
-                retrieveAPIData('US Senator',null,null)
+                retrieveAPIData('City Council',removeLeadingZero(data.cityCouncilDistrict),'lwvnyc_council');
+                retrieveAPIData('Community Board',removeLeadingZero(data.communityDistrict),'nyccommboard');
+                retrieveAPIData('Borough President',removeLeadingZero(data.bblBoroughCode),'lwvnyc_borough');
+                retrieveAPIData('State Assembly Member',removeLeadingZero(data.assemblyDistrict),'lwvnyc_nyassembly');
+                retrieveAPIData('State Senator', removeLeadingZero(data.stateSenatorialDistrict),'lwvnyc_nysenate');
+                retrieveAPIData('US Representative', removeLeadingZero(data.congressionalDistrict),'lwvnyc_congress');
+                retrieveAPIData('US Senator',null,null);
+
             }
             
             async function retrieveAPIData(x,y,z) {
-                let xEncode = encodeURIComponent(x)
+
+                let xEncode = encodeURIComponent(x);
                 let url;
                 
                 if (y === null) {
+
                     url = `https://www.mygovnyc.org/api/v1/query/lwvnyc_other?columns=*&filter=districttitle%3D'${xEncode}'`;
+
                 } else {
+
                     url = `https://www.mygovnyc.org/api/v1/query/${z}?columns=*&filter=district%3D'${y}'`;
+
                 }
                 
                 try {
+
                     const response = await fetch(url);
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -284,18 +302,18 @@
                     
                     // console.log('Data for ' + x)
                     // console.log(data); // Log the data to the console
-                    printData(data,x)    // Send to print function 
+
+                    printData(data,x);    // Send to print function 
                     
                 } catch (error) {
+
                     console.error("Error fetching data:", error);
+
                 }
-                
             }
             
             function removeLeadingZero(str) {
-                if (str.startsWith('0')) {
-                    return str.slice(1);
-                }
+                if (str.startsWith('0')) return str.slice(1);
                 return str;
             }
             
@@ -304,41 +322,66 @@
             // ----------------------------------------------------------------------  //
             
             function printData(data, office) {
+
                 console.log('*** printing data');
                 
                 let sort;
                 if (office.includes('US ')) {
+
                     sort = 10;
+
                 } else if (office.includes('State')) {
+
                     sort = 9;
+
                 } else if (office.includes('Borough')) {
+
                     sort = 6;
+
                 }  else if (office.includes('Community')) {
-                    sort = 5
+
+                    sort = 5;
+
                 } else if (office.includes ('Council')) {
-                    sort = 4
+
+                    sort = 4;
+
                 } else if (office.includes('NYC')) {
-                    sort = 3
+
+                    sort = 3;
+
                 } else if (office.includes('Mayor')) {
-                    sort = 1
+
+                    sort = 1;
+
                 }
                 
                 let tableBody = document.getElementById('newTableBody');
                 
                 for (let i = 0; i < data.length; i++) {
+
                     // Create table row
+
                     let row = document.createElement('tr');
                     
                     let cell_office = document.createElement('td');
                     
                     if (office.includes('Council')) {
-                        cell_office.innerHTML = office + ' District ' + data[i].district
+
+                        cell_office.innerHTML = office + ' District ' + data[i].district;
+
                     } else if (office.includes('Community')) {
-                        cell_office.innerHTML = office + ' ' + data[i].district
+
+                        cell_office.innerHTML = office + ' ' + data[i].district;
+
                     } else if (office.includes('Borough')) {
-                        cell_office.innerHTML = data[i].districttitle
+
+                        cell_office.innerHTML = data[i].districttitle;
+
                     } else {
-                        cell_office.innerHTML = office
+
+                        cell_office.innerHTML = office;
+
                     }
                     
                     
@@ -354,22 +397,29 @@
                     let cell_email = document.createElement('td');
                     let email = data[i].email;
                     if (isValidEmail(email) === true) {
-                        cell_email.innerHTML =  `<strong><a href="mailto:${email}">${email}</a></strong>`
+
+                        cell_email.innerHTML =  `<strong><a href="mailto:${email}">${email}</a></strong>`;
+
                     } else {
-                        cell_email.innerHTML =  `<strong><a href="${email}" target="_blank"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Contact page</a></strong>`
+
+                        cell_email.innerHTML =  `<strong><a href="${email}" target="_blank"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Contact page</a></strong>`;
+
                     }
                     
                     // Append cells to row
+
                     row.appendChild(cell_office);
                     row.appendChild(cell_name);
                     row.appendChild(cell_phone);
                     row.appendChild(cell_email);
                     
                     // Insert row at the correct sorted position
+
                     let inserted = false;
                     let rows = tableBody.getElementsByTagName("tr");
                     
                     for (let j = 0; j < rows.length; j++) {
+
                         let existingSort = rows[j].getAttribute("data-sort"); // Get existing sort value
                         if (existingSort && parseInt(existingSort) > sort) {
                             tableBody.insertBefore(row, rows[j]); // Insert before the first row with a higher sort value
@@ -383,6 +433,7 @@
                     }
                     
                     row.setAttribute("data-sort", sort); // Store the sort value for future comparisons
+
                 }
             }
             
@@ -391,30 +442,39 @@
             // ----------------------------------------------------------------------  //
             
             // window.checkNested = function(obj, args) {
+
                 const checkNested = function(obj, args) {
+
                     for (var i = 0; i < args.length; i++) {
-                        if (!obj || !obj.hasOwnProperty(args[i])) {
-                            return false;
-                        }
+                        if (!obj || !obj.hasOwnProperty(args[i])) return false;
                         obj = obj[args[i]];
                     }
                     return true;
-                }
+
+                };
                 
                 const waitForGlobal = function(keyPath, callback) {
+
                     var args = keyPath.split('.');
                     if (checkNested(window, args)) {
+
                         callback();
+
                     } else {
+
                         setTimeout(function() {
+
                             // window.waitForGlobal(keyPath, callback);
+
                             waitForGlobal(keyPath, callback);
+
                         }, 100);
+
                     }
-                }
+                };
                 
                 function startOver() {
-                    location.reload()
+                    location.reload();
                 }
                 
                 function isValidEmail(email) {
@@ -427,6 +487,7 @@
                 }
                 
                 // Create a new keyboard event
+
                 const enterEvent = new KeyboardEvent('keydown', {
                     key: 'Enter',
                     keyCode: 13, // Deprecated but still sometimes needed

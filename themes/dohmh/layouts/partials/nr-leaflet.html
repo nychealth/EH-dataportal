@@ -12,17 +12,38 @@
     // ---------- Establish initial variables ---------- // 
     // --------------------------------------------------------------------------------------------------- // 
     
-    var geocode = `{{ .Params.geocode }}`
+    let geocode = `{{ .Params.geocode }}`;
     
-    var lat = 40.715554;
-    var lng = -74.0026642;
-    var zoom = 10;
+    let lat = 40.715554;
+    let lng = -74.0026642;
+    let zoom = 10;
+
+    // The neighborhood index pages' own neighborhood: its layer once the GeoJSON is in, and
+    // the style that marks it, which resetHighlight puts back after a hover
+
+    let ownNeighborhoodLayer = null;
+
+    const OWN_NEIGHBORHOOD_STYLE = {
+        weight: 3,
+        color: "#008939",
+        dashArray: "3",
+        fillOpacity: 0.5,
+    };
     
     // --------------------------------------------------------------------------------------------------- // 
     // ---------- Initialize map ---------- // 
     // --------------------------------------------------------------------------------------------------- // 
     
-    let map = L.map("map", { zoomControl: false }).setView([lat, lng], zoom); // [Lat,Long],Zoom
+    // Leaflet's default zoom control is on, beside a "Reset zoom" button added below. Where a
+    // caller hides the map from assistive tech, removeHiddenMapFromTabOrder takes all of these
+    // buttons out of the tab order with the polygons.
+    //
+    // fadeAnimation off: Leaflet fades each tile in over 200ms after it loads, so with the tiles
+    // already cached a click from one neighborhood to the next still showed an empty map for a
+    // quarter second — tiles in the page at 68ms, fully opaque at 331ms [measured 2026-10-19,
+    // southwest_queens/, warm cache]. It also turns off Leaflet's tooltip fade
+
+    let map = L.map("map", { fadeAnimation: false }).setView([lat, lng], zoom); // [Lat,Long],Zoom
 
     L.tileLayer(
         'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=cb1_2vaf_1_f87644104deb54c869cef554',
@@ -37,7 +58,35 @@
         position: "bottomleft",
     })
     .addTo(map);
-    
+
+    // Back to the whole city, where every polygon can be reached by pointer. Same control as the
+    // report page's map.js and the congestion pricing report's: easyButton, fas fa-undo
+
+    const resetZoom = L.easyButton({
+        position: "bottomleft",
+        states: [{
+            title: "Reset zoom",
+            icon: "fas fa-undo",
+            onClick: () => {
+                if (uhf_geojson) {
+                    map.fitBounds(uhf_geojson.getBounds(), { padding: [10, 10], animate: false });
+                }
+            }
+        }]
+    }).addTo(map);
+
+    // easyButton puts the label only in `title`, and the button's computed name came out empty
+    // with the icon inside it [measured 2026-10-20, Playwright ariaSnapshot: button ""]
+
+    resetZoom.button.setAttribute("aria-label", "Reset zoom");
+    resetZoom.button.querySelectorAll(".fas").forEach((i) => i.setAttribute("aria-hidden", "true"));
+
+    // Now, not only once the polygons are in: the container, the zoom links and the
+    // attribution links already exist, and if the GeoJSON never arrives the second call
+    // below never runs, which left those stops reachable inside the hidden map
+
+    removeHiddenMapFromTabOrder();
+
     // add and style geographies
     
     let uhf_geojson;
@@ -51,74 +100,118 @@
             const data = JSON.parse(text);
 
             uhf_geojson = L.geoJSON(data, {
-
                 style: style,
                 onEachFeature: onEachFeature,
                 filter: (feature) => feature.properties.GEOCODE != 0
-
             }).addTo(map);
-            
-            
-            // highlight and zoom to selected neighborhood
-                
+
+            // addTo is synchronous, so every polygon has its <path> by here
+
+            nameNeighborhoodPolygons();
+
+
+            // highlight the page's own neighborhood: geocode is set only on the 42
+            // neighborhood index pages
+
             if (geocode && geocode.trim() !== "") {
 
                 // extract selected neighborhood layer
-                
+
                 const targetLayer = Object.values(uhf_geojson._layers).find(
-                
+
                     (layer) => layer.feature.properties.GEOCODE == geocode
-                    
+
                 );
 
-                // if there's a selected neighborhood, style and zoom
-                
                 if (targetLayer) {
 
                     // reset style
-                    
+
                     uhf_geojson.resetStyle();
-                    
-                    // apply highlight style
-                    
-                    targetLayer.setStyle({
-                        weight: 3,
-                        color: "#008939",
-                        dashArray: "3",
-                        fillOpacity: 0.5,
-                    });
+
+                    // apply highlight style, and keep the layer so resetHighlight can restore it
+
+                    ownNeighborhoodLayer = targetLayer;
+                    targetLayer.setStyle(OWN_NEIGHBORHOOD_STYLE);
+
+                    // "page" because activating this polygon leads to the page already shown
+
+                    const ownPath = targetLayer.getElement();
+                    if (ownPath) ownPath.setAttribute("aria-current", "page");
 
                     // bring neighborhood to the front
 
                     targetLayer.bringToFront();
 
-                    // zoom in on selected neighborhood (after half a second)
-
-                    setTimeout(() => {
-                        
-                        map.flyToBounds(targetLayer.getBounds(), {duration: 0.5});
-
-                    }, 500);
-                
-                    
                 } else {
-                    
+
                     console.warn("No matching GEOCODE found:", geocode);
-                    
+
                 }
-                
-            } else {
-                
-                console.log("No geocode provided; skipping zoom.");
-                
             }
-            
+
+            // The neighborhood index pages frame their own neighborhood; the landing and topic
+            // pages, which have none, fit the whole city rather than the fixed zoom-10 view, so
+            // the city fills whatever box the caller gives it.
+            //
+            // Framing one neighborhood leaves most polygons outside the map: a centre-point hit
+            // test reached 10 of 42 on east_new_york/ at zoom 12 [verified 2026-10-19,
+            // scripts/nr-r14-probe.mjs, audit row N-026], and the polygons are links to the
+            // other 41. Chris chose the framing anyway on 2026-10-20, with "Reset zoom" as the
+            // way back to the whole city.
+            //
+            // zoomSnap has to be 0 because the default of 1 makes fitBounds round *down* to a
+            // whole zoom level — measured 2026-08-09, that left the city spanning 59% of a
+            // 679px-wide box.
+
+            map.options.zoomSnap = 0;
+
+            // The city lands without animation from the zoom-10 placeholder view. The page's own
+            // neighborhood is then flown to from there, as production's NR maps do (Chris,
+            // 2026-10-22), with no delay before the fly: a click made before it would be undone
+            // by it. flyToBounds, not an animated fitBounds: a Zoom in click during fitBounds's
+            // zoom animation was dropped [2026-10-19], while one during a fly stops it and zooms
+            // in one level from where it got to [measured 2026-10-22, east_new_york/]
+
+            map.fitBounds(uhf_geojson.getBounds(), { padding: [10, 10], animate: false });
+            if (ownNeighborhoodLayer) {
+                map.flyToBounds(ownNeighborhoodLayer.getBounds(), { padding: [10, 10], duration: 0.5 });
+            }
+
+            removeHiddenMapFromTabOrder();
+
         })
         .catch((err) => console.error("Error loading GeoJSON:", err));
 
+    // A caller may wrap this map in aria-hidden="true" — nr-neighborhood-picker.html does,
+    // because the 42-link neighborhood list beside it is the map's text equivalent. A hidden
+    // subtree must hold no keyboard stops, or a keyboard user tabs through positions a screen
+    // reader is told do not exist. Two sources of them here, and neither is an authored
+    // tabindex: Leaflet's `keyboard` option puts tabindex="0" on the container, and the
+    // polygons follow it into the tab order carrying no tabindex attribute of their own
+    // [verified 2026-08-11: 46 stops inside the hidden subtree — container, 42 polygons,
+    // 3 attribution links]. Setting tabindex="-1" explicitly removes an element from the
+    // sequential order whatever put it there. Keyed off the ancestor rather than a parameter
+    // so the report page, whose map is NOT hidden and IS the neighborhood switcher, is untouched.
+
+    function removeHiddenMapFromTabOrder() {
+
+        const container = map.getContainer();
+
+        if (!container.closest('[aria-hidden="true"]')) return;
+
+        container.setAttribute("tabindex", "-1");
+
+        container
+            .querySelectorAll("a, button, path, [tabindex]")
+            .forEach((el) => el.setAttribute("tabindex", "-1"));
+
+    }
+
     // define styl function
-    
+
     function style(feature) {
+
         return {
             weight: 1.5,
             opacity: 1,
@@ -132,21 +225,77 @@
     // And what to do on mouseover, mouseout, and click
 
     function onEachFeature(feature, layer) {
-        
-        // bind tooltip to each feature i.e. neighborhood, open on mousover
-        
-        layer.bindTooltip(feature.properties.GEONAME, {permanent: false, opacity: 0.9, className: "fs-md"});
+
+        // bind tooltip to each feature i.e. neighborhood, open on mousover. Same string the
+        // aria-label carries, so the visible label is contained in the accessible name
+
+        layer.bindTooltip(neighborhoodDisplayName(feature), {permanent: false, opacity: 0.9, className: "fs-md"});
 
         // set event handlers for each layer
-        
+
         layer.on({
-            
             mouseover: highlightFeature,
             mouseout: resetHighlight,
             click: selectNeighborhood,
-            
+            keydown: onNeighborhoodKeyDown,
         });
-        
+    }
+
+    // The name the rest of the site uses: uhflist's UHF_name, which the neighborhood list,
+    // the page titles and the report map show. The geojson's GEONAME differs on 4 of the 42
+    // ("Washington Heights - Inwood" against "Washington Heights") [verified 2026-10-19:
+    // static/geojson/UHF42.geojson joined to data/globals/uhflist.json on GEOCODE = UHF_id].
+    // GEONAME is the fallback for a page that loads no uhflist
+
+    function neighborhoodDisplayName(feature) {
+
+        const geocode = feature.properties.GEOCODE;
+
+        const match = typeof neighborhoods !== "undefined"
+            && neighborhoods.find(n => n.UHF_id == geocode);
+
+        return (match && match.UHF_name) || feature.properties.GEONAME;
+
+    }
+
+    // Names the polygons for the accessibility tree, the way assets/js/nr-report/map.js
+    // nameMapPolygons does for the report page. Leaflet already puts the polygons in the tab
+    // order, unnamed. role="button" because Enter and Space now activate them (below). On the
+    // landing page and topic indexes the map sits inside aria-hidden="true" and
+    // removeHiddenMapFromTabOrder takes these out of the tab order, so the names reach only
+    // the neighborhood index pages, where the map is not hidden
+
+    function nameNeighborhoodPolygons() {
+
+        uhf_geojson.eachLayer(layer => {
+
+            const el = layer.getElement();
+
+            if (!el) return;
+
+            el.setAttribute("role", "button");
+            el.setAttribute("aria-label", neighborhoodDisplayName(layer.feature));
+
+        });
+    }
+
+    // Enter and Space on a focused polygon do what a click does. Leaflet's map container
+    // already routes keydown to the layer under focus; nothing here was listening for it
+
+    function onNeighborhoodKeyDown(e) {
+
+        const key = e.originalEvent && e.originalEvent.key;
+
+        if (key !== "Enter" && key !== " " && key !== "Spacebar") {
+            return;
+        }
+
+        // Space would otherwise scroll the page as it navigates away
+
+        e.originalEvent.preventDefault();
+
+        selectNeighborhood(e);
+
     }
 
     // define function that styles highlighted layer
@@ -175,41 +324,60 @@
 
     // define function that resets layer style
     
+    // The page's own neighborhood goes back to its highlight, not to the plain outline: with
+    // the whole city in view the highlight is the only mark of which neighborhood the page is
+    // about, and a mouse passing over it used to erase that for the rest of the visit
+
     function resetHighlight(e) {
 
         const layer = e.target;
 
         // layer.closeTooltip();
-        
+
+        if (layer === ownNeighborhoodLayer) {
+            layer.setStyle(OWN_NEIGHBORHOOD_STYLE);
+            return;
+        }
+
         layer.setStyle({
             weight: 1.5,
             color: "black",
             dashArray: "1",
         });
-
     }
     
     // --------------------------------------------------------------------------------------------------- // 
     // ---------- this powers report and neighborhood identification, and subsequent navigation ---------- // 
     // --------------------------------------------------------------------------------------------------- // 
     
-    var intendedDestinationName // this needs to be declared even if it's not defined (it's used on the home page)
+    // Declared with `var`, not `let`: the neighborhood-reports landing page also
+    // declares `var intendedDestinationName` in its own inline script, and a
+    // top-level `let` here collides with that `var` in shared global scope
+    // ("Identifier ... has already been declared"). Two `var`s of the same name
+    // don't collide, and the variable stays defined on report pages that load
+    // only this partial. (used on the home page)
+
+    var intendedDestinationName;
     
     // console.log('*** GETTING TOPIC AND NEIGHBORHOOD TO POWER NAVIGATION')
     
-    var chosenNeighborhood; // this is for the neighborhood you are *on*
-    var chosenGeo = {{ .Params.geocode }};
-    var chosenReport;       // this is the report that you are *on*
-    var chosenButton;       // this is a selected button, on NR home or Topic Landing
+    let chosenNeighborhood; // this is for the neighborhood you are *on*
+    let chosenGeo = {{ .Params.geocode }};
+    let chosenReport;       // this is the report that you are *on*
+    let chosenButton;       // this is a selected button, on NR home or Topic Landing
     
     // Javascript for nav buttons:
-    const topicSlugs = {
-        Active: "active_design_physical_activity_and_health",
-        Asthma: "asthma_and_the_environment",
-        Climate: "climate_and_health",
-        Housing: "housing_and_health",
-        Outdoor: "outdoor_air_and_health",
-    };
+
+    // Topic key -> URL slug, from data/globals/NR_topics.yml — the source the content adapter
+    // generates the report URLs from, so the two cannot disagree. The landing page's topic
+    // buttons use the same keys as their ids (neighborhood-reports/section.html)
+
+    {{- $topicSlugs := dict -}}
+    {{- range site.Data.globals.NR_topics -}}
+        {{- $topicSlugs = merge $topicSlugs (dict .key .slug) -}}
+    {{- end }}
+
+    const topicSlugs = {{ $topicSlugs }};
     
     const topicValues = Object.values(topicSlugs);
     
@@ -217,10 +385,8 @@
 
     function getReportAndNeighborhood(x) {
 
-        console.log("** getReportAndNeighborhood");
-
-        const url = window.location.pathname.match(/neighborhood-reports.*/)[0]
-        var urlPieces = url.split("/")
+        const url = window.location.pathname.match(/neighborhood-reports.*/)[0];
+        let urlPieces = url.split("/");
 
         // console.log('urlPieces', urlPieces)
         
@@ -228,60 +394,25 @@
 
         if (topicValues.includes(urlPieces[1])) {
 
-            chosenNeighborhood = null
+            chosenNeighborhood = null;
             chosenReport = (urlPieces[1] && urlPieces[1].length > 2) ? urlPieces[1] : null;
 
         } else {
 
-            chosenNeighborhood = (urlPieces[1] && urlPieces[1].length > 2) ? urlPieces[1] : null
+            chosenNeighborhood = (urlPieces[1] && urlPieces[1].length > 2) ? urlPieces[1] : null;
             chosenReport = (urlPieces[2] && urlPieces[2].length > 2) ? urlPieces[2] : null;
 
         }
-        
-        console.log('Neighborhood: ', chosenNeighborhood)
-        console.log('GeoCode: ', chosenGeo)
-        console.log('Report:', chosenReport)
-        
-        pageTypeID();
-
     }
-    
-    getReportAndNeighborhood(window.location.href)
-    
-    // this checks the page type; there may be some things that differ based on pagetype
 
-    function pageTypeID() {
+    getReportAndNeighborhood(window.location.href);
 
-        console.log('*** WHAT KIND OF PAGE IS THIS?')
-
-        if (chosenNeighborhood == null && chosenReport == null) {
-
-            console.log("NR Landing page")
-
-        } else if (chosenNeighborhood && chosenReport) {
-
-            console.log("Output for: ", chosenNeighborhood, chosenReport)
-
-        } else if (chosenReport && !chosenNeighborhood) {
-
-            console.log("Topic landing for: ", chosenReport)
-
-        } else {
-
-            console.log("Neighborhood landing for: ", chosenNeighborhood)
-
-        }
-        
-    }
-    
     
     // --------------------------------------------------------------------------------------------------- // 
     // ---------- Use map as navigation ---------- // 
     // --------------------------------------------------------------------------------------------------- // 
     
     function selectNeighborhood(e) {
-
-        console.log("selectNeighborhood");
 
         uhf_geojson.resetStyle();
 
@@ -298,7 +429,9 @@
         
         const geocodeClicked = layer.feature.properties.GEOCODE;
         
-        // Find the matching neighborhood - 'neighborhoods' is a variable set in uhflist.js
+        // Find the matching neighborhood - 'neighborhoods' is a global emitted by the
+        // lib-uhflist.html partial from data/globals/uhflist.json
+
         const match = neighborhoods.find(
             n => n.UHF_id == geocodeClicked
         );
@@ -307,25 +440,28 @@
         
         if (match && match.page_name) {
 
-            // Get the current URL parts
-            const parts = window.location.pathname.split("/");
-            
-            // Replace the 3rd index (neighborhood slug) with the new one
-            parts[3] = match.page_name;
-            
-            // set report destination
-            const dest = intendedDestinationName ? intendedDestinationName : (chosenReport ? chosenReport : '/');
-            
-            // Build the new path; this will now work if reportURL is set (as in the Output), or if it's not (as on a Neighborhood Landing Page)
-            
-            const buildURL = {{ relURL "neighborhood-reports/" }} + parts[3] + "/" + dest + '/'
-            
+            // Report destination: a topic button's choice on the NR landing page, or the
+            // topic already being read. Null on a neighborhood index, which has neither.
+
+            const dest = intendedDestinationName || chosenReport;
+
+            // Neighborhood-first URLs. Both shapes are pages the content adapter generates,
+            // so the slug travels in the path — there is no sessionStorage hand-off left to
+            // make, and no clean topic URL that would read one.
+
+            const buildURL = dest
+                ? {{ relURL "neighborhood-reports/" }} + match.page_name + '/' + dest + '/'
+                : {{ relURL "neighborhood-reports/" }} + match.page_name + '/';
+
             // Redirect - send to new page
+
             window.location.href = buildURL;
             // console.log(buildURL)
-            
+
         } else {
+
             console.warn("No matching neighborhood for GEOCODE:", geocodeClicked);
+
         }
     }
     

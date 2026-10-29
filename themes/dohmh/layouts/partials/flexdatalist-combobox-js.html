@@ -3,11 +3,12 @@
 
     Include this AFTER the jquery.flexdatalist.min.js <script> tag and BEFORE the block
     that calls .flexdatalist(), then call wireComboboxState() on the generated input once
-    that call has returned. Five call sites do this: partials/de-text-search.html,
-    neighborhood-reports/section.html, neighborhood-reports/topiclanding.html, and — via
-    the shared global scope, since these are classic scripts — the page-bundle files
-    content/data-features/neighborhood-air-quality/aqe.js and content/data-features/hvi/hvi.js,
-    which is where data-features/aqe.html and data-features/hvi.html actually initialize.
+    that call has returned. Four files include it: partials/de-text-search.html,
+    partials/nr-neighborhood-picker-js.html (rendered by neighborhood-reports/section.html and
+    neighborhood-reports/nr-topic-index.html), data-features/aqe.html and data-features/hvi.html.
+    The last two call it from their page-bundle files —
+    content/data-features/neighborhood-air-quality/aqe.js and content/data-features/hvi/hvi.js —
+    via the shared global scope, since these are classic scripts.
 
     Ported from nr-neighborhood-picker-js.html on feature-MOD-Lab-NR-recode-refactor, which
     is where this was first written and verified. Two changes on arrival: the results-list id
@@ -31,11 +32,13 @@
     // container directly and announce nothing. An event-driven sync would have gone stale on
     // exactly the two paths a reader is most likely to use to dismiss the list — the same
     // shape of defect as the one being fixed.
+
     function wireComboboxState(input) {
 
         // The library names its results container after the generated input it created:
         // $alias.attr('id') + '-results' (:1572). Deriving it here rather than hardcoding
         // is what lets one partial serve call sites that may not all use id="flex_search".
+
         const RESULTS_ID = input.id + '-results';
 
         input.setAttribute('role', 'combobox');
@@ -50,7 +53,9 @@
         // removes the results container on key 27 (:2046). The input's keyup then calls
         // keypressSearch (:179), whose guard `key !== 13 && (key < 37 || key > 40)` is true
         // for 27, so it schedules a fresh search on searchDelay — default 400 (:115,
-        // :249-260) — which re-renders exactly what the keydown removed.
+        // :249-260) — which re-renders exactly what the keydown removed. Measured on the NR
+        // picker before the fix: gone at +60ms, a *different* <ul> present and 112px tall at
+        // +660ms.
         //
         // The pending search cannot be cancelled from here: _searchTimeout is a closure
         // variable with no accessor, and blocking the keyup would not help either, since a
@@ -62,11 +67,13 @@
         //
         // Removal happens in a MutationObserver callback, which runs as a microtask before
         // paint, so the reopened list is gone in the same frame it was added.
+
         let dismissed = false;
 
         // Any other key, a click into the field, or leaving and coming back all mean the
         // reader wants results again. Escape's own keydown reaches the input before the
         // document handler that removes the list, so the flag is set before the removal
+
         input.addEventListener('keydown', e => { dismissed = e.key === 'Escape'; });
         input.addEventListener('mousedown', () => { dismissed = false; });
         input.addEventListener('blur', () => { dismissed = false; });
@@ -79,14 +86,18 @@
         // flexdatalist creates and destroys it per search. A permanent aria-controls points
         // at nothing most of the time, which axe reports as aria-valid-attr-value: "Unable
         // to determine if aria-controls referenced ID exists on the page while using
-        // aria-haspopup". aria-owns is the library's and axe does not flag it, but it
+        // aria-haspopup" [verified 2026-08-11: axe-core 4.13.0 incomplete on the NR topic
+        // index; removing the attribute in the page cleared it, leaving aria-owns alone did
+        // not re-raise it]. aria-owns is the library's and axe does not flag it, but it
         // dangles the same way, so it gets the same treatment rather than a different rule
+
         const sync = () => {
 
             let list = document.getElementById(RESULTS_ID);
 
             // Escape is still in force: take the reopened list back out. Its removal is
             // itself a mutation, so this re-enters once with nothing left to do
+
             if (dismissed && list) {
                 list.remove();
                 list = null;
@@ -97,10 +108,12 @@
             input.setAttribute('aria-expanded', options.length ? 'true' : 'false');
 
             if (!options.length) {
+
                 input.removeAttribute('aria-activedescendant');
                 input.removeAttribute('aria-controls');
                 input.removeAttribute('aria-owns');
                 return;
+
             }
 
             input.setAttribute('aria-controls', RESULTS_ID);
@@ -108,26 +121,29 @@
 
             // The <li>s carry role="option" and aria-posinset but no id (:1507-1514), and
             // aria-activedescendant can only point at one
+
             let active = null;
 
             options.forEach((li, i) => {
-
                 if (!li.id) li.id = RESULTS_ID + '-option-' + i;
                 if (li.classList.contains('active')) active = li;
-
             });
 
             if (active) {
-                input.setAttribute('aria-activedescendant', active.id);
-            } else {
-                input.removeAttribute('aria-activedescendant');
-            }
 
+                input.setAttribute('aria-activedescendant', active.id);
+
+            } else {
+
+                input.removeAttribute('aria-activedescendant');
+
+            }
         };
 
         // The list is created and destroyed under <body> directly (:1565-1574), so a
         // childList observer on body — deliberately without subtree, which would fire on
         // every Leaflet pan and zoom on the same page — sees it arrive and leave.
+
         const listObserver = new MutationObserver(sync);
 
         const bodyObserver = new MutationObserver(() => {
@@ -136,7 +152,9 @@
 
             // Re-target on each new list: arrow-key navigation moves the .active class
             // between <li>s, and rows are replaced in place as the search term narrows
+
             if (list && list !== watched) {
+
                 watched = list;
                 listObserver.observe(list, {
                     childList: true,

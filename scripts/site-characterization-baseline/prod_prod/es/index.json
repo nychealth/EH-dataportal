@@ -7,7 +7,6 @@
             "js/accessible-autocomplete.min.js",
             "js/main.js",
             "js/site.js",
-            "js/uhflist.js",
             "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
             "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
             "node_modules/dompurify/dist/purify.min.js",
@@ -19,7 +18,7 @@
             "translate.google.com",
             "www.googletagmanager.com"
         ],
-        "assetsWithIntegrity": 10,
+        "assetsWithIntegrity": 9,
         "headingLevels": [
             2,
             3,
@@ -36,10 +35,10 @@
             5,
             5,
             5,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 3,
@@ -74,7 +73,7 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 84,
+            "internal": 88,
             "external": 22,
             "emptyHref": 30,
             "noAccessibleText": 1
@@ -112,14 +111,15 @@
             "Visit our Github repo",
             "Join our team",
             "",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",
             "/data-explorer",
             "/data-explorer/",
             "/data-explorer/accessibility/",
+            "/data-explorer/air-quality/",
             "/data-explorer/chronic-disease/",
             "/data-explorer/climate/",
             "/data-explorer/mice-and-rats/",

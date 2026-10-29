@@ -20,8 +20,8 @@
         "assetsWithIntegrity": 8,
         "headingLevels": [
             1,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 1,
         "landmarks": {
@@ -83,8 +83,8 @@
         "title": "Our bureau is hiring – Environment & Health Data Portal",
         "headingText": [
             "We're Hiring!",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

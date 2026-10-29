@@ -4,6 +4,7 @@
     "structure": {
         "lang": "en",
         "assets": [
+            "cdn.jsdelivr.net",
             "cdn.rawgit.com",
             "cdnjs.cloudflare.com",
             "data-features/rats-in-your-neighborhood/neighborhood-rats.js",
@@ -35,10 +36,10 @@
             4,
             4,
             5,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 1,
+        "headingJumps": 0,
         "landmarks": {
             "main": 1,
             "nav": 4,
@@ -104,8 +105,8 @@
             "You might also be interested in:",
             "More related to:",
             "Take action",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

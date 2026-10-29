@@ -91,7 +91,7 @@ templates compile.
 | Command | What it does |
 |---|---|
 | `npm run smoke` | Loads 33 pages, one per template kind, and fails on any JavaScript error. Fast. |
-| `npm run smoke:all` | The same, over every page the site serves. For a pre-merge sweep. |
+| `npm run smoke:all` | The same, over every page the site serves plus one Data Explorer link per indicator. For a pre-merge sweep. |
 | `npm run smoke:env <env> [sample]` | The same, against a named environment it builds and serves itself. |
 | `npm run characterize:site` | Loads every page and compares its *structure* — assets, heading levels, `alt` text, tables, JSON-LD, overflow — against a committed baseline. |
 | `npm run characterize:site:sample` | The same check over 41 pages, one per template kind. |
@@ -173,6 +173,25 @@ If a site-wide change is *intended*, the baselines are re-captured with
 `npm run characterize:site:rebaseline`, which rebuilds every committed baseline and reports what
 moved. That command takes no arguments and overwrites all of them, so it is not the way to check a
 single environment — the `characterize:site:env` scripts above are.
+
+#### The check on a pull request
+
+Both sweeps run in CI on every PR into `production` or `development` —
+`.github/workflows/smoke.yml` and `.github/workflows/site-characterization.yml`. When either
+goes red, a second job rebuilds the site from the **base branch tip** and runs the same harness
+against that, so a regression the PR caused
+can be told apart from one the data brought: green there means the PR, red there means the base was
+already failing and EHDP-data moved underneath both.
+
+**A re-baseline that lands on `production` reaches your open PR on its own — do not merge
+`production` in to pick it up.** The check runs against the merge ref, `refs/pull/N/merge`, which is
+your branch already merged onto the base tip, so the baseline it reads is the base branch's
+`[verified 2026-09-21 on PR #1500: the job checked out a merge commit whose two parents were
+`production`'s tip and the PR head]`. Push any commit and the next run reads the new baseline.
+
+The check prints `Diffing structure against the baseline captured at <sha>` before its diff. If that
+sha is still the old baseline's, GitHub handed the job a stale merge ref — re-run the job rather
+than merging anything in.
 
 ### Data repository
 
