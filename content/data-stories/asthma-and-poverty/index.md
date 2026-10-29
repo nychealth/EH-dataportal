@@ -34,8 +34,8 @@ related:
 ---
 
 {{< updateflag data=`[
-  {"src": "../../data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"},
-  {"src": "../../data-explorer/asthma/?id=2379", "text": "Asthma ED visits (age 5 to 17)"}
+  {"src": "data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"},
+  {"src": "data-explorer/asthma/?id=2379", "text": "Asthma ED visits (age 5 to 17)"}
 ]` >}}
 
 Poverty affects health in many ways. In New York City, the story of asthma clearly illustrates this connection.

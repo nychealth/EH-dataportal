@@ -41,7 +41,7 @@ layout: uhi
 ---
 
 {{< updateflag data=`[
-  {"src": "../../data-explorer/climate/?id=2143", "text": "Climate"}
+  {"src": "data-explorer/climate/?id=2143", "text": "Climate"}
 ]` >}}
 
 In New York City and across the country, more people die from extreme heat than from all other natural disasters combined. To understand how to keep New Yorkers safe from extreme heat, we studied neighborhood factors that affect temperature, and found that grass, shrubs, and trees can play a major role. Let’s take a look.

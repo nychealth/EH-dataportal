@@ -5,6 +5,13 @@ draft: true
 seo_title: "Climate change data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of climate change data in NYC."
+datatables: true
+arquero: true
+leaflet: true
+vega: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 tags: 
 categories: ["climatehealth"]
 keywords: ["climate change","global warming","health","climate","weather-related illness","storms"]
@@ -22,7 +29,7 @@ A key part of combating climate change is mitigation, which means **reducing GHG
 
 ### Climate Change and Health
 
-Climate change can affect human health in many ways. For NYC, the two main climate change-related health risks are **heat stress** from increased number and intensity of heat waves, and **health impacts from coastal storms**. These impacts can affect the health of all New Yorkers. 
+Climate change can affect human health in many ways. For NYC, the two main climate change-related health risks are **heat stress** from increased number and intensity of heat waves, and **health impacts from coastal storms**. These impacts can affect the health of all New Yorkers.
 
 ### To Reduce Health Risks
 

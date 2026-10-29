@@ -35,7 +35,7 @@ The navigation bar at the top always tells you where you are and provides quick 
 
 Our site has always aimed to show how environments affect health.&nbsp; Our updates focus not only on improving access to data, but also making it easier to explore connections between different datasets, topics and other site content:&nbsp;
 
-- [Key Topics]({{< baseurl >}}key-topics/) bring together in one display related datasets, custom data interactives, data stories, and neighborhood reports for special areas of environmental health. You can explore resources across the site for : [Air Quality]({{< baseurl >}}key-topics/airquality/); [Climate]({{< baseurl >}}key-topics/climatehealth/); [Housing]({{< baseurl >}}key-topics/housing/); [Inequality and Health Inequities]({{< baseurl >}}key-topics/social/); [Active Design, Public Space, and Transportation]({{< baseurl >}}key-topics/transportation/); [Environmental Health Outcomes]({{< baseurl >}}key-topics/healthoutcomes/); [Child Health]({{< baseurl >}}key-topics/childhealth/); [Pests and Pesticides]({{< baseurl >}}key-topics/pests/); and [Food and Drink]({{< baseurl >}}key-topics/foodanddrink/).&nbsp;
+- [Key Topics]({{< relURL >}}key-topics/) bring together in one display related datasets, custom data interactives, data stories, and neighborhood reports for special areas of environmental health. You can explore resources across the site for : [Air Quality]({{< relURL >}}key-topics/airquality/); [Climate]({{< relURL >}}key-topics/climatehealth/); [Housing]({{< relURL >}}key-topics/housing/); [Inequality and Health Inequities]({{< relURL >}}key-topics/social/); [Active Design, Public Space, and Transportation]({{< relURL >}}key-topics/transportation/); [Environmental Health Outcomes]({{< relURL >}}key-topics/healthoutcomes/); [Child Health]({{< relURL >}}key-topics/childhealth/); [Pests and Pesticides]({{< relURL >}}key-topics/pests/); and [Food and Drink]({{< relURL >}}key-topics/foodanddrink/).&nbsp;
 
 * Keywords link you to other pages on the similar topics.&nbsp;
 
@@ -53,7 +53,7 @@ Our site has always aimed to show how environments affect health.&nbsp; Our upda
 
 Our goal is for you to be able to put our data and information to work improving health throughout our city. And when we do user research, one of the most common things we hear is, "It has to be easy to use." So, we've built the site with this as our mantra.&nbsp;
 
-For example, take a look at our re-vamped [Data Explorer]({{< baseurl >}}data-explorer/). &nbsp;
+For example, take a look at our re-vamped [Data Explorer]({{< relURL >}}data-explorer/). &nbsp;
 
 ![Image of the data explorer tool, showing a purple map with different concentrations of PM2.5 across New York City.](data-explorer-screenshot.png)
 
@@ -93,7 +93,7 @@ If you’re curious about the nuts and bolts, you can find out more in our [site
 
 We built this site for you, so please help us continue developing it:&nbsp;
 
-- [Sign up for our email list](https://docs.google.com/forms/d/e/1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISw-OM7PBwKuoN3M--g/viewform?embedded=true)&nbsp;– we'll send occasional requests for users to participate in user testing or co-design work&nbsp;
+- <a href="#" data-subscribe-click="redesign-story" data-toggle="modal" data-target="#subscribeModal">Sign up for our email list</a>&nbsp;– we'll send occasional requests for users to participate in user testing or co-design work&nbsp;
 - Visit our Github repositories ([site](https://github.com/nychealth/EH-dataportal), [data](https://github.com/nychealth/EHDP-data)) and explore the code, file an issue, or suggest features&nbsp;
 - Email us with any questions you have at <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#101;&#104;&#100;&#112;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#46;&#110;&#121;&#99;&#46;&#103;&#111;&#118;">&#101;&#104;&#100;&#112;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#46;&#110;&#121;&#99;&#46;&#103;&#111;&#118;</a> – we're here to help.&nbsp;&nbsp;
 

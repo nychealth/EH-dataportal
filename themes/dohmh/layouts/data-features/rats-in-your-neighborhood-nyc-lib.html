@@ -2,7 +2,7 @@
 
 
 
-<article class="container-fluid" id="skip-header-target">
+<article class="container-fluid">
 
     <div class="row">
         <div class="col-md-11 mx-auto mt-2 mb-3">
@@ -19,7 +19,7 @@
 
     <div class="row">
         <div class="col-md-11 mx-auto" data-pagefind-weight="7.0">
-            <h1 id="top" class="h2" data-pagefind-weight="10.0">{{ .Title }}</h1>
+            <h1 id="top" class="h2" data-pagefind-weight="10.0">{{ partial "section-icon.html" $.Section }}{{ .Title }}</h1>
             <div class="row">
                 <div class="col-md-8 mr-auto">
                     <p>{{ .Content }}</p>
@@ -103,7 +103,7 @@
 
 <script>
 
-    var overlap = [102,103,107,109,110,111,112,201,203,204,205,207,303,304,308]
+    var overlap = [102,103,107,109,110,111,112,201,203,204,205,207,303,304,308];
 
     var nycMap = new nyc.ol.FrameworkMap({
         mapTarget: '#nycMap',
@@ -112,9 +112,11 @@
     });
 
     document.addEventListener("DOMContentLoaded", function() {
+
         var searchButton = document.querySelector('.btn.btn-srch');
     
         // Check if the button exists to avoid errors
+
         if (searchButton) {
             searchButton.onclick = function() {
                 awaitGeoCoding();  // Call  getData()  when the button is clicked
@@ -122,54 +124,68 @@
         }
 
         // add event listener to form
+
         document.querySelector('#map-search1').addEventListener('keypress', function (e) {
+
             if (e.key === 'Enter') {
-                console.log('***Form submitted')
-                awaitGeoCoding()
+                console.log('***Form submitted');
+                awaitGeoCoding();
             }
         });
     });
 
     var locationDetails;
-    var yourCD
+    var yourCD;
 
     function awaitGeoCoding() {
-        console.log('***Looking for location')
-        document.getElementById('yourCD').innerHTML = '...'
-        document.getElementById('block').innerHTML = '...'
-        document.getElementById('rmz').innerHTML = '...'
-        setTimeout(getData,2500)
+
+        console.log('***Looking for location');
+        document.getElementById('yourCD').innerHTML = '...';
+        document.getElementById('block').innerHTML = '...';
+        document.getElementById('rmz').innerHTML = '...';
+        setTimeout(getData,2500);
+
     }
 
 
     function getData() {
+
         // if nycMap.location exists, then, run retrieveGeo(), else, wait.
+
         if (nycMap.location.type === 'geocoded') {
-            console.log('***Location found! Details:')
-            retrieveGeo()
+
+            console.log('***Location found! Details:');
+            retrieveGeo();
+
         } else {
-            console.log('***Location not found :( ')
+
+            console.log('***Location not found :( ');
+
         }
     }
 
     function retrieveGeo() {
-        locationDetails = nycMap.location
-        console.log(locationDetails)
-        yourCD = Number(locationDetails.data.communityDistrict)
-        document.getElementById('yourCD').innerHTML = yourCD
-        document.getElementById('block').innerHTML = locationDetails.data.bblTaxBlock
+
+        locationDetails = nycMap.location;
+        console.log(locationDetails);
+        yourCD = Number(locationDetails.data.communityDistrict);
+        document.getElementById('yourCD').innerHTML = yourCD;
+        document.getElementById('block').innerHTML = locationDetails.data.bblTaxBlock;
 
         if (overlap.includes(yourCD)) {
-            console.log('***You are in or near an RMZ')
-            document.getElementById('rmz').innerHTML = 'Yes'
+
+            console.log('***You are in or near an RMZ');
+            document.getElementById('rmz').innerHTML = 'Yes';
+
         } else {
-            console.log('***You are NOT in or near an RMZ')
-            document.getElementById('rmz').innerHTML = 'No'
+
+            console.log('***You are NOT in or near an RMZ');
+            document.getElementById('rmz').innerHTML = 'No';
 
         }
 
         if (!locationDetails.data.bblTaxBlock) {
-            console.log('Minor error: this address is not a valid tax block')
+            console.log('Minor error: this address is not a valid tax block');
         }
     }
 

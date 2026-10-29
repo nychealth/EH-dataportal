@@ -10,7 +10,7 @@ categories:
   - publicspace
 keywords:
   - air pollution
-  - PM2.5
+  - pm2.5
   - traffic air pollution
   - asthma
 seo_title: Traffic and PM2.5 air pollution

@@ -29,9 +29,9 @@ related:
 ---
 
 {{< updateflag data=`[
-  {"src": "../../data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"},
-  {"src": "../../data-explorer/asthma/?id=2379", "text": "Asthma emergency department visits (ages 5 to 17)"},
-  {"src": "../../data-explorer/social-conditions/?id=2325", "text": "Race and ethnicity"}
+  {"src": "data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"},
+  {"src": "data-explorer/asthma/?id=2379", "text": "Asthma emergency department visits (ages 5 to 17)"},
+  {"src": "data-explorer/social-conditions/?id=2325", "text": "Race and ethnicity"}
 ]` >}}
 
 ### Inside the 90-year-old financial policy that harms our health
@@ -194,7 +194,7 @@ Enormous areas of New York City were redlined. Explore the extent of HOLC's redl
     <div class="tab-pane fade" id="bronx" role="tabpanel" aria-labelledby="bronx-tab">
         <br>
         <iframe title="Redlining in the Bronx" aria-label="Stacked Bars"
-            id="datawrapper-chart-kO9TQ" src="//datawrapper.dwcdn.net/kO9TQ/4/"
+            id="datawrapper-chart-kO9TQ" data-lazy-src="//datawrapper.dwcdn.net/kO9TQ/4/"
             scrolling="no" frameborder="0"
             style="width: 0; min-width: 100% !important; border: none;"
             height="426"></iframe>
@@ -210,7 +210,7 @@ Enormous areas of New York City were redlined. Explore the extent of HOLC's redl
         aria-labelledby="brooklyn-tab">
         <br>
         <iframe title="Redlining in Brooklyn" aria-label="Stacked Bars"
-            id="datawrapper-chart-9oZ0R" src="//datawrapper.dwcdn.net/9oZ0R/4/"
+            id="datawrapper-chart-9oZ0R" data-lazy-src="//datawrapper.dwcdn.net/9oZ0R/4/"
             scrolling="no" frameborder="0"
             style="width: 0; min-width: 100% !important; border: none;"
             height="570"></iframe>
@@ -223,7 +223,7 @@ Enormous areas of New York City were redlined. Explore the extent of HOLC's redl
     <div class="tab-pane fade" id="queens" role="tabpanel" aria-labelledby="queens-tab">
         <br>
         <iframe title="Redlining in Queens" aria-label="Stacked Bars"
-            id="datawrapper-chart-eAlbF" src="//datawrapper.dwcdn.net/eAlbF/4/"
+            id="datawrapper-chart-eAlbF" data-lazy-src="//datawrapper.dwcdn.net/eAlbF/4/"
             scrolling="no" frameborder="0"
             style="width: 0; min-width: 100% !important; border: none;"
             height="474"></iframe>
@@ -235,7 +235,7 @@ Enormous areas of New York City were redlined. Explore the extent of HOLC's redl
     <div class="tab-pane fade" id="staten" role="tabpanel" aria-labelledby="staten-tab">
         <br>
         <iframe title="Redlining in Staten Island" aria-label="Stacked Bars"
-            id="datawrapper-chart-n8cgy" src="//datawrapper.dwcdn.net/n8cgy/4/"
+            id="datawrapper-chart-n8cgy" data-lazy-src="//datawrapper.dwcdn.net/n8cgy/4/"
             scrolling="no" frameborder="0"
             style="width: 0; min-width: 100% !important; border: none;"
             height="210"></iframe>
@@ -248,7 +248,7 @@ Enormous areas of New York City were redlined. Explore the extent of HOLC's redl
         aria-labelledby="map-tab">
         <iframe title="Aggressive redlining of the Bronx, Brooklyn, and Manhattan"
             aria-label="USA new york city community districts choropleth map"
-            id="datawrapper-chart-4Vuf4" src="//datawrapper.dwcdn.net/4Vuf4/4/"
+            id="datawrapper-chart-4Vuf4" data-lazy-src="//datawrapper.dwcdn.net/4Vuf4/4/"
             scrolling="no" frameborder="0"
             style="width: 0; min-width: 100% !important; border: none;"
             height="400"></iframe>

@@ -10,9 +10,9 @@ Heat contributes to the deaths of about 580 New Yorkers, on average, each year d
 To prepare for a hotter future and prevent heat-related deaths, the City needs long-lasting, structural interventions alongside heat emergency preparedness and response. Adapting to a hotter climate means the City must:
 
 - Ensure equitable access to life-saving residential cooling for all New Yorkers.
-  - Implement maximum temperature regulations during the summer months for tenants as laid out in 2023 <a href="https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/" target="_blank" rel="noreferrer noopener">PlaNYC: Getting Sustainability Done</a>.
+  - Implement maximum temperature regulations during the summer months for tenants as laid out in 2023 <a href="https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/" target="_blank" rel="noreferrer noopener">PlaNYC: Getting Sustainability Done</a>.
   - Consider mandates on property owners to provide tenants with AC without additional surcharges.
-  - Help eligible residents apply for a free air conditioner with installation through the Home Energy Assistance Program (HEAP)’s <a href="https://otda.ny.gov/programs/heap/#cooling-assistance" target="_blank" rel="noreferrer noopener">Cooling Assistance Component</a>.
+  - Help eligible residents apply for a free air conditioner with installation through the Home Energy Assistance Program (HEAP)’s <a href="https://otda.ny.gov/programs/heap/#cooling-assistance" target="_blank" rel="noreferrer noopener">Cooling Assistance Component</a>.
   - Protect the electrical grid, which can be strained during hot weather, including by discouraging excess cooling in offices and commercial establishments.
 - Advocate for the State and utilities to make summertime utility costs affordable for low- and middle-income New Yorkers so they can use AC to protect themselves from the heat.
   - Expand HEAP Cooling Assistance Component benefits to include summer utility costs.
@@ -27,7 +27,7 @@ To prepare for a hotter future and prevent heat-related deaths, the City needs l
   - Work with local, state, and federal partners to ensure that indoor and outdoor workplaces are safe during hot weather.
   - Continue to strengthen emergency response to extreme heat, such as opening cooling centers, expanding awareness of other cool indoor spaces, and issuing heat-health warnings, prioritizing people and communities with the greatest need.
 
-More data and information about heat, climate, and health is available on the NYC Health Department’s&nbsp;[Climate and Health page.](..) Learn more about what the City is doing to mitigate the effects of heat as part of [PlaNYC: Getting Sustainability Done](https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/).&nbsp;
+More data and information about heat, climate, and health is available on the NYC Health Department’s&nbsp;[Climate and Health page.]({{< relURL >}}key-topics/climatehealth/) Learn more about what the City is doing to mitigate the effects of heat as part of [PlaNYC: Getting Sustainability Done](https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/).&nbsp;
 
 <div class="asidebox"><strong>Note on years of data included:</strong> For heat-stress, data for 2022 and 2023 are considered provisional because death data are still being compiled by the NYC Health Department Bureau of Vital Statistics. These numbers may be updated in future reports as final data become available; however, 2022 heat-stress numbers are less likely to change and are included in all heat-stress tables (2013-2022). The heat-exacerbated mortality analysis requires complete daily death counts to produce accurate estimates, making 2021 the most recent available year of data.</div>
 
@@ -41,6 +41,6 @@ More data and information about heat, climate, and health is available on the NY
 
 ## Previous reports {#previous-reports}
 
-- [2023 Heat Mortality Report](../2023/)
-- [2022 Heat Mortality Report](../2022/)
-- [2021 Heat Mortality Report](../2021/)
+- [2023 Heat Mortality Report]({{< relURL >}}data-features/heat-report-archive/2023/)
+- [2022 Heat Mortality Report]({{< relURL >}}data-features/heat-report-archive/2022/)
+- [2021 Heat Mortality Report]({{< relURL >}}data-features/heat-report-archive/2021/)

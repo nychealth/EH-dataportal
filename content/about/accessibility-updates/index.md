@@ -51,7 +51,7 @@ In some cases, creating a table that communicates the meaning behind a trend cha
 <iframe title="Lead poisoning in NYC adults" aria-label="Interactive line chart" id="datawrapper-chart-i7Bgo" src="https://datawrapper.dwcdn.net/i7Bgo/4/" scrolling="no" frameborder="0" style="border: none;" width="100%" height="515" data-external="1"></iframe>
 </div>
 
-In the case of this [trend chart comparing falling lead poisoning rates in NYC adults across the five boroughs](../../data-stories/adult-lead/), we duplicated the underlying data and formatted it as a table. Here, the year, blood lead levels, and borough headers guide users through the information.
+In the case of this [trend chart comparing falling lead poisoning rates in NYC adults across the five boroughs]({{< relURL >}}data-stories/adult-lead/), we duplicated the underlying data and formatted it as a table. Here, the year, blood lead levels, and borough headers guide users through the information.
 
 <div class="my-4 px-4">
 <iframe title="Lead poisoning rates in adult New Yorkers have fallen since 2001" aria-label="Table" id="datawrapper-chart-c7jtG" src="https://datawrapper.dwcdn.net/c7jtG/5/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="739" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
@@ -67,7 +67,7 @@ Typically, we add code that prevents screen readers from encountering inaccessib
 </script>
 </div>
 
-Here the symbol map using point data from our data story [Breathe easy: NYC’s air quality is improving](../../data-stories/breatheeasy/), works well in a visual context, where sighted users can gather information about which air quality monitoring sites are located throughout NYC.
+Here the symbol map using point data from our data story [Breathe easy: NYC’s air quality is improving]({{< relURL >}}data-stories/breatheeasy/), works well in a visual context, where sighted users can gather information about which air quality monitoring sites are located throughout NYC.
 
 The air quality sites are overlaid onto this point map using latitude and longitude coordinates, and corresponding site IDs. But when we made a table with these data, we realized we were delivering information that is less meaningful in a non-visual context to our screen-reader users.
 
@@ -81,7 +81,7 @@ The point map shows sighted people where the monitors are, using latitude and lo
 
 ### When there's too much data for a table
 
-In some cases, tables wouldn’t add much meaningful context for a screen reader. Raster maps show data on a grid of small pixels – more than 80,000 for NYC. The pixels allow us to see nuanced gradations in data values by seeing where pixels are denser and deeper colors. In this example, [some users can observe that the concentration of two air pollutants, NO2 and PM2.5, decreased as traffic and commercial cooking decreased](../../data-stories/air-quality-and-covid-part-2/) during the first year of the COVID-19 pandemic.
+In some cases, tables wouldn’t add much meaningful context for a screen reader. Raster maps show data on a grid of small pixels – more than 80,000 for NYC. The pixels allow us to see nuanced gradations in data values by seeing where pixels are denser and deeper colors. In this example, [some users can observe that the concentration of two air pollutants, NO2 and PM2.5, decreased as traffic and commercial cooking decreased]({{< relURL >}}data-stories/air-quality-and-covid-part-2/) during the first year of the COVID-19 pandemic.
 
 But providing somebody with a table of tens of thousands of x-y coordinates and values wouldn't communicate what these data show. So, we add descriptive alt text that explains the visualization's major takeaways about how air pollution changed during the COVID-19 pandemic.
 

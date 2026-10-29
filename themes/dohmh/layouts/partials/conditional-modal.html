@@ -16,7 +16,7 @@
             <div class='modal-body'>
                 <p><strong>Please sign up for our email list</strong>. We will email you every few months with updates,
                     or opportunities to participate in user research. 
-                    <a href='https://docs.google.com/forms/d/e/1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISw-OM7PBwKuoN3M--g/viewform'>Click here to sign up</a>.
+                    <a href="#" data-subscribe-click="prototype-modal" data-subscribe-parent-modal="#prototypeModal">Click here to sign up</a>.
                 </p>
             </div>
             <hr>
@@ -34,7 +34,7 @@
         .find((row) => row.startsWith('original_url='))
         ?.replace("original_url=", "");
 
-    original_url = original_url ? original_url : "/IndicatorPublic/";
+    original_url = original_url ? original_url : "{{ relURL "" }}";
 
 </script>
 
@@ -86,7 +86,7 @@
                 </p>
                 <p><strong>Please sign up for our email list</strong>. We will email you every few months with updates,
                     or opportunities to participate in user research. 
-                    <a href='https://docs.google.com/forms/d/e/1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISw-OM7PBwKuoN3M--g/viewform'>Click here to sign up</a>.
+                    <a href="#" data-subscribe-click="prototype-modal" data-subscribe-parent-modal="#prototypeModal">Click here to sign up</a>.
                 </p>
             </div>
             <hr>
@@ -104,7 +104,7 @@
         .find((row) => row.startsWith('original_url='))
         ?.replace("original_url=", "");
 
-    original_url = original_url ? original_url : "/IndicatorPublic/";
+    original_url = original_url ? original_url : "{{ relURL "" }}";
     
     {{- /*  console.log("original_url", original_url);  */}}
     

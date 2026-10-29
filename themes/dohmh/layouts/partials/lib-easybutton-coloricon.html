@@ -1,0 +1,17 @@
+{{- /*  leaflet-easybutton + Leaflet.colorIcon — https://github.com/shevekk/Leaflet.ColorIcon
+      Both extend the global L object, so pages must load lib-leaflet.html first.  */}}
+
+<!-- leaflet easybutton CSS -->
+
+{{- $easybutton_CSS := resources.Get "node_modules/leaflet-easybutton/src/easy-button.css" | partial "short-fingerprint.html" }}
+<link rel="stylesheet" href="{{ $easybutton_CSS.RelPermalink }}" integrity="{{ $easybutton_CSS.Data.Integrity }}" />
+
+<!-- leaflet easybutton source -->
+
+{{- $easybutton := resources.Get "node_modules/leaflet-easybutton/src/easy-button.js" | partial "short-fingerprint.html" }}
+<script src="{{ $easybutton.RelPermalink }}" integrity="{{ $easybutton.Data.Integrity }}"></script>
+
+<!-- Leaflet.colorIcon -->
+
+{{- $colorIcon := resources.Get "js/L.colorIcon.js" | partial "short-fingerprint.html" }}
+<script src="{{ $colorIcon.RelPermalink }}" integrity="{{ $colorIcon.Data.Integrity }}"></script>

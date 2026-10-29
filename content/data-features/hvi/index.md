@@ -2,6 +2,7 @@
 title: "Interactive Heat Vulnerability Index"
 aliases:
   - /key-topics/climatehealth/hvi/
+  - /data-features/heat-vulnerability/
 date: 2021-08-25T10:49:05-04:00
 draft: false
 seo_title: "Interactive heat vulnerability index"
@@ -36,7 +37,7 @@ related:
     url: "data-features/heat-syndrome/"
 weight: 1
 blurb: Neighborhood heat vulnerability, and the neighborhood characteristics that affect it.
-aboutTheData: 'The HVI is based on data from the American Community Survey, NASA, the Housing and Vacancy Survey and more. <a href="../../data-explorer/climate/?id=2411#display=summary">Get details on how the HVI is calculated</a>, or <a href="hvi-nta-2020.csv" download="hvi-nta-2020.csv" >download the data.</a>'
+aboutTheData: 'The HVI is based on data from the American Community Survey, NASA, the Housing and Vacancy Survey and more. [Get details on how the HVI is calculated]({{< relURL >}}data-explorer/climate/?id=2411#display=summary), or <a href="hvi-nta-2020.csv" download="hvi-nta-2020.csv">download the data.</a>'
 ---
 
 Hot weather is dangerous. In New York City – and across the country – more people die from heat than from all other natural disasters combined. As our climate continues to warm, we expect more heat events that can put people’s lives at risk.

@@ -33,9 +33,10 @@ related:
     url: "data-features/nyccas/"
 ---
 
-<div class="border mb-4 p-1 fs-sm">
-  <i class="far fa-clock mr-1" aria-hidden="true"></i>Since we published this, an update is available.<ul><li><a href="https://www.mta.info/document/195631#nameddest=Air%20Quality%20and%20Emissions">Read MTA's report on the first year of the program, which includes our updated air quality analyses.</li></ul></a>
-</div>
+<!-- note: this purposely uses the full absolute URL to the live portal -->
+{{< updateflag message="Since we published this, an update is available." data=`[
+  {"src": "https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/congestion-pricing-report/", "text": "Read our report on the first year of the program", "after": ", the most complete evaluation to date of the effects of congestion pricing on air quality in NYC."}
+]` >}}
 
 In January 2025, the Metropolitan Transportation Authority Bridge and Tunnels (MTABT) started charging a toll for vehicles entering Manhattan’s [Congestion Relief Zone](https://congestionreliefzone.mta.info/) (the zone) to reduce traffic within the zone and raise money for public transportation improvements.
 
@@ -45,9 +46,9 @@ For this initial report, we looked at data for one kind of air pollution of part
 
 But these data don’t let us draw final conclusions about the toll’s effect at this early stage. The work is ongoing - a comprehensive study will require 12 months of data before and after the start date. For that evaluation, we will use scientific methods that will separate the effects of the toll from other factors that can affect traffic and air quality – like the season, weather patterns, activity patterns, and more. We will publish that evaluation in 2026.
 
-## Where we measured air quality   
+## Where we measured air quality   
 
-This map shows the locations of [real-time air quality monitoring](./data-features/realtime-air-quality), both inside and outside of the tolling zone. Locations outside of the zone were chosen based on the environmental review’s predictions that congestion relief tolling could increase traffic on some roads outside the zone.
+This map shows the locations of [real-time air quality monitoring]({{< relURL >}}data-features/realtime-air-quality/), both inside and outside of the tolling zone. Locations outside of the zone were chosen based on the environmental review’s predictions that congestion relief tolling could increase traffic on some roads outside the zone.
 
 </div>
 
@@ -117,7 +118,7 @@ Most locations showed steady or decreasing concentrations of PM2.5.
 </div>
 <div class="narrow">
 
-One location, Hamilton Bridge, showed an increase in PM2.5 pollution after tolling went into effect in January 2025. However, it’s not clear that this increase is caused by the tolling. Typically, air pollution is analyzed by connecting changes in air pollution to changes among the things that can emit that air pollution. PM2.5 is emitted by fuel combustion – from vehicles, building boilers, restaurants, and other sources. [About 14% of the city’s PM2.5 comes from traffic](../data-stories/traffic-and-air-pollution).
+One location, Hamilton Bridge, showed an increase in PM2.5 pollution after tolling went into effect in January 2025. However, it’s not clear that this increase is caused by the tolling. Typically, air pollution is analyzed by connecting changes in air pollution to changes among the things that can emit that air pollution. PM2.5 is emitted by fuel combustion – from vehicles, building boilers, restaurants, and other sources. [About 14% of the city’s PM2.5 comes from traffic]({{< relURL >}}data-stories/traffic-and-air-pollution/).
 
 Did this location see an increase in traffic that would explain this increase in PM2.5? Traffic counts at Hamilton Bridge show that from January to March 2025, counts of all vehicles and of trucks are comparable to a pre-tolling sample taken in October 2024. While more PM2.5 was observed in February 2025, we did not see an increase in traffic.
 
@@ -139,4 +140,4 @@ Generally, New York City's air quality is good, and improving over time.
 
 In this initial look at air quality data from the first three months of congestion relief tolling, we observed steady or decreasing levels of PM2.5 at most sites, both inside and outside the tolling zone, including sites that were predicted to have traffic increases as a result of tolling.
 
-While promising, we do not have enough data to draw final conclusions about the effects of congestion relief tolling on traffic and air quality. For reliable findings, we will analyze data from 12 months before and after the start of tolling. We will use analytical methods that will separate out the effects of the toll from other effects, like year-to-year changes in population and land use, seasonal variations, and other things that can affect traffic volume and air quality. That study will examine the effect of congestion relief tolling on the other pollutants typically examined by the [New York City Community Air Survey](../data-features/nyccas). We expect to publish that evaluation in 2026.
+While promising, we do not have enough data to draw final conclusions about the effects of congestion relief tolling on traffic and air quality. For reliable findings, we will analyze data from 12 months before and after the start of tolling. We will use analytical methods that will separate out the effects of the toll from other effects, like year-to-year changes in population and land use, seasonal variations, and other things that can affect traffic volume and air quality. That study will examine the effect of congestion relief tolling on the other pollutants typically examined by the [New York City Community Air Survey]({{< relURL >}}data-features/nyccas/). We expect to publish that evaluation in 2026.

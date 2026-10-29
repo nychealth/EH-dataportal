@@ -40,6 +40,6 @@ By arranging noise sensitive uses such as bedrooms facing away from the noise so
 
 ### Key Messages
 
- Ambient noise in the home, work or school often disrupts people’s concentration. According to the [National Institute for Occupational Safety and Health](http://www.cdc.gov/niosh/), ambient noise also affects people’s health by increasing general stress levels and aggravating stress-related conditions such as high blood pressure, coronary disease, peptic ulcers and migraine headaches. Continued exposure does not lead to habituation; in fact, the effects worsen. 
+Ambient noise in the home, work or school often disrupts people’s concentration. According to the [National Institute for Occupational Safety and Health](http://www.cdc.gov/niosh/), ambient noise also affects people’s health by increasing general stress levels and aggravating stress-related conditions such as high blood pressure, coronary disease, peptic ulcers and migraine headaches. Continued exposure does not lead to habituation; in fact, the effects worsen.
 
-The [National Institute for Occupational Safety and Health](http://www.cdc.gov/niosh/) offers detailed guides on noise and hearing loss prevention.
+The [National Institute for Occupational Safety and Health](http://www.cdc.gov/niosh/) offers detailed guides on noise and hearing loss prevention.

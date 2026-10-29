@@ -1,0 +1,24 @@
+name: Test print branch
+
+# manual smoke test: prints the branch it was dispatched against, plus a fixed string
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  print_branch:
+    name: Print branch
+    runs-on: ubuntu-24.04
+
+    steps:
+
+      # github.ref_name is the short branch name for a workflow_dispatch run
+
+      - name: print branch and fixed string
+        run: |
+          echo "Branch: ${{ github.ref_name }}"
+          echo "ref: ${{ github.ref }}"
+          echo "production"

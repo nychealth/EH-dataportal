@@ -6,10 +6,10 @@
     "destination": "docs",
     "baseURL": "/",
     "noTimes": false,
-    "hugoVersion": "0.145.0",
-    "rubyVersion": "2.7.3",
-    "nodeVersion": "20",
-    "denoVersion": "1.40.2",
+    "hugoVersion": "0.147.3",
+    "rubyVersion": "",
+    "nodeVersion": "24",
+    "denoVersion": "",
     "environment_variables": [
       {
         "key": "HUGO_CACHEDIR",

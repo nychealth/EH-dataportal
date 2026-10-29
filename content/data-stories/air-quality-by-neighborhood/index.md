@@ -39,7 +39,7 @@ related:
 ---
 
 {{< updateflag data=`[
-  {"src": "../../data-explorer/air-quality/?id=2023", "text": "seasonal fine particles (PM2.5)"}
+  {"src": "data-explorer/air-quality/?id=2023", "text": "seasonal fine particles (PM2.5)"}
 ]` >}}
 
 In [Part 1]({{< ref "/data-stories/car-free-zones" >}}), we looked at data from the New York City Community Air Survey (NYCCAS) - a network of about 100 air quality monitors - to see if air quality improves in areas that go car-free. And the answer is yes.

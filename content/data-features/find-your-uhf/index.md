@@ -18,6 +18,6 @@ related:
     url: "data-stories/geographies/"
 ---
 
-Environmental health data can come at several different geographies, or neighborhood boundary schemes. Often, health data are available at a neighborhood boundary scheme called UHF42, which breaks up NYC into 42 neighborhoods ([read more about UHF42 geographies](../data-stories/geographies/)).
+Environmental health data can come at several different geographies, or neighborhood boundary schemes. Often, health data are available at a neighborhood boundary scheme called UHF42, which breaks up NYC into 42 neighborhoods ([read more about UHF42 geographies]({{< relURL >}}data-stories/geographies/)).
 
 Sometimes, you may be looking for data for a Community District or a City Council District, but the data are only available by UHF42 neighborhood. Click on the Community District or a City Council District below to identify the overlapping UHFs, and get links to our Neighborhood Reports with data by UHF42 neighborhood. 
