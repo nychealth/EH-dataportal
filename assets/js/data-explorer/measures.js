@@ -1355,8 +1355,8 @@ const renderSelectedCorrelate = async (primaryMeasureId, secondaryMeasureId) => 
     const secondaryMeasurementType = DE.links.selectedSecondaryMeasureMetadata[0]?.MeasurementType;
     const primaryAbout = DE.links.selectedPrimaryMeasureMetadata[0]?.how_calculated;
     const secondaryAbout = DE.links.selectedSecondaryMeasureMetadata[0]?.how_calculated;
-    const primarySources = DE.links.selectedPrimaryMeasureMetadata[0]?.Sources;
-    const secondarySources = DE.links.selectedSecondaryMeasureMetadata[0]?.Sources;
+    const primarySources = linkifyMeasureSources(DE.links.selectedPrimaryMeasureMetadata[0]);
+    const secondarySources = linkifyMeasureSources(DE.links.selectedSecondaryMeasureMetadata[0]);
 
     DE.links.selectedLinksAbout =
         `<p><strong>${DE.indicator.primaryIndicatorName} - ${primaryMeasurementType}</strong>: ${primaryAbout}</p>
@@ -1644,7 +1644,7 @@ showBoroughTrend = (e) => {
         });
 
     DE.trend.selectedTrendAbout = `<p><strong>${resolvedTrendMetadata[0].MeasurementType}</strong>: ${resolvedTrendMetadata[0].how_calculated}</p>`;
-    DE.trend.selectedTrendSources = [resolvedTrendMetadata[0].Sources];
+    DE.trend.selectedTrendSources = [linkifyMeasureSources(resolvedTrendMetadata[0])];
 
     renderAboutSources(DE.trend.selectedTrendAbout, DE.trend.selectedTrendSources);
 
@@ -1718,7 +1718,7 @@ showComparisonTrend = (e) => {
 
     selectedComparisonRows.forEach(m => {
         DE.trend.selectedComparisonAbout += `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.how_calculated}</p>`;
-        DE.trend.selectedComparisonSources.push(m.Sources);
+        DE.trend.selectedComparisonSources.push(linkifyMeasureSources(m));
     });
 
     DE.trend.selectedComparisonSources = [...new Set(DE.trend.selectedComparisonSources)];

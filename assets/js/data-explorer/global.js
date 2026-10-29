@@ -362,7 +362,56 @@ if (document.readyState === 'loading') {
 // measure info functions
 // ----------------------------------------------------------------------- //
 
-// Writes About and Sources content while de-duplicating repeated source text.
+// Default links for source names that recur across many measures' Sources text. A
+// measure's own DataSourceLink entries (EHDP-data metadata) take precedence over these.
+
+const SOURCE_LINK_DEFAULTS = {
+    'New York City Community Health Survey (CHS)': 'https://www.nyc.gov/site/doh/data/data-sets/community-health-survey-public-use-data.page',
+    'Metropolitan Transportation Authority': 'https://www.mta.info/developers',
+    'New York City Housing and Vacancy Survey (NYCHVS)': 'https://www.nyc.gov/site/hpd/about/research.page',
+    'American Community Survey': 'https://www.census.gov/programs-surveys/acs/data.html'
+};
+
+// DOMPurify drops target by default; source links open in a new tab like the 311 links.
+
+const SOURCE_SANITIZE_OPTIONS = { ADD_ATTR: ['target'] };
+
+
+// Wraps each known source name in the text in a link to its data.
+
+const linkifySource = (text, dataSourceLinks = []) => {
+
+    if (!text) return text;
+
+    const urlByName = { ...SOURCE_LINK_DEFAULTS };
+
+    dataSourceLinks.forEach(({ label, url }) => {
+        if (label && url) urlByName[label] = url;
+    });
+
+    // One pass over all names, longest first: a name nested inside a longer label (MTA sits
+    // inside several DataSourceLink labels) cannot match again inside an inserted link.
+
+    const names = Object.keys(urlByName).sort((a, b) => b.length - a.length);
+    const escapedNames = names.map(name => name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+    const namePattern = new RegExp(escapedNames.join('|'), 'g');
+
+    return text.replace(namePattern, name =>
+        `<a href="${urlByName[name]}" target="_blank" rel="noopener noreferrer">${name}</a>`
+    );
+
+};
+
+
+// Links one measure's Sources text using that measure's own DataSourceLink entries. Views
+// pairing two indicators link each measure separately: both may say "American Community
+// Survey" while pointing at different tables, so one merged name map would mislink one.
+
+const linkifyMeasureSources = (measure) => linkifySource(measure?.Sources, measure?.DataSourceLink ?? []);
+
+
+// Writes About and Sources content while de-duplicating repeated source text. Sources
+// arrive already linked (linkifyMeasureSources).
 
 const renderAboutSources = (about, sources) => {
 
@@ -392,11 +441,11 @@ const renderAboutSources = (about, sources) => {
 
         let singleSource;
         singleSource = sources.every((val, i, arr) => val === arr[0]);
-        singleSource === true ? dataSources.innerHTML = DOMPurify.sanitize(sources[0]) : dataSources.innerHTML = DOMPurify.sanitize(sources);
+        singleSource === true ? dataSources.innerHTML = DOMPurify.sanitize(sources[0], SOURCE_SANITIZE_OPTIONS) : dataSources.innerHTML = DOMPurify.sanitize(sources, SOURCE_SANITIZE_OPTIONS);
 
     } else {
 
-        dataSources.innerHTML = DOMPurify.sanitize(sources);
+        dataSources.innerHTML = DOMPurify.sanitize(sources, SOURCE_SANITIZE_OPTIONS);
 
     }
 
