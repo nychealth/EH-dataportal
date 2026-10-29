@@ -22,10 +22,10 @@
             1,
             4,
             4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 3,
@@ -87,8 +87,8 @@
             "More content about Deaths:",
             "Leading causes of injuries and deaths in NYC (2021 - 2023)",
             "Injury deaths in NYC adults: how homicide and suicide contribute",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

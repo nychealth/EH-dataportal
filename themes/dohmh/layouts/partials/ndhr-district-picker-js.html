@@ -11,14 +11,10 @@
         district, or "" to land on the district index. Declaration order does not matter:
         it is called on selection, long after every script on the page has parsed.
 
-    UNLIKE nr-neighborhood-picker-js.html, the combobox ARIA work is included rather than
-    copied. That partial carries its own inline wireComboboxState(); the same function also
-    exists as partials/flexdatalist-combobox-js.html, already shared by de-text-search, aqe
-    and hvi, and deriving its results-list id from the input rather than hardcoding it. A
-    sixth copy of ~120 lines is not worth writing. The two must never load on one page —
-    both declare wireComboboxState in the shared classic-script scope, and two declarations
-    of one name there is a SyntaxError that kills every script on the page. No NDHR layout
-    includes an NR partial `[verified 2026-09-12]`.
+    The combobox ARIA work is included rather than copied: wireComboboxState() comes from
+    partials/flexdatalist-combobox-js.html, shared with de-text-search,
+    nr-neighborhood-picker-js, aqe and hvi, which derives its results-list id from the input
+    rather than hardcoding it.
 
     EXPECT controls.noAccessibleName TO READ 1 on every page carrying this picker, in
     scripts/site-characterization.mjs. flexdatalist re-points the authored input's

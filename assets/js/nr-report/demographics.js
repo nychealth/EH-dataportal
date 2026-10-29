@@ -7,11 +7,13 @@
 // ----------------------------------------------------------------------- //
 
 // Renders a rate the way every sidebar metric except population is presented
+
 const percent = value => Number(value).toFixed(1) + '%';
 
 
 // The sidebar's metrics in display order; `format` receives the raw uhflist value.
 // One table so the clear pass and the fill pass cannot drift out of agreement
+
 const DEMOGRAPHIC_FIELDS = [
     { id: 'nr-pop',   field: 'TotalPopulation',            format: value => Number(value).toLocaleString() },
     { id: 'nr-old',   field: 'PercentOver65',              format: percent },
@@ -25,9 +27,11 @@ const DEMOGRAPHIC_FIELDS = [
 
 
 // Blanks every sidebar metric and hides both panels, for when no neighborhood resolves
+
 const clearDemographicsSidebar = () => {
 
     // Clear each field explicitly so stale values do not persist between selections
+
     DEMOGRAPHIC_FIELDS.forEach(metric => {
         const node = nrById(metric.id);
         if (node) node.innerHTML = '';
@@ -46,6 +50,7 @@ const clearDemographicsSidebar = () => {
 
 
 // Fills the sidebar from the uhflist row matching geocode, clearing it if there is none
+
 const renderDemographics = geocode => {
 
     debugLog('renderDemographics: enter:', geocode);
@@ -67,9 +72,10 @@ const renderDemographics = geocode => {
     const d = here[0];
 
     // Each target node is optional: the sidebar markup varies by layout width
+
     DEMOGRAPHIC_FIELDS.forEach(metric => {
         const node = nrById(metric.id);
-        if (node) node.innerHTML = metric.format(d[metric.field]);
+        if (node) node.textContent = metric.format(d[metric.field]);
     });
 
     const demoPanel = nrById('nr-demographics');

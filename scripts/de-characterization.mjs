@@ -16,8 +16,8 @@
 // stages, and the harness has to stay valid across the whole migration.
 //
 // Usage (reuses a running dev server, or starts one — see dev-server.mjs):
-//   npm run characterize:de -- --baseline
-//   npm run characterize:de -- --check
+//   npm run characterize -- --baseline
+//   npm run characterize -- --check
 
 import { chromium } from 'playwright';
 import { mkdirSync, rmSync, writeFileSync } from 'node:fs';

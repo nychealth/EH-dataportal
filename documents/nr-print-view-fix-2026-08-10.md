@@ -1,5 +1,7 @@
 # Neighborhood Reports — print view fix
 
+> Superseded for status by [site-wide-audit-2026-10.md](site-wide-audit-2026-10.md) (2026-10-17); kept as a dated record.
+
 Branch `feature-MOD-Lab-NR-recode-refactor`. Reported 2026-08-10: printing a report page on
 the new topic SPA produces section headings and a stack of empty bordered buttons — no indicator
 rows. Seen on Chromium on Windows and on Chrome and Safari on iOS 26; the cause is pure CSS, which

@@ -265,7 +265,7 @@ const buildIndicatorCard = (row, districtName) => {
     // The micro-label is per row rather than a column header above the accordion: the
     // cards are Bootstrap collapses, not table rows, so there is no header row to align to
     // and a bare imperative phrase at the right edge reads as an instruction to the reader
-    // The divider is .ndhr-strategy-cell in _custom.scss rather than Bootstrap's
+    // The divider is .ndhr-strategy-cell in _de-custom.scss rather than Bootstrap's
     // border-left utility, because the border has to move: below md the cell stacks under
     // the button, where a left border runs alongside nothing.
     // Omitted entirely rather than left as an empty column when a measure names no

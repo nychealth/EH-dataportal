@@ -23,10 +23,10 @@
             4,
             4,
             4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 3,
@@ -89,8 +89,8 @@
             "Raising the minimum wage would save lives",
             "Efforts to reduce air pollution should focus on neighborhoods with the worst health impacts",
             "ZAPPA: A tool to understand air quality policies",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

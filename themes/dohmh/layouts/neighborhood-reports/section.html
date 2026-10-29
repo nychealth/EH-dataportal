@@ -2,149 +2,143 @@
 
 {{/* The data-pagefind-ignore="all" that used to sit on this element kept the section's
      own landing page — its entry point — out of search results. It comes off with the
-     rest of the NR indexing changes: the 252 generated pages below it are indexed, so a
-     search for "neighborhood reports" should be able to reach the page they hang off. */}}
+     rest of the NR indexing changes: the 42 neighborhood indexes and 5 topic indexes below
+     it are indexed, so a search for "neighborhood reports" should be able to reach the page
+     they hang off. The 210 report pages are deliberately not indexed — nr-report.html
+     carries a page-level data-pagefind-ignore; documents/nr-pagefind-parity-2026-08-15.md
+     §2g has why. */}}
 <article class="container-fluid overflow-hidden" id="primary-content">
 
-  <style>
-    .selectedOption {
-      font-weight: bold;
-    }
-  </style>
+    <style>
+        .selectedOption {
+            font-weight: bold;
+        }
+    </style>
 
-  <div class="row mb-4">
-    <div class="col-lg-10 mx-auto col-12">
-      {{ partial "section-header.html" (dict "page" .) }}
+    <div class="row mb-4">
+        <div class="col-lg-10 mx-auto col-12">
+            {{ partial "section-header.html" (dict "page" .) }}
 
-      <div class="row">
-        <div class="col-12">
-              {{/* h2 with .h3 for size: this sits directly under the page h1, and an h3 here
-                   made the landing page's exposed sequence jump a level */}}
-              <h2 class="h3">Choose report</h2>
+            {{/* From xl up the report chooser and the picker sit side by side, as production's
+                 landing page has them, so the map starts level with the topic buttons instead of
+                 under them; the footnote fills the space under the chooser. Below xl the three
+                 stack in source order — chooser, picker, footnote — which keeps the map ahead of
+                 the footnote on a phone. That split (footnote beside the map at one width, after
+                 it at another, with no duplicated markup) is why this is a CSS grid in
+                 _de-custom.scss (.nr-landing-grid) rather than Bootstrap columns. xl, not lg: at
+                 1024px the buttons were 114px and the description 172px. The map's height is
+                 .nr-selector-map's, shared with the topic indexes. */}}
+            <div class="nr-landing-grid">
+                <div class="nr-landing-chooser mb-4">
+                    {{/* h2 with .h3 for size: this sits directly under the page h1, and an h3 here
+                         made the landing page's exposed sequence jump a level */}}
+                    <h2 class="h3">Choose report</h2>
 
-              <div class="row no-gutters">
-                <div class="col-sm mb-2 mr-1 mb-lg-0">
-                  <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button active" id="Active">Active design</button>
-                </div>
-                <div class="col-sm mb-2 mr-1 mb-lg-0">
-                  <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button" id="Asthma">Asthma</button>
-                </div>
-                <div class="col-sm mb-2 mr-1 mb-lg-0">
-                  <button class="btn btn-sm  btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button" id="Climate">Climate</button>
-                </div>
-                <div class="col-sm mb-2 mr-1 mb-lg-0">
-                  <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button" id="Housing">Housing</button>
-                </div>
-                <div class="col-sm mb-2 mr-1 mb-lg-0">
-                  <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button" id="Outdoor">Outdoor Air</button>
+                    <div class="row">
+                        {{/* One button per data/globals/NR_topics.yml entry, in its order. The id is the
+                             topic key: setIntendedDestination looks it up in nr-leaflet.html's
+                             topicSlugs, and changeHomeCopy reads the "<key>-Descr" block below */}}
+                        <div class="col-sm-5">
+                            {{- range $i, $t := site.Data.globals.NR_topics }}
+                            <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 mb-2 nr-topic-button{{ if eq $i 0 }} active{{ end }}" id="{{ $t.key }}" aria-pressed="{{ if eq $i 0 }}true{{ else }}false{{ end }}">{{ $t.menu_label }}</button>
+                            {{- end }}
+                        </div>
+
+                        <div class="col-sm-7">
+                            <p id="descr">
+
+                            </p>
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <div class="col-12">
-                    <p id="descr" class="my-2">
+                <div class="nr-landing-picker">
+                    {{/* Libraries before the picker, not in js_bot: the picker renders nr-leaflet,
+                         whose inline script calls L.map() as the parser reaches it, and js_bot is
+                         emitted after main. */}}
+                    {{- partial "lib-leaflet.html" . }}
+                    {{- partial "lib-easybutton-coloricon.html" . }}
+                    {{- partial "lib-uhflist.html" . }}
 
-                    </p>
+                    {{ partial "nr-neighborhood-picker" (dict "page" .) }}
+
+                    {{/* No topic slug: the destination here is whichever topic button is active, which
+                         is a runtime fact. The served hrefs point at the neighborhood index, and
+                         updateNeighborhoodListLinks below rewrites them as the selection changes. */}}
+                    {{ partial "nr-neighborhood-list" (dict "topic_slug" "") }}
                 </div>
 
+                <div class="nr-landing-footnote fs-sm mt-3 mt-xl-0">
+                    <strong><i class="fas fa-info-circle mr-1" aria-hidden="true"></i>About these neighborhoods</strong>
+                    <p>There are different ways to break up NYC into neighborhoods. These Neighborhood Reports include data for 42 NYC neighborhoods &mdash; a neighborhood scheme called UHF42. <a href="../data-stories/geographies/">Read about different neighborhood schemes in our data</a>.</p>
+                    <p><i class="fas fa-question-circle mr-1" aria-hidden="true"></i>If you're looking for data for <strong>Community Districts</strong> or <strong>City Council Districts</strong>, you can get data for the neighborhoods that overlap them.</p>
+                    <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#CCDModal"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Find overlapping neighborhoods</button>
+                </div>
             </div>
 
-        </div>
-      </div>
 
-      {{/* Picker below the topic buttons rather than beside them, in a centred column, so
-           the map gets the width it was starved of in the old col-md-5. */}}
-      <div class="row">
-        <div class="col-md-8 mx-auto">
-              {{/* Libraries before the picker, not in js_bot: the picker renders nr-leaflet,
-                   whose inline script calls L.map() as the parser reaches it, and js_bot is
-                   emitted after main. */}}
-              {{- partial "lib-leaflet.html" . }}
-              {{- partial "lib-uhflist.html" . }}
-
-              {{ partial "nr-neighborhood-picker" (dict "page" .) }}
-
-              {{/* No topic slug: the destination here is whichever topic button is active, which
-                   is a runtime fact. The served hrefs point at the neighborhood index, and
-                   updateNeighborhoodListLinks below rewrites them as the selection changes. */}}
-              {{ partial "nr-neighborhood-list" (dict "topic_slug" "") }}
-        </div>
-      </div>
-
-      {{/* Footnote, so it sits under the picker rather than beside it — and in the same
-           centred column, which keeps it at a readable measure instead of the full
-           col-lg-10 width. */}}
-      <div class="row mt-6">
-        <div class="col-md-8 mx-auto fs-sm">
-          <strong><i class="fas fa-info-circle mr-1" aria-hidden="true"></i>About these neighborhoods</strong>
-          <p>There are different ways to break up NYC into neighborhoods. These Neighborhood Reports include data for 42 NYC neighborhoods &mdash; a neighborhood scheme called UHF42. <a href="../data-stories/geographies/">Read about different neighborhood schemes in our data</a>.</p>
-          <p><i class="fas fa-question-circle mr-1" aria-hidden="true"></i>If you're looking for data for <strong>Community Districts</strong> or <strong>City Council Districts</strong>, <a href="#about" data-toggle="modal" data-target="#CCDModal">use this tool to get data for overlapping neighborhoods</a>.</p>
 
         </div>
-      </div>
-
-      <div class="row my-4">
-
-        <div class="col-md-4 col-sm-12 mb-2" id="about">
-        </div>
-      </div>
-
-
-
     </div>
-  </div>
 
-  <!-- Council District Chooser Modal -->
+    <!-- Council District Chooser Modal -->
 <div class="modal fade" id="CCDModal" tabindex="-1" role="dialog" aria-labelledby="CCDModalTitle" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="CCDModalTitle">Get data for Community Districts or City Council District</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="row no-gutters">
-          <div class="col-12 mb-4">
-            <p>These <strong>Neighborhood Reports</strong> are presented for 42 NYC neighborhoods made up of groups of ZIP Codes - a neighborhood scheme called UHF42.</p>
-            <p>To get data for Community Districts or City Council Districts, choose a district below. This will give you links to reports for UHF neighborhoods that overlap your neighborhood.</p>
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="CCDModalTitle">Get data for Community Districts or City Council District</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row no-gutters">
+                    <div class="col-12 mb-4">
+                        <p>These <strong>Neighborhood Reports</strong> are presented for 42 NYC neighborhoods made up of groups of ZIP Codes - a neighborhood scheme called UHF42.</p>
+                        <p>To get data for Community Districts or City Council Districts, choose a district below. This will give you links to reports for UHF neighborhoods that overlap your neighborhood.</p>
 
-            {{ partial "overlap-tool" . }}
+                        {{ partial "overlap-tool" . }}
 
-          </div>
+                    </div>
 
 
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
     </div>
-  </div>
 </div>
 
   
-<div class="hide topic-descriptions" id="Asthma-Descr">
-  {{ with .Site.GetPage "/neighborhood-reports/Asthma_and_the_Environment.md" }}
+{{/* Hand-written per topic and keyed by NR_topics.yml `key` to match the buttons above.
+     Not the yml `summary`: three of these five read differently from it, and which copy
+     the landing page shows is a content decision */}}
+<div class="hide topic-descriptions" id="Asthma_and_the_Environment-Descr">
+    {{ with .Site.GetPage "/neighborhood-reports/Asthma_and_the_Environment.md" }}
 
-  <p>{{ .Content }}</p>
+    <p>{{ .Content }}</p>
   
-  {{ end }}
+    {{ end }}
 </div>
 
-<div class="hide topic-descriptions" id="Climate-Descr">
-  As the climate changes, we track New York City's risk for extreme heat, storms and flooding, and episodes of elevated ozone. These have important public health impacts: already, heat kills more people than all other natural disasters.
+<div class="hide topic-descriptions" id="Climate_and_Health-Descr">
+    As the climate changes, we track New York City's risk for extreme heat, storms and flooding, and episodes of elevated ozone. These have important public health impacts: already, heat kills more people than all other natural disasters.
 </div>
 
-<div class="hide topic-descriptions" id="Active-Descr">
-  The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood's features can also impact the safety of its residents.
+<div class="hide topic-descriptions" id="Active_Design_Physical_Activity_and_Health-Descr">
+    The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood's features can also impact the safety of its residents.
 </div>
 
-<div class="hide topic-descriptions" id="Housing-Descr">
-  Housing conditions can drive health outcomes like asthma, lead poisoning, and carbon monoxide poisoning. We track housing neighborhood characteristics that can put people at risk - and special populations that are vulnerable.
+<div class="hide topic-descriptions" id="Housing_and_Health-Descr">
+    Housing conditions can drive health outcomes like asthma, lead poisoning, and carbon monoxide poisoning. We track housing neighborhood characteristics that can put people at risk - and special populations that are vulnerable.
 </div>
 
-<div class="hide" id="Outdoor-Descr">
-  Air pollution is one of the most important environmental threats to people who live in urban areas. Exposures are linked to respiratory and heart diseases, cancers, and premature deaths. Meanwhile, emissions, levels of exposure, and population vulnerability vary across neighborhoods.
+<div class="hide" id="Outdoor_Air_and_Health-Descr">
+    Air pollution is one of the most important environmental threats to people who live in urban areas. Exposures are linked to respiratory and heart diseases, cancers, and premature deaths. Meanwhile, emissions, levels of exposure, and population vulnerability vary across neighborhoods.
 </div>
 
 
@@ -167,54 +161,65 @@ var intendedDestinationName = null;
 // MANAGES TOPIC BUTTONS ON HOME PAGE
 
 function handleTopicButtons() {
-  const buttons = document.querySelectorAll('.nr-topic-button');
 
-  buttons.forEach(button => {
-    button.addEventListener('click', () => {
-      // 1. Remove 'active' from all buttons
+    const buttons = document.querySelectorAll('.nr-topic-button');
 
-      buttons.forEach(b => b.classList.remove('active'));
+    buttons.forEach(button => {
 
-      // 2. Add 'active' to the clicked button
+        button.addEventListener('click', () => {
 
-      button.classList.add('active');
+            // 1. Remove 'active' from all buttons. aria-pressed moves with it, so the
+            //    selected topic is announced and not only styled (N-027)
 
-      // 3. Set intended destination
+            buttons.forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-pressed', 'false');
+            });
 
-      setIntendedDestination(button.id)
+            // 2. Add 'active' to the clicked button
 
-      changeHomeCopy(button.id)
+            button.classList.add('active');
+            button.setAttribute('aria-pressed', 'true');
 
+            // 3. Set intended destination
+
+            setIntendedDestination(button.id);
+
+            changeHomeCopy(button.id);
+
+        });
     });
-  });
 }
 
 
 function changeHomeCopy(x) {
-      var copyHolder = x + '-Descr'
 
-      if (document.getElementById(copyHolder)) {
-        var copy = document.getElementById(copyHolder).innerHTML
-        document.getElementById('descr').innerHTML = copy
-      } else {
-        console.log('Not home page; doing nothing.')
-      }
+    var copyHolder = x + '-Descr';
+
+    if (document.getElementById(copyHolder)) {
+
+        var copy = document.getElementById(copyHolder).innerHTML;
+        document.getElementById('descr').innerHTML = copy;
+
+    } else {
+
+        console.log('Not home page; doing nothing.');
+
+    }
 }
 
 
 function setIntendedDestination(x) {
-  console.log('Intended destination: ', x)
-  intendedDestination = x
 
-  // look up intendedDestination in topicSlugs, and retrieve the URL Path for the intended destination
+    intendedDestination = x;
 
-  if (topicSlugs.hasOwnProperty(intendedDestination)) {
-      intendedDestinationName = topicSlugs[intendedDestination];
-  }
+    // look up intendedDestination in topicSlugs, and retrieve the URL Path for the intended destination
 
-  console.log('intended destination url: ', intendedDestinationName);
+    if (topicSlugs.hasOwnProperty(intendedDestination)) {
+        intendedDestinationName = topicSlugs[intendedDestination];
+    }
 
-  updateNeighborhoodListLinks()
+    updateNeighborhoodListLinks();
 
 }
 
@@ -222,23 +227,29 @@ function setIntendedDestination(x) {
 // The neighborhood list ships from Hugo with topic-less hrefs, so it works with JS off and
 // gives crawlers a path to the 42 neighborhood index pages. Once a topic is active the links
 // follow it, so clicking one lands where the map and the search box already send you.
+
 function updateNeighborhoodListLinks() {
-  const base = {{ relURL "neighborhood-reports/" }}
 
-  // Falls back to the neighborhood index when the lookup in setIntendedDestination missed:
-  // intendedDestinationName stays null there, and null would otherwise land in the URL.
-  const suffix = intendedDestinationName ? intendedDestinationName + '/' : ''
+    const base = {{ relURL "neighborhood-reports/" }};
 
-  document.querySelectorAll('#nr-neighborhood-list a[data-nbhd]').forEach(a => {
-    a.href = base + a.dataset.nbhd + '/' + suffix
-  })
+    // Falls back to the neighborhood index when the lookup in setIntendedDestination missed:
+    // intendedDestinationName stays null there, and null would otherwise land in the URL.
+
+    const suffix = intendedDestinationName ? intendedDestinationName + '/' : '';
+
+    document.querySelectorAll('#nr-neighborhood-list a[data-nbhd]').forEach(a => {
+        a.href = base + a.dataset.nbhd + '/' + suffix;
+    });
 }
 
 // SET DEFAULTS FOR HOME PAGE
 
-setIntendedDestination('Active') // default
-document.getElementById('descr').innerHTML = document.getElementById('Active-Descr').innerHTML
-handleTopicButtons()
+// Default: the first NR_topics.yml entry, the button rendered active above
+
+const defaultTopic = {{ (index site.Data.globals.NR_topics 0).key }};
+setIntendedDestination(defaultTopic);
+document.getElementById('descr').innerHTML = document.getElementById(defaultTopic + '-Descr').innerHTML;
+handleTopicButtons();
 
 
 // ===== neighborhood picker destination ==================================== //
@@ -247,11 +258,12 @@ handleTopicButtons()
 // the destination is whichever topic button is active. Navigating straight to
 // <nbhd>/<topic>/ is a page the content adapter generates, so the neighborhood no longer
 // has to travel through sessionStorage to a topic page that would re-select it.
-function nrPickerDestination() { return intendedDestinationName }
+
+function nrPickerDestination() { return intendedDestinationName; }
 
 
-  </script>
+</script>
 
-  {{ partial "nr-neighborhood-picker-js" . }}
+{{ partial "nr-neighborhood-picker-js" . }}
 
 {{- end -}}

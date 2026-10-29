@@ -259,6 +259,7 @@
     // Load CSV once, cache it:
 
     function loadCauseData() {
+
         return cachedCauseData
             ? Promise.resolve(cachedCauseData)
             : d3.csv("data/leading-causes.csv").then((d) => {
@@ -268,6 +269,7 @@
     }
 
     function loadDescriptions() {
+
         return cachedDescriptions
             ? Promise.resolve(cachedDescriptions)
             : d3.csv("data/cause-descriptions.csv").then((d) => {
@@ -316,7 +318,6 @@
             updateCauseMenu(outcome, intent);
 
         });
-
     });
     
     // Sub-buttons (Injury-related only)
@@ -355,7 +356,6 @@
             updateCauseMenu(outcome, intent);
 
         });
-
     });
     
     // ---------------------------------------------------------- //
@@ -386,12 +386,9 @@
             filtered.forEach((d) => {
 
                 if (d.cause_text) {
-
                     const cleaned = d.cause_text.replace(/^Injury:\s*/, "");
                     uniqueCauses.add(cleaned.trim());
-
                 }
-
             });
             
             const causes = [...uniqueCauses];
@@ -488,9 +485,7 @@
         // A cause item clicked
 
         if (target.classList.contains("cause-highlight")) {
-
             buttonTitle.innerText = "Showing: " + target.innerText.trim();
-
         }
     });
     
@@ -556,7 +551,6 @@
                     // "labelColor": {"expr": "scale('color', datum.label)"}
                 },
             };
-
         } else {
 
             filter = "datum.InjuryOnly == 0";
@@ -588,7 +582,6 @@
                     // "labelColor": {"expr": "scale('color', datum.label)"}
                 },
             };
-
         } else {
         }
         
@@ -647,7 +640,6 @@
         }
         
         var spec = {
-
             $schema: "https://vega.github.io/schema/vega-lite/v5.json",
             height: "container",
             width: "container",
@@ -810,7 +802,6 @@
                 if (event.item && event.item.datum) {
                     console.log("Mouse left:", event.item.datum);
                 }
-
             });
         });
     }
@@ -907,9 +898,7 @@
                 "(No description yet)";
 
             }
-
         });
-
     }
 
     // ---------------------------------------------------------- //

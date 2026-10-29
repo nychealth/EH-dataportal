@@ -20,7 +20,7 @@ wants a sentence. What they *announce* is now the same: the screen pill carries 
 wherever the reader meets the comparison (a11y audit F5/C3). The sentence is the same function the
 expanded panel uses, deliberately: a reader who opens a row on screen and then prints it would
 otherwise get the same fact in two vocabularies. It
-carries a `.comp-*` class — `assets/js/nr-report/tertiles.js` sets it, `assets/scss/_custom.scss`
+carries a `.comp-*` class — `assets/js/nr-report/tertiles.js` sets it, `assets/scss/_de-custom.scss`
 styles it, and all three classes are bold so the comparison word stands out of its sentence. That
 bold is invisible in the print row unless the column also carries `font-weight-normal`, because the
 accordion button is weight 700 and the column inherits it. Colour and glyph are then split by rank.
@@ -73,7 +73,7 @@ counted into `totalFetches`, so a card can never render before the map is in.
 ## Comparison vocabulary styling
 
 **The comparison vocabulary is styled in two files, and which one depends on the rendition.** The
-sentence's `.comp-good` / `.comp-bad` / `.comp-null` live in `assets/scss/_custom.scss`; the
+sentence's `.comp-good` / `.comp-bad` / `.comp-null` live in `assets/scss/_de-custom.scss`; the
 collapsed row's `.worse` / `.middle` / `.better` pills live in `assets/scss/theme.scss`. Editing one
 set does not touch the other. The pills carried good-vs-bad in `background-color` alone until C3 —
 both read the same two words, so a reader with a colour vision deficiency saw no difference (WCAG
@@ -93,7 +93,7 @@ markup one alone does nothing, since the search needs the JS one beside it:
 
 - `themes/dohmh/layouts/partials/nr-neighborhood-picker.html` — a `Choose Neighborhood` heading, a
   visible `<label>`, the search box, then the map in a `.nr-selector-map` wrapper (height in
-  `assets/scss/_custom.scss`,
+  `assets/scss/_de-custom.scss`,
   since `nr-leaflet`'s `#map` is 100%/100% and has no intrinsic size). Takes `page` and nothing else
   — the search field is the plain `.form-control`, 42px on both pages, since the landing page's 64px
   override was dropped rather than kept as a parameter. The heading is in here, not in the callers,
@@ -128,7 +128,8 @@ markup one alone does nothing, since the search needs the JS one beside it:
   `nrPickerDestination()`**, returning the topic slug to append. That is the one thing the two
   pages genuinely disagree on: a build-time slug on a topic index, the active topic button on the
   landing page. Order does not matter — it is called on selection, after everything has parsed.
-  It also holds `wireComboboxState`, which supplies the `role="combobox"` flexdatalist never emits
+  It also includes `themes/dohmh/layouts/partials/flexdatalist-combobox-js.html`, whose
+  `wireComboboxState` supplies the `role="combobox"` flexdatalist never emits
   and keeps `aria-expanded`, `aria-controls`, `aria-owns` and `aria-activedescendant` true. **It
   reads the DOM through a `MutationObserver`, not the library's events, and that is deliberate** —
   only `results.remove()` fires `removed:flexdatalist.results`, while Escape and the outside-click
@@ -140,11 +141,16 @@ markup one alone does nothing, since the search needs the JS one beside it:
 ## nr-leaflet framing
 
 `nr-leaflet` needs no argument beyond the page: it reads a topic slug out of the first path
-segment itself. Where a page has **no** `geocode` — the landing page and the five topic indexes —
-it sets `zoomSnap = 0` and fits the UHF42 layer, so the city fills whatever box the caller gives
-it. Both statements live inside that branch, so pages that *do* carry a `geocode` keep the
-highlight-and-fly framing. `zoomSnap` is load-bearing, not a tweak: at Leaflet's default of 1,
-`fitBounds` rounds down to a whole zoom and the city spans ~59% of the box.
+segment itself. On every page it sets `zoomSnap = 0`. A page that carries a `geocode` — the 42
+neighborhood index pages — highlights its own neighborhood and fits the map to it; the landing
+and topic pages, which have none, fit the whole UHF42 layer, so the city fills whatever box the
+caller gives it. Framing one neighborhood leaves few polygons reachable by pointer (5 of 42 on
+`/neighborhood-reports/east_new_york/`), which Chris accepted on 2026-10-20 in exchange for a
+"Reset zoom" easyButton back to the whole city (41 of 42). Leaflet's zoom control and that
+button are on here and on the
+report page's map, which frames the selected neighborhood the same way. `zoomSnap` is
+load-bearing, not a tweak: at Leaflet's default of 1, `fitBounds` rounds down to a whole zoom and
+the city spans ~59% of the box.
 
 ## nr-topic-menu
 
@@ -158,6 +164,6 @@ real generated page, so nothing needs rewriting — and the old 301 would have r
 them away. The `sessionStorage` hand-off that used to carry a neighborhood from a topic-first URL
 into the report page is gone at both ends — the bridge in `themes/dohmh/layouts/404.html`, which now treats
 those URLs as the genuine 404s they are, and the path-scan and bridge-read fallbacks in
-`assets/js/nr-report/url.js`. `getNeighborhoodFromURL` reads `NR_REPORT_CONFIG.neighborhood`
+`assets/js/nr-report/url.js`. `getPageNeighborhood` reads `NR_REPORT_CONFIG.neighborhood`
 and nothing else, so a page reaching that layout without the param renders no neighborhood rather
 than guessing one.

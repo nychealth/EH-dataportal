@@ -24,8 +24,8 @@
             3,
             2,
             2,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 1,
         "landmarks": {
@@ -91,8 +91,8 @@
             "What types of data sources are there?",
             "How do you choose datasets?",
             "Why aren’t some of your data more recent?",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

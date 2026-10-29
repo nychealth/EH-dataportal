@@ -6,6 +6,14 @@ azlink: "https://www.nyc.gov/site/doh/services/birth-death-records.page"
 seo_title: "Mortality data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of mortality data in NYC."
+blurb: "Premature and infant deaths"
+datatables: true
+arquero: true
+leaflet: true
+vega: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 tags:
 categories: ["healthoutcomes", "inequality", "injuryandviolence"]
 keywords: ["mortality", "death", "dying", "health"]

@@ -19,7 +19,7 @@
 {{- $contentKey := .Params.content_yml -}}
 {{- $reportTopics := (index (index .Site.Data.globals.NR_content $contentKey) "report_topics") -}}
 
-{{/* This page's styles live in assets/scss/_custom.scss, under the "Neighborhood Reports
+{{/* This page's styles live in assets/scss/_de-custom.scss, under the "Neighborhood Reports
      report page" heading — moved out of an inline <style> block here on 2026-08-15. The
      .card-header rules are scoped to .nr-report-accordion there; they were page-scoped for
      free while they were inline, and .card-header is a site-wide Bootstrap class. */}}
@@ -56,11 +56,11 @@
             {{/* Breadcrumbs — the neighborhood index sits between the section and this page,
                 mirroring the real URL and giving each report page a link back up to its 41
                 siblings' entry point */}}
-            <nav aria-label="breadcrumb" class="mt-2 mb-3 d-print-none">
+            <nav aria-label="breadcrumb" class="mt-2 mb-2 d-print-none">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item d-none d-sm-block"><a href="{{ relURL "" }}">Home</a></li>
                     <li class="breadcrumb-item"><a href="{{ relURL "neighborhood-reports" }}">Neighborhood Reports</a></li>
-                    <li class="breadcrumb-item"><a href="{{ relURL (printf "neighborhood-reports/%s/" .Params.neighborhood_slug) }}">{{ .Params.neighborhood }}</a></li>
+                    <li class="breadcrumb-item"><a class="nr-breadcrumb-neighborhood" href="{{ relURL (printf "neighborhood-reports/%s/" .Params.neighborhood_slug) }}">{{ .Params.neighborhood }}</a></li>
                     <li class="breadcrumb-item active d-none d-sm-block" aria-current="page">{{ .Title }}</li>
                 </ul>
             </nav>
@@ -96,7 +96,12 @@
             <div class="row">
 
                 {{/* Left column: map, demographics */}}
-                <div class="col-md-4 mb-4 d-print-none">
+                <div class="col-md-4 mb-1 d-print-none">
+
+                    {{/* Phone-width report switcher, above the map so it is the first control
+                        under the title. It hides itself from md up, where the buttons in the
+                        right column take over. */}}
+                    {{ partial "nr-topic-menu" (dict "active" $contentKey "neighborhood_slug" .Params.neighborhood_slug "show" "dropdown") }}
 
                     {{/*
                         Interactive Leaflet map for neighborhood selection.
@@ -116,26 +121,48 @@
 
                     {{/* Demographics table — populated by JS from the `neighborhoods` global,
                         emitted by lib-uhflist.html from data/globals/uhflist.json */}}
-                    <div id="nr-demographics" class="report-section card-body-no-top my-2" style="display:none;">
-                        <table class="table fs-sm" style="color:darkslategrey">
-                            {{/* Row headers, not plain cells: in a two-column table a screen
-                                reader reading cell by cell otherwise announces the value with
-                                no metric name attached. */}}
-                            <thead class="sr-only">
-                                <tr><th scope="col">Metric</th><th scope="col">Value</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr><th scope="row"><strong>Population</strong></th><td id="nr-pop" class="text-right"></td></tr>
-                                <tr><th scope="row"><strong>Over age 65</strong></th><td id="nr-old" class="text-right"></td></tr>
-                                <tr><th scope="row"><strong>Under age 18</strong></th><td id="nr-young" class="text-right"></td></tr>
-                                <tr><th scope="row"><strong>Poverty</strong></th><td id="nr-pov" class="text-right"></td></tr>
-                                <tr><th scope="row"><strong>Graduated high school</strong></th><td id="nr-grad" class="text-right"></td></tr>
-                                <tr><th scope="row"><strong>Limited English</strong></th><td id="nr-eng" class="text-right"></td></tr>
-                                <tr><th scope="row"><strong>Owner-occupied homes</strong></th><td id="nr-own" class="text-right"></td></tr>
-                                <tr><th scope="row"><strong>Rent-burdened households</strong></th><td id="nr-rent" class="text-right"></td></tr>
-                            </tbody>
-                        </table>
-                        <span class="fs-xs" style="color:darkslategray;"><strong>Source:</strong> American Community Survey (2019-2023)</span>
+                    <div id="nr-demographics" class="report-section my-2" style="display:none;">
+
+                        {{/* Collapsed below md, where the table's ~410px sat between the map and
+                            the report. From md up the toggle is hidden and d-md-block holds the
+                            panel open whatever its collapse state, so a resize never strands it
+                            shut. The toggle sits inside #nr-demographics so demographics.js hides
+                            it with the table when a neighborhood has no row. Same trigger as
+                            nr-neighborhood-list's, for the same plus/minus styling. The table's
+                            left inset (card-body-no-top) is on the panel, not the wrapper, so the
+                            toggle spans the wrapper's green top border edge to edge. */}}
+                        <button class="d-flex d-md-none btn btn-md text-left btn-outline-primary w-100 text-decoration-none neighborhood-list-button nr-list-toggle collapsed p-2"
+                                type="button"
+                                data-toggle="collapse"
+                                data-target="#nr-demographics-body"
+                                aria-expanded="false"
+                                aria-controls="nr-demographics-body">
+                            <span class="flex-grow-1">Demographics</span>
+                            <span class="plus" aria-hidden="true">&plus;</span>
+                            <span class="minus" aria-hidden="true">&minus;</span>
+                        </button>
+
+                        <div class="collapse d-md-block card-body-no-top" id="nr-demographics-body">
+                            <table class="table fs-sm" style="color:darkslategrey">
+                                {{/* Row headers, not plain cells: in a two-column table a screen
+                                    reader reading cell by cell otherwise announces the value with
+                                    no metric name attached. */}}
+                                <thead class="sr-only">
+                                    <tr><th scope="col">Metric</th><th scope="col">Value</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><th scope="row"><strong>Population</strong></th><td id="nr-pop" class="text-right"></td></tr>
+                                    <tr><th scope="row"><strong>Over age 65</strong></th><td id="nr-old" class="text-right"></td></tr>
+                                    <tr><th scope="row"><strong>Under age 18</strong></th><td id="nr-young" class="text-right"></td></tr>
+                                    <tr><th scope="row"><strong>Poverty</strong></th><td id="nr-pov" class="text-right"></td></tr>
+                                    <tr><th scope="row"><strong>Graduated high school</strong></th><td id="nr-grad" class="text-right"></td></tr>
+                                    <tr><th scope="row"><strong>Limited English</strong></th><td id="nr-eng" class="text-right"></td></tr>
+                                    <tr><th scope="row"><strong>Owner-occupied homes</strong></th><td id="nr-own" class="text-right"></td></tr>
+                                    <tr><th scope="row"><strong>Rent-burdened households</strong></th><td id="nr-rent" class="text-right"></td></tr>
+                                </tbody>
+                            </table>
+                            <span class="fs-xs" style="color:darkslategray;"><strong>Source:</strong> American Community Survey (2019-2023)</span>
+                        </div>
                     </div>
 
                     <hr class="my-2">
@@ -167,8 +194,9 @@
                     {{/*
                         Topic mini-menu: the five topic buttons, hrefs pointing at this neighborhood's
                         other four reports. url.js rewrites them if the map switches neighborhood.
+                        md and up only; the phone dropdown is above the map.
                     */}}
-                    {{ partial "nr-topic-menu" (dict "active" $contentKey "neighborhood_slug" .Params.neighborhood_slug) }}
+                    {{ partial "nr-topic-menu" (dict "active" $contentKey "neighborhood_slug" .Params.neighborhood_slug "show" "buttons") }}
 
                     {{/*
                         Report header: title + neighborhood name + intro copy + buttons.
@@ -176,7 +204,7 @@
                         above. renderAll() rewrites the name on an in-place neighborhood switch.
                     */}}
                     <div id="nr-report-header">
-                        <div class="d-none d-md-block mb-">
+                        <div class="d-none d-md-block">
                             <h1 class="h2 mt-3 nr-report-heading">{{ partial "section-icon.html" $.Section }}{{ .Title }} <span style="font-weight:normal">in</span>
                                 <span class="h2 text-primary" id="nr-header-neighborhood">{{ .Params.neighborhood }}</span>
                             </h1>
@@ -197,12 +225,14 @@
                             {{- end -}}
                         </div>
 
-                        <div class="row d-print-none">
-                            <div class="col-sm-6">
-                                <button onclick="window.print()" class="btn btn-sm btn-report mt-2"><i class="fas fa-print mr-1" aria-hidden="true"></i>Print</button>
-                                <button onclick="window.nrDownloadCSV()" class="btn btn-sm btn-report mt-2"><i class="fa fa-download mr-1" aria-hidden="true"></i>Download <span class="sr-only">(downloads a CSV file)</span></button>
-                            </div>
-                            <div class="col-sm-6 text-sm-right">
+                        {{/* One wrapping flex row rather than two col-sm-6 halves, so Expand all
+                            stays beside Print and Download until there is no room for it, rather
+                            than dropping to its own line at the sm breakpoint whether it fits or
+                            not. ml-auto right-aligns it, as text-sm-right did. */}}
+                        <div class="d-flex flex-wrap d-print-none">
+                            <button onclick="window.print()" class="btn btn-sm btn-report mt-2 mr-1"><i class="fas fa-print mr-1" aria-hidden="true"></i>Print</button>
+                            <button id="nr-download-csv" onclick="window.nrDownloadCSV()" class="btn btn-sm btn-report mt-2 mr-1"><i class="fa fa-download mr-1" aria-hidden="true"></i>Download <span class="sr-only">(downloads a CSV file)</span></button>
+                            <div class="ml-auto">
                                 {{/* aria-controls names the section containers, not the individual
                                     panels: the panel ids are minted in JS (nr-acc-N-c) and change
                                     on every neighborhood switch, where these are in the markup and
@@ -230,7 +260,7 @@
                             Topic titles can urlize to strings that are awkward for CSS selectors or can drift
                             between Hugo versions; mismatched id vs NR_REPORT_CONFIG leaves sections empty.
                         */}}
-                        <div class="accordion nr-report-accordion my-4 report-section pt-2 border-left border-right border-bottom" id="nr-accordion-{{ $i }}">
+                        <div class="accordion nr-report-accordion mt-2 mb-4 report-section pt-2 border-left border-right border-bottom" id="nr-accordion-{{ $i }}">
                             <div class="px-2 pb-2">
                                 {{/* h2, with .h4 carrying the visual size: these sections sit
                                     directly under the page h1, and each indicator card inside is
@@ -246,6 +276,12 @@
                             </div>
                         </div>
                     {{- end -}}
+
+                    {{/* The indicator names and descriptions the cards above render from JS, as
+                         hidden headings for readers that do not run it. Inside this section, so
+                         the page-level data-pagefind-ignore keeps them out of the search index
+                         with the rest of the report. */}}
+                    {{ partial "nr-indicator-names-hidden" (dict "content_key" $contentKey) }}
 
                     {{/* Print-only QR code back to this report, carried over from
                         nr-output/single.html. Filled by renderQRCode() below, which runs from
@@ -308,8 +344,11 @@
         // in-place switch rebuilding the title from reportName would replace the string
         // 42 of these pages actually shipped with
         seoShortName: "{{ .Params.seo_short_name }}",
+        // The suffix head.html appends to every non-home <title>, so a switch can rebuild
+        // the whole string rather than drop it
+        siteTitle: "{{ .Site.Title }}",
         // The neighborhood this page was generated for, and the only thing
-        // getNeighborhoodFromURL consults — nothing parses the path for it
+        // getPageNeighborhood consults — nothing parses the path for it
         neighborhood: "{{ .Params.neighborhood }}",
         geojsonUrl: "{{ relURL "geojson/UHF42.geojson" }}",
         vizUrl: "{{ $vizUrl }}",
@@ -341,20 +380,7 @@
         // URL slug for this topic page, e.g. "asthma_and_the_environment".
         // Used by setNeighborhoodInURL to locate the topic segment in the current path
         // when updating the address bar after a neighborhood is selected.
-        topicSlug: "{{ .RelPermalink | strings.TrimSuffix "/" | path.Base }}",
-        // Mapping of neighborhood URL slug → display name for all 42 UHF neighborhoods,
-        // e.g. { "east_new_york": "East New York", ... }.
-        // Used by getNeighborhoodFromURL (slug → name) and setNeighborhoodInURL (name → slug).
-        // Built from data/globals/uhflist.json — the same rows the content adapter generates
-        // the pages from — rather than by ranging .Sections. Those sections are now themselves
-        // adapter output, so deriving the map from them would make it depend on Hugo's section
-        // machinery agreeing with the adapter instead of on the one source both come from.
-        neighborhoodMap: {
-            {{- range $i, $n := site.Data.globals.uhflist -}}
-                {{- if $i }},{{ end -}}
-                "{{ $n.page_name }}": "{{ $n.UHF_name }}"
-            {{- end -}}
-        }
+        topicSlug: "{{ .RelPermalink | strings.TrimSuffix "/" | path.Base }}"
     };
 </script>
 
@@ -370,21 +396,31 @@
 <script>
     // Redraws the print-only QR code from the current address, which renderAll() has just
     // rewritten if the reader switched neighborhood on the map
+
     function renderQRCode() {
 
         const destination = document.getElementById('qrcode');
 
         if (!destination || typeof qrcode !== 'function') return;
 
-        // Type 10 at error-correction level M: production's settings, comfortably large
-        // enough for the longest neighborhood/topic URL the site generates
+        // The report's own address, without query or hash. setNeighborhoodInURL keeps both,
+        // and a tracking parameter such as fbclid can push location.href past what type 10
+        // holds (213 bytes), which throws inside renderAll and skips the title and
+        // live-region updates after it. A printed code has no use for either part anyway
+
+        const reportUrl = location.origin + location.pathname;
+
+        // Type 10 at error-correction level M: production's settings. The longest report
+        // URL on the live site is 144 characters, leaving 69 bytes of headroom
+
         const code = qrcode(10, 'M');
-        code.addData(location.href);
+        code.addData(reportUrl);
         code.make();
 
         // (2, 8) are createImgTag's own defaults — passed explicitly only because alt is
         // its third argument, and the library omits the attribute entirely when it is absent
-        destination.innerHTML = code.createImgTag(2, 8, 'QR code linking to this report at ' + location.href);
+
+        destination.innerHTML = code.createImgTag(2, 8, 'QR code linking to this report at ' + reportUrl);
 
     }
 </script>
@@ -394,6 +430,7 @@
     demographics.js and global.js, Vega for chart.js, Arquero for app.js/chart.js/data.js.
     No d3 or DataTables: nothing under assets/js/nr-report/ references either. */}}
 {{- partial "lib-leaflet.html" . }}
+{{- partial "lib-easybutton-coloricon.html" . }}
 {{- partial "lib-uhflist.html" . }}
 {{- partial "lib-vega.html" . }}
 {{- partial "lib-arquero.html" . }}

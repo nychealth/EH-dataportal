@@ -23,7 +23,7 @@
 //
 // Usage — start a production-data server first and point the harness at it:
 //   npx hugo server --environment development -p 8081
-//   DE_BASE_URL=http://localhost:8081/EH-dataportal/ node scripts/nr-postswap-check.mjs
+//   DE_BASE_URL=http://localhost:8081/dev-prod/ node scripts/nr-postswap-check.mjs
 //
 //   ...            # the 20 highest-traffic report pages
 //   ... --all      # all 210, several minutes
@@ -43,7 +43,7 @@ const CAPTURE = JSON.parse(readFileSync(join(REPO_ROOT, 'scripts', 'nr-output-pr
 const args = process.argv.slice(2);
 const runAll = args.includes('--all');
 const limitArg = args.indexOf('--limit');
-const limit = limitArg !== -1 ? Number(args[limitArg + 1]) : 20;
+const limit = limitArg === -1 ? 20 : Number(args[limitArg + 1]);
 
 
 // ----------------------------------------------------------------------- //
@@ -72,7 +72,7 @@ const extractReport = () => {
     const text = el => (el ? el.textContent : '').replace(/\s+/g, ' ').trim();
 
     const reportTopics = [...document.querySelectorAll('.report-section > .px-2')].map(d => ({
-        heading: text(d.querySelector('h3')),
+        heading: text(d.querySelector('h2')),
         description: text(d.querySelector('p'))
     }));
 
@@ -177,93 +177,108 @@ const comparePage = (key, expected, actual) => {
 // run
 // ----------------------------------------------------------------------- //
 
-const server = await ensureDevServer();
-const browser = await chromium.launch();
+// Returns the exit code rather than calling process.exit(): an exit right after network
+// activity aborts Node on Windows with 127, whatever the script printed
+const main = async () => {
 
-// Highest-traffic pages first, so a truncated run still covers what most users load
-const keys = Object.keys(CAPTURE.reportPages)
-    .sort((a, b) => (CAPTURE.reportPages[b].sessions || 0) - (CAPTURE.reportPages[a].sessions || 0));
+    // Number(undefined) and Number('abc') are NaN, and slice(0, NaN) is empty, so a bad
+    // value would otherwise check zero pages and report PASS
+    if (!Number.isInteger(limit) || limit < 1) {
+        console.error('Usage: node scripts/nr-postswap-check.mjs [--all | --limit N], where N is a whole number of pages.');
+        return 2;
+    }
 
-const targets = runAll ? keys : keys.slice(0, limit);
+    const server = await ensureDevServer();
+    const browser = await chromium.launch();
 
-// ----- data-branch gate ----- //
+    // Highest-traffic pages first, so a truncated run still covers what most users load
+    const keys = Object.keys(CAPTURE.reportPages)
+        .sort((a, b) => (CAPTURE.reportPages[b].sessions || 0) - (CAPTURE.reportPages[a].sessions || 0));
 
-// head.html declares `data_branch` as a top-level `let`, so it is reachable from an
-// evaluate() but is not a window property
-const gate = await browser.newPage();
-await gate.goto(`${server.baseURL}neighborhood-reports/`, { waitUntil: 'load', timeout: 45000 });
-const servedBranch = await gate.evaluate(() => (typeof data_branch === 'undefined' ? null : data_branch));
-await gate.close();
+    const targets = runAll ? keys : keys.slice(0, limit);
 
-// capture.environment is a Hugo environment name; every one of them that serves
-// production data resolves to this branch
-const EXPECTED_BRANCH = 'production';
+    // ----- data-branch gate ----- //
 
-if (servedBranch !== EXPECTED_BRANCH) {
+    // head.html declares `data_branch` as a top-level `let`, so it is reachable from an
+    // evaluate() but is not a window property
+    const gate = await browser.newPage();
+    await gate.goto(`${server.baseURL}neighborhood-reports/`, { waitUntil: 'load', timeout: 45000 });
+    const servedBranch = await gate.evaluate(() => (typeof data_branch === 'undefined' ? null : data_branch));
+    await gate.close();
+
+    // capture.environment is a Hugo environment name; every one of them that serves
+    // production data resolves to this branch
+    const EXPECTED_BRANCH = 'production';
+
+    if (servedBranch !== EXPECTED_BRANCH) {
+        await browser.close();
+        await server.stop();
+        console.error(
+            `\nREFUSING TO RUN — the dev server is serving EHDP-data "${servedBranch}", but the ` +
+            `pre-capture was taken from "${EXPECTED_BRANCH}" (capture.environment: ${CAPTURE.environment}).\n` +
+            `Every content difference reported would be a data difference. Start a production-data ` +
+            `server and set DE_BASE_URL — see the header of this file.`
+        );
+        return 2;
+    }
+
+    console.log(`Checking ${targets.length} of ${keys.length} report pages against the pre-capture.`);
+    console.log(`Server: ${server.baseURL}  EHDP-data branch: ${servedBranch}\n`);
+
+    let failures = 0;
+    const ehdpSeen = new Set();
+
+    for (const key of targets) {
+
+        const page = await browser.newPage();
+        const expected = CAPTURE.reportPages[key];
+
+        page.on('request', r => {
+            if (r.url().includes('EHDP-data')) ehdpSeen.add(r.url());
+        });
+
+        const url = `${server.baseURL}neighborhood-reports/${key}/`;
+        await page.goto(url, { waitUntil: 'load', timeout: 45000 });
+
+        // Wait for cards rather than a fixed delay. Not fatal if they never arrive — an
+        // empty render has to be reported as a mismatch, not swallowed as a timeout
+        await page
+            .waitForFunction(() => document.querySelectorAll('.card-header[id$="-h"]').length > 0, null, { timeout: 45000 })
+            .catch(() => {});
+
+        const actual = await page.evaluate(extractReport);
+        const finalURL = page.url();
+
+        const problems = comparePage(key, expected, actual);
+
+        // A silent redirect to the 404 page would otherwise look like "nothing rendered"
+        if (!finalURL.endsWith(`/neighborhood-reports/${key}/`)) {
+            problems.unshift(`final URL moved: ${finalURL}`);
+        }
+
+        if (problems.length) {
+            failures++;
+            console.log(`FAIL  ${key}`);
+            problems.forEach(p => console.log(`      ${p}`));
+        } else {
+            console.log(`ok    ${key}  (${actual.indicators.length} indicators)`);
+        }
+
+        await page.close();
+
+    }
+
     await browser.close();
     await server.stop();
-    console.error(
-        `\nREFUSING TO RUN — the dev server is serving EHDP-data "${servedBranch}", but the ` +
-        `pre-capture was taken from "${EXPECTED_BRANCH}" (capture.environment: ${CAPTURE.environment}).\n` +
-        `Every content difference reported would be a data difference. Start a production-data ` +
-        `server and set DE_BASE_URL — see the header of this file.`
-    );
-    process.exit(2);
-}
 
-console.log(`Checking ${targets.length} of ${keys.length} report pages against the pre-capture.`);
-console.log(`Server: ${server.baseURL}  EHDP-data branch: ${servedBranch}\n`);
+    // The report/viz JSON paths are the substantive "is it reading the same data" check;
+    // geography TopoJSON is fetched by both and is not per-page
+    const dataUrls = [...ehdpSeen].filter(u => u.includes('/neighborhood-reports/data/')).sort();
+    console.log(`\nEHDP-data URLs requested: ${ehdpSeen.size} (${dataUrls.length} under /neighborhood-reports/data/)`);
 
-let failures = 0;
-const ehdpSeen = new Set();
+    console.log(failures ? `\nFAIL — ${failures} of ${targets.length} pages differ.` : `\nPASS — all ${targets.length} pages match the pre-capture.`);
+    return failures ? 1 : 0;
 
-for (const key of targets) {
+};
 
-    const page = await browser.newPage();
-    const expected = CAPTURE.reportPages[key];
-
-    page.on('request', r => {
-        if (r.url().includes('EHDP-data')) ehdpSeen.add(r.url());
-    });
-
-    const url = `${server.baseURL}neighborhood-reports/${key}/`;
-    await page.goto(url, { waitUntil: 'load', timeout: 45000 });
-
-    // Wait for cards rather than a fixed delay. Not fatal if they never arrive — an
-    // empty render has to be reported as a mismatch, not swallowed as a timeout
-    await page
-        .waitForFunction(() => document.querySelectorAll('.card-header[id$="-h"]').length > 0, null, { timeout: 45000 })
-        .catch(() => {});
-
-    const actual = await page.evaluate(extractReport);
-    const finalURL = page.url();
-
-    const problems = comparePage(key, expected, actual);
-
-    // A silent redirect to the 404 page would otherwise look like "nothing rendered"
-    if (!finalURL.endsWith(`/neighborhood-reports/${key}/`)) {
-        problems.unshift(`final URL moved: ${finalURL}`);
-    }
-
-    if (problems.length) {
-        failures++;
-        console.log(`FAIL  ${key}`);
-        problems.forEach(p => console.log(`      ${p}`));
-    } else {
-        console.log(`ok    ${key}  (${actual.indicators.length} indicators)`);
-    }
-
-    await page.close();
-
-}
-
-await browser.close();
-await server.stop();
-
-// The report/viz JSON paths are the substantive "is it reading the same data" check;
-// geography TopoJSON is fetched by both and is not per-page
-const dataUrls = [...ehdpSeen].filter(u => u.includes('/neighborhood-reports/data/')).sort();
-console.log(`\nEHDP-data URLs requested: ${ehdpSeen.size} (${dataUrls.length} under /neighborhood-reports/data/)`);
-
-console.log(failures ? `\nFAIL — ${failures} of ${targets.length} pages differ.` : `\nPASS — all ${targets.length} pages match the pre-capture.`);
-process.exit(failures ? 1 : 0);
+process.exitCode = await main();

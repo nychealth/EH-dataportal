@@ -7,37 +7,38 @@
 <section data-pagefind-ignore="all" class="mt-lg-5">
     <div class="container-fluid mb-5">
         <div class="row">
-
-              <div class="col-lg-5 ml-auto pr-lg-3">
+            
+            <div class="col-lg-5 ml-auto pr-lg-3">
                 <div class="related-border mb-2">
-                  <div class="mt-2">
-                    <h4 class="h3">You might also be interested in:</h4>
-                    <hr class="my-2">
-                  </div>
-                  <div class="fs-lg">
-                    {{ if .Params.related }}
-                      {{ range .Params.related }}
+                    <div class="mt-2">
+                        <h4 class="h3">You might also be interested in:</h4>
+                        <hr class="my-2">
+                    </div>
+                    <div class="fs-lg">
 
-                      {{ $icon := "" }}
-                      {{ $accent := "" }}
+                        {{ if .Params.related }}
+                            {{ range .Params.related }}
 
-                      {{ if in .url "data-stories" }}
-                        {{ $icon ="<i class='fas fa-passport' aria-hidden='true'></i>" }}
-                        {{ $accent = "ds-accent" }}
+                                {{ $icon := "" }}
+                                {{ $accent := "" }}
 
-                      {{ else if in .url "data-explorer" }}
-                        {{ $icon = "<i class='fas fa-chart-line' aria-hidden='true'></i>" }}
-                        {{ $accent = "de-accent" }}
+                                {{ if in .url "data-stories" }}
+                                    {{ $icon ="<i class='fas fa-passport' aria-hidden='true'></i>" }}
+                                    {{ $accent = "ds-accent" }}
 
-                      {{ else if in .url "data-features" }}
-                        {{ $icon = "<i class='fas fa-chart-bar' aria-hidden='true'></i>" }}
-                        {{ $accent = "df-accent" }}
+                                {{ else if in .url "data-explorer" }}
+                                    {{ $icon = "<i class='fas fa-chart-line' aria-hidden='true'></i>" }}
+                                    {{ $accent = "de-accent" }}
 
-                      {{ else if in .url "neighborhood-reports" }}
-                        {{ $icon = "<i class='fas fa-map-marked-alt' aria-hidden='true'></i>" }}
-                        {{ $accent = "nr-accent" }}
+                                {{ else if in .url "data-features" }}
+                                    {{ $icon = "<i class='fas fa-chart-bar' aria-hidden='true'></i>" }}
+                                    {{ $accent = "df-accent" }}
 
-                      {{ end }}
+                                {{ else if in .url "neighborhood-reports" }}
+                                    {{ $icon = "<i class='fas fa-map-marked-alt' aria-hidden='true'></i>" }}
+                                    {{ $accent = "nr-accent" }}
+
+                                {{ end }}
 
                         <a class="text-black" href={{ relURL .url }}>
                           <span class='text-primary {{ $accent }} mr-2'>{{ safe.HTML $icon }}</span>{{ .title }}
@@ -45,38 +46,40 @@
                         <hr class="my-2">
                       {{ end }}
 
-                    {{ else }}
-                    {{- partial "related-footer-content" (dict "section" "data-stories" "layout" "singlelisticon" "content" . ) -}}
-                    {{ end }}
-                  </div>
+                        {{ else }}
+                            {{- partial "related-footer-content" (dict "section" "data-stories" "layout" "singlelisticon" "content" . ) -}}
+                        {{ end }}
+                    </div>
                 </div>
-              </div>
+            </div>
               <!-- .col for city -->
 
-              {{ if .Params.categories }}
-              <div class="col-lg-4 pl-lg-3 h-100">
-                <div class="related-border">
-                  <h4 class="h3 mt-2">More related to:</h4>
-                  <hr class="my-2">
-                </div>
-                  <div>
-                    {{- partial "related-footer-categories" (dict  "content" . ) -}}
+            {{ if .Params.categories }}
+
+                <div class="col-lg-4 pl-lg-3 h-100">
+
+                    <div class="related-border">
+                        <h4 class="h3 mt-2">More related to:</h4>
+                        <hr class="my-2">
+                    </div>
+                    <div>
+                        {{- partial "related-footer-categories" (dict  "content" . ) -}}
+                    </div>
+                
                 </div>
 
-
+                <div class="col-lg-2 mr-auto">
+                    <div class="related-border">
+                        <h5 class="h3 mt-2">Take action</h4>
+                            <hr class="my-2">
+                            {{- with .Site.GetPage "take-action/email-electeds.md" -}}
+                            <p class="fs-rg">Concerned about this? <a href="{{ .RelPermalink }}">Email your elected officials</a>.</p>
+                            {{- end -}}
+                        </div>
+                    </div>
                 </div>
 
-              <div class="col-lg-2 mr-auto">
-                <div class="related-border">
-                  <h5 class="h3 mt-2">Take action</h4>
-                    <hr class="my-2">
-                    {{- with .Site.GetPage "take-action/email-electeds.md" -}}
-                    <p class="fs-rg">Concerned about this? <a href="{{ .RelPermalink }}">Email your elected officials</a>.</p>
-                    {{- end -}}
-                </div>
-              </div>
-              </div>
-              {{ end }}
+            {{ end }}
 
 
               <!-- .col for data -->

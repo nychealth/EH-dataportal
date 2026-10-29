@@ -560,7 +560,7 @@ const auditPage = async (browser, target, baseURL, controlState) => {
             announcements: await probeAnnouncements(page),
             innerTextHead: await page.evaluate(() => document.body.innerText.replace(/\n{2,}/g, '\n').slice(0, 2500)),
             qrImage:       await page.evaluate(() => {
-                const img = document.querySelector('#nr-qrcode img, .print-only img');
+                const img = document.querySelector('#qrcode img');
                 return img && {
                     hasAltAttribute: img.hasAttribute('alt'),
                     alt:             img.getAttribute('alt'),

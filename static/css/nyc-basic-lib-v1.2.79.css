@@ -1,0 +1,881 @@
+.screen-reader-only {
+    position: absolute !important;
+    left: -1000px !important;
+    top: auto !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    border: none !important;
+    color: transparent !important;
+    background-color: transparent !important
+}
+
+.btn-sq,
+.btn.btn-sq {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    margin: 0;
+    padding: 0
+}
+
+.btn-rnd,
+.btn.btn-rnd {
+    width: 24px;
+    height: 24px;
+    background-size: 14px;
+    border: none;
+    padding: 0
+}
+
+.btn-x,
+.btn.btn-x {
+    font-size: 16px
+}
+
+.btn,
+.btn-rnd,
+.btn-sq {
+    text-align: center;
+    vertical-align: middle
+}
+
+.nyc-html {
+    display: table;
+    border: 1px solid #ddd;
+    border-radius: 0
+}
+
+.nyc-html div {
+    display: table-row
+}
+
+.nyc-html div span {
+    font-size: 14px;
+    display: table-cell;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid #ddd;
+    padding: 0 3px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    min-width: 75px
+}
+
+.nyc-html div:last-of-type span {
+    border-bottom: none
+}
+
+.nyc-html .fld {
+    font-weight: 700;
+    border-right: 1px solid #ddd
+}
+
+.fm .btn-geo,
+.fm .btn-z-in,
+.fm .btn-z-out {
+    background-color: #000;
+    border: none;
+    color: #fff
+}
+
+.dia-container {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5000;
+    background-color: transparent
+}
+
+.dia {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 240px;
+    min-height: 80px;
+    padding: 8px;
+    margin-top: -80px;
+    margin-left: -128px;
+    background-color: #fff;
+    border-radius: 0;
+    border: 1px solid rgba(0, 0, 0, .1);
+    box-shadow: none
+}
+
+.dia input {
+    display: none;
+    width: calc(100% - 8px);
+    margin-top: 8px
+}
+
+.dia-btns a {
+    width: 80px;
+    margin: 5px 2px 2px 2px
+}
+
+.dia-btns,
+.dia-msg {
+    text-align: center;
+    margin-top: 5px
+}
+
+@media only screen and (min-width :500px) {
+    .dia-3-btns .dia {
+        width: 360px;
+        margin-left: -188px
+    }
+}
+
+@media only screen and (max-width :499px) {
+    .dia-3-btns .dia {
+        width: 300px;
+        margin-left: -158px
+    }
+
+    .dia-3-btns .dia-btns a {
+        width: 60px
+    }
+}
+
+#directions {
+    display: none;
+    left: 0
+}
+
+#back-to-map,
+#dir-tabs,
+#directions,
+#map-tab,
+#route-tab {
+    position: fixed;
+    display: block;
+    top: 35px;
+    right: 0;
+    bottom: 0
+}
+
+#back-to-map {
+    top: 0
+}
+
+#dir-tabs {
+    width: 400px
+}
+
+#map-tab.tab {
+    margin: 0;
+    padding: 0;
+    left: 0;
+    right: 400px;
+    overflow: hidden;
+    border-top: 1px solid #ddd
+}
+
+#route-tab.tab {
+    width: 390px
+}
+
+#map-tab div.map {
+    width: 100%;
+    height: 100%
+}
+
+#back-to-map {
+    left: auto;
+    padding: 5px 3px 0 3px;
+    background-color: transparent;
+    color: #fff;
+    border: none
+}
+
+#back-to-map.btn:before {
+    display: block;
+    content: ' ';
+    float: left;
+    margin: -4px 3px 0 0;
+    width: 24px;
+    height: 24px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    background-size: 14px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgba(0, 0, 0, .55);
+    background-image: none
+}
+
+#back-to-map.btn:hover:before {
+    background-color: #fff;
+    background-image: none;
+    border-color: transparent
+}
+
+#directions .tabs {
+    top: 35px
+}
+
+#directions .tabs .btns {
+    display: none
+}
+
+#mode {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 3px 0
+}
+
+#mode td {
+    height: 35px;
+    vertical-align: middle;
+    text-align: left;
+    width: 36px
+}
+
+#mode td:last-child {
+    width: calc(100% - 144px);
+    text-align: right
+}
+
+#mode td .btn-sq {
+    position: relative
+}
+
+#mode td .btn-sq.active {
+    background-color: #000
+}
+
+#car {
+    background-image: none
+}
+
+#transit {
+    background-image: none
+}
+
+#walk {
+    background-image: none
+}
+
+#bike {
+    background-image: none
+}
+
+#mta {
+    width: 139px;
+    background-image: none;
+    background-position: 1px 3px;
+    padding-left: 27px;
+    background-size: 26px
+}
+
+#mta svg {
+    width: 20px;
+    height: 20px;
+    margin: -5px 0;
+    fill: #fff
+}
+
+#fld-from input {
+    width: calc(100% - 9px);
+    margin-bottom: 5px
+}
+
+.fld-lbl {
+    font-weight: 700
+}
+
+.adp-directions {
+    width: 100%
+}
+
+button[aria-label="Toggle fullscreen view"] {
+    display: none
+}
+
+#route-tab .route {
+    height: calc(100% - 145px);
+    overflow-y: auto;
+    overflow-x: hidden
+}
+
+#directions div.map * {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    color: #000;
+    font-size: 16px;
+    font-weight: 400
+}
+
+div.route * {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    color: #000;
+    font-size: 16px;
+    font-weight: 400
+}
+
+div.route b {
+    font-weight: 700
+}
+
+div.route .adp-placemark {
+    padding: 3px 3px 0 3px
+}
+
+div.route .adp-placemark {
+    background-color: #000;
+    font-weight: 500;
+    color: #fff
+}
+
+div.route .adp-placemark * {
+    background-color: #000;
+    font-weight: 500;
+    color: #fff
+}
+
+div.route .warnbox-content {
+    background-color: #efefef
+}
+
+div.route .adp-agencies {
+    background-color: #efefef
+}
+
+div.route .adp-agencies * {
+    background-color: #efefef
+}
+
+div.route .warnbox-c1,
+div.route .warnbox-c2 {
+    display: none
+}
+
+div.route .adp-placemark {
+    border: 1px solid #ddd;
+    border-radius: 3px
+}
+
+div.route .warnbox-content {
+    border: 1px solid #ddd;
+    border-radius: 3px
+}
+
+div.route .adp-agencies {
+    border: 1px solid #ddd;
+    border-radius: 3px
+}
+
+div.route .adp-agencies,
+div.route .warnbox-content {
+    padding: 5px
+}
+
+#directions .btn-z-in,
+#directions .btn-z-out {
+    left: 3px
+}
+
+#directions .btn-z-in {
+    top: 3px
+}
+
+#directions .btn-z-out {
+    top: 40px
+}
+
+#directions div.gm-style-iw+div {
+    background-color: rgba(0, 0, 0, .55);
+    position: unset !important;
+    float: right !important;
+    width: 22px !important;
+    height: 22px !important;
+    border-radius: 50% !important;
+    margin: 5px !important;
+    background-image: none !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    opacity: .99999 !important
+}
+
+#directions div.gm-style-iw+div:hover {
+    background-color: rgba(0, 0, 0, .55);
+    position: unset !important;
+    float: right !important;
+    width: 22px !important;
+    height: 22px !important;
+    border-radius: 50% !important;
+    margin: 5px !important;
+    background-image: none !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    opacity: .99999 !important
+}
+
+#directions div.gm-style-iw+div:hover {
+    background-color: #000
+}
+
+#directions div.gm-style-iw+div>img {
+    visibility: hidden
+}
+
+#directions .adp-directions tr {
+    border: 1px solid #ddd
+}
+
+#directions .adp-directions tr:nth-child(odd) {
+    background-color: #f7f7f7
+}
+
+#directions .adp-legal {
+    font-size: 50% !important
+}
+
+#directions .gm-style-cc,
+#directions .gm-style-cc * {
+    font-size: 80% !important;
+    width: auto !important
+}
+
+a[title="Click to see this area on Google Maps"] {
+    position: absolute !important;
+    bottom: 0;
+    height: 15px
+}
+
+img[src="https://maps.gstatic.com/mapfiles/api-3/images/google_white5.png"],
+img[src="https://maps.gstatic.com/mapfiles/api-3/images/google_white5_hdpi.png"] {
+    width: 38px !important;
+    height: 15px !important
+}
+
+.no-trans {
+    padding: 5px;
+    display: none
+}
+
+.gm-iw {
+    max-width: 200px
+}
+
+@media only screen and (max-width :750px),
+screen and (max-device-height:350px) {
+    #dir-tabs {
+        width: 100%
+    }
+
+    #directions .tabs .btns {
+        display: table
+    }
+
+    #directions .tab {
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: auto;
+        display: none
+    }
+
+    #directions .tab.active {
+        display: block
+    }
+}
+
+@media only screen and (max-width :360px) {
+    #back-to-map {
+        width: 90px
+    }
+}
+
+.it-pg .btns {
+    width: 135px;
+    height: 26px;
+    text-align: center;
+    margin-top: 15px;
+    margin-left: 4px
+}
+
+.it-pg .btns button {
+    margin-top: -3px
+}
+
+.it-pg .btns .btn-prv {
+    float: left
+}
+
+.it-pg .btns .btn-nxt {
+    float: right
+}
+
+.lst-pg {
+    margin: 0
+}
+
+.lst-pg .list {
+    height: calc(100% - 50px);
+    overflow-x: hidden;
+    overflow-y: auto
+}
+
+.lst-pg button.btn-more {
+    margin: 5px;
+    width: calc(100% - 10px)
+}
+
+.lst-it {
+    border-bottom: 1px solid #ddd;
+    padding: 5px
+}
+
+.lst-it:nth-child(even) {
+    background-color: #f7f7f7
+}
+
+.zoom {
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    right: 0
+}
+
+.fm .zoom {
+    left: unset;
+    top: unset;
+    right: 3px;
+    bottom: 0;
+    width: 37px;
+    height: 75px
+}
+
+.btn-z-in,
+.btn-z-out {
+    background-size: 19px;
+    position: absolute
+}
+
+.btn-z-in {
+    left: 0;
+    top: 0
+}
+
+.btn-z-out {
+    left: 0;
+    top: 37px
+}
+
+.fm .btn-z-in {
+    left: unset;
+    right: 0
+}
+
+.fm .btn-z-out {
+    left: unset;
+    top: 37px;
+    right: 0
+}
+
+.btn-z-in {
+    background-image: none
+}
+
+.btn-z-out {
+    background-image: none
+}
+
+.geoloc {
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    right: 0
+}
+
+.btn-geo {
+    position: absolute;
+    left: 0;
+    top: 74px;
+    background-image: none;
+    background-size: 25px
+}
+
+.fm .geoloc {
+    left: unset;
+    top: unset;
+    right: 1px;
+    bottom: 186px;
+    width: 37px
+}
+
+.srch {
+    position: relative;
+    width: auto
+}
+
+.ol-overlaycontainer-stopevent .srch,
+.ol-overlaycontainer-stopevent .srch-ctl>ul {
+    position: absolute;
+    top: 3px;
+    left: 41px;
+    right: 3px;
+    max-width: 400px
+}
+
+.ol-overlaycontainer-stopevent .srch-ctl>ul {
+    margin-top: 38px;
+    max-width: 398px
+}
+
+.ol-overlaycontainer-stopevent .srch {
+    background-color: rgba(255, 255, 255, .9)
+}
+
+.srch-ctl ul {
+    background-color: rgba(255, 255, 255, .9)
+}
+
+.ol-overlaycontainer-stopevent .srch input {
+    position: absolute;
+    padding-left: 23px;
+    padding-right: 28px;
+    width: calc(100% - 54px);
+    background-color: rgba(255, 255, 255, .9);
+    border: 1px solid #000;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214px%22%20height%3D%2214px%22%3E%3Cpath%20d%3D%22M10.171%2C8.766c0.617-0.888%2C0.979-1.964%2C0.979-3.126c0-3.037-2.463-5.5-5.5-5.5s-5.5%2C2.463-5.5%2C5.5s2.463%2C5.5%2C5.5%2C5.5%20c1.152%2C0%2C2.223-0.355%2C3.104-0.962l3.684%2C3.683l1.414-1.414L10.171%2C8.766z%20M5.649%2C9.14c-1.933%2C0-3.5-1.567-3.5-3.5%20c0-1.933%2C1.567-3.5%2C3.5-3.5c1.933%2C0%2C3.5%2C1.567%2C3.5%2C3.5C9.149%2C7.572%2C7.582%2C9.14%2C5.649%2C9.14z%22%20fill%3D%22rgba(0%2C0%2C0%2C.4)%22%2F%3E%3C%2Fsvg%3E");
+    background-size: 14px;
+    background-repeat: no-repeat;
+    background-position: 3px center;
+    z-index: 1;
+    box-sizing: unset;
+    min-height: 31px
+}
+
+.ol-overlaycontainer-stopevent .btn-srch {
+    display: none
+}
+
+.srch-ctl ul {
+    display: none;
+    max-height: 300px;
+    padding: 0;
+    list-style-type: none;
+    box-shadow: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin: 1px 0 0 0
+}
+
+.srch .btn-x {
+    display: none;
+    position: absolute;
+    left: calc(100% - 28px);
+    top: 5px;
+    z-index: 2
+}
+
+.ol-overlaycontainer-stopevent .srch-ctl {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%
+}
+
+.srch-ctl ul li {
+    background-color: rgba(255, 255, 255, .9);
+    cursor: pointer;
+    padding: 6px 3px;
+    margin: 0;
+    border-bottom: 1px solid #ddd
+}
+
+.srch-ctl ul li:last-child {
+    border-bottom: none
+}
+
+.srch-ctl ul li:focus {
+    outline: 0
+}
+
+.srch-ctl ul li a {
+    text-decoration: none;
+    padding: 1px 3px;
+    width: calc(100% - 10px);
+    display: block;
+    margin: -1px 3px
+}
+
+.srch-ctl ul li:hover {
+    background-color: rgba(0, 0, 0, .55)
+}
+
+.srch-ctl ul li:hover a {
+    color: #fff
+}
+
+.srch-ctl ul li:hover a * {
+    color: #fff
+}
+
+.srch-ctl ul.retention {
+    display: none
+}
+
+.fm .srch-ctl {
+    left: -38px
+}
+
+.f-tip {
+    border-radius: 0;
+    padding: 3px;
+    min-width: 100px;
+    max-width: 150px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, .9);
+    box-shadow: none;
+    margin: 8px
+}
+
+.f-tip,
+.f-tip * {
+    font-size: 12px
+}
+
+.pop {
+    background-color: #fff;
+    border-radius: 0;
+    border: 1px solid rgba(0, 0, 0, .1);
+    box-shadow: none;
+    display: none;
+    position: absolute;
+    bottom: 12px;
+    left: -50px;
+    z-index: 200
+}
+
+.pop:after,
+.pop:before {
+    top: 100%;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none
+}
+
+.pop.fullscreen:after,
+.pop.fullscreen:before {
+    display: none
+}
+
+.pop:after {
+    border: solid transparent;
+    border-top-color: #fff;
+    border-width: 10px;
+    left: 48px;
+    margin-left: -10px
+}
+
+.pop:before {
+    border-top: 1px solid rgba(0, 0, 0, .1);
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-width: 12px;
+    left: 48px;
+    margin-left: -12px;
+    margin-top: .4px
+}
+
+.pop>.content {
+    margin: 5px;
+    width: 330px;
+    max-height: 500px;
+    overflow: auto
+}
+
+.pop>.content .it-pg {
+    max-width: calc(100% - 7px)
+}
+
+.pop>.content .name {
+    margin-right: 10px
+}
+
+.pop .btn-x {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    z-index: 2
+}
+
+.pop.fullscreen {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    padding: 5px;
+    background-color: #fff;
+    border: none;
+    border-radius: 0;
+    z-index: 1000;
+    overflow: auto
+}
+
+.pop.fullscreen>.content {
+    width: unset;
+    max-width: unset;
+    max-height: unset
+}
+
+.pop.fullscreen .btn {
+    margin: 5px 1.5px
+}
+
+.pop .content .facility {
+    margin: 5px
+}
+
+.pop button.btn.map {
+    display: none
+}
+
+.it-pg .btns button {
+    margin-top: 0
+}
+
+.pop.fullscreen {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ddd
+}
+
+.nyc-map {
+    position: relative
+}
+
+.posbl li {
+    list-style-type: none;
+    margin-left: -40px;
+    text-align: left
+}
+
+.posbl .dia-msg ul {
+    max-height: 150px;
+    overflow: auto
+}
+
+.posbl .dia {
+    overflow: hidden;
+    width: 365px;
+    margin-left: -183px;
+    max-height: 300px
+}
+
+.posbl .dia-msg * {
+    text-align: left
+}

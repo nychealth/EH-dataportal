@@ -1,18 +1,13 @@
-{{- /*  topojson-client (defines the global `topojson`)
+{{- /*  TopoJSON client (defines the global `topojson`) — only needed by hand-written JS that
+      calls topojson.feature() directly: the data explorer's map.js, and
+      partials/ndhr-leaflet.html, since Leaflet reads GeoJSON and EHDP-data publishes
+      geography/CD.topo.json. Vega specs using format: {type: "topojson"} don't need this:
+      vega-loader bundles topojson-client internally.
 
-        Loaded only by consumers that hand topology to a library expecting GeoJSON —
-        today that is partials/ndhr-leaflet.html, since Leaflet reads GeoJSON and
-        EHDP-data publishes geography/CD.topo.json.
+      data-features/heatstory.html is another topojson-client caller and does not use
+      this partial: it concatenates five libraries into one fingerprinted bundle with
+      resources.Concat, so a separate <script> would be a sixth request for a page that
+      deliberately makes one.  */}}
 
-        Most topojson in this repo needs NOTHING loaded: assets/js/data-explorer/map.js,
-        data-features/minimum-wage-with-maps.html and assets/js/ndhr-report/chart.js all
-        pass topology to VEGA, whose `format: {type: "topojson"}` does the conversion
-        itself. Reach for this partial only for the Leaflet direction.
-
-        data-features/heatstory.html is the other topojson-client caller and does not use
-        this partial: it concatenates five libraries into one fingerprinted bundle with
-        resources.Concat, so a separate <script> would be a sixth request for a page that
-        deliberately makes one.  */}}
-
-{{- $topojson := resources.Get "node_modules/topojson-client/dist/topojson-client.min.js" | partial "short-fingerprint.html" }}
-<script src="{{ $topojson.RelPermalink }}" integrity="{{ $topojson.Data.Integrity }}"></script>
+{{- $topojson_js := resources.Get "node_modules/topojson-client/dist/topojson-client.min.js" | partial "short-fingerprint.html" }}
+<script type="text/javascript" src="{{ $topojson_js.RelPermalink }}" integrity="{{ $topojson_js.Data.Integrity }}"></script>

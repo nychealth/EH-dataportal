@@ -29,10 +29,10 @@
             4,
             4,
             4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 3,
@@ -101,8 +101,8 @@
             "ZAPPA: A tool to understand air quality policies",
             "An update on air quality during COVID-19",
             "Real-Time Air Quality: PM2.5 in NYC",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

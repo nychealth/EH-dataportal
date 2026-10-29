@@ -35,10 +35,10 @@
             5,
             5,
             5,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 3,
@@ -73,13 +73,13 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 114,
+            "internal": 115,
             "external": 22,
             "emptyHref": 30,
             "noAccessibleText": 1
         },
         "controls": {
-            "button": 8,
+            "button": 9,
             "input": 1,
             "select": 0,
             "textarea": 0,
@@ -111,8 +111,8 @@
             "Visit our Github repo",
             "Join our team",
             "",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

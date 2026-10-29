@@ -35,10 +35,10 @@
             5,
             5,
             5,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 3,
@@ -111,8 +111,8 @@
             "Visit our Github repo",
             "Join our team",
             "",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

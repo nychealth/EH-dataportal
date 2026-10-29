@@ -31,10 +31,10 @@
             4,
             4,
             5,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 4,
@@ -71,9 +71,9 @@
         },
         "links": {
             "internal": 117,
-            "external": 31,
+            "external": 29,
             "emptyHref": 32,
-            "noAccessibleText": 4
+            "noAccessibleText": 2
         },
         "controls": {
             "button": 28,
@@ -99,8 +99,8 @@
             "You might also be interested in:",
             "More related to:",
             "Take action",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

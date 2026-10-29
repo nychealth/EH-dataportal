@@ -21,8 +21,8 @@
         "headingLevels": [
             1,
             1,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 1,
         "landmarks": {
@@ -85,8 +85,8 @@
         "headingText": [
             "Oops!",
             "Time to update your bookmarks!",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

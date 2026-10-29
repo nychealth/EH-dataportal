@@ -60,17 +60,17 @@ a surface none of the others reaches.
 
 ### Linting and docs
 
-- `npm run lint` — ESLint (`no-undef`) over `assets/js/data-explorer/`, `assets/js/nr-report/` and `assets/js/report-data/`. `eslint.config.mjs` has one block per target. Both are directories of classic scripts sharing one global scope, so each block derives its shared globals at config-load time by scanning its own directory via `scanDeclaredGlobals(dir)`; `no-undef` catches the undefined-name typos that scope is most prone to. `no-unused-vars` is intentionally omitted — it false-positives on the cross-file global pattern. Names injected from outside a directory (libraries, and the inline `<script>` blocks in `themes/dohmh/layouts/data-explorer/single.html`) are listed per block in `DE_EXTERNAL_GLOBALS` / `NR_EXTERNAL_GLOBALS`. **Adding a file to `eslint.config.mjs` does not put it in scope**; the `lint` script's argument list is what selects files, and the two must be changed together. A green run proves nothing by itself — the check that the directory scan actually loaded is a *positive* control: call a name declared in another file of the same directory and confirm lint still passes.
+- `npm run lint` — ESLint (`no-undef`) over `assets/js/data-explorer/`, `assets/js/nr-report/`, `assets/js/ndhr-report/` and `assets/js/report-data/`. `eslint.config.mjs` has one block per target. Each is a directory of classic scripts sharing one global scope, so each block derives its shared globals at config-load time by scanning its own directory via `scanDeclaredGlobals(dir)`; `no-undef` catches the undefined-name typos that scope is most prone to. `no-unused-vars` is intentionally omitted — it false-positives on the cross-file global pattern. Names injected from outside a directory (libraries, and inline `<script>` blocks in `head.html` and the NR report template) are listed per block in `DE_EXTERNAL_GLOBALS` / `NR_EXTERNAL_GLOBALS` / `NDHR_EXTERNAL_GLOBALS` / `RD_EXTERNAL_GLOBALS`. **Adding a file to `eslint.config.mjs` does not put it in scope**; the `lint` script's argument list is what selects files, and the two must be changed together. A green run proves nothing by itself — the check that the directory scan actually loaded is a *positive* control: call a name declared in another file of the same directory and confirm lint still passes. Lint does not reach inline `<script>` blocks in layouts. To syntax-check one without a server, extract the lines between the tags, replace each `{{ … }}` with `null`, run `node --check` on the result, and run the same on `HEAD`'s copy as the control. This is valid only where the block has no `{{ range }}` or `{{ if }}`, which `null` cannot stand in for `[2026-10-19: caught an unclosed `} else {` in `data-index.html`'s `removeTags`]`.
 - `npm run docs-check` — verifies that docs claiming to describe *current* code still name real paths and real identifiers (`scripts/docs-check.mjs`). **Opt-in**: a doc is checked only if it declares a `docs-check source-roots` comment in its first lines. Audits and dated findings must **not** opt in — they cite old names on purpose. Run it after any rename; it is the cheapest thing that catches doc rot at the commit that causes it. It scans every `.md` in `documents/` plus the root docs in `ROOT_DOCS` — **this file is one of them**, so a path or identifier written here must be real and repo-root-relative. Site URLs, globs, and placeholder patterns are skipped. **It cannot check prose — that is what the `docs-check verified: <commit> <date>` stamp is for, and the check fails a doc that opts in without one. If you change behaviour described here, update the prose and re-stamp.** The stamp asserts a human re-read the prose against the tree at that commit, so bumping it without doing that is a false claim, not bookkeeping.
 
 ### Smoke
 
 ```bash
-npm run smoke                                          # 33 pages, one per template kind
+npm run smoke                                          # 44 pages, one per template kind
 npm run smoke:all                                      # every page the site serves
 npm run smoke:prod_prod                                # every page, on an isolated prod_prod server
 npm run smoke:env local_prod                           # every page, on any environment in config/
-npm run smoke:env local_prod sample                    # the curated 33 instead, same isolated server
+npm run smoke:env local_prod sample                    # the curated 44 instead, same isolated server
 DE_BASE_URL="http://localhost:1313/dev-prod/" npm run smoke   # against a server you already have
 ```
 
@@ -99,7 +99,28 @@ page; `workflow_dispatch` offers the 33-page sample instead. A failing sweep tri
 against it — green means the PR caused it, red means the data or a third party moved. The harness
 aborts `www.googletagmanager.com`, so no sweep reports page views to Google Analytics.
 
-Ten things to know before trusting a result:
+**A docs-only push to an open PR re-runs both sweeps.** On `pull_request`, `paths-ignore` reads every
+file the PR changes, not the push, so `documents/**` in it only spares a PR that touches nothing else.
+To skip a push whose code CI has already checked, such as a ledger commit, put `[skip ci]` in its
+message. GitHub documents that this skips `push` and `pull_request` runs, that on a PR only the head
+commit's message counts, and that skipped checks stay Pending, which blocks a merge only where checks
+are required (docs.github.com, "Skipping workflow runs", read 2026-10-22). `production` requires
+none: its branch protection has no required status checks and there are no rulesets `[checked
+2026-10-22]`. It held on `029eb9fce4`, a PR head carrying the marker: 0 runs, where the push before
+it (`cf9d58fc4d`) started both. **The marker also cancels the deploy build if that commit is still
+the PR's head when it merges**, because `hugo-build-to-prod-prod.yml` runs on `pull_request: closed`,
+which reads the same head commit. Push an ordinary commit after it before merging, or run
+`gh workflow run hugo-build-to-prod-prod.yml --ref production` afterwards `[2026-10-28: #1515 merged
+with head `2bfcfde380` carrying the marker; no prod-prod run started]`. GitHub matches the literal
+string anywhere in the message, so a commit that only *mentions* it skips too — write "the skip-ci
+marker" instead `[2026-10-28: #1520, the commit adding this warning, quoted it in its subject and
+merged with no prod-prod run]`. The automatic alternative, not built
+(Chris, 2026-10-22): a first job diffs `github.event.before..github.sha`, the files that one push
+changed, and the two sweep jobs run only when it touches something outside the ignored paths. It
+has to run the sweeps anyway when `before` is not an ancestor of the new head (a force-push or
+rebase) and when the PR opens, or a rewritten branch could skip its only sweep.
+
+Eleven things to know before trusting a result:
 
 - **`npm run smoke -- --all` does not work here.** PowerShell eats the `--`, so the script gets an empty `argv` and silently runs the curated list — a pass you would read as full coverage. That is why `--all` has its own npm script. Direct `node scripts/smoke-pages.mjs --all --concurrency 12` works from either shell.
 - **Before citing the *curated* run as proof for a change that only executes on one page kind, check that page is in `PAGES`.** The comments there name the template that renders each URL, and a comment naming the wrong one is how a page ends up with no coverage while looking covered. `smoke:all` removes this concern and is the answer when you can afford the wall time.
@@ -131,11 +152,15 @@ Ten things to know before trusting a result:
   at concurrency 4, cap 2 -> capped message and no re-check, cap 100 -> sequential re-check ran]`.
 - **The harness sends a de-headlessed user agent.** forecast7.com (Cloudflare) answers 403 to a `HeadlessChrome` UA and 200 with an `Access-Control-Allow-Origin` header to a normal Chrome one, so the weatherwidget.io embed on `/data-features/heat-syndrome/` reported a CORS block and rendered at 0px under the sweep while working for visitors `[verified 2026-08-22: same run, same server — default UA 3 errors / 0px, de-headlessed 0 errors / 211px]`. A console error naming a third-party host can be the harness being fingerprinted; check what a real UA gets before allowlisting one.
 - **A CORS error from `airnowapi.org` on `(home)` is external — re-run before diagnosing it.** `themes/dohmh/layouts/partials/temp-popup.html` fetches that API at page load, and the AirNow `KNOWN_NOISE` entry is scoped to `realtime-air-quality` and different hostnames, so it does not cover this one `[verified 2026-08-17: one failure between two passes, on a tree where that file was unchanged from the pre-merge tip]`.
-
+- **Only the `--all` sweep renders Data Explorer indicators, and in one view each.** Sitemap URLs carry no `?id=`, and a topic page without one opens the indicator chooser and stops (the "open chooser" guard in `assets/js/data-explorer/topic-indicator-selector.js`) `[verified 2026-10-02: 4 topic pages, no IndicatorID, 0 map paths]`. What renders indicators is the per-indicator list `--all` appends (above), which CI's PR sweep runs. The curated `PAGES` render three (2380, 26, 2427), so a `workflow_dispatch` sample run says little about the explorer; `scripts/de-characterization.mjs` renders 2380, 2414 and 2023.
 - **The broad `Failed to load resource` allowlist entry hides the *cause* of a blocked script**, leaving only the downstream `X is not defined` — the entry in `scripts/smoke-pages.mjs` is `{ page: null, error: /favicon|Failed to load resource|net::ERR/i }`, and the file carries its own CAUTION comment about it. Diagnose those failures with a separate unfiltered probe rather than from the sweep's output.
 - **A cache-cold first run has been seen to fail spuriously** — `documents/site-wide-audit-2026-06-27.md` §5j.
 
 `scripts/dev-server.mjs` resolves the server. It reuses one that is already answering on :8080, :8081 or :1313, starts one (`--environment dev_stage`, so **staging data**) when nothing is running, and never stops a server it didn't start. If a `hugo` process exists but answers on no prefix it knows, it aborts rather than start a second builder — set `DE_BASE_URL` in that case.
+**It matches by port, not by tree**: a server started from another worktree answers on :8080 like
+this tree's own, and every harness then checks that worktree's code and passes. Before a check run,
+read the listening process's `CommandLine` (`Get-NetTCPConnection -LocalPort 8080` → `Win32_Process`)
+or grep the served page for your change, and point `DE_BASE_URL` at the right server `[2026-10-22]`.
 
 Import `ensureDevServer()` from that module directly for one-off browser checks — it is exported
 (`scripts/dev-server.mjs:178`). It returns `{ baseURL, stop, pagefind, hugo }` — destructure it
@@ -255,6 +280,10 @@ are printed as a harness-health number and deliberately **not** baselined — th
   comparison through the months the data actually moves. A red `--check` prints one line saying
   whether it moved, with a compare URL; a baseline captured before the field existed has none, and
   that is not a mismatch.
+- **Two open PRs that each re-baseline conflict on both `_meta.json` files**, whatever pages they
+  touched. Re-baseline the second only after the first merges: merge `origin/production` into
+  it, then run `site-characterization-rebaseline.mjs --expect "<its pages>"`. `[2026-10-24: #1517
+  then #1518]`
 - **Concurrency defaults to `min(24, max(6, availableParallelism()))`, not a fixed 6.** Measured
   over 925 pages, three sweeps interleaved so a warm cache could not pass for a concurrency effect:
   12 -> 198s, **24 -> 114s**, 12 -> 199s, all three captures byte-identical across every record
@@ -281,12 +310,31 @@ are printed as a harness-health number and deliberately **not** baselined — th
   12-minute sequential re-capture of all 925 and hit `timeout-minutes: 20` having reported nothing
   `[run 32802721473, 2026-08-25]`. `--baseline` is uncapped — it compares two sweeps of the same
   commit, is run by hand, and is under no timeout.
+  **When your own change is what put `--check` over the cap, the other pages it names are
+  unarbitrated, not confirmed** — the output's "treat every page named as a real difference"
+  assumes one cause for all of them. `--baseline`'s two uncapped sweeps arbitrate them; confirm
+  those pages are absent from the re-baseline's diff before committing it `[2026-10-16]`.
   Most of what looked like instability was one dead field: `img` was counting Leaflet map tiles,
   which measure network timing rather than page structure. Removing it took `--baseline`
   arbitration from 18 pages to 2, and the `prod_prod` capture needed none at all. **Whatever
   remains is not diagnosed** — read the plan's Task 6 and Task 7 findings before treating it as
   understood, and note that Task 7 found the DOM-quiescence detector had never attached, so any
   older claim crediting that wait is void.
+- **Before re-baselining after a check that fails on most pages, capture the base branch with the
+  same harness and diff the two captures.** A baseline diff mixes what the base branch changed
+  since the capture with what yours changes; a detached worktree at the base tip running
+  `node scripts/characterize-env.mjs prod_prod` gives yours alone `[2026-10-01: 994 of 994 pages
+  differed from the prod_prod baseline; against production's own capture, 535 had lost the
+  search UI, which a re-baseline would have committed as expected]`.
+- **`--expect <glob>` claims every field on every page it covers.** The re-baseline tool's
+  "Nothing unexplained" means no page outside the globs moved, not that only the fields you
+  predicted did. Tally `git diff -U0` by key before committing `[2026-10-19]`.
+- **Run it before calling done any change that adds or removes a rendered element on a page kind**
+  — a link, button, input, heading, image or iframe, including one a library injects. CI runs the
+  full sweep on every PR into `production` that touches more than `site-characterization.yml`'s
+  `paths-ignore` list (`documents/**` and similar), so a local check list that leaves it out moves the
+  failure to the PR `[2026-10-19]`.
+- **A page that misses `load` in every environment may be its third-party embed, not this site.** `/data-features/displacement-risk/` iframes `equitableexplorer.planning.nyc.gov`, whose own scripts intermittently hang past the 30s `goto` cap, and one such page voids the whole sweep's verdict. Load the embed URL alone before suspecting a change, then re-run `[2026-10-16]`.
 
 ### Neighborhood Reports harnesses
 
@@ -301,8 +349,9 @@ on a branch mismatch.
 
 ### Search index
 
-- `npm run characterize:pagefind` — characterization harness for the **search index**
-  (`scripts/pagefind-characterization.mjs`). Nothing else in this repo can see search: Pagefind is
+- `node scripts/pagefind-characterization.mjs --check` — characterization harness for the **search
+  index**. `npm run characterize:pagefind` passes no flag, so it prints usage and exits 2 without
+  checking anything. Nothing else in this repo can see search: Pagefind is
   a post-build step, so `hugo server` produces no index at all — which is why `PagefindUI is not
   defined` is allowlisted dev-only noise in `nr-characterization.mjs`. A template change that
   silently adds or removes indexed text is invisible to `lint`, `smoke` and both other harnesses.
@@ -347,7 +396,7 @@ on a branch mismatch.
 
 ### Data explorer harness
 
-- `npm run characterize:de` — the equivalent harness for the data explorer (`scripts/de-characterization.mjs`). **Currently non-functional on this branch**: it was written against the `feature-new-data-explorer` explorer and waits on DOM this branch never produces. Migrated for parity, not usable here; no baseline is committed. Do not treat a failure from it as a regression signal.
+- `node scripts/de-characterization.mjs --check` — Playwright characterization; diffs three indicators across the map/bar/table/trend views against the committed baseline in `scripts/de-characterization-baseline/`. `--baseline` re-captures. Write it as the `node` invocation, not `npm run characterize -- --check`: PowerShell eats the `--` and the script then sees no arguments. It shares `scripts/dev-server.mjs` with `smoke`, so the server rules above apply.
 
 ### NDHR report harness
 
@@ -507,7 +556,7 @@ on a branch mismatch.
 
 - **The local EHDP-data mirror serves only the extensions IIS has a MIME mapping for, and answers 404.3 for the rest.** `.geojson` has no default mapping, so `geography/CD.geojson` 404'd while sitting on disk: the NDHR report map died on `local_prod`/`local_stage` alone, and `characterize:ndhr check` went red on 4 of 4 targets with a 404 that reads as absent data. `.json` and `.csv` are mapped and unaffected. Fixed by a staticContent mimeMap in that mirror's own web.config `[2026-09-15]` — but a 404 there has two causes, so read the substatus before concluding the mirror is stale: `puma2020_to_cd.csv` and `puma2010_to_subboro_cd.csv` really are absent, and only `scripts/ndhr-build-cdlist.mjs` reads them.
 - **A Hugo build's exit code is a fact about the tree *and* its `data_branch`, not the tree alone.** Each environment pins its own branch, so the same commit can build clean under one and abort under another when EHDP-data filenames differ. Name the environment in any claim that a branch does or does not build.
-- **Open a fresh browser tab after rebuilding.** JS and CSS are fingerprinted and cached hard; an existing tab can serve the previous build's assets. A server started *before* an edit to a shared template can also keep serving stale pages. The fingerprint is also the proof: read the served asset filename out of the page and confirm it changed between your before and after reads — an unchanged one means you measured the old file.
+- **Open a fresh browser tab after rebuilding.** JS and CSS are fingerprinted and cached hard; an existing tab can serve the previous build's assets. A server started *before* an edit to a shared template can also keep serving stale pages. The fingerprint is also the proof: read the served asset filename out of the page and confirm it changed between your before and after reads — an unchanged one means you measured the old file. A template edit has no fingerprint, so the proof is the edit itself: before measuring, fetch the page with `cache: 'no-store'` and confirm it contains a string only the edit introduced — a navigation made right after an edit can load the page from before the rebuild `[2026-10-26]`.
 - **Never run two Hugo builders against this tree at once** — a static build beside a running server, or two servers on different ports, even against different `--environment`s. They all write the same on-disk fingerprint cache (`resources/_gen/`), which is not namespaced by environment, so one can leave another pointing at asset paths that no longer exist. `scripts/dev-server.mjs` only guards the ports it probes, so a server started outside it slips past. The tell is every fingerprinted asset 404ing under the *other* environment's path prefix; the page dies with `$ is not defined` and reads like a broken code change, so check the served asset URLs before suspecting your diff. Ask before restarting a server you didn't start.
 - **Counting over generated HTML? Define the real-page set first, and pick a marker no `static/` file can also carry.** A `prod_prod` build writes 1397 HTML files, of which **927** are pages rendered through `head.html`; 443 are Hugo alias-redirect shells carrying their own `noindex` and `lang="en"`, and the rest are `static/` passthrough. A tree-wide count scores those 470 as failures. **`head.html`'s viewport meta is not a safe marker** — `static/data-stories/cold/source/index.html` contains the identical tag, so it returns 928, and a loose `name="viewport"` match returns 933 by picking up five more `static/` files with their own variants. Use `data-pagefind-meta="title:`, also emitted unconditionally by `head.html`: it returns 927 and agrees with a same-run `<script type="application/ld+json">` count on all 1397 files `[verified 2026-08-21: one Python walk, 0 disagreements]`. Earlier notes citing 933 real pages were taken with the loose match.
 
@@ -534,6 +583,7 @@ A claim about runtime behavior — CSS, DOM, layout, timing, browser APIs — mu
 - **Mark unverified reasoning as unverified.** If a fix ships on a hypothesis you could not test, write `// HYPOTHESIS (unverified):` rather than stating the cause as fact. A confident wrong comment misleads every later attempt; the next person re-tests a hypothesis but trusts an explanation.
 - **After one failed fix attempt, stop and gather runtime evidence** instead of trying a second theory. Two speculative fixes in a row means the premise is wrong, not the implementation.
 - **Rule out your own confounds before reporting a cause.** If you ran a static build in the same tree as the server you are testing, or the cache was cold, that is a candidate explanation you introduced — eliminate it, and say that you did. For an A/B *timing* comparison the confound is **order** — the first run warms the caches for the rest. Run A, B, A; a non-monotonic result across an ordered sweep means you measured order, not the variable `[2026-08-24]`. For an A/B comparison of *output* rather than timing, run one condition twice as well — the same-condition control is what separates a real difference from the floor. Hugo 0.147.3 against 0.147.9 differed on 3 of 2936 built files, and so did 0.147.3 against itself: a `build_datetime` clock, not a version effect `[2026-08-24]`.
+- **A layout fix is verified on every edge and every way the view is reached.** Test clipping on all four sides of the element, not only the side the report named, and on a direct URL load, a tab click from another view and a live window resize. Sample painted frames with `requestAnimationFrame`, not only the settled state: a tab click renders while the pane is hidden, and a resize re-renders asynchronously `[2026-10-15]`.
 - **If a refactor is justified partly by bug claims, prove them in a no-code stage first.** Reproduce each in the browser before touching anything, and drop any that doesn't reproduce rather than fixing a phantom.
 
 Worked example: `documents/data-explorer-fresh-audit-2026-07-13.md` §4.9 — a focus-ring bug that survived two fixes because the diagnosis was plausible, confidently written, and false; the actual cause took one browser experiment to find.
@@ -553,6 +603,8 @@ Worked example: `documents/data-explorer-fresh-audit-2026-07-13.md` §4.9 — a 
 - `documents/` — Internal audits and technical write-ups
 - `scripts/` — Node dev tooling (smoke test, docs-check, dev-server helper, the five characterization harnesses, the accessibility audit, the NR pre-capture/post-swap pair, and the NDHR generators plus the report-data parity harness)
 - `docs/` — Generated output; never edit directly
+
+**For the current status of any audit finding, read `documents/site-wide-audit-2026-10.md`**, which re-checked the older audits' findings against `production` (2026-10-17) and carries a priority and a roadmap. The older audits in `documents/` say "Superseded for status" on their first lines and are records of their own dates.
 
 ### Layout routing
 
@@ -577,29 +629,30 @@ This list read seven and named neither `lib-cdlist` nor `lib-topojson` until 202
 - **`lib-easybutton-coloricon` must follow `lib-leaflet`** — both extend the global `L`.
 - **`lib-uhflist` emits the global `neighborhoods`**, generated at build time from `data/globals/uhflist.json` via `resources.FromString` into a fingerprinted `uhflist-data` script. The old hand-maintained `uhflist.js` source under `assets/js/` is gone; a comment naming it is stale.
 - **Placement is not free.** `baseof.html` renders `block "main"` before `block "js_bot"`, so a partial included in `js_bot` is parsed *after* any inline `<script>` in `main`. `nr-leaflet.html` calls `L.map(...)` at the top level of an inline script, so every template rendering it includes `lib-leaflet` in `main`, above that call. Put the include beside the consumer that runs earliest, not at the foot of the page by habit. **A data global read from inside a `fetch` callback needs the same treatment, which is less obvious** — the callback can run between two script blocks, so a `lib-*` data partial left in `js_bot` is a race and not a guaranteed win. `lib-cdlist` moved from `js_bot` into `main` on the NDHR category pages for exactly that reason when `ndhr-leaflet.html` landed.
-- **`lib-topojson` is for the Leaflet direction only.** Vega converts topology itself through `format: {type: "topojson"}`, so `assets/js/data-explorer/map.js`, `themes/dohmh/layouts/data-features/minimum-wage-with-maps.html` and `assets/js/ndhr-report/chart.js` need nothing loaded. `ndhr-leaflet.html` is the one consumer, because Leaflet reads GeoJSON. `themes/dohmh/layouts/data-features/heatstory.html` uses the same library and deliberately does not use this partial: it concatenates five libraries into one bundle with `resources.Concat`.
+- **`lib-topojson` is for JS that calls `topojson.feature()` itself.** Vega converts topology through `format: {type: "topojson"}`, so `themes/dohmh/layouts/data-features/minimum-wage-with-maps.html` and `assets/js/ndhr-report/chart.js` need nothing loaded. The two consumers are `assets/js/data-explorer/map.js` and `ndhr-leaflet.html`, the second because Leaflet reads GeoJSON. `themes/dohmh/layouts/data-features/heatstory.html` uses the same library and deliberately does not use this partial: it concatenates five libraries into one bundle with `resources.Concat`.
 - Not every template uses the partials: `themes/dohmh/layouts/data-explorer/single.html` still declares its libraries inline, and flexdatalist has no `lib-*` partial — the five templates that use it load it themselves (`themes/dohmh/layouts/partials/de-text-search.html`, `themes/dohmh/layouts/partials/nr-neighborhood-picker-js.html`, `themes/dohmh/layouts/partials/ndhr-district-picker-js.html`, `themes/dohmh/layouts/data-features/aqe.html`, `themes/dohmh/layouts/data-features/hvi.html`) `[verified 2026-09-12: grep for the `resources.Get` on the package across `themes/`; it read four until the NDHR district picker landed]`.
 - **A layout that loads a library is not necessarily where it is initialized.** `customJS` frontmatter names a `.js` inside the content bundle, and `content/data-features/hvi/hvi.js` and `content/data-features/neighborhood-air-quality/aqe.js` are where those two pages call `.flexdatalist()` — `hvi.html` and `aqe.html` only load it. The other three init sites are in the partials themselves. Classic scripts, so they share the layout's global scope. Grep `content/` as well as `themes/` when tracing a library's wiring.
-- **The combobox ARIA fix is a partial, and one caller does not use it.** `themes/dohmh/layouts/partials/flexdatalist-combobox-js.html` declares `wireComboboxState`, which supplies the `combobox` role flexdatalist never sets and keeps `aria-expanded` true; `de-text-search`, `ndhr-district-picker-js`, `aqe.js` and `hvi.js` call it. `nr-neighborhood-picker-js.html` carries its own inline copy instead, so those two partials must never load on one page — two declarations of one name in the shared classic-script scope is a `SyntaxError` that `npm run lint` cannot see.
+- **The combobox ARIA fix is a partial.** `themes/dohmh/layouts/partials/flexdatalist-combobox-js.html` declares `wireComboboxState`, which supplies the `combobox` role flexdatalist never sets and keeps `aria-expanded` true; `de-text-search`, `nr-neighborhood-picker-js`, `ndhr-district-picker-js`, `aqe.js` and `hvi.js` call it. Declare it nowhere else — two declarations of one name in the shared classic-script scope is a `SyntaxError` that `npm run lint` cannot see.
 
 Adding a library call to a template's JS means adding its `lib-*` include too — nothing loads it globally any more, and the failure is a runtime `X is not defined` that a green build will not show you.
 
 ### Data explorer
 
-`assets/js/data-explorer/` is a vanilla-JS app of 10 files loaded as classic `<script>` tags sharing one global scope. **Load order is critical** and is set in `themes/dohmh/layouts/data-explorer/single.html`:
+`assets/js/data-explorer/` is sixteen vanilla-JS files loaded as classic `<script>` tags sharing one top-level scope. **Load order is set in [data-explorer/single.html](themes/dohmh/layouts/data-explorer/single.html) and is load-bearing:**
 
-`global → data → measures → table → map → links → disparities → trend → app → print`
+`global → app → data → measures → table → map → 311 → topic-indicator-selector → menu → bar → trend → correlate → disparities → print-map → print`
 
-- `global.js` declares the shared top-level state. Add new cross-file state there rather than assigning an undeclared name — an implicit global works at runtime but defeats `npm run lint`, which is what proves renames complete.
-- Data flow: indicator metadata → Arquero table → `joinData` → `renderMeasures` → the `show` renderers (`showMap`, `showTable`, `showTrend`, …).
-- `single.html` also defines `renderIndicatorDropdown`, `renderIndicatorButtons`, and `createCitation` in inline `<script>` blocks, because they read template markup Hugo has to render. They are called from `data.js`, which works because classic scripts share one top-level scope.
-- `renderLinksChart` (`links.js`) and `renderTrendChart` (`trend.js`) are each a single function spanning nearly their whole file.
+The sixteenth, `de-tab-content.js`, is loaded separately by `themes/dohmh/layouts/partials/de-tab-content.html`. The retired explorer at `/data-explorer-old/` keeps its own ten-file bundle in `assets/js/data-explorer-old/`, loaded by `themes/dohmh/layouts/data-explorer-old/single.html`; it is deliberately not linted. The retired explorer reuses 11 of the new one's element ids (`#trend`, `#links`, `#summary-table`, …), and `assets/scss/_de-custom.scss` compiles into the site-wide `assets/scss/theme.scss`, so scope a new-explorer id rule under `.de-tabs-panel-shell` `[2026-10-15]`.
 
-Key gotchas:
-- `isDataTable` is reached via the lowercase-`d` jQuery plugin property, not the capitalised one. **Scoped to `feature-new-data-explorer`** — the name appears 6× there and 0× here or on `production`, though DataTables itself is used on this branch `[verified 2026-08-06]`.
-- UI state uses prettified geotypes (`NTA`, `CDTA`, `PUMA`); data rows may carry versioned values. Normalize with `prettifyGeoType` before comparing. `assignGeoRank` derives its ranking from the same source, so a new versioned variant only needs adding in one place.
-- **The search modal is not where this file used to say it was.** On this branch `#searchModal` is defined inline at `themes/dohmh/layouts/partials/footer.html:189`, reached only because `baseof.html` includes the footer — the arrangement the old wording forbade. `feature-new-data-explorer` solved it differently again, with a dedicated `search-modal.html` under `themes/dohmh/layouts/partials/` included from the header partials, and has it in neither `baseof.html` nor `footer.html`. So there is no branch where it lives in `baseof.html` `[verified 2026-08-06: counts across all three branches]`. Whether the Pagefind double-initialization it guarded against actually occurs here is **untested** — it needs a footerless page to reproduce.
-- **`head.html` no longer carries a library block at all.** It used to gate one on `.Kind`/`.Section`, and that gate missed section pages — which is what made the data explorer landing page throw `aq is not defined` (site-wide audit §5f). Libraries are now per-template `lib-*` partials, and `themes/dohmh/layouts/data-explorer/section.html:40` includes `lib-arquero.html`, so that particular failure is fixed `[verified 2026-08-17: npm run smoke passes the data explorer landing page, and it fails on any pageerror]`. See "Library loading" below before assuming a library is available on a template.
+- `global.js` declares the shared state. Add new cross-file state there rather than assigning an undeclared name.
+- The renderers (`showMap`, `showTable`, …) are declared `let` in `global.js` and **assigned** in `measures.js`. Keep them assignments — writing `const showMap = …` in `measures.js` redeclares the same name in the same shared top-level scope, which is a load-time `SyntaxError` on every page that loads the bundle, not a localized failure.
+- Data flow: indicator metadata → Arquero table → `joinData` (`data.js`) → `renderMeasures` → the `show*` renderers.
+- In the retired explorer only, `themes/dohmh/layouts/data-explorer-old/single.html` defines `renderIndicatorDropdown`, `renderIndicatorButtons`, and `createCitation` in inline `<script>` blocks because they read markup Hugo has to render first. `assets/js/data-explorer-old/data.js` calls them; that works only because classic scripts share one scope. The new explorer defines none of the three; its only mention is a commented-out `createCitation()` call in `data.js`.
+- UI state uses prettified geotypes (`NTA`, `CDTA`, `PUMA`) while data rows may carry versioned values (`NTA2020`). Normalize with `prettifyGeoType` (`global.js`) before comparing. `assignGeoRank` derives its ranking from the same shape, so a new versioned variant should be handled in one place, not two.
+- **Every EHDP-data path the explorer fetches at runtime must exist on EHDP-data `production` before merging.** `dev_stage` reads `staging`, so a staging-only file passes there and 404s live. CI's `prod_prod` sweep reads `production` and fails on any EHDP-data 4xx (smoke, above), but loads each indicator in one view, so a file only another view fetches can still pass; the pinned run in the smoke plan's Task 3 caught the citywide 404 on 56 pages across all five views. `curl -s -o /dev/null -w '%{http_code}'` the production raw URL `[2026-10-02: geography/citywide.topo.json was staging-only; the unmapped map drew nothing on 68 indicators]`.
+- `isDataTable` is reached via the lowercase-`d` jQuery plugin property, not the capitalised one.
+- `#searchModal` is defined in `themes/dohmh/layouts/partials/search-modal.html`, included from `baseof.html` and from `themes/dohmh/layouts/_default/list.html` `[verified 2026-10-16: grep for the id and the partial across themes/]`.
+- **`head.html` no longer carries a library block at all.** It used to gate one on `.Kind`/`.Section`, and that gate missed section pages — which is what made the data explorer landing page throw `aq is not defined` (site-wide audit §5f). Libraries are now per-template `lib-*` partials, and `themes/dohmh/layouts/data-explorer/section.html` includes `lib-arquero.html`. See "Library loading" above before assuming a library is available on a template.
 
 ### Neighborhood Reports
 
@@ -610,11 +663,11 @@ worked before still works, but nothing renders it the way it used to. Three page
 
 - **Report page** — `/neighborhood-reports/<nbhd>/<topic>/`, 210 of them, `kind: page`, rendered by
   `themes/dohmh/layouts/neighborhood-reports/nr-report.html`. **None of these 210 are in the
-  Pagefind index**: the layout's `<section id="skip-header-target">` carries
-  `data-pagefind-ignore="all"`, restoring production's model 2026-08-15 after the alternatives were
+  Pagefind index**: the layout's `<section class="container-fluid">` carries
+  `data-pagefind-ignore="all"` (the `skip-header-target` id is on `baseof.html`'s `<main>`), restoring production's model 2026-08-15 after the alternatives were
   measured and failed. It costs neighborhood+topic search — "asthma East Harlem" no longer finds
   East Harlem's asthma report — and it is reversible by deleting that one attribute, which
-  `npm run characterize:pagefind` will catch as a control failure rather than a diff.
+  `node scripts/pagefind-characterization.mjs --check` will catch as a control failure rather than a diff.
   `documents/nr-pagefind-parity-2026-08-15.md` §2g has the numbers, §5 the test that would reverse
   it. Pagefind only: crawlers, the accessibility tree and the no-JS path are untouched. This is the
   report page:
@@ -629,11 +682,17 @@ worked before still works, but nothing renders it the way it used to. Three page
 
   Its Leaflet map is the only in-place neighborhood switcher, and it answers the keyboard as well
   as the mouse: `map.js` binds `keydown` beside `click`, both routing through one
-  `selectNeighborhood`. Leaflet already delivered the key event to the focused `<path>` — the 42
+  `reportMapSelectNeighborhood`. Leaflet already delivered the key event to the focused `<path>` — the 42
   polygons were focusable all along, and nothing was listening. Every polygon carries
   `role="button"` and a name from `featureDisplayName`, **not** from the geojson's `GEONAME`, which
-  disagrees with `uhflist`'s `UHF_name` on 6 of the 42 ("Fordham - Bronx Pk", "Rockaways"); the
-  tooltip resolves the same way, so the visible label matches the accessible name.
+  disagrees with `uhflist`'s `UHF_name` on 4 of the 42 ("Fordham - Bronx Pk", "Rockaways")
+  `[2026-10-19]`; the tooltip resolves the same way, so the visible label matches the accessible
+  name. `nr-leaflet.html`, the other pages' map, does the same naming and keyboard handling with
+  its own function names since 2026-10-19. Both maps frame their neighborhood when they have one —
+  the report page's selection, the index page's own — and keep Leaflet's zoom control beside a
+  "Reset zoom" easyButton that returns to the whole city (Chris, 2026-10-20). Framed, a pointer
+  reaches only a few of the 42 polygons, 5 on `/neighborhood-reports/east_new_york/`; after a reset, 41
+  `[verified 2026-10-20: scripts/nr-r14-probe.mjs]`.
 - **Neighborhood index** — `/neighborhood-reports/<nbhd>/`, 42 of them, `kind: section`,
   `themes/dohmh/layouts/neighborhood-reports/nr-neighborhood-index.html`. Leaflet map, ZIP list,
   five topic cards linking to that neighborhood's reports.
@@ -649,7 +708,7 @@ picker/list partials, `nr-leaflet`'s framing, and the routing note. What stays b
 from *outside* the NR files.
 
 Two traps when working on the report page's print rendition. `.print-only` is `display:none` normally and `display:flex`
-in print (`assets/scss/_custom.scss`) — a hand-rolled class, because Bootstrap's own `_print.scss`
+in print (`assets/scss/_de-custom.scss`) — a hand-rolled class, because Bootstrap's own `_print.scss`
 is **not** imported; only the `d-print-*` utilities are. And nothing below a browser proves a print
 change: emulate print media and read `document.body.innerText`, which respects `display:none` and is
 therefore what print actually shows. `documents/nr-print-view-fix-2026-08-10.md` has the before/after
@@ -662,7 +721,7 @@ accessibility tree itself as `scripts/nr-a11y-audit.mjs` does, for any "what doe
 actually get" question on either page — never `textContent`.
 
 **The report page has no styles of its own any more.** Its inline `<style>` block moved into
-`assets/scss/_custom.scss` on 2026-08-15, under a "Neighborhood Reports report page" heading, so a
+`assets/scss/_de-custom.scss` on 2026-08-15, under a "Neighborhood Reports report page" heading, so a
 reader looking in `nr-report.html` for why an accordion header is white will not find it there.
 Three of those rules are **scoped to `.nr-report-accordion`, and the scope is load-bearing**:
 `.card-header` is a Bootstrap class, an inline block reached only its own page, and the same rules
@@ -674,15 +733,13 @@ relocation**, because the inline block was carrying a page scope and a cascade p
 new home does not reproduce. Eight of the seventeen rules were dead and were deleted instead —
 `.nr-card-header`, `.nr-indicator-card` and `.card-header a` match nothing the page renders.
 
-**`nr-leaflet.html` and `assets/js/nr-report/map.js` are two parallel Leaflet implementations
-that share four top-level names, so they must never load on the same page.** `highlightFeature`,
-`onEachFeature`, `resetHighlight` and `selectNeighborhood` are declared in both
-`[verified 2026-08-11: top-level declarations in the two files, intersected]`. They do not collide
-today because `nr-report.html` includes the report page modules and not `nr-leaflet`, while the picker
-pages do the reverse — but a `const` and a `function` of the same name in one classic-script scope
-is a `SyntaxError` that kills every script on the page, and `npm run lint` cannot see it, since
-`no-undef` is satisfied by either declaration. Adding `nr-leaflet` to the report page, or the report page's
-map module to a picker page, needs a rename first.
+**`nr-leaflet.html` and `assets/js/nr-report/map.js` are two parallel Leaflet implementations,
+and `map.js`'s handlers carry a reportMap prefix (`reportMapSelectNeighborhood`) so the two
+cannot collide.** Until 2026-10-17
+they shared four top-level names — `highlightFeature`, `onEachFeature`, `resetHighlight`,
+`selectNeighborhood` — and a `const` and a `function` of one name in one classic-script scope is
+a `SyntaxError` that kills every script on the page, which `npm run lint` cannot see. Keep new
+top-level names in `map.js` prefixed the same way, since nothing checks it.
 
 The generator is `content/neighborhood-reports/_content.gotmpl`, a Hugo **content adapter**. It
 crosses `data/globals/uhflist.json` (42 neighborhoods) with `data/globals/NR_topics.yml` (5 topics)
@@ -781,13 +838,13 @@ Six things that bite from outside these files:
   `absent: true` controls in `scripts/pagefind-characterization.mjs` rather than reading as a
   diff to re-baseline. `themes/dohmh/layouts/ndhr/section.html` carries the full rationale.
 
-The report page's styles sit in `assets/scss/_custom.scss` under an "NDHR report page" heading, with
+The report page's styles sit in `assets/scss/_de-custom.scss` under an "NDHR report page" heading, with
 `.card-header` scoped to `.ndhr-report-accordion` for the same load-bearing reason the NR rules are
 scoped.
 
 ### SCSS
 
-`assets/scss/theme.scss` is the root entrypoint, importing Bootstrap overrides and custom styles in lettered files. Bootstrap itself is mounted from `node_modules`.
+`assets/scss/theme.scss` is the entrypoint, importing lettered partials in order (`a-global-variables` → `b-bootstrap-imports` → …). Bootstrap comes from the **vendored copy at `assets/bootstrap/scss/`** (v4.3.1), not from `node_modules` — `package.json` also lists `bootstrap ^4.3.1`, so a dependency bump does not move the styles and the two can drift.
 
 ### Content sections
 
@@ -830,12 +887,12 @@ Specify with `--environment ENV`. Each environment's own config.toml, under its 
 
 Key per-environment variables: `baseURL` and `data_branch`.
 
-- **Build caching is per environment, and the default is the exception.** `config/_default/config.toml` sets `caches.getresource maxAge = -1` — cache forever — but five environments override it to `0`: `development`, `dev_prod`, `dev_stage`, `production`, `prod_prod`. Only `local_prod`, `local_stage` and `prod_stage` inherit the forever cache `[verified 2026-09-01: grep for maxAge across config/]`. So "the build is serving stale EHDP-data" is a real explanation under three environments and not under the other five — check which one you are building before reaching for it. `--ignoreCache` forces a cold fetch either way. **An earlier version of this bullet described the forever cache as sitewide and quoted a warm-vs-cold build time for a `production` build; `production` sets `0`, so that figure cannot have been measuring this cache and has been dropped rather than restated.**
+- **Build caching is per environment, and the default is the exception.** `config/_default/config.toml` sets `caches.getresource maxAge = -1` — cache forever — but seven environments override it to `0`: `development`, `dev_prod`, `dev_stage`, `local_prod`, `local_stage`, `production`, `prod_prod`. Only `prod_stage` keeps the forever cache, by setting `-1` itself `[verified 2026-10-20 on this branch: grep for maxAge across config/]`. So "the build is serving stale EHDP-data" is a real explanation under `prod_stage` and not under the other seven — check which one you are building before reaching for it. `--ignoreCache` forces a cold fetch either way. **An earlier version of this bullet described the forever cache as sitewide and quoted a warm-vs-cold build time for a `production` build; `production` sets `0`, so that figure cannot have been measuring this cache and has been dropped rather than restated.**
 - **Case-only renames in EHDP-data are a two-repo, two-OS hazard.** `report_topic` in `data/globals/NR_content/*.yml` is a path segment of the report JSON filename. A Windows-side export drops case-only renames silently; and if both casings land on a branch, Windows clones choke on the checkout collision. Hugo hides both — it fetches by URL and never checks the tree out. Worked case, with the EHDP-data cleanup commits: [documents/nr-de-merge-integration-plan-2026-08-15.md](documents/nr-de-merge-integration-plan-2026-08-15.md) Task 0.1 Step 3.
 
 ## Coding conventions
 
-- 4-space indentation in all files.
+- 4-space indentation in all files, except YAML at 2 (`.editorconfig`), where indentation is meaningful.
 - Browser-side JS: no new frameworks or build dependencies. Keep it lightweight, readable, and explicitly branched.
 - Comments should be brief and intent-focused. Explain *why*, not *what*. Bias towards adding more comments, not fewer.
 - **Orientation comments before code blocks:** add a brief comment before each meaningful code block (function, object, initialization section) explaining what it does at a high level — even if the name alone makes it obvious. Know what's coming before reading the code, not just after.
@@ -886,10 +943,10 @@ Available in markdown content files:
 ## Deployment
 
 Branches are auto-built by GitHub Actions on merge:
-- `production` → builds to `builds/prod-prod` (live site)
+- `production` → builds to `builds/prod-prod` (the deploy source — see below)
 - `build-to-dev-stage` → builds to `builds/dev-stage` (staging)
 
-Branch from `production`, named `hotfix-[NAME]`, `content-[NAME]`, or `feature-[NAME]`, and merge to `production` to deploy. **Merging to `development` for testing is deprecated** — individual branches are staged in CloudCannon instead. The evidence was already in the repo when this line still said otherwise: `development` appears in no row of readme-development.md's branch table, and `hugo-build-to-dev-prod.yml` is marked "In use? No" in its workflow table `[corrected 2026-08-26]`. Full workflow and environment tables: [readme-development.md](readme-development.md).
+Branch from `production`, named `hotfix-[NAME]`, `content-[NAME]`, or `feature-[NAME]`, and merge to `production` to deploy. **Merging to `development` for testing is deprecated** — individual branches are staged in CloudCannon instead. The evidence was already in the repo when this line still said otherwise: `development` appears in no row of readme-development.md's branch table, and `hugo-build-to-dev-prod.yml` is marked "In use? No" in its workflow table `[corrected 2026-08-26]`. **A merge to `production` does not change the live site.** `builds/prod-prod` is the deploy source; the site goes live only through the team's own deploy to internal servers. The live server's `commit_hash.txt` names the deployed `builds/prod-prod` commit, and `.github/workflows/check-deploy.yml` emails when it trails the branch. EHDP-data, fetched at runtime, goes live as soon as it's pushed, so a data change that depends on a code change waits for the deploy, not the merge. Full workflow and environment tables: [readme-development.md](readme-development.md).
 
 **Stacked branches yes, GitHub's Stacked PRs feature no** (decided 2026-08-23). Cutting B from A's tip and C from B's is worth keeping; retarget each PR to `production` by hand as the one below it merges. Don't enable the GitHub feature: merging the bottom PR fires a server-side cascading rebase that force-pushes every branch above it, so the hashes those branches recorded in their own ledgers stop resolving. The cost and the 24-pair mapping are in [audit-backlog-production-2026-08-20.md](documents/audit-backlog-production-2026-08-20.md).
 
@@ -899,12 +956,13 @@ A build can also be triggered on demand rather than by merging. `trigger_prod-pr
 
 ## Audit documents
 
-Detailed technical audits live in `documents/`. Check these before making structural changes to the data explorer or site shell. Most were written against `feature-new-data-explorer`, which carries a substantially different data explorer — read them as that branch's record, not as a description of this tree. **Before recording any audit claim as stale, re-check it on `feature-new-data-explorer` and `production` too** — `git grep <pattern> <branch> -- <path>`. On 2026-08-05 two of four "stale" claims turned out to be branch differences.
+Detailed technical audits live in `documents/`. Check these before making structural changes to the data explorer or site shell. Most were written against `feature-new-data-explorer`, whose explorer this tree carries since `5cca304284` — read their dated findings as records of their date, not as a description of this tree now. **Before recording any audit claim as stale, re-check it on `feature-new-data-explorer` and `production` too** — `git grep <pattern> <branch> -- <path>`. On 2026-08-05 two of four "stale" claims turned out to be branch differences.
 
 - `documents/nr-architecture.md` — **not an audit**: the Neighborhood Reports narrative split out of this file on 2026-09-02, describing current code and carrying a `docs-check` stamp like this one does. Report page rendering, the shared picker partials, routing.
-- `documents/site-wide-audit-2026-06-27.md` — everything outside the data explorer, and the active log for findings on this branch (§5f–§5j).
-- `documents/data-explorer-architecture.md` — the other branch's explorer narrative. Not applicable here; carries a banner saying so.
-- `documents/data-explorer-fresh-audit-2026-07-13.md` — the active data explorer audit for that branch.
+- `documents/site-wide-audit-2026-10.md` — **the status record for every audit finding**, site-wide, data explorer and Neighborhood Reports alike, with a priority and a roadmap. Its NR rows were checked on this branch.
+- `documents/site-wide-audit-2026-06-27.md` — everything outside the data explorer; a dated record, superseded for status by the 2026-10 audit.
+- `documents/data-explorer-architecture.md` — the new explorer's narrative; it describes this tree and is opted into `docs-check`.
+- `documents/data-explorer-fresh-audit-2026-07-13.md` — the data explorer audit; a dated record, superseded for status by the 2026-10 audit.
 - `documents/data-explorer-deep-audit-2026-06-27.md` — closed/historical; superseded by the fresh audit.
 - `documents/js-conventions.md` — JS conventions for all browser-side JS (see Coding conventions above). Its data-explorer examples describe the `feature-new-data-explorer` tree.
 - `documents/nr-output-retirement-scoping-2026-08-04.md` — Neighborhood Reports: inventory, traffic, decisions, staging. Written against the `feature-MOD-Lab-NR-recode-refactor` branch, not `feature-new-data-explorer`.
