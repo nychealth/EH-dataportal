@@ -27,6 +27,7 @@
             4,
             4,
             4,
+            4,
             5,
             2
         ],
@@ -66,7 +67,7 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 77,
+            "internal": 78,
             "external": 18,
             "emptyHref": 29,
             "noAccessibleText": 0
@@ -90,6 +91,7 @@
         "title": "Pests – Environment & Health Data Portal",
         "headingText": [
             "More content about Pests:",
+            "Asthma",
             "Bed bugs",
             "Cockroaches",
             "Mice and rats",
@@ -106,6 +108,7 @@
             "/categories/pests/",
             "/categories/pests/page/2/",
             "/data-explorer/",
+            "/data-explorer/asthma/",
             "/data-explorer/bed-bugs/",
             "/data-explorer/cockroaches/",
             "/data-explorer/mice-and-rats/",

@@ -1,13 +1,13 @@
 {
-    "capturedAt": "2026-10-28T15:01:32.545Z",
-    "gitHead": "722ea6f50d30f7a679767d2a4923a85324c3bf9f",
+    "capturedAt": "2026-10-29T14:03:52.292Z",
+    "gitHead": "a94cb89ecd29ad438d55767dca704140d97bf634",
     "baselineKey": "staging",
     "hugoEnv": "dev_stage",
     "dataBranch": "staging",
     "dataCommit": {
         "sha": "005d8ff8fc83dfbf117933654648885925759fdd",
         "date": "2026-10-24T03:08:03Z",
-        "fetchedAt": "2026-10-28T14:57:52.111Z"
+        "fetchedAt": "2026-10-29T14:00:06.336Z"
     },
     "pagefind": true,
     "hugo": {
@@ -16,7 +16,7 @@
     },
     "prefix": "/dev-stage/",
     "mode": "all",
-    "pages": 924,
+    "pages": 928,
     "arbitrated": [],
     "cleared": [],
     "capped": false,

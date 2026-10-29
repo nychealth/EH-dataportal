@@ -37,6 +37,7 @@
             3,
             3,
             3,
+            3,
             4,
             4,
             4,
@@ -80,10 +81,10 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 133,
+            "internal": 136,
             "external": 18,
             "emptyHref": 29,
-            "noAccessibleText": 21
+            "noAccessibleText": 22
         },
         "controls": {
             "button": 5,
@@ -119,6 +120,7 @@
             "Real-Time Air Quality: PM2.5 in NYC",
             "Rat Mitigation Zone Report: January 2025 to June 2025",
             "2026 NYC Heat-Related Mortality Report",
+            "Pesticide Use by NYC Agencies",
             "Air Quality Impacts of Congestion Relief Zone Tolling",
             "The New York City Community Air Survey",
             "Rat Information Portal",
@@ -148,6 +150,7 @@
             "/data-features/minimum-wage/",
             "/data-features/neighborhood-air-quality/",
             "/data-features/nyccas/",
+            "/data-features/pesticides-report/",
             "/data-features/proximity/",
             "/data-features/rat-information-portal/",
             "/data-features/rat-mitigation-zones/",

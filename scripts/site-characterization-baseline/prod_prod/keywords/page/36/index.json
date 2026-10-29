@@ -21,6 +21,9 @@
         "headingLevels": [
             1,
             4,
+            4,
+            4,
+            4,
             5,
             2
         ],
@@ -60,7 +63,7 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 74,
+            "internal": 77,
             "external": 18,
             "emptyHref": 29,
             "noAccessibleText": 0
@@ -84,6 +87,9 @@
         "title": "Keywords – Environment & Health Data Portal",
         "headingText": [
             "More content about Keywords:",
+            "Grades",
+            "Hot Weater",
+            "Kids",
             "Lung Disease",
             "Search",
             "Page Footer"
@@ -107,6 +113,9 @@
             "/key-topics/pests/",
             "/key-topics/public-space/",
             "/keywords/",
+            "/keywords/grades/",
+            "/keywords/hot-weater/",
+            "/keywords/kids/",
             "/keywords/lung-disease/",
             "/keywords/page/32/",
             "/keywords/page/33/",

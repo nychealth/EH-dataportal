@@ -22,6 +22,7 @@
             1,
             4,
             4,
+            4,
             5,
             2
         ],
@@ -61,7 +62,7 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 69,
+            "internal": 70,
             "external": 18,
             "emptyHref": 29,
             "noAccessibleText": 0
@@ -85,6 +86,7 @@
         "title": "Pesticides – Environment & Health Data Portal",
         "headingText": [
             "More content about Pesticides:",
+            "Pesticide Use by NYC Agencies",
             "Pesticides",
             "Pests and pesticides",
             "Search",
@@ -96,6 +98,7 @@
             "/data-explorer/",
             "/data-explorer/pesticides/",
             "/data-features/",
+            "/data-features/pesticides-report/",
             "/data-stories/",
             "/key-topics",
             "/key-topics/accessibility/",
