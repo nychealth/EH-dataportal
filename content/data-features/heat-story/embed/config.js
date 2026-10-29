@@ -822,6 +822,22 @@ config = {
             }
         },
 
+                {
+            "id": "bill-stress",
+            "title": "Heat story video (EI_0533_1)",
+            "themes": ["Mental health"],
+            "content": "<p>Navigating stress and mental health</p>",
+            "videoId": "y3j6fgSu4oU", 
+            "mapState": {
+                "lat": 40.742017,
+                "lng": -74.003067, // note that these lat longs are made up - can change if interviewee shares info
+                "zoom": 12,
+                "layers": [
+                    "Heat_vulnerability_index"
+                ]
+            }
+        },
+
         {
             "id": "heat-traffic-pollution",
             "title": "Heat, traffic and odors are exhausting",
