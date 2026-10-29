@@ -80,7 +80,7 @@ const renderDisparitiesChart = async (
     const primaryMeasureId = primaryMetadata[0]?.MeasureID;
     const primaryMeasureName = primaryMetadata[0]?.MeasureName;
     const primaryAbout = primaryMetadata[0]?.how_calculated;
-    const primarySources = primaryMetadata[0]?.Sources;
+    const primarySources = linkifyMeasureSources(primaryMetadata[0]);
 
     // - - - percent-type measures display as "%"; others use their configured display type - - - //
 
@@ -100,7 +100,7 @@ const renderDisparitiesChart = async (
     const disparityIndicatorName = disparityIndicator[0]?.IndicatorName;
     const disparityMeasurementType = disparityMetadata[0]?.MeasurementType;
     const disparityMeasureName = disparityMetadata[0]?.MeasureName;
-    const disparitySources = disparityMetadata[0]?.Sources;
+    const disparitySources = linkifyMeasureSources(disparityMetadata[0]);
     const disparitiesAbout = disparityMetadata[0]?.how_calculated;
 
     // ----- rebuild joined disparity data when stale or the primary measure changed ----- //
