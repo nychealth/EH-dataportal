@@ -2,7 +2,7 @@
 title: "Heat and workplace injuries and illnesses in NYC"
 shortTitle: "Heat and work"
 date: 2026-10-27T09:00:00-04:00
-draft: true
+draft: false
 vega: true
 seo_title: "Heat and workplace injuries and illnesses in NYC"
 seo_description: "A data story on how heat affects workplace injury and illness risk for NYC workers."
