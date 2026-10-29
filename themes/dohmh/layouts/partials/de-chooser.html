@@ -357,36 +357,36 @@
     let topic_indicators = {{ $topic_indicators_map.Get "topic_indicators" }};
     // console.log(topic_indicators)
 
-    let destination = document.getElementById('indicatorNames')
+    let destination = document.getElementById('indicatorNames');
 
     const changeKT = (topic) => {
 
         // console.log(topic)
 
-        const all = document.querySelectorAll('.dumps')
+        const all = document.querySelectorAll('.dumps');
 
         all.forEach((dump) => {
-            dump.classList.remove('show')
-            dump.classList.add('hide')
+            dump.classList.remove('show');
+            dump.classList.add('hide');
         });
 
-        const chosen = 'output' + topic
+        const chosen = 'output' + topic;
 
         // console.log('chosen: ' + chosen)
 
-        document.getElementById(chosen).classList.remove('hide')
+        document.getElementById(chosen).classList.remove('hide');
 
-        const KTs = document.querySelectorAll('.kt')
+        const KTs = document.querySelectorAll('.kt');
 
         KTs.forEach((kt) => {
-            kt.classList.remove('active')
+            kt.classList.remove('active');
         });
 
-        const link = 'kt' + topic
+        const link = 'kt' + topic;
 
-        document.getElementById(link).classList.add('active')
+        document.getElementById(link).classList.add('active');
 
-    }
+    };
 
 
     const bindTopicFilterButtons = () => {
@@ -401,8 +401,7 @@
                 changeKT(button.dataset.topicId);
             });
         });
-
-    }
+    };
 
 
     bindTopicFilterButtons();

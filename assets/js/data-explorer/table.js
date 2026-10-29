@@ -31,9 +31,7 @@ const getTableFilterOptions = (rows) => {
 // Escapes a string so it can be used safely inside a regex search.
 
 const escapeRegexValue = (value) => {
-
     return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-
 };
 
 
@@ -45,13 +43,14 @@ const getSelectedTableRows = (rows) => {
     const selectedGeos = new Set(DE.table.selectedTableGeography);
 
     return rows.filter(d => {
+
         // Compare against prettified geotypes so checkbox labels and row filtering stay aligned.
 
         const matchesTime = !selectedTimes.size || selectedTimes.has(d.TimePeriod);
         const matchesGeo = !selectedGeos.size || selectedGeos.has(prettifyGeoType(d.GeoType));
         return matchesTime && matchesGeo;
-    });
 
+    });
 };
 
 
@@ -62,6 +61,7 @@ const getTableColumnSearchValues = (rows) => {
     const { availableTimes, availableGeos } = getTableFilterOptions(rows);
 
     return {
+
         // '(?!)' is an always-false regex, which intentionally shows zero rows when nothing is selected.
         timeSearch: !DE.table.selectedTableTimes.length
             ? '(?!)'
@@ -75,7 +75,6 @@ const getTableColumnSearchValues = (rows) => {
                 ? ''
                 : `^(${DE.table.selectedTableGeography.map(escapeRegexValue).join('|')})$`
     };
-
 };
 
 
@@ -110,7 +109,6 @@ const getCurrentMapTableFilters = (rows) => {
                 ? [availableGeosForSelectedTime[0]]
                 : (availableGeos[0] ? [availableGeos[0]] : []))
     };
-
 };
 
 
@@ -134,6 +132,7 @@ const syncTableFiltersToMapSelection = (force = false) => {
     // Respect manual overrides unless the caller explicitly forces a full resync.
 
     if (force || !DE.table.tableTimeFilterIsManual) {
+
         const sameTimeSelection = DE.table.selectedTableTimes.length === timeSelection.length &&
             DE.table.selectedTableTimes.every((time, index) => time === timeSelection[index]);
 
@@ -143,11 +142,13 @@ const syncTableFiltersToMapSelection = (force = false) => {
         }
 
         DE.table.tableTimeFilterIsManual = false;
+
     }
 
     // Geography sync follows the same rule so users can customize one dimension independently.
 
     if (force || !DE.table.tableGeoFilterIsManual) {
+
         const sameGeoSelection = DE.table.selectedTableGeography.length === geoSelection.length &&
             DE.table.selectedTableGeography.every((geo, index) => geo === geoSelection[index]);
 
@@ -157,6 +158,7 @@ const syncTableFiltersToMapSelection = (force = false) => {
         }
 
         DE.table.tableGeoFilterIsManual = false;
+
     }
 
     return didChange;
@@ -172,9 +174,7 @@ const updateTableFilterSummary = (availableTimes, availableGeos) => {
 
     // The collapsed button gets a terse summary instead of listing every checked option.
 
-    if (!summary) {
-        return;
-    }
+    if (!summary) return;
 
     const timeSummary = !DE.table.selectedTableTimes.length
         ? 'No time periods'
@@ -227,9 +227,7 @@ const syncTableAreaSearchInput = () => {
 
     // DataTables redraws can replace the search box DOM, so always resolve it fresh.
 
-    if (!filterInput.length) {
-        return;
-    }
+    if (!filterInput.length) return;
 
     filterInput.val(DE.table.tableAreaSearchValue);
     filterInput.data('areaOnlySearchValue', DE.table.tableAreaSearchValue);
@@ -254,9 +252,7 @@ const setTableAreaSearch = (dataTable, nextValue, shouldDraw = true) => {
 
     // Some callers batch search updates and will trigger the draw themselves.
 
-    if (shouldDraw) {
-        dataTable.draw();
-    }
+    if (shouldDraw) dataTable.draw();
 
 };
 
@@ -288,9 +284,7 @@ const lockSummaryTableScrollBodyHeight = () => {
 
     // Bail out when DataTables has not created its wrapper yet.
 
-    if (!scrollBody) {
-        return;
-    }
+    if (!scrollBody) return;
 
     // A real fixed height keeps the scrollbar footprint stable across redraws and filter changes.
 
@@ -308,15 +302,14 @@ const bindAreaOnlySearch = (dataTable) => {
 
     const filterInput = $('#tableID_filter input[type="search"]');
 
-    if (!filterInput.length) {
-        return;
-    }
+    if (!filterInput.length) return;
 
     // Replace DataTables' default global-search handler with our Area-only behavior.
 
     filterInput.off('.DT');
 
     filterInput.on('input.DT search.DT', function () {
+
         const nextValue = this.value || '';
 
         // Skip redundant redraws when the browser fires multiple search-related events.
@@ -328,6 +321,7 @@ const bindAreaOnlySearch = (dataTable) => {
         // Scope the shared DataTables search box to Area only.
 
         setTableAreaSearch(dataTable, nextValue);
+
     });
 
     syncTableAreaSearchInput();
@@ -341,9 +335,7 @@ const applyTableFilters = (rows) => {
 
     // Checkbox and sync actions can fire before the table tab has been opened for the first time.
 
-    if (!$.fn.dataTable.isDataTable('#tableID')) {
-        return;
-    }
+    if (!$.fn.dataTable.isDataTable('#tableID')) return;
 
     const dataTable = $('#tableID').DataTable();
     const filteredRows = getSelectedTableRows(rows);
@@ -375,9 +367,7 @@ const renderTableFilterControls = (rows) => {
 
     // The control panel may be absent on partial templates or before the tab markup loads.
 
-    if (!timeHolder || !geoHolder) {
-        return;
-    }
+    if (!timeHolder || !geoHolder) return;
 
     // ----- compute available time and geography option sets ----- //
 
@@ -403,6 +393,7 @@ const renderTableFilterControls = (rows) => {
     // for the currently selected time period(s).
 
     if (DE.table.selectedTableTimes.length) {
+
         DE.table.selectedTableGeography = DE.table.selectedTableGeography.filter(geo => dataGeos.includes(geo));
 
         // - - - fall back to a valid geography when the synced value is unavailable - - - //
@@ -424,6 +415,7 @@ const renderTableFilterControls = (rows) => {
         holder.innerHTML = '';
 
         options.forEach(option => {
+
             const label = document.createElement('label');
             const unavailable = isDisabled(option);
 
@@ -432,9 +424,7 @@ const renderTableFilterControls = (rows) => {
             label.className = `btn btn-light dropdown-item text-left ${checkboxClass}`;
             label.setAttribute('aria-disabled', unavailable ? 'true' : 'false');
 
-            if (unavailable) {
-                label.classList.add('disabled');
-            }
+            if (unavailable) label.classList.add('disabled');
 
             const input = document.createElement('input');
             input.className = 'largerCheckbox';
@@ -445,27 +435,34 @@ const renderTableFilterControls = (rows) => {
             input.disabled = unavailable;
 
             input.addEventListener('change', (event) => {
+
                 // Bubble one normalized value + checked pair back to the caller's filter logic.
 
                 onChange(event.target.value, event.target.checked);
+
             });
 
             label.appendChild(input);
             label.appendChild(document.createTextNode(` ${option}`));
             holder.appendChild(label);
-        });
 
+        });
     };
 
     // ----- render time checkboxes ----- //
 
     renderCheckboxes(timeHolder, availableTimes, DE.table.selectedTableTimes, 'checkbox-time', 'table-time', (value, checked) => {
+
         const nextTimes = new Set(DE.table.selectedTableTimes);
 
         if (checked) {
+
             nextTimes.add(value);
+
         } else {
+
             nextTimes.delete(value);
+
         }
 
         // Preserve display order from availableTimes instead of checkbox click order.
@@ -475,6 +472,7 @@ const renderTableFilterControls = (rows) => {
         trackDataExplorerOption('table_time');
         renderTableFilterControls(rows);
         applyTableFilters(rows);
+
     });
 
     // ----- render geography checkboxes ----- //
@@ -486,12 +484,16 @@ const renderTableFilterControls = (rows) => {
         'checkbox-geo',
         'table-geo',
         (value, checked) => {
+
             if (checked) {
+
                 if (!DE.table.selectedTableGeography.includes(value)) {
                     DE.table.selectedTableGeography.push(value);
                 }
             } else {
+
                 DE.table.selectedTableGeography = DE.table.selectedTableGeography.filter(geo => geo !== value);
+
             }
 
             // Re-sort to canonical geography order before redrawing controls and rows.
@@ -501,6 +503,7 @@ const renderTableFilterControls = (rows) => {
             trackDataExplorerOption('table_geo');
             renderTableFilterControls(rows);
             applyTableFilters(rows);
+
         },
         (option) => DE.table.selectedTableTimes.length > 0 && !dataGeos.includes(option)
     );
@@ -510,8 +513,11 @@ const renderTableFilterControls = (rows) => {
     const syncButton = document.getElementById('tableFilterSyncButton');
 
     if (syncButton) {
+
         syncButton.onclick = (event) => {
+
             // The link's href="#" would otherwise add "#" to the URL, a history entry and a popstate.
+
             event.preventDefault();
 
             // Force both dimensions back into map-following mode in one click.
@@ -520,6 +526,7 @@ const renderTableFilterControls = (rows) => {
             trackDataExplorerOption('table_sync');
             renderTableFilterControls(rows);
             applyTableFilters(rows);
+
         };
     }
 
@@ -573,12 +580,17 @@ const renderTable = (tableData) => {
         // Build a grouped Area label that optionally appends borough context for nested geographies.
         .derive({
             Area: aq.escape(d => {
+
                 // Append borough context only for non-borough rows that have it.
 
                 if (d.Borough && d.GeoTypeDesc != 'Borough') {
+
                     return `${d.Geography} xx ${d.Borough} yy`;
+
                 } else {
+
                     return d.Geography; 
+
                 }
             })
         })
@@ -696,6 +708,7 @@ const renderTable = (tableData) => {
     // - - - initialize the table - - - //
 
     const dataTable = $('#tableID').DataTable({
+
         scrollY: 500,
         scrollX: true,
         scrollCollapse: false,
@@ -737,6 +750,7 @@ const renderTable = (tableData) => {
                 targets: 9,
                 // Parses the numeric-value column to a sortable float for sort/type requests, leaving the display text untouched.
                 render: function (data, type) {
+
                     // Strip formatting so numeric sorts use the raw number rather than display text.
 
                     if (type === 'sort' || type === 'type') {
@@ -745,12 +759,14 @@ const renderTable = (tableData) => {
                         return isNaN(num) ? -Infinity : num;
                     }
                     return data;
+
                 }
             },
             {
                 targets: 8,
                 // Replaces the xx/yy placeholder delimiters in the Area column with a styled line break for display only.
                 render: function (data, type) {
+
                     // Inject line breaks only for display mode so sorting/searching sees plain text.
 
                     if (type === 'display') {
@@ -758,6 +774,7 @@ const renderTable = (tableData) => {
                                    .replace(/yy/g, '</span>');
                     }
                     return data;
+
                 }
             }
         ],
@@ -769,6 +786,7 @@ const renderTable = (tableData) => {
         // Stamps ancestry data-* attributes on each row at build time so drawCallback
         //  can detect group boundaries and the toggle handler can find descendants later.
         createdRow: function (row, data) {
+
             const time = data[0];
             const GeoTypeDesc = data[2];
             const borough = data[6];
@@ -776,6 +794,7 @@ const renderTable = (tableData) => {
             //  descendant rows: nested group headers + data rows.
 
             if (time && GeoTypeDesc) {
+
                 row.setAttribute(`data-time`, timeKey(time));
                 row.setAttribute(`data-geo`, geoKey(time, GeoTypeDesc));
                 if (hasBorough(GeoTypeDesc, borough)) {
@@ -811,9 +830,7 @@ const renderTable = (tableData) => {
                     const geoTypeDesc = data[i][2];
                     const borough     = data[i][6];
 
-                    if (skipFn && skipFn(geoTypeDesc, borough)) {
-                        return;
-                    }
+                    if (skipFn && skipFn(geoTypeDesc, borough)) return;
 
                     const key = keyFn(time, geoTypeDesc, borough);
 
@@ -826,6 +843,7 @@ const renderTable = (tableData) => {
                         );
 
                         last = key;
+
                     }
                 });
             };
@@ -849,6 +867,7 @@ const renderTable = (tableData) => {
             // level 2: borough (only for the smaller geo types, and only when the toggle is on)
 
             if (DE.table.groupByBorough) {
+
                 createGroupRow(
                     groupColumnBoro, 2,
                     (time, geoTypeDesc, borough) => boroKey(time, geoTypeDesc, borough),
@@ -860,6 +879,7 @@ const renderTable = (tableData) => {
             // Group rows are rebuilt every draw, so the search-box text needs to be resynced here.
 
             syncTableAreaSearchInput();
+
         }
     });
 
@@ -876,6 +896,7 @@ const renderTable = (tableData) => {
     // Rebind the search box after init because DataTables has now created its wrapper DOM.
 
     bindAreaOnlySearch(dataTable);
+
 };
 
 
@@ -892,9 +913,7 @@ const getTableDownloadFileName = () => 'NYC EH Data Portal - ' + DE.indicator.in
 
 const downloadTableData = () => {
 
-    if (!$.fn.dataTable.isDataTable('#tableID')) {
-        return;
-    }
+    if (!$.fn.dataTable.isDataTable('#tableID')) return;
 
     $('#tableID').DataTable().button(0).trigger();
 
@@ -914,7 +933,6 @@ const downloadTableData = () => {
         fileExtension: '.csv',
         linkText: 'Current table view'
     });
-
 };
 
 
@@ -979,6 +997,5 @@ const bindTableGroupToggles = () => {
             descendants.hide();
 
         }
-
     });
 };

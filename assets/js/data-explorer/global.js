@@ -180,7 +180,6 @@ const DE = {
         TimePeriodID: undefined,
         overlay: undefined
     }
-
 };
 
 // Shared content holders are resolved after the page shell exists.
@@ -241,7 +240,6 @@ const DE_MEASURE_RULES = {
 
     // Comparisons whose trend tooltip label reads "Action days".
     actionDaysComparisonIds: [564, 565, 566]
-
 };
 
 
@@ -313,22 +311,21 @@ const copyCitation = (button = null) => {
     const citationTargetId = button?.dataset.citationTarget || 'citeText';
     const citationTextElement = document.getElementById(citationTargetId);
 
-    if (!citationTextElement) {
-        return;
-    }
+    if (!citationTextElement) return;
 
     refreshCitation();
 
     const citeText = citationTextElement.innerText;
 
     navigator.clipboard.writeText(citeText).then(() => {
+
         const feedbackButton = button || document.querySelector(`.de-copy-citation-button[data-citation-target="${citationTargetId}"]`);
 
         if (feedbackButton) {
             feedbackButton.innerHTML = `<i class="fas fa-copy mr-1" aria-hidden="true"></i>Copied!`;
         }
     });
-}
+};
 
 
 // Attaches click handlers to all citation-copy buttons in the DOM, each invoking copyCitation with the clicked button as context.
@@ -341,19 +338,23 @@ const bindCitationCopyButton = () => {
     const citationButtons = document.querySelectorAll('.de-copy-citation-button[data-citation-target]');
 
     citationButtons.forEach(button => {
+
         button.addEventListener('click', event => {
             event.preventDefault();
             copyCitation(event.currentTarget);
         });
     });
-
 };
 
 
 if (document.readyState === 'loading') {
+
     document.addEventListener('DOMContentLoaded', bindCitationCopyButton);
+
 } else {
+
     bindCitationCopyButton();
+
 }
 
 
@@ -377,9 +378,7 @@ const renderAboutSources = (about, sources) => {
         dataSources = document.querySelector('.indicator-sources') || document.getElementById('dataSources');
     }
 
-    if (!aboutMeasures || !dataSources) {
-        return;
-    }
+    if (!aboutMeasures || !dataSources) return;
 
     dataSources.innerHTML = '';
 
@@ -390,11 +389,15 @@ const renderAboutSources = (about, sources) => {
     // Collapse repeated source arrays to one string before printing.
 
     if (type === 'object') {
+
         let singleSource;
         singleSource = sources.every((val, i, arr) => val === arr[0]);
         singleSource === true ? dataSources.innerHTML = DOMPurify.sanitize(sources[0]) : dataSources.innerHTML = DOMPurify.sanitize(sources);
+
     } else {
+
         dataSources.innerHTML = DOMPurify.sanitize(sources);
+
     }
 
     aboutMeasures.innerHTML = DOMPurify.sanitize(about);
@@ -419,16 +422,12 @@ const renderAboutSources = (about, sources) => {
 
 const renderUnreliabilityNotes = (holderEl, notes, wrapNote = (note) => `<div class='fs-xs'>${note}</div>`) => {
 
-    if (!holderEl) {
-        return;
-    }
+    if (!holderEl) return;
 
     holderEl.innerHTML = '';
     holderEl.classList.add('hide');
 
-    if (!notes.length) {
-        return;
-    }
+    if (!notes.length) return;
 
     holderEl.innerHTML = notes.map(wrapNote).join('');
     holderEl.classList.remove('hide');
@@ -476,6 +475,7 @@ function getGeoFile(mapGeoType) {
     // Return the matching geography file for the requested map geography.
 
     return GEO_FILE_BY_TYPE[mapGeoType];
+
 }
 
 // ----------------------------------------------------------------------- //
@@ -525,7 +525,7 @@ const getSharedLinksGeos = (primaryMeasure, secondaryMeasure) => {
 
     return secondaryMeasureGeos.filter(g => primaryMeasureGeos.includes(g));
 
-}
+};
 
 // ----------------------------------------------------------------------- //
 // unmapped measures
@@ -617,7 +617,6 @@ const withCitywideMapFallback = (indicator) => {
                 ...measure.VisOptions.slice(1)
             ]
         };
-
     });
 
     return { ...indicator, Measures };
@@ -685,7 +684,7 @@ const prettifyGeoType = (GeoType) => {
             return GeoType;
 
     }
-}
+};
 
 // ----------------------------------------------------------------------- //
 // measure display resolution
@@ -732,19 +731,13 @@ const getChartContainerWidth = (selector) => {
 
     const container = document.querySelector(selector);
 
-    if (!container) {
-        return 0;
-    }
+    if (!container) return 0;
 
-    if (container.offsetWidth > 0) {
-        return container.offsetWidth;
-    }
+    if (container.offsetWidth > 0) return container.offsetWidth;
 
     const pane = container.closest('.tab-pane');
 
-    if (!pane) {
-        return 0;
-    }
+    if (!pane) return 0;
 
     // Lay the pane out without showing it. Kept in normal flow (no position change) so the
     // container resolves against the same parent width it will have once revealed, and
@@ -777,13 +770,14 @@ const updateChartPlotSize = () => {
 
     setTimeout(() => {
         window.dispatchEvent(new Event('resize'));
-    }, 200)
+    }, 200);
 
-}
+};
 
 // Resizer for chart print modal
 
 window.addEventListener('load', () => {
+
   const printVis = document.getElementById('printVis');
   
   if (!printVis) {
@@ -794,13 +788,16 @@ window.addEventListener('load', () => {
   let resizeTimeout;
   
   const resizeObserver = new ResizeObserver(() => {
+
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
       updateChartPlotSize();
     }, 1000);
+
   });
   
   resizeObserver.observe(printVis);
+
 });
 
 
@@ -857,9 +854,7 @@ const buildLinksDownloadTable = (rows, extraDrops, labels) => {
 
 const trackDataExplorerEvent = (eventName, eventParams = null) => {
 
-    if (typeof gtag !== 'function') {
-        return;
-    }
+    if (typeof gtag !== 'function') return;
 
     if (eventParams && Object.keys(eventParams).length > 0) {
         gtag('event', eventName, eventParams);
@@ -875,9 +870,7 @@ const trackDataExplorerEvent = (eventName, eventParams = null) => {
 
 const trackDataExplorerOption = (option, extraParams = null) => {
 
-    if (!option) {
-        return;
-    }
+    if (!option) return;
 
     trackDataExplorerEvent('click_option', { option, ...extraParams });
 
@@ -903,16 +896,13 @@ const getLegacyMapControlAnalyticsOption = (type) => {
 
 const trackDataExplorerFileDownload = ({ fileName, fileExtension, linkText }) => {
 
-    if (!fileName || !fileExtension || !linkText) {
-        return;
-    }
+    if (!fileName || !fileExtension || !linkText) return;
 
     trackDataExplorerEvent('file_download', {
         file_name: fileName,
         file_extension: fileExtension,
         link_text: linkText
     });
-
 };
 
 
@@ -920,14 +910,11 @@ const trackDataExplorerFileDownload = ({ fileName, fileExtension, linkText }) =>
 
 const trackDataExplorerPrintView = (chartView) => {
 
-    if (!chartView) {
-        return;
-    }
+    if (!chartView) return;
 
     trackDataExplorerEvent('print_viz', {
         chart_type: chartView === 'bubble-map' ? 'map' : chartView
     });
-
 };
 
 
@@ -939,17 +926,11 @@ const getCurrentDataDownloadView = () => {
         return DE.print.chartType === 'bubble-map' ? 'map' : DE.print.chartType;
     }
 
-    if (DE.state.overlay === 'trend') {
-        return 'trend';
-    }
+    if (DE.state.overlay === 'trend') return 'trend';
 
-    if (DE.state.overlay === 'links') {
-        return 'links';
-    }
+    if (DE.state.overlay === 'links') return 'links';
 
-    if (DE.state.overlay === 'table') {
-        return 'table';
-    }
+    if (DE.state.overlay === 'table') return 'table';
 
     return 'bar';
 
@@ -968,7 +949,7 @@ const downloadData = (
     // chartType
 ) => {
 
-        debugLog('Downloading data')
+        debugLog('Downloading data');
 
         // Guard against an empty CSVforDownload (e.g. the download button is clicked before
         // any tab has rendered). On its own this blocks only an *empty* CSV; a leftover one from
@@ -977,9 +958,7 @@ const downloadData = (
         // Mirrors the early-return guard-clause pattern used throughout the renderers rather
         // than introducing a new disable/hide mechanism.
 
-        if (!DE.print.CSVforDownload) {
-            return;
-        }
+        if (!DE.print.CSVforDownload) return;
 
         // else, for chart view downloads:
 
@@ -996,13 +975,15 @@ const downloadData = (
             fileExtension: '.csv',
             linkText: 'Download chart data'
         });
-}
+};
 
 // Revises the notes that are displayed under each chart - meant to work in concert with tooltip notes at each datapoint. This lets you display chart-specific notes, rather than datapoint-specific notes (which should show in tooltips)
 
 function getDisplayNotes(notes) {
+
   return notes
     .map(note => {
+
       if (note.includes('based on small numbers')) {
         return 'Some estimates are based on small numbers and should be interpreted with caution.';
       }
@@ -1012,5 +993,6 @@ function getDisplayNotes(notes) {
       }
 
       return note;
+
     });
 }
