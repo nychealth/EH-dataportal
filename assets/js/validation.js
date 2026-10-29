@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
     (function () {
+
         'use strict';
         window.addEventListener('load', function () {
 
@@ -24,6 +25,7 @@ $(document).ready(function () {
                         $('html, body').animate({
                             scrollTop: alert_target.offset().top - 16
                         }, {
+
                             duration: 600,
                             complete: function () {
                                 alert_target.attr("tabindex", "-1");
@@ -35,24 +37,35 @@ $(document).ready(function () {
                     form.classList.add('was-validated');
 
                 }, false);
+
             });
         }, false);
+
     })();
     
     $('.form-control').blur(function () {
+
         if ( !$(this).is(":invalid") ) {
+
             $(this).closest('.form-group').removeClass('is-invalid');
+
         } else if ( $(this).closest('form').hasClass('was-validated') && $(this).is(":invalid") ){
+
             $(this).closest('.form-group').addClass('is-invalid');
+
         }
     });
     
     $('.custom-control-input').change(function () {
+
         if (!$(this).is(":invalid")) {
+
             $(this).closest('.form-group').removeClass('is-invalid');
+
         } else if ( $(this).closest('form').hasClass('was-validated') && $(this).is(":invalid") ){
+
             $(this).closest('.form-group').addClass('is-invalid');
+
         }
     });
-
 });
