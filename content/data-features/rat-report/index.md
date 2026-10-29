@@ -4,7 +4,7 @@ date: 2026-09-14T11:14:56-04:00
 draft: false
 seo_title: "Rat Mitigation Zone Report"
 seo_description: "Reporting on rat inspection and mitigation work."
-tags: 
+tags:
 categories: [pests]
 keywords: ["pests"]
 layout: report
@@ -12,10 +12,10 @@ image: ratportal-screenshot.png
 report: true
 js: rat-report.js
 weight: 10
-blurb: Biannual rat mitigation strategy report with inspection, summons, and abatement data by Rat Mitigation Zone. 
+blurb: Biannual rat mitigation strategy report with inspection, summons, and abatement data by Rat Mitigation Zone.
 ---
 
-The NYC Department of Health and Mental Hygiene (Department) submits this report pursuant to NYC
+The NYC Health Department (Department) submits this report pursuant to NYC
 Administrative Code 17.133.3 to detail rat mitigation efforts in the Rat Mitigation Zones (RMZ). As
 required, this report includes:
 
@@ -33,27 +33,27 @@ required, this report includes:
 
 ### Introduction
 
-The Department’s rat control program takes a multi-pronged, evidence-based approach across New York City that builds on our decades of experience. We know that rats thrive when they have ready access to food, water, a place to live, and effective transportation routes. Reducing the rat population, therefore, requires managing garbage, eliminating nesting areas and sealing cracks and holes in sidewalks and buildings. Our approach, called Integrated Pest Management (IPM) includes:
+The Department’s rat control program takes a multi-pronged, evidence-based approach across New York City that builds on our decades of experience. We know that rats thrive when they have ready access to food, water, a place to live, and effective transportation routes. Reducing the rat population, therefore, requires managing garbage, eliminating nesting areas and sealing cracks and holes in sidewalks and buildings. Our approach, called Integrated Pest Management (IPM) includes the following:
 
-- Inspecting properties to identify areas with rat activity, by conducting:
-  - Proactive inspections of every property in a particular area enable the Department to
-    learn where rat activity is greatest and monitor progress over time.
-  - Complaint-based (reports to 311) inspections to address New Yorkers' concerns of rat activity and conditions supporting rats.
+- Inspecting properties to identify areas with rat activity by conducting:
+  - Proactive inspections of every property in a particular area to enable the Department to
+    learn where rat activity is greatest and monitor progress over time
+  - Complaint-based (reports to 311) inspections to address New Yorkers' concerns of rat activity and conditions supporting rats
 - Implementing prevention and control activities by:
-  - Ordering property owners to remove conditions on their property that support rats and to hire a licensed pest management professional to assess, treat and monitor the property.
-  - Conducting treatment and monitoring by licensed pest management professionals on private properties when the owner fails to follow the Order and billing for the service.
-  - Sealing and collapsing rat burrows in public property (street areas, street trees, gardens, public spaces) by a stoppage team to remove conditions conducive to rats.
-    Providing technical assistance, monitoring, and agency referrals regarding city-owned properties like parks, schools, shelters, and public housing.
+  - Ordering property owners to remove conditions on their property that support rats and to hire a licensed pest management professional to assess, treat and monitor the property
+  - Conducting treatment and monitoring by licensed pest management professionals on private properties when the owner fails to follow the order and billing for the service
+  - Sealing and collapsing rat burrows in public property (street areas, street trees, gardens, and public spaces) by a stoppage team to remove conditions conducive to rats
+    Providing technical assistance, monitoring, and agency referrals regarding city-owned properties like parks, schools, shelters, and public housing
   - Evaluating new pest management practices and products.
 - Engaging the public by offering:
   - Free "Rat Academy" training to the public and other agencies.
-  - Print and digital educational materials for multiple audiences in multiple languages available on our Rat Information Portal (www.nyc.gov/rats).
+  - Print and digital educational materials for multiple audiences in multiple languages available on our [Rat Information Portal](https://www.nyc.gov/site/doh/health/health-topics/rats.page)
   - Case management for properties failing to remediate rats or conditions attracting rats.
   - Information at health fairs and community events and community walkthroughs.
   - Sharing data on the Rat Information Portal and Environment and Health Data Portal.
-   - [Rat Inspection Mapping Tool]({{< relURL >}}Rats/)
-   - [Environment and Health Portal]({{< relURL >}}data-features/rat-mitigation-zones/)
-   - [Inspection data at the borough and community district level]({{< relURL >}}data-explorer/mice-and-rats/?id=2434#display=summary)
+  - [Rat Inspection Mapping Tool]({{< relURL >}}Rats/)
+  - [Environment and Health Portal]({{< relURL >}}data-features/rat-mitigation-zones/)
+  - [Inspection data at the borough and community district level]({{< relURL >}}data-explorer/mice-and-rats/?id=2434#display=summary)
 - Collaboration with other city agencies and City Hall to coordinate IPM efforts across neighborhoods and in the public realm by:
   - Surveying public schools, parks, and NYCHA developments for rat activity
   - Offering training and technical assistance to agencies
