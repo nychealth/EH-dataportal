@@ -32,18 +32,18 @@ Example usage:
 {{ $file := .Page.Resources.GetMatch $src }}
 
 {{ if not $file }}
-  <p><strong>Error:</strong> CSV file "{{ $src }}" not found.</p>
+    <p><strong>Error:</strong> CSV file "{{ $src }}" not found.</p>
 {{ else }}
-  {{ $content := partial "render-table.html" (dict
-      "file" $file
-      "datatable" $dt
-      "paging" $paging
-      "search" $search
-      "ordering" $ordering
-      "maxheight" $maxheight
-      "download" $download
-      "fontsize" $fontsize
-  ) }}
+    {{ $content := partial "render-table.html" (dict
+        "file" $file
+        "datatable" $dt
+        "paging" $paging
+        "search" $search
+        "ordering" $ordering
+        "maxheight" $maxheight
+        "download" $download
+        "fontsize" $fontsize
+    ) }}
 
-  {{ $content | safeHTML }}
+    {{ $content | safeHTML }}
 {{ end }}

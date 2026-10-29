@@ -24,8 +24,8 @@
         "assetsWithIntegrity": 12,
         "headingLevels": [
             1,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 1,
         "landmarks": {
@@ -87,8 +87,8 @@
         "title": "Index of Data on the Environment and Health Data Portal – Environment & Health Data Portal",
         "headingText": [
             "Data index",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

@@ -25,10 +25,10 @@
             3,
             4,
             4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 4,
@@ -93,8 +93,8 @@
             "Real-Time Air Quality: PM2.5 in NYC",
             "Air Quality Impacts of Congestion Relief Zone Tolling",
             "The New York City Community Air Survey",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

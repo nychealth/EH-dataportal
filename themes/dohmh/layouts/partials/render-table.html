@@ -7,88 +7,90 @@
 {{- $ordering := .ordering | default "true" -}}   {{/* Allow column sorting */}}
 {{- $max := .maxheight | default "" -}}           {{/* Set max height and y-scroll */}}
 {{- $download := .download | default "true" -}}   {{/* Allow download */}}
-{{- $fontsize := .fontsize | default "fs-sm" -}}   {{/* Allow download */}}
+{{- $fontsize := .fontsize | default "fs-sm" -}}   {{/* Table font-size class */}}
 
 
 <style>
-  .dataTables_paginate {
-    font-size: .875rem
-  }
+    .dataTables_paginate {
+        font-size: .875rem
+    }
 </style>
 
 {{/* Generate a stable table ID using the file name */}}
 {{- $id := printf "tbl-%s" ($file.Name | anchorize) -}}
 
 <div class="mb-2" style="overflow-x: auto;">
-{{- $file := .file -}}
-{{- $data := $file | transform.Unmarshal (dict "delimiter" ",") -}}
-{{- $id := printf "tbl-%s" ($file.Name | anchorize) -}}
+    {{- $file := .file -}}
+    {{- $data := $file | transform.Unmarshal (dict "delimiter" ",") -}}
+    {{- $id := printf "tbl-%s" ($file.Name | anchorize) -}}
 
-<table id="{{ $id }}" class="table table-striped table-bordered {{ $fontsize }} mb-0 w-100">
-  {{- range $i, $row := $data }}
-    {{- if eq $i 0 }}
-      <thead>
-        <tr>
-          {{- range $j, $cell := $row }}
-            <th class="{{ if gt $j 0 }}text-right{{ end }}">{{ $cell }}</th>
-          {{- end }}
-          <th class="d-none">_totals_flag</th> {{/* header for hidden flag col */}}
-        </tr>
-      </thead>
-      <tbody>
-    {{- else }}
-      {{- $first := index $row 0 }}
-      {{- $lower := lower $first }}
-      {{- $isTotal := or (in $lower "total") (in $lower "totals") }}
-      <tr class="{{ if $isTotal }}font-weight-bold{{ end }}">
-        {{- range $j, $cell := $row }}
-          {{- /* Plain numbers of 1,000 or more get thousands separators and no decimals.
-                 Smaller values keep their decimals, and text like "264-1155" or "75.1%"
-                 doesn't match the regex. DataTables still sorts "20,461" as a number. */}}
-          {{- if and (findRE `^-?\d+(\.\d+)?$` $cell) (ge (math.Abs (float $cell)) 1000) }}
-            {{- $cell = lang.FormatNumber 0 (float $cell) }}
-          {{- end }}
-          <td class="{{ if gt $j 0 }}text-right{{ end }}">{{ $cell }}</td>
-        {{- end }}
-        <td class="d-none dt-totals-flag">{{ if $isTotal }}1{{ else }}0{{ end }}</td>
-      </tr>
-    {{- end }}
-  {{- end }}
-  </tbody>
-</table>
+    <table id="{{ $id }}" class="table table-striped table-bordered {{ $fontsize }} mb-0 w-100">
+    {{- range $i, $row := $data }}
+        {{- if eq $i 0 }}
+            <thead>
+                <tr>
+                    {{- range $j, $cell := $row }}
+                        <th class="{{ if gt $j 0 }}text-right{{ end }}">{{ $cell }}</th>
+                    {{- end }}
+                    <th class="d-none">_totals_flag</th> {{/* header for hidden flag col */}}
+                </tr>
+            </thead>
+            <tbody>
+                {{- else }}
+                    {{- $first := index $row 0 }}
+                    {{- $lower := lower $first }}
+                    {{- $isTotal := or (in $lower "total") (in $lower "totals") }}
+                    <tr class="{{ if $isTotal }}font-weight-bold{{ end }}">
+                        {{- range $j, $cell := $row }}
+                            {{- /* Plain numbers of 1,000 or more get thousands separators and no decimals.
+                                   Smaller values keep their decimals, and text like "264-1155" or "75.1%"
+                                   doesn't match the regex. DataTables still sorts "20,461" as a number. */}}
+                            {{- if and (findRE `^-?\d+(\.\d+)?$` $cell) (ge (math.Abs (float $cell)) 1000) }}
+                                {{- $cell = lang.FormatNumber 0 (float $cell) }}
+                            {{- end }}
+                            <td class="{{ if gt $j 0 }}text-right{{ end }}">{{ $cell }}</td>
+                        {{- end }}
+                        <td class="d-none dt-totals-flag">{{ if $isTotal }}1{{ else }}0{{ end }}</td>
+                    </tr>
+                {{- end }}
+            {{- end }}
+        </tbody>
+    </table>
 
-{{ if eq $download "true" }}
-<div class="text-right pb-1">
-      <a href="{{ $file }}" class="text-right fs-xs"><i class="fa-solid fa-download mr-1"></i>Download data</a>
+    {{ if eq $download "true" }}
+
+        <div class="text-right pb-1">
+            <a href="{{ $file }}" class="text-right fs-xs"><i class="fa-solid fa-download mr-1"></i>Download data</a>
+        </div>
+    {{ end }}
+
 </div>
-
-{{ end }}
-
-</div>
-
-
-
-
 
 
 
 {{/* If DataTables enabled, output its config in a script tag */}}
-{{ if eq $dt "true" }}
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  // create table instance
 
-  const table = new DataTable("#{{ $id }}", {
-    paging: {{ eq $paging "true" }},
-    searching: {{ eq $search "true" }},
-    ordering: {{ eq $ordering "true" }},
-    order: [],   // keep the CSV's row order until a header is clicked
-    lengthChange: false,
-    info: false,
-    scrollY: {{ if $max }} "{{ $max }}" {{ else }} null {{ end }},
-    scrollX: true,
-    scrollCollapse: true,
-  });
-});
-</script>
+{{ if eq $dt "true" }}
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function() {
+
+            // create table instance
+
+            const table = new DataTable("#{{ $id }}", {
+                paging: {{ eq $paging "true" }},
+                searching: {{ eq $search "true" }},
+                ordering: {{ eq $ordering "true" }},
+                order: [],   // keep the CSV's row order until a header is clicked
+                lengthChange: false,
+                info: false,
+                scrollY: {{ if $max }} "{{ $max }}" {{ else }} null {{ end }},
+                scrollX: true,
+                scrollCollapse: true,
+            });
+        });
+
+    </script>
+
 {{ end }}

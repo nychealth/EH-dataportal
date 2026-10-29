@@ -404,6 +404,7 @@ function toggleSection(id, btn) {
 // the year is set once in frontmatter rather than repeated throughout index.md.
 
 document.addEventListener("DOMContentLoaded", function() {
+
   const year = {{ .Params.reportingYear }};
 
   if (!year) return;

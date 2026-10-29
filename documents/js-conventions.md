@@ -1,38 +1,5 @@
 # JavaScript Conventions — Browser-Side JS
 
-> ## Ported to `production` — read this before acting on anything below
->
-> **Provenance.** Copied on 2026-08-21 from `feature-MOD-Lab-NR-recode-refactor`, blob
-> `04c28b011b`, last updated there 2026-08-06 by `424f660adb`. Everything below this banner
-> is byte-identical to that copy. It replaces this repo's older Data-Explorer-only version
-> (7,355 bytes against 14,642).
->
-> **Five things it says that are not true of this tree**, each checked here on 2026-08-21:
->
-> - **`assets/js/data-explorer-old/` does not exist here**, so the Scope section's exemption
->   for it has no subject.
-> - **Neither does the explorer its examples describe.** The Scope section points at the
->   explorer on `feature-new-data-explorer`, "the tree that survives". That branch has not
->   merged to `production`; `assets/js/data-explorer/` here is the older explorer, and the
->   examples are aspirational rather than descriptive of the code in this directory.
-> - **`debugLog` does not exist here** — 0 occurrences under `assets/js/`. The PENDING note
->   in the Debug-logging section describes this tree's situation exactly: raw `console.log`
->   is what is acceptable here until the wrapper arrives.
-> - **`assets/js/nr-topic-spa/` does not exist here**, so the structured
->   `'scope: event: value'` format has no consumer on this branch. The call-depth markers
->   are the format in use.
-> - **`.claude/commands/js-development.md` does not exist here** — there is no `.claude/`
->   directory at all — so the supersession note at the end of Scope has nothing to supersede.
->
-> **Two rules changed by this replacement**, and both loosen what the previous copy required:
->
-> - The file-header banner went from required on **every** file to required on files over
->   ~100 lines, optional below that.
-> - "Complete sentence, active voice, present tense" for function comments is **gone on
->   purpose**. The new copy says the document deliberately does not mandate the period or
->   the third-person-vs-imperative choice, and logs the voice question as open in §5h of
->   `documents/site-wide-audit-2026-06-27.md`.
-
 ## Scope
 
 Applies to all browser-side JavaScript authored in this repo: everything under
@@ -44,9 +11,17 @@ arrive: `accessible-autocomplete.min.js`, `naturalSort.js`, `color-convert.js`,
 `assets/js/data-explorer-old/` on `feature-new-data-explorer` — the retiring
 explorer.
 
-**Forward-only.** These rules govern new files and code you are already editing.
-Existing files are not swept into conformance; the known gaps are listed in §5h of
-`documents/site-wide-audit-2026-06-27.md`.
+**Not forward-only.** Until 2026-10-19 these rules governed only new files and code
+already being edited. The tree is swept to them on `feature-js-formatting`, a branch
+of its own stacked on the Neighborhood Reports branch (#1491), so the reformat is not
+noise in that PR; `documents/js-formatting-pass-2026-10-19.md` is the plan and its
+ledger. An existing
+file you find out of conformance is fixed in a commit of its own, not inside a
+behaviour change. The gap list in §5h of `documents/site-wide-audit-2026-06-27.md`
+predates that decision.
+
+`.editorconfig` at the repo root sets the indentation, trailing-whitespace and
+final-newline rules for editors that read it.
 
 The data-explorer examples below describe the explorer on
 `feature-new-data-explorer`, which is the tree that survives. Formatting
@@ -279,6 +254,54 @@ const reverse = rankReverse === true || rankReverse === 'true';
 
 ---
 
+## Statements
+
+End every statement with a semicolon.
+
+An `if` with no `else` and a single-statement body goes on one line, without
+braces, when that line is 60 characters or fewer from `if` to the end. Longer, it
+takes braces, because a long condition is hard to read with its body run on after
+it. It also keeps braces when the statement itself spans lines, or when a comment
+sits inside the braces. An `if` with an `else` keeps its braces on every branch.
+`scripts/js-guard-braces.mjs` applies this rule to old code, in both directions;
+its header lists the cases it leaves alone.
+
+```js
+if (!button) return;
+if (title) button.title = title;
+
+if (textElement && CP_SITES[site].text) {
+    textElement.innerHTML = CP_SITES[site].text;
+}
+
+if (str === null || str === '') {
+
+    return false;
+
+} else {
+
+    str = str.toString();
+
+}
+```
+
+When a call's arguments do not fit on one line, end the line at the `(`, indent the
+arguments one level, and put the `)` on its own line at the call's indentation.
+Method-chain continuations are indented one level under the receiver.
+
+```js
+addResizeHandler(
+    document.getElementById(TOD_CONTAINER_ID),
+    () => renderTODChart(todCurrentSite), renderTODButtons
+);
+
+L.control
+    .scale({ metric: false, position: "bottomleft" })
+    .addTo(map);
+```
+
+---
+
 ## Vertical whitespace
 
 Functions should breathe — a reader should be able to scan one and immediately see
@@ -290,7 +313,10 @@ its distinct phases.
   function body. Two exceptions, both cases where the comment is not introducing
   anything. A comment above an object-literal property: spec objects (Vega,
   Leaflet) annotate consecutive keys, and spacing each one doubles the block's
-  height without making it easier to scan. And a comment above a line that
+  height without making it easier to scan. That exception covers single-line
+  values only — a property whose value is itself a multi-line block (a Vega spec's
+  `config`, `transform`, `layer`) reads as a section, and its comment gets the
+  gap. And a comment above a line that
   continues or closes what came before — a `.filter()` in a fluent chain, a
   closing `}`, an `else` — where the comment is trailing content and a blank line
   would split the chain from its own continuation.
@@ -300,31 +326,76 @@ its distinct phases.
   `themes/dohmh/layouts/**/*.html`. Write new code to the convention — the script
   is for the moment old code arrives, which is the merge of a long-lived branch.
   It is idempotent, so a re-run only touches what the merge brought in. Read its
-  docstring first: it is regex heuristics, not a JS parser, and it names the check
-  you have to run against its own diff.
+  docstring first: it is regex heuristics, not a JS parser, and it names the checks
+  you have to run against its own diff, `scripts/js-comment-spacing-verify.mjs`
+  among them. It skips every comment above an object property, so the
+  multi-line-value case above is applied by hand.
 
-- Blank line after the opening `{` of any block longer than ~3 lines.
-- Blank line before the closing `}`.
-- Blank line between each logical group inside a function, and before each `return`.
+Block lengths below count non-blank lines between the braces.
+
+- **Function bodies, callbacks included:** blank line after the opening `{` and
+  before the closing `}` when the body is longer than three lines, or when it already
+  has a blank line inside it, at any length: a body split into groups reads as
+  sections, and the padding frames them. Three lines or fewer with no inner blank
+  line stays tight.
+- **Every branch of an `if` / `else if` / `else` chain, and every `try` /
+  `catch` / `finally` block:** blank line after `{` and before `}`, even when the
+  branch is one statement.
+- **Any other block** (an `if` with no `else`, a loop): blank line after `{` and
+  before `}` when it is longer than three lines.
+- **A multi-line object literal is padded only when it holds code**: longer than
+  three lines and one of its values is a function. So `DataTable({` options with
+  `render:` callbacks and `L.geoJson(…, {` options with `onEachFeature:` are
+  padded; a Vega `spec`, a config object such as `window.NR_REPORT_CONFIG = {`
+  and a returned data object stay tight. An object nested inside another object
+  is never padded, whatever it holds.
+- **No blank line before a closer that follows a closer.** Where a padded block's
+  last line is itself a closing line (`}`, `});`, `]`), the bottom blank line is
+  left out so the closers stack; the top one stays.
+- **A comment that is a block's first line always gets the gap after `{`**, even
+  in a block the rules above leave tight; the bottom of that block stays tight.
+  `scripts/js-comment-spacing.py` applies this gap and does not check length.
+- `scripts/js-brace-padding.mjs` applies the brace rules above, both ways: it pads
+  what they pad and removes padding from what they leave tight. It parses with
+  espree, so read its header for how it reads layouts and which checks prove a run.
+- Blank line between each logical group inside a function, and before each
+  `return` — except inside a block of three lines or fewer, which stays tight.
+- **Declare, then test:** blank line between a declaration and the `if`, `for` or
+  `return` that uses it, and between a variable and a function declared after it.
+- At most one blank line in a row inside a function, and never more than two
+  anywhere.
 - Two blank lines between top-level function definitions.
 - One blank line between variable groups in module-level declarations.
-- Inside `forEach`, `then`, and similar callbacks: blank line after the opening
-  brace and before the closing brace when the body is more than one line.
+- `forEach`, `then`, and similar callbacks follow the function-body rule above.
 
 ```js
 // correct
 const myFunction = (arg) => {
 
     const x = compute(arg);
+    const y = adjust(x);
+    const z = round(y);
 
-    return x;
+    return z;
 
 };
 
 
-// next top-level definition
-const otherFunction = () => {
-    ...
+// A body of three lines or fewer stays tight
+
+const setBarSelection = (geoID) => {
+    if (!window.myVegaView) return;
+    window.myVegaView.signal("selectedGeo", geoID).run();
+};
+
+// Two lines, but already in two groups: padded
+
+const trackDataExplorerOption = (option, extraParams = null) => {
+
+    if (!option) return;
+
+    trackDataExplorerEvent('click_option', { option, ...extraParams });
+
 };
 ```
 
@@ -337,9 +408,7 @@ const renderSection = (section, neighborhoodName) => {
 
     const container = document.getElementById(section.containerId);
 
-    if (!container) {
-        return;
-    }
+    if (!container) return;
 
     // Neighborhood-level rows are pre-grouped during loadSection
 
@@ -348,6 +417,8 @@ const renderSection = (section, neighborhoodName) => {
 
     container.innerHTML = '';
 
+    // Three lines or fewer: both blocks stay tight
+
     if (!rows.length) {
         container.innerHTML =
             '<p class="text-muted px-2 pb-2 mb-0">No data available for this neighborhood.</p>';
@@ -355,11 +426,9 @@ const renderSection = (section, neighborhoodName) => {
     }
 
     rows.forEach(row => {
-
         const card = document.createElement('div');
         card.innerHTML = buildIndicatorCard(row, section.id, neighborhoodName);
         container.appendChild(card);
-
     });
 
 };
@@ -444,6 +513,23 @@ debugLog('bootstrap: start');
 
 ---
 
+## Inline `<script>` blocks
+
+Everything above applies inside a layout's `<script>`, plus:
+
+- The script body is indented one level inside the tag, and `</script>` lines up
+  with `<script>`.
+- Blank line after `<script>` and before `</script>`.
+- A Hugo comment, `{{/* … */}}`, gets a blank line before the markup it
+  introduces, as a JS comment does before code. A `{{- range }}` … `{{- end }}`
+  block is padded like a JS block.
+
+These are formatted by hand. VS Code's JS formatter does not reliably format JS
+inside an HTML `<script>` element (observed 2026-10-19), which is why many
+layouts mix styles.
+
+---
+
 ## HTML string indentation
 
 When building HTML in a string — concatenated or a template literal — indent each
@@ -489,10 +575,12 @@ const headerHTML =
 const assignGeoRank = (GeoType) => {
 
     switch (GeoType) {
+
         case 'Citywide': return 0;
         case 'Borough':  return 1;
         case 'UHF34':    return 3;
         // ...
+
     }
 
 };
@@ -505,9 +593,7 @@ const assignGeoRank = (GeoType) => {
 // Finds the first measure in visArray whose MeasurementType satisfies typeMatcher
 
 const findFirstMeasureByType = (visArray, typeMatcher) => {
-
     return visArray.find(measure => typeMatcher(measure.MeasurementType || ''));
-
 };
 
 
@@ -515,9 +601,7 @@ const findFirstMeasureByType = (visArray, typeMatcher) => {
 
 const pickDefaultMeasureByPriority = (visArray) => {
 
-    if (!visArray.length) {
-        return null;
-    }
+    if (!visArray.length) return null;
 
     // ----- age-adjusted rate total has highest priority ----- //
 
@@ -525,9 +609,7 @@ const pickDefaultMeasureByPriority = (visArray) => {
         t.includes('Age-adjusted rate') && t.includes('Total')
     );
 
-    if (ageAdjustedTotal) {
-        return ageAdjustedTotal;
-    }
+    if (ageAdjustedTotal) return ageAdjustedTotal;
 
     // ----- fall through remaining priority list ----- //
 
@@ -542,9 +624,7 @@ const pickDefaultMeasureByPriority = (visArray) => {
 
     for (const matcher of priorityMatchers) {
         const match = findFirstMeasureByType(visArray, matcher);
-        if (match) {
-            return match;
-        }
+        if (match) return match;
     }
 
     return visArray[0];
