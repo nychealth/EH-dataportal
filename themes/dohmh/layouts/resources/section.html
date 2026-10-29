@@ -1,0 +1,37 @@
+{{- define "main" -}}
+
+<article>
+    <div class="container wide" data-pagefind-weight="0">
+        <div class="row">
+            <div class="col-sm-12 mt-2 mb-2">
+                <nav aria-label="breadcrumb" class="">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="row mt-1 py-4 mb-4 border-bottom">
+            <div class="col-12 mb-3">
+                <div class="key-topics">
+                    <h1 class="h2">
+                        {{ .Title }}
+                    </h1>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-lg-8 pr-xl-4">
+                {{- .Content -}}
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+</article>
+
+{{- end -}}

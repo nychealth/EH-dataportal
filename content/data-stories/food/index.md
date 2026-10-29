@@ -25,8 +25,8 @@ photocredit: "Edwin J. Torres/Mayoral Photography Office, City of New York"
 related:
   - title: "The urban heat island effect in NYC"
     url: "data-stories/urban-heat-island/"
-  - title: "How power outages affect health"
-    url: "data-stories/poweroutages/"
+  - title: "NYC is working to protect your health — but we can’t do it alone"
+    url: "data-stories/federal-funding/"
   - title: "Restaurant food safety"
     url: "data-explorer/restaurant-food-safety/?id=2065#display=summary"
 ---

@@ -18,7 +18,7 @@ Additional documentation files for internal use are:
 
 ## Contact us
 
-You can comment on issues and we'll follow up as soon as we can. In the spirit of free software, everyone is encouraged to help improve this project.  Here are some ways you can contribute.
+You can comment on issues and we'll follow up as soon as we can. In the spirit of free software, everyone is encouraged to help improve this project. Here are some ways you can contribute.
 
 - Comment on or clarify [issues](https://github.com/nychealth/EH-dataportal/issues)
 - Suggest new features

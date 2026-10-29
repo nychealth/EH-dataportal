@@ -28,6 +28,10 @@ related:
     url: "data-explorer/mice-and-rats/?id=24#display=summary"
 ---
 
+{{< updateflag data=`[
+  {"src": "data-explorer/mice-and-rats/?id=2434", "text": "Rat inspections"}
+]` >}}
+
 New York City’s modern history of public health starts in the 1600s with the Bureau of Sanitary Inspections, and ever since, sanitation has been an essential part of public health — fighting disease by keeping our city clean.
 
 {{< figure src="nyc-sanitation-1600s.png" alt="Chronology of important events. New York City Department of Health and its Predecessor Agencies 1655-1966. 1657: Activities of the Bureau of Sanitary Inspections originated to some degree with an ordinance forbidding inhabitants of this city to throw garbage and other refuge in the streets." >}}
@@ -190,7 +194,7 @@ We also see this difference between neighborhoods in data on rat inspections, wi
             <strong>Enclosed baskets per square mile</strong>
             <iframe title="EH / UES locator map" aria-label="Locator maps" id="datawrapper-chart-5WJ8y" src="https://datawrapper.dwcdn.net/5WJ8y/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="350"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
 </script>
-            <a href="{{< baseurl >}}data-explorer/active-design/?id=2416#display=summary">Explore litter basket data here</a>.
+            <a href="{{< relURL >}}data-explorer/active-design/?id=2416#display=summary">Explore litter basket data here</a>.
         </div>
         <div class="col-sm-6">
             <strong>Rat Indexing</strong><div aria-hidden="true">

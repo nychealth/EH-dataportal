@@ -34,3 +34,9 @@ data:
 - entry: 
   copy: NYC Community Health Profiles.
   link: https://www1.nyc.gov/site/doh/data/data-publications/profiles.page
+
+keytopic: 
+  - link: 'healthoutcomes/'
+    text: 'Health outcomes'
+  - link: 'housing/'
+    text: 'Housing'

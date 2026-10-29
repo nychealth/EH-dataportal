@@ -1,0 +1,487 @@
+{
+    "width": 420,
+    "sharedCsvRequests": 1,
+    "rows": [
+        {
+            "phase": "load",
+            "site": null,
+            "id": "explainChart",
+            "columns": null,
+            "spacing": null,
+            "paneW": null,
+            "titleLines": 0,
+            "containerW": 388,
+            "svgW": 388,
+            "overflow": 0
+        },
+        {
+            "phase": "load",
+            "site": null,
+            "id": "cpVis",
+            "columns": 2,
+            "spacing": 20,
+            "paneW": 156,
+            "titleLines": 1,
+            "containerW": 388,
+            "svgW": 372,
+            "overflow": -16
+        },
+        {
+            "phase": "load",
+            "site": null,
+            "id": "cpVisTOD",
+            "columns": 1,
+            "spacing": null,
+            "paneW": 350,
+            "titleLines": 0,
+            "containerW": 388,
+            "svgW": 388,
+            "overflow": 0
+        },
+        {
+            "phase": "load",
+            "site": null,
+            "id": "cpVis2",
+            "columns": null,
+            "spacing": 40,
+            "paneW": 61,
+            "titleLines": 2,
+            "containerW": 388,
+            "svgW": 378,
+            "overflow": -10
+        },
+        {
+            "phase": "load",
+            "site": null,
+            "id": "explainChart2",
+            "columns": null,
+            "spacing": null,
+            "paneW": 388,
+            "titleLines": 0,
+            "containerW": 388,
+            "svgW": 403,
+            "overflow": 15
+        },
+        {
+            "phase": "load",
+            "site": null,
+            "id": "aqChangeVis",
+            "columns": 2,
+            "spacing": 20,
+            "paneW": 167,
+            "titleLines": 2,
+            "containerW": 388,
+            "svgW": 386,
+            "overflow": -2
+        },
+        {
+            "phase": "load",
+            "site": null,
+            "id": "explainChart2",
+            "columns": null,
+            "spacing": null,
+            "paneW": 373,
+            "titleLines": 0,
+            "containerW": 388,
+            "svgW": 388,
+            "overflow": 0
+        },
+        {
+            "phase": "ej",
+            "site": "CRZ",
+            "id": "cpVis",
+            "columns": 2,
+            "spacing": 20,
+            "paneW": 156,
+            "titleLines": 1,
+            "containerW": 388,
+            "svgW": 372,
+            "overflow": -16
+        },
+        {
+            "phase": "ej",
+            "site": "CRZ",
+            "id": "aqChangeVis",
+            "columns": 2,
+            "spacing": 20,
+            "paneW": 167,
+            "titleLines": 2,
+            "containerW": 388,
+            "svgW": 386,
+            "overflow": -2
+        },
+        {
+            "phase": "ej-embeds",
+            "site": "CRZ",
+            "id": "__count",
+            "n": 2
+        },
+        {
+            "phase": "ej",
+            "site": "Major Deegan",
+            "id": "cpVis",
+            "columns": 2,
+            "spacing": 20,
+            "paneW": 156,
+            "titleLines": 1,
+            "containerW": 388,
+            "svgW": 372,
+            "overflow": -16
+        },
+        {
+            "phase": "ej",
+            "site": "Major Deegan",
+            "id": "aqChangeVis",
+            "columns": 2,
+            "spacing": 20,
+            "paneW": 167,
+            "titleLines": 2,
+            "containerW": 388,
+            "svgW": 386,
+            "overflow": -2
+        },
+        {
+            "phase": "ej-embeds",
+            "site": "Major Deegan",
+            "id": "__count",
+            "n": 2
+        },
+        {
+            "phase": "ej",
+            "site": "Cross Bronx",
+            "id": "cpVis",
+            "columns": 2,
+            "spacing": 20,
+            "paneW": 156,
+            "titleLines": 1,
+            "containerW": 388,
+            "svgW": 372,
+            "overflow": -16
+        },
+        {
+            "phase": "ej",
+            "site": "Cross Bronx",
+            "id": "aqChangeVis",
+            "columns": 2,
+            "spacing": 20,
+            "paneW": 167,
+            "titleLines": 2,
+            "containerW": 388,
+            "svgW": 386,
+            "overflow": -2
+        },
+        {
+            "phase": "ej-embeds",
+            "site": "Cross Bronx",
+            "id": "__count",
+            "n": 2
+        },
+        {
+            "phase": "ej",
+            "site": "BQE",
+            "id": "cpVis",
+            "columns": 2,
+            "spacing": 20,
+            "paneW": 156,
+            "titleLines": 1,
+            "containerW": 388,
+            "svgW": 372,
+            "overflow": -16
+        },
+        {
+            "phase": "ej",
+            "site": "BQE",
+            "id": "aqChangeVis",
+            "columns": 2,
+            "spacing": 20,
+            "paneW": 167,
+            "titleLines": 2,
+            "containerW": 388,
+            "svgW": 386,
+            "overflow": -2
+        },
+        {
+            "phase": "ej-embeds",
+            "site": "BQE",
+            "id": "__count",
+            "n": 2
+        },
+        {
+            "phase": "ej",
+            "site": "SI Expwy",
+            "id": "cpVis",
+            "columns": 2,
+            "spacing": 20,
+            "paneW": 156,
+            "titleLines": 1,
+            "containerW": 388,
+            "svgW": 372,
+            "overflow": -16
+        },
+        {
+            "phase": "ej",
+            "site": "SI Expwy",
+            "id": "aqChangeVis",
+            "columns": 2,
+            "spacing": 20,
+            "paneW": 167,
+            "titleLines": 2,
+            "containerW": 388,
+            "svgW": 386,
+            "overflow": -2
+        },
+        {
+            "phase": "ej-embeds",
+            "site": "SI Expwy",
+            "id": "__count",
+            "n": 2
+        },
+        {
+            "phase": "ej",
+            "site": "FDR",
+            "id": "cpVis",
+            "columns": 2,
+            "spacing": 20,
+            "paneW": 156,
+            "titleLines": 1,
+            "containerW": 388,
+            "svgW": 372,
+            "overflow": -16
+        },
+        {
+            "phase": "ej",
+            "site": "FDR",
+            "id": "aqChangeVis",
+            "columns": 2,
+            "spacing": 20,
+            "paneW": 167,
+            "titleLines": 2,
+            "containerW": 388,
+            "svgW": 387,
+            "overflow": -1
+        },
+        {
+            "phase": "ej-embeds",
+            "site": "FDR",
+            "id": "__count",
+            "n": 2
+        },
+        {
+            "phase": "ej",
+            "site": "Trans-Manhattan",
+            "id": "cpVis",
+            "columns": 2,
+            "spacing": 20,
+            "paneW": 156,
+            "titleLines": 1,
+            "containerW": 388,
+            "svgW": 372,
+            "overflow": -16
+        },
+        {
+            "phase": "ej",
+            "site": "Trans-Manhattan",
+            "id": "aqChangeVis",
+            "columns": 2,
+            "spacing": 20,
+            "paneW": 167,
+            "titleLines": 2,
+            "containerW": 388,
+            "svgW": 386,
+            "overflow": -2
+        },
+        {
+            "phase": "ej-embeds",
+            "site": "Trans-Manhattan",
+            "id": "__count",
+            "n": 2
+        },
+        {
+            "phase": "ej",
+            "site": "Van Wyck",
+            "id": "cpVis",
+            "columns": 2,
+            "spacing": 20,
+            "paneW": 156,
+            "titleLines": 1,
+            "containerW": 388,
+            "svgW": 372,
+            "overflow": -16
+        },
+        {
+            "phase": "ej-embeds",
+            "site": "Van Wyck",
+            "id": "__count",
+            "n": 1
+        },
+        {
+            "phase": "ej",
+            "site": "Rest of the city",
+            "id": "cpVis",
+            "columns": 2,
+            "spacing": 20,
+            "paneW": 156,
+            "titleLines": 1,
+            "containerW": 388,
+            "svgW": 372,
+            "overflow": -16
+        },
+        {
+            "phase": "ej",
+            "site": "Rest of the city",
+            "id": "aqChangeVis",
+            "columns": 2,
+            "spacing": 20,
+            "paneW": 167,
+            "titleLines": 2,
+            "containerW": 388,
+            "svgW": 386,
+            "overflow": -2
+        },
+        {
+            "phase": "ej-embeds",
+            "site": "Rest of the city",
+            "id": "__count",
+            "n": 2
+        },
+        {
+            "phase": "tod",
+            "site": "Major Deegan",
+            "id": "cpVisTOD",
+            "columns": 1,
+            "spacing": null,
+            "paneW": 350,
+            "titleLines": 0,
+            "containerW": 388,
+            "svgW": 388,
+            "overflow": 0
+        },
+        {
+            "phase": "tod-embeds",
+            "site": "Major Deegan",
+            "id": "__count",
+            "n": 1
+        },
+        {
+            "phase": "tod",
+            "site": "Cross Bronx",
+            "id": "cpVisTOD",
+            "columns": 1,
+            "spacing": null,
+            "paneW": 350,
+            "titleLines": 0,
+            "containerW": 388,
+            "svgW": 388,
+            "overflow": 0
+        },
+        {
+            "phase": "tod-embeds",
+            "site": "Cross Bronx",
+            "id": "__count",
+            "n": 1
+        },
+        {
+            "phase": "tod",
+            "site": "BQE",
+            "id": "cpVisTOD",
+            "columns": 1,
+            "spacing": null,
+            "paneW": 350,
+            "titleLines": 0,
+            "containerW": 388,
+            "svgW": 388,
+            "overflow": 0
+        },
+        {
+            "phase": "tod-embeds",
+            "site": "BQE",
+            "id": "__count",
+            "n": 1
+        },
+        {
+            "phase": "tod",
+            "site": "SI Expwy",
+            "id": "cpVisTOD",
+            "columns": 1,
+            "spacing": null,
+            "paneW": 350,
+            "titleLines": 0,
+            "containerW": 388,
+            "svgW": 393,
+            "overflow": 5
+        },
+        {
+            "phase": "tod",
+            "site": "SI Expwy",
+            "id": "cpVisTOD",
+            "columns": 1,
+            "spacing": null,
+            "paneW": 345,
+            "titleLines": 0,
+            "containerW": 388,
+            "svgW": 388,
+            "overflow": 0
+        },
+        {
+            "phase": "tod-embeds",
+            "site": "SI Expwy",
+            "id": "__count",
+            "n": 2
+        },
+        {
+            "phase": "tod",
+            "site": "FDR",
+            "id": "cpVisTOD",
+            "columns": 1,
+            "spacing": null,
+            "paneW": 345,
+            "titleLines": 0,
+            "containerW": 388,
+            "svgW": 383,
+            "overflow": -5
+        },
+        {
+            "phase": "tod-embeds",
+            "site": "FDR",
+            "id": "__count",
+            "n": 1
+        },
+        {
+            "phase": "tod",
+            "site": "Trans-Manhattan",
+            "id": "cpVisTOD",
+            "columns": 1,
+            "spacing": null,
+            "paneW": 345,
+            "titleLines": 0,
+            "containerW": 388,
+            "svgW": 388,
+            "overflow": 0
+        },
+        {
+            "phase": "tod-embeds",
+            "site": "Trans-Manhattan",
+            "id": "__count",
+            "n": 1
+        },
+        {
+            "phase": "tod",
+            "site": "Van Wyck",
+            "id": "cpVisTOD",
+            "columns": 1,
+            "spacing": null,
+            "paneW": 345,
+            "titleLines": 0,
+            "containerW": 388,
+            "svgW": 383,
+            "overflow": -5
+        },
+        {
+            "phase": "tod-embeds",
+            "site": "Van Wyck",
+            "id": "__count",
+            "n": 1
+        }
+    ],
+    "consoleErrors": []
+}

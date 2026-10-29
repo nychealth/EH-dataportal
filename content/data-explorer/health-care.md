@@ -6,8 +6,16 @@ azlink: "https://www.nyc.gov/site/doh/health/health-topics/health-insurance.page
 seo_title: "Health care data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of health care data in NYC."
+blurb: "doctors, insurance, health status"
+datatables: true
+arquero: true
+leaflet: true
+vega: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 tags:
-categories: ["inequality"]
+categories: ["inequality", "accessibility"]
 keywords: ["health care", "doctors", "mortality"]
 indicators:
   - header: null
@@ -16,6 +24,11 @@ indicators:
       - 2132
       - 2401
       - 2232
+      - 2459
+      - 2461
+      - 2462
+      - 2463
+      - 2464
 related:
   - title: "Injury deaths in NYC"
     url: "data-stories/injury-deaths/"

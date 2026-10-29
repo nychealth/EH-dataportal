@@ -6,8 +6,16 @@ azlink: "https://www.nyc.gov/site/doh/data/data-sets/traffic-injuries.page"
 seo_title: "Transportation-related injury data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of transportation-related injuries in NYC."
+blurb: "Cyclist and pedestrian ED and hospital visits"
+datatables: true
+arquero: true
+leaflet: true
+vega: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 tags:
-categories: ["publicspace", "healthoutcomes","injuryandviolence"]
+categories: ["publicspace", "healthoutcomes", "injuryandviolence", "accessibility"]
 keywords:
   [
     "transportation",

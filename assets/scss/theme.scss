@@ -23,7 +23,7 @@ In this file:
 @import "g-dev-tools.scss";
 @import "h-nyc-subway-icons.scss";
 @import "__portal-custom.scss";
-@import "custom.scss";
+@import "de-custom.scss";
 
 ////////////////////////////////////////
 // B. Theme styles
@@ -31,8 +31,13 @@ In this file:
 
 // Basic Site Styles and Overrides
 
+// Link text is the widest surface $primary covers, and it is set against backgrounds this
+// file does not control. Worst measured normal-size case was 4.45:1, on the near-white
+// #FDFDFD of data-features/cooling-info — under AA by a hair, and invisible from the
+// palette, which only records the two near-white greens. $primary-dark is the text-only
+// variant; $primary stays the brand colour for fills, borders and map geometry.
 a {
-    color: $primary;
+    color: $primary-dark;
     &:hover {
         color: $hover;
     }
@@ -344,7 +349,8 @@ h1 {
             color: $primary;
             text-decoration: underline;
         }
-        svg {
+        svg,
+        i {
             color: $primary;
         }
     }
@@ -352,6 +358,12 @@ h1 {
         height: 100%;
         display: flex;
         flex-direction: column;
+
+        // Cards carry a bare section class (.data-stories, .n-reports, ...) for their accent
+        // border, and _de-custom.scss gives some of those classes a text color meant for
+        // headings. Reset it here so card body text stays the body color; icons keep their
+        // accent because those rules target `i` and `svg path` directly.
+        color: $body-color;
 
         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18), 0 3px 10px 0 rgba(0, 0, 0, 0.17);
         .card-title {
@@ -480,9 +492,11 @@ p.report-description {
     background-color: $light-green;
     border: 1px solid $primary;
     border-radius: 2px;
-    color: $primary;
+    // $primary is 4.37:1 on $light-green, under the 4.5:1 AA threshold for this 14px bold
+    // text. The hover state inverts the same pair, so both go to 5.29:1 together.
+    color: $primary-dark;
    &:hover {
-       background-color: $primary;
+       background-color: $primary-dark;
        color: $light-green;
        }
    }
@@ -593,13 +607,6 @@ h2.report-info {
     display: block;
 }
 
-.data-note {
-    margin-top: -10px;
-    font-size: .8125rem;
-    font-style: italic;
-    margin-bottom: 20px;
-}
-
 // indicator levels and styling
 
 .info-modal {
@@ -624,21 +631,31 @@ h2.report-info {
 }
 
 .better, .middle, .worse {
-    width: 135px;
-    height: 30px;
+    //* width: 135px;
+    padding: 3px;
+    //* height: 30px;
     border-radius: 8px;
     display: block;
     text-align: center;
-    font-size: 1.125rem;
+    font-size: 0.9rem;
+    width: 80px;
     @include media-breakpoint-up(md){
-        width: 78px;
+        width: 80px;
         display: inline-block;
     }
+}
 
+@media print {
+    .better, .middle, .worse {
+        /* whatever styles you want only for print */
+        font-size: 1rem;
+        text-align: left;
+        color: black;
+    }
 }
 
 .worse {
-    background-color: #F2CDD7;
+    background-color: #FFE69B;
 }
 
 .middle {
@@ -646,8 +663,43 @@ h2.report-info {
 }
 
 .better {
-    background-color: #D1F0C8;
+    background-color: #C4F2CF;
 }
+
+// Background colour was the only thing separating a good "Higher" from a bad one: both pills
+// read the same two words, so a reader with a colour vision deficiency saw no difference at
+// all (WCAG 1.4.1). The glyph is the non-colour cue — square-check against
+// triangle-exclamation, which differ in shape and not only in hue. Same Font Awesome 6
+// codepoints .comp-good / .comp-bad already use in the expanded panel
+// (assets/scss/_de-custom.scss), so the report makes the comparison the same way in both places.
+// The print row carries the pill classes, not .comp-*, so it is covered by this rule and not
+// that one. Font Awesome is loaded site-wide from head.html as a CSS webfont, so no per-page
+// resource is involved.
+//
+// No `color` of its own: the glyph inherits the pill's text colour, which already passes
+// against these backgrounds. Colouring it the way .comp-* does would put $warning on #F2CDD7,
+// and the shape carries the distinction regardless — adding a second contrast question to
+// close a contrast-adjacent finding is not a trade worth making.
+//
+// Chrome drops ::before glyphs from the accessibility tree entirely (§4 of the audit), so
+// this is the visual half of the fix only; cards.js carries the .sr-only sentence that is
+// the other half. .middle gets no glyph, matching .comp-null, which gets none either.
+.worse::before,
+.better::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    padding-right: 0.3em;
+}
+
+.worse::before {
+    content: "\f071";
+}
+
+.better::before {
+    content: "\f14a";
+}
+
+
 .comparison {
     font-weight: 600;
     margin-bottom: 1.25rem;
@@ -673,6 +725,27 @@ h2.report-info {
     }
     .my-5.p-no-margin {
         margin-top: 0 !important;
+    }
+}
+
+@media print {
+    .report-section .btn[data-toggle="collapse"] {
+        border: none;
+        background: none;
+        padding: 8px 0;
+    }
+    // The map is hidden by this rule rather than by a d-print-none wrapper: the wrapper
+    // production used lived in nr-output/single.html, which the SPA recode retired. The
+    // class is emitted by cards.js and read by chart.js.
+    .nr-map-container {
+        display: none !important;
+    }
+    // Print the report in one shape whatever the reader had expanded on screen: the
+    // print-only header row is the printed rendition of an indicator, the panel never is.
+    // .collapsing covers a print fired mid-animation, when Bootstrap has swapped the class
+    .report-section .collapse,
+    .report-section .collapsing {
+        display: none !important;
     }
 }
 
@@ -773,21 +846,48 @@ span.th-sub {
 
 // Section styles
 
+// Section-page header (partials/section-header.html). The one place to move
+// the breadcrumb and H1 on every section page at once.
+.section-header {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    .breadcrumb {
+        margin-bottom: 2rem;
+    }
+}
+
 .ds-accent {
     svg path {
         fill: $color-data-stories;
     }
+
+    i {
+        color: $color-data-stories;
+    }
 }
 
 .kt-accent {
+    color: $primary;
+
     svg path {
         fill: $primary;
+    }
+
+    i {
+        color: $primary;
     }
 }
 
 .df-accent {
+    color: $color-data-features;
+
     svg path {
         fill: $color-data-features;
+    }
+
+    i {
+        color: $color-data-features;
     }
 }
 
@@ -795,11 +895,19 @@ span.th-sub {
     svg path {
         fill: $color-n-reports;
     }
+
+    i {
+        color: $color-n-reports;
+    }
 }
 
 .de-accent {
     svg path {
         fill: $color-data-explorer;
+    }
+
+    i {
+        color: $color-data-explorer;
     }
 }
 
@@ -884,7 +992,7 @@ table.dataTable thead > tr > td.sorting_asc_disabled:before,
 table.dataTable thead > tr > td.sorting_asc_disabled:after,
 table.dataTable thead > tr > td.sorting_desc_disabled:before,
 table.dataTable thead > tr > td.sorting_desc_disabled:after {
-    line-height: 16px !important;
-    font-size: 1.5em !important;
+    line-height: 12px !important;
+    font-size: 1em !important;
 }
 

@@ -1,0 +1,14 @@
+{{/*
+now uses relURL for internal links, so shortcode src param should start with section, e.g. {"src": "data-explorer/climate/?id=2143", [...] }
+optional `message` param replaces the default lead-in; optional `after` field on an item adds text following its link.
+`data-card-exclude` keeps this notice out of card blurbs (partials/card-summary.html) - keep it, and keep this free of nested divs.
+*/}}
+<div class="border mb-4 p-1 fs-sm" data-card-exclude>
+    <i class="far fa-clock mr-1" aria-hidden="true"></i>{{ .Get "message" | default "Since we published this data story, some data in it have been updated. Get updated data on:" }}
+    {{- $data := .Get "data" | transform.Unmarshal -}}
+        <ul>
+        {{- range $data }}
+            <li><a href="{{ relURL .src }}">{{ .text }}</a>{{ .after }}</li>
+        {{- end }}
+        </ul>
+</div>

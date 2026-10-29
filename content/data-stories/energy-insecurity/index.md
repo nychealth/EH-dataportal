@@ -6,7 +6,8 @@ draft: false
 seo_title: "Affordable energy is key to health and climate resilience"
 seo_description: "A data story about the health impacts from climate change-driven energy insecurity."
 tags:
-categories: ["housing", "inequality", "climatehealth", "neighborhoods"]
+categories:
+  ["housing", "inequality", "climatehealth", "neighborhoods", "accessibility"]
 keywords:
   [
     "energy insecurity",
@@ -37,7 +38,7 @@ Almost 3 in 10 of New Yorkers — 28% — experience three or more forms of ener
 
 [More than a fifth of New Yorkers (21%) have trouble paying utility bills](https://pubmed.ncbi.nlm.nih.gov/38315917/), and many New Yorkers are in debt to utility companies.
 
-#### Unaffordable energy can be a matter of life and death 
+#### Unaffordable energy can be a matter of life and death 
 
 [About one in three New Yorkers reported that their homes were too hot or too cold](https://pubmed.ncbi.nlm.nih.gov/38315917/) to be comfortable and safe. This can cause or trigger health issues , like asthma, heart problems, and mental health conditions.
 
@@ -72,7 +73,7 @@ But 34% of energy-insecure New Yorkers reduced or did not use air conditioning d
 
 Rented units with cracks, gaps, or holes in need of maintenance are also more expensive to heat and cool.
 
-New Yorkers who have trouble paying utility bills are more likely to be renters and live in properties with housing problems that threaten health. In [some lower-income neighborhoods, more than half of renter-occupied homes need maintenance to address mold, pests, lead paint hazards](../../data-stories/housing-creates-health/), or other issues that affect health. [Neighborhood poverty levels](../../data-explorer/economic-conditions/?id=103#display=summary) are determined by the percentage of people in a neighborhood with an income below the federal poverty line.
+New Yorkers who have trouble paying utility bills are more likely to be renters and live in properties with housing problems that threaten health. In [some lower-income neighborhoods, more than half of renter-occupied homes need maintenance to address mold, pests, lead paint hazards]({{< relURL >}}data-stories/housing-creates-health/), or other issues that affect health. [Neighborhood poverty levels]({{< relURL >}}data-explorer/economic-conditions/?id=103#display=summary) are determined by the percentage of people in a neighborhood with an income below the federal poverty line.
 
 <div class= "my-4">
 <div aria-hidden="true">
@@ -84,7 +85,7 @@ New Yorkers who have trouble paying utility bills are more likely to be renters 
 <div style="min-height:973px" id="datawrapper-vis-A255F"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/A255F/embed.js" charset="utf-8" data-target="#datawrapper-vis-A255F"></script><noscript><img src="https://datawrapper.dwcdn.net/A255F/full.png" alt="" /></noscript></div>
 </div>
 
-### Black and Latino New Yorkers are more likely to experience energy insecurity 
+### Black and Latino New Yorkers are more likely to experience energy insecurity 
 
 Energy insecurity is not just about affordability; it is an equity issue. Black and Latino New Yorkers are more likely to experience energy insecurity and power outages, and are also more likely to live in housing in need of maintenance. And Black New Yorkers are twice as likely to die of heat-related illness than white New Yorkers. These disparities are a result of structural racism, driven by racist housing policies such as redlining, discriminatory neighborhood disinvestment and less access to quality resources.
 
@@ -97,7 +98,7 @@ Other New Yorkers more likely to be experiencing energy insecurity include New Y
 
 Fixing the equity gap in energy access means ensuring these New Yorkers are prioritized through policies and programs.
 
-### Lowering energy bills, equitable air conditioning access and addressing building conditions will increase health and energy access 
+### Lowering energy bills, equitable air conditioning access and addressing building conditions will increase health and energy access 
 
 But there are ways to make access to energy more equitable, which would also support safe and healthy housing. Social benefit programs that subsidize energy bills or provide equipment are critical to ensuring energy security. While New York City is still early in the process of tackling energy insecurity, [the City’s long-term energy plan includes reducing energy costs for low- and middle-income New Yorkers](https://climate.cityofnewyork.us/wp-content/uploads/2023/09/PowerUpNYC.pdf). The federal and state Home Energy Assistance Program (HEAP) provides assistance with winter energy costs and purchase of air conditioners in the summer, though its coverage would benefit more New Yorkers by expanding to include energy bills year-round. [The Energy Affordability Program (EAP) helps low-income consumers](https://dps.ny.gov/energy-affordability-program#:~:text=The%20EAP%20seeks%20to%20provide,affordable%20through%20monthly%20bill%20discounts.) with a discount on their utility bills. While some eligible New Yorkers — like recipients of HEAP — are automatically enrolled for EAP, many households, including those on Medicaid, must enroll separately to receive assistance.
 
@@ -107,7 +108,7 @@ Beneficial building electrification will reduce emissions that worsen climate ch
 
 With improvements to housing and energy assistance programs, we can work towards energy security for all New Yorkers.
 
-### Sign up for alerts and apply for assistance. 
+### Sign up for alerts and apply for assistance. 
 
 - [Register your electric medical equipment with Con Ed](https://www.coned.com/en/accounts-billing/payment-plans-assistance/special-services).
 - [Apply for energy bill assistance with Con-Ed](https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill).
@@ -117,4 +118,4 @@ With improvements to housing and energy assistance programs, we can work towards
 - [Learn about the signs of heat-related illness and what to do if you or someone you know is experiencing it](https://www.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-heat.page).
 - [Sign up for notify NYC](https://portal.311.nyc.gov/article/?kanumber=KA-01082). Look out for alerts about severe weather, power outages, and dangerous hot weather
 
-<em>To learn more about how energy insecurity and health impacts are changing in NYC, <a href="https://climateassessment.nyc/assessment/climate-change-and-new-york-citys-health-risk/">read the NPCC4 Climate and Health chapter.</a> <a href="https://climateassessment.nyc/assessment/overview/">There are also dedicated chapters in NPCC4 on flooding, climate justice, and more at the New York City Panel on Climate Change website,</a> where you can real the full assessment along with overviews, key messages, and special reports.</em>
+<em>To learn more about how energy insecurity and health impacts are changing in NYC, <a href="https://climateassessment.nyc/assessment/climate-change-and-new-york-citys-health-risk/">read the NPCC4 Climate and Health chapter.</a> <a href="https://climateassessment.nyc/assessment/overview/">There are also dedicated chapters in NPCC4 on flooding, climate justice, and more at the New York City Panel on Climate Change website,</a> where you can read the full assessment along with overviews, key messages, and special reports. Read about <a href="https://e2h2hernandez.com/wp-content/uploads/2025/12/Powering-Up-for-Health-Policy-Solutions-for-EI-in-NYC-E2H2_Report_final.pdf">policy solutions to address energy insecurity in New York City<a>.</em>

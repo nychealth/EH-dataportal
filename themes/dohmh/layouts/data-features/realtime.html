@@ -1,34 +1,19 @@
 {{- define "main" -}}
 
-<style>
-    #map {
-        height: 35vh;
-        width: 100%;
-        max-width: 100%;
-        max-height: 100%;
-    }
-
-
-    leaflet-tooltip-box {
-        border: 1px solid
-    }
-
-</style>
-
 {{- /*  main content  */}}
 
-<article class="container-fluid" id="skip-header-target">
+<article class="container-fluid">
 
     {{ partial "df-front-block" . }}
 
             
-            <div class="sr-only">
-                <h2 class="sr-only">Download accessible data</h2>
-                <p>This page contains visualizations. If you are using a screenreader, you can <a href="https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv">download a CSV file of the last 7 days of realtime air quality data.</a></p>
-                </div>
-            <div class="row">
+        <div class="sr-only">
+            <h2 class="sr-only">Download accessible data</h2>
+            <p>This page contains visualizations. If you are using a screenreader, you can <a href="https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv">download a CSV file of the last 7 days of realtime air quality data.</a></p>
             </div>
+        <div class="row">
         </div>
+    </div>
     </div>
 
     {{- /* map + chart */}}
@@ -66,7 +51,42 @@
         .barchart {
             border-left: 1px solid black;
         }
+
+        .modal-backdrop.show {
+            opacity: 0.70;
+            background-color: #424242
+        }
+
+        .location-row:hover {
+            background-color: #f3f6f4;
+        }
+
+        .row-active {
+            background-color: #f3f6f4;
+        }
+
+        #map {
+            height: 35vh;
+            width: 100%;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+
+        leaflet-tooltip-box {
+            border: 1px solid
+        }
     </style>
+
+    <!--
+    <div class="row my-4 border">
+        <div class="colorLabel" style="background:red;color:white; width:130px;">Red</div>
+        <div class="colorLabel" style="background:purple; color:white; width:130px;">Purple</div>
+
+        <div class="lineLabel" style="background:black;color:white; width:130px;" data-id="BQE">BQQE</div>
+        <div class="lineLabel" style="background:black; color:white; width:130px;" data-id="SI_Expwy">SI Expwy</div>
+    </div>
+    -->
 
     <div class="row mt-4 mb-2">
         <div class="col-12">
@@ -94,11 +114,11 @@
 
                         <button type="button" class="btn btn-sm d-block d-md-none btn-outline-primary mr-1" data-toggle="modal" data-target="#mapModal">
                             Monitors
-                          </button>
+                            </button>
     
                         <button type="button" class="btn btn-sm btn-outline-primary float-right" data-toggle="modal" data-target="#archiveModal">
                             <i class="fas fa-download mr-1" aria-hidden="true"></i>Download
-                          </button>
+                            </button>
                     </div>
 
 
@@ -121,10 +141,10 @@
                         </form>
                     </div>
 
-                        <span class="fs-sm"><span class="font-weight-bold">Hourly PM2.5 (in µg/m<sup>3</sup>)</span> | <span style="color:red">NAAQS&nbsp;24-hour&nbsp;PM2.5&nbsp;standard&nbsp;(35 µg/m<sup>3</sup>)</span></span>
+                    <span class="fs-sm"><span class="font-weight-bold">Hourly PM2.5 (in µg/m<sup>3</sup>)</span> | <span style="color:red">NAAQS&nbsp;24-hour&nbsp;PM2.5&nbsp;standard&nbsp;(35 µg/m<sup>3</sup>)</span></span>
                     </div>
 
-                    <div id="vis" style="width: 100%; height: 45vh;" class="mt-2">
+                    <div id="vis" style="width: 100%; height: 45vh;" class="my-2">
                     CHART
                     </div>
 
@@ -161,82 +181,82 @@
     <div class="row border-top my-4 pt-2">
         <div class="col-md-4 col-sm-12">
             <h3 class="h4">Sources of emissions vary</h3>
-                            <p class="fs-md">In NYC, about 30% of PM2.5 comes from far-away sources like coal-burning power plants
-                                in the Midwest. But more than half comes from <b>local sources</b>. </p>
-                    <div class="accordion-group narrow my-3" role="tablist" id="accordion-3">
-                        <div class="card">
+                <p class="fs-md">In NYC, about 30% of PM2.5 comes from far-away sources like coal-burning power plants
+                    in the Midwest. But more than half comes from <b>local sources</b>. </p>
+                <div class="accordion-group narrow my-3" role="tablist" id="accordion-3">
+                    <div class="card">
                         <a class="card-header collapse collapsed font-weight-bold" id="acc-button-3A" data-toggle="collapse" href="#panel-acc-button-3A"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-3A">
                             <span class="title" role="heading" aria-level="3"><i class="fas fa-building mr-1" aria-hidden="true"></i>Buildings</span>
                         </a>
                     
                         <div class="collapse" id="panel-acc-button-3A" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-3">
-                        <div class="card-body card-white fs-md">
-                            <p>Building density affects a neighborhood's air quality because like vehicles, buildings
-                                burn fuel and emit pollutants: their boilers burn oil and gas to produce heat and hot
-                                water. This is one reason we often see more air pollution in the winter. Because of new heating oil regulations, PM2.5 has gone down dramatically, and SO2 levels are now indetectable. <a href="../nyccas">Read more at the NYCCAS annual report</a>. </p>
-                        </div>
-                        </div>
-                        <!-- .collapse -->
-                        </div>
-                    
-                        <!-- .card (end of first accordion, repeat as needed) -->
-                    
-                        <div class="card">
-                            <a class="card-header collapse collapsed font-weight-bold" id="acc-button-02" data-toggle="collapse" href="#panel-acc-button-3B"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-3B">
-                            <span class="title" role="heading" aria-level="3"><i class="fas fa-industry mr-1" aria-hidden="true"></i>Industrial area</span>
-                            </a>
-                    
-                    <div class="collapse" id="panel-acc-button-3B" role="tabpanel" aria-labelledby="acc-button-3B" data-parent="#accordion-3">
-                        <div class="card-body fs-md">
-                    <p>
-                        Industrial areas affect a neighborhood's air quality because of diesel exhaust from
-                        trucks idling and traveling through industrial areas, and from industrial combustion
-                        equipment.
-                                    </p>
-                                </div>
-                    </div>
-                    <!-- .collapse --> 
-                    </div>
-
-                    <!-- new card --> 
-                    <div class="card">
-                        <a class="card-header collapse collapsed font-weight-bold" id="acc-button-3C" data-toggle="collapse" href="#panel-acc-button-03"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-3C">
-                        <span class="title" role="heading" aria-level="3"><i class="fas fa-car mr-1" aria-hidden="true"></i>Traffic</span>
-                        </a>
-                
-                <div class="collapse" id="panel-acc-button-03" role="tabpanel" aria-labelledby="acc-button-3C" data-parent="#accordion-3">
-                    <div class="card-body fs-md">
-                <p>
-                    Traffic density affects a neighborhood's air quality because engines produce PM2.5,
-                    black carbon, and NOx. While electric vehicles help reduce emissions, all vehicles also
-                    contribute to PM2.5 through tire wear and braking. Traffic volume is one reason we often
-                    see daily spikes in PM2.5 concentration in the mornings and evenings.
-                                </p>
+                            <div class="card-body card-white fs-md">
+                                <p>Building density affects a neighborhood's air quality because like vehicles, buildings
+                                    burn fuel and emit pollutants: their boilers burn oil and gas to produce heat and hot
+                                    water. This is one reason we often see more air pollution in the winter. Because of new heating oil regulations, PM2.5 has gone down dramatically, and SO2 levels are now indetectable. <a href="../nyccas">Read more at the NYCCAS annual report</a>. </p>
                             </div>
+                        </div>
+                    <!-- .collapse -->
+                    </div>
+                    
+                    <!-- .card (end of first accordion, repeat as needed) -->
+                    
+                    <div class="card">
+                        <a class="card-header collapse collapsed font-weight-bold" id="acc-button-02" data-toggle="collapse" href="#panel-acc-button-3B"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-3B">
+                            <span class="title" role="heading" aria-level="3"><i class="fas fa-industry mr-1" aria-hidden="true"></i>Industrial area</span>
+                        </a>
+                    
+                        <div class="collapse" id="panel-acc-button-3B" role="tabpanel" aria-labelledby="acc-button-3B" data-parent="#accordion-3">
+                            <div class="card-body fs-md">
+                        <p>
+                            Industrial areas affect a neighborhood's air quality because of diesel exhaust from
+                            trucks idling and traveling through industrial areas, and from industrial combustion
+                            equipment.
+                        </p>
+                    </div>
                 </div>
                 <!-- .collapse --> 
-                </div>
+            </div>
 
-                <!-- new card --> 
-
-                <div class="card">
-                    <a class="card-header collapse collapsed font-weight-bold" id="acc-button-3D" data-toggle="collapse" href="#panel-acc-button-3D"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-3D">
-                    <span class="title" role="heading" aria-level="3"><i class="fas fa-truck mr-1" aria-hidden="true"></i>Trucks</span>
-                    </a>
+            <!-- new card --> 
+            <div class="card">
+                <a class="card-header collapse collapsed font-weight-bold" id="acc-button-3C" data-toggle="collapse" href="#panel-acc-button-03"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-3C">
+                    <span class="title" role="heading" aria-level="3"><i class="fas fa-car mr-1" aria-hidden="true"></i>Traffic</span>
+                </a>
             
-            <div class="collapse" id="panel-acc-button-3D" role="tabpanel" aria-labelledby="acc-button-3D" data-parent="#accordion-3">
+            <div class="collapse" id="panel-acc-button-03" role="tabpanel" aria-labelledby="acc-button-3C" data-parent="#accordion-3">
                 <div class="card-body fs-md">
             <p>
-                Truck traffic density affects a neighborhood's air quality because diesel combustion
-                produces additional pollutants.
-                </p>
-                        </div>
+                Traffic density affects a neighborhood's air quality because engines produce PM2.5,
+                black carbon, and NOx. While electric vehicles help reduce emissions, all vehicles also
+                contribute to PM2.5 through tire wear and braking. Traffic volume is one reason we often
+                see daily spikes in PM2.5 concentration in the mornings and evenings.
+                            </p>
+                </div>
             </div>
             <!-- .collapse --> 
             </div>
 
+            <!-- new card --> 
+
+            <div class="card">
+                <a class="card-header collapse collapsed font-weight-bold" id="acc-button-3D" data-toggle="collapse" href="#panel-acc-button-3D"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-3D">
+                <span class="title" role="heading" aria-level="3"><i class="fas fa-truck mr-1" aria-hidden="true"></i>Trucks</span>
+                </a>
+            
+            <div class="collapse" id="panel-acc-button-3D" role="tabpanel" aria-labelledby="acc-button-3D" data-parent="#accordion-3">
+                <div class="card-body fs-md">
+                    <p>
+                        Truck traffic density affects a neighborhood's air quality because diesel combustion
+                        produces additional pollutants.
+                    </p>
                 </div>
+            </div>
+            <!-- .collapse --> 
         </div>
+
+    </div>
+    </div>
 
         <div class="col-md-4 col-sm-12">
             <h3 class="h4">Common patterns in the data</h3>
@@ -254,45 +274,45 @@
         different PM2.5 levels. <span style="color:rgb(109, 109, 109)"><b>Midtown</b></span>, which has
         the highest traffic density, usually has the most PM2.5. 
     </p>
-        </div>
+    </div>
     </div>
     <!-- .collapse -->
     </div>
 <!-- new card -->
-        <div class="card">
-            <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2B" data-toggle="collapse" href="#panel-acc-button-2B"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2B">
-            <span class="title" role="heading" aria-level="3"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Daily spikes</span>
-            </a>
+    <div class="card">
+        <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2B" data-toggle="collapse" href="#panel-acc-button-2B"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2B">
+        <span class="title" role="heading" aria-level="3"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Daily spikes</span>
+        </a>
     
-    <div class="collapse" id="panel-acc-button-2B" role="tabpanel" aria-labelledby="acc-button-2B" data-parent="#accordion-02">
-        <div class="card-body  fs-md">
-    <p> PM2.5 levels usually rise in the morning as traffic volume increases. These
-        <em>temporal</em> differences (time spikes) are usually greater than
-        <em>spatial</em> differences (the differences between neighborhoods). It's very rare for these spikes to exceed the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">National Ambient Air Quality Standard</a> of 35 μg/m<sup>3</sup> for 24 hours.
-        </p>
-        </div>
-    </div>
-    <!-- .collapse -->
-    </div>
-<!-- new card -->
-        <div class="card">
-            <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2C" data-toggle="collapse" href="#panel-acc-button-2C"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2C">
-            <span class="title" role="heading" aria-level="3"><i class="fas fa-cloud-showers-heavy mr-1" aria-hidden="true"></i>Weather patterns</span>
-            </a>
-    
-    <div class="collapse" id="panel-acc-button-2C" role="tabpanel" aria-labelledby="acc-button-2C" data-parent="#accordion-02">
-        <div class="card-body  fs-md">
-    <p>
-        Weather can trap emissions and cause PM2.5 to build up. Sometimes we see a clear west-to-east pattern in rising PM2.5, as weather patterns moving into NYC traps local emissions. Other times, weather can bring wildfire smoke from far-away fires.
+<div class="collapse" id="panel-acc-button-2B" role="tabpanel" aria-labelledby="acc-button-2B" data-parent="#accordion-02">
+    <div class="card-body  fs-md">
+<p> PM2.5 levels usually rise in the morning as traffic volume increases. These
+    <em>temporal</em> differences (time spikes) are usually greater than
+    <em>spatial</em> differences (the differences between neighborhoods). It's very rare for these spikes to exceed the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">National Ambient Air Quality Standard</a> of 35 μg/m<sup>3</sup> for 24 hours.
     </p>
     </div>
 </div>
+<!-- .collapse -->
 </div>
-    <!-- .collapse -->
+<!-- new card -->
     <div class="card">
-        <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2D" data-toggle="collapse" href="#panel-acc-button-2D"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2D">
-        <span class="title" role="heading" aria-level="3"><i class="fas fa-exclamation-triangle mr-1" aria-hidden="true"></i>Other spikes</span>
+        <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2C" data-toggle="collapse" href="#panel-acc-button-2C"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2C">
+        <span class="title" role="heading" aria-level="3"><i class="fas fa-cloud-showers-heavy mr-1" aria-hidden="true"></i>Weather patterns</span>
         </a>
+    
+<div class="collapse" id="panel-acc-button-2C" role="tabpanel" aria-labelledby="acc-button-2C" data-parent="#accordion-02">
+    <div class="card-body  fs-md">
+<p>
+    Weather can trap emissions and cause PM2.5 to build up. Sometimes we see a clear west-to-east pattern in rising PM2.5, as weather patterns moving into NYC traps local emissions. Other times, weather can bring wildfire smoke from far-away fires.
+</p>
+</div>
+</div>
+</div>
+<!-- .collapse -->
+<div class="card">
+    <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2D" data-toggle="collapse" href="#panel-acc-button-2D"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2D">
+    <span class="title" role="heading" aria-level="3"><i class="fas fa-exclamation-triangle mr-1" aria-hidden="true"></i>Other spikes</span>
+    </a>
 
 <div class="collapse" id="panel-acc-button-2D" role="tabpanel" aria-labelledby="acc-button-2D" data-parent="#accordion-02">
     <div class="card-body  fs-md">
@@ -304,135 +324,204 @@
 </div>
 
 </div>
-        </div>
+</div>
 
-        <div class="col-md-4 col-sm-12">
-            <h3 class="h4">Explore the effects of Congestion Pricing</h3>
-            <p class="fs-md">Interested in seeing if congestion pricing affects air quality? You can use real-time air quality data to get a quick sense of how congestion pricing is affecting PM2.5 levels in NYC. You can <a href="#archiveModal" data-toggle="modal" data-target="#archiveModal">download this data</a> to compare air pollution trends at sites that might be affected by congestion pricing — for example Midtown-West, or the Cross Bronx Expressway — to trends at the Van Wyck, a site we don't think will see changes in traffic due to congestion pricing. Changing traffic patterns will underlie any differences in air quality we see that relate to congestion pricing. <a href="https://www.mta.info/article/most-detailed-view-of-nyc-traffic-so-far">You can find detailed traffic pattern data via the MTA.</a></p>
-            <strong>Limitations on short-term and small sample comparisons</strong>
-            <p class="fs-md">Because air pollution can vary from day to day for many reasons, we need data from a longer time period to reliably determine whether congestion pricing has affected air quality in different parts of the city. That’s why we will collect a full year of data before we do a more rigorous analysis with a larger sample size. <a href="https://www.nyc.gov/assets/doh/downloads/pdf/environmental/cbdtp-aq-monitoring-methods.pdf">This analysis will account for multiple variables, including traffic data, and other air pollutants </a> associated with traffic, like NO2 and BC.</p>
-        </div>
-    </div>
+<div class="col-md-4 col-sm-12">
+    <h3 class="h4">Explore the effects of Congestion Pricing</h3>
+    <p class="fs-md">Interested in seeing if congestion pricing affects air quality? You can use real-time air quality data to get a quick sense of how congestion pricing is affecting PM2.5 levels in NYC. You can <a href="#archiveModal" data-toggle="modal" data-target="#archiveModal">download this data</a> to compare air pollution trends at sites that might be affected by congestion pricing — for example Midtown-West, or the Cross Bronx Expressway — to trends at the Van Wyck, a site we don't think will see changes in traffic due to congestion pricing. Changing traffic patterns will underlie any differences in air quality we see that relate to congestion pricing. <a href="https://www.mta.info/article/most-detailed-view-of-nyc-traffic-so-far">You can find detailed traffic pattern data via the MTA.</a></p>
+    <strong>Limitations on short-term and small sample comparisons</strong>
+    <p class="fs-md">Because air pollution can vary from day to day for many reasons, we need data from a longer time period to reliably determine whether congestion pricing has affected air quality in different parts of the city. That’s why we will collect a full year of data before we do a more rigorous analysis with a larger sample size. <a href="https://www.nyc.gov/assets/doh/downloads/pdf/environmental/cbdtp-aq-monitoring-methods.pdf">This analysis will account for multiple variables, including traffic data, and other air pollutants </a> associated with traffic, like NO2 and BC.</p>
+</div>
+</div>
 
-    </div>
+</div>
 
-    <div class="row my-2">
-        <div class="col-md-10 mx-auto col-sm-12">
-            <div class="row p-2 border-top border-bottom">
-                <div class="col-md-8 ml-auto">
-                    <h3>The Air Quality Index</h3>
-                    <p><a href="https://www.airnow.gov/aqi/aqi-basics/">The Air Quality Index is the US Environmental Protection Agency's way of reporting air quality</a>. It reports whether any of five major pollutants (ground-level ozone, fine particles, carbon monoxide, sulfur dioxide and nitrogen dioxide) are at levels that can harm health.             </p>
-                    <p><strong>AQI Resources:</strong></p>
-                    <p><a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Protect yourself during bad air quality</a></p>
-                    <p><a href="https://www.airnow.gov/sites/default/files/2023-03/air-quality-guide-for-particle-pollution_0.pdf"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>What to do at different AQI levels</a></p>
-
-                </div>
-
-                <div class="col-md-3 mr-auto">
-                    <iframe class="my-2 float-right" title="Example 1" height="340" width="230" src="https://widget.airnow.gov/aq-dial-widget-primary-pollutant/?city=New%20York%20City&state=NY&country=USA&transparent=true" style="border: none; border-radius: 25px;"></iframe>
-                </div>
-
+<div class="row my-2">
+    <div class="col-md-10 mx-auto col-sm-12">
+        <div class="row p-2 border-top border-bottom">
+            <div class="col-md-4">
+                <h3>The Air Quality Index</h3>
+                <p><a href="https://www.airnow.gov/aqi/aqi-basics/">The Air Quality Index is the US Environmental Protection Agency's way of reporting air quality</a>. It reports whether any of five major pollutants (ground-level ozone, fine particles, carbon monoxide, sulfur dioxide and nitrogen dioxide) are at levels that can harm health.             </p>
+                <p><strong>AQI Resources:</strong></p>
+                <p><a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Protect yourself during bad air quality</a></p>
+                <p><a href="https://www.nyc.gov/assets/doh/downloads/pdf/eode/aqi-guidelines-general.pdf"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>What to do at different AQI levels</a></p>
             </div>
+            <div class="col-md-3 mr-auto border-right">
+                <iframe class="my-2 float-left" title="Example 1" height="340" width="230" src="https://widget.airnow.gov/aq-dial-widget-primary-pollutant/?city=New%20York%20City&state=NY&country=USA&transparent=true" style="border: none; border-radius: 25px;"></iframe>
+        </div>
+        <div class="col-md-5 mx-auto">
+            <h3>Community air quality programs</h3>
+            <p>Many community-based organizations run independent air quality monitoring systems, which contribute to the broader picture of air quality and health in NYC. </p>
+            <p><a href="https://www.southbronxunite.org/air-pollution-and-public-health?ref=blog.quant-aq.com"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>South Bronx Unite: Air pollution and health</a></p>
+            <p><a href="https://app.quant-aq.com/map"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>WE ACT for Environmental Justice: QuantAQ</a></p>
+            <p><a href="https://map.purpleair.com/air-quality-standards-us-epa-aqi?opt=%2F1%2Flp%2Fa10%2Fp604800%2FcC0#12/40.68064/-74.00391"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Red Hook Initiative: US EPA PM2.5 by Purple Air</a></p>
+            <p><a href="https://aircasting.org/fixed_stream?streamId=2785129&sessionId=1924804&streamId=2785129&thresholdMin=0&thresholdLow=12&thresholdMiddle=35&thresholdHigh=55&thresholdMax=150&currentUserSettings=CALENDAR_VIEW&sessionType=fixed&measurementType=Particulate+Matter&sensorName=AirBeam3-PM2.5&previousUserSettings=MODAL_VIEW"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Sixth Street Center: AirCasting</a></p>
+            <p class="fs-sm">Does your organization conduct hyperlocal air quality monitoring? Get in touch at <a href="mailto:ehdp@health.nyc.gov">ehdp@health.nyc.gov</a>.</p>
+        </div>
+        </div>
         </div>
     </div>
+</div>
 
 
 
 <!-- Modal -->
 <div class="modal fade" id="sevenModal" tabindex="-1" role="dialog" aria-labelledby="sevenModalLongTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="sevenModalLongTitle" data-pagefind-ignore="all">Oops!</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="sevenModalLongTitle" data-pagefind-ignore="all">Oops!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                We can only show you realtime PM<sup>2.5</sup> data for the last 7 days. Please enter a number between 1 and 7.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
         </div>
-        <div class="modal-body">
-          We can only show you realtime PM<sup>2.5</sup> data for the last 7 days. Please enter a number between 1 and 7.
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="mapModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content modal-lg">
-        <div class="modal-header">
-          <h5 class="modal-title" id="mapModalLabel">Monitor locations</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mapModalLabel">Monitor locations</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div style="min-height:684px" id="datawrapper-vis-26bBi"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/26bBi/embed.js" charset="utf-8" data-target="#datawrapper-vis-26bBi"></script><noscript><img src="https://datawrapper.dwcdn.net/26bBi/full.png" alt="" /></noscript></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
         </div>
-        <div class="modal-body">
-            <div style="min-height:684px" id="datawrapper-vis-26bBi"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/26bBi/embed.js" charset="utf-8" data-target="#datawrapper-vis-26bBi"></script><noscript><img src="https://datawrapper.dwcdn.net/26bBi/full.png" alt="" /></noscript></div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 
 <!-- Download/archive modal -->
 <div class="modal fade" id="archiveModal" tabindex="-1" role="dialog" aria-labelledby="archiveModal" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="archiveModalLabel">Download archived data</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="archiveModalLabel">Download archived data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
 
-            <!-- Download interface -->
-            {{- partial "realtime-download" . -}}
+                <!-- Download interface -->
+                {{- partial "realtime-download" . -}}
 
-            {{- with .Resources.GetMatch "data-archive-text.md" -}}
-                {{ .Content }}
-            {{- end -}}
+                <hr>
 
+                <div id="rtaqReadme" class="pt-2">
+                    <!-- RTAQ readme accessed from Git repo and deposited here via client-side JS --> 
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 
 
 </article>
 
+<script>
+function escapeHTML(str) {
+
+    return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+
+}
+
+function markdownToHTML(md) {
+
+    const lines = md.split(/\r?\n/);
+    let html = "";
+    let paragraph = [];
+
+    function flushParagraph() {
+
+        if (paragraph.length) {
+            html += `<p>${paragraph.join(" ")}</p>\n`;
+            paragraph = [];
+        }
+    }
+
+    for (let line of lines) {
+
+        line = line.trim();
+
+        // Blank line → paragraph break
+
+        if (!line) {
+            flushParagraph();
+            continue;
+        }
+
+        // Headers
+
+        if (line.startsWith("## ")) {
+            flushParagraph();
+            html += `<h3 class="h6">${escapeHTML(line.slice(3))}</h3>\n`;
+            continue;
+        }
+
+        if (line.startsWith("# ")) {
+            flushParagraph();
+            html += `<h2 class="h5">${escapeHTML(line.slice(2))}</h2>\n`;
+            continue;
+        }
+
+        // Normal text → paragraph
+
+        paragraph.push(escapeHTML(line));
+
+    }
+
+    flushParagraph();
+    return html;
+
+}
+
+// Fetch + render
+
+fetch("https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/README.md")
+    .then(r => r.text())
+    .then(md => {
+        document.getElementById("rtaqReadme").innerHTML = markdownToHTML(md);
+    });
+
+</script>
+
+
 <!-- Related footer -->
 {{- partial "related-footer" . -}}
 
-<style>
-    .modal-backdrop.show {
-        opacity: 0.70;
-        background-color: #424242
-    }
-</style>
 
+{{- partial "lib-leaflet.html" . }}
+{{- partial "lib-vega.html" . }}
+{{- partial "lib-d3.html" . }}
+{{- partial "lib-arquero.html" . }}
+{{- partial "lib-easybutton-coloricon.html" . }}
 
 <!-- color name to hex converter -->
 <!-- from https://gist.github.com/njvack/02ad8efcb0d552b0230d -->
 {{- $color_convert := resources.Get "js/color-convert.js" | partial "short-fingerprint.html" -}}
 <script src="{{ $color_convert.RelPermalink }}" integrity="{{ $color_convert.Data.Integrity }}"></script>
-
-
-<!-- Uses a static stand-in file for local development - else uses the API -->
-<script>
-    var url = window.location.href
-    var rtaqData
-    url.includes('localhost') ? rtaqData = 'data/nyccas_realtime_DEC.csv' : rtaqData = 'https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv'
-
-</script>
-
 
 
 <!--bring in realtime JS -->

@@ -6,6 +6,13 @@ azlink: "https://www.nyc.gov/site/doh/health/neighborhood-health/community-suppo
 seo_title: "Social and economic conditions data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of social and economic conditions in NYC."
+datatables: true
+arquero: true
+leaflet: true
+vega: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 tags:
 categories: ["social", "housing"]
 keywords:
@@ -55,4 +62,4 @@ People tend to be healthier when they have access to:
 
 But when people don’t have access to these conditions, they experience worse health outcomes. This is **health inequity** – **avoidable and unfair health outcomes.**
 
-Discrimination based on race (and other personal characteristics) often results in disparities in access to these conditions –and thus, disparities in health outcomes.
+Discrimination based on race (and other personal characteristics) often results in disparities in access to these conditions – and thus, disparities in health outcomes.

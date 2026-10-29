@@ -6,9 +6,17 @@ azlink: "https://www.nyc.gov/site/doh/health/health-topics/active-design.page"
 seo_title: "Active design data in NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of active design data in NYC."
+blurb: Walking, transit, and greenery.
 tags:
-categories: ["publicspace", "neighborhoods", "airquality", "climate"]
-keyTopic: publicspace
+categories: ["publicspace", "neighborhoods", "airquality", "climate", "accessibility"]
+datatables: true
+arquero: true
+leaflet: true
+vega: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
+
 keywords:
   [
     "active design",
@@ -29,6 +37,10 @@ indicators:
     IndicatorID:
       - 2158
       - 2391
+      - 2458
+      - 2455
+      - 2456
+      - 2460
       - 2390
       - 2426
       - 2425
@@ -46,8 +58,8 @@ related:
 relatedData:
   - title: "Walking, driving, and cycling"
     url: "walking-driving-and-cycling"
-  - title: "Physical activity"
-    url: "physical-activity/"
+  - title: "Accessibility"
+    url: "accessibility/"
   - title: "Transportation related-injuries"
     url: "transportation-related-injuries/"
 ---

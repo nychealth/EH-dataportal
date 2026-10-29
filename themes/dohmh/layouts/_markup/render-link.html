@@ -1,0 +1,70 @@
+{{- /* Parse once so each rewrite branch can preserve the original query string and fragment. */ -}}
+
+{{- $dest := .Destination -}}
+{{- $href := $dest -}}
+{{- $parsed := urls.Parse $dest -}}
+{{- $rawPath := $parsed.Path -}}
+{{- $baseName := path.Base $rawPath -}}
+{{- $isIndexPage := eq $baseName "index.html" -}}
+{{- $isPageLike := or $isIndexPage (and (ne $rawPath "") (not (strings.Contains $baseName "."))) -}}
+
+{{- /* Rewrite legacy production URLs so content does not depend on a hardcoded host or /IndicatorPublic prefix. */ -}}
+
+{{- if and $parsed.IsAbs (eq $parsed.Host "a816-dohbesp.nyc.gov") (or (strings.HasPrefix $rawPath "/IndicatorPublic/") (strings.HasPrefix $rawPath "/IndicatorPublic/beta/")) -}}
+    {{- $normalizedPath := strings.TrimPrefix "/IndicatorPublic/" $rawPath -}}
+    {{- $normalizedPath = strings.TrimPrefix "beta/" $normalizedPath -}}
+    {{- if $isIndexPage -}}
+        {{- $normalizedPath = path.Dir $normalizedPath -}}
+    {{- end -}}
+    {{- if and (or (strings.HasSuffix $rawPath "/") $isIndexPage) (not (strings.HasSuffix $normalizedPath "/")) -}}
+        {{- $normalizedPath = printf "%s/" $normalizedPath -}}
+    {{- end -}}
+    {{- $href = relURL $normalizedPath -}}
+    {{- with $parsed.RawQuery -}}
+        {{- $href = printf "%s?%s" $href . -}}
+    {{- end -}}
+    {{- with $parsed.Fragment -}}
+        {{- $href = printf "%s#%s" $href . -}}
+    {{- end -}}
+
+{{- /* Rewrite root-relative legacy paths the same way as fully qualified production URLs. */ -}}
+
+{{- else if and (or (strings.HasPrefix $rawPath "/IndicatorPublic/") (strings.HasPrefix $rawPath "/IndicatorPublic/beta/")) -}}
+    {{- $normalizedPath := strings.TrimPrefix "/IndicatorPublic/" $rawPath -}}
+    {{- $normalizedPath = strings.TrimPrefix "beta/" $normalizedPath -}}
+    {{- if $isIndexPage -}}
+        {{- $normalizedPath = path.Dir $normalizedPath -}}
+    {{- end -}}
+    {{- if and (or (strings.HasSuffix $rawPath "/") $isIndexPage) (not (strings.HasSuffix $normalizedPath "/")) -}}
+        {{- $normalizedPath = printf "%s/" $normalizedPath -}}
+    {{- end -}}
+    {{- $href = relURL $normalizedPath -}}
+    {{- with $parsed.RawQuery -}}
+        {{- $href = printf "%s?%s" $href . -}}
+    {{- end -}}
+    {{- with $parsed.Fragment -}}
+        {{- $href = printf "%s#%s" $href . -}}
+    {{- end -}}
+
+{{- /* Resolve page-like ./ and ../ links against PageInner so included content keeps its own relative base. */ -}}
+
+{{- else if and (not $parsed.IsAbs) (or (strings.HasPrefix $dest "../") (strings.HasPrefix $dest "./")) $isPageLike -}}
+    {{- $pagePath := strings.TrimPrefix (relURL "") .PageInner.RelPermalink -}}
+    {{- $normalizedPath := path.Join $pagePath $rawPath -}}
+    {{- if $isIndexPage -}}
+        {{- $normalizedPath = path.Dir $normalizedPath -}}
+    {{- end -}}
+    {{- if and (or (strings.HasSuffix $rawPath "/") $isIndexPage) (not (strings.HasSuffix $normalizedPath "/")) -}}
+        {{- $normalizedPath = printf "%s/" $normalizedPath -}}
+    {{- end -}}
+    {{- $href = relURL $normalizedPath -}}
+    {{- with $parsed.RawQuery -}}
+        {{- $href = printf "%s?%s" $href . -}}
+    {{- end -}}
+    {{- with $parsed.Fragment -}}
+        {{- $href = printf "%s#%s" $href . -}}
+    {{- end -}}
+{{- end -}}
+
+<a href="{{ $href | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}>{{ with .Text }}{{ . }}{{ end }}</a>
+{{- /* chomp trailing newline */ -}}

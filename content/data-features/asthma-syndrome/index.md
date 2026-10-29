@@ -11,7 +11,7 @@ keyTopic: housing
 keywords: ["housing","gentrification","displacement","justice","equity"]
 image: nyc-children-playing.jpg
 layout: asthma-syndrome
-vega: true
+
 ---
 
 Asthma is a common disease that makes breathing difficult, causing coughing, wheezing, and shortness of breath.

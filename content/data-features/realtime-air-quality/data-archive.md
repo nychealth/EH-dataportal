@@ -20,7 +20,7 @@ hide: true
 
 ---
 
-On this page you can download archived data files from our network of real-time PM2.5 air quality monitors. You can  [see these data for the last 7 days at Real-Time Air Quality](..), or download them by month going back to October 2019.
+On this page you can download archived data files from our network of real-time PM2.5 air quality monitors. You can  [see these data for the last 7 days at Real-Time Air Quality]({{< relURL >}}data-features/realtime-air-quality/), or download them by month going back to October 2019.
 
 **About the data:** Data in this archive are hourly averaged measurements of PM2.5 from the New York City Community Air Survey's network of TSI DustTrak sensors.
 
