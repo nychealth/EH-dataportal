@@ -47,6 +47,7 @@ d3.csv("data/agency-totals.csv").then(function(data) {
 });
 
 function renderAgencyTable(agencyName, targetId, noDataProvided) {
+
     // filter
 
     const filtered = agencyData.filter(d => d.Agency === agencyName);
@@ -57,20 +58,26 @@ function renderAgencyTable(agencyName, targetId, noDataProvided) {
     // delegate to shared table printer
 
     printTable(filtered, targetId, `{{ .Params.reportingYear }}`, noDataProvided);
+
 }
 
 function renderIntroTable(tableName, destination, standard, numeric) {
+
     const file = 'data/' + tableName + '.csv';
    
     d3.csv(file).then(function(data) {
+
         console.log('File loaded: ' + tableName);
         // console.log(data);
 
         if (standard) {
+
             // use same formatted table
 
             printTable(data, destination);
+
         } else {
+
             // fallback: just dump raw data
 
             let table = `<table cellpadding="5" class="table table-striped">
@@ -81,20 +88,24 @@ function renderIntroTable(tableName, destination, standard, numeric) {
             table += `</tr></thead><tbody>`;
 
             data.forEach(row => {
+
                 table += `<tr>`;
                 Object.values(row).forEach((val, i) => {
                     table += `<td${(numeric && i > 0) ? ' class="num"' : ''}>${val}</td>`;
                 });
                 table += `</tr>`;
+
             });
 
             table += `</tbody></table>`;
             document.getElementById(destination).innerHTML = table;
+
         }
     });
 }
 
 function printTable(data, destination, year, noDataProvided) {
+
     const container = document.getElementById(destination);
 
     // if agency explicitly provided *no data* at all
@@ -134,6 +145,7 @@ function printTable(data, destination, year, noDataProvided) {
                     <tbody>`;
 
     data.forEach(row => {
+
         const volume = parseFloat(row['Volume in Gallons'] || 0);
         const weight = parseFloat(row['Weight in Pounds'] || 0);
         const apps = parseFloat(row['Total Applications'] || 0);
@@ -153,6 +165,7 @@ function printTable(data, destination, year, noDataProvided) {
                     <td class="border-left num">${apps.toLocaleString()}</td>
                     <td class="num">${appsPct}</td>
                   </tr>`;
+
     });
 
     // totals row
@@ -172,6 +185,7 @@ function printTable(data, destination, year, noDataProvided) {
     // inject into the DOM
 
     container.innerHTML = table;
+
 }
 
 
@@ -202,7 +216,7 @@ function printTable(data, destination, year, noDataProvided) {
             </div>
 
                 <h1 class="h2" data-pagefind-weight="10.0">
-                    {{ .Title }} in {{ .Params.reportingYear }}
+                    {{ partial "section-icon.html" $.Section }}{{ .Title }} in {{ .Params.reportingYear }}
                 </h1>
 
                 {{- .Content  -}}
@@ -241,6 +255,7 @@ function printTable(data, destination, year, noDataProvided) {
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
+
   const year = {{ .Params.reportingYear }};
 
   if (!year) return;

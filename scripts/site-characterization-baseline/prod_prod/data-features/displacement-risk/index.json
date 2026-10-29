@@ -20,8 +20,8 @@
         "assetsWithIntegrity": 8,
         "headingLevels": [
             1,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 1,
         "landmarks": {
@@ -88,8 +88,8 @@
         "title": "Explore data on displacement risk in NYC – Environment & Health Data Portal",
         "headingText": [
             "Displacement Risk",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

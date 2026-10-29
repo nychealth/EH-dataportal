@@ -6,13 +6,12 @@
 {{- range  (where $.content.Site.RegularPages "Section" "key-topics") -}}
 
     {{- $has_common_cats := intersect $cats .Params.categories | len | lt 0 -}}
-        {{- if  $has_common_cats -}}
 
-          <a class="text-black" href="{{ .RelPermalink }}">
-            {{ .Title }}
-          </a>
-          <hr class="my-2">
+    {{- if  $has_common_cats -}}
 
-        {{- end -}}
+        <a class="text-black" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <hr class="my-2">
+
+    {{- end -}}
 
 {{- end -}}

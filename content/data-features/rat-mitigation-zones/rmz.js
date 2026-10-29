@@ -6,42 +6,50 @@ var ratData = [];
 var rmzgeojson;
 var geog;
 
-var map = L.map('map').setView([40.7722226, -73.9638235], 11); // [Lat,Long],Zoom
+var map = L.map('map').setView([40.7722226,-73.9638235],11); // [Lat,Long],Zoom
 L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=cb1_2vaf_1_f87644104deb54c869cef554', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    subdomains: 'abcd',
-    maxZoom: 15,
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+	subdomains: 'abcd',
+	maxZoom: 15,
     minZoom: 11
 }).addTo(map);
 
 L.control.scale({
     metric: false,
     position: 'bottomleft'
-}).addTo(map)
+}).addTo(map);
 
-L.easyButton({
+const resetButton = L.easyButton({
     position: "bottomleft",
     states: [{
         title: "Zoom to fit",
         icon: "fas fa-undo",
-
-        onClick: function () {
-
+        
+        onClick: function() {
             resetZoom();
         }
     }]
-}).addTo(map);
+}).addTo(map);     
+
+// easyButton puts the label only in `title`, and Chrome computes the button's name as ""
+// with the icon inside it, so screen readers announce an unnamed button
+
+resetButton.button.setAttribute("aria-label", "Zoom to fit");
+resetButton.button.querySelectorAll(".fas").forEach(i => i.setAttribute("aria-hidden", "true"));
 
 function resetZoom() {
+
     // console.log('reset zoom 3')
 
-    window.location.hash = '#top'
-    location.reload()
+    window.location.hash = '#top';
+    location.reload();
+
 }
 
 // When style is run in const geojson, it returns these - default styles
 
 function style(feature) {
+
     return {
         weight: 1,
         opacity: 1,
@@ -56,25 +64,31 @@ function style(feature) {
 
 
 function getGeoJSON(x) {
+
     return new Promise((resolve, reject) => {
+
         // Fetch the GeoJSON data
 
         fetch(x)
             .then(response => {
+
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
                 return response.json(); // Parse the GeoJSON data
+
             })
             .then(data => {
+
                 rmzgeojson = data; // Store the GeoJSON data in a global variable
                 // console.log('GeoJSON data loaded:', rmzgeojson);
 
                 resolve(); // Resolve the promise when the data is ready
-                geog = L.geoJson(rmzgeojson, {
+                geog = L.geoJson(rmzgeojson,{
                     style,
                     onEachFeature
                 }).addTo(map);
+
             })
             .catch(error => {
                 console.error('Error fetching the GeoJSON file:', error);
@@ -83,13 +97,14 @@ function getGeoJSON(x) {
     });
 }
 
-getGeoJSON('https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/rmz.geojson')
+getGeoJSON('https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/rmz.geojson');
 
-
+       
 
 // ===== Map styles ================================================== //
 
 function onEachFeature(feature, layer) {
+
     layer.on({
         mouseover: highlightFeature,
         // mouseout: resetHighlight,
@@ -102,22 +117,23 @@ function resetHighlight(e) {
 }
 
 function zoomToFeature(e) {
+
     // console.log('zoom to feature:'),
     // console.log(e)
     // console.log(rmzgeojson)
 
-    geog.resetStyle()
+    geog.resetStyle();
     map.fitBounds(e.target.getBounds());
-    id = e.target.feature.properties.OBJECTID
+    id = e.target.feature.properties.OBJECTID;
     // console.log('Filtering data for: ')
     // console.log('Name: ' + e.target.feature.properties.Label) 
     // console.log('ID: ', id)
 
-    redrawChart(id)
-    name = e.target.feature.properties.Label
+    redrawChart(id);
+    name = e.target.feature.properties.Label;
     printToPage(id);
-    interpretInitial(id)
-    interpretCompliance(id)
+    interpretInitial(id);
+    interpretCompliance(id);
     // The above gets id and name, puts them into global variables, for other selection display
 
     // this sets style on click (but it won't stick)
@@ -135,7 +151,8 @@ function zoomToFeature(e) {
 }
 
 function highlightFeature(e) {
-    geog.resetStyle()
+
+    geog.resetStyle();
     // console.log('highlight feature:')
     // console.log(e)
 
@@ -147,77 +164,83 @@ function highlightFeature(e) {
         fillOpacity: 0.7
     });
 
-    layer.bringToFront();
+layer.bringToFront();
 
 }
 
 // ===== PRINT INFO TO PAGE ================================================== //
 
 function printToPage(x) {
+
     // console.log("id: " + x)
 
     document.getElementById('zoneName').innerHTML = name;
 
-    const zoneData = ratData.filter(zone => zone.ID == x)
+    const zoneData = ratData.filter(zone => zone.ID == x);
+
 }
 
 // update map and page from dropdown
 
 function update(x) {
+
     // console.log('updated for: ', x)
 
-    let zone = x - 1
-    let layerzone = rmzgeojson.features[zone]
+    let zone = x - 1;
+    let layerzone = rmzgeojson.features[zone];
 
-    var bounds = L.geoJSON(layerzone).getBounds()
-    var center = bounds.getCenter()
-    map.setView(center, 14)
+    var bounds = L.geoJSON(layerzone).getBounds();
+    var center = bounds.getCenter();
+    map.setView(center, 14);
 
-    document.getElementById('zoneName').innerHTML = layerzone.properties.Label
+    document.getElementById('zoneName').innerHTML = layerzone.properties.Label;
 
-    redrawChart(x)
-    interpretInitial(x)
-    interpretCompliance(x)
+    redrawChart(x);
+    interpretInitial(x);
+    interpretCompliance(x);
+
 }
 
 // ===== GET RECENT DATA (INITIAL, COMPLIANCE) ================================================== //
 
 function interpretInitial(x) {
+
     // filter recent Initial Inspections data for this neighborhood
 
-    thisRecent = recent.filter(y => y.zoneID == x)
+    thisRecent = recent.filter (y => y.zoneID == x);
 
     // get ARS fail number
 
-    var ars = thisRecent.filter(y => y.Type === 'Active rat signs')
-    var arsfail = ars[0].Number
+    var ars = thisRecent.filter(y => y.Type === 'Active rat signs');
+    var arsfail = ars[0].Number;
 
     // get total inspections
 
-    var entry = thisRecent.filter(y => y.Type === 'Initial inspections')
-    var initial = entry[0].Number
+    var entry = thisRecent.filter(y => y.Type === 'Initial inspections');
+    var initial = entry[0].Number; 
 
     // calculate percent
 
-    var percent = 100 * arsfail / initial
+    var percent = 100 * arsfail / initial;
 
-    document.getElementById('failpercent').innerHTML = parseFloat(percent).toFixed(1)
-    document.getElementById('interpret-1').classList.remove('hide')
+    document.getElementById('failpercent').innerHTML = parseFloat(percent).toFixed(1);
+    document.getElementById('interpret-1').classList.remove('hide');
 
 }
 
 function interpretCompliance(x) {
-    thisCompliance = complianceRecent.filter(y => y.zoneID == x)
-    console.log('recent data compliance:', thisCompliance)
-    var comp = thisCompliance.filter(y => y.Type === 'Compliance inspections')
-    var compI = comp[0].Number
 
-    var ars = thisCompliance.filter(y => y.Type === 'Active rat signs')
-    var arsfail = ars[0].Number
+    thisCompliance = complianceRecent.filter(y => y.zoneID == x);
+    console.log('recent data compliance:', thisCompliance);
+    var comp = thisCompliance.filter(y => y.Type === 'Compliance inspections');
+    var compI = comp[0].Number;
 
-    var percent = 100 * arsfail / compI
-    document.getElementById('failpercent2').innerHTML = parseFloat(percent).toFixed(1)
-    document.getElementById('interpret-2').classList.remove('hide')
+    var ars = thisCompliance.filter(y => y.Type === 'Active rat signs');
+    var arsfail = ars[0].Number;
+
+    var percent = 100 * arsfail / compI;
+    document.getElementById('failpercent2').innerHTML = parseFloat(percent).toFixed(1);
+    document.getElementById('interpret-2').classList.remove('hide');
 
 }
 
@@ -239,18 +262,18 @@ var revSpecOne = {
         "subtitleFontSize": 13
     },
     "config": {
-        "view": { "stroke": null },
+        "view": {"stroke": null},
         "axisX": {
             "labelAngle": 0,
             "grid": false,
-            "tickCount": { "interval": "month", "step": 1 }
+            "tickCount": {"interval": "month", "step": 1}
         },
-        "axisY": { "tickCount": 2 }
+        "axisY": {"tickCount": 2}
     },
     "data": {
         "url": "311-complaints.csv"
     },
-    "transform": [{ "filter": "datum.zoneID == '2'" }],
+    "transform": [{"filter": "datum.zoneID == '2'"}],
     "encoding": {
         "x": {
             "field": "Date",
@@ -272,10 +295,9 @@ var revSpecOne = {
             },
             "scale": {
                 "domainMin": 1650841000000,
-                "domainMax": 1785542400000
-            }
+                "domainMax": 1785542400000}
         },
-        "y": { "field": "Number", "type": "quantitative", "title": "" },
+        "y": {"field": "Number", "type": "quantitative", "title": ""},
         "color": {
             "condition": {
                 "param": "hover",
@@ -294,7 +316,7 @@ var revSpecOne = {
             },
             "value": "grey"
         },
-        "opacity": { "condition": { "param": "hover", "value": 1 }, "value": 0.35 }
+        "opacity": {"condition": {"param": "hover", "value": 1}, "value": 0.35}
     },
     "layer": [
         {
@@ -309,22 +331,22 @@ var revSpecOne = {
                     }
                 }
             ],
-            "mark": { "type": "line", "stroke": "transparent", "strokeWidth": 15 }
+            "mark": {"type": "line", "stroke": "transparent", "strokeWidth": 15}
         },
         {
-            "mark": { "type": "line", "point": { "size": 70 } },
+            "mark": {"type": "line", "point": {"size": 70}},
             "encoding": {
                 "tooltip": [
-                    { "title": "Complaint:", "field": "ComplaintType" },
-                    { "title": "Complaints:", "field": "Number", "format": "," },
-                    { "title": "For 6 months ending:", "field": "Date", "type": "temporal" }
+                    {"title": "Complaint:", "field": "ComplaintType"},
+                    {"title": "Complaints:", "field": "Number","format": ","},
+                    {"title": "For 6 months ending:", "field": "Date", "type": "temporal"}
                 ]
             }
         },
         {
             "encoding": {
-                "x": { "aggregate": "min", "field": "Date" },
-                "y": { "aggregate": { "argmin": "Date" }, "field": "Number" },
+                "x": {"aggregate": "min", "field": "Date"},
+                "y": {"aggregate": {"argmin": "Date"}, "field": "Number"},
                 "text": {
                     "condition": {
                         "param": "hover",
@@ -335,27 +357,25 @@ var revSpecOne = {
                 }
             },
             "layer": [
-                { "mark": { "type": "circle" } },
+                {"mark": {"type": "circle"}},
                 {
-                    "mark": {
-                        "type": "text", "align": "left", "dx": -4, "dy": -15, "fontSize": 12,
-                        "fontWeight": "bold"
-                    },
-                    "encoding": { "text": { "field": "ComplaintType", "type": "nominal" } }
+                    "mark": {"type": "text", "align": "left", "dx": -4, "dy": -15,        "fontSize": 12,
+                "fontWeight": "bold"},
+                    "encoding": {"text": {"field": "ComplaintType", "type": "nominal"}}
                 }
             ]
         },
         {
             "mark": "rule",
             "encoding": {
-                "x": { "datum": "1680403200000" },
-                "xOffset": { "value": 0.5 },
-                "color": { "value": "red" },
-                "size": { "value": 0.5 }
+                "x": {"datum": "1680403200000"},
+                "xOffset": {"value": 0.5},
+                "color": {"value": "red"},
+                "size": {"value": 0.5}
             }
         }
     ]
-}
+};
 
 // ===== INITIAL INSPECTIONS SPEC ================================================== //
 
@@ -375,21 +395,21 @@ var revSpecTwo = {
         "subtitleFontSize": 13
     },
     "config": {
-        "view": { "stroke": null },
+        "view": {"stroke": null},
         "axisX": {
             "labelAngle": 0,
             "grid": false,
-            "tickCount": { "interval": "month", "step": 1 }
+            "tickCount": {"interval": "month", "step": 1}
         },
-        "axisY": { "tickCount": 2 }
+        "axisY": {"tickCount": 2}
     },
     "data": {
         "url": "initial-inspections.csv"
     },
     "transform": [
-        { "filter": "datum.zoneID=='2'" },
-        { "filter": "datum.Type!='City agency'" },
-        { "filter": "datum.Type!='Private property'" }
+        {"filter": "datum.zoneID=='2'"},
+        {"filter": "datum.Type!='City agency'"},
+        {"filter": "datum.Type!='Private property'"}
     ],
     "encoding": {
         "x": {
@@ -412,10 +432,9 @@ var revSpecTwo = {
             },
             "scale": {
                 "domainMin": 1650841000000,
-                "domainMax": 1785542400000
-            }
+                "domainMax": 1785542400000}
         },
-        "y": { "field": "Number", "type": "quantitative", "title": "" },
+        "y": {"field": "Number", "type": "quantitative", "title": ""},
         "color": {
             "condition": {
                 "param": "hover",
@@ -429,7 +448,7 @@ var revSpecTwo = {
             },
             "value": "grey"
         },
-        "opacity": { "condition": { "param": "hover", "value": 1 }, "value": 0.35 }
+        "opacity": {"condition": {"param": "hover", "value": 1}, "value": 0.35}
     },
     "layer": [
         {
@@ -444,22 +463,22 @@ var revSpecTwo = {
                     }
                 }
             ],
-            "mark": { "type": "line", "stroke": "transparent", "strokeWidth": 15 }
+            "mark": {"type": "line", "stroke": "transparent", "strokeWidth": 15}
         },
         {
-            "mark": { "type": "line", "point": { "size": 70 } },
+            "mark": {"type": "line", "point": {"size": 70}},
             "encoding": {
                 "tooltip": [
-                    { "title": "Type", "field": "Type" },
-                    { "title": "Number", "field": "Number", "format": "," },
-                    { "title": "For 6 months ending:", "field": "Date", "type": "temporal" }
+                    {"title": "Type", "field": "Type"},
+                    {"title": "Number", "field": "Number","format": ","},
+                    {"title": "For 6 months ending:", "field": "Date", "type": "temporal"}
                 ]
             }
         },
         {
             "encoding": {
-                "x": { "aggregate": "min", "field": "Date" },
-                "y": { "aggregate": { "argmin": "Date" }, "field": "Number" },
+                "x": {"aggregate": "min", "field": "Date"},
+                "y": {"aggregate": {"argmin": "Date"}, "field": "Number"},
                 "text": {
                     "condition": {
                         "param": "hover",
@@ -470,27 +489,25 @@ var revSpecTwo = {
                 }
             },
             "layer": [
-                { "mark": { "type": "circle" } },
+                {"mark": {"type": "circle"}},
                 {
-                    "mark": {
-                        "type": "text", "align": "left", "dx": -4, "dy": -15, "fontSize": 12,
-                        "fontWeight": "bold"
-                    },
-                    "encoding": { "text": { "field": "Type", "type": "nominal" } }
+                    "mark": {"type": "text", "align": "left", "dx": -4, "dy": -15,        "fontSize": 12,
+                "fontWeight": "bold"},
+                    "encoding": {"text": {"field": "Type", "type": "nominal"}}
                 }
             ]
         },
         {
             "mark": "rule",
             "encoding": {
-                "x": { "datum": "1680403200000" },
-                "xOffset": { "value": 0.5 },
-                "color": { "value": "red" },
-                "size": { "value": 0.5 }
+                "x": {"datum": "1680403200000"},
+                "xOffset": {"value": 0.5},
+                "color": {"value": "red"},
+                "size": {"value": 0.5}
             }
         }
     ]
-}
+};
 
 // ===== COMPLIANCE INSPECTIONS SPEC ================================================== //
 
@@ -510,20 +527,20 @@ var revSpecThree = {
         "subtitleFontSize": 13
     },
     "config": {
-        "view": { "stroke": null },
+        "view": {"stroke": null},
         "axisX": {
             "labelAngle": 0,
             "grid": false,
-            "tickCount": { "interval": "month", "step": 1 }
+            "tickCount": {"interval": "month", "step": 1}
         },
-        "axisY": { "tickCount": 2 }
+        "axisY": {"tickCount": 2}
     },
     "data": {
         "url": "compliance-inspections.csv"
     },
     "transform": [
-        { "filter": "datum.zoneID=='2'" },
-        { "filter": "datum.Type!='Passed'" },
+        {"filter": "datum.zoneID=='2'"},
+        {"filter": "datum.Type!='Passed'"},
     ],
     "encoding": {
         "x": {
@@ -546,10 +563,9 @@ var revSpecThree = {
             },
             "scale": {
                 "domainMin": 1650841000000,
-                "domainMax": 1785542400000
-            }
+                "domainMax": 1785542400000}
         },
-        "y": { "field": "Number", "type": "quantitative", "title": "" },
+        "y": {"field": "Number", "type": "quantitative", "title": ""},
         "color": {
             "condition": {
                 "param": "hover",
@@ -563,7 +579,7 @@ var revSpecThree = {
             },
             "value": "grey"
         },
-        "opacity": { "condition": { "param": "hover", "value": 1 }, "value": 0.35 }
+        "opacity": {"condition": {"param": "hover", "value": 1}, "value": 0.35}
     },
     "layer": [
         {
@@ -578,22 +594,22 @@ var revSpecThree = {
                     }
                 }
             ],
-            "mark": { "type": "line", "stroke": "transparent", "strokeWidth": 15 }
+            "mark": {"type": "line", "stroke": "transparent", "strokeWidth": 15}
         },
         {
-            "mark": { "type": "line", "point": { "size": 70 } },
+            "mark": {"type": "line", "point": {"size": 70}},
             "encoding": {
                 "tooltip": [
-                    { "title": "Type", "field": "Type" },
-                    { "title": "Number", "field": "Number", "format": "," },
-                    { "title": "For 6 months ending:", "field": "Date", "type": "temporal" }
+                    {"title": "Type", "field": "Type"},
+                    {"title": "Number", "field": "Number","format": ","},
+                    {"title": "For 6 months ending:", "field": "Date", "type": "temporal"}
                 ]
             }
         },
         {
             "encoding": {
-                "x": { "aggregate": "min", "field": "Date" },
-                "y": { "aggregate": { "argmin": "Date" }, "field": "Number" },
+                "x": {"aggregate": "min", "field": "Date"},
+                "y": {"aggregate": {"argmin": "Date"}, "field": "Number"},
                 "text": {
                     "condition": {
                         "param": "hover",
@@ -604,23 +620,21 @@ var revSpecThree = {
                 }
             },
             "layer": [
-                { "mark": { "type": "circle" } },
+                {"mark": {"type": "circle"}},
                 {
-                    "mark": {
-                        "type": "text", "align": "left", "dx": -4, "dy": -15, "fontSize": 12,
-                        "fontWeight": "bold"
-                    },
-                    "encoding": { "text": { "field": "Type", "type": "nominal" } }
+                    "mark": {"type": "text", "align": "left", "dx": -4, "dy": -15,        "fontSize": 12,
+                "fontWeight": "bold"},
+                    "encoding": {"text": {"field": "Type", "type": "nominal"}}
                 }
             ]
         },
         {
             "mark": "rule",
             "encoding": {
-                "x": { "datum": "1680403200000" },
-                "xOffset": { "value": 0.5 },
-                "color": { "value": "red" },
-                "size": { "value": 0.5 }
+                "x": {"datum": "1680403200000"},
+                "xOffset": {"value": 0.5},
+                "color": {"value": "red"},
+                "size": {"value": 0.5}
             }
         }
     ]
@@ -642,16 +656,16 @@ var specThree = {
         "subtitleFontSize": 13
     },
     "config": {
-        "view": { "stroke": null },
-        "axisX": { "labelAngle": 0, "grid": false, "tickCount": { "interval": "month", "step": 6 } },
-        "axisY": { "tickCount": 3 }
+        "view": {"stroke": null},
+        "axisX": {"labelAngle": 0, "grid": false, "tickCount": {"interval": "month", "step": 6}},
+        "axisY": {"tickCount": 3}
     },
     "data": {
         "url": "compliance-inspections.csv"
     },
     "transform": [
-        { "filter": "datum.zoneID=='2'" },
-        { "filter": "datum.Type!='Passed'" },
+        {"filter": "datum.zoneID=='2'"},
+        {"filter": "datum.Type!='Passed'"},
     ],
     "encoding": {
         "x": {
@@ -659,14 +673,12 @@ var specThree = {
             "type": "temporal",
             "title": "",
             "axis": {
-                "values": [1656561600000, 1672462800000, 1688097600000, 1703998800000, 1719705600000, 1735689600000,
-                    1751328000000, 1767225600000, 1782777600000],
-                "format": "%b %Y"
-            },
+                "values": [1656561600000,1672462800000,1688097600000,1703998800000,1719705600000,1735689600000,
+                    1751328000000,1767225600000,1782777600000],
+                "format": "%b %Y"},
             "scale": {
                 "domainMin": 1650841000000,
-                "domainMax": 1785542400000
-            }
+                "domainMax": 1785542400000}
         }
     },
     "layer": [
@@ -681,24 +693,24 @@ var specThree = {
                         "range": ["#00008B", "#c73866", "#D77393"]
                     }
                 },
-                "y": { "field": "Number", "type": "quantitative", "title": "" }
+                "y": {"field": "Number", "type": "quantitative", "title": ""}
             },
             "layer": [
-                { "mark": { "type": "line", "point": { "size": 100 }, "strokeWidth": 4 } },
+                {"mark": {"type": "line", "point": {"size": 100}, "strokeWidth": 4}},
                 {
-                    "transform": [{ "filter": { "param": "hover", "empty": false } }],
+                    "transform": [{"filter": {"param": "hover", "empty": false}}],
                     "mark": "point"
                 },
                 {
                     "encoding": {
-                        "x": { "aggregate": "max", "field": "Date" },
-                        "y": { "aggregate": { "argmax": "Date" }, "field": "Number" }
+                        "x": {"aggregate": "max", "field": "Date"},
+                        "y": {"aggregate": {"argmax": "Date"}, "field": "Number"}
                     },
                     "layer": [
-                        { "mark": { "type": "circle" } },
+                        {"mark": {"type": "circle"}},
                         {
-                            "mark": { "type": "text", "align": "left", "dx": 14 },
-                            "encoding": { "text": { "field": "Type", "type": "nominal" } }
+                            "mark": {"type": "text", "align": "left", "dx": 14},
+                            "encoding": {"text": {"field": "Type", "type": "nominal"}}
                         }
                     ]
                 }
@@ -706,19 +718,19 @@ var specThree = {
         },
         {
             "transform": [
-                { "pivot": "Type", "value": "Number", "groupby": ["Date"] }
+                {"pivot": "Type", "value": "Number", "groupby": ["Date"]}
             ],
             "mark": "rule",
             "encoding": {
                 "opacity": {
-                    "condition": { "value": 0.3, "param": "hover", "empty": false },
+                    "condition": {"value": 0.3, "param": "hover", "empty": false},
                     "value": 0
                 },
                 "tooltip": [
-                    { "field": "Compliance inspections", "type": "quantitative" },
-                    { "field": "Failed (any reason), summons issued", "type": "quantitative" },
-                    { "field": "Active rat signs", "type": "quantitative", "title": "Active rat signs" },
-                    { "field": "Date", "type": "temporal", "title": "For 6 months ending" }
+                    {"field": "Compliance inspections", "type": "quantitative"},
+                    {"field": "Failed (any reason), summons issued", "type": "quantitative"},
+                    {"field": "Active rat signs", "type": "quantitative","title": "Active rat signs"},
+                    {"field": "Date", "type": "temporal", "title": "For 6 months ending"}
                 ]
             },
             "params": [
@@ -733,20 +745,20 @@ var specThree = {
                     }
                 }
             ]
-        }, {
+        },{
             "mark": "rule",
             "encoding": {
                 "x": {
-                    "datum": "1680403200000"
-                },
-                "xOffset": { "value": 0.5 },
-                "color": { "value": "red" },
-                "size": { "value": 2 },
-                "strokeDash": { "value": [2, 2] }
+                    "datum": "1680403200000"          
+                    },
+                "xOffset": {"value": 0.5},
+                "color": {"value": "red"},
+                "size": {"value": 2},
+                "strokeDash": {"value": [2, 2]}
             }
         }
     ]
-}
+};
 
 // ===== EXTERMINATOR SPEC ================================================== //
 
@@ -766,19 +778,19 @@ var revSpecFour = {
         "subtitleFontSize": 13
     },
     "config": {
-        "view": { "stroke": null },
+        "view": {"stroke": null},
         "axisX": {
             "labelAngle": 0,
             "grid": false,
-            "tickCount": { "interval": "month", "step": 1 }
+            "tickCount": {"interval": "month", "step": 1}
         },
-        "axisY": { "tickCount": 2 }
+        "axisY": {"tickCount": 2}
     },
     "data": {
         "url": "exterminator-visits.csv"
     },
     "transform": [
-        { "filter": "datum.zoneID=='2'" }
+        {"filter": "datum.zoneID=='2'"}
     ],
     "encoding": {
         "x": {
@@ -801,10 +813,9 @@ var revSpecFour = {
             },
             "scale": {
                 "domainMin": 1650841000000,
-                "domainMax": 1785542400000
-            }
+                "domainMax": 1785542400000}
         },
-        "y": { "field": "Number", "type": "quantitative", "title": "" },
+        "y": {"field": "Number", "type": "quantitative", "title": ""},
         "color": {
             "condition": {
                 "param": "hover",
@@ -818,7 +829,7 @@ var revSpecFour = {
             },
             "value": "grey"
         },
-        "opacity": { "condition": { "param": "hover", "value": 1 }, "value": 0.35 }
+        "opacity": {"condition": {"param": "hover", "value": 1}, "value": 0.35}
     },
     "layer": [
         {
@@ -833,22 +844,22 @@ var revSpecFour = {
                     }
                 }
             ],
-            "mark": { "type": "line", "stroke": "transparent", "strokeWidth": 15 }
+            "mark": {"type": "line", "stroke": "transparent", "strokeWidth": 15}
         },
         {
-            "mark": { "type": "line", "point": { "size": 70 } },
+            "mark": {"type": "line", "point": {"size": 70}},
             "encoding": {
                 "tooltip": [
-                    { "title": "Event", "field": "Thing" },
-                    { "title": "Number", "field": "Number", "format": "," },
-                    { "title": "For 6 months ending:", "field": "Date", "type": "temporal" }
+                    {"title": "Event", "field": "Thing"},
+                    {"title": "Number", "field": "Number","format": ","},
+                    {"title": "For 6 months ending:", "field": "Date", "type": "temporal"}
                 ]
             }
         },
         {
             "encoding": {
-                "x": { "aggregate": "min", "field": "Date" },
-                "y": { "aggregate": { "argmin": "Date" }, "field": "Number" },
+                "x": {"aggregate": "min", "field": "Date"},
+                "y": {"aggregate": {"argmin": "Date"}, "field": "Number"},
                 "text": {
                     "condition": {
                         "param": "hover",
@@ -859,23 +870,21 @@ var revSpecFour = {
                 }
             },
             "layer": [
-                { "mark": { "type": "circle" } },
+                {"mark": {"type": "circle"}},
                 {
-                    "mark": {
-                        "type": "text", "align": "left", "dx": -4, "dy": -15, "fontSize": 12,
-                        "fontWeight": "bold"
-                    },
-                    "encoding": { "text": { "field": "Thing", "type": "nominal" } }
+                    "mark": {"type": "text", "align": "left", "dx": -4, "dy": -15,        "fontSize": 12,
+                "fontWeight": "bold"},
+                    "encoding": {"text": {"field": "Thing", "type": "nominal"}}
                 }
             ]
         },
         {
             "mark": "rule",
             "encoding": {
-                "x": { "datum": "1680403200000" },
-                "xOffset": { "value": 0.5 },
-                "color": { "value": "red" },
-                "size": { "value": 0.5 }
+                "x": {"datum": "1680403200000"},
+                "xOffset": {"value": 0.5},
+                "color": {"value": "red"},
+                "size": {"value": 0.5}
             }
         }
     ]
@@ -887,34 +896,36 @@ var revSpecFour = {
 var initialData = [];
 var recent = [];
 var thisRecent = [];
-
 d3.csv('initial-inspections.csv').then(data => {
+
     // ingest data
 
-    initialData = data
+    initialData = data;
 
     // get final date
 
-    var finalPos = initialData.length - 1
-    var mostRecentDate = initialData[finalPos].Date
+    var finalPos = initialData.length - 1;    
+    var mostRecentDate = initialData[finalPos].Date;
 
     // get data for final date installment
 
-    recent = initialData.filter(x => x.Date === mostRecentDate)
-})
+    recent = initialData.filter(x => x.Date === mostRecentDate);
+
+});
 
 //// ----- Get most recent data for Compliance Inspections ------ ////
 
 var complianceData = [];
 var complianceRecent = [];
 var thisCompliance = [];
-
 d3.csv('compliance-inspections.csv').then(data => {
+
     complianceData = data;
-    var finalPosition = complianceData.length - 1
-    var mostRecentDate = complianceData[finalPosition].Date
-    complianceRecent = complianceData.filter(x => x.Date === mostRecentDate)
-})
+    var finalPosition = complianceData.length - 1;
+    var mostRecentDate = complianceData[finalPosition].Date;
+    complianceRecent = complianceData.filter(x => x.Date === mostRecentDate);
+
+});
 
 // ===== REDRAW CHARTS ON NEIGHBORHOOD SELECTION ================================================== //
 
@@ -923,6 +934,7 @@ function redrawChart(zoneID) {
     console.log('drawing chart for zone ', zoneID);
 
     if (zoneID == '4') {
+
         revSpecOne.layer[3].encoding.color.value = "red";
         revSpecTwo.layer[3].encoding.color.value = "red";
         revSpecThree.layer[3].encoding.color.value = "red";
@@ -932,6 +944,7 @@ function redrawChart(zoneID) {
             note.classList.remove('hide');
         });
     } else {
+
         revSpecOne.layer[3].encoding.color.value = "transparent";
         revSpecTwo.layer[3].encoding.color.value = "transparent";
         revSpecThree.layer[3].encoding.color.value = "transparent";
@@ -943,16 +956,16 @@ function redrawChart(zoneID) {
     }
 
 
-    revSpecOne.transform[0].filter = `datum.zoneID == '${zoneID}'`
-    revSpecTwo.transform[0].filter = `datum.zoneID == '${zoneID}'`
-    revSpecThree.transform[0].filter = `datum.zoneID == '${zoneID}'`
-    revSpecFour.transform[0].filter = `datum.zoneID == '${zoneID}'`
+    revSpecOne.transform[0].filter = `datum.zoneID == '${zoneID}'`;
+    revSpecTwo.transform[0].filter = `datum.zoneID == '${zoneID}'`;
+    revSpecThree.transform[0].filter = `datum.zoneID == '${zoneID}'`;
+    revSpecFour.transform[0].filter = `datum.zoneID == '${zoneID}'`;
 
     return Promise.all([
-        vegaEmbed("#vizOne", revSpecOne, { renderer: "svg" }),
-        vegaEmbed("#vizTwo", revSpecTwo, { renderer: "svg" }),
-        vegaEmbed("#vizThree", revSpecThree, { renderer: "svg" }),
-        vegaEmbed("#vizFour", revSpecFour, { renderer: "svg" })
+        vegaEmbed("#vizOne", revSpecOne, {renderer: "svg"}),
+        vegaEmbed("#vizTwo", revSpecTwo, {renderer: "svg"}),
+        vegaEmbed("#vizThree", revSpecThree, {renderer: "svg"}),
+        vegaEmbed("#vizFour", revSpecFour, {renderer: "svg"})
     ]).catch(error => {
         console.error('Unable to redraw rat mitigation charts:', error);
     });

@@ -29,10 +29,10 @@
             4,
             4,
             4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 4,
@@ -99,8 +99,8 @@
             "3. A description of the public outreach measures undertaken by the department in relation to rat mitigation in each such zone.",
             "4. Explanations of the creation or elimination of rat mitigation zones, or any change of boundaries of such zone, since the previous report, if applicable.",
             "5. Explanations of any changes to the rat mitigation measured used in each such zone since the previous report, if applicable.",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

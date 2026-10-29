@@ -3,18 +3,18 @@
 var inputAddress;
 var inputLat;
 var inputLong;
-var inputLatLong = []
-var CDgeojson = 'geojson/cd.geojson'
-var RMZgeojson = 'geojson/rmz.geojson'
+var inputLatLong = [];
+var CDgeojson = 'geojson/cd.geojson';
+var RMZgeojson = 'geojson/rmz.geojson';
 let geojsonData;
 let countyID;
 var city;
 var county;
 var success = false;
 var isRMZ = false;
-var thisArea = []
-var mapLayers = []
-var mapMarkers = []
+var thisArea = [];
+var mapLayers = [];
+var mapMarkers = [];
 var cdData = {};
 var rmzData = {};
 var marbleHill;
@@ -58,13 +58,12 @@ function initializeNYCLIB() {
 
             searchButton.onclick = function() {
 
-                $("#map-search1").parent().trigger("submit")
+                $("#map-search1").parent().trigger("submit");
                 // $("#map-search1").trigger("submit")
 
-                setTimeout(geocode, 2500)
+                setTimeout(geocode, 2500);
 
             };
-
         }
 
         // add event listener to form
@@ -72,12 +71,9 @@ function initializeNYCLIB() {
         document.querySelector('#map-search1').addEventListener('keypress', function (e) {
 
             if (e.key === 'Enter') {
-
-                console.log('***Form submitted')
-                setTimeout(geocode, 2500)
-
+                console.log('***Form submitted');
+                setTimeout(geocode, 2500);
             }
-
         });
     });
 }
@@ -102,25 +98,32 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r
 
 // add reset button
 
-L.easyButton({
+const resetButton = L.easyButton({
     position: "bottomleft",
     states: [{
         title: "Zoom to fit",
         icon: "fas fa-undo",
         
         onClick: function() {
-            
             resetZoom();
         }
     }]
 }).addTo(leafletMap);
+
+// easyButton puts the label only in `title`, and Chrome computes the button's name as ""
+// with the icon inside it, so screen readers announce an unnamed button
+
+resetButton.button.setAttribute("aria-label", "Zoom to fit");
+resetButton.button.querySelectorAll(".fas").forEach(i => i.setAttribute("aria-hidden", "true"));
 
 // add and style RMZs
 
 fetch(RMZgeojson)
     .then(response => response.json())
     .then(data => {
+
         L.geoJSON(data, {
+
             style: {
                 color: "darkgray",  // Gray border
                 weight: 1,         // Thin outline
@@ -128,7 +131,9 @@ fetch(RMZgeojson)
                 fillOpacity: 0.5   // Semi-opaque fill
             },
             onEachFeature: function (feature, layer) {
+
                 if (feature.properties && feature.properties.Label) {
+
                     layer.bindPopup(
                         '<strong>Rat Mitigation Zone:</strong><br>' + 
                         feature.properties.Label + 
@@ -137,16 +142,19 @@ fetch(RMZgeojson)
                 }
             }
         }).addTo(leafletMap);
+
     })
     .catch(error => console.error("Error loading GeoJSON:", error));
 
 
 
 function resetZoom() {
+
     // console.log('reset zoom 3')
 
-    window.location.hash = '#top'
-    location.reload()
+    window.location.hash = '#top';
+    location.reload();
+
 }
 
 //----------------------------------------
@@ -156,12 +164,13 @@ function resetZoom() {
 function geocode() {
     
     console.log("nycMap [geocode]", nycMap);
-    console.log('***Geocoding')
-    document.getElementById('status').innerHTML = 'Getting data...'
+    console.log('***Geocoding');
+    document.getElementById('status').innerHTML = 'Getting data...';
     if (nycMap.location.type === 'geocoded') {
-        console.log('- location found. Details:') // get data...
-        locationDetails = nycMap.location
-        console.log(locationDetails)
+
+        console.log('- location found. Details:'); // get data...
+        locationDetails = nycMap.location;
+        console.log(locationDetails);
         
         /*
         Data to use:
@@ -172,19 +181,21 @@ function geocode() {
         nycMap.location.data.communityDistrict  Community District
         */
         
-        thisCD  = nycMap.location.data.communityDistrict
-        thisBBL = nycMap.location.data.bbl
+        thisCD  = nycMap.location.data.communityDistrict;
+        thisBBL = nycMap.location.data.bbl;
         
         // place marker on leaflet map
 
-        addMarker(nycMap.location.data.latitude,nycMap.location.data.longitude,nycMap.location.name)
+        addMarker(nycMap.location.data.latitude,nycMap.location.data.longitude,nycMap.location.name);
         
         // get property data
 
-        getPropertyData(thisBBL)
+        getPropertyData(thisBBL);
         
     } else {
-        console.log('***Location not found :( ')
+
+        console.log('***Location not found :( ');
+
     }
 }
 
@@ -193,11 +204,12 @@ function geocode() {
 //---------------------------------------- 
 
 function addMarker(lat,long,locationName) {
+
     // Remove prior markers
 
-    mapMarkers.forEach(marker => map.removeLayer(marker))
+    mapMarkers.forEach(marker => map.removeLayer(marker));
     
-    console.log('- adding marker...')
+    console.log('- adding marker...');
     
     // set icon
 
@@ -213,13 +225,13 @@ function addMarker(lat,long,locationName) {
     var marker = L.marker([lat,long],{icon: this_icon}).addTo(leafletMap);
     marker.bindPopup(locationName)
     .openPopup();
-    mapMarkers.push(marker)
+    mapMarkers.push(marker);
     
     leafletMap.setView([lat, long], 13);
     
     // check if this point is in RMZs
 
-    checkPointInRMZ(lat,long)
+    checkPointInRMZ(lat,long);
     
 }
 
@@ -229,62 +241,71 @@ function addMarker(lat,long,locationName) {
 //---------------------------------------- 
 
 async function checkPointInRMZ(lat,long) {
-    console.log('***Checking if location is in RMZ')
-    await getGeoJSON(RMZgeojson)
+
+    console.log('***Checking if location is in RMZ');
+    await getGeoJSON(RMZgeojson);
     
-    inputLatLong = [lat,long]
+    inputLatLong = [lat,long];
     
     for (let i = 0; i < geojsonData.features.length; i++) {
+
         // console.log(i)
         
         // Loop through all the nested multipolygons
 
         if (geojsonData.features[i].geometry.type === "MultiPolygon") {
+
             for (let j = 0; j < geojsonData.features[i].geometry.coordinates.length; j++) {
+
                 for (let k = 0; k < geojsonData.features[i].geometry.coordinates[j].length; k++) {
+
                     thisArea = geojsonData.features[i].geometry.coordinates[j][k];
-                    thisArea     = swapFirstAndSecond(thisArea)
-                    let area     = L.polygon(thisArea)
-                    let location = L.marker(inputLatLong)
+                    thisArea     = swapFirstAndSecond(thisArea);
+                    let area     = L.polygon(thisArea);
+                    let location = L.marker(inputLatLong);
                     if (area.contains(location.getLatLng())) {
-                        console.log('- this address is RMZ ', geojsonData.features[i].properties.Label)
+
+                        console.log('- this address is RMZ ', geojsonData.features[i].properties.Label);
                         
                         // getRMZIndicatorData(geojsonData.features[i].id)
 
-                        isRMZ = true
-                        showRMZCard(isRMZ)
+                        isRMZ = true;
+                        showRMZCard(isRMZ);
                         // mapLayers.forEach(layer => map.removeLayer(layer)) // remove previous layers
                         // area.addTo(leafletMap) // add RMZ layer
                         break; // stop the loop
+
                     }
                 }
             }
         } 
         // and nested polygons
         else if (geojsonData.features[i].geometry.type === "Polygon") {
+
             for (let j = 0; j < geojsonData.features[i].geometry.coordinates.length; j++) {
+
                 thisArea = geojsonData.features[i].geometry.coordinates[j];
-                thisArea     = swapFirstAndSecond(thisArea)
-                let area     = L.polygon(thisArea)
-                let location = L.marker(inputLatLong)
+                thisArea     = swapFirstAndSecond(thisArea);
+                let area     = L.polygon(thisArea);
+                let location = L.marker(inputLatLong);
                 if (area.contains(location.getLatLng())) {
-                    console.log('- this address is RMZ ', geojsonData.features[i].properties)
+
+                    console.log('- this address is RMZ ', geojsonData.features[i].properties);
                     // getRMZIndicatorData(geojsonData.features[i].id)
 
-                    isRMZ = true
-                    showRMZCard(isRMZ)
+                    isRMZ = true;
+                    showRMZCard(isRMZ);
                     // area.addTo(leafletMap)
                     // break; // stop the loop
+
                 }     
             }
         }
     }
     
-    if (isRMZ === false) {
-        console.log('- not in an RMZ.')
-    }
+    if (isRMZ === false) console.log('- not in an RMZ.');
     
-    showParentCD(lat,long)
+    showParentCD(lat,long);
     
 }
 
@@ -293,9 +314,10 @@ async function checkPointInRMZ(lat,long) {
 //---------------------------------------- 
 
 async function showParentCD(lat,long) {
+
     // get CD geojson
 
-    await getGeoJSON(CDgeojson)
+    await getGeoJSON(CDgeojson);
     
     // filter for geocoded CD
 
@@ -306,11 +328,12 @@ async function showParentCD(lat,long) {
     
     // Add to map
 
-    const CDlayer = L.geoJSON(thisCDArea).addTo(leafletMap)
+    const CDlayer = L.geoJSON(thisCDArea).addTo(leafletMap);
     
     // get data for CD
 
-    getCDIndicatorData(thisCD)
+    getCDIndicatorData(thisCD);
+
 }
 
 //----------------------------------------
@@ -318,7 +341,7 @@ async function showParentCD(lat,long) {
 //---------------------------------------- 
 
 function showRMZCard(x) {
-    document.getElementById('rmzYes').classList.remove('hide')
+    document.getElementById('rmzYes').classList.remove('hide');
 }
 
 
@@ -328,20 +351,25 @@ function showRMZCard(x) {
 
 var CDIndicatorData;
 function getCDIndicatorData(x) {
-    console.log('***Getting CD Indicator data for ', x)
+
+    console.log('***Getting CD Indicator data for ', x);
     
     const URL = 'https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/indicators/data/2434.json';
     // passes geoID into function
     
     return new Promise((resolve, reject) => {
+
         fetch(URL)
         .then(response => {
+
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
             return response.json(); // Parse data
+
         })
         .then(data => {
+
             // Get the keys and length of data
 
             const keys = Object.keys(data);
@@ -351,21 +379,24 @@ function getCDIndicatorData(x) {
 
             const restructuredData = [];
             for (let i = 0; i < dataLength; i++) {
+
                 const record = {};
                 keys.forEach(key => {
                     record[key] = data[key][i];
                 });
                 restructuredData.push(record);
+
             }
             
             // FILTER FOR COMMUINTY DISTRICTS, and THIS CD
 
-            CDIndicatorData = restructuredData.filter(item => item.GeoType === 'CD') 
-            CDIndicatorData = CDIndicatorData.filter(item => item.GeoID == x)
+            CDIndicatorData = restructuredData.filter(item => item.GeoType === 'CD'); 
+            CDIndicatorData = CDIndicatorData.filter(item => item.GeoID == x);
             
             console.log('- CDIndicatorData:',CDIndicatorData);
             printCDData(CDIndicatorData);
             resolve(); // Resolve promise 
+
         })
         .catch(error => {
             console.error('Error fetching the Indicator data:', error);
@@ -381,31 +412,35 @@ function getCDIndicatorData(x) {
 var propertyData;
 async function getPropertyData(x) {
     
-    var openDataSource = 'https://data.cityofnewyork.us/resource/a2h9-9z38.json?bbl=' + x
+    var openDataSource = 'https://data.cityofnewyork.us/resource/a2h9-9z38.json?bbl=' + x;
     
     return new Promise((resolve, reject) => {
+
         // Fetch the GeoJSON data
 
         fetch(openDataSource)
         .then(response => {
+
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
             return response.json(); // Parse data
+
         })
         .then(data => {
+
             propertyData = data; // Store  data in a global variable
-            console.log('***Getting property data')
-            console.log(propertyData)
-            printPropertyData(propertyData)
+            console.log('***Getting property data');
+            console.log(propertyData);
+            printPropertyData(propertyData);
             resolve(); // Resolve the promise when the data is ready
+
         })
         .catch(error => {
             console.error('Error fetching the data file:', error);
             reject(error); // Reject the promise if there’s an error
         });
     });
-    
 }
 
 
@@ -419,9 +454,10 @@ async function getPropertyData(x) {
 // Print CD data
 
 function printCDData(data) {
-    console.log('- Printing CD data to page.')
+
+    console.log('- Printing CD data to page.');
     
-    document.getElementById('cdOutput').classList.remove('hide')
+    document.getElementById('cdOutput').classList.remove('hide');
     
     document.getElementById('cdID').innerHTML = 'Community District ' + thisCD;
     
@@ -430,6 +466,7 @@ function printCDData(data) {
     fetch('https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/indicators/metadata/TimePeriods.json')
     .then(response => response.json())
     .then(timePeriods => {
+
         // Create a lookup map
 
         const timePeriodMap = new Map(timePeriods.map(tp => [tp.TimePeriodID, tp.TimePeriod]));
@@ -458,7 +495,7 @@ function printCDData(data) {
         .filter(item => item.MeasureID === 1381)
         .map(item => item.DisplayValue);
         
-        document.getElementById('cdProp').innerHTML = inspected + '%'
+        document.getElementById('cdProp').innerHTML = inspected + '%';
         
         // Print failed to page
 
@@ -466,22 +503,28 @@ function printCDData(data) {
         .filter(item => item.MeasureID === 1383)
         .map(item => item.DisplayValue);
         
-        document.getElementById('cdFail').innerHTML = failed + '%'
+        document.getElementById('cdFail').innerHTML = failed + '%';
         
         // Label rat activity high, low, or moderate, and print to page
 
         var ratActivity;
         if (failed > 20) {
-            ratActivity = 'high'
+
+            ratActivity = 'high';
+
         } else if (failed < 5) {
-            ratActivity = 'low'
+
+            ratActivity = 'low';
+
         } else {
-            ratActivity = 'moderate'
+
+            ratActivity = 'moderate';
+
         }
         
-        document.getElementById('activityValue').innerHTML = ratActivity
-        const ratClass = ratActivity + '-activity'
-        document.getElementById('activityValue').classList.add(ratClass)
+        document.getElementById('activityValue').innerHTML = ratActivity;
+        const ratClass = ratActivity + '-activity';
+        document.getElementById('activityValue').classList.add(ratClass);
         
     })
     .catch(error => console.error("Error fetching time periods:", error));
@@ -496,15 +539,17 @@ function printCDData(data) {
     "MeasureID": 1383,
     "MeasureName": "Rat inspections, Failed (active rat signs)",
     */
+
 }
 
 //----------
 // Print property data to page
 
 function printPropertyData(data) {
-    console.log("- printing property data")
-    document.getElementById('propertyOutput').classList.remove('hide')
-    document.getElementById('noOutput').classList.add('hide')
+
+    console.log("- printing property data");
+    document.getElementById('propertyOutput').classList.remove('hide');
+    document.getElementById('noOutput').classList.add('hide');
     
     // convert date
 
@@ -519,7 +564,7 @@ function printPropertyData(data) {
     const recentInspections = propertyData.filter(property => property.approved_date >= fiveYearsAgo);
     console.log(recentInspections);
     
-    document.getElementById('numOfInspections').innerHTML = recentInspections.length + ' time' + (recentInspections.length != 1 ? 's' : '')
+    document.getElementById('numOfInspections').innerHTML = recentInspections.length + ' time' + (recentInspections.length != 1 ? 's' : '');
     
     // Get most recent inspection
 
@@ -530,14 +575,14 @@ function printPropertyData(data) {
     // Format date
 
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const mostRecentDate = mostRecentInspection.approved_date.toLocaleDateString('en-US', options)
-    document.getElementById('mostRecentInspection').innerHTML = mostRecentDate
+    const mostRecentDate = mostRecentInspection.approved_date.toLocaleDateString('en-US', options);
+    document.getElementById('mostRecentInspection').innerHTML = mostRecentDate;
     
     // Print result
 
-    const resultClass = (mostRecentInspection.result === 'Passed' ? 'passed-fill' : 'failed-fill')
-    document.getElementById('result').classList.add(resultClass)
-    document.getElementById('result').innerHTML = (mostRecentInspection.result === 'Passed' ? 'passed' : 'failed')
+    const resultClass = (mostRecentInspection.result === 'Passed' ? 'passed-fill' : 'failed-fill');
+    document.getElementById('result').classList.add(resultClass);
+    document.getElementById('result').innerHTML = (mostRecentInspection.result === 'Passed' ? 'passed' : 'failed');
     
     
 }
@@ -550,21 +595,27 @@ function printPropertyData(data) {
 // retrieves geoJSON files
 
 function getGeoJSON(x) {
+
     return new Promise((resolve, reject) => {
+
         // Fetch the GeoJSON data
 
         fetch(x)
         .then(response => {
+
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
             return response.json(); // Parse the GeoJSON data
+
         })
         .then(data => {
+
             geojsonData = data; // Store the GeoJSON data in a global variable
             // console.log('GeoJSON data loaded.');
 
             resolve(); // Resolve the promise when the data is ready
+
         })
         .catch(error => {
             console.error('Error fetching the GeoJSON file:', error);
@@ -576,12 +627,15 @@ function getGeoJSON(x) {
 // Point re-formatter
 
 function swapFirstAndSecond(arrays) {
+
     // Iterate over each sub-array
 
     return arrays.map(subArray => {
+
         // Swap the first and second elements
 
         return [subArray[1], subArray[0]];
+
     });
 }
 

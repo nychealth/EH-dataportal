@@ -6,6 +6,14 @@ azlink: "https://www.nyc.gov/site/doh/health/health-topics/active-design.page"
 seo_title: "Accessibility data in NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of accessibility data in NYC."
+blurb: "Transit, disability, housing"
+datatables: true
+arquero: true
+leaflet: true
+vega: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 tags:
 categories: ["accessibility", "publicspace", "housing"]
 keywords:

@@ -20,8 +20,8 @@
         "assetsWithIntegrity": 8,
         "headingLevels": [
             1,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 1,
         "landmarks": {
@@ -83,8 +83,8 @@
         "title": "Child Health in NYC – Environment & Health Data Portal",
         "headingText": [
             "Child health",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

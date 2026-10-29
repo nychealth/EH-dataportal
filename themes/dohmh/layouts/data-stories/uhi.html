@@ -44,7 +44,7 @@
                 </div>
                 {{- end -}}
 
-            <h1 class="h2 data-stories mb-3"><i class="fas fa-passport" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
+            <h1 class="h2 mb-3">{{ partial "section-icon.html" $.Section }}{{ .Title }}</h1>
             <div class="container-fluid px-0">
 
                 {{ $src := .Resources.GetMatch .Params.image }}
@@ -423,10 +423,11 @@
                 { veg: 0.1, imperv: 0.9, temp: 78.88028282 },
                 { veg: 0.05, imperv: 0.95, temp: 78.98621749 },
                 { veg: 0, imperv: 1, temp: 79.09215215 }
-            ]
+            ];
 
 
             function handleUpdate() {
+
                 vegVar = .01 * slider.value;
                 vegClean = Number(vegVar.toFixed(2));
                 impervVar = (100 - slider.value) / 100;
@@ -448,16 +449,19 @@
 
 
                 printValues(); // Print values to HTML
+
             }
 
             function printValues() {
+
                 document.getElementById('tc').innerHTML = slider.value + "%";
                 document.getElementById('gs').innerHTML = 100 - slider.value + "%";
                 document.getElementById('printtemp').innerHTML = tempVar + "°";
                 document.getElementById('treeoverlay').style.opacity = slider.value / 100;
                 document.getElementById('grassoverlay').style.opacity = 1 - (slider.value / 100);
 
-                merc.style.height = 15 + 65 * ((79 - tempVar) / 7) + "%"
+                merc.style.height = 15 + 65 * ((79 - tempVar) / 7) + "%";
+
             }
 
             handleUpdate();
@@ -524,15 +528,23 @@
         <script>
             window.onload = listenRadios;
             function listenRadios() {
+
                 radios = document.querySelectorAll('input[type=radio][name="mapRadioGroup"]');
                 radios.forEach(function (radio) {
+
                     return radio.addEventListener('change', function () {
+
                         if (radio.value === '2018') {
+
                             document.getElementById('mapframe').src = `{{ .Site.BaseURL }}maps/UHI/2018.html`;
+
                         } else {
+
                             document.getElementById('mapframe').src = `{{ .Site.BaseURL }}maps/UHI/2019.html`;
+
                         }
                         ;
+
                     });
                 });
             } //this function creates the map
