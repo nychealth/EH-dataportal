@@ -111,7 +111,10 @@ it (`cf9d58fc4d`) started both. **The marker also cancels the deploy build if th
 the PR's head when it merges**, because `hugo-build-to-prod-prod.yml` runs on `pull_request: closed`,
 which reads the same head commit. Push an ordinary commit after it before merging, or run
 `gh workflow run hugo-build-to-prod-prod.yml --ref production` afterwards `[2026-10-28: #1515 merged
-with head `2bfcfde380` carrying the marker; no prod-prod run started]`. The automatic alternative, not built
+with head `2bfcfde380` carrying the marker; no prod-prod run started]`. GitHub matches the literal
+string anywhere in the message, so a commit that only *mentions* it skips too — write "the skip-ci
+marker" instead `[2026-10-28: #1520, the commit adding this warning, quoted it in its subject and
+merged with no prod-prod run]`. The automatic alternative, not built
 (Chris, 2026-10-22): a first job diffs `github.event.before..github.sha`, the files that one push
 changed, and the two sweep jobs run only when it touches something outside the ignored paths. It
 has to run the sweeps anyway when `before` is not an ancestor of the new head (a force-push or
