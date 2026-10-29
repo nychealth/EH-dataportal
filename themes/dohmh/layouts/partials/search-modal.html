@@ -14,6 +14,7 @@
                 <div id="search"></div>
                 <script>
                     window.addEventListener('DOMContentLoaded', () => {
+
                         const search_modal = document.getElementById('searchModal');
                         const search_root = document.getElementById('search');
 
@@ -22,6 +23,7 @@
                         }
 
                         new PagefindUI({
+
                             element: '#search',
                             showSubResults: true,
                             showImages: false,
@@ -29,6 +31,7 @@
                             showEmptyFilters: true,
                             debounceTimeoutMs: 500,
                             processTerm: function (term) {
+
                                 if (typeof gtag === 'function') {
                                     gtag('event', 'search', {
                                         search_term: term
@@ -36,31 +39,35 @@
                                 }
 
                                 return term;
+
                             },
                             processResult: function (result) {
+
                                 result.meta.title = result.meta.title
                                     .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                     .replaceAll('&amp;', '&');
 
                                 result.sub_results.forEach(sub => {
+
                                     sub.url = sub.url.replace('#IndicatorID-', '?id=');
 
                                     sub.title = sub.title
                                         .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                         .replaceAll('&amp;', '&');
+
                                 });
                             }
                         });
 
                         $(search_modal).on('shown.bs.modal', () => {
+
                             const search_input = search_modal.querySelector('.pagefind-ui__search-input');
 
-                            if (!search_input) {
-                                return;
-                            }
+                            if (!search_input) return;
 
                             search_input.focus();
                             search_input.select();
+
                         });
                     });
                 </script>

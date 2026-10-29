@@ -1,8 +1,12 @@
 """
-Insert a blank line between a comment and the code it introduces.
+Insert a blank line between a comment and the code it introduces, and between
+an opening `{` and a comment directly under it.
 
-This is the convergence tool for the rule in documents/js-conventions.md
-(§ Vertical whitespace). It is NOT part of any check and no npm script wraps it:
+This is the convergence tool for two rules in documents/js-conventions.md
+(§ Vertical whitespace): the comment rule, and the blank line after a block's
+opening brace, applied only where a comment is the brace's first line. The
+second rule's "longer than ~3 lines" condition is not checked, since that needs
+brace matching; a comment plus the code it introduces is taken as long enough. It is NOT part of any check and no npm script wraps it:
 new code should be written to the convention, and this exists for the moment old
 code arrives, which is the merge of a long-lived branch. Run it, review the diff,
 commit separately from whatever else that branch changed.
@@ -24,15 +28,16 @@ tree and prove the diff is empty-line insertions and nothing else:
 
 The first two cannot see a blank line inserted inside a template literal, which
 changes the string while still being an empty-line insertion; the third compares
-each changed .js file's token stream against HEAD and can. It does not cover the
-<script> bodies of .html targets, whose Go-template syntax a JS tokenizer cannot
-read — review those insertions by eye.
+each changed .js file's token stream against HEAD and can. It covers the
+<script> bodies of .html targets too, with Hugo actions masked, and names any it
+cannot tokenize.
 
 Targets come from `git ls-files`, not a directory walk: the checks above read
 `git diff`, which cannot show an edit to an untracked file, so a walk would rewrite
 untracked .js in a working tree with nothing to reveal it.
 
-Two things it does NOT touch, both cases where the comment introduces nothing:
+Two things it does NOT touch, both cases where the comment introduces nothing,
+and neither gap is inserted for them:
 a comment above an object-literal property (Vega and Leaflet specs annotate
 consecutive keys, and spacing each one doubles the block's height), and a comment
 above a line that continues or closes what came before — a `.filter()` in a fluent
@@ -51,13 +56,26 @@ DECL_BLOCK   = re.compile(r'^\s*(?:const|let|var)\s+[\w$]+\s*=\s*(?:async\s+)?(?
 OBJ_PROP     = re.compile(r'''^\s*(?:["'][^"']*["']|[\w$-]+)\s*:''')
 CONTINUATION = re.compile(r'^\s*(?:[.)\]}?:,+]|&&|\|\||else\b|catch\b|finally\b|break\b|continue\b)')
 
-# Vendored third-party files, which are not ours to restyle. Hand-maintained: a
-# vendored file added after this list was written will be reformatted like our own.
+# Vendored third-party files and generated ones, which are not ours to restyle.
+# Hand-maintained: a file added after this list was written will be reformatted like
+# our own. VENDORED, EXEMPT_DIRS and TARGET_ROOTS are mirrored in
+# scripts/js-sweep-targets.mjs; change them in both.
 VENDORED = (
     "assets/js/L.colorIcon.js",                  # Leaflet.ColorIcon, MIT
+    "assets/js/ccd-to-uhf42.js",                 # generated crosswalk (js-conventions.md § Scope)
+    "assets/js/cd-to-uhf42.js",                  # generated crosswalk
     "assets/js/color-convert.js",                # from a public gist
     "assets/js/naturalSort.js",                  # Jim Palmer's natural sort, MIT
+    "content/data-features/healthy-homes-info/source/assets/js/bootstrap.js",  # Bootstrap 4.1.3, minified
     "content/data-features/healthy-homes-info/source/assets/js/plugins.js",  # HTML5 Boilerplate
+    "content/data-features/healthy-homes-info/source/assets/js/popper.js",   # Popper, minified
+)
+
+# The retiring explorer, exempt in documents/js-conventions.md § Scope: its JS and
+# the layouts that carry its inline scripts
+EXEMPT_DIRS = (
+    "assets/js/data-explorer-old/",
+    "themes/dohmh/layouts/data-explorer-old/",
 )
 
 TARGET_ROOTS = (
@@ -86,19 +104,57 @@ def in_template_literal(lines, upto):
     return sum(l.count('`') for l in lines[:upto]) % 2 == 1
 
 
-# Bound the edit to <script> bodies in an HTML file, so nothing lands in markup
+HUGO_ACTION = re.compile(r'\{\{[\s\S]*?\}\}')
+NOT_JS_TYPE = re.compile(r'''type=["']?(application/(ld\+)?json|text/template)''')
+
+
+# Bound the edit to <script> bodies in an HTML file, so nothing lands in markup.
+# A port of scriptRegions in html-script-bodies.mjs, which the verifier reads with;
+# the two must find the same bodies. Hugo actions are blanked first (same length,
+# newlines kept), so a Hugo comment that mentions <script> opens nothing. A src-only
+# script has no body, and a JSON or template script is not JavaScript; an opening tag
+# split over several lines is read to its `>` before deciding either
 def script_regions(lines):
 
-    out, start = [], None
+    masked = HUGO_ACTION.sub(lambda m: re.sub(r'[^\n]', '_', m.group()), '\n'.join(lines)).split('\n')
 
-    for i, l in enumerate(lines):
+    out, start, open_tag = [], None, None
+
+    # The opening tag is complete: no body if `</script>` follows on the same line,
+    # -1 for a script that is not JavaScript
+    def close_tag(tag, i):
+
+        if '</script' in tag:
+            return None
+
+        return -1 if NOT_JS_TYPE.search(tag) else i + 1
+
+    for i, l in enumerate(masked):
 
         low = l.lower()
 
-        if start is None and '<script' in low and '</script' not in low:
-            start = i + 1
+        if open_tag is not None:
+
+            open_tag += ' ' + low
+
+            if '>' in low:
+                start = close_tag(open_tag, i)
+                open_tag = None
+
+        elif start is None and '<script' in low and '</script' not in low:
+
+            tag = low[low.index('<script'):]
+
+            if '>' in tag:
+                start = close_tag(tag, i)
+            else:
+                open_tag = tag
+
         elif start is not None and '</script' in low:
-            out.append((start, i))
+
+            if start >= 0:
+                out.append((start, i))
+
             start = None
 
     return out
@@ -132,11 +188,24 @@ def process(path):
             while j < end and COMMENT.match(lines[j]):
                 j += 1
 
-            # lines[j] is blank already when the file is conformant, and .strip() is
-            # what makes the whole pass idempotent
-            if j < end and lines[j].strip() and qualifies(lines[j]) \
-                    and not in_template_literal(lines, i):
+            # The first code line after the block, past any blank line, is what the
+            # comment introduces; both gaps below exist only when it introduces code
+            k = j
+            while k < end and not lines[k].strip():
+                k += 1
+
+            introduces = k < end and qualifies(lines[k]) and not in_template_literal(lines, i)
+
+            # Gap after: lines[j] is blank already when the file is conformant, and
+            # .strip() is what makes the whole pass idempotent
+            if introduces and j == k:
                 inserts.add(j)
+
+            # Gap before: a comment directly under the `{` that opens a function or
+            # block. `i > start` keeps an HTML region's <script> line out of it
+            prev = lines[i - 1].rstrip() if i > start else ''
+            if introduces and prev.endswith('{') and not COMMENT.match(prev):
+                inserts.add(i)
 
             i = j + 1
 
@@ -157,7 +226,8 @@ def process(path):
     return len(inserts)
 
 
-if __name__ == '__main__':
+def sweep_targets(filter_=None):
+    """The files this sweep may edit, as js-sweep-targets.mjs's sweepTargets lists them."""
 
     targets = []
 
@@ -165,16 +235,21 @@ if __name__ == '__main__':
     for root, exts in TARGET_ROOTS:
         listed = subprocess.run(["git", "ls-files", "-z", "--", root],
                                 capture_output=True, check=True).stdout.decode("utf-8")
-        targets += [p for p in listed.split("\0") if p.endswith(exts)]
+        targets += [p for p in listed.split("\0") if p.endswith(exts) and not p.endswith(".min.js")]
 
-    targets = [t for t in targets if t not in VENDORED]
+    targets = [t for t in targets if t not in VENDORED and not t.startswith(EXEMPT_DIRS)]
 
-    if len(sys.argv) > 1:
-        targets = [t for t in targets if sys.argv[1] in t]
+    if filter_:
+        targets = [t for t in targets if filter_ in t]
+
+    return sorted(targets)
+
+
+if __name__ == '__main__':
 
     total, files = 0, 0
 
-    for t in sorted(targets):
+    for t in sweep_targets(sys.argv[1] if len(sys.argv) > 1 else None):
 
         n = process(t)
 

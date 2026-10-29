@@ -68,7 +68,6 @@ const buildLegend = (def) => {
             labels +
         '</div>'
     );
-
 };
 
 
@@ -82,9 +81,7 @@ const showAqCovidMap = (key) => {
 
     const def = aqCovidMaps[key];
 
-    if (aqCovidOverlay) {
-        aqCovidMap.removeLayer(aqCovidOverlay);
-    }
+    if (aqCovidOverlay) aqCovidMap.removeLayer(aqCovidOverlay);
 
     aqCovidOverlay = L.imageOverlay(def.image, def.bounds, { alt: '' }).addTo(aqCovidMap);
     aqCovidLegend.getContainer().innerHTML = buildLegend(def);
@@ -98,7 +95,6 @@ const showAqCovidMap = (key) => {
         button.setAttribute('aria-pressed', isActive);
 
     });
-
 };
 
 

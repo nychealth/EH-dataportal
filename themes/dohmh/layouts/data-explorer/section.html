@@ -131,16 +131,18 @@
                 if (!$('#indicatorSelector').hasClass('show')) {
 
                     if ($('#topicSelector').hasClass('show')) {
+
                         $('#topicSelector').one('hidden.bs.modal', () => {
                             $('#indicatorSelector').modal('show');
                         });
                         $('#topicSelector').modal('hide');
+
                     } else {
+
                         $('#indicatorSelector').modal('show');
+
                     }
-
                 }
-
             } else {
 
                 // Want topic modal open (#topics or anything else)
@@ -148,22 +150,25 @@
                 if (!$('#topicSelector').hasClass('show')) {
 
                     if ($('#indicatorSelector').hasClass('show')) {
+
                         $('#indicatorSelector').one('hidden.bs.modal', () => {
                             navigatingByHistory = false;
                             $('#topicSelector').modal('show');
                         });
                         $('#indicatorSelector').modal('hide');
+
                     } else {
+
                         navigatingByHistory = false;
                         $('#topicSelector').modal('show');
+
                     }
-
                 } else {
+
                     navigatingByHistory = false;
+
                 }
-
             }
-
         };
 
         // When the indicator modal opens from a topic click, push
@@ -171,10 +176,12 @@
         // Guard: skip if hash is already #indicators (popstate replay).
 
         $('#indicatorSelector').on('shown.bs.modal', () => {
+
             if (window.location.hash !== '#indicators') {
                 window.history.pushState(lastTopicData, '', '#indicators');
             }
             navigatingByHistory = false;
+
         });
 
         // When the indicator modal is dismissed by the user (X / backdrop),

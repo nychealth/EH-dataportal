@@ -13,6 +13,7 @@
 
 <script>
     (function() {
+
         if (typeof d3 === 'undefined') {
             console.error("D3.js is not loaded. CSV table cannot be rendered.");
             return;
@@ -22,6 +23,7 @@
         const container = document.getElementById("{{ $containerId }}");
         
         d3.csv(csvPath).then(data => {
+
             if (!data || data.length === 0) {
                 container.innerHTML = "<p>No data found.</p>";
                 return;
@@ -36,10 +38,12 @@
             thead.className = "thead-light";
             const headerRow = document.createElement("tr");
             Object.keys(data[0]).forEach(col => {
+
                 const th = document.createElement("th");
                 th.scope = "col";
                 th.textContent = col;
                 headerRow.appendChild(th);
+
             });
             thead.appendChild(headerRow);
             table.appendChild(thead);
@@ -48,6 +52,7 @@
 
             const tbody = document.createElement("tbody");
             data.forEach(row => {
+
                 const tr = document.createElement("tr");
                 Object.values(row).forEach(cell => {
                     const td = document.createElement("td");
@@ -55,12 +60,14 @@
                     tr.appendChild(td);
                 });
                 tbody.appendChild(tr);
+
             });
             table.appendChild(tbody);
             
             // Insert table into container
 
             container.appendChild(table);
+
         }).catch(error => {
             console.error("Error loading CSV:", error);
             container.innerHTML = "<p>Error loading CSV. See console for details.</p>";
