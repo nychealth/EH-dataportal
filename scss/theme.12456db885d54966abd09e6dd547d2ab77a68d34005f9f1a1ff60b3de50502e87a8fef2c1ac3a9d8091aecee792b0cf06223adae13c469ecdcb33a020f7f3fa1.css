@@ -8100,6 +8100,18 @@ In this file:
   padding: 0;
   cursor: pointer; }
 
+button.nav-link {
+  width: 100%;
+  color: inherit;
+  font-weight: inherit;
+  text-align: inherit;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer; }
+
+button.nav-link:focus:not(:focus-visible) {
+  outline: 0; }
+
 .has-icon.disperse, .wrap-file-input .file-input-label .disperse.file-choose {
   display: flex;
   width: 100%;
