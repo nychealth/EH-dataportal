@@ -5,8 +5,10 @@ N-005, N-061, N-062, N-065, N-069, N-070, N-071; N-072), on branch
 `feature-audit-r5-contrast-focus`, cut from the local `production` at `095ebc5010`. This document is
 the plan and the ledger. Rows are closed in the audit document only once their proof has run.
 
-**Status as of 2026-10-30: Tasks 0 and 8 done; Tasks 1–3 and 5–7 edited and proved on the edited
-tree; Task 4 deferred; Task 9 (commit, then close the rows) next.**
+**Closed 2026-10-30: fixes in `7f721b3aaa` on `feature-audit-r5-contrast-focus`, rows closed in
+the ledger commit after it. Nine rows FIXED; N-005 OPEN, narrowed to its legend colours (Task 4,
+deferred). Next for this batch: a PR into `production`; #1526 (R1) also edits the audit's Summary
+and Roadmap counts, so whichever lands second rebases there.**
 
 ## Decisions
 
@@ -72,15 +74,15 @@ Taken by Chris on 2026-10-30, from options put to him with contrast ratios and r
 | Task | Rows | Commit | Status | Proof that ran |
 |---|---|---|---|---|
 | 0 | all: reproduce before fixing; locate N-005's legend colours | *no commit* (measurement) | **DONE 2026-10-30** | Baseline and after, below |
-| 1 | A-100, N-062 | | Edited | probe: 3 labels 3.91 → 4.74 |
-| 2 | N-005 (`.keywords`); the `$gray-600` override | | Edited | probe 3.95 → 4.52 with the override, axe nodes gone; override removed afterwards: the rebuilt `theme.css` equals the previous one with its 18 `#777677` replaced by `#6c757d`, byte for byte (285,551 B both), so `.keywords` is #6C757D, 4.69:1 |
-| 3 | N-065, N-005 (story-card text) | | Edited | probe: 1 element 4.10 → 4.86 |
+| 1 | A-100, N-062 | `7f721b3aaa` | **DONE 2026-10-30** | probe: 3 labels 3.91 → 4.74 |
+| 2 | N-005 (`.keywords`); the `$gray-600` override | `7f721b3aaa` | **DONE 2026-10-30** | probe 3.95 → 4.52 with the override, axe nodes gone; override removed afterwards: the rebuilt `theme.css` equals the previous one with its 18 `#777677` replaced by `#6c757d`, byte for byte (285,551 B both), so `.keywords` is #6C757D, 4.69:1 |
+| 3 | N-065, N-005 (story-card text) | `7f721b3aaa` | **DONE 2026-10-30** | probe: 1 element 4.10 → 4.86 |
 | 4 | N-005 (legend colours) | *no commit* | **Deferred** (Chris, 2026-10-30): the words match map or chart colours, which belong to those pages' owners. N-005 stays OPEN, re-scoped to these 11 nodes | axe, below |
-| 5 | N-004, N-061 | | Edited | axe `link-in-text-block` 9 pages / 40 nodes → 0 |
-| 6 | N-069, N-070, N-071 | | Edited | focus probe: 3 of 3 NO INDICATOR → indicator; control fired both runs |
-| 7 | N-072 | | Edited | Enter, Enter: focus stays on `#toggleButton`, list opens and closes, label follows |
+| 5 | N-004, N-061 | `7f721b3aaa` | **DONE 2026-10-30** | axe `link-in-text-block` 9 pages / 40 nodes → 0 |
+| 6 | N-069, N-070, N-071 | `7f721b3aaa` | **DONE 2026-10-30** | focus probe: 3 of 3 NO INDICATOR → indicator; control fired both runs |
+| 7 | N-072 | `7f721b3aaa` | **DONE 2026-10-30** | Enter, Enter: focus stays on `#toggleButton`, list opens and closes, label follows |
 | 8 | smoke, characterization, re-baseline if needed | *no commit*: no re-baseline needed | **DONE 2026-10-30** on the edited tree over `095ebc5010` | `characterize-env.mjs prod_prod`: 924 of 924, structure PASSED, as pre-registered (colour, decoration and focus are no recorded field; the toggle's label is `content`). `smoke-env.mjs prod_prod`: 1187 pages clean, Pagefind index served. Both ran before the `$gray-600` override was removed; that edit's whole effect on the build is 18 colour values in `theme.css` (Task 2), which neither harness reads |
-| 9 | commit; close the rows in the audit | | Not started | |
+| 9 | commit; close the rows in the audit | fixes `7f721b3aaa`; rows closed in the ledger commit that follows it | **DONE 2026-10-30** | `close_r5.py` dry run then write: 9 rows FIXED, N-005 narrowed, 10 lines changed; a Status × Priority recount reproduced the old table on `HEAD` (OPEN 34/71/132/2, FIXED 218), then read OPEN 26/70/132/2 = 230, FIXED 227; the Roadmap's 15 batches hold 96 ids, exactly the OPEN P1 and P2 rows |
 
 Task 4 is a pause point: the legend colours on rat-mitigation-zones, congestion-pricing,
 realtime-air-quality, aqe and hvi may be set in page JS or chart specs rather than `assets/scss/`,
