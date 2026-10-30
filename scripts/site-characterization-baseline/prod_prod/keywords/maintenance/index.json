@@ -65,13 +65,13 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 73,
+            "internal": 64,
             "external": 18,
-            "emptyHref": 29,
+            "emptyHref": 20,
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 5,
+            "button": 14,
             "input": 1,
             "select": 0,
             "textarea": 0,
@@ -83,7 +83,7 @@
             "withCaption": 0
         },
         "iframes": [],
-        "overflowX": true
+        "overflowX": false
     },
     "content": {
         "title": "Maintenance – Environment & Health Data Portal",

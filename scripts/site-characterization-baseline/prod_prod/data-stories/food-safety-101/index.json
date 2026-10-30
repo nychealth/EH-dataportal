@@ -70,13 +70,13 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 83,
+            "internal": 74,
             "external": 30,
-            "emptyHref": 30,
+            "emptyHref": 21,
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 5,
+            "button": 14,
             "input": 1,
             "select": 0,
             "textarea": 0,

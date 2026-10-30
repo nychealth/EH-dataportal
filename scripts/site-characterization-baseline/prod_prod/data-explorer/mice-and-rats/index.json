@@ -112,13 +112,13 @@
             "zeroSize": 2
         },
         "links": {
-            "internal": 126,
+            "internal": 114,
             "external": 13,
-            "emptyHref": 22,
-            "noAccessibleText": 2
+            "emptyHref": 13,
+            "noAccessibleText": 0
         },
         "controls": {
-            "button": 36,
+            "button": 45,
             "input": 2,
             "select": 0,
             "textarea": 0,
@@ -130,7 +130,7 @@
             "withCaption": 0
         },
         "iframes": [],
-        "overflowX": true
+        "overflowX": false
     },
     "content": {
         "title": "Mice and rats data for NYC – Environment & Health Data Portal",
@@ -201,7 +201,6 @@
             "/data-explorer/lead/",
             "/data-explorer/mental-health/",
             "/data-explorer/mice-and-rats/",
-            "/data-explorer/mice-and-rats/www.nyc.gov/rats",
             "/data-explorer/mortality/",
             "/data-explorer/overweight/",
             "/data-explorer/pesticides/",

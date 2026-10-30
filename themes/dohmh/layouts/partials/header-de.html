@@ -1,3 +1,7 @@
+{{- /* Topics and About are read from the English site: es and zh have no key-topics or
+       about pages of their own, so a lookup in the page's language finds nothing. */ -}}
+{{- $enSite := .Sites.Default -}}
+
 <!-- For keyboard users -->
 <a class="sr-only sr-only-focusable skip-menu" href="#skip-header-target">Skip Header</a>
 
@@ -15,7 +19,7 @@
                             Health
                         </a>
                         <span class="mx-1" aria-hidden="true">></span>
-                        <a class="text-reset" href="{{ .RelPermalink }}">
+                        <a class="text-reset" href="{{ relURL "" }}">
                             EH Data Portal
                         </a>
                     </p>
@@ -56,8 +60,8 @@
                         <div class="d-flex justify-content-center justify-content-lg-start">
                             <a href={{ relURL "" }}><img src={{ relURL "7618350_heatmap_business_analytics_statistics_icon-gpr.ico" }} alt="Environment & Health Data Portal home" style="height: 67px" class="pr-1"></a>
                             <p class="text-white title-hover">
-                                <span class="site-subtitle"><a href='{{ relURL "" }}' class="link-no-dec">Environment & Health</span>
-                                <span class="site-title">Data Portal</a></span>
+                                <a href='{{ relURL "" }}' class="link-no-dec"><span class="site-subtitle">Environment & Health</span>
+                                <span class="site-title">Data Portal</span></a>
                             </p>
                         </div>
                         <!-- .d-flex -->
@@ -69,34 +73,34 @@
                             <div class="d-none d-lg-block mx-n2 mx-lg-2" id="nav-primary-top">
                                 <nav class="nav" role="navigation">
                                     <div class="nav-item bg-white text-primary border dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic-top"
+                                        <button type="button" class="nav-link dropdown-toggle" id="nav-item-topic-top"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Topics
-                                        </a>
+                                        </button>
                                         <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic-top">
                                             <ul class="extensible-list p-0">
-                                                {{ range sort (where .Site.Pages "Section" "key-topics") "Params.Title" }}
+                                                {{ range sort (where $enSite.Pages "Section" "key-topics") "Params.Title" }}
                                                 {{- if not .Params.hide -}}
                                                     {{- if .Params.shortTitle }}
-                                                    <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.shortTitle }}</li></a>
-                                                    <hr class="my-1">
+                                                    <li class=""><a class="" href="{{ .RelPermalink }}">{{ .Params.shortTitle }}</a></li>
+                                                    <li aria-hidden="true"><hr class="my-1"></li>
                                                     {{- else }}
-                                                    <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.title }}</li></a>
-                                                    <hr class="my-1">
+                                                    <li class=""><a class="" href="{{ .RelPermalink }}">{{ .Params.title }}</a></li>
+                                                    <li aria-hidden="true"><hr class="my-1"></li>
                                                     {{- end -}}
                                                 {{- end -}}
                                                 {{ end }}
-                                                <a href={{ relURL "key-topics" }}>All topics</a>
+                                                <li><a href={{ relURL "key-topics" }}>All topics</a></li>
                                             </ul>
                                         </div>
                                     </div>
                                     <!-- .nav-item -->
 
                                     <div class="nav-item bg-white text-primary border dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-type-top"
+                                        <button type="button" class="nav-link dropdown-toggle" id="nav-item-type-top"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Explore
-                                        </a>
+                                        </button>
                                         <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-type-top">
                                             <ul class="extensible-list p-0">
                                                 {{/*  get all menus  */ -}}
@@ -112,10 +116,10 @@
                                                     {{- /*  check if last item (adding 1 to index b/c of 0-indexing)  */ -}}
                                                     {{- $last := eq ( add $index 1 ) $count -}}
                                                     {{- /*  add element  */ -}}
-                                                    <a href="{{ .URL }}"><li><span class="mr-1">{{ $menu.Pre }}</span>{{ $menu.Name }}</li></a>
+                                                    <li><a href="{{ .URL }}"><span class="mr-1">{{ $menu.Pre }}</span>{{ $menu.Name }}</a></li>
                                                     {{- /*  only add the horizontal bar if it's not the last item  */ -}}
                                                     {{- if not $last }}
-                                                        <hr class="my-1">
+                                                        <li aria-hidden="true"><hr class="my-1"></li>
                                                     {{ end -}}
                                                 {{- end -}}
                                             </ul>
@@ -124,7 +128,7 @@
                                     <!-- .nav-item -->
 
                                     <div class="nav-item bg-white text-primary border">
-                                        {{ with .GetPage "about" -}}
+                                        {{ with $enSite.GetPage "about" -}}
                                         <a class="nav-link " href="{{ .RelPermalink }}">
                                             About
                                         </a>
@@ -133,17 +137,17 @@
                                     <!-- .nav-item -->
 
                                     <div class="nav-item bg-white text-primary border d-none d-lg-block">
-                                        <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                        <button type="button" class="nav-link" data-toggle="modal" data-target="#searchModal" title="Search">
                                             <span class="sr-only">Search</span>
                                             <i class="fa fa-magnifying-glass text-body"></i>
-                                        </a>
+                                        </button>
                                     </div>
                                     <!-- .nav-item -->
 
                                     <div class="nav-item btn btn-outline-warning btn-sm ml-1 subscribe-button">
-                                        <a href="#" class="nav-link" data-subscribe-click="header" data-toggle="modal" data-target="#subscribeModal">
+                                        <button type="button" class="nav-link" data-subscribe-click="header" data-toggle="modal" data-target="#subscribeModal">
                                             Subscribe
-                                        </a>
+                                        </button>
                                     </div>
                                 </nav>
                             </div>
@@ -177,44 +181,44 @@
                 </button>
             </li>
             <li>
-                <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                <button type="button" class="nav-link" data-toggle="modal" data-target="#searchModal" title="Search">
                     <span class="sr-only">Search</span>
                     <i class="fa fa-magnifying-glass text-primary"></i>
-                </a>
+                </button>
             </li>
         </ul>
 
         <div class="collapse d-lg-none mx-n2 mx-lg-2" id="nav-primary">
             <nav class="nav" role="navigation">
                 <div class="nav-item bg-white text-primary border dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic"
+                    <button type="button" class="nav-link dropdown-toggle" id="nav-item-topic"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Topics
-                    </a>
+                    </button>
                     <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
                         <ul class="extensible-list p-0">
-                            {{ range sort (where .Site.Pages "Section" "key-topics") "Params.Title" }}
+                            {{ range sort (where $enSite.Pages "Section" "key-topics") "Params.Title" }}
                             {{- if not .Params.hide -}}
                                 {{- if .Params.shortTitle }}
-                                <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.shortTitle }}</li></a>
-                                <hr class="my-1">
+                                <li class=""><a class="" href="{{ .RelPermalink }}">{{ .Params.shortTitle }}</a></li>
+                                <li aria-hidden="true"><hr class="my-1"></li>
                                 {{- else }}
-                                <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.title }}</li></a>
-                                <hr class="my-1">
+                                <li class=""><a class="" href="{{ .RelPermalink }}">{{ .Params.title }}</a></li>
+                                <li aria-hidden="true"><hr class="my-1"></li>
                                 {{- end -}}
                             {{- end -}}
                             {{ end }}
-                            <a href={{ relURL "key-topics" }}>All topics</a>
+                            <li><a href={{ relURL "key-topics" }}>All topics</a></li>
                         </ul>
                     </div>
                 </div>
                 <!-- .nav-item -->
 
                 <div class="nav-item bg-white text-primary border dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="nav-item-type"
+                    <button type="button" class="nav-link dropdown-toggle" id="nav-item-type"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Explore
-                    </a>
+                    </button>
                     <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-type">
                         <ul class="extensible-list p-0">
                             {{/*  get all menus  */ -}}
@@ -230,10 +234,10 @@
                                 {{- /*  check if last item (adding 1 to index b/c of 0-indexing)  */ -}}
                                 {{- $last := eq ( add $index 1 ) $count -}}
                                 {{- /*  add element  */ -}}
-                                <a href="{{ .URL }}"><li><span class="mr-1">{{ $menu.Pre }}</span>{{ $menu.Name }}</li></a>
+                                <li><a href="{{ .URL }}"><span class="mr-1">{{ $menu.Pre }}</span>{{ $menu.Name }}</a></li>
                                 {{- /*  only add the horizontal bar if it's not the last item  */ -}}
                                 {{- if not $last }}
-                                    <hr class="my-1">
+                                    <li aria-hidden="true"><hr class="my-1"></li>
                                 {{ end -}}
                             {{- end -}}
                         </ul>
@@ -242,7 +246,7 @@
                 <!-- .nav-item -->
 
                 <div class="nav-item bg-white text-primary border">
-                    {{ with .GetPage "about" -}}
+                    {{ with $enSite.GetPage "about" -}}
                     <a class="nav-link " href="{{ .RelPermalink }}">
                         About
                     </a>
@@ -251,17 +255,17 @@
                 <!-- .nav-item -->
 
                 <div class="nav-item bg-white text-primary border d-none d-lg-block">
-                    <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                    <button type="button" class="nav-link" data-toggle="modal" data-target="#searchModal" title="Search">
                         <span class="sr-only">Search</span>
                         <i class="fa fa-magnifying-glass text-body"></i>
-                    </a>
+                    </button>
                 </div>
                 <!-- .nav-item -->
 
                 <div class="nav-item bg-none text-primary border">
-                    <a href="#" class="nav-link text-primary " data-subscribe-click="header" data-toggle="modal" data-target="#subscribeModal">
+                    <button type="button" class="nav-link text-primary" data-subscribe-click="header" data-toggle="modal" data-target="#subscribeModal">
                         Subscribe
-                    </a>
+                    </button>
                 </div>
             </nav>
         </div>
@@ -271,7 +275,7 @@
 </header>
 
 
-<div class="row bg-black de-nav-bar">
+<div class="row mx-0 bg-black de-nav-bar">
     <div class="h-100 hide d-flex align-items-center justify-content-center py-1 px-2" style="background-color: #3B3B3B;">
         <button type="button" class="btn btn-link p-0 border-0" data-toggle="collapse" data-target="#global-header" aria-controls="global-header" aria-expanded="false" aria-label="Toggle Main Header">
             <img src={{ relURL "7618350_heatmap_business_analytics_statistics_icon-gpr.ico" }} style="height: 52px; width: 52px;" alt="Toggle Header">

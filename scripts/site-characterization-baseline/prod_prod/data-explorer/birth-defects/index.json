@@ -126,13 +126,13 @@
             "zeroSize": 2
         },
         "links": {
-            "internal": 123,
+            "internal": 113,
             "external": 10,
-            "emptyHref": 23,
+            "emptyHref": 14,
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 42,
+            "button": 51,
             "input": 2,
             "select": 0,
             "textarea": 0,
@@ -144,7 +144,7 @@
             "withCaption": 0
         },
         "iframes": [],
-        "overflowX": true
+        "overflowX": false
     },
     "content": {
         "title": "Birth defects data for NYC – Environment & Health Data Portal",
