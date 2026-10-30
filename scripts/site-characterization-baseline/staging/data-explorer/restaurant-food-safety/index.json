@@ -98,13 +98,13 @@
             "zeroSize": 2
         },
         "links": {
-            "internal": 121,
+            "internal": 111,
             "external": 9,
-            "emptyHref": 22,
+            "emptyHref": 13,
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 30,
+            "button": 39,
             "input": 2,
             "select": 0,
             "textarea": 0,
@@ -116,7 +116,7 @@
             "withCaption": 0
         },
         "iframes": [],
-        "overflowX": true
+        "overflowX": false
     },
     "content": {
         "title": "Restaurant food safety data for NYC – Environment & Health Data Portal",

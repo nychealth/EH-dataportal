@@ -7,8 +7,8 @@ the plan and the ledger. Rows are closed in the audit document only once their p
 
 **Closed 2026-10-30: fixes in `7f721b3aaa` on `feature-audit-r5-contrast-focus`, rows closed in
 the ledger commit after it. Nine rows FIXED; N-005 OPEN, narrowed to its legend colours (Task 4,
-deferred). Next for this batch: a PR into `production`; #1526 (R1) also edits the audit's Summary
-and Roadmap counts, so whichever lands second rebases there.**
+deferred). PR #1527 into `production`. R1 (#1526) merged first, as `c7e3117a15`; `production` was
+merged into this branch after it and the audit's counts re-derived there (Task 10).**
 
 ## Decisions
 
@@ -83,6 +83,7 @@ Taken by Chris on 2026-10-30, from options put to him with contrast ratios and r
 | 7 | N-072 | `7f721b3aaa` | **DONE 2026-10-30** | Enter, Enter: focus stays on `#toggleButton`, list opens and closes, label follows |
 | 8 | smoke, characterization, re-baseline if needed | *no commit*: no re-baseline needed | **DONE 2026-10-30** on the edited tree over `095ebc5010` | `characterize-env.mjs prod_prod`: 924 of 924, structure PASSED, as pre-registered (colour, decoration and focus are no recorded field; the toggle's label is `content`). `smoke-env.mjs prod_prod`: 1187 pages clean, Pagefind index served. Both ran before the `$gray-600` override was removed; that edit's whole effect on the build is 18 colour values in `theme.css` (Task 2), which neither harness reads |
 | 9 | commit; close the rows in the audit | fixes `7f721b3aaa`; rows closed in the ledger commit that follows it | **DONE 2026-10-30** | `close_r5.py` dry run then write: 9 rows FIXED, N-005 narrowed, 10 lines changed; a Status × Priority recount reproduced the old table on `HEAD` (OPEN 34/71/132/2, FIXED 218), then read OPEN 26/70/132/2 = 230, FIXED 227; the Roadmap's 15 batches hold 96 ids, exactly the OPEN P1 and P2 rows |
+| 10 | merge `production` (R1 `c7e3117a15`, #1525 `c7cf52ed13`) into this branch | the merge commit after `fba22988fe` | **DONE 2026-10-30** | only the audit conflicted, in three hunks: N-003 takes R1's FIXED, N-004 / N-005 R5's; the paragraph takes R1's text plus R5's sentence. Recount controls: production's copy reproduced its table (OPEN 29/67/132/2, FIXED 229), R5's its own (26/70/132/2, FIXED 227); merged, OPEN 21/66/132/2 = 221, FIXED 238, all 506. Roadmap 96 → 87 ids, each OPEN P1/P2 row in exactly one batch, order by P1 then P2 intact (same check on production's copy: 96 of 96) |
 
 Task 4 is a pause point: the legend colours on rat-mitigation-zones, congestion-pricing,
 realtime-air-quality, aqe and hvi may be set in page JS or chart specs rather than `assets/scss/`,

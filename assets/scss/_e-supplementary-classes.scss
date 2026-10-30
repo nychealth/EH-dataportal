@@ -184,6 +184,28 @@ $sides: "", -top, -right, -bottom, -left;
     cursor: pointer;
 }
 
+// Header action controls are <button>s styled as .nav-link links. This strips the browser's
+// button chrome only; unlike .no-btn-style it keeps .nav-link's padding. A block-level <a> fills
+// its .nav-item and a <button> shrinks to fit, so the width is set; the mobile menu's caret sits at
+// the right edge only because the link is full width.
+
+button.nav-link {
+    width: 100%;
+    color: inherit;
+    font-weight: inherit;
+    text-align: inherit;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+// Reboot rings every focused <button>, mouse clicks included; the links these replaced showed
+// none on click. Keyboard focus (:focus-visible) keeps the ring.
+
+button.nav-link:focus:not(:focus-visible) {
+    outline: 0;
+}
+
 ////////////////////////////////////////
 // G. Has icon
 ////////////////////////////////////////

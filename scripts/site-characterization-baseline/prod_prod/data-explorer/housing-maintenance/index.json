@@ -118,13 +118,13 @@
             "zeroSize": 2
         },
         "links": {
-            "internal": 124,
+            "internal": 114,
             "external": 15,
-            "emptyHref": 22,
+            "emptyHref": 13,
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 40,
+            "button": 49,
             "input": 2,
             "select": 0,
             "textarea": 0,
@@ -136,7 +136,7 @@
             "withCaption": 0
         },
         "iframes": [],
-        "overflowX": true
+        "overflowX": false
     },
     "content": {
         "title": "Housing maintenance data for NYC – Environment & Health Data Portal",

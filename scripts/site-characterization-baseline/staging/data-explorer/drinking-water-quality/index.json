@@ -108,13 +108,13 @@
             "zeroSize": 2
         },
         "links": {
-            "internal": 121,
+            "internal": 111,
             "external": 11,
-            "emptyHref": 22,
+            "emptyHref": 13,
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 33,
+            "button": 42,
             "input": 2,
             "select": 0,
             "textarea": 0,
@@ -126,7 +126,7 @@
             "withCaption": 0
         },
         "iframes": [],
-        "overflowX": true
+        "overflowX": false
     },
     "content": {
         "title": "Drinking water quality data for NYC – Environment & Health Data Portal",

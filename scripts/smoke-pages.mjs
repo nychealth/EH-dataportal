@@ -157,9 +157,17 @@ const KNOWN_NOISE = [
 // above, which is why it is module scope rather than threaded through visit().
 let pagefindServed = false;
 
-const isKnownNoise = (text, path) =>
-    KNOWN_NOISE.some(({ page, error, when }) =>
+// The KNOWN_NOISE entry that excuses this error on this page, or undefined.
+// Returning the entry rather than a boolean is what lets visit() keep what it
+// suppressed: an allowlisted error is otherwise dropped at capture, so a run in
+// which an entry fired on every page reads exactly like one in which it never
+// fired, and an entry whose cause was fixed is never noticed as dead.
+const matchNoise = (text, path) =>
+    KNOWN_NOISE.find(({ page, error, when }) =>
         error.test(text) && (page === null || page.test(path)) && (when === undefined || when()));
+
+// One stable name per entry, for the tally and the report.
+const noiseLabel = ({ page, error }) => `${page ? page.source : "(every page)"} :: ${error.source}`;
 
 // Hosts whose requests visit() aborts before they leave the browser.
 //
@@ -271,7 +279,7 @@ const DATA_HOST = "raw.githubusercontent.com";
 // follow it `[measured 2026-10-02: a delayed 404 on indicators/data/<id>.json
 // logged that line, then a JSON-parse pageerror]`. The message names the URL,
 // so each missing file is its own signature, and it still goes through
-// isKnownNoise, so a known gap can be allowlisted by page like anything else.
+// matchNoise, so a known gap can be allowlisted by page like anything else.
 const dataHostError = (response) =>
     `EHDP-data responded ${response.status()}: ${response.url()}`;
 
@@ -287,18 +295,25 @@ const QUIET_MS = 1000;
 const QUIET_CAP_MS = 15000;
 const isExplorerIndicator = (path) => /^data-explorer\/[^/]+\/\?id=/.test(path);
 
-// Load one page and return the unexpected errors it produced, and whether its
+// Load one page and return the unexpected errors it produced, the allowlisted
+// ones it suppressed (each with the entry that excused it), and whether its
 // data-quiet wait hit the cap.
 const visit = async (browser, baseURL, path, userAgent) => {
     const page = await browser.newPage({ userAgent });
     const errors = [];
+    const suppressed = [];
+
+    // Every captured error goes through here, so nothing is dropped unrecorded.
+    const capture = (text) => {
+        const entry = matchNoise(text, path);
+        if (entry) suppressed.push({ entry, text });
+        else errors.push(text);
+    };
 
     page.on("console", (msg) => {
-        if (msg.type() === "error" && !isKnownNoise(msg.text(), path)) errors.push(msg.text());
+        if (msg.type() === "error") capture(msg.text());
     });
-    page.on("pageerror", (err) => {
-        if (!isKnownNoise(err.message, path)) errors.push(err.message);
-    });
+    page.on("pageerror", (err) => capture(err.message));
 
     // Data-host requests in flight, and when one last started or ended — the
     // state the quiet wait reads. The status check rides on the same host test.
@@ -315,8 +330,7 @@ const visit = async (browser, baseURL, path, userAgent) => {
     page.on("requestfailed", (r) => onData(r, -1));
     page.on("response", (response) => {
         if (response.status() < 400 || !isData(response.request())) return;
-        const text = dataHostError(response);
-        if (!isKnownNoise(text, path)) errors.push(text);
+        capture(dataHostError(response));
     });
 
     // Registered before navigating, so the very first request is covered.
@@ -351,7 +365,7 @@ const visit = async (browser, baseURL, path, userAgent) => {
     }
 
     await page.close();
-    return { errors, quietCapReached };
+    return { errors, suppressed, quietCapReached };
 };
 
 const label = (path) => path || "(home)";
@@ -372,6 +386,24 @@ const groupSignatures = (failures) => {
         .map(([error, pages]) => ({ error, count: pages.length, pages }))
         .sort((a, b) => b.count - a.count);
 };
+
+// Tally what each KNOWN_NOISE entry suppressed over the sweep, in the allowlist's
+// own order and including entries that suppressed nothing: a zero is the signal
+// that an entry's cause is gone and the entry can go too. `pages` counts each
+// page once however many times the entry fired on it.
+const tallySuppressed = (results) =>
+    KNOWN_NOISE.map((entry) => {
+        const hits = results.flatMap(({ path, suppressed }) =>
+            suppressed.filter((s) => s.entry === entry).map((s) => ({ path, text: s.text })));
+        const pages = [...new Set(hits.map((h) => h.path))];
+        return {
+            entry: noiseLabel(entry),
+            occurrences: hits.length,
+            pageCount: pages.length,
+            pages,
+            examples: [...new Set(hits.map((h) => h.text.split("\n")[0].slice(0, 200)))].slice(0, 3),
+        };
+    });
 
 const writeReport = (target, report) => {
     // A path ending in .json is a file; anything else is a directory to timestamp
@@ -415,6 +447,7 @@ const main = async () => {
     const userAgent = await browserUserAgent(browser);
 
     let failures = [];
+    let suppressedTally = [];
     let cleared = [];
     let quietCapPaths = [];
     // True when the sequential re-check was skipped outright because more pages
@@ -425,7 +458,7 @@ const main = async () => {
     try {
         let done = 0;
         const results = await mapPool(paths, concurrency, async (path) => {
-            const { errors, quietCapReached } = await visit(browser, baseURL, path, userAgent);
+            const { errors, suppressed, quietCapReached } = await visit(browser, baseURL, path, userAgent);
             done++;
 
             if (errors.length) {
@@ -437,10 +470,13 @@ const main = async () => {
             }
 
             if (all && done % 50 === 0) console.log(`      ... ${done}/${paths.length}`);
-            return { path, errors, quietCapReached };
+            return { path, errors, suppressed, quietCapReached };
         });
 
         failures = results.filter((r) => r.errors.length).map(({ path, errors }) => ({ path, errors }));
+        // From the sweep alone, so each page counts once; the sequential
+        // re-check below re-visits pages and would double-count them.
+        suppressedTally = tallySuppressed(results);
         quietCapPaths = results.filter((r) => r.quietCapReached).map((r) => r.path);
 
         // Concurrency introduces a failure mode sequential runs don't have: a page
@@ -489,6 +525,12 @@ const main = async () => {
         for (const p of quietCapPaths) console.log(`      ${label(p)}`);
     }
 
+    console.log(`\nAllowlisted by KNOWN_NOISE (suppressed, not failed), of ${paths.length} pages:`);
+    for (const { entry, occurrences, pageCount, pages } of suppressedTally) {
+        const where = pageCount ? `  e.g. ${pages.slice(0, 3).map(label).join(", ")}${pageCount > 3 ? ", ..." : ""}` : "";
+        console.log(`  ${String(occurrences).padStart(5)}x on ${String(pageCount).padStart(4)} page(s)  ${entry}${where}`);
+    }
+
     if (signatures.length) {
         console.error(`\nDistinct error signatures (${signatures.length}):`);
         for (const { error, count, pages } of signatures) {
@@ -516,6 +558,9 @@ const main = async () => {
             recheckCapped: capped,
             failures,
             signatures,
+            // One row per KNOWN_NOISE entry, zeros included, counted over the
+            // concurrent sweep only (see tallySuppressed).
+            suppressed: suppressedTally,
         });
     }
 
