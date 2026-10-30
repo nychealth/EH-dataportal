@@ -120,19 +120,6 @@ const KNOWN_NOISE = [
     // makes a cross-origin XHR to airnowgovapi.com that the API serves without
     // an Access-Control-Allow-Origin header. Third-party embed, not our request.
     { page: /realtime-air-quality/, error: /airnowgovapi\.com|widget\.airnow\.gov/i },
-    // displacement-risk iframes NYC City Planning's Equitable Development Data
-    // Explorer (equitableexplorer.planning.nyc.gov, displacement.html:33), whose
-    // CARTO basemap key was rejected as of 2026-08-31: "Unauthorized access to
-    // Maps API: invalid combination of user ('planninglabs') and apiKey ...".
-    // Third-party embed we don't control; the surrounding page renders. Verified
-    // present on production's own tip via the smoke base-control job on PR #1489.
-    // Remove this when the embed loads again.
-    { page: /displacement-risk/, error: /Unauthorized access to Maps API/i },
-    // The signup <iframe> in partials/header.html embeds a Google Form, which
-    // Google serves with a report-only `frame-ancestors 'none'`. Chromium logs
-    // the refusal on every page that renders the header. Report-only, so nothing
-    // is blocked — but it does mean the embed itself never renders.
-    { page: null, error: /frame-ancestors|Framing 'https:\/\/docs\.google\.com\//i },
     // Pagefind, allowlisted only when its index is genuinely absent. `hugo
     // server` does not build one, but dev-server.mjs now does for any server it
     // starts, so the index is present on the common path and a pagefind error

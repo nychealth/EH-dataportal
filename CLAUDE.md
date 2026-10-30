@@ -131,7 +131,9 @@ Eleven things to know before trusting a result:
   be gone; a count that jumps is an allowlisted error spreading. Before 2026-10-30 an allowlisted
   error was discarded at capture, so neither was visible `[2026-10-30, curated 44 on an isolated
   prod_prod: urban-heat-island's entry 2x on 1 page; with that entry deleted the page failed and its
-  row vanished; `frame-ancestors` and `displacement-risk` read 0]`. One entry is
+  row vanished; `frame-ancestors` and `displacement-risk` read 0]`. Those two entries were removed
+  after two full CI sweeps (1187 pages each) also read 0 and their causes were checked gone
+  `[2026-10-30]`. One entry is
   *conditional* rather than scoped: Pagefind's, which applies only when the index is absent, because
   `dev-server.mjs` now builds one for servers it starts. Smoke prints `Pagefind index: served` or
   `ABSENT` before it sweeps. Blanket-allowlisting it was masking `PagefindUI is not defined` on
