@@ -110,13 +110,13 @@
             "zeroSize": 2
         },
         "links": {
-            "internal": 125,
+            "internal": 115,
             "external": 8,
-            "emptyHref": 23,
+            "emptyHref": 14,
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 36,
+            "button": 45,
             "input": 2,
             "select": 0,
             "textarea": 0,
@@ -128,7 +128,7 @@
             "withCaption": 0
         },
         "iframes": [],
-        "overflowX": true
+        "overflowX": false
     },
     "content": {
         "title": "Worker health data for NYC – Environment & Health Data Portal",

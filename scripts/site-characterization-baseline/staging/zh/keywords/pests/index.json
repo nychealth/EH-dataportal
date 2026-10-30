@@ -60,13 +60,13 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 44,
+            "internal": 59,
             "external": 18,
-            "emptyHref": 29,
+            "emptyHref": 20,
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 5,
+            "button": 14,
             "input": 1,
             "select": 0,
             "textarea": 0,
@@ -78,7 +78,7 @@
             "withCaption": 0
         },
         "iframes": [],
-        "overflowX": true
+        "overflowX": false
     },
     "content": {
         "title": "Pests – Environment & Health Data Portal",
@@ -90,10 +90,22 @@
         ],
         "internalTargets": [
             "/",
+            "/about/",
             "/data-explorer/",
             "/data-features/",
             "/data-stories/",
             "/key-topics",
+            "/key-topics/accessibility/",
+            "/key-topics/airquality/",
+            "/key-topics/childhealth/",
+            "/key-topics/climatehealth/",
+            "/key-topics/foodanddrink/",
+            "/key-topics/health-equity/",
+            "/key-topics/healthoutcomes/",
+            "/key-topics/housing/",
+            "/key-topics/injury-and-violence/",
+            "/key-topics/pests/",
+            "/key-topics/public-space/",
             "/neighborhood-reports/",
             "/zh/data-stories/housing/",
             "/zh/keywords/pests/"
