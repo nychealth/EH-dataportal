@@ -171,6 +171,8 @@ mouse focus. The probe blocked third-party hosts, and the explorer threw 3 error
 
 ### Found, not fixed
 
+Both are now audit rows, OPEN in batch R1: the weather dialog is N-103 and the header language N-104. `heat-report-correction.html` turned out to be named, and `conditional-modal.html` is included by no template.
+
 - Three more `role="dialog"` elements have no accessible name: `conditional-modal.html`
   (`#prototypeModal`, three copies), `temp-popup.html` (`#weatherModal`, on the home pages) and
   possibly `heat-report-correction.html` (attributes span lines; not read). Not in N-080's scope.
