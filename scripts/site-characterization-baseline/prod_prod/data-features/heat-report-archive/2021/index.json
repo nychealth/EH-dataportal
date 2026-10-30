@@ -68,7 +68,7 @@
         ],
         "img": {
             "total": 8,
-            "missingAlt": 2,
+            "missingAlt": 0,
             "emptyAlt": 0,
             "zeroSize": 0
         },
