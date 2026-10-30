@@ -338,9 +338,13 @@ h1 {
     button.card-content {
         background-color: white;
         appearance: none;
-        outline: none;
         border-right: none;
         border-left: none;
+
+        // Mouse focus only: keyboard focus (:focus-visible) keeps reboot's button ring.
+        &:focus:not(:focus-visible) {
+            outline: none;
+        }
     }
     a.resource-card,
     button.resource-card {
