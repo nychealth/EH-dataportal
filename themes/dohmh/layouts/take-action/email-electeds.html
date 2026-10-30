@@ -155,6 +155,15 @@
                 });
                 
                 console.log("*** draw map");
+
+                // HACK: nyc-ol-lib v1.4.78's zoom and locate buttons are already named by a
+                // screen-reader-only span, but each wraps a Font Awesome icon given
+                // role="img" and no name (axe role-img-alt). Patched once the map exists,
+                // since the library renders the markup.
+
+                document.querySelectorAll('.fas[role="img"]').forEach(icon => {
+                    if (icon.closest('button, a')?.querySelector('.screen-reader-only')) icon.setAttribute('aria-hidden', 'true');
+                });
                 
             }
             

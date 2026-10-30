@@ -72,7 +72,13 @@ const load_flexdatalist = async () => {
 
             const generated = document.getElementById($input.attr('id') + '-flexdatalist');
 
-            if (generated) wireComboboxState(generated);
+            // The library copies no ARIA onto the input it generates, so the label the
+            // authored input carries in hvi.html has to be repeated here
+
+            if (generated) {
+                generated.setAttribute('aria-labelledby', 'hvi-search-label');
+                wireComboboxState(generated);
+            }
 
             // ----- add flexdatalist select handler -------------------------------------------------- //
 

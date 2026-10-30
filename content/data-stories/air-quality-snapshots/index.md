@@ -38,7 +38,7 @@ related:
     <div class="sticky-top narrow collapse d-xl-block" id="sidebar-nav">
         <nav class="mx-xl-n2 pt-4 py-xl-0" role="navigation" id="myScrollspy">
             <a class="sr-only sr-only-focusable skip-menu" href="#primary-content">Skip Nav</a>
-            <div class="list-group list-group-flush border-bottom fs-rg" role="list">
+            <div class="list-group list-group-flush border-bottom fs-rg">
                 <a href="#section1" class="list-group-item">
                     A traffic health threat: air toxics
                 </a>
@@ -161,19 +161,19 @@ related:
                             </script>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="tab-01-b" aria-labelledby="tab-btn-01-b" role="tabpanel" aria-hidden="true">
+                    <div class="tab-pane fade" id="tab-01-b" aria-labelledby="tab-btn-01-b" role="tabpanel">
                         <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">
                             <iframe title="Cardiovascular hospitalizations" aria-label="choropleth map" id="datawrapper-chart-mDgo3" data-lazy-src="//datawrapper.dwcdn.net/mDgo3/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                             </script>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="tab-01-c" aria-labelledby="tab-btn-01-c" role="tabpanel" aria-hidden="true">
+                    <div class="tab-pane fade" id="tab-01-c" aria-labelledby="tab-btn-01-c" role="tabpanel">
                         <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">
                             <iframe title="Asthma emergency department visits" aria-label="choropleth map" id="datawrapper-chart-XWE9m" data-lazy-src="//datawrapper.dwcdn.net/XWE9m/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                             </script>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="tab-01-d" aria-labelledby="tab-btn-01-d" role="tabpanel" aria-hidden="true">
+                    <div class="tab-pane fade" id="tab-01-d" aria-labelledby="tab-btn-01-d" role="tabpanel">
                         <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">
                             <iframe title="Respiratory disease hospitalizations" aria-label="choropleth map" id="datawrapper-chart-8urPc" data-lazy-src="//datawrapper.dwcdn.net/8urPc/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                             </script>
@@ -204,19 +204,19 @@ related:
             </div>
             <div class="tab-content mb-2" id="tabs-02-content">
                 <div class="tab-pane fade show active" id="tab-02-a" aria-labelledby="tab-btn-02-a"
-                    role="tabpanel" aria-hidden="true">
+                    role="tabpanel">
                     <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">
                         <iframe title="High poverty neighborhoods" aria-label="choropleth map" id="datawrapper-chart-Ji3w3" src="//datawrapper.dwcdn.net/Ji3w3/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                         </script>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="tab-02-b" aria-labelledby="tab-btn-02-b" role="tabpanel" aria-hidden="true">
+                <div class="tab-pane fade" id="tab-02-b" aria-labelledby="tab-btn-02-b" role="tabpanel">
                     <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">
                         <iframe title="Neighborhoods with low prior monitoring density" aria-label="choropleth map" id="datawrapper-chart-l7Ouh" data-lazy-src="//datawrapper.dwcdn.net/l7Ouh/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                         </script>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="tab-02-c" aria-labelledby="tab-btn-02-c" role="tabpanel" aria-hidden="true">
+                <div class="tab-pane fade" id="tab-02-c" aria-labelledby="tab-btn-02-c" role="tabpanel">
                     <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">
                         <iframe title="Priority neighborhoods for environmental justice monitoring" aria-label="choropleth map" id="datawrapper-chart-v5vt2" data-lazy-src="//datawrapper.dwcdn.net/v5vt2/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                         </script>

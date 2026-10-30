@@ -106,6 +106,7 @@
   "marks": [
     {
       "name": "layer_0_marks",
+      "aria": false,
       "type": "shape",
       "style": ["geoshape"],
       "interactive": true,
@@ -122,6 +123,7 @@
     },
     {
       "name": "layer_1_marks",
+      "aria": false,
       "type": "shape",
       "style": ["geoshape"],
       "interactive": false,

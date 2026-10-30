@@ -361,7 +361,10 @@ L.ColorIcon = L.DivIcon.extend({
       top: -${this.options.iconSize[1]/2}px;
       ${this.options.filter}`;
 
-    this.options.html = `<img src="${this.options.iconUrl}" style="${markerHtmlStyle}" />`;
+    // alt="": the image is the marker's glyph, and the marker element around it is what
+    // carries a name. Leaflet would set alt itself only on an <img> icon (Marker.js:230
+    // in 1.9.4), and this one is a DivIcon, so without it every marker reads as an unnamed image.
+    this.options.html = `<img src="${this.options.iconUrl}" alt="" style="${markerHtmlStyle}" />`;
 
     L.DivIcon.prototype.initialize.call(this, options);
   },

@@ -347,6 +347,12 @@ const renderTable = () => {
                 }
             }
         },
+        // scrollY makes DataTables wrap the body in its own overflow container, which a
+        //  keyboard cannot scroll unless it can take focus (axe scrollable-region-focusable)
+        initComplete: function () {
+            $(this.api().table().container()).find('.dataTables_scrollBody')
+                .attr({ tabindex: 0, role: 'region', 'aria-label': 'Data table' });
+        },
         drawCallback: function ( settings ) {
             const api = this.api();
             const data = api.rows( {page:'current'} ).data()

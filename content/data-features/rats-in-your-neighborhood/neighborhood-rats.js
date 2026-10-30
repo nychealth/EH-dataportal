@@ -47,6 +47,19 @@ function initializeNYCLIB() {
     });
     
     console.log("nycMap [initializeNYCLIB]", nycMap);
+
+    // HACK: nyc-ol-lib v1.4.78 renders markup this page cannot template, so it is
+    // patched once the map exists. Its zoom and locate buttons are already named by a
+    // screen-reader-only span, but each wraps a Font Awesome icon given role="img" and
+    // no name (axe role-img-alt); and its dialog's <input> has no label (axe label).
+    // aria-labelledby pointing at the dialog's .dia-msg does not do: that message is
+    // empty until the library opens the dialog, and axe still reported the input unnamed.
+
+    document.querySelectorAll('.fas[role="img"]').forEach(icon => {
+        if (icon.closest('button, a')?.querySelector('.screen-reader-only')) icon.setAttribute('aria-hidden', 'true');
+    });
+
+    document.querySelectorAll('.dia input').forEach(input => input.setAttribute('aria-label', 'Your response'));
     
     document.addEventListener("DOMContentLoaded", function() {
 
