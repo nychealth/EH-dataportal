@@ -498,7 +498,9 @@ input[type=range] {
     width: 100%;
 }
 
-input[type=range]:focus {
+// Mouse focus only: keyboard focus (:focus-visible) keeps the browser's ring, since no track or
+// thumb rule draws one of its own.
+input[type=range]:focus:not(:focus-visible) {
     outline: none;
 }
 
@@ -860,7 +862,8 @@ input[type=range]:focus::-ms-fill-upper {
 // ==== for keywords ingestion ==== //
 .keywords {
     font-size: 12px;
-    color: grey;
+    // Bootstrap's $gray-600, 4.69:1 on white; `grey` (#808080) was 3.95:1.
+    color: $gray-600;
 }
 
 
@@ -934,9 +937,14 @@ input[type=range]:focus::-ms-fill-upper {
         border: none;
         border-radius: 4px;
         box-shadow: 0 2px 0 0 rgba(0,0,0,0.2);
-        outline: none;
         text-align: center;
         text-decoration: none;
+    }
+
+    // These links are icon-only, so the site-wide a:focus underline has nothing to draw under;
+    // keyboard focus (:focus-visible) keeps the browser's ring.
+    .share-btn:focus:not(:focus-visible) {
+        outline: none;
     }
 
     .share-btn:hover {

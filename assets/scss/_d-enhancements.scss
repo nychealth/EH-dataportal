@@ -315,12 +315,17 @@ a:not(.btn).disabled {
     }
 }
 
-// Add visible underline to links within the #primary-content area
+// Underline links in page content so they are not told apart from text by colour alone. Scoped to
+// <main> rather than #primary-content, which only some templates emit, and to unclassed links:
+// buttons, cards and nav links carry classes and style themselves. Breadcrumbs keep their plain
+// look (Chris, 2026-10-30).
 
-#primary-content {
-    p> a:not([class]) {
-        text-decoration: underline;
-    }
+main a:not([class]) {
+    text-decoration: underline;
+}
+
+.breadcrumb a:not([class]) {
+    text-decoration: none;
 }
 
 ////////////////////////////////////////

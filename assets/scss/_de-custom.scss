@@ -190,6 +190,11 @@ $comp-bad-text: #7a5c00;
 // $color-key-topics: #800080;
 $color-data-features: #800080;
 $color-data-stories: #D75047;
+
+/* $color-data-stories as *text* is 4.10:1 on white, under WCAG AA. This is the same red darkened
+   to 4.86:1, for text only; $color-data-stories stays the section colour for icons and fills,
+   which need 3:1 as graphics. The same split as $primary / $primary-dark. */
+$color-data-stories-text: #C8433A;
 $color-n-reports: #197BBD;
 $color-data-explorer: #0A408A;
 
@@ -212,7 +217,7 @@ $color-data-explorer: #0A408A;
 }
 
 .data-stories {
-    color: $color-data-stories;
+    color: $color-data-stories-text;
 
     svg path {
         fill: $color-data-stories;
@@ -511,8 +516,17 @@ $color-data-explorer: #0A408A;
     padding-top: 20px;
 }
 
-#toggleButton[aria-expanded="true"] {
+// Key-topic "Show More" stays visible once expanded and reads "Show less", so keyboard focus stays
+// on it and the list can be collapsed again. Bootstrap's collapse keeps aria-expanded in step.
+#toggleButton[aria-expanded="false"] .toggle-expanded,
+#toggleButton[aria-expanded="true"] .toggle-collapsed {
     display: none;
+}
+
+// The explorer's Measure / Boundary / Time labels sit on the card header's #DCF4E7, where
+// $primary is 3.91:1; $primary-dark is 4.74:1.
+.de-option-label {
+    color: $primary-dark;
 }
 
 
