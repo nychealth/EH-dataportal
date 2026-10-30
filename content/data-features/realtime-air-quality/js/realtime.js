@@ -357,7 +357,9 @@ function printRecentAverage() {
                 totals += sum[i];
             }
             
-            average = totals / 24;
+            // average over the readings actually present: dividing by 24 understated any day
+            // with missing hours; the > 17 check above still requires 18 of the 24
+            average = totals / thisLast.length;
             average = Math.round(average * 100) / 100;
             
             values.push(average);
@@ -397,7 +399,9 @@ function printRecentAverage() {
                 totals += sum[i];
             }
             
-            average = totals / 24;
+            // average over the readings actually present: dividing by 24 understated any day
+            // with missing hours; the > 17 check above still requires 18 of the 24
+            average = totals / thisLast.length;
             average = Math.round(average * 100) / 100;
             
             values.push(average);
