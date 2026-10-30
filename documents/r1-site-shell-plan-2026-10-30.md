@@ -6,8 +6,10 @@ Batch R1 of `documents/site-wide-audit-2026-10.md` (Roadmap): 6 P1 rows and 4 P2
 ledger. Rows are closed in the audit document only once their proof has run.
 
 **Closed 2026-10-30: all tasks done on `feature-audit-r1-site-shell`, `1705ee0d67..ab6ec0e071`
-plus the ledger commit after it. All ten R1 rows and R4's N-003 FIXED by `cdfde6f2af`. Next for
-this batch: a PR into `production`, after R4's.**
+plus the ledger commit after it. All ten R1 rows and R4's N-003 FIXED by `cdfde6f2af`. N-103 and
+N-104, found here, were added as OPEN rows in `1255e6bb02`. R4 reached `production` through #1524
+(`095ebc5010`), merged into this branch at `245c4262e9`. Next for this batch: a PR into
+`production`.**
 
 ## Decisions
 
@@ -128,13 +130,15 @@ is new prose, and the stamp asserts a human re-read.
 
 ```
 git rev-parse --abbrev-ref HEAD                      # feature-audit-r1-site-shell
-git log --oneline 1705ee0d67..HEAD                   # the four R1 commits
-gh pr list --head feature-resolve-audit-items        # R4's PR; this branch's PR follows it
-gh pr list --head feature-audit-r1-site-shell
+git log --oneline --no-merges 095ebc5010..HEAD      # R1's commits: cdfde6f2af through 1255e6bb02, plus this ledger's
+gh pr list --head feature-audit-r1-site-shell        # this branch's PR into production
 ```
 
-This branch stacks on `feature-resolve-audit-items` (R4). Push and open its PR into `production`
-after R4's; retarget by hand if R4 merges first, per project `CLAUDE.md` (stacked branches).
+The merge of `production` at `245c4262e9` changed no file: its tree equals its first parent's
+(`f68d721fd6`), because `production` held nothing beyond R4's tip but #1524's merge commit. So the
+re-baseline in `c9b957f5ae`, captured on top of R4, was not re-run. `[verified 2026-10-30: git
+rev-parse HEAD^1^{tree} HEAD^{tree}, both f68d721fd6; git log 1705ee0d67..origin/production, one
+commit, 095ebc5010]`
 
 ### Baseline and after
 
