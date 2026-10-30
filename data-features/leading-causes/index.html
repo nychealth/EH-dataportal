@@ -714,7 +714,7 @@ Injury prevention efforts focused on top causes for people by age will be most e
 
 
 
-<div id="csv-table-container-1" role="region" aria-label="Data table" style="height: 400px; overflow-y:scroll;"></div>
+<div id="csv-table-container-1" role="region" aria-label="Data table" tabindex="0" style="height: 400px; overflow-y:scroll;"></div>
 
 <script>
     (function() {
@@ -1310,6 +1310,10 @@ Injury prevention efforts focused on top causes for people by age will be most e
         vegaEmbed("#chart", spec, {renderer: "svg"}).then((result) => {
 
             const view = result.view;
+
+            
+            
+            document.querySelector('#chart details > summary')?.setAttribute('aria-label', 'Export or view source for this chart');
             
             
 

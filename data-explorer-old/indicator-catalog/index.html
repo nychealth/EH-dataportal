@@ -518,13 +518,15 @@
         </script><div class="row">
 
                     <div class="col-12 my-4">
-                        <span class="home-label">Search for an indicator:</span>
+                        <span class="home-label" id="indicator-search-label">Search for an indicator:</span>
                         <div class="row no-gutters">
     <div class="col-12">
         <div class="btn-group" role="group" style="width:100%!important;">
 
-            <input 
+            
+            <input
                 id="flex_search"
+                aria-labelledby="indicator-search-label"
                 type='search'
                 class='flexdatalist form-control'
                 name='indicator_name_suggestion'
@@ -741,7 +743,13 @@
 
             const generated = document.getElementById($input.attr('id') + '-flexdatalist');
 
-            if (generated) wireComboboxState(generated);
+            
+            
+
+            if (generated) {
+                generated.setAttribute('aria-labelledby', 'indicator-search-label');
+                wireComboboxState(generated);
+            }
 
 
             

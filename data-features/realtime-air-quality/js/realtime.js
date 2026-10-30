@@ -453,8 +453,18 @@ var monitor_locations;
 
 // draw map fires when data and monitor_locations load:
 
+// Names a marker for screen readers. Leaflet gives a keyboard-enabled marker
+// role="button" but no name, and its title option would also show a native
+// tooltip beside the one each marker already binds. The element exists only
+// once the marker is on a map, hence the add event.
+
+function nameMarker(marker, name) {
+    marker.on('add', () => marker.getElement()?.setAttribute('aria-label', name));
+    return marker;
+}
+
 function drawMap() {
-    
+
     monitor_locations = activeMonitors;
     
     // adding each monitor to the feature group
@@ -468,8 +478,8 @@ function drawMap() {
             color: color_convert.to_hex(monitor_locations[i].Color)
         });
         
-        var this_monitor = 
-            L.marker([monitor.Latitude, monitor.Longitude], {icon: this_icon, riseOnHover: true, riseOffset: 2000})
+        var this_monitor =
+            nameMarker(L.marker([monitor.Latitude, monitor.Longitude], {icon: this_icon, riseOnHover: true, riseOffset: 2000}), monitor.Location)
                 .bindPopup(monitor.Location, {permanent: true, opacity: 0.85, interactive: true})
                 .addTo(monitors_group);
         
@@ -477,8 +487,8 @@ function drawMap() {
 
         if (monitor.Location != "DEC Monitor Average") {
 
-            var those_monitors = 
-                L.marker([monitor.Latitude, monitor.Longitude], {icon: this_icon, riseOnHover: true, riseOffset: 2000})
+            var those_monitors =
+                nameMarker(L.marker([monitor.Latitude, monitor.Longitude], {icon: this_icon, riseOnHover: true, riseOffset: 2000}), monitor.Location)
                     .bindTooltip(monitor.Location, {permanent: false, opacity: 0.85, interactive: true})
                     .addTo(monitors_group_noDEC);
 
@@ -650,7 +660,7 @@ function drawHamiltonBridge() {
     });
     
     var this_monitor = 
-    L.marker([hamiltonBridgeLocation[0].Latitude, hamiltonBridgeLocation[0].Longitude], {icon: this_icon, riseOnHover: true, riseOffset: 2000})
+    nameMarker(L.marker([hamiltonBridgeLocation[0].Latitude, hamiltonBridgeLocation[0].Longitude], {icon: this_icon, riseOnHover: true, riseOffset: 2000}), 'Hamilton Bridge')
     .bindPopup(`Hamilton Bridge`) // Add a popup with the location name
     .addTo(map);
 
@@ -809,7 +819,9 @@ async function renderSpec(
             },
             
             {
-                "mark": "rule",
+                // the description names the mark group, which is otherwise an unnamed
+                // graphics-symbol (axe svg-img-alt)
+                "mark": {"type": "rule", "description": "Dashed line at 35 micrograms per cubic meter"},
                 "encoding": {
                     "y": {"datum": 35},
                     "color": {"value": "red"},
@@ -938,7 +950,11 @@ async function renderSpec(
     
     
     vegaEmbed('#vis',vegaSpec, {renderer: "svg"}).then(res => {
-        myView = res.view; // save the vega view 
+        myView = res.view; // save the vega view
+
+        // vega-embed's actions control is a <summary> holding only an SVG, so it has
+        // no name; there is no embed option for one (as in nr-report/chart.js)
+        document.querySelector('#vis details > summary')?.setAttribute('aria-label', 'Export or view source for the PM2.5 chart');
         // console.log('myView, vega with marks pushed:')
         // console.log(myView)
     });

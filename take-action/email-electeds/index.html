@@ -625,6 +625,15 @@
                 });
                 
                 console.log("*** draw map");
+
+                
+                
+                
+                
+
+                document.querySelectorAll('.fas[role="img"]').forEach(icon => {
+                    if (icon.closest('button, a')?.querySelector('.screen-reader-only')) icon.setAttribute('aria-hidden', 'true');
+                });
                 
             }
             

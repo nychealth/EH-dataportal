@@ -507,7 +507,7 @@
                     <div class="col-12">
                     <nav class="navbar navbar-default my-2">
                             <ul class="nav navbar-nav fs-sm">
-                                <span class="mr-2">Read this data story in:</span><li class="mb-1"><a href="/IndicatorPublic/es/data-stories/housing/">Español</a>&nbsp;|&nbsp;</li><li class="mb-1"><a href="/IndicatorPublic/zh/data-stories/housing/">中文</a>&nbsp;|&nbsp;</li></ul>
+                                <li class="mr-2">Read this data story in:</li><li class="mb-1"><a href="/IndicatorPublic/es/data-stories/housing/">Español</a>&nbsp;|&nbsp;</li><li class="mb-1"><a href="/IndicatorPublic/zh/data-stories/housing/">中文</a>&nbsp;|&nbsp;</li></ul>
                     </nav>
                 </div>
                 </div><h1 class="h2 mb-3"><span class="ds-accent"><i class="fas fa-passport mr-2" aria-hidden="true"></i></span>Health, housing, and history</h1>
@@ -680,7 +680,7 @@ Coalition: Worst Evictor's List</a></p>
 <p><strong>Percent of households with healthy housing problems</strong>
 
 
-<div class="btn-group" role="group" aria-label="Button group with nested dropdown" aria-hidden="true">
+<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 
   <div class="btn-group" role="group">
     <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle mr-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -859,7 +859,10 @@ function changeMap(x) {
         ]
         }
 
-        vegaEmbed('#housingmap',defaultSpec, {renderer: "svg"})
+        // vega-embed's actions <summary> holds only an SVG and has no name
+        vegaEmbed('#housingmap',defaultSpec, {renderer: "svg"}).then(() => {
+            document.querySelector('#housingmap details > summary')?.setAttribute('aria-label', 'Export or view source for this map');
+        })
 
 }
 
@@ -923,7 +926,7 @@ harm health.</a></p>
 
 
 </div>
-<div class="wide my-4" aria-hidden="true">
+<div class="wide my-4">
 <div class="text-center mb-3">
     View data by income level:<br>
     <input type="radio" name="income" onclick="elow()" id="elow"
@@ -1025,11 +1028,11 @@ harm health.</a></p>
 </div>
 <div class="wide my-4">
 <ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item">
+    <li class="nav-item" role="presentation">
         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home"
             role="tab" aria-controls="home" aria-selected="true">Bar charts</a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" role="presentation">
         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"
             role="tab" aria-controls="profile" aria-selected="false">Scatterplot</a>
     </li>
@@ -1140,7 +1143,7 @@ harm health.</a></p>
         
         
         <li>
-            <a href="mailto:?subject=Environment%20%26%20Health%20Data%20Portal - Health%2c%20housing%2c%20and%20history&amp;body=Health%2c%20housing%2c%20and%20history%2c%20by%20Environment%20%26%20Health%20Data%20Portal%0aA%20data%20story%20on%20how%20racist%20housing%20practices%20harm%20health.%0a%0ahttps%3a%2f%2fa816-dohbesp.nyc.gov%2fIndicatorPublic%2fdata-stories%2fhousing%2f%0a" target="_blank" rel="noopener noreferrer" class="share-btn email">
+            <a href="mailto:?subject=Environment%20%26%20Health%20Data%20Portal - Health%2c%20housing%2c%20and%20history&amp;body=Health%2c%20housing%2c%20and%20history%2c%20by%20Environment%20%26%20Health%20Data%20Portal%0aA%20data%20story%20on%20how%20racist%20housing%20practices%20harm%20health.%0a%0ahttps%3a%2f%2fa816-dohbesp.nyc.gov%2fIndicatorPublic%2fdata-stories%2fhousing%2f%0a" target="_blank" rel="noopener noreferrer" aria-label="Share by email" class="share-btn email">
                 <i class="fas fa-envelope fs-xl"></i>
                 <p>Email</p>
             </a>

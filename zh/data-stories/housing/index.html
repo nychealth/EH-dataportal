@@ -459,7 +459,7 @@
                     <div class="col-12">
                     <nav class="navbar navbar-default my-2">
                             <ul class="nav navbar-nav fs-sm">
-                                <span class="mr-2">Read this data story in:</span><li class="mb-1"><a href="/IndicatorPublic/data-stories/housing/">English</a>&nbsp;|&nbsp;</li><li class="mb-1"><a href="/IndicatorPublic/es/data-stories/housing/">Español</a>&nbsp;|&nbsp;</li></ul>
+                                <li class="mr-2">Read this data story in:</li><li class="mb-1"><a href="/IndicatorPublic/data-stories/housing/">English</a>&nbsp;|&nbsp;</li><li class="mb-1"><a href="/IndicatorPublic/es/data-stories/housing/">Español</a>&nbsp;|&nbsp;</li></ul>
                     </nav>
                 </div>
                 </div><h1 class="h2 mb-3"><span class="ds-accent"><i class="fas fa-passport mr-2" aria-hidden="true"></i></span>健康、住房和历史。</h1>
@@ -539,7 +539,7 @@
 </div>
 <div class="wide my-4">
 <div class="py-0 mb-4">
-    <iframe src="/IndicatorPublic/maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
+    <iframe src="/IndicatorPublic/maps/HOLC_map/HOLC_map.html" title="HOLC redlining map" scrolling="no" frameborder="0"
         style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
 </div>
@@ -675,12 +675,17 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
 
             spec.layer[0].data.url = topo;
             spec.layer[1].data.url = topo;
+            // layer 0 is a lightgray backdrop; left in the accessibility tree
+            // it is an unnamed graphics-symbol group (axe svg-img-alt)
+            spec.layer[0].mark.aria = false;
             
             d3.csv(csv, d3.autoType).then(csv => {
                 
                 vegaEmbed(div, spec, {renderer: "svg"}).then((res) => {
 
                     resview = res.view.insert("csv", csv).run();
+                    // vega-embed's actions <summary> holds only an SVG and has no name
+                    document.querySelector(div + ' details > summary')?.setAttribute('aria-label', 'Export or view source for this map');
                 });
             });
         });
@@ -721,7 +726,7 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
 <p>由于红线圈定导致的住宅隔离和投资缩减，黑人和拉丁裔人获得健康住房的机会减少。他们更有可能居住在有维修问题、会威胁健康的建筑物中。</p>
 </div>
 <div class="wide my-4">
-    <iframe title='Black and Latino people have less access to healthy housing.' aria-label="Interactive chart" id="datawrapper-chart-O0SUA"
+    <iframe title='Black and Latino people have less access to healthy housing.' id="datawrapper-chart-V2Ej6"
         src='//datawrapper.dwcdn.net/V2Ej6/1/' scrolling="no" frameborder="0"
         style="width: 0; min-width: 100% !important; border: none;" height='300px'></iframe>
     <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();
@@ -810,11 +815,11 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
 </div>
 <div class="wide my-4">
 <ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item">
+    <li class="nav-item" role="presentation">
         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home"
             role="tab" aria-controls="home" aria-selected="true">条形图</a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" role="presentation">
         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"
             role="tab" aria-controls="profile" aria-selected="false">散点图</a>
     </li>
@@ -920,7 +925,7 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
         
         
         <li>
-            <a href="mailto:?subject=Environment%20%26%20Health%20Data%20Portal - %e5%81%a5%e5%ba%b7%e3%80%81%e4%bd%8f%e6%88%bf%e5%92%8c%e5%8e%86%e5%8f%b2%e3%80%82&amp;body=%e5%81%a5%e5%ba%b7%e3%80%81%e4%bd%8f%e6%88%bf%e5%92%8c%e5%8e%86%e5%8f%b2%e3%80%82%2c%20by%20Environment%20%26%20Health%20Data%20Portal%0a%e4%b8%ba%e4%ba%86%e5%81%a5%e5%ba%b7%ef%bc%8c%e5%9c%b0%e7%82%b9%e5%be%88%e9%87%8d%e8%a6%81%e3%80%82%0a%0ahttps%3a%2f%2fa816-dohbesp.nyc.gov%2fIndicatorPublic%2fzh%2fdata-stories%2fhousing%2f%0a" target="_blank" rel="noopener noreferrer" class="share-btn email">
+            <a href="mailto:?subject=Environment%20%26%20Health%20Data%20Portal - %e5%81%a5%e5%ba%b7%e3%80%81%e4%bd%8f%e6%88%bf%e5%92%8c%e5%8e%86%e5%8f%b2%e3%80%82&amp;body=%e5%81%a5%e5%ba%b7%e3%80%81%e4%bd%8f%e6%88%bf%e5%92%8c%e5%8e%86%e5%8f%b2%e3%80%82%2c%20by%20Environment%20%26%20Health%20Data%20Portal%0a%e4%b8%ba%e4%ba%86%e5%81%a5%e5%ba%b7%ef%bc%8c%e5%9c%b0%e7%82%b9%e5%be%88%e9%87%8d%e8%a6%81%e3%80%82%0a%0ahttps%3a%2f%2fa816-dohbesp.nyc.gov%2fIndicatorPublic%2fzh%2fdata-stories%2fhousing%2f%0a" target="_blank" rel="noopener noreferrer" aria-label="Share by email" class="share-btn email">
                 <i class="fas fa-envelope fs-xl"></i>
                 <p>Email</p>
             </a>
