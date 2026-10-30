@@ -81,7 +81,7 @@ In this file:
   --teal: #0c8763;
   --cyan: #008299;
   --white: #fff;
-  --gray: #777677;
+  --gray: #6c757d;
   --gray-dark: #343a40;
   --primary: #008939;
   --secondary: #181A7B;
@@ -1596,7 +1596,7 @@ pre {
   color: #495057;
   background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid #777677;
+  border: 1px solid #6c757d;
   border-radius: 0;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
   @media (prefers-reduced-motion: reduce) {
@@ -2455,7 +2455,7 @@ fieldset:disabled a.btn {
     text-decoration: none;
     box-shadow: none; }
   .btn-link:disabled, .btn-link.disabled {
-    color: #777677;
+    color: #6c757d;
     pointer-events: none; }
 
 .btn-lg, .btn-group-lg > .btn {
@@ -2689,7 +2689,7 @@ input[type="button"].btn-block {
     text-decoration: none;
     background-color: #841972; }
   .dropdown-item.disabled, .dropdown-item:disabled {
-    color: #777677;
+    color: #6c757d;
     pointer-events: none;
     background-color: transparent; }
 
@@ -2861,7 +2861,7 @@ input[type="button"].btn-block {
   text-align: center;
   white-space: nowrap;
   background-color: #e9ecef;
-  border: 1px solid #777677; }
+  border: 1px solid #6c757d; }
   .input-group-text input[type="radio"],
   .input-group-text input[type="checkbox"] {
     margin-top: 0; }
@@ -2930,7 +2930,7 @@ input[type="button"].btn-block {
     background-color: #abb9ff;
     border-color: #abb9ff; }
   .custom-control-input:disabled ~ .custom-control-label {
-    color: #777677; }
+    color: #6c757d; }
     .custom-control-input:disabled ~ .custom-control-label::before {
       background-color: #e9ecef; }
 
@@ -3020,7 +3020,7 @@ input[type="button"].btn-block {
   vertical-align: middle;
   background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 1rem center/8px 10px;
   background-color: #fff;
-  border: 1px solid #777677;
+  border: 1px solid #6c757d;
   border-radius: 0;
   appearance: none; }
   .custom-select:focus, select:focus {
@@ -3035,7 +3035,7 @@ input[type="button"].btn-block {
     padding-right: 1rem;
     background-image: none; }
   .custom-select:disabled, select:disabled {
-    color: #777677;
+    color: #6c757d;
     background-color: #e9ecef; }
   .custom-select::-ms-expand, select::-ms-expand {
     display: none; }
@@ -3090,7 +3090,7 @@ input[type="button"].btn-block {
   line-height: 1.5;
   color: #495057;
   background-color: #fff;
-  border: 1px solid #777677; }
+  border: 1px solid #6c757d; }
   .custom-file-label::after {
     position: absolute;
     top: 0;
@@ -3224,7 +3224,7 @@ select {
   .nav-link:hover, .nav-link:focus {
     text-decoration: none; }
   .nav-link.disabled {
-    color: #777677;
+    color: #6c757d;
     pointer-events: none;
     cursor: default; }
 
@@ -3237,7 +3237,7 @@ select {
     .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
       border-color: #e9ecef #e9ecef #dee2e6; }
     .nav-tabs .nav-link.disabled {
-      color: #777677;
+      color: #6c757d;
       background-color: transparent;
       border-color: transparent; }
   .nav-tabs .nav-link.active,
@@ -3431,7 +3431,7 @@ select {
   border-color: #841972; }
 
 .page-item.disabled .page-link {
-  color: #777677;
+  color: #6c757d;
   pointer-events: none;
   cursor: auto;
   background-color: #fff;
@@ -3797,7 +3797,7 @@ select {
   .list-group-item:last-child {
     margin-bottom: 0; }
   .list-group-item.disabled, .list-group-item:disabled {
-    color: #777677;
+    color: #6c757d;
     pointer-events: none;
     background-color: #fff; }
   .list-group-item.active {
@@ -7691,8 +7691,11 @@ a:not(.btn).disabled {
 .has-icon.active span.title, .wrap-file-input .file-input-label .active.file-choose span.title {
   text-decoration: underline; }
 
-#primary-content p > a:not([class]) {
+main a:not([class]) {
   text-decoration: underline; }
+
+.breadcrumb a:not([class]) {
+  text-decoration: none; }
 
 legend,
 .legend {
@@ -7720,7 +7723,7 @@ label,
   margin-bottom: 0.5rem; }
 
 .custom-control-label::before {
-  box-shadow: 0 0 0 1px #777677; }
+  box-shadow: 0 0 0 1px #6c757d; }
 
 .custom-checkbox .custom-control-label::before {
   border-radius: 0; }
@@ -8355,7 +8358,7 @@ legend,
       .wrap-file-input input[type="file"]:focus + label {
         transition: none; } }
   .wrap-file-input .file-input-label {
-    border: 1px solid #777677;
+    border: 1px solid #6c757d;
     display: block; }
     .wrap-file-input .file-input-label:hover .file-choose,
     .wrap-file-input .file-input-label:hover .file-name {
@@ -9099,7 +9102,7 @@ In this file:
   display: inline-block;
   padding-right: 0.5rem;
   padding-left: 0.5rem;
-  color: #777677;
+  color: #6c757d;
   content: ">"; }
 
 .breadcrumb-item + .breadcrumb-item:hover::before {
@@ -9109,7 +9112,7 @@ In this file:
   text-decoration: none; }
 
 .breadcrumb-item.active {
-  color: #777677; }
+  color: #6c757d; }
 
 #datastoryheader {
   width: 100%;
@@ -9272,7 +9275,7 @@ input[type=range] {
   -webkit-appearance: none;
   width: 100%; }
 
-input[type=range]:focus {
+input[type=range]:focus:not(:focus-visible) {
   outline: none; }
 
 input[type=range]::-webkit-slider-runnable-track {
@@ -9541,7 +9544,7 @@ input[type=range]:focus::-ms-fill-upper {
 
 .keywords {
   font-size: 12px;
-  color: grey; }
+  color: #6c757d; }
 
 .social-share {
   position: relative;
@@ -9598,9 +9601,11 @@ ul.share-icons li > * .label {
   border: none;
   border-radius: 4px;
   box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.2);
-  outline: none;
   text-align: center;
   text-decoration: none; }
+
+.share-btn:focus:not(:focus-visible) {
+  outline: none; }
 
 .share-btn:hover {
   color: #ffffff !important; }
@@ -10018,6 +10023,9 @@ table .group td {
   .p-mt-sm {
     margin-top: .75rem !important; } }
 
+/* $color-data-stories as *text* is 4.10:1 on white, under WCAG AA. This is the same red darkened
+   to 4.86:1, for text only; $color-data-stories stays the section colour for icons and fills,
+   which need 3:1 as graphics. The same split as $primary / $primary-dark. */
 .key-topics svg path {
   fill: #008939; }
 
@@ -10028,7 +10036,7 @@ table .group td {
   fill: #800080; }
 
 .data-stories {
-  color: #D75047; }
+  color: #C8433A; }
   .data-stories svg path {
     fill: #D75047; }
   .data-stories i {
@@ -10263,8 +10271,12 @@ table .group td {
 #primary-content h3 {
   padding-top: 20px; }
 
-#toggleButton[aria-expanded="true"] {
+#toggleButton[aria-expanded="false"] .toggle-expanded,
+#toggleButton[aria-expanded="true"] .toggle-collapsed {
   display: none; }
+
+.de-option-label {
+  color: #007a31; }
 
 .take-action-dropdown {
   width: 260px; }
@@ -11047,9 +11059,10 @@ h1 {
 .content-card button.card-content {
   background-color: white;
   appearance: none;
-  outline: none;
   border-right: none;
   border-left: none; }
+  .content-card button.card-content:focus:not(:focus-visible) {
+    outline: none; }
 
 .content-card a.resource-card,
 .content-card button.resource-card {
