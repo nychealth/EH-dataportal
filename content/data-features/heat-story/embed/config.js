@@ -830,7 +830,7 @@ config = {
             "videoId": "y3j6fgSu4oU", 
             "mapState": {
                 "lat": 40.742017,
-                "lng": -74.003067, // note that these lat longs are made up - can change if interviewee shares info
+                "lng": -74.008234, // note that these lat longs are made up - can change if interviewee shares info
                 "zoom": 12,
                 "layers": [
                     "Heat_vulnerability_index"
