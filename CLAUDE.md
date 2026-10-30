@@ -265,6 +265,9 @@ are printed as a harness-health number and deliberately **not** baselined — th
   touched. Re-baseline the second only after the first merges: merge `origin/production` into
   it, then run `site-characterization-rebaseline.mjs --expect "<its pages>"`. `[2026-10-24: #1517
   then #1518]`
+- **Re-baseline after every row's own proof has run, census included.** The re-baseline tool
+  refuses a dirty baseline directory, so a source edit made after it means discarding the run and
+  re-capturing both keys `[2026-10-30]`.
 - **Concurrency defaults to `min(24, max(6, availableParallelism()))`, not a fixed 6.** Measured
   over 925 pages, three sweeps interleaved so a warm cache could not pass for a concurrency effect:
   12 -> 198s, **24 -> 114s**, 12 -> 199s, all three captures byte-identical across every record
