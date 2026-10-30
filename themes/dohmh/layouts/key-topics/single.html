@@ -149,16 +149,16 @@
                                         {{ $src := .Resources.GetMatch .Params.image }}
                                         {{- if $src -}}
                                             {{ $image := $src.Resize "740x" }}
-                                            <a href="{{ .RelPermalink }}">
+                                            <a href="{{ .RelPermalink }}" aria-label="{{ .Title | plainify }}">
                                                 <div style="width:100%; height:200px; background-image: url({{ $image.RelPermalink }}); background-size:cover"></div>
                                             </a>
                                         {{- else -}}
-                                            <a href="{{ .RelPermalink }}">
+                                            <a href="{{ .RelPermalink }}" aria-label="{{ .Title | plainify }}">
                                                 <div style='width:100%; height:200px; background-image: url({{ relURL "images/overlay_map.png" }}); background-size: cover'></div>
                                             </a>
                                         {{- end -}}
                                     {{- else -}}
-                                        <a href="{{ .RelPermalink }}">
+                                        <a href="{{ .RelPermalink }}" aria-label="{{ .Title | plainify }}">
                                             <div style='width:100%; height:200px; background-image: url({{ relURL "images/overlay_map.png" }}); background-size: cover'></div>
                                         </a>
                                     {{- end -}}
@@ -224,7 +224,7 @@
                                 <div class="col-5">
                                     {{- $src := .Resources.GetMatch .Params.image }}
                                     {{ $image := $src.Resize "280x 200x" }}
-                                    <a class="link-track" href="{{ .RelPermalink }}">
+                                    <a class="link-track" href="{{ .RelPermalink }}" aria-label="{{ .Title | plainify }}">
                                         <img src="{{ $image.RelPermalink }}" class="mb-3" alt="">
                                     </a>
                                 </div>
@@ -271,7 +271,7 @@
                                 <div class="col-5">
                                     {{- $src := .Resources.GetMatch .Params.image }}
                                     {{ $image := $src.Resize "280x 200x" }}
-                                    <a class="link-track" href="{{ .RelPermalink }}">
+                                    <a class="link-track" href="{{ .RelPermalink }}" aria-label="{{ .Title | plainify }}">
                                         <img src="{{ $image.RelPermalink }}" class="mb-3" alt="">
                                     </a>
                                 </div>

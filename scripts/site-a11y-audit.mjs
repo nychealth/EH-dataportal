@@ -25,6 +25,9 @@
 //   - a page failed to load, or failed its rendered-content control, so its
 //     zero would describe an empty page rather than the page.
 //
+// A11Y_PAGES, a comma-separated list of site paths ("" or "(home)" for the home
+// page), replaces both lists, for re-checking the pages a set of findings named.
+//
 // Per-page JSON and summary.json land in A11Y_OUT (default: a temp directory).
 // Read `incompleteIds` as well as `violations`: axe defers nodes whose
 // background it cannot resolve, so a zero for color-contrast is a floor.
@@ -253,7 +256,9 @@ const main = async () => {
     const controlState = { proven: false, provenOn: null };
 
     try {
-        const paths = [...readSmokePages(), ...(await readTopicPages(baseURL))];
+        const paths = process.env.A11Y_PAGES !== undefined
+            ? process.env.A11Y_PAGES.split(',').map((p) => p.trim()).map((p) => (p === '(home)' ? '' : p))
+            : [...readSmokePages(), ...(await readTopicPages(baseURL))];
         const commit = execSync('git rev-parse HEAD', { cwd: REPO_ROOT, encoding: 'utf8' }).trim();
         console.log(`Auditing ${paths.length} pages at ${baseURL} (tree ${commit.slice(0, 10)})`);
 

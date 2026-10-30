@@ -85,7 +85,7 @@
             "input": 3,
             "select": 0,
             "textarea": 0,
-            "noAccessibleName": 2
+            "noAccessibleName": 1
         },
         "tables": {
             "total": 0,

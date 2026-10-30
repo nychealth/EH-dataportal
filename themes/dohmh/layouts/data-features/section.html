@@ -17,13 +17,13 @@
                         <div class="card content-card mb-4 col-sm-6 col-md-4">
                             <div class="card-content data-features">
                                 {{- if .Params.image -}}
-                                <a href="{{ .RelPermalink}}">
+                                <a href="{{ .RelPermalink}}" aria-label="{{ .Title | plainify }}">
                                     {{ $src := .Resources.GetMatch .Params.image }}
                                     {{ $image := $src.Resize "740x"}}
                                     <div style="width:100%; height:250px; background-image: url({{ $image.RelPermalink }}); background-size:cover"></div>
                                 </a>
                                 {{- else -}}
-                                <a class="" href="{{ .RelPermalink }}">
+                                <a class="" href="{{ .RelPermalink }}" aria-label="{{ .Title | plainify }}">
                                 <div style='width:100%; height:250px; background-image: URL({{ relURL "images/overlay_map.png" }}); background-size: cover'></div></a>
 
                                 {{- end -}}
@@ -55,13 +55,13 @@
                             <div class="card content-card mb-4 col-sm-6 col-md-3">
                                 <div class="card-content data-features">
                                     {{- if .Params.image -}}
-                                    <a href="{{ .RelPermalink}}">
+                                    <a href="{{ .RelPermalink}}" aria-label="{{ .Title | plainify }}">
                                         {{ $src := .Resources.GetMatch .Params.image }}
                                         {{ $image := $src.Resize "740x"}}
                                         <div style="width:100%; height:250px; background-image: url({{ $image.RelPermalink }}); background-size:cover"></div>
                                     </a>
                                     {{- else -}}
-                                    <a class="" href="{{ .RelPermalink }}">
+                                    <a class="" href="{{ .RelPermalink }}" aria-label="{{ .Title | plainify }}">
                                     <div style='width:100%; height:250px; background-image: URL({{ relURL "images/overlay_map.png" }}); background-size: cover'></div></a>
 
                                     {{- end -}}
@@ -97,10 +97,10 @@
 
 
                                         {{ $image := $src.Resize "740x"}}
-                                        <a class="" href="{{ .RelPermalink }}">
+                                        <a class="" href="{{ .RelPermalink }}" aria-label="{{ .Title | plainify }}">
                                         <div style="width:100%; height:150px; background-image: URL({{ $image.Permalink }}); background-size: cover"></div></a>
                                     {{- else -}}
-                                        <a class="" href="{{ .RelPermalink }}">
+                                        <a class="" href="{{ .RelPermalink }}" aria-label="{{ .Title | plainify }}">
                                         <div style='width:100%; height:150px; background-image: URL({{ relURL "images/overlay_map.png" }}); background-size: cover'></div></a>
 
                                     {{- end -}}

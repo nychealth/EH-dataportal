@@ -232,7 +232,7 @@ Explore NYC's common housing problems in the map below.
 **Percent of households with healthy housing problems**
 {{< rawhtml >}}
 
-<div class="btn-group" role="group" aria-label="Button group with nested dropdown" aria-hidden="true">
+<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 
   <div class="btn-group" role="group">
     <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle mr-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -411,7 +411,10 @@ function changeMap(x) {
         ]
         }
 
-        vegaEmbed('#housingmap',defaultSpec, {renderer: "svg"})
+        // vega-embed's actions <summary> holds only an SVG and has no name
+        vegaEmbed('#housingmap',defaultSpec, {renderer: "svg"}).then(() => {
+            document.querySelector('#housingmap details > summary')?.setAttribute('aria-label', 'Export or view source for this map');
+        })
 
 }
 
@@ -486,7 +489,7 @@ Black and Latino people with higher incomes are also more likely to live in buil
 {{< rawhtml >}}
 
 </div>
-<div class="wide my-4" aria-hidden="true">
+<div class="wide my-4">
 <div class="text-center mb-3">
     View data by income level:<br>
     <input type="radio" name="income" onclick="elow()" id="elow"
@@ -597,11 +600,11 @@ As a result, the highest rates of asthma emergency department visits for childre
 </div>
 <div class="wide my-4">
 <ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item">
+    <li class="nav-item" role="presentation">
         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home"
             role="tab" aria-controls="home" aria-selected="true">Bar charts</a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" role="presentation">
         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"
             role="tab" aria-controls="profile" aria-selected="false">Scatterplot</a>
     </li>

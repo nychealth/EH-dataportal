@@ -43,7 +43,13 @@ const load_flexdatalist = async () => {
 
             const generated = document.getElementById($input.attr('id') + '-flexdatalist');
 
-            if (generated) wireComboboxState(generated);
+            // The library copies no ARIA onto the input it generates, so the label the
+            // authored input carries in aqe.html has to be repeated here
+
+            if (generated) {
+                generated.setAttribute('aria-labelledby', 'aqe-search-label');
+                wireComboboxState(generated);
+            }
 
             // ----- add flexdatalist select handler -------------------------------------------------- //
 
@@ -364,7 +370,9 @@ const renderMap = (
                     "url": data_repo + data_branch + "/geography/NTA_2020.topo.json",
                     "format": {"type": "topojson", "feature": "collection"}
                 },
-                "mark": {"type": "geoshape", "stroke": "#ffffff", "fill": "lightgray"}
+                // aria:false — a plain backdrop; left in the accessibility tree it is an
+                // unnamed graphics-symbol group (axe svg-img-alt)
+                "mark": {"type": "geoshape", "stroke": "#ffffff", "fill": "lightgray", "aria": false}
             },
             {
                 "data": {

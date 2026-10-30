@@ -69,7 +69,7 @@
             "internal": 147,
             "external": 18,
             "emptyHref": 29,
-            "noAccessibleText": 24
+            "noAccessibleText": 0
         },
         "controls": {
             "button": 5,

@@ -78,7 +78,7 @@ Las décadas de {{< rawhtml >}}<a href="#disinvestmentCollapse" data-toggle="col
 
 Como resultado de esta falta de inversión, vemos **una clara relación entre la pobreza y la violencia**. Cuando el nivel de pobreza de un vecindario aumenta, las agresiones también lo hacen. 
 
-<iframe title='Poverty and assaults - ranks' aria-label="Interactive chart" id="datawrapper-chart-O0SUA"
+<iframe title='Poverty and assaults - ranks' id="datawrapper-chart-639n0"
     src='//datawrapper.dwcdn.net/639n0/1/' scrolling="no" frameborder="0"
     style="width: 0; min-width: 100% !important; border: none;" height='600'></iframe>
 <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();
