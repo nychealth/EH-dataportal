@@ -568,7 +568,17 @@ const renderIndicatorInfo = async (IndicatorID) => {
         el.textContent = indicator.IndicatorDescription ?? "";
     });
 
-    // ----- rebuild "how calculated" paragraphs, collect unique sources ----- //
+    // ----- rebuild "how calculated" paragraphs and sources ----- //
+
+    renderIndicatorAbout(indicator);
+};
+
+
+// Writes the indicator-wide "About the data" (one paragraph per measure) and its unique sources.
+// Trend and correlate overwrite both with their own text via renderAboutSources, so
+// renderCurrentView (app.js) calls restoreIndicatorAbout on every other view to put these back.
+
+const renderIndicatorAbout = (indicator) => {
 
     const howCalculatedEl = document.getElementById('howCalculated');
     const dataSourcesEl = document.getElementById('dataSources');
@@ -597,6 +607,17 @@ const renderIndicatorInfo = async (IndicatorID) => {
         p.textContent = source;
         dataSourcesEl.appendChild(p);
     });
+};
+
+
+// Re-renders the current indicator's About and sources, if metadata.json has loaded.
+
+const restoreIndicatorAbout = () => {
+
+    const indicator = indicators?.find(d => Number(d.IndicatorID) === Number(DE.state.IndicatorID));
+
+    if (indicator) renderIndicatorAbout(indicator);
+
 };
 
 

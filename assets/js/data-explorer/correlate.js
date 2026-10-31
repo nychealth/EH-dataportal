@@ -745,12 +745,14 @@ const renderCorrelate = (
     DE.print.vizSourceSecond = secondaryMetadata[0].Sources;
 
     // Export only analyst-facing columns, then append readable measure labels.
+    // Labelled by primary/secondary, not by axis: Value_1 is always the primary (data.js joins it
+    // on the left), whichever axis SecondaryAxis puts it on.
 
     const dataForDownload = [...correlateSpec.data.values];
 
     const downloadTable = buildLinksDownloadTable(dataForDownload, [], {
-        value1Indicator: `${yIndicatorName} - ${yMeasure} ${yDisplay}`,
-        value2Indicator: `${xIndicatorName} - ${xMeasure} ${xDisplay ? `(${xDisplay})` : ''}`
+        value1Indicator: `${primaryIndicatorName} - ${primaryMeasurementType} ${primaryDisplay || ''}`,
+        value2Indicator: `${secondaryIndicatorName} - ${secondaryMeasurementType} ${secondaryDisplay ? `(${secondaryDisplay})` : ''}`
     });
 
     DE.print.CSVforDownload = downloadTable.toCSV();

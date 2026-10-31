@@ -2059,7 +2059,8 @@ const showOverlayTab = () => {
         'map':   '#v-pills-bar-tab',
         'trend': '#v-pills-trends-tab',
         'links': '#v-pills-correlate-tab',
-        'table': '#v-pills-table-tab'
+        'table': '#v-pills-table-tab',
+        'ds':    '#v-pills-ds-tab'
     };
 
     const tabContent = document.querySelector('#v-pills-tabContent');

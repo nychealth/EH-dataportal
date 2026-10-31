@@ -124,6 +124,11 @@ const resetSelectionForNewIndicator = () => {
     DE.state.GeoType = null;
     DE.state.TimePeriodID = null;
 
+    // A new indicator brings its own geographies, which invalidates the Area search the same
+    // way a geo change does (menu.js handleSelection).
+
+    clearTableAreaSearch();
+
     // overlay is intentionally preserved across indicator selection
 
 };
@@ -138,6 +143,11 @@ const writeSelectionToURL = (historyMethod = 'pushState') => {
     // Rebuild the explorer params in a stable order and drop legacy aliases.
 
     url.search = buildCanonicalSearchParams().toString();
+
+    // A push that would write the URL already showing (choosing the selected measure, say)
+    // replaces the entry instead, so Back is not spent on a step that changed nothing.
+
+    if (historyMethod === 'pushState' && url.href === window.location.href) historyMethod = 'replaceState';
 
     writeHistoryState(historyMethod, {
         id: DE.state.IndicatorID,
@@ -395,6 +405,13 @@ const renderCurrentView = (updateMap = false) => {
 
     const mapRenderPromise = updateMap ? Promise.resolve(showMap()) : Promise.resolve();
 
+    // ----- restore the indicator-wide About text ----- //
+
+    // Trend and correlate write their own About/Sources text; every other view shows the
+    // indicator's, which would otherwise keep the last trend or correlate text.
+
+    if (DE.state.overlay !== 'trend' && DE.state.overlay !== 'links') restoreIndicatorAbout();
+
     // ----- dispatch on overlay via switch ----- //
 
     // route the current overlay value to the matching show* renderer
@@ -448,6 +465,11 @@ const renderCurrentView = (updateMap = false) => {
 
         case 'links':
             runOverlayRenderer(showLinks);
+            break;
+
+        case 'ds':
+            // Data Sources is static markup, filled by restoreIndicatorAbout above; nothing to draw.
+
             break;
 
         default:
@@ -532,6 +554,11 @@ const loadAndRenderIndicator = async (id, { selection = null, history = 'push' }
     await ensureIndicatorsLoaded('loadAndRenderIndicator');
     if (!isCurrent()) return;
 
+    // An id metadata.json does not list: renderIndicatorInfo has already reopened the
+    // chooser, and the steps below would throw on the missing record.
+
+    if (!getIndicatorById(indicatorID)) return;
+
     await loadIndicator(indicatorID);
     if (!isCurrent()) return;
 
@@ -574,6 +601,17 @@ window.addEventListener('popstate', async (event) => {
 
     const selection = parseSelectionFromURL();
 
+    // ----- no indicator in this entry: back to the chooser ----- //
+
+    // A topic page opened without ?id= has no indicator loaded at all, only the chooser
+    // (checkURL). An in-place pick pushed the entry after it, so Back lands here with the
+    // picked indicator still on screen; reloading restores the page as first opened.
+
+    if (selection.id === null || Number.isNaN(selection.id)) {
+        window.location.reload();
+        return;
+    }
+
     // ----- reload full pipeline on indicator change ----- //
 
     // history: 'none' — this URL *is* the history entry being navigated to, so
@@ -586,6 +624,8 @@ window.addEventListener('popstate', async (event) => {
 
     // ----- sync sub-indicator globals, rebuild menus ----- //
 
+    const previousGeoTime = [DE.state.GeoType, DE.state.TimePeriodID];
+
     applySelectionToState(selection);
 
     // sync the dropdown menus to match the restored globals
@@ -595,6 +635,17 @@ window.addEventListener('popstate', async (event) => {
     // Rebuild dropdowns only when indicator metadata is already available in memory.
 
     if (ind) updateAllMenus(ind);
+
+    // ----- resync table filters ----- //
+
+    // Same rule as a dropdown change (menu.js handleSelection): a restored geo or time
+    // invalidates the Area search, and the table follows the map unless set by hand.
+
+    if (DE.state.GeoType !== previousGeoTime[0] || DE.state.TimePeriodID !== previousGeoTime[1]) {
+        clearTableAreaSearch();
+    }
+
+    syncTableFiltersToMapSelection();
 
     // ----- re-render ----- //
 
@@ -636,7 +687,8 @@ document.addEventListener("DOMContentLoaded", () => {
         '#v-pills-bar-tab':       'bar',
         '#v-pills-trends-tab':    'trend',
         '#v-pills-correlate-tab': 'links',
-        '#v-pills-table-tab':     'table'
+        '#v-pills-table-tab':     'table',
+        '#v-pills-ds-tab':        'ds'
     };
 
     // ----- bind tab click listeners ----- //

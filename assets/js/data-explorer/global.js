@@ -171,7 +171,7 @@ const DE = {
     },
 
     // Core identity: which indicator/measure/geography/time is selected and which
-    // overlay tab is open ('bar', 'table', 'trend', 'links', or 'none'). Read across
+    // overlay tab is open ('bar', 'table', 'trend', 'links', 'ds', or 'none'). Read across
     // nearly every file and kept in sync with the URL by app.js.
     state: {
         IndicatorID: undefined,
