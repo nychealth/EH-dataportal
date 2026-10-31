@@ -602,7 +602,9 @@ document.getElementById('inputNum').addEventListener('change', function (event) 
 
 function updateTime(x) {
 
-    var last = fullTable.pop();
+    // read the latest row without removing it: pop() dropped one row of the shared feed on every
+    // change, so the window's start drifted back an hour per ~15 changes
+    var last = fullTable[fullTable.length - 1];
     const date = new Date(last.starttime);
     let dateInMsec = Date.parse(date);
     var filterTo = dateInMsec - x * 86400000;
