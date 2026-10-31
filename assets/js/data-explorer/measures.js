@@ -452,7 +452,6 @@ const setBadgePillState = (button, isActive, isDisabled = false) => {
     button.disabled = isDisabled;
     button.setAttribute('aria-disabled', isDisabled ? 'true' : 'false');
     button.setAttribute('aria-pressed', isActive && !isDisabled ? 'true' : 'false');
-    button.setAttribute('aria-selected', isActive && !isDisabled ? 'true' : 'false');
 
 };
 
@@ -557,14 +556,16 @@ const createBadgePillDropdown = ({
 };
 
 
-// Toggles the active class and aria-selected on one dropdown menu item.
+// Toggles the active class and aria-current on one dropdown menu item (aria-selected is not
+// allowed on a <button>; aria-current matches menu.js's own menu items).
 
 const setDropdownMenuItemState = (button, isActive) => {
 
     if (!button) return;
 
     button.classList.toggle('active', isActive);
-    button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    if (isActive) button.setAttribute('aria-current', 'true');
+    else button.removeAttribute('aria-current');
 
 };
 
@@ -1159,16 +1160,17 @@ const setLinksButtonState = () => {
 
     document.querySelectorAll('.linksbutton').forEach(button => {
         button.classList.remove('active');
-        button.setAttribute('aria-selected', 'false');
+        button.removeAttribute('aria-current');
     });
 
     if (activeLinksState.view === 'links' && !linksSwitcherDisabled) {
 
         const activeLinksButton = document.querySelector(`.linksbutton[data-primary-measure-id='${activeLinksState.primaryMeasureId}'][data-secondary-measure-id='${activeLinksState.secondaryMeasureId}']`);
 
+        // aria-current rather than aria-selected, which a <button> does not allow
         if (activeLinksButton) {
             activeLinksButton.classList.add('active');
-            activeLinksButton.setAttribute('aria-selected', 'true');
+            activeLinksButton.setAttribute('aria-current', 'true');
         }
     }
 
