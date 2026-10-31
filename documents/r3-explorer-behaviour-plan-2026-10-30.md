@@ -52,7 +52,12 @@ Open, both Chris's:
 | 8 | A-284: fetch failure message (D2) | | BLOCKED on D2 | |
 | 9 | A-308: tablet chart width (D1); N-105: titles clipped at 992–1024px | | **BLOCKED on D1**; both options built and measured, neither in the tree | D1 measurements, above |
 | 10 | lint, smoke, DE and site characterization, re-baseline | re-baseline `f4719c3047` | **DONE 2026-10-31** (checks on `3fbc44854f`) | `npm run lint` exit 0. `smoke-env.mjs prod_prod`: 1187 pages clean; `heat-report-archive/2021/` failed under concurrency and cleared on the sequential re-check (the Datawrapper flake in CLAUDE.md). `de-characterization.mjs --check` against `:8091` (before) and `:8092` (after): both fail the committed baseline on the same 14 lines (indicator 2023's time 2024 → 2025, row and mark counts, legend), and the two arms' outputs are identical (`git diff --no-index` exit 0), so this is EHDP-data having moved since that baseline, not this branch; that baseline is left as it is. `characterize-env.mjs prod_prod`: 42 of 924 pages differ, all under `data-explorer/`, every one `links.internal` −2 and `links.emptyHref` −2 and nothing else (a parse of both captures): N-046's two placeholder links. `site-characterization-rebaseline.mjs --expect "data-explorer/**"`: both baselines "42 of 924 pages changed in all; 42 covered by --expect, 0 not", "Nothing unexplained"; `git diff -U0` tallied by key: 84 `internal` and 84 `emptyHref`, every one −2, plus the two `_meta.json` provenance lines; 86 files +174/−174 |
-| 11 | close the rows in the audit | `b6dee3e27a` | **11 of 13 closed**; A-284, A-308 and the new N-105 stay OPEN | `close_r3.py` (scratchpad) on a copy, then on the audit, byte-identical (`cmp` exit 0): 11 rows FIXED (A-155 by `fcb2771302`, the other ten by `3fbc44854f`), the count table, the Summary paragraph, the Roadmap's P1+P2 total (75 → 64) and the R3 batch row (1 / 1: **A-308**; A-284), moved below R11 by P1-then-P2 order. Recount control reproduced `HEAD`'s table first (OPEN 15/60/131/2 = 208, FIXED 251), then read OPEN 12/52/131/2 = 197, FIXED 262. Batch check (`C:/temp/check_batches.py`, the memory's script): every batch OK, ordered, 64 ids = the OPEN P1/P2 rows. `git diff --numstat` 17/17. Then N-105 added by `add_n105.py` (OPEN, P1, batch R3: chart titles clipped at 992 and 1024px, past both A-308 options, from the D1 measurements), on a copy first and byte-identical: OPEN 13/52/131/2 = 198, all 507, Roadmap 64 → 65, R3's row 2 / 1 and above R1; batch check 0 MISMATCH, 65 ids |
+| 11 | close the rows in the audit | `b6dee3e27a` | **11 of 13 closed**; A-284, A-308 and the new N-105 stay OPEN | `close_r3.py` on a copy, then on the audit, byte-identical (`cmp` exit 0): 11 rows FIXED (A-155 by `fcb2771302`, the other ten by `3fbc44854f`), the count table, the Summary paragraph, the Roadmap's P1+P2 total (75 → 64) and the R3 batch row (1 / 1: **A-308**; A-284), moved below R11 by P1-then-P2 order. Recount control reproduced `HEAD`'s table first (OPEN 15/60/131/2 = 208, FIXED 251), then read OPEN 12/52/131/2 = 197, FIXED 262. Batch check (`C:/temp/check_batches.py`, the memory's script): every batch OK, ordered, 64 ids = the OPEN P1/P2 rows. `git diff --numstat` 17/17. Then N-105 added by `add_n105.py` (OPEN, P1, batch R3: chart titles clipped at 992 and 1024px, past both A-308 options, from the D1 measurements), on a copy first and byte-identical: OPEN 13/52/131/2 = 198, all 507, Roadmap 64 → 65, R3's row 2 / 1 and above R1; batch check 0 MISMATCH, 65 ids |
+
+Every script, probe output, prediction file and screenshot this document names is in
+`scripts/.sc-rebaseline/r3/` (git-ignored, so on the machine that ran them only; copied there
+2026-10-31 from the session scratchpad). The probes import Playwright through the repo's
+`package.json` and read `R3_BASE` for the site to load (default `http://localhost:8091/IndicatorPublic/`).
 
 Each fix task's proof is the Task 0 reproduction re-run on a build of the edited tree, with the
 same probe, plus a control the fix should not move.
@@ -65,7 +70,7 @@ option 1 (:8093), the seven explorer min-width: 720px blocks and the max-width: 
 992px / 991.98px (min-width: 992px 1 → 8, min-width: 720px 33 → 26 in the CSS; .container-to-large
 left alone) plus trend.js's viewportWidth < 720; option 2 (:8094), min-width: 360px on .de-tabs.
 a308.mjs, method of .playwright-mcp/chart-text-clip.mjs, 9 widths x 4 charts per build;
-predictions written first in a308-predictions.md (scratchpad r3/)]`
+predictions written first in a308-predictions.md]`
 
 No-power check passed: current clips at 768 on all three bar and trend charts (1, 3 and 1 text
 elements), as the 2026-10-15 findings recorded.
@@ -100,7 +105,7 @@ elements), as the 2026-10-15 findings recorded.
 
 `[verified 2026-10-30: HUGO_RESOURCEDIR=C:/temp/r3/res hugo --environment prod_prod -d C:/temp/r3/docs
 on a77f7d4991, served under /IndicatorPublic/ on :8091; Playwright, de-headlessed UA, GA aborted. Probes
-in the session scratchpad r3/: probe0.mjs, a162.mjs, a162b.mjs, a155*.mjs, a153.mjs, a154.mjs]`
+probe0.mjs, a162.mjs, a162b.mjs, a155*.mjs, a153.mjs, a154.mjs]`
 
 - **A-162 reproduces.** Over all metadata links `SecondaryAxis` is `y` 467, `x` 475, `null` 567. Axis
   `y`: `birth-outcomes/?id=4&MeasureID=8&overlay=links` (secondary measure 777) writes `Value_1_Indicator`
@@ -145,9 +150,34 @@ in the session scratchpad r3/: probe0.mjs, a162.mjs, a162b.mjs, a155*.mjs, a153.
 
 ### Next commands
 
+State on 2026-10-31: branch pushed (`git rev-list --left-right --count origin/feature-audit-r3-explorer-behaviour...HEAD`
+→ `0 0` means nothing unpushed), no PR, held for A-308 / N-105 and A-284 (Chris). No servers or
+worktree are left running; the builds below are rebuilt from scratch.
+
 ```
-git log --oneline a77f7d4991..HEAD                       # task commits on this branch
-python C:/temp/recount.py documents/site-wide-audit-2026-10.md       # expect OPEN 13/52/131/2 = 198, FIXED 262
-python C:/temp/check_batches.py documents/site-wide-audit-2026-10.md # expect every batch OK, 65 ids
-git worktree remove C:/temp/r3wt                         # the A-308 variant worktree, once D1 is decided
+git log --oneline a77f7d4991..HEAD                       # this branch's commits
+python scripts/.sc-rebaseline/r3/recount.py documents/site-wide-audit-2026-10.md         # expect OPEN 13/52/131/2 = 198, FIXED 262
+python scripts/.sc-rebaseline/r3/check_batches.py documents/site-wide-audit-2026-10.md   # expect every batch OK, 65 ids
 ```
+
+To look at A-308's options again (Git Bash, from the repo root; each build ~30 s, isolated, safe beside a dev server):
+
+```
+R=scripts/.sc-rebaseline/r3; HUGO=$PWD/node_modules/.bin/hugo
+git worktree add --detach C:/temp/r3wt HEAD
+python $R/a308_variant.py C:/temp/r3wt opt1          # prints "opt1 applied"; asserts 8 media blocks + trend.js
+(cd C:/temp/r3wt && HUGO_RESOURCEDIR=C:/temp/r3o1/res $HUGO --environment prod_prod -d C:/temp/r3o1/docs && git checkout -- .)
+python $R/a308_variant.py C:/temp/r3wt opt2
+(cd C:/temp/r3wt && HUGO_RESOURCEDIR=C:/temp/r3o2/res $HUGO --environment prod_prod -d C:/temp/r3o2/docs && git checkout -- .)
+HUGO_RESOURCEDIR=C:/temp/r3cur/res $HUGO --environment prod_prod -d C:/temp/r3cur/docs
+node $R/serve-prefix.mjs C:/temp/r3cur/docs 8092 &   node $R/serve-prefix.mjs C:/temp/r3o1/docs 8093 &   node $R/serve-prefix.mjs C:/temp/r3o2/docs 8094 &
+# open http://localhost:8093/IndicatorPublic/data-explorer/asthma/?id=2380&overlay=bar at 768px, etc.
+R3_BASE=http://localhost:8093/IndicatorPublic/ node $R/a308.mjs opt1     # the D1 table's numbers
+git worktree remove --force C:/temp/r3wt
+```
+
+Once D1 and D2 are decided: apply the chosen A-308 variant to this tree (`python $R/a308_variant.py . opt1`
+applies option 1 as measured; the `md`-class extension is not written), design N-105's fix (chart titles at
+~275–287px; neither option reaches it), write A-284's message, then re-run Task 10 (lint, `smoke-env.mjs
+prod_prod`, `characterize-env.mjs prod_prod`, re-baseline with `--expect`) and close the rows with a
+`close_r3.py`-style script plus the two checks above, then open the PR into `production`.
