@@ -34,7 +34,7 @@
     "links": {
         "present": true,
         "ariaLabel": "Scatterplot correlating Asthma emergency department visits (adults) and Adults reporting cockroaches",
-        "markCount": 43,
+        "markCount": 17,
         "viewNote": "Correlates shows data at the finest available geography for both indicators. It may be different than what is on the map."
     },
     "disparities": {
