@@ -9,7 +9,7 @@ const date    = today.getDate();
 var allYears  = [];
 var fileExists;
 var colorArray; // set by init(); the scatterplot specs below read it once init() resolves
-var yearURL   = 'https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat' + year + '_live.csv';
+var yearURL   = data_repo + data_branch + '/key-topics/heat-syndrome/edheat' + year + '_live.csv';
 
 async function init() {
 
@@ -137,7 +137,7 @@ var spec = {
         "view": {"stroke": "transparent"}
     },
     "data": {
-        "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat2023_live.csv",
+        "url": data_repo + data_branch + "/key-topics/heat-syndrome/edheat2023_live.csv",
     "format": {"type":"csv", "parse":{"END_DATE": "date:'%Y-%m-%d'", "MAX_DAILY_TEMP":"number","HEAT_ED_VISIT_COUNT":"number"}} //format.parse -> END_DATE resolves UTC time issues
     },
     "transform": [
@@ -228,12 +228,12 @@ function changeYear(x) {
 
     if ( x == allYears[0]) {
 
-        spec.data.url = `https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat${x}_live.csv`;
+        spec.data.url = `${data_repo}${data_branch}/key-topics/heat-syndrome/edheat${x}_live.csv`;
 
     }
     else {
 
-        spec.data.url = 'https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/previous_years.csv';
+        spec.data.url = data_repo + data_branch + '/key-topics/heat-syndrome/previous_years.csv';
 
     }
     document.getElementById('yearHeader').innerHTML = x;
@@ -299,7 +299,7 @@ var scatterplot = {
     },
     "view": {"stroke": "transparent"},
     "data": {
-        "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/previous_years.csv"
+        "url": data_repo + data_branch + "/key-topics/heat-syndrome/previous_years.csv"
     },
     "transform": [
         {"calculate": "year(datum.END_DATE)", "as": "Year"},
@@ -389,7 +389,7 @@ var scatterplotTwo = {
     },
     "view": {"stroke": "transparent"},
     "data": {
-        "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/previous_years.csv"
+        "url": data_repo + data_branch + "/key-topics/heat-syndrome/previous_years.csv"
     },
     "transform": [
         {"calculate": "year(datum.END_DATE)", "as": "Year"},
