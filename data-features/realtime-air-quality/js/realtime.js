@@ -357,7 +357,9 @@ function printRecentAverage() {
                 totals += sum[i];
             }
             
-            average = totals / 24;
+            // average over the readings actually present: dividing by 24 understated any day
+            // with missing hours; the > 17 check above still requires 18 of the 24
+            average = totals / thisLast.length;
             average = Math.round(average * 100) / 100;
             
             values.push(average);
@@ -397,7 +399,9 @@ function printRecentAverage() {
                 totals += sum[i];
             }
             
-            average = totals / 24;
+            // average over the readings actually present: dividing by 24 understated any day
+            // with missing hours; the > 17 check above still requires 18 of the 24
+            average = totals / thisLast.length;
             average = Math.round(average * 100) / 100;
             
             values.push(average);
@@ -598,7 +602,9 @@ document.getElementById('inputNum').addEventListener('change', function (event) 
 
 function updateTime(x) {
 
-    var last = fullTable.pop();
+    // read the latest row without removing it: pop() dropped one row of the shared feed on every
+    // change, so the window's start drifted back an hour per ~15 changes
+    var last = fullTable[fullTable.length - 1];
     const date = new Date(last.starttime);
     let dateInMsec = Date.parse(date);
     var filterTo = dateInMsec - x * 86400000;

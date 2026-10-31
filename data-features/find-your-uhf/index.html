@@ -595,17 +595,17 @@
     var geojsonURLs = [
         {
             "name": "CD",
-            "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/CD.geojson",
+            "url": data_repo + data_branch + "/geography/CD.geojson",
             "property": "GEOCODE"
         },
         {
             "name": "CCD",
-            "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/CityCouncilDistrict.geojson",
+            "url": data_repo + data_branch + "/geography/CityCouncilDistrict.geojson",
             "property": "CounDist"
         },
             {
             "name": "UHF42",
-            "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/UHF42.geojson",
+            "url": data_repo + data_branch + "/geography/UHF42.geojson",
             "property": "tbd"
         }
     ];
@@ -853,7 +853,7 @@ function drawUHFs(UHF_ids) {
 
     
 
-    fetch("https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/UHF42.geojson")
+    fetch(data_repo + data_branch + "/geography/UHF42.geojson")
         .then(response => response.json())
         .then(data => {
 

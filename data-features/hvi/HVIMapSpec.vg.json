@@ -30,7 +30,7 @@
     },
     {
       "name": "source_1",
-      "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/borough.topo.json",
+      "url": "borough_topo",
       "format": {"type": "topojson", "feature": "collection"},
       "transform": [{"type": "identifier", "as": "_vgsid_"}]
     }
