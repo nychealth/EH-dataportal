@@ -413,7 +413,8 @@ const renderAboutSources = (about, sources) => {
 // the holder, then re-reveals it only if there are notes to show. Callers pass an
 // already-deduped `notes` array — each site's dedupe source differs enough (table
 // rows vs. joined Note_1/Note_2 pairs) that the dedupe/filter step stays inline at
-// the call site rather than folding into this helper.
+// the call site rather than folding into this helper. That inline step dedupes raw
+// notes only; for bar/trend/correlate, `getDisplayNotes` dedupes again after mapping.
 // `wrapNote` lets bar.js keep its `<p>` markup while the other four keep
 // `<div class='fs-xs'>` — a real markup divergence between sites, not an oversight
 // to silently unify. Builds the joined markup once and assigns it, instead of the
@@ -979,9 +980,11 @@ const downloadData = (
 
 // Revises the notes that are displayed under each chart - meant to work in concert with tooltip notes at each datapoint. This lets you display chart-specific notes, rather than datapoint-specific notes (which should show in tooltips)
 
+// Deduped after mapping: distinct raw notes ("* Estimate…", "< 4 Estimate…") map to one sentence.
+
 function getDisplayNotes(notes) {
 
-  return notes
+  return [...new Set(notes
     .map(note => {
 
       if (note.includes('based on small numbers')) {
@@ -994,5 +997,5 @@ function getDisplayNotes(notes) {
 
       return note;
 
-    });
+    }))];
 }
