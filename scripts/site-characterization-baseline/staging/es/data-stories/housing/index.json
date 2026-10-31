@@ -105,24 +105,24 @@
                 "zeroSize": true
             },
             {
+                "host": "(self)",
+                "zeroSize": true
+            },
+            {
+                "host": "(self)",
+                "zeroSize": true
+            },
+            {
+                "host": "(self)",
+                "zeroSize": true
+            },
+            {
                 "host": "datawrapper.dwcdn.net",
                 "zeroSize": false
             },
             {
                 "host": "datawrapper.dwcdn.net",
                 "zeroSize": false
-            },
-            {
-                "host": "datawrapper.dwcdn.net",
-                "zeroSize": true
-            },
-            {
-                "host": "datawrapper.dwcdn.net",
-                "zeroSize": true
-            },
-            {
-                "host": "datawrapper.dwcdn.net",
-                "zeroSize": true
             },
             {
                 "host": "datawrapper.dwcdn.net",

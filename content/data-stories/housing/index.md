@@ -300,7 +300,7 @@ function changeMap(x) {
             "lookup": "GEOCODE",
             "from": {
                 "data": {
-                "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/PUMA_or_Subborough.topo.json",
+                "url": data_repo + data_branch + "/geography/PUMA_or_Subborough.topo.json",
                 "format": {"type": "topojson", "feature": "collection"}
                 },
                 "key": "properties.PUMA"

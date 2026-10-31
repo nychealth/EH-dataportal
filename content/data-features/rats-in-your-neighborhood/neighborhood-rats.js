@@ -367,7 +367,7 @@ function getCDIndicatorData(x) {
 
     console.log('***Getting CD Indicator data for ', x);
     
-    const URL = 'https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/indicators/data/2434.json';
+    const URL = data_repo + data_branch + '/indicators/data/2434.json';
     // passes geoID into function
     
     return new Promise((resolve, reject) => {
@@ -476,7 +476,7 @@ function printCDData(data) {
     
     // get Time Periods to match to TimePeriod ID
 
-    fetch('https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/indicators/metadata/TimePeriods.json')
+    fetch(data_repo + data_branch + '/indicators/metadata/TimePeriods.json')
     .then(response => response.json())
     .then(timePeriods => {
 

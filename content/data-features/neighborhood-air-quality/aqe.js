@@ -384,7 +384,8 @@ const renderMap = (
                         "lookup": "properties.NTA2020",
                         "from": {
                             "data": {
-                                "url": "https://gist.githubusercontent.com/mmontesanonyc/1d27a5ab8fbbfea417e3308c733725f3/raw/1fe4964652a361b0e3c9b95b26a1116da723fe8e/aqe-nta.csv"
+                                // the bundle's own file, the one the cards and the bar chart read
+                                "url": "aqe-nta.csv"
                             },
                             "key": "NTACODE",
                             "fields": [

@@ -73,13 +73,13 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 86,
+            "internal": 81,
             "external": 24,
-            "emptyHref": 35,
+            "emptyHref": 30,
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 31,
+            "button": 30,
             "input": 1,
             "select": 0,
             "textarea": 0,
@@ -103,7 +103,7 @@
         "headingText": [
             "Real-time heat-related illness",
             "About the data",
-            "Daily data: 2026",
+            "Daily data: 2025",
             "Data since 2017",
             "Syndromic surveillance",
             "Heat syndrome",

@@ -5,6 +5,7 @@
         "lang": "en",
         "assets": [
             "datawrapper.dwcdn.net",
+            "js/data-stories/lazy-tab-embeds.js",
             "js/main.js",
             "js/site.js",
             "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
@@ -18,7 +19,7 @@
             "translate.google.com",
             "www.googletagmanager.com"
         ],
-        "assetsWithIntegrity": 8,
+        "assetsWithIntegrity": 9,
         "headingLevels": [
             1,
             2,

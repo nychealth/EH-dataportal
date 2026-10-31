@@ -319,17 +319,17 @@ Las personas negras y latinas con ingresos más altos también son más propensa
 </div>
 
 <div id="ifVlow" style="display:none">
-    <iframe title="Very low - Spanish" aria-label="Split Bars" id="datawrapper-chart-gUTaG" src="https://datawrapper.dwcdn.net/gUTaG/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="231"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+    <iframe title="Very low - Spanish" aria-label="Split Bars" id="datawrapper-chart-gUTaG" data-lazy-src="https://datawrapper.dwcdn.net/gUTaG/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="231"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
     </script>
 </div>
 
 <div id="ifLow" style="display:none">
-    <iframe title="Low - Spanish" aria-label="Split Bars" id="datawrapper-chart-1ElRS" src="https://datawrapper.dwcdn.net/1ElRS/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="231"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+    <iframe title="Low - Spanish" aria-label="Split Bars" id="datawrapper-chart-1ElRS" data-lazy-src="https://datawrapper.dwcdn.net/1ElRS/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="231"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
     </script>
 </div>
 
 <div id="ifMod" style="display:none">
-    <iframe title="Moderate or higher - Spanish" aria-label="Split Bars" id="datawrapper-chart-1Ck09" src="https://datawrapper.dwcdn.net/1Ck09/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="231"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+    <iframe title="Moderate or higher - Spanish" aria-label="Split Bars" id="datawrapper-chart-1Ck09" data-lazy-src="https://datawrapper.dwcdn.net/1Ck09/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="231"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
     </script>
 </div>
 </div>
@@ -337,6 +337,17 @@ Las personas negras y latinas con ingresos más altos también son más propensa
 
 
 <script>
+    // The three charts hidden at load carry data-lazy-src and get their src only once their div is
+    // shown: these Datawrapper charts abort rendering in a display:none container and warn (audit
+    // A-044). Runs after the display change, so the container has a size when the chart loads.
+    function loadDeferredChart(divId) {
+        const iframe = document.querySelector('#' + divId + ' iframe[data-lazy-src]');
+        if (iframe) {
+            iframe.src = iframe.dataset.lazySrc;
+            iframe.removeAttribute('data-lazy-src');
+        }
+    }
+
     function elow() {
         document.getElementById('ifElow').style.display = "block";
         document.getElementById('ifVlow').style.display = "none";
@@ -349,6 +360,7 @@ Las personas negras y latinas con ingresos más altos también son más propensa
         document.getElementById('ifVlow').style.display = "block";
         document.getElementById('ifLow').style.display = "none";
         document.getElementById('ifMod').style.display = "none";
+        loadDeferredChart('ifVlow');
     }
 
     function low() {
@@ -356,6 +368,7 @@ Las personas negras y latinas con ingresos más altos también son más propensa
         document.getElementById('ifVlow').style.display = "none";
         document.getElementById('ifLow').style.display = "block";
         document.getElementById('ifMod').style.display = "none";
+        loadDeferredChart('ifLow');
     }
 
     function mod() {
@@ -363,6 +376,7 @@ Las personas negras y latinas con ingresos más altos también son más propensa
         document.getElementById('ifVlow').style.display = "none";
         document.getElementById('ifLow').style.display = "none";
         document.getElementById('ifMod').style.display = "block";
+        loadDeferredChart('ifMod');
     }
 </script>
 <hr>

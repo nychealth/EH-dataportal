@@ -73,9 +73,9 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 86,
+            "internal": 81,
             "external": 24,
-            "emptyHref": 35,
+            "emptyHref": 30,
             "noAccessibleText": 0
         },
         "controls": {

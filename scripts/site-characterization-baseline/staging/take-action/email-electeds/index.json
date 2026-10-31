@@ -4,7 +4,7 @@
     "structure": {
         "lang": "en",
         "assets": [
-            "cdn.rawgit.com",
+            "cdn.jsdelivr.net",
             "cdnjs.cloudflare.com",
             "css/nyc-basic-lib-v1.2.79.css",
             "d3js.org",
