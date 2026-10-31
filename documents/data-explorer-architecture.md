@@ -78,10 +78,14 @@ fires both before its first `await`, since neither waits on the data fetch.
 
 **Dropdown change** (`handleSelection`) — sets one field on `DE.state`, rebuilds
 all three dropdowns (which also auto-corrects a now-invalid GeoType or
-TimePeriodID), pushes to the URL, then `renderCurrentView(true)`.
+TimePeriodID), pushes to the URL, then `renderCurrentView(true)`. A geo or time change,
+or a measure change that cascades into one, first clears the table's Area search and
+re-syncs its filters to the map. `writeSelectionToURL` turns a push of the URL already
+showing into a `replaceState`, so a no-op choice adds no history entry.
 
-**Tab click** — each of the four tabs maps to an overlay value (`bar`, `trend`,
-`links`, `table`) in `app.js`'s `tabMap`. Sets `DE.state.overlay`, pushes to the
+**Tab click** — each of the five tabs maps to an overlay value (`bar`, `trend`,
+`links`, `table`, and `ds` for Data Sources, whose `renderCurrentView` case draws
+nothing) in `app.js`'s `tabMap`. Sets `DE.state.overlay`, pushes to the
 URL, then `renderCurrentView()` **without** `updateMap`: a tab switch reuses the
 map already on screen.
 
@@ -99,7 +103,9 @@ history entry.
 selection, then branches: if the indicator changed, run the pipeline with
 `history: 'none'` (this URL *is* the entry being navigated to); if only
 sub-selections changed, apply them to `DE.state`, rebuild the menus from metadata
-already in memory, and re-render. Both paths end in `renderCurrentView(true)`.
+already in memory, re-sync the table's filters (clearing the Area search when geo or
+time moved), and re-render. Both paths end in `renderCurrentView(true)`. An entry with
+no `id` — a topic page opened without one — reloads the page instead, back to its chooser.
 
 ---
 

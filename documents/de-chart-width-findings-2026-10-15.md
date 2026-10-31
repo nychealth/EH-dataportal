@@ -81,14 +81,19 @@ The test was checked against a known failure: forcing the correlate legend back 
 
 ## Options
 
-Neither has been built or tested.
+Neither had been built or tested when this was written. Both were built and measured on
+2026-10-31, on `feature-audit-r3-explorer-behaviour`: see the D1 measurements in
+`documents/r3-explorer-behaviour-plan-2026-10-30.md`. Option 1 also turned out not to give
+the phone layout at 768–991px, because the explorer's Bootstrap `md` classes still switch at 768.
 
 1. **Keep the full-width chart up to a wider breakpoint, for example 992px.** At 991px the side
    panel would still give only a 275px chart, so the side panel would start where it is roughly
    as wide as it is at 1024px today. This means moving the side-panel rules in
-   `_de-custom.scss` to the new breakpoint (eight `@media (min-width: 720px)` blocks and one
+   `_de-custom.scss` to the new breakpoint (seven `@media (min-width: 720px)` blocks and one
    `max-width: 719.98px` block), and `trend.js`'s `viewportWidth < 720` mobile-legend switch
    with them, the only explorer JS that switches at 720.
+   (Corrected 2026-10-31: this said "eight", counting `.container-to-large`, the generic
+   container scale, which is not a side-panel rule and stays at 720px.)
 2. **Give the side panel a minimum width**, for example about 360px including the tab buttons.
    A smaller change, but between 720 and about 800px the panel would overlap the 380px details
    panel more than it does now.
