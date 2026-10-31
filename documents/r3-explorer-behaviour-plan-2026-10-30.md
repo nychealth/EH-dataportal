@@ -6,7 +6,7 @@ N-046) and 9 P2 (A-153, A-154, A-155, A-273, A-284, N-040, N-041, N-042, N-045),
 document is the plan and the ledger. Rows are closed in the audit document only once their proof
 has run.
 
-**Status as of 2026-10-31: Tasks 0–7, 10 and 11 done (`fcb2771302`, `3fbc44854f`, `f4719c3047`, `b6dee3e27a`); A-308 and N-105 BLOCKED on D1 (both options measured); A-284 BLOCKED on D2. The branch is held for those (Chris, 2026-10-31), not opened as a PR.**
+**Status as of 2026-10-31: Tasks 0–7, 10 and 11 done (`fcb2771302`, `3fbc44854f`, `f4719c3047`, `b6dee3e27a`); A-308 and N-105 BLOCKED on D1 (options 1, 2 and 1 extended measured); A-284 BLOCKED on D2. The branch is held for those (Chris, 2026-10-31), not opened as a PR.**
 
 Every row was found on `b8f4b32fbd`. Since then 13 non-merge commits have touched the explorer's
 files (16 JS files +628/−588, mostly the formatting sweeps `d2d80dc7e2`..`840ede9674` and
@@ -30,7 +30,9 @@ Open, both Chris's:
   **Measured 2026-10-31** (below, "D1 measurements"): (1) as specced removes every clip from 720 to
   991 but produces a third layout there, not the phone one; (2) still clips two of three chart
   titles and covers part of the details panel at 720–800. Titles that clip at 992–1024px on all three builds are N-105,
-  added to the audit 2026-10-31 as a P1 row of this batch.
+  added to the audit 2026-10-31 as a P1 row of this batch. A third option, (1) extended to the explorer's
+  Bootstrap classes, was measured the same day: the phone layout throughout 720–959, no clipping there, and
+  a switch at 960 rather than 992 because the site's `lg` is 960 (below, "Option 1 extended").
 - **D2, A-284 (failed fetches only log to the console).** What the message says, where it shows,
   and whether a retry is in scope for this batch.
 - **D3, A-155 (small-numbers sentence printed twice): fix it** (Chris, 2026-10-30). Task 0 found
@@ -51,7 +53,7 @@ Open, both Chris's:
 | 7 | N-046: Take Action placeholder | `3fbc44854f` | **Fix written, verified** | `header-de.html` and `de-tab-button.html` render the 311 spans empty with `hide` and an empty label, the state `render311Links` leaves for an indicator with no match. Built `data-explorer/asthma/index.html`: 2 "Dynamic option" before, 0 after. `probe0.mjs n046`: `/data-explorer/` and `/data-explorer/asthma/` showed "Dynamic option" → `#` before and no link after; control `?id=2380` "Asthma" → KA-02563 on both |
 | 8 | A-284: fetch failure message (D2) | | BLOCKED on D2 | |
 | 9 | A-308: tablet chart width (D1); N-105: titles clipped at 992–1024px | | **BLOCKED on D1**; both options built and measured, neither in the tree | D1 measurements, above |
-| 10 | lint, smoke, DE and site characterization, re-baseline | re-baseline `f4719c3047` | **DONE 2026-10-31** (checks on `3fbc44854f`) | `npm run lint` exit 0. `smoke-env.mjs prod_prod`: 1187 pages clean; `heat-report-archive/2021/` failed under concurrency and cleared on the sequential re-check (the Datawrapper flake in CLAUDE.md). `de-characterization.mjs --check` against `:8091` (before) and `:8092` (after): both fail the committed baseline on the same 14 lines (indicator 2023's time 2024 → 2025, row and mark counts, legend), and the two arms' outputs are identical (`git diff --no-index` exit 0), so this is EHDP-data having moved since that baseline, not this branch. That baseline was re-captured afterwards in `987d8397dc` against `dev_stage`, where it was first captured (`19c3e93153`): 2023's 14 lines, plus 2380's links `markCount` 43 → 17, which appeared on staging data in two `--check` runs and not in the `prod_prod` runs above. `--check` passes on `dev_stage` after it. A check against production data will now fail on that 2380 line, because the harness keeps one baseline, not one per data branch. Logs: `scripts/.sc-rebaseline/r3/de-*.log`. `characterize-env.mjs prod_prod`: 42 of 924 pages differ, all under `data-explorer/`, every one `links.internal` −2 and `links.emptyHref` −2 and nothing else (a parse of both captures): N-046's two placeholder links. `site-characterization-rebaseline.mjs --expect "data-explorer/**"`: both baselines "42 of 924 pages changed in all; 42 covered by --expect, 0 not", "Nothing unexplained"; `git diff -U0` tallied by key: 84 `internal` and 84 `emptyHref`, every one −2, plus the two `_meta.json` provenance lines; 86 files +174/−174 |
+| 10 | lint, smoke, DE and site characterization, re-baseline | re-baseline `f4719c3047` | **DONE 2026-10-31** (checks on `3fbc44854f`) | `npm run lint` exit 0. `smoke-env.mjs prod_prod`: 1187 pages clean; `heat-report-archive/2021/` failed under concurrency and cleared on the sequential re-check (the Datawrapper flake in CLAUDE.md). `de-characterization.mjs --check` against `:8091` (before) and `:8092` (after): both fail the committed baseline on the same 14 lines (indicator 2023's time 2024 → 2025, row and mark counts, legend), and the two arms' outputs are identical (`git diff --no-index` exit 0), so this is EHDP-data having moved since that baseline, not this branch. That baseline was re-captured in `987d8397dc` and the re-capture reverted in `608bf60f83`: `feature-de-harness-branch-baselines` (`0b259e9a95`) files baselines per EHDP-data branch and carries the same staging capture byte-identically under `staging/`, and with both edits in place `git merge-tree` reported no conflict but wrote this branch's staging 2380 into that branch's `production/2380.json`. After the revert, all six baseline files merge to that branch's versions in either order. So this branch leaves the DE baseline as `production` has it, and its `--check` fails on `dev_stage` by the 16 lines A-395 records until that branch merges. Logs: `scripts/.sc-rebaseline/r3/de-*.log`. `characterize-env.mjs prod_prod`: 42 of 924 pages differ, all under `data-explorer/`, every one `links.internal` −2 and `links.emptyHref` −2 and nothing else (a parse of both captures): N-046's two placeholder links. `site-characterization-rebaseline.mjs --expect "data-explorer/**"`: both baselines "42 of 924 pages changed in all; 42 covered by --expect, 0 not", "Nothing unexplained"; `git diff -U0` tallied by key: 84 `internal` and 84 `emptyHref`, every one −2, plus the two `_meta.json` provenance lines; 86 files +174/−174 |
 | 11 | close the rows in the audit | `b6dee3e27a` | **11 of 13 closed**; A-284, A-308 and the new N-105 stay OPEN | `close_r3.py` on a copy, then on the audit, byte-identical (`cmp` exit 0): 11 rows FIXED (A-155 by `fcb2771302`, the other ten by `3fbc44854f`), the count table, the Summary paragraph, the Roadmap's P1+P2 total (75 → 64) and the R3 batch row (1 / 1: **A-308**; A-284), moved below R11 by P1-then-P2 order. Recount control reproduced `HEAD`'s table first (OPEN 15/60/131/2 = 208, FIXED 251), then read OPEN 12/52/131/2 = 197, FIXED 262. Batch check (`C:/temp/check_batches.py`, the memory's script): every batch OK, ordered, 64 ids = the OPEN P1/P2 rows. `git diff --numstat` 17/17. Then N-105 added by `add_n105.py` (OPEN, P1, batch R3: chart titles clipped at 992 and 1024px, past both A-308 options, from the D1 measurements), on a copy first and byte-identical: OPEN 13/52/131/2 = 198, all 507, Roadmap 64 → 65, R3's row 2 / 1 and above R1; batch check 0 MISMATCH, 65 ids |
 
 Every script, probe output, prediction file and screenshot this document names is in
@@ -94,12 +96,45 @@ elements), as the 2026-10-15 findings recorded.
   and 800 — at 720 it covers "Change dataset" (only "Cha" shows) and the right end of the Measure,
   Boundary and Time dropdowns (`shot-opt2-720.png`). No build scrolls the page sideways at any width.
 - Option 1 is not the phone layout at 768–991. The explorer's Bootstrap `md` classes still switch at
-  768, so the tab buttons stand in a vertical column on the right (tops 450–809px) instead of the
-  phone's bottom bar (all at 836px at 700), and the details card shows expanded, full width, above a
-  full-width chart (`shot-opt1-768.png`, `shot-opt1-900.png` against `shot-current-700.png`). Making
-  768–991 the phone layout as well means moving those classes too: 33 `*-md-*` occurrences in 7
-  explorer partials (`de-tab-content.html` 9, `de-tab-button.html` 8, `header-de.html` 6, …), not all of
-  them part of this layout. Not built.
+  720 (this line said 768, Bootstrap's default, which is wrong here: the site sets `md` 720px and `lg`
+  960px in `assets/scss/_a-global-variables.scss`, and the built CSS puts `.d-md-none` under
+  `min-width: 720px`, read 2026-10-31), so the tab buttons stand in a vertical column on the right
+  (tops 450–809px) instead of the phone's bottom bar (all at 836px at 700), and the details card shows
+  expanded, full width, above a full-width chart (`shot-opt1-768.png`, `shot-opt1-900.png` against
+  `shot-current-700.png`). Making that range the phone layout as well means moving those classes too;
+  that is option 1 extended, below.
+
+#### Option 1 extended (opt1x), measured 2026-10-31
+
+`[verified 2026-10-31: isolated prod_prod builds of 72adc26190, whose site code is identical to 3fbc44854f
+(git diff --stat over assets themes content config layouts static data: empty); current on :8092, opt1x on :8095,
+each port confirmed serving its own build (flex-lg-row on :8095 only); a308x.mjs = a308.mjs plus widths 959/960
+and three layout readings (visible tab tops, which Take Action toggle shows, the mobile details header);
+predictions written first in a308x-predictions.md; table in a308x-table.txt]`
+
+The variant (`a308_variant.py … opt1x`) moves the explorer from the site's `md` to its `lg` throughout, so it
+switches at 960, not 992: the utility classes have no 992 breakpoint. Seven explorer `min-width: 720px` blocks to
+960px and the `max-width: 719.98px` block to 959.98px; `trend.js`'s `< 720` to `< 960`; 23 `-md-` layout classes to
+`-lg-`: `de-tabs.html` 1, `de-tab-button.html` 8, `de-tab-content.html` 9, `de-indicator-info.html` 4, and
+`header-de.html`'s desktop Take Action, which pairs with `de-tab-button.html`'s mobile one. The header's padding
+and Learn More label, the choosers and `fs-md` stay. Built output confirmed: `min-width: 720px` 33 → 26 and
+`min-width: 960px` 17 → 24 in the theme CSS; the asthma page's `-md-` layout classes 27 → 4, `-lg-` 11 → 34.
+
+Controls: current at 768 reproduced the table above (190 / 1, 3, 1). The layout readings discriminate: current
+reads one tab top and the mobile Take Action at 700, five tops and the desktop one at 768.
+
+| Window | current: chart px / clipped (bar 2023, bar 2445, trend 2380) / layout | opt1x |
+|---:|---|---|
+| 700 | 666 / 0, 0, 0 / phone | same |
+| 720–959 | 172–263 / 1–3 per chart, titles / side panel | 686–925 / 0, 0, 0 / phone: tabs in one bottom row, mobile Take Action only, details collapsed |
+| 960, 991 | 263, 275 / 0, 1, 1 / side panel | same as current |
+| 992, 1024 | 275, 287 / 0, 1, 1 and 0, 1, 0 / side panel | same as current |
+| 1200 | 354 / 0, 0, 0 | same |
+
+So N-105's range under opt1x is 960–1024, not 992–1024. `shot-opt1x-768.png` and `shot-opt1x-900.png` show the
+phone layout; the one visible difference from 700 is the header's "Learn More" text, left at `md`. The probe's
+`overlap` field reads 636+ in every phone layout, current at 700 included: the bottom bar and the details card
+share their horizontal extent, stacked rather than side by side, so it is not an overlap there.
 
 ### Task 0 findings
 
@@ -177,7 +212,7 @@ git worktree remove --force C:/temp/r3wt
 ```
 
 Once D1 and D2 are decided: apply the chosen A-308 variant to this tree (`python $R/a308_variant.py . opt1`
-applies option 1 as measured; the `md`-class extension is not written), design N-105's fix (chart titles at
+applies option 1 as measured, `opt1x` option 1 extended; `a308x.mjs` measures either, reading `R3_BASE` at start-up), design N-105's fix (chart titles at
 ~275–287px; neither option reaches it), write A-284's message, then re-run Task 10 (lint, `smoke-env.mjs
 prod_prod`, `characterize-env.mjs prod_prod`, re-baseline with `--expect`) and close the rows with a
 `close_r3.py`-style script plus the two checks above, then open the PR into `production`.
