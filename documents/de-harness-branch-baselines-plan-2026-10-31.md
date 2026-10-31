@@ -1,8 +1,7 @@
 # DE characterization baselines filed per EHDP-data branch — plan and ledger (2026-10-31)
 
-**Status as of 2026-10-31: Tasks 1–4 done (`0b259e9a95`; the audit closure is the commit after it). Task 5 found
-that merging R3 would silently overwrite `production/2380.json`; the fix (reverting `987d8397dc` on R3) waits on
-Chris.** Branch `feature-de-harness-branch-baselines`, cut from local `production` when it matched
+**Status as of 2026-10-31: Tasks 1–5 done (`0b259e9a95`, then `712c533b46` for the audit closure; R3's revert
+`608bf60f83` for Task 5). Next is a PR into `production`.** Branch `feature-de-harness-branch-baselines`, cut from local `production` when it matched
 `origin/production` (`git rev-list --left-right --count production...origin/production` read `0 0`).
 
 ## Why
@@ -24,7 +23,7 @@ EHDP-data had moved.
 | 2 | Re-capture `staging/` on a `dev_stage` server (A-395) | `0b259e9a95` | **DONE 2026-10-31** | `--check` on a harness-started `dev_stage` server, before re-capturing: "EHDP-data branch: staging", exit 1 on 16 lines (the old baseline, now read from `staging/`). `--baseline` then `--check`: PASSED. All three files have the same blob hashes as R3's `987d8397dc` copy; 2023 and 2380 differ from `production`'s, so the comparison discriminates |
 | 3 | Capture `production/` on a production-data server, after a `--check` there has refused for want of a baseline | `0b259e9a95` | **DONE 2026-10-31** | Isolated `prod_prod` build of this branch served on :8096 via `DE_BASE_URL`. `--check` with no `production/` → exit 1, "NO BASELINE for EHDP-data branch \"production\"". `--baseline` then `--check`: PASSED. `staging/` against `production/`: one line, 2380 links `markCount` 17 → 43 |
 | 4 | Docs: CLAUDE.md's harness bullet; close A-395 in `documents/site-wide-audit-2026-10.md` | `0b259e9a95` (CLAUDE.md); audit in the commit after it | **DONE 2026-10-31** | `npm run docs-check` PASSED. `close_a395.py`: row FIXED, counts OPEN 15/59/131/2 = 207, FIXED 252, Roadmap total 74, R9 0/5. `recount.py` reproduced the parent's table first (208 / 251), then read the new one; `check_batches.py`: ordered, 74 ids, none missing or extra. `git diff --numstat` 7/7 |
-| 5 | `git merge-tree --write-tree` against `feature-audit-r3-explorer-behaviour` | — | **BLOCKED on Chris** | Exit 0, no conflict, but the merged `production/2380.json` is R3's staging capture (`cee4619d1d`, 17), not this branch's (`99abcb0fb2`, 43): git follows the rename to `production/` and applies R3's in-place edit to it. Either merge order goes through the same rename detection. Proposed fix: revert `987d8397dc` on R3, whose staging capture this branch carries byte-identically; then re-run this merge-tree and expect `production/2380.json` = `99abcb0fb2` |
+| 5 | `git merge-tree --write-tree` against `feature-audit-r3-explorer-behaviour` | R3 @ `608bf60f83` (the revert) | **DONE 2026-10-31** | Before: exit 0, no conflict, but the merged `production/2380.json` was R3's staging capture (`cee4619d1d`, 17), not this branch's (`99abcb0fb2`, 43): git followed the rename to `production/` and applied R3's in-place edit to it. Chris chose to revert `987d8397dc` on R3 (2026-10-31), since this branch carries its staging capture byte-identically. After, in both merge orders: all six baseline files equal this branch's blobs. The merge then conflicts only in `documents/site-wide-audit-2026-10.md` (both branches edit the count table and Summary), so whichever merges second re-does its counts on the other's |
 
 Scripts and logs: `scripts/.sc-rebaseline/de-baselines/` (git-ignored, on the machine that ran them): `close_a395.py`
 and the `check-*.log` / `baseline-*.log` files named above.
@@ -34,7 +33,7 @@ and the `check-*.log` / `baseline-*.log` files named above.
 ```
 git log --oneline production..HEAD
 node scripts/de-characterization.mjs --check     # with no server running, starts dev_stage; expect PASS against staging/
-# after R3's revert of 987d8397dc:
-git merge-tree --write-tree HEAD feature-audit-r3-explorer-behaviour   # then:
+git merge-tree --write-tree HEAD feature-audit-r3-explorer-behaviour   # exit 1, conflict in the audit doc only; then:
 git rev-parse <tree>:scripts/de-characterization-baseline/production/2380.json   # expect 99abcb0fb2...
+gh pr list --head feature-de-harness-branch-baselines                  # a PR, and against which base
 ```
