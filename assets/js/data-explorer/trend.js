@@ -694,6 +694,8 @@ const renderTrendChart = (
         ]
     };
 
+    wrapChartTitle(compspec2.title, compspec2.width);
+
     // ----- render & export ----- //
 
     vegaEmbed("#trend", compspec2, {

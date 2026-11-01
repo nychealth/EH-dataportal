@@ -759,6 +759,36 @@ const getChartContainerWidth = (selector) => {
 
 };
 
+
+// Vega-Lite draws a title on one line however long it is, and fit-x autosize sizes the plot,
+// not the title, so a name wider than the chart runs past the SVG's edge (N-105). Splits the
+// title and subtitle into lines that fit `width`, measured in the title's own font. The 10px
+// is Vega's default 5px padding on each side. Leaves the spec alone when the width is unknown.
+
+const chartTitleMetrics = document.createElement('canvas').getContext('2d');
+
+const wrapChartTitle = (title, width) => {
+
+    // width is "container" when getChartContainerWidth returned 0.
+    if (!title || !(width > 0)) return;
+
+    const maxWidth = width - 10;
+
+    const wrap = (text, fontSize, fontWeight) => {
+        chartTitleMetrics.font = `${fontWeight || 'normal'} ${fontSize}px ${title.font || 'sans-serif'}`;
+        return splitCanvasTextIntoLines(chartTitleMetrics, text, maxWidth);
+    };
+
+    if (typeof title.text === 'string' && title.fontSize) {
+        title.text = wrap(title.text, title.fontSize, title.fontWeight);
+    }
+
+    if (typeof title.subtitle === 'string') {
+        title.subtitle = wrap(title.subtitle, title.subtitleFontSize || 12, title.subtitleFontWeight);
+    }
+
+};
+
 // ----------------------------------------------------------------------- //
 // chart resize
 // ----------------------------------------------------------------------- //
