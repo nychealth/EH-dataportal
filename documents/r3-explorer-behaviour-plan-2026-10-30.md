@@ -6,7 +6,7 @@ N-046) and 9 P2 (A-153, A-154, A-155, A-273, A-284, N-040, N-041, N-042, N-045),
 document is the plan and the ledger. Rows are closed in the audit document only once their proof
 has run.
 
-**Status as of 2026-10-31: Tasks 0–7, 10 and 11 done (`fcb2771302`, `3fbc44854f`, `f4719c3047`, `b6dee3e27a`); A-308 and N-105 BLOCKED on D1 (options 1, 2 and 1 extended measured); A-284 BLOCKED on D2. The branch is held for those (Chris, 2026-10-31), not opened as a PR.**
+**Status as of 2026-11-01: Tasks 0–7, 10 and 11 done (`fcb2771302`, `3fbc44854f`, `f4719c3047`, `b6dee3e27a`); A-308 (`082cd56d40`) and A-284 (`5fb0981135`) fixes written and verified; N-105 not started. Then Task 10 re-run, the three audit rows, and the PR.**
 
 Every row was found on `b8f4b32fbd`. Since then 13 non-merge commits have touched the explorer's
 files (16 JS files +628/−588, mostly the formatting sweeps `d2d80dc7e2`..`840ede9674` and
@@ -18,7 +18,7 @@ not reproduce is dropped from the batch rather than fixed.
 
 ## Decisions
 
-Open, both Chris's:
+All three Chris's, all three decided:
 
 - **D1, A-308 (charts too narrow between 720 and ~1000px).** `documents/de-chart-width-findings-2026-10-15.md`
   §Options: (1) move the side-panel breakpoint from 720px to e.g. 992px — eight
@@ -33,8 +33,18 @@ Open, both Chris's:
   added to the audit 2026-10-31 as a P1 row of this batch. A third option, (1) extended to the explorer's
   Bootstrap classes, was measured the same day: the phone layout throughout 720–959, no clipping there, and
   a switch at 960 rather than 992 because the site's `lg` is 960 (below, "Option 1 extended").
+  **Decided: option 1 extended** (Chris, 2026-10-31). Rejected: option 1, for the third layout it leaves at
+  768–991; option 2, which still clips two of three titles and covers the details panel at 720–800. Its cost,
+  accepted with it: N-105's range widens to 960–1024, which needs its own fix under every option.
 - **D2, A-284 (failed fetches only log to the console).** What the message says, where it shows,
   and whether a retry is in scope for this batch.
+  **Decided** (Chris, 2026-10-31): a message for the loads that leave the explorer blank or stale (indicator
+  data, time and geography in `data.js`'s `loadIndicator` catch; `metadata.json` in
+  `topic-indicator-selector.js`; the three map-shape catches in `map.js`), shown in the chart area as an
+  `alert alert-warning` with `role="alert"` (the `correlate.js` no-correlates pattern), with a "Try again"
+  button that re-runs `loadAndRenderIndicator`; `loadOnce` already evicts a rejected load, so the retry
+  refetches. Rejected: message only, and every fetch site (comparisons and 311 already degrade quietly,
+  to `[]` and to no links).
 - **D3, A-155 (small-numbers sentence printed twice): fix it** (Chris, 2026-10-30). Task 0 found
   no render that shows it on today's data, though the mechanism is in the source; the fix dedupes
   after mapping in `getDisplayNotes`. Rejected: dropping it as not reproduced.
@@ -51,8 +61,8 @@ Open, both Chris's:
 | 5 | A-273, N-040, N-041, N-042: history and overlay state | `3fbc44854f` | **Fix written, verified** | A-273: `writeSelectionToURL` turns a push of the URL already showing into `replaceState`. N-040: the Escape listener returns on `event.defaultPrevented`, which Bootstrap 4.6.2 sets for a modal's and an open dropdown's own Escape. N-041: Data Sources is overlay `ds` (tab map, a no-op `renderCurrentView` case, `showOverlayTab`). N-042: popstate to an entry with no `id` reloads the page, the state `checkURL` gives a topic page opened without one (a choice made here, not by Chris). `probe0.mjs`: A-273 same measure `history.length` 2 → 3 before, 2 → 2 after, other measure +1 on both; N-040 modal arm and new dropdown arm closed the Bar pane and pushed an entry before, kept it open with no entry after, Escape alone still closes it; N-041 `overlay=ds` when Data Sources opens, kept through a Measure change and from `overlay=trend` (before: `none`, closed, `trend`), Bar control `bar` on both; N-042 Back left 2414 on screen with no chooser before, after it reloads to the chooser |
 | 6 | N-045: unknown `?id=` throws | `3fbc44854f` | **Fix written, verified** | `loadAndRenderIndicator` stops after `ensureIndicatorsLoaded` when `getIndicatorById` finds nothing. `probe0.mjs n045`: chooser open on both; `reading 'array'` page error before, none after; control `?id=2380` none on both |
 | 7 | N-046: Take Action placeholder | `3fbc44854f` | **Fix written, verified** | `header-de.html` and `de-tab-button.html` render the 311 spans empty with `hide` and an empty label, the state `render311Links` leaves for an indicator with no match. Built `data-explorer/asthma/index.html`: 2 "Dynamic option" before, 0 after. `probe0.mjs n046`: `/data-explorer/` and `/data-explorer/asthma/` showed "Dynamic option" → `#` before and no link after; control `?id=2380` "Asthma" → KA-02563 on both |
-| 8 | A-284: fetch failure message (D2) | | BLOCKED on D2 | |
-| 9 | A-308: tablet chart width (D1); N-105: titles clipped at 992–1024px | | **BLOCKED on D1**; both options built and measured, neither in the tree | D1 measurements, above |
+| 8 | A-284: fetch failure message (D2) | `5fb0981135` | **Fix written, verified**: placement decided 2026-10-31 (Chris: a non-modal card over the explorer, not a banner, which moves the layout, nor a modal); `showLoadError`/`clearLoadError`/`retryIndicatorLoad` in `app.js`, `#loadErrorOverlay` in `single.html`, `.de-load-error-overlay` in `_de-custom.scss`, `loadIndicator` rethrows, `metadata.json` through `loadOnce`, the three map catches guarded by `mapRenderGeneration`. Not covered: a `metadata.json` failure on a topic page opened without `?id=` (the chooser path, `renderIndicatorList`), which still leaves one uncaught "Failed to fetch"; the retry's `push` branch (an in-page pick that fails) was not driven | `[verified 2026-10-31: isolated prod_prod build, :8097, a284b.mjs at 1280 and 400px, output a284-after.out]` data, metadata and topo arms: card `role="alert"`, in view and topmost at both widths, `#map` box identical to the control; Try again after unrouting → 62 paths, MeasureID 1199, card gone, URL rewritten in place. control and comparisons: no card. `npm run lint` exit 0; `git diff -w` on `app.js` deletes only the two lines changed on purpose. Before: `[verified 2026-10-31: isolated prod_prod build of d1b982fb8c plus the opt1x variant, served on :8096; a284.mjs aborts one URL pattern per arm on /data-explorer/asthma/?id=2380, 9 s settle; output a284-before.out]` control 62 map paths, MeasureID 1199. Aborting indicators/data/2380.json: 3 paths, MeasureID null, no visible alert or retry, plus an uncaught pageerror "Failed to fetch". metadata.json: 3 paths, null, two uncaught TypeErrors (reading 'find'). topo: 3 paths, MeasureID 1199, logged only. comparisons: 62 paths, quiet, as D2 assumed |
+| 9 | A-308: tablet chart width (D1); N-105: titles clipped at 960–1024px | A-308 `082cd56d40` | **A-308 fix written; N-105 not started**: D1 decided 2026-10-31 (option 1 extended), applied by `a308_variant.py . opt1x` to files unchanged since the measured `3fbc44854f` (`git diff --stat 3fbc44854f d1b982fb8c` over all seven: empty), asserts passed, numstat 30/30 over 7 files; N-105's fix not designed | D1 measurements, above |
 | 10 | lint, smoke, DE and site characterization, re-baseline | re-baseline `f4719c3047` | **DONE 2026-10-31** (checks on `3fbc44854f`) | `npm run lint` exit 0. `smoke-env.mjs prod_prod`: 1187 pages clean; `heat-report-archive/2021/` failed under concurrency and cleared on the sequential re-check (the Datawrapper flake in CLAUDE.md). `de-characterization.mjs --check` against `:8091` (before) and `:8092` (after): both fail the committed baseline on the same 14 lines (indicator 2023's time 2024 → 2025, row and mark counts, legend), and the two arms' outputs are identical (`git diff --no-index` exit 0), so this is EHDP-data having moved since that baseline, not this branch. That baseline was re-captured in `987d8397dc` and the re-capture reverted in `608bf60f83`: `feature-de-harness-branch-baselines` (`0b259e9a95`) files baselines per EHDP-data branch and carries the same staging capture byte-identically under `staging/`, and with both edits in place `git merge-tree` reported no conflict but wrote this branch's staging 2380 into that branch's `production/2380.json`. After the revert, all six baseline files merge to that branch's versions in either order. So this branch leaves the DE baseline as `production` has it, and its `--check` fails on `dev_stage` by the 16 lines A-395 records until that branch merges. Logs: `scripts/.sc-rebaseline/r3/de-*.log`. `characterize-env.mjs prod_prod`: 42 of 924 pages differ, all under `data-explorer/`, every one `links.internal` −2 and `links.emptyHref` −2 and nothing else (a parse of both captures): N-046's two placeholder links. `site-characterization-rebaseline.mjs --expect "data-explorer/**"`: both baselines "42 of 924 pages changed in all; 42 covered by --expect, 0 not", "Nothing unexplained"; `git diff -U0` tallied by key: 84 `internal` and 84 `emptyHref`, every one −2, plus the two `_meta.json` provenance lines; 86 files +174/−174 |
 | 11 | close the rows in the audit | `b6dee3e27a` | **11 of 13 closed**; A-284, A-308 and the new N-105 stay OPEN | `close_r3.py` on a copy, then on the audit, byte-identical (`cmp` exit 0): 11 rows FIXED (A-155 by `fcb2771302`, the other ten by `3fbc44854f`), the count table, the Summary paragraph, the Roadmap's P1+P2 total (75 → 64) and the R3 batch row (1 / 1: **A-308**; A-284), moved below R11 by P1-then-P2 order. Recount control reproduced `HEAD`'s table first (OPEN 15/60/131/2 = 208, FIXED 251), then read OPEN 12/52/131/2 = 197, FIXED 262. Batch check (`C:/temp/check_batches.py`, the memory's script): every batch OK, ordered, 64 ids = the OPEN P1/P2 rows. `git diff --numstat` 17/17. Then N-105 added by `add_n105.py` (OPEN, P1, batch R3: chart titles clipped at 992 and 1024px, past both A-308 options, from the D1 measurements), on a copy first and byte-identical: OPEN 13/52/131/2 = 198, all 507, Roadmap 64 → 65, R3's row 2 / 1 and above R1; batch check 0 MISMATCH, 65 ids |
 
@@ -211,8 +221,9 @@ R3_BASE=http://localhost:8093/IndicatorPublic/ node $R/a308.mjs opt1     # the D
 git worktree remove --force C:/temp/r3wt
 ```
 
-Once D1 and D2 are decided: apply the chosen A-308 variant to this tree (`python $R/a308_variant.py . opt1`
-applies option 1 as measured, `opt1x` option 1 extended; `a308x.mjs` measures either, reading `R3_BASE` at start-up), design N-105's fix (chart titles at
-~275–287px; neither option reaches it), write A-284's message, then re-run Task 10 (lint, `smoke-env.mjs
+D1 and D2 are decided and both fixes are written (Tasks 8 and 9). Rows 8 and 9 are committed (`5fb0981135`,
+`082cd56d40`). Remaining, in order: design
+N-105's fix (chart titles at ~263–287px between 960 and 1024; `a308x.mjs` measures it, reading `R3_BASE`
+at start-up), then re-run Task 10 (lint, `smoke-env.mjs
 prod_prod`, `characterize-env.mjs prod_prod`, re-baseline with `--expect`) and close the rows with a
 `close_r3.py`-style script plus the two checks above, then open the PR into `production`.
