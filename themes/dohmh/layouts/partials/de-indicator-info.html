@@ -12,7 +12,7 @@
          the +/- button is the same control as a real button, so keyboard and screen-reader users
          can reach it. The bar itself is not the toggle: it holds the "Change dataset" button, and
          a toggle containing a button is a nested control. -->
-    <div class="bg-primary text-white px-2 py-1 w-full d-flex d-md-none mobile-details-header" style="cursor: pointer;">
+    <div class="bg-primary text-white px-2 py-1 w-full d-flex d-lg-none mobile-details-header" style="cursor: pointer;">
         <div>
             <div class="h6 font-weight-bold mb-0 py-1 main-heading indicator-name" aria-live="polite" aria-atomic="true">Loading indicator...</div>
             <div class="position-relative d-inline-flex align-items-center indicator-selector-trigger-wrap">
@@ -26,7 +26,7 @@
     </div>
 
     <!-- Desktop Indicator Header (always visible) -->
-    <div class="bg-primary text-white px-2 py-1 w-full d-none d-md-flex">
+    <div class="bg-primary text-white px-2 py-1 w-full d-none d-lg-flex">
         <div class="h6 font-weight-bold mb-0 py-1 indicator-name" aria-live="polite" aria-atomic="true">Loading indicator...</div>
         <div class="ml-2 text-nowrap flex-grow-1 text-right">
             <div class="position-relative d-inline-flex align-items-center indicator-selector-trigger-wrap">
@@ -37,7 +37,7 @@
     </div>
 
     <!-- Mobile Collapsible Content -->
-    <div id="detailsContent" class="collapse d-md-none">
+    <div id="detailsContent" class="collapse d-lg-none">
         <div class="bg-white p-2 fs-sm">
             <p class="indicator-description">Loading indicator description...</p>
         </div>
@@ -93,7 +93,7 @@
     </div>
 
     <!-- Desktop Content (always visible) -->
-    <div class="d-none d-md-block">
+    <div class="d-none d-lg-block">
         <div class="bg-white p-2 fs-sm border-left border-right">
             <p class="indicator-description fs-sm">Loading indicator description... </p>
         </div>
