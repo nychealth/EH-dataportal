@@ -11,7 +11,7 @@
 // all indicator metadata as global variable
 // ----------------------------------------------------------------------- //
 
-// Holds the parsed metadata.json response once indicatorsPromise resolves;
+// Holds the parsed metadata.json response once loadIndicatorMetadata resolves;
 // null until then, so callers must go through ensureIndicatorsLoaded.
 
 let indicators = null;
@@ -39,18 +39,29 @@ let indicatorSelectionConfirmed = false;
 // Immediately start loading metadata.json
 // ----------------------------------------------------------------------- //
 
-const indicatorsPromise = fetch(`${data_repo}${data_branch}/indicators/metadata/metadata.json`)
-    .then(response => response.json())
-    .then(data => {
+const metadataUrl = `${data_repo}${data_branch}/indicators/metadata/metadata.json`;
 
-        debugLog("* fetch metadata.json");
-        indicators = data; 
-        // console.log(">> indicators [fetch]", indicators);
+// Through loadOnce rather than one module-level promise: a failed load is evicted, so the
+// next ensureIndicatorsLoaded fetches again instead of replaying the failure, which is what
+// lets the load-failure overlay's "Try again" recover from a metadata.json failure.
 
-        return data; // resolve promise
+const loadIndicatorMetadata = () => loadOnce(metadataUrl, () =>
+    fetch(metadataUrl)
+        .then(response => response.json())
+        .then(data => {
 
-    })
-    .catch(error => console.error("# Error loading metadata.json:", error));
+            debugLog("* fetch metadata.json");
+            indicators = data;
+            // console.log(">> indicators [fetch]", indicators);
+
+            return data; // resolve promise
+
+        })
+);
+
+// Started at load time; a failure here reaches the visitor through whichever caller awaits next.
+
+loadIndicatorMetadata().catch(error => console.error("# Error loading metadata.json:", error));
 
 // Waits for metadata.json to finish loading before any indicator UI reads it.
 
@@ -62,14 +73,14 @@ const ensureIndicatorsLoaded = async (topic) => {
 
     if (indicators) {
 
-        return indicators; 
+        return indicators;
 
     } else {
 
         // Reuse the in-flight metadata request instead of starting a second fetch.
         // console.log("# Waiting for indicators to load for " + topic);
-        
-        return await indicatorsPromise; 
+
+        return await loadIndicatorMetadata();
 
     }
 };
