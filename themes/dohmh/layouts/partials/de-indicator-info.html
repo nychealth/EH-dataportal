@@ -146,7 +146,7 @@
 
             <div class="card card-header p-0 bg-transparent d-inline-block printMap border-bottom border-left border-right">
                 <div style="background-color:#DCF4E7" class="py-1 d-inline-block">
-                        <a href="#" id="deSaveMapButton" class="fs-sm mx-1 py-0 de-save-map-button" role="button" aria-label="Save map" aria-haspopup="dialog" data-print-target="map"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save map</a>
+                        <button type="button" id="deSaveMapButton" class="de-link-button fs-sm mx-1 de-save-map-button" aria-haspopup="dialog" data-print-target="map"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save map</button>
                         {{ partial "de-cite-popup.html" (dict "page" . "id" "details" "class" "de-link-button fs-sm mx-1") }}
                     </div>
             </div>

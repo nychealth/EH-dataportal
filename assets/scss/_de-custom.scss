@@ -1334,5 +1334,18 @@ $color-data-explorer: #0A408A;
     cursor: pointer;
     &:hover {
         color: $hover;
+        // The colour shift alone (#007a31 -> #008939) is barely visible; links beside these underline.
+        text-decoration: underline;
+    }
+}
+
+// Save map and Cite in the details box take .btn-light-green-bg-outline's hover fill instead of an
+// underline. The padding is there at rest too, so the fill does not shift the strip on hover.
+.printMap .de-link-button {
+    padding: 0 0.25rem;
+    &:hover {
+        background-color: #008939;
+        color: white;
+        text-decoration: none;
     }
 }
