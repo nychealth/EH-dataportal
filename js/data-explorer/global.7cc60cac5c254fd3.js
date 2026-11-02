@@ -296,7 +296,15 @@ const refreshCitation = () => {
     const url = window.location.href.replace(/#.*/, '');
     const date = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
-    document.querySelectorAll('.citation-url').forEach(el => { el.textContent = url; });
+    // The Data Sources pane's citation would always cite overlay=ds, the pane itself, so it drops
+    // the param and the link opens the explorer's default view instead.
+
+    const urlWithoutOverlay = new URL(url);
+    urlWithoutOverlay.searchParams.delete('overlay');
+
+    document.querySelectorAll('.citation-url').forEach(el => {
+        el.textContent = el.hasAttribute('data-citation-omit-overlay') ? urlWithoutOverlay.href : url;
+    });
     document.querySelectorAll('.citation-date').forEach(el => { el.textContent = date; });
 
 };
@@ -315,7 +323,10 @@ const copyCitation = (button = null) => {
 
     refreshCitation();
 
-    const citeText = citationTextElement.innerText;
+    // textContent, not innerText: Firefox's innerText reads the spans refreshCitation just
+    // rewrote as empty until layout runs, so the copy lost the URL and date (Zen user report,
+    // 2026-11). Collapsing whitespace stands in for the template's line breaks.
+    const citeText = citationTextElement.textContent.replace(/\s+/g, ' ').trim();
 
     navigator.clipboard.writeText(citeText).then(() => {
 
@@ -343,6 +354,13 @@ const bindCitationCopyButton = () => {
             event.preventDefault();
             copyCitation(event.currentTarget);
         });
+    });
+
+    // Bootstrap 4 closes an open dropdown on any click that reaches the document, including one
+    // inside its own menu, so a Cite popup would shut before "Copied!" shows or while text is selected.
+
+    document.querySelectorAll('.de-citation-menu').forEach(menu => {
+        menu.addEventListener('click', event => event.stopPropagation());
     });
 };
 

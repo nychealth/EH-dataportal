@@ -67,7 +67,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/","name":"The Environment and Health Data Portal: Home page","position":1},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/","name":"Data Explorer","position":2},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-stability/","name":"Housing stability","position":3}]}</script>
 <script src="/IndicatorPublic/node_modules/jquery/dist/jquery.min.9d6bd9b75ea55acc.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR&#43;8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/css/all.min.c2b5ea5c3ed56d7e.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck&#43;w&#43;/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous"/>
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.edbf8de101716efd928ad1ee2983adefcc38019a4980b700bb32c25555a9f6a06bf59c60ed3ae7b67812772bac149d88b40f29045f1d28c0c10c910d0c25ff4f.css" integrity="sha512-7b&#43;N4QFxbv2SitHuKYOt78w4AZpJgLcAuzLCVVWp9qBr9Zxg7TrntngSdyusFJ2ItA8pBF8dKMDBDJENDCX/Tw==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.ba820a5e10ca7dff7d005869f51d8be4290c224d0794bcaba599a4c194e043028312a992a52ee151e81aad928cbceeffea7b646fea4a4f77d40f3713c1a475b7.css" integrity="sha512-uoIKXhDKff99AFhp9R2L5CkMIk0HlLyrpZmkwZTgQwKDEqmSpS7hUegarZKMvO7/6ntkb&#43;pKT3fUDzcTwaR1tw==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
 
 
 
@@ -1446,7 +1446,24 @@
 
             <div class="card card-header p-0 bg-transparent d-inline-block printMap border-bottom border-left border-right">
                 <div style="background-color:#DCF4E7" class="py-1 d-inline-block">
-                        <a href="#" id="deSaveMapButton" class="fs-sm mx-1 py-0 de-save-map-button" role="button" aria-label="Save map" aria-haspopup="dialog" data-print-target="map"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save map</a>
+                        <button type="button" id="deSaveMapButton" class="de-link-button fs-sm mx-1 de-save-map-button" aria-haspopup="dialog" data-print-target="map"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save map</button>
+                        
+<div class="dropdown d-inline-block de-cite-dropdown" data-citation-location="map">
+    <button type="button" class="de-link-button fs-sm mx-1" id="citeToggle-map" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-quote-right mr-1" aria-hidden="true"></i>Cite</button>
+    <div class="dropdown-menu p-2 fs-sm de-citation-menu" aria-labelledby="citeToggle-map">
+        <p class="mb-1">
+<span id="citeText-map" class="de-citation">
+    New York City Department of Health, Environment & Health Data Portal.
+    Housing stability data:
+    <span class="indicator-name"></span>.
+    Accessed at <span class="citation-url">https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-stability/</span> on
+    <span class="citation-date">Nov 2, 2026</span>.
+</span>
+</p>
+        <button type="button" class="de-link-button fs-sm de-copy-citation-button" data-citation-target="citeText-map"><i class="fas fa-copy mr-1" aria-hidden="true"></i>Copy citation</button>
+    </div>
+</div>
+
                     </div>
             </div>
 
@@ -1613,7 +1630,24 @@
                 
             </div>
             <div class="d-flex align-items-center pt-2">
-                <a class="btn-sm btn-light-green-bg-outline de-save-chart-button" href="#" data-print-target="chart" data-print-context="bar" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</a>
+                <button type="button" class="btn-sm btn-light-green-bg-outline de-save-chart-button" data-print-target="chart" data-print-context="bar" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</button>
+                <span class="ml-2">
+<div class="dropdown d-inline-block de-cite-dropdown" data-citation-location="bar">
+    <button type="button" class="btn-sm btn-light-green-bg-outline" id="citeToggle-bar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-quote-right mr-1" aria-hidden="true"></i>Cite</button>
+    <div class="dropdown-menu p-2 fs-sm de-citation-menu" aria-labelledby="citeToggle-bar">
+        <p class="mb-1">
+<span id="citeText-bar" class="de-citation">
+    New York City Department of Health, Environment & Health Data Portal.
+    Housing stability data:
+    <span class="indicator-name"></span>.
+    Accessed at <span class="citation-url">https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-stability/</span> on
+    <span class="citation-date">Nov 2, 2026</span>.
+</span>
+</p>
+        <button type="button" class="de-link-button fs-sm de-copy-citation-button" data-citation-target="citeText-bar"><i class="fas fa-copy mr-1" aria-hidden="true"></i>Copy citation</button>
+    </div>
+</div>
+</span>
                 <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#" onclick="downloadData(); return false;"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
 
             </div>
@@ -1684,6 +1718,24 @@
             </div>
 
             <div class="d-flex align-items-center p-2">
+                
+                
+<div class="dropdown d-inline-block de-cite-dropdown" data-citation-location="table">
+    <button type="button" class="btn-sm btn-light-green-bg-outline" id="citeToggle-table" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-quote-right mr-1" aria-hidden="true"></i>Cite</button>
+    <div class="dropdown-menu p-2 fs-sm de-citation-menu" aria-labelledby="citeToggle-table">
+        <p class="mb-1">
+<span id="citeText-table" class="de-citation">
+    New York City Department of Health, Environment & Health Data Portal.
+    Housing stability data:
+    <span class="indicator-name"></span>.
+    Accessed at <span class="citation-url">https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-stability/</span> on
+    <span class="citation-date">Nov 2, 2026</span>.
+</span>
+</p>
+        <button type="button" class="de-link-button fs-sm de-copy-citation-button" data-citation-target="citeText-table"><i class="fas fa-copy mr-1" aria-hidden="true"></i>Copy citation</button>
+    </div>
+</div>
+
                 <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#" onclick="downloadTableData(); return false;"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
          
             </div>
@@ -1711,7 +1763,24 @@
             </div>
 
             <div class="d-flex align-items-center pt-2">
-                <a class="btn-sm btn-light-green-bg-outline de-save-chart-button" href="#" data-print-target="chart" data-print-context="trends" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</a>
+                <button type="button" class="btn-sm btn-light-green-bg-outline de-save-chart-button" data-print-target="chart" data-print-context="trends" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</button>
+                <span class="ml-2">
+<div class="dropdown d-inline-block de-cite-dropdown" data-citation-location="trends">
+    <button type="button" class="btn-sm btn-light-green-bg-outline" id="citeToggle-trends" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-quote-right mr-1" aria-hidden="true"></i>Cite</button>
+    <div class="dropdown-menu p-2 fs-sm de-citation-menu" aria-labelledby="citeToggle-trends">
+        <p class="mb-1">
+<span id="citeText-trends" class="de-citation">
+    New York City Department of Health, Environment & Health Data Portal.
+    Housing stability data:
+    <span class="indicator-name"></span>.
+    Accessed at <span class="citation-url">https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-stability/</span> on
+    <span class="citation-date">Nov 2, 2026</span>.
+</span>
+</p>
+        <button type="button" class="de-link-button fs-sm de-copy-citation-button" data-citation-target="citeText-trends"><i class="fas fa-copy mr-1" aria-hidden="true"></i>Copy citation</button>
+    </div>
+</div>
+</span>
                 <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#" onclick="downloadData(); return false;"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
 
             </div>
@@ -1755,7 +1824,24 @@
             </div>
 
             <div class="d-flex align-items-center pt-2">
-                <a class="btn-sm btn-light-green-bg-outline de-save-chart-button" href="#" data-print-target="chart" data-print-context="correlate" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</a>
+                <button type="button" class="btn-sm btn-light-green-bg-outline de-save-chart-button" data-print-target="chart" data-print-context="correlate" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</button>
+                <span class="ml-2">
+<div class="dropdown d-inline-block de-cite-dropdown" data-citation-location="correlate">
+    <button type="button" class="btn-sm btn-light-green-bg-outline" id="citeToggle-correlate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-quote-right mr-1" aria-hidden="true"></i>Cite</button>
+    <div class="dropdown-menu p-2 fs-sm de-citation-menu" aria-labelledby="citeToggle-correlate">
+        <p class="mb-1">
+<span id="citeText-correlate" class="de-citation">
+    New York City Department of Health, Environment & Health Data Portal.
+    Housing stability data:
+    <span class="indicator-name"></span>.
+    Accessed at <span class="citation-url">https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-stability/</span> on
+    <span class="citation-date">Nov 2, 2026</span>.
+</span>
+</p>
+        <button type="button" class="de-link-button fs-sm de-copy-citation-button" data-citation-target="citeText-correlate"><i class="fas fa-copy mr-1" aria-hidden="true"></i>Copy citation</button>
+    </div>
+</div>
+</span>
                 <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#" onclick="downloadData(); return false;"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
 
             </div>
@@ -1776,14 +1862,16 @@
             <p><a href="../../about/data-sources">About the data sources on this website</a>.</p>
 
             <p class="h6 border-top pt-1">Cite the data</p>
-            <div id="citation">
-                <p><span id="citeText">
-                    New York City Department of Health, Environment & Health Data Portal. 
-                    Housing stability data: 
-                    <span class="indicator-name"></span>. 
-                    Accessed at <span class="citation-url">https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-stability/</span> on
-                    <span class="citation-date">Nov 2, 2026</span>.
-                    </span>
+            <div id="citation" data-citation-location="ds">
+                <p>
+<span id="citeText" class="de-citation">
+    New York City Department of Health, Environment & Health Data Portal.
+    Housing stability data:
+    <span class="indicator-name"></span>.
+    Accessed at <span class="citation-url" data-citation-omit-overlay>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-stability/</span> on
+    <span class="citation-date">Nov 2, 2026</span>.
+</span>
+
                     <span class="float-right">
                     <a href="#" id="citeButton" class="de-copy-citation-button" data-citation-target="citeText"><i class="fas fa-copy mr-1" aria-hidden="true"></i>Copy citation.</a>
                     </span>
@@ -2031,14 +2119,14 @@
 <script type="text/javascript" src="/IndicatorPublic/js/naturalSort.ea08f0d721e54282.js" integrity="sha512-hQhumJPdtYDwyuIoXLVeAmV5VJ7FNwV/sEtkmK9DhOjAbutswmwBfaQN5qzuovmcmsAOdzjLpdTcu2ugGptfFw=="></script>
 
 
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/global.e5c9ea0fad6da416.js" integrity="sha512-ot8y/vWO35peDL/t0S2htHIFHh&#43;AcU6LJa5Wu&#43;Dt1USGqwolhgQ5oxnmQweoTFPIeTN&#43;VYgy7iGyamtMmoBXNQ=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/app.9c456bbbb78ab944.js" integrity="sha512-x5DllCqRIfCKGXV&#43;r14WAnX2TxokHvdh4y8UndPxw8Et3m8Qm0O1hcanCCGK9t9THSSSi6AQMLymQrB4ylsjAw=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/global.7cc60cac5c254fd3.js" integrity="sha512-5btRU/LChh/ogkRaIEcyN9LXWQbqpteoPHlKqQshRvpfAPdA6HKq4Yy2r&#43;gEQcjcZqEdM57oqSNulPK8YDoj2A=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/app.0a15ea118650dc85.js" integrity="sha512-JusdIZYFIHe3sN5dN&#43;Ozjtspllb8lQ8/iTwTnM7JufsygDOH1HN5y0&#43;8thr/y2I67i5YcFEsgnMRsg4UTKjuxg=="></script>
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/data.a7df391c61aeb34d.js" integrity="sha512-R5s6RRlDTkqzJ9Hb0SOCYuAi04/tgY5KCtF8v8cs7U2f35p5Xpn9w&#43;uf3hdALwrNDBYPe80DdqbY1njGzoeqAA=="></script>
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/measures.419b97bc4207b0ff.js" integrity="sha512-Xza3Njsx8Es4GV&#43;v3dsSnHoGV/uFynxO9DoCjwo3JbkaJhcLVkPMj1SkK9bUPLcaYLX7AVRcg1g9bSlD3Oyf6g=="></script>
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/table.dc5702f99f01f5a0.js" integrity="sha512-piH1WsVlnBxBUpsDlnBWqwB&#43;EYjIoQ4oSdvxmkVYJ&#43;r4ns25oxx68vLcDaOBLzJcI19e3WIDzwLViGSpF268jg=="></script>
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/map.4479382cca2cfed1.js" integrity="sha512-UbBuKfP6zjynRxFcLXP5M/vl9QdZEp2ShlsBrmHqNJjLMaVLP8zsXhQW/q0vzczn0FBEGnuSTMyCq1Skj5vkqw=="></script>
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/311.02bf62b1af6500ce.js" integrity="sha512-GyTrLU5LNh0jZXyEh&#43;Wb1cNov9wWaLETaJefaXdVl8tvo&#43;EiNhDrw&#43;1pKE4uEH4Lh6uzt6&#43;GyeAxE2kOLFM4NA=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/topic-indicator-selector.a864a181538a732b.js" integrity="sha512-ZWaqZt4dOf&#43;M4ubZeqCu5/rkNvgKLRjq/EFx4OfL5uQhyYLOG1&#43;XXwdPu71ZjQvaEz6gyGNxfmFmo/Td5yPanQ=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/topic-indicator-selector.ccff339b8699939c.js" integrity="sha512-SWDLF&#43;0PNFVUA/JoQ/I73DmFNeYTbdUCdfkBTnBUVW8VPHqP9Yo2ADhTHl5tpNWVtWTRE2ywJbO2gAl2k3PG3A=="></script>
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/menu.04e48a7e72605ccc.js" integrity="sha512-JfD9tg1JK4Z6feFT/ftLB6V9CG6hdxomPlJzfwK87pTItvQrQKADfE0B&#43;ANDBh6&#43;LcCJGB&#43;Sj/bsfBRr6RJh5A=="></script>
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/bar.8e8222d53f7115a3.js" integrity="sha512-Nl3kCYloYdPIXtTra2pu1deaF1A7JxAVJhO5NqMGJQV2kiHMp47yBpZDA0d/ewVHe/XcMOK0INHlbrlsHEFivg=="></script>
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/trend.bb25bf94fd0bcfc5.js" integrity="sha512-t4bE4LBB08Vc0vbmVe&#43;OJKbB8TaV9ypSh4DAs867k7ECwqQV3seRuMNgmYMdAfGl5Kpjp9LV67afUGFeOIIAQw=="></script>

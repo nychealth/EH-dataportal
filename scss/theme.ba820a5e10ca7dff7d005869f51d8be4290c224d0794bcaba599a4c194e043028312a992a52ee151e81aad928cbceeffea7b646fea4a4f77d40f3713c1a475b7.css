@@ -10826,6 +10826,30 @@ table .group td {
   color: #2a2d5f;
   line-height: 1.4; }
 
+.de-citation-menu {
+  width: 22rem;
+  max-width: 90vw;
+  white-space: normal; }
+  .de-citation-menu .citation-url {
+    word-break: break-all; }
+
+.de-link-button {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: #007a31;
+  cursor: pointer; }
+  .de-link-button:hover {
+    color: #008939;
+    text-decoration: underline; }
+
+.printMap .de-link-button {
+  padding: 0 0.25rem; }
+  .printMap .de-link-button:hover {
+    background-color: #008939;
+    color: white;
+    text-decoration: none; }
+
 a {
   color: #007a31; }
   a:hover {
