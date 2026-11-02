@@ -6,8 +6,8 @@ first pushed as `docs-audit-n107-trend-year-labels` (at `cdd4bcac9c`, the commit
 renamed before any fix landed. This document is the plan and the ledger. N-107 is closed in the
 audit only once its proof has run.
 
-**Status as of 2026-11-02: N-107 filed (`cdd4bcac9c`), fixed (`aa97346626`) and closed in the
-audit with R16 (step 5); step 6, the push and PR, not started.**
+**Closed 2026-11-02: all six steps done, `cdd4bcac9c..d8ba7bda81` on
+`feature-audit-r16-trend-labels`, PR #1534 into `production`. Next: merge it (below).**
 
 ## Cause
 
@@ -62,8 +62,8 @@ and not in this batch.
 | 2 | Measure the before state on more period types | *no commit* — measurement only | **DONE 2026-11-02** | `[verified 2026-11-02: metadata.json x TimePeriods.json over 439 trend measures: no trend chart has more than one quarterly period (2168/716, 2 periods), so quarters were added as 2376/1189 (24 cold seasons, Chris's example), 93/206 (24 years, the most) and 2208/871 (16 periods, 9-character lines, the longest); before-more.out: 2208 overlaps 15 of 16 at 700px too, and 2376 (1 row per period, Citywide) labels every other season and still overlaps 11 of 12 at 400 and 960-1400px]` |
 | 3 | Replace `fallbackYear` in `trend.js`: the label layer aggregates to periods, ranks them, and filters to every Nth counting back from the latest, N from `width`; quarters are no longer exempt; `xAxisLabelField` and the `index` window removed | `aa97346626` | **DONE 2026-11-02** | step 4 |
 | 4 | Prove it | `aa97346626` (with the baselines) | **DONE 2026-11-02** | `[verified 2026-11-02, development server on the edited tree, served trend.bb25bf94fd0bcfc5.js carrying periodLabelWidth: after.mjs, 5 indicators x 7 widths, page render and save-chart preview: 35 of 35 cells 0 overlapping labels, latest period labelled, smallest gap 19px, no page errors, the same 3 Vega warnings the unedited page logs (warns.mjs); npm run lint exit 0, no xAxisLabelField / fallbackYear / datum.index left; de-characterization.mjs --check failed on markCount alone, 3 lines on each data branch (2023 trend 235 -> 226, 2380 trend 255 -> 242 and trendComparison 140 -> 127), each drop the labels removed at the harness's 1400px plus, by arithmetic not inspection, the empty-text label the old grouping drew; both baselines re-captured and production re-checked PASSED; smoke-pages.mjs curated 44 pages PASSED, Pagefind served]`. Site characterization is left to CI: it loads no `?id=` explorer page |
-| 5 | Close N-107 and R16 in the audit (recount control first), widening N-107's claim to the long-label case | | **DONE 2026-11-02** | `[verified 2026-11-02: recount and batch check on HEAD's copy reproduced its table first (187 OPEN, Roadmap 53, R16 1/0); after scripts/.sc-rebaseline/n107/close_n107.py, 186 OPEN / 275 FIXED / 509 rows, Roadmap 52, every batch OK with 52 unique ids, R16 0/0 at the table's foot; diff 7 lines in, 7 out]` |
-| 6 | Push under the new name, delete the old remote branch (ask first), open the PR | | Not started | |
+| 5 | Close N-107 and R16 in the audit (recount control first), widening N-107's claim to the long-label case | `d8ba7bda81` | **DONE 2026-11-02** | `[verified 2026-11-02: recount and batch check on HEAD's copy reproduced its table first (187 OPEN, Roadmap 53, R16 1/0); after scripts/.sc-rebaseline/n107/close_n107.py, 186 OPEN / 275 FIXED / 509 rows, Roadmap 52, every batch OK with 52 unique ids, R16 0/0 at the table's foot; diff 7 lines in, 7 out]` |
+| 6 | Push under the new name, delete the old remote branch (ask first), open the PR | *no commit* — remote and GitHub actions | **DONE 2026-11-02** | `[verified 2026-11-02: pushed, 0 0 against origin; docs-audit-n107-trend-year-labels deleted (Chris agreed), its one commit cdd4bcac9c on this branch; PR #1534; on head d8ba7bda81 site characterization run 41517292118 and smoke run 41517292064 both success, base-control jobs skipped]` |
 
 ## Environment
 
@@ -78,8 +78,7 @@ and not in this batch.
 
 ## Next
 
-Commit step 5 (`documents/site-wide-audit-2026-10.md` and this ledger). Then step 6:
-`git push -u origin feature-audit-r16-trend-labels`, delete the old remote branch once Chris
-agrees (`git push origin --delete docs-audit-n107-trend-year-labels`), and open a PR into
-`production`. It touches `trend.js`, so both CI sweeps run; site characterization is expected to
-pass unchanged, since it loads no `?id=` explorer page.
+Merge #1534. The commit recording step 6 here was pushed with the skip-ci marker, so if it is
+still the PR's head at the merge, the deploy build does not start. After merging, check with
+`gh run list --workflow hugo-build-to-prod-prod.yml --limit 1`; if the newest run is not for the
+merge commit, run `gh workflow run hugo-build-to-prod-prod.yml --ref production`.
