@@ -59,7 +59,7 @@ const getTrendLayoutConfig = (viewportWidth) => {
     let mobileLegend = null;
     let endLabelFontSize = 10;
 
-    if (viewportWidth < 720) {
+    if (viewportWidth < 960) {
 
         mobileLegend = {
             "columns": 3,
@@ -693,6 +693,8 @@ const renderTrendChart = (
             }
         ]
     };
+
+    wrapChartTitle(compspec2.title, compspec2.width);
 
     // ----- render & export ----- //
 

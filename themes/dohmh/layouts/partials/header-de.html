@@ -445,7 +445,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="align-items-center d-none d-md-flex dropdown">
+                <div class="align-items-center d-none d-lg-flex dropdown">
                     <button class="d-flex align-items-center" type="button" id="takeActionToggleDesktop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background: none; border: none; color: inherit; padding: 0;">
                         <div class="font-weight-bold mr-1 text-white fs-md">Take Action</div>
                         <img src={{ relURL "images/icon-green-arrow.svg" }} style="height: 21px" alt="">
@@ -455,8 +455,9 @@
                         <ul class="list-unstyled fs-sm">
                             <li class="mb-1 border-bottom border-gray-300 pb-1"><a href={{ relURL "take-action/email-electeds/" }}>Email your elected officials</a></li>
                             <li class="mb-1 border-gray-300 pb-1">
-                                <span class="d-block" id="contact311Label">Contact 311 about:</span>
-                                <span id="contact311LinksDesktop" class="destination311"><a href="#">Dynamic option</a></span>
+                                <span class="d-block" id="contact311Label"></span>
+                                {{/*  Empty and hidden until render311Links (assets/js/data-explorer/311.js) fills it for an indicator with 311 links; this is its no-match state.  */}}
+                                <span id="contact311LinksDesktop" class="destination311 hide"></span>
                             </li>
                         </ul>
                     </div>

@@ -171,7 +171,7 @@ const DE = {
     },
 
     // Core identity: which indicator/measure/geography/time is selected and which
-    // overlay tab is open ('bar', 'table', 'trend', 'links', or 'none'). Read across
+    // overlay tab is open ('bar', 'table', 'trend', 'links', 'ds', or 'none'). Read across
     // nearly every file and kept in sync with the URL by app.js.
     state: {
         IndicatorID: undefined,
@@ -413,7 +413,8 @@ const renderAboutSources = (about, sources) => {
 // the holder, then re-reveals it only if there are notes to show. Callers pass an
 // already-deduped `notes` array — each site's dedupe source differs enough (table
 // rows vs. joined Note_1/Note_2 pairs) that the dedupe/filter step stays inline at
-// the call site rather than folding into this helper.
+// the call site rather than folding into this helper. That inline step dedupes raw
+// notes only; for bar/trend/correlate, `getDisplayNotes` dedupes again after mapping.
 // `wrapNote` lets bar.js keep its `<p>` markup while the other four keep
 // `<div class='fs-xs'>` — a real markup divergence between sites, not an oversight
 // to silently unify. Builds the joined markup once and assigns it, instead of the
@@ -758,6 +759,36 @@ const getChartContainerWidth = (selector) => {
 
 };
 
+
+// Vega-Lite draws a title on one line however long it is, and fit-x autosize sizes the plot,
+// not the title, so a name wider than the chart runs past the SVG's edge (N-105). Splits the
+// title and subtitle into lines that fit `width`, measured in the title's own font. The 10px
+// is Vega's default 5px padding on each side. Leaves the spec alone when the width is unknown.
+
+const chartTitleMetrics = document.createElement('canvas').getContext('2d');
+
+const wrapChartTitle = (title, width) => {
+
+    // width is "container" when getChartContainerWidth returned 0.
+    if (!title || !(width > 0)) return;
+
+    const maxWidth = width - 10;
+
+    const wrap = (text, fontSize, fontWeight) => {
+        chartTitleMetrics.font = `${fontWeight || 'normal'} ${fontSize}px ${title.font || 'sans-serif'}`;
+        return splitCanvasTextIntoLines(chartTitleMetrics, text, maxWidth);
+    };
+
+    if (typeof title.text === 'string' && title.fontSize) {
+        title.text = wrap(title.text, title.fontSize, title.fontWeight);
+    }
+
+    if (typeof title.subtitle === 'string') {
+        title.subtitle = wrap(title.subtitle, title.subtitleFontSize || 12, title.subtitleFontWeight);
+    }
+
+};
+
 // ----------------------------------------------------------------------- //
 // chart resize
 // ----------------------------------------------------------------------- //
@@ -979,9 +1010,11 @@ const downloadData = (
 
 // Revises the notes that are displayed under each chart - meant to work in concert with tooltip notes at each datapoint. This lets you display chart-specific notes, rather than datapoint-specific notes (which should show in tooltips)
 
+// Deduped after mapping: distinct raw notes ("* Estimate…", "< 4 Estimate…") map to one sentence.
+
 function getDisplayNotes(notes) {
 
-  return notes
+  return [...new Set(notes
     .map(note => {
 
       if (note.includes('based on small numbers')) {
@@ -994,5 +1027,5 @@ function getDisplayNotes(notes) {
 
       return note;
 
-    });
+    }))];
 }

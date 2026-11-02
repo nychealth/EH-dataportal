@@ -145,6 +145,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (event.key !== 'Escape') return;
 
+        // Bootstrap's modal and open-dropdown handlers call preventDefault on the Escape they
+        // use to close themselves, and both run before this listener, so that Escape is theirs.
+
+        if (event.defaultPrevented) return;
+
         const openPane = document.querySelector('#v-pills-tabContent .tab-pane.show.active');
 
         if (openPane?.id) {

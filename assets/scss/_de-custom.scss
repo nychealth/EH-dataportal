@@ -598,9 +598,26 @@ $color-data-explorer: #0A408A;
     padding: 6px 10px;
 }
 
-@media (min-width: 720px) {
+@media (min-width: 960px) {
     .de-nav-bar .nav-topic-selector {
         background-color: transparent;
+    }
+}
+
+// Data explorer load-failure card (showLoadError, app.js). Absolute inside the explorer's
+// position-relative row, so it covers the map and panes without moving them. 1001 clears
+// Leaflet's control corners (1000); the row's own z-index: 2 keeps it under site modals.
+.de-load-error-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+    width: 90%;
+    max-width: 360px;
+
+    &:empty {
+        display: none;
     }
 }
 
@@ -613,7 +630,7 @@ $color-data-explorer: #0A408A;
         padding: 5px 8px;
     }
 
-    @media (min-width: 720px) {
+    @media (min-width: 960px) {
         .indicator-selector-prompt {
             right: 14px;
             bottom: 14px;
@@ -648,7 +665,7 @@ $color-data-explorer: #0A408A;
         padding-top: 0px;
     }
 
-    @media (min-width: 720px) {
+    @media (min-width: 960px) {
         .de-accordion .card-body {
             padding-left: 122px;
         }
@@ -684,7 +701,7 @@ $color-data-explorer: #0A408A;
     }
 
     /* Ensure mobile bottom nav sits above iOS Safari toolbar */
-    @media (max-width: 719.98px) {
+    @media (max-width: 959.98px) {
         .de-tabs {
             position: fixed !important;
             left: 0 !important;
@@ -751,7 +768,7 @@ $color-data-explorer: #0A408A;
         font-size: 18px;
     }
 
-    @media (min-width: 720px) {
+    @media (min-width: 960px) {
         .de-tabs {
             right: 2rem;
             left: auto;
@@ -798,7 +815,7 @@ $color-data-explorer: #0A408A;
         background-color: white;
     }
 
-    @media (min-width: 720px) {
+    @media (min-width: 960px) {
         .de-tabs-nav {
             height: calc(100vh - 8rem);
             overflow-y: visible;
@@ -905,7 +922,7 @@ $color-data-explorer: #0A408A;
         padding: 10px 5px;
     }
 
-    @media (min-width: 720px) {
+    @media (min-width: 960px) {
         .de-tabs-nav .nav-pills .nav-link,
         .de-tabs-nav .nav-tabs .nav-link {
             width: auto;
@@ -935,7 +952,7 @@ $color-data-explorer: #0A408A;
         color: white;
     }
 
-    @media (min-width: 720px) {
+    @media (min-width: 960px) {
         .w-md-40 {
             width: 40% !important;
         }
