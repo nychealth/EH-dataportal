@@ -41,12 +41,16 @@ let indicatorSelectionConfirmed = false;
 
 const metadataUrl = `${data_repo}${data_branch}/indicators/metadata/metadata.json`;
 
-// Through loadOnce rather than one module-level promise: a failed load is evicted, so the
-// next ensureIndicatorsLoaded fetches again instead of replaying the failure, which is what
-// lets the load-failure overlay's "Try again" recover from a metadata.json failure.
+// One shared request, dropped if it fails: the next ensureIndicatorsLoaded then fetches again
+// instead of replaying the failure, which is what lets the load-failure overlay's "Try again"
+// recover from a metadata.json failure. Kept local rather than using global.js's loadOnce,
+// because the explorer landing page (data-explorer/section.html) loads this file without it.
 
-const loadIndicatorMetadata = () => loadOnce(metadataUrl, () =>
-    fetch(metadataUrl)
+let metadataRequest = null;
+
+const loadIndicatorMetadata = () => {
+
+    metadataRequest ??= fetch(metadataUrl)
         .then(response => response.json())
         .then(data => {
 
@@ -57,7 +61,14 @@ const loadIndicatorMetadata = () => loadOnce(metadataUrl, () =>
             return data; // resolve promise
 
         })
-);
+        .catch(error => {
+            metadataRequest = null;
+            throw error;
+        });
+
+    return metadataRequest;
+
+};
 
 // Started at load time; a failure here reaches the visitor through whichever caller awaits next.
 
