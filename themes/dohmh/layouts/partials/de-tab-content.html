@@ -136,7 +136,8 @@
                 <!-- INSERT UNRELIABILITY FLAGS HERE -->
             </div>
             <div class="d-flex align-items-center pt-2">
-                <a class="btn-sm btn-light-green-bg-outline de-save-chart-button" href="#" data-print-target="chart" data-print-context="bar" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</a>
+                <button type="button" class="btn-sm btn-light-green-bg-outline de-save-chart-button" data-print-target="chart" data-print-context="bar" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</button>
+                <span class="ml-2">{{ partial "de-cite-popup.html" (dict "page" . "id" "bar" "class" "btn-sm btn-light-green-bg-outline") }}</span>
                 <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#" onclick="downloadData(); return false;"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
 
             </div>
@@ -209,6 +210,8 @@
             </div>
 
             <div class="d-flex align-items-center p-2">
+                {{/*  The table has no Save Chart; Cite takes its place.  */}}
+                {{ partial "de-cite-popup.html" (dict "page" . "id" "table" "class" "btn-sm btn-light-green-bg-outline") }}
                 <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#" onclick="downloadTableData(); return false;"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
          
             </div>
@@ -236,7 +239,8 @@
             </div>
 
             <div class="d-flex align-items-center pt-2">
-                <a class="btn-sm btn-light-green-bg-outline de-save-chart-button" href="#" data-print-target="chart" data-print-context="trends" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</a>
+                <button type="button" class="btn-sm btn-light-green-bg-outline de-save-chart-button" data-print-target="chart" data-print-context="trends" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</button>
+                <span class="ml-2">{{ partial "de-cite-popup.html" (dict "page" . "id" "trends" "class" "btn-sm btn-light-green-bg-outline") }}</span>
                 <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#" onclick="downloadData(); return false;"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
 
             </div>
@@ -280,7 +284,8 @@
             </div>
 
             <div class="d-flex align-items-center pt-2">
-                <a class="btn-sm btn-light-green-bg-outline de-save-chart-button" href="#" data-print-target="chart" data-print-context="correlate" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</a>
+                <button type="button" class="btn-sm btn-light-green-bg-outline de-save-chart-button" data-print-target="chart" data-print-context="correlate" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</button>
+                <span class="ml-2">{{ partial "de-cite-popup.html" (dict "page" . "id" "correlate" "class" "btn-sm btn-light-green-bg-outline") }}</span>
                 <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#" onclick="downloadData(); return false;"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
 
             </div>
@@ -301,14 +306,8 @@
             <p><a href="../../about/data-sources">About the data sources on this website</a>.</p>
 
             <p class="h6 border-top pt-1">Cite the data</p>
-            <div id="citation">
-                <p><span id="citeText">
-                    New York City Department of Health, Environment & Health Data Portal. 
-                    {{ .Title }} data: 
-                    <span class="indicator-name"></span>. 
-                    Accessed at <span class="citation-url">{{ .Permalink }}</span> on
-                    <span class="citation-date">{{ time.Now | time.Format ":date_medium" }}</span>.
-                    </span>
+            <div id="citation" data-citation-location="ds">
+                <p>{{ partial "de-citation-text.html" (dict "page" . "id" "citeText" "omitOverlay" true) }}
                     <span class="float-right">
                     <a href="#" id="citeButton" class="de-copy-citation-button" data-citation-target="citeText"><i class="fas fa-copy mr-1" aria-hidden="true"></i>Copy citation.</a>
                     </span>
