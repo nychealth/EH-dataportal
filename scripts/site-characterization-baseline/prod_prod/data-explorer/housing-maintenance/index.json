@@ -124,11 +124,11 @@
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 49,
+            "button": 48,
             "input": 2,
             "select": 0,
             "textarea": 0,
-            "noAccessibleName": 6
+            "noAccessibleName": 0
         },
         "tables": {
             "total": 0,

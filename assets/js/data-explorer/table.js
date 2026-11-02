@@ -845,8 +845,11 @@ const renderTable = (tableData) => {
 
                     if (last !== key) {
 
+                        // The label is a native <button> so the header is reachable and operable by keyboard
+                        //  and announces its state; its click bubbles to the td handler in bindTableGroupToggles.
+
                         $(rows).eq(i).before(
-                            `<tr class="group" data-group-level="${lvl}" ${attrsFn(time, geoTypeDesc, borough)}><td colspan="${visibleColumnsCount}" data-group-level="${lvl}"> ${group}</td></tr>`
+                            `<tr class="group" data-group-level="${lvl}" ${attrsFn(time, geoTypeDesc, borough)}><td colspan="${visibleColumnsCount}" data-group-level="${lvl}"><button type="button" class="de-group-toggle" aria-expanded="true">${group}</button></td></tr>`
                         );
 
                         last = key;
@@ -995,6 +998,7 @@ const bindTableGroupToggles = () => {
             td.removeClass('hidden');
             descendants.show();
             descendants.find('td').removeClass('hidden');
+            descendants.find('.de-group-toggle').attr('aria-expanded', 'true');
 
         } else {
 
@@ -1004,5 +1008,7 @@ const bindTableGroupToggles = () => {
             descendants.hide();
 
         }
+
+        td.find('.de-group-toggle').attr('aria-expanded', td.hasClass('hidden') ? 'false' : 'true');
     });
 };
