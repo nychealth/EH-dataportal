@@ -124,6 +124,11 @@ const resetSelectionForNewIndicator = () => {
     DE.state.GeoType = null;
     DE.state.TimePeriodID = null;
 
+    // A new indicator brings its own geographies, which invalidates the Area search the same
+    // way a geo change does (menu.js handleSelection).
+
+    clearTableAreaSearch();
+
     // overlay is intentionally preserved across indicator selection
 
 };
@@ -138,6 +143,11 @@ const writeSelectionToURL = (historyMethod = 'pushState') => {
     // Rebuild the explorer params in a stable order and drop legacy aliases.
 
     url.search = buildCanonicalSearchParams().toString();
+
+    // A push that would write the URL already showing (choosing the selected measure, say)
+    // replaces the entry instead, so Back is not spent on a step that changed nothing.
+
+    if (historyMethod === 'pushState' && url.href === window.location.href) historyMethod = 'replaceState';
 
     writeHistoryState(historyMethod, {
         id: DE.state.IndicatorID,
@@ -395,6 +405,13 @@ const renderCurrentView = (updateMap = false) => {
 
     const mapRenderPromise = updateMap ? Promise.resolve(showMap()) : Promise.resolve();
 
+    // ----- restore the indicator-wide About text ----- //
+
+    // Trend and correlate write their own About/Sources text; every other view shows the
+    // indicator's, which would otherwise keep the last trend or correlate text.
+
+    if (DE.state.overlay !== 'trend' && DE.state.overlay !== 'links') restoreIndicatorAbout();
+
     // ----- dispatch on overlay via switch ----- //
 
     // route the current overlay value to the matching show* renderer
@@ -448,6 +465,11 @@ const renderCurrentView = (updateMap = false) => {
 
         case 'links':
             runOverlayRenderer(showLinks);
+            break;
+
+        case 'ds':
+            // Data Sources is static markup, filled by restoreIndicatorAbout above; nothing to draw.
+
             break;
 
         default:
@@ -518,38 +540,110 @@ const loadAndRenderIndicator = async (id, { selection = null, history = 'push' }
 
     if (selection) applySelectionToState(selection);
 
+    // A new load supersedes whatever an earlier one failed on.
+
+    clearLoadError();
+
     // ----- paint what metadata alone can render ----- //
 
-    // Neither waits on the data fetch, so both can start before it.
+    // Neither waits on the data fetch, so both can start before it. A metadata.json
+    // failure rejects renderIndicatorInfo too; it is reported once, by the awaited
+    // ensureIndicatorsLoaded below, so here it is only logged.
 
-    renderIndicatorInfo(indicatorID);
+    renderIndicatorInfo(indicatorID).catch(error => console.error(error));
     render311Links(indicatorID);
 
     // ----- load metadata, indicator, menus, and measures in sequence ----- //
 
-    // Metadata first so timeLookup is populated before menus build.
+    try {
 
-    await ensureIndicatorsLoaded('loadAndRenderIndicator');
-    if (!isCurrent()) return;
+        // Metadata first so timeLookup is populated before menus build.
 
-    await loadIndicator(indicatorID);
-    if (!isCurrent()) return;
+        await ensureIndicatorsLoaded('loadAndRenderIndicator');
+        if (!isCurrent()) return;
 
-    await renderMenus(indicatorID);
-    if (!isCurrent()) return;
+        // An id metadata.json does not list: renderIndicatorInfo has already reopened the
+        // chooser, and the steps below would throw on the missing record.
 
-    await renderMeasures();
-    if (!isCurrent()) return;
+        if (!getIndicatorById(indicatorID)) return;
 
-    // ----- sync URL + render ----- //
+        await loadIndicator(indicatorID);
+        if (!isCurrent()) return;
 
-    // Runs after renderMeasures so the URL carries the defaults it just resolved.
+        await renderMenus(indicatorID);
+        if (!isCurrent()) return;
 
-    if (history !== 'none') {
-        writeSelectionToURL(history === 'replace' ? 'replaceState' : 'pushState');
+        await renderMeasures();
+        if (!isCurrent()) return;
+
+        // ----- sync URL + render ----- //
+
+        // Runs after renderMeasures so the URL carries the defaults it just resolved.
+
+        if (history !== 'none') {
+            writeSelectionToURL(history === 'replace' ? 'replaceState' : 'pushState');
+        }
+
+        renderCurrentView(true);
+
+    } catch (error) {
+
+        // A failed fetch (metadata, indicator rows, time or geography) used to stop the
+        // load here with only a console line, leaving the previous view or an empty map.
+
+        console.error(error);
+
+        if (isCurrent()) showLoadError(indicatorID);
+
     }
 
-    renderCurrentView(true);
+};
+
+
+// ----------------------------------------------------------------------- //
+// load-failure overlay
+// ----------------------------------------------------------------------- //
+
+// The card floats over the explorer (#loadErrorOverlay in data-explorer/single.html)
+// rather than taking a row, so the layout does not move when it appears. Non-modal:
+// the indicator chooser stays usable, and choosing another indicator clears it.
+
+const showLoadError = (indicatorID) => {
+
+    const overlay = document.getElementById('loadErrorOverlay');
+    if (!overlay) return;
+
+    // role="alert" on the inserted card is what announces it, as in correlate.js.
+
+    overlay.innerHTML = `
+        <div class="alert alert-warning mb-0 shadow" role="alert">
+            <p class="mb-2">We couldn't load this data. Check your connection and try again.</p>
+            <button type="button" class="btn btn-primary btn-sm">Try again</button>
+        </div>`;
+
+    overlay.querySelector('button').addEventListener('click', () => retryIndicatorLoad(indicatorID));
+
+};
+
+const clearLoadError = () => {
+
+    const overlay = document.getElementById('loadErrorOverlay');
+    if (overlay) overlay.innerHTML = '';
+
+};
+
+// Re-runs the load that failed. loadOnce evicts a rejected fetch, so this requests it again.
+// The URL names the failed indicator when the failure came on page load, back/forward, or a
+// map render, and is then rewritten in place; an in-page pick fails before its pushState, so
+// the URL still names the previous indicator and the retry pushes the entry it never wrote.
+
+const retryIndicatorLoad = (indicatorID) => {
+
+    const selection = parseSelectionFromURL();
+
+    return selection.id === Number(indicatorID)
+        ? loadAndRenderIndicator(indicatorID, { selection, history: 'replace' })
+        : loadAndRenderIndicator(indicatorID, { selection: null, history: 'push' });
 
 };
 
@@ -574,6 +668,17 @@ window.addEventListener('popstate', async (event) => {
 
     const selection = parseSelectionFromURL();
 
+    // ----- no indicator in this entry: back to the chooser ----- //
+
+    // A topic page opened without ?id= has no indicator loaded at all, only the chooser
+    // (checkURL). An in-place pick pushed the entry after it, so Back lands here with the
+    // picked indicator still on screen; reloading restores the page as first opened.
+
+    if (selection.id === null || Number.isNaN(selection.id)) {
+        window.location.reload();
+        return;
+    }
+
     // ----- reload full pipeline on indicator change ----- //
 
     // history: 'none' — this URL *is* the history entry being navigated to, so
@@ -586,6 +691,8 @@ window.addEventListener('popstate', async (event) => {
 
     // ----- sync sub-indicator globals, rebuild menus ----- //
 
+    const previousGeoTime = [DE.state.GeoType, DE.state.TimePeriodID];
+
     applySelectionToState(selection);
 
     // sync the dropdown menus to match the restored globals
@@ -595,6 +702,17 @@ window.addEventListener('popstate', async (event) => {
     // Rebuild dropdowns only when indicator metadata is already available in memory.
 
     if (ind) updateAllMenus(ind);
+
+    // ----- resync table filters ----- //
+
+    // Same rule as a dropdown change (menu.js handleSelection): a restored geo or time
+    // invalidates the Area search, and the table follows the map unless set by hand.
+
+    if (DE.state.GeoType !== previousGeoTime[0] || DE.state.TimePeriodID !== previousGeoTime[1]) {
+        clearTableAreaSearch();
+    }
+
+    syncTableFiltersToMapSelection();
 
     // ----- re-render ----- //
 
@@ -636,7 +754,8 @@ document.addEventListener("DOMContentLoaded", () => {
         '#v-pills-bar-tab':       'bar',
         '#v-pills-trends-tab':    'trend',
         '#v-pills-correlate-tab': 'links',
-        '#v-pills-table-tab':     'table'
+        '#v-pills-table-tab':     'table',
+        '#v-pills-ds-tab':        'ds'
     };
 
     // ----- bind tab click listeners ----- //

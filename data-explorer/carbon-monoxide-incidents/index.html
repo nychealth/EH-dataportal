@@ -67,7 +67,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/","name":"The Environment and Health Data Portal: Home page","position":1},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/","name":"Data Explorer","position":2},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/carbon-monoxide-incidents/","name":"Carbon monoxide","position":3}]}</script>
 <script src="/IndicatorPublic/node_modules/jquery/dist/jquery.min.9d6bd9b75ea55acc.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR&#43;8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/css/all.min.c2b5ea5c3ed56d7e.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck&#43;w&#43;/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous"/>
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.9fe67c4309711e983b6ef02b740cf3992312cfb4f281ea819d56c386948afdfbb315acc0ac8323f4d7201aaf2f505b5d26f7d8d66f7ae3c21e9e94ba5c858616.css" integrity="sha512-n&#43;Z8QwlxHpg7bvArdAzzmSMSz7TygeqBnVbDhpSK/fuzFazArIMj9NcgGq8vUFtdJvfY1m9648IenpS6XIWGFg==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.edbf8de101716efd928ad1ee2983adefcc38019a4980b700bb32c25555a9f6a06bf59c60ed3ae7b67812772bac149d88b40f29045f1d28c0c10c910d0c25ff4f.css" integrity="sha512-7b&#43;N4QFxbv2SitHuKYOt78w4AZpJgLcAuzLCVVWp9qBr9Zxg7TrntngSdyusFJ2ItA8pBF8dKMDBDJENDCX/Tw==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
 
 
 
@@ -1225,7 +1225,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="align-items-center d-none d-md-flex dropdown">
+                <div class="align-items-center d-none d-lg-flex dropdown">
                     <button class="d-flex align-items-center" type="button" id="takeActionToggleDesktop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background: none; border: none; color: inherit; padding: 0;">
                         <div class="font-weight-bold mr-1 text-white fs-md">Take Action</div>
                         <img src=/IndicatorPublic/images/icon-green-arrow.svg style="height: 21px" alt="">
@@ -1235,8 +1235,9 @@
                         <ul class="list-unstyled fs-sm">
                             <li class="mb-1 border-bottom border-gray-300 pb-1"><a href=/IndicatorPublic/take-action/email-electeds/>Email your elected officials</a></li>
                             <li class="mb-1 border-gray-300 pb-1">
-                                <span class="d-block" id="contact311Label">Contact 311 about:</span>
-                                <span id="contact311LinksDesktop" class="destination311"><a href="#">Dynamic option</a></span>
+                                <span class="d-block" id="contact311Label"></span>
+                                
+                                <span id="contact311LinksDesktop" class="destination311 hide"></span>
                             </li>
                         </ul>
                     </div>
@@ -1326,7 +1327,7 @@
 <div class="position-absolute  de-main-details border-top" data-recently-updated-ids='[2023,2024,2028,2025,2027,2433,14,2465,2466,2467,2468,2140,2458]'>
 
     
-    <div class="bg-primary text-white px-2 py-1 w-full d-flex d-md-none mobile-details-header" style="cursor: pointer;">
+    <div class="bg-primary text-white px-2 py-1 w-full d-flex d-lg-none mobile-details-header" style="cursor: pointer;">
         <div>
             <div class="h6 font-weight-bold mb-0 py-1 main-heading indicator-name" aria-live="polite" aria-atomic="true">Loading indicator...</div>
             <div class="position-relative d-inline-flex align-items-center indicator-selector-trigger-wrap">
@@ -1340,7 +1341,7 @@
     </div>
 
     
-    <div class="bg-primary text-white px-2 py-1 w-full d-none d-md-flex">
+    <div class="bg-primary text-white px-2 py-1 w-full d-none d-lg-flex">
         <div class="h6 font-weight-bold mb-0 py-1 indicator-name" aria-live="polite" aria-atomic="true">Loading indicator...</div>
         <div class="ml-2 text-nowrap flex-grow-1 text-right">
             <div class="position-relative d-inline-flex align-items-center indicator-selector-trigger-wrap">
@@ -1351,7 +1352,7 @@
     </div>
 
     
-    <div id="detailsContent" class="collapse d-md-none">
+    <div id="detailsContent" class="collapse d-lg-none">
         <div class="bg-white p-2 fs-sm">
             <p class="indicator-description">Loading indicator description...</p>
         </div>
@@ -1407,7 +1408,7 @@
     </div>
 
     
-    <div class="d-none d-md-block">
+    <div class="d-none d-lg-block">
         <div class="bg-white p-2 fs-sm border-left border-right">
             <p class="indicator-description fs-sm">Loading indicator description... </p>
         </div>
@@ -1499,7 +1500,7 @@
     </div>
 
 </div><div class="position-absolute de-tabs fs-sm">
-    <div class="d-flex flex-column flex-md-row justify-content-end de-tabs-layout">
+    <div class="d-flex flex-column flex-lg-row justify-content-end de-tabs-layout">
         <div class="de-tabs-panel-shell"><style>
     #tableFilterPanel .de-table-optionbox {
         max-height: 12rem;
@@ -1607,7 +1608,7 @@
 </style>
 
 
-<div class="tab-content bg-white pt-0 relative" id="v-pills-tabContent"><div class="bg-white d-none d-md-block" style="margin-left: -33px;">
+<div class="tab-content bg-white pt-0 relative" id="v-pills-tabContent"><div class="bg-white d-none d-lg-block" style="margin-left: -33px;">
         <button type="button" class="bg-primary border-0 bl50 py-1 close-tab-pane de-close-tab-button" aria-label="Close">
             <img src=/IndicatorPublic/images/arrow-right.svg style="margin-bottom: 2px;" alt="">
         </button>
@@ -1615,7 +1616,7 @@
 
     
     <div class="tab-pane relative fade" id="v-pills-bar" role="tabpanel" aria-labelledby="v-pills-bar-tab">
-        <div class="p-2 pt-md-0">
+        <div class="p-2 pt-lg-0">
             <div id="barHolder" style="width:100%;min-height:500px;">
                 Bar chart to go here
             </div>
@@ -1636,7 +1637,7 @@
 
     
     <div class="tab-pane relative fade" id="v-pills-table" role="tabpanel" aria-labelledby="v-pills-table-tab">
-        <div class="pt-md-0">
+        <div class="pt-lg-0">
 
             <div id="table-filter-controls" class="p-2 pb-1 d-flex justify-content-end sr-only">
                 
@@ -1655,14 +1656,14 @@
             <div id="tableFilterPanel" class="px-2 pb-2">
                 <div class="bg-white">
                     <div class="row">
-                        <div class="col-md-6 mb-2 mb-md-0" >
+                        <div class="col-lg-6 mb-2 mb-lg-0" >
                             <div>
                                 <p class="fs-xs mb-1">Time periods</p>
                                 <div id="tableTimeCheckboxes" class="border de-table-optionbox" style="height: 10vh; overflow-y:scroll;"></div>
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-lg-6">
                             <div>
                                 <p class="fs-xs mb-1">Geographies</p>
                                 <div id="tableGeoCheckboxes" class="border de-table-optionbox" style="height: 10vh; overflow-y:scroll;"></div>
@@ -1706,7 +1707,7 @@
 
     
     <div class="tab-pane relative fade" id="v-pills-trends" role="tabpanel" aria-labelledby="v-pills-trends-tab">
-        <div class="p-2 pt-md-0">
+        <div class="p-2 pt-lg-0">
             <div id="trendPillControls" class="de-viz-pill-controls pt-1">
                 <div class="de-viz-pill-row">
                     <div id="trendMeasurePills" class="de-viz-pill-group"></div>
@@ -1734,7 +1735,7 @@
 
     
     <div class="tab-pane relative fade" id="v-pills-correlate" role="tabpanel" aria-labelledby="v-pills-correlate-tab">
-        <div class="p-2 pt-md-0">
+        <div class="p-2 pt-lg-0">
             <div id="correlatePillControls" class="de-viz-pill-controls pt-1">
                 <div class="de-viz-pill-group">
                     <span class="de-viz-pill-label">Show:</span>
@@ -1778,7 +1779,7 @@
 
     
     <div class="tab-pane relative fade" id="v-pills-ds" role="tabpanel" aria-labelledby="v-pills-ds-tab">
-        <div class="p-2 pt-md-0">
+        <div class="p-2 pt-lg-0">
             <p class="h5 pt-1">About the data</p>
 
             <p class="h6 border-top pt-1">How the data were calculated</p>
@@ -1796,7 +1797,7 @@
                     Carbon monoxide data: 
                     <span class="indicator-name"></span>. 
                     Accessed at <span class="citation-url">https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/carbon-monoxide-incidents/</span> on
-                    <span class="citation-date">Nov 1, 2026</span>.
+                    <span class="citation-date">Nov 2, 2026</span>.
                     </span>
                     <span class="float-right">
                     <a href="#" id="citeButton" class="de-copy-citation-button" data-citation-target="citeText"><i class="fas fa-copy mr-1" aria-hidden="true"></i>Copy citation.</a>
@@ -1806,7 +1807,7 @@
 
         </div>
     </div>
-</div><script type="text/javascript" src="/IndicatorPublic/js/data-explorer/de-tab-content.0c5f9c9207c3f777.js" integrity="sha512-&#43;bNiIMAwYhq39nxqklYQaTTHo9qob0Q67jQSBjo/7P5hHCmvli8atQz98BwGX7OAQ8UBM31BKE&#43;IMI/3dj8rHw=="></script>
+</div><script type="text/javascript" src="/IndicatorPublic/js/data-explorer/de-tab-content.4c28d467c05166fc.js" integrity="sha512-eDXYGBpDxE/VtFBsulHUm&#43;RCXIh8eVvDTT3nvqu9xRshWXmRqoxLnRLdOStdrnE8egH/HDWVZUx7NiPEs9rs2w=="></script>
 
 <style>
          
@@ -1874,30 +1875,30 @@
     
     
     
-    <div class="nav flex-row flex-md-column nav-pills flex-grow-1 position-relative" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+    <div class="nav flex-row flex-lg-column nav-pills flex-grow-1 position-relative" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         <a class="nav-link" id="v-pills-bar-tab" aria-label="Bar" data-toggle="pill"  href="#v-pills-bar" role="tab" aria-controls="v-pills-bar" aria-selected="false">
             <svg width="26" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 24"><path d="M26 3.5A2.5 2.5 0 0 1 23.5 6h-21A2.5 2.5 0 0 1 0 3.5v-1A2.5 2.5 0 0 1 2.5 0h21A2.5 2.5 0 0 1 26 2.5v1ZM17.5 15a2.5 2.5 0 0 0 2.5-2.5v-1A2.5 2.5 0 0 0 17.5 9h-15A2.5 2.5 0 0 0 0 11.5v1A2.5 2.5 0 0 0 2.5 15h15Zm-6 9a2.5 2.5 0 0 0 2.5-2.5v-1a2.5 2.5 0 0 0-2.5-2.5h-9A2.5 2.5 0 0 0 0 20.5v1A2.5 2.5 0 0 0 2.5 24h9Z" style="fill: currentColor;" fill-rule="nonzero"/></svg>
-            <div class="mt-1 d-none d-md-block">Bar</div>
+            <div class="mt-1 d-none d-lg-block">Bar</div>
         </a>
         <a class="nav-link" id="v-pills-trends-tab" aria-label="Trends" data-toggle="pill"  href="#v-pills-trends" role="tab" aria-controls="v-pills-trends" aria-selected="false">
             <svg width="37" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37 20"><path d="m2 18.452 11.042-11.23 7.905 8.041A44.685 44.685 0 0 1 35.125 2" style="stroke: currentColor;" stroke-width="2.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <div class="mt-1 d-none d-md-block">Trends</div>
+            <div class="mt-1 d-none d-lg-block">Trends</div>
         </a>
         <a class="nav-link" id="v-pills-correlate-tab" aria-label="Correlate" data-toggle="pill"  href="#v-pills-correlate" role="tab" aria-controls="v-pills-correlate" aria-selected="false">
             <svg width="29" height="27" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 27"><g transform="translate(1 2)" fill="none" fill-rule="evenodd"><circle style="fill: currentColor;" cx="20.158" cy="5.427" r="2.5"/><circle style="fill: currentColor;" cx="10.3" cy="7.456" r="2.5"/><circle style="fill: currentColor;" cx="16.778" cy="12.529" r="2.5"/><circle style="fill: currentColor;" cx="10.3" cy="16.588" r="2.5"/><path style="stroke: currentColor;" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M.65 23.415h26M.65 23.415V0"/></g></svg>
-            <div class="mt-1 d-none d-md-block">Correlate</div>
+            <div class="mt-1 d-none d-lg-block">Correlate</div>
         </a>
         <a class="nav-link" id="v-pills-table-tab" aria-label="Table" data-toggle="pill"  href="#v-pills-table" role="tab" aria-controls="v-pills-table" aria-selected="false">
             <svg width="27" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 24"><path d="M0 2.727C0 1.22 1.066 0 2.38 0h21.89c1.314 0 2.38 1.222 2.38 2.727v18.546c0 1.505-1.066 2.727-2.38 2.727H2.38C1.064 24 0 22.779 0 21.273V2.727Zm24.746 5.455c0-.301-.213-.546-.475-.546h-9.518c-.263 0-.476.245-.476.546v2.182c0 .3.213.545.476.545h9.518c.262 0 .475-.244.475-.545V8.182Zm0 5.454c0-.3-.213-.545-.475-.545h-9.518c-.263 0-.476.244-.476.545v2.182c0 .301.213.546.476.546h9.518c.262 0 .475-.245.475-.546v-2.182Zm0 5.455c0-.301-.213-.546-.475-.546h-9.518c-.263 0-.476.245-.476.546v2.182c0 .3.213.545.476.545h9.518c.262 0 .475-.244.475-.545V19.09Zm-12.849 2.727c.263 0 .476-.244.476-.545V19.09c0-.301-.213-.546-.476-.546H2.38c-.262 0-.475.245-.475.546v2.182c0 .3.213.545.475.545h9.518ZM2.38 16.364h9.518c.263 0 .476-.245.476-.546v-2.182c0-.3-.213-.545-.476-.545H2.38c-.262 0-.475.244-.475.545v2.182c0 .301.213.546.475.546Zm0-5.455h9.518c.263 0 .476-.244.476-.545V8.182c0-.301-.213-.546-.476-.546H2.38c-.262 0-.475.245-.475.546v2.182c0 .3.213.545.475.545Z" style="fill: currentColor;" fill-rule="nonzero"/></svg>
-            <div class="mt-1 d-none d-md-block">Table</div>
+            <div class="mt-1 d-none d-lg-block">Table</div>
         </a>
-        <a class="nav-link border-md-top border-md-white d-flex justify-content-center flex-column" id="v-pills-ds-tab" data-toggle="pill" href="#v-pills-ds" role="tab" aria-controls="v-pills-ds" aria-selected="false" style="margin-top: auto;">
+        <a class="nav-link border-lg-top border-lg-white d-flex justify-content-center flex-column" id="v-pills-ds-tab" data-toggle="pill" href="#v-pills-ds" role="tab" aria-controls="v-pills-ds" aria-selected="false" style="margin-top: auto;">
             <div class="mt-1">Data<br>Sources</div>
         </a>
     </div>
 
     
-    <div class="align-items-center d-flex d-md-none dropup">
+    <div class="align-items-center d-flex d-lg-none dropup">
         <button class="d-flex align-items-center px-1" type="button" id="takeActionToggleMobile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #3B3B3B; height: 100%; border: none; color: inherit; padding: 0;">
             <div class="font-weight-bold px-1 text-white fs-xs">Take<br>Action</div>
         </button>
@@ -1906,7 +1907,8 @@
             <ul class="list-unstyled fs-sm">
                 <li class="mb-1 border-bottom border-gray-300 pb-1 font-weight-normal"><a href=/IndicatorPublic/take-action/email-electeds/>Email your elected officials</a></li>
                 <li class="mb-1 border-gray-300 pb-1 font-weight-normal">
-                    <span id="contact311LinksMobile" class="d-block destination311"><a href="#">Dynamic option</a></span>
+                    
+                    <span id="contact311LinksMobile" class="d-block destination311 hide"></span>
                 </li>
             </ul>
         </div>
@@ -1922,6 +1924,9 @@
                     onclick="var t = document.getElementById('v-pills-table-tab'); if (!(t.classList.contains('active') &amp;&amp; document.getElementById('v-pills-table').classList.contains('show'))) t.click(); return false;">View this data as a table</a>
                 
             </div>
+
+            
+            <div id="loadErrorOverlay" class="de-load-error-overlay"></div>
 
         </div>
 
@@ -2071,18 +2076,18 @@
 <script type="text/javascript" src="/IndicatorPublic/js/naturalSort.ea08f0d721e54282.js" integrity="sha512-hQhumJPdtYDwyuIoXLVeAmV5VJ7FNwV/sEtkmK9DhOjAbutswmwBfaQN5qzuovmcmsAOdzjLpdTcu2ugGptfFw=="></script>
 
 
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/global.e107fa142c37c568.js" integrity="sha512-OkK/e&#43;UVl4aIyyuNT1qrgFvgYix1xbETjLobpbRNZ3&#43;rOyNlKxrrdDwDonbdXxdLlGxA5nIediJ3c1Mx3G2IcQ=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/app.75a5f71015b26721.js" integrity="sha512-P7zbv1cfrujoZnl8jN1EJ9a7UhjteLG1TZocYDMI11s4LKI7aLfnQHQa9UM6&#43;xNFkSyHLDycfzt7e9skbBcnNg=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/data.d886ff2a8e65705e.js" integrity="sha512-ekU0DrLlxqI3AFHznKgqHhEVYXsEAGoOLPhKPVDyyP4S9alb14TvDY5nKhDoPxJpAKlxt2cb1JjCfqGAeGgTFg=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/measures.0f3139985ee339a9.js" integrity="sha512-JYBrp0IvwGbPfO7II7/jVj2uEUe4eaoIaxgepjQkNpo1mNm0s4bOip2cOHSQZp4hFKiRJzHZl7jCelgllZMvOw=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/table.af7ac2a9a8272fb5.js" integrity="sha512-fNzA2XDQ&#43;RjL9lLMEIW0JG0pHwfILPwmqhuEAJeJ7&#43;htucn0l7APzYnvmVNGb/V9A3GMn7bf1mP1VJg9YXm//w=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/map.91c53cd3a794f996.js" integrity="sha512-fB4Q2jwrSbAh7bjCDUbUAfnAPdJEWX&#43;vsJDhvFTS41C1PGcZVwGHywPL/yrP9ctvVmb9GFYr7Z4l8vxKM5NMyw=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/global.e5c9ea0fad6da416.js" integrity="sha512-ot8y/vWO35peDL/t0S2htHIFHh&#43;AcU6LJa5Wu&#43;Dt1USGqwolhgQ5oxnmQweoTFPIeTN&#43;VYgy7iGyamtMmoBXNQ=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/app.9c456bbbb78ab944.js" integrity="sha512-x5DllCqRIfCKGXV&#43;r14WAnX2TxokHvdh4y8UndPxw8Et3m8Qm0O1hcanCCGK9t9THSSSi6AQMLymQrB4ylsjAw=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/data.a7df391c61aeb34d.js" integrity="sha512-R5s6RRlDTkqzJ9Hb0SOCYuAi04/tgY5KCtF8v8cs7U2f35p5Xpn9w&#43;uf3hdALwrNDBYPe80DdqbY1njGzoeqAA=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/measures.419b97bc4207b0ff.js" integrity="sha512-Xza3Njsx8Es4GV&#43;v3dsSnHoGV/uFynxO9DoCjwo3JbkaJhcLVkPMj1SkK9bUPLcaYLX7AVRcg1g9bSlD3Oyf6g=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/table.dc5702f99f01f5a0.js" integrity="sha512-piH1WsVlnBxBUpsDlnBWqwB&#43;EYjIoQ4oSdvxmkVYJ&#43;r4ns25oxx68vLcDaOBLzJcI19e3WIDzwLViGSpF268jg=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/map.4479382cca2cfed1.js" integrity="sha512-UbBuKfP6zjynRxFcLXP5M/vl9QdZEp2ShlsBrmHqNJjLMaVLP8zsXhQW/q0vzczn0FBEGnuSTMyCq1Skj5vkqw=="></script>
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/311.02bf62b1af6500ce.js" integrity="sha512-GyTrLU5LNh0jZXyEh&#43;Wb1cNov9wWaLETaJefaXdVl8tvo&#43;EiNhDrw&#43;1pKE4uEH4Lh6uzt6&#43;GyeAxE2kOLFM4NA=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/topic-indicator-selector.03deac7f9c2efb37.js" integrity="sha512-J6O6yS69ySbWDjlSbG2kIe831lqg8BV2aZKVtyb/4XPXXddIAMnDrRVHKf89jaj/YhbOKg6C1yG3tkqkrFB2TA=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/menu.cb7a929bf0c54790.js" integrity="sha512-Kaevomz2Ib&#43;e2igBWxH3w4KeOvj2/i8Kf/3r7FnNpdOK//fLXtc5M6szwFtQGoTL7T0FdGfRIgUpZ6Dz6Z&#43;m1g=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/bar.1fa0ff09eef624e8.js" integrity="sha512-j5WORjrAFwPXXF3dNxKzyGjFbDMrCvLxKYEViGlFa9/fFxjL5YCX&#43;BtZAlZw7EUc3QooILH&#43;6ToizFmoNkV5Uw=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/trend.c29d3312049365aa.js" integrity="sha512-LdI4y45GBamkDUIPqdjR9TjHuYlhmFLojk21HZSDQ6NMdyxi0xgLINMajsoI3oWVmao5vTNHQt4akKBOPbddiA=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/correlate.2e2c30e60462eeba.js" integrity="sha512-YeyZjd9EpIeMNDprslLj2XAI0s6bquUfLvKujS05scVA8TvVHNjy8iGUAjEokkJzy3S70AkOmfR3Y0TDA22FTw=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/topic-indicator-selector.a864a181538a732b.js" integrity="sha512-ZWaqZt4dOf&#43;M4ubZeqCu5/rkNvgKLRjq/EFx4OfL5uQhyYLOG1&#43;XXwdPu71ZjQvaEz6gyGNxfmFmo/Td5yPanQ=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/menu.04e48a7e72605ccc.js" integrity="sha512-JfD9tg1JK4Z6feFT/ftLB6V9CG6hdxomPlJzfwK87pTItvQrQKADfE0B&#43;ANDBh6&#43;LcCJGB&#43;Sj/bsfBRr6RJh5A=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/bar.8e8222d53f7115a3.js" integrity="sha512-Nl3kCYloYdPIXtTra2pu1deaF1A7JxAVJhO5NqMGJQV2kiHMp47yBpZDA0d/ewVHe/XcMOK0INHlbrlsHEFivg=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/trend.cc704ddd39552fae.js" integrity="sha512-0Txard25IVBNnGn&#43;NAadRoXUbDVlRQLH7gifj4cJgWt8z9EtP5FLb6VYbK9QbGr8hMoeQmuPsBxIKIk6VF/0NQ=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/correlate.14355588cb57a325.js" integrity="sha512-uUCjqxP5MmvjnRckmPfG/GFdmsvZzQqYTIdQ/AjBhH&#43;wuOs2KsBqZY9bXxIDp2bpp/01fnKRPjzrw19R43v4pQ=="></script>
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/disparities.18a1b15773b5d42a.js" integrity="sha512-BOrWk5r&#43;Azi89WLEcEu7B28qtHcVmoQfavO58dv2LWKS28TFSwxgHOkB21H3FBZeBtA/z1WBS66xGnMZROkZjA=="></script>
 
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/print-map.16dd6dfddef9c02a.js" integrity="sha512-hQVnKvGQKtffaCQaWEdtpImk0iumyzD2pBkovwgP8X5Wk76HYMN6YYkjNPq4ybtRRz5Cc0joxOVaS3d6pnmi1w=="></script>

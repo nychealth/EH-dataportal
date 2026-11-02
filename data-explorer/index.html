@@ -67,7 +67,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/","name":"The Environment and Health Data Portal: Home page","position":1},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/","name":"Data Explorer","position":2}]}</script>
 <script src="/IndicatorPublic/node_modules/jquery/dist/jquery.min.9d6bd9b75ea55acc.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR&#43;8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/css/all.min.c2b5ea5c3ed56d7e.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck&#43;w&#43;/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous"/>
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.9fe67c4309711e983b6ef02b740cf3992312cfb4f281ea819d56c386948afdfbb315acc0ac8323f4d7201aaf2f505b5d26f7d8d66f7ae3c21e9e94ba5c858616.css" integrity="sha512-n&#43;Z8QwlxHpg7bvArdAzzmSMSz7TygeqBnVbDhpSK/fuzFazArIMj9NcgGq8vUFtdJvfY1m9648IenpS6XIWGFg==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.edbf8de101716efd928ad1ee2983adefcc38019a4980b700bb32c25555a9f6a06bf59c60ed3ae7b67812772bac149d88b40f29045f1d28c0c10c910d0c25ff4f.css" integrity="sha512-7b&#43;N4QFxbv2SitHuKYOt78w4AZpJgLcAuzLCVVWp9qBr9Zxg7TrntngSdyusFJ2ItA8pBF8dKMDBDJENDCX/Tw==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
 
 
 
@@ -1132,7 +1132,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="align-items-center d-none d-md-flex dropdown">
+                <div class="align-items-center d-none d-lg-flex dropdown">
                     <button class="d-flex align-items-center" type="button" id="takeActionToggleDesktop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background: none; border: none; color: inherit; padding: 0;">
                         <div class="font-weight-bold mr-1 text-white fs-md">Take Action</div>
                         <img src=/IndicatorPublic/images/icon-green-arrow.svg style="height: 21px" alt="">
@@ -1142,8 +1142,9 @@
                         <ul class="list-unstyled fs-sm">
                             <li class="mb-1 border-bottom border-gray-300 pb-1"><a href=/IndicatorPublic/take-action/email-electeds/>Email your elected officials</a></li>
                             <li class="mb-1 border-gray-300 pb-1">
-                                <span class="d-block" id="contact311Label">Contact 311 about:</span>
-                                <span id="contact311LinksDesktop" class="destination311"><a href="#">Dynamic option</a></span>
+                                <span class="d-block" id="contact311Label"></span>
+                                
+                                <span id="contact311LinksDesktop" class="destination311 hide"></span>
                             </li>
                         </ul>
                     </div>
@@ -1259,30 +1260,30 @@
     
     
     
-    <div class="nav flex-row flex-md-column nav-pills flex-grow-1 position-relative" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+    <div class="nav flex-row flex-lg-column nav-pills flex-grow-1 position-relative" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         <a class="nav-link" id="v-pills-bar-tab" aria-label="Bar" data-toggle="pill"  href="#v-pills-bar" role="tab" aria-controls="v-pills-bar" aria-selected="false">
             <svg width="26" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 24"><path d="M26 3.5A2.5 2.5 0 0 1 23.5 6h-21A2.5 2.5 0 0 1 0 3.5v-1A2.5 2.5 0 0 1 2.5 0h21A2.5 2.5 0 0 1 26 2.5v1ZM17.5 15a2.5 2.5 0 0 0 2.5-2.5v-1A2.5 2.5 0 0 0 17.5 9h-15A2.5 2.5 0 0 0 0 11.5v1A2.5 2.5 0 0 0 2.5 15h15Zm-6 9a2.5 2.5 0 0 0 2.5-2.5v-1a2.5 2.5 0 0 0-2.5-2.5h-9A2.5 2.5 0 0 0 0 20.5v1A2.5 2.5 0 0 0 2.5 24h9Z" style="fill: currentColor;" fill-rule="nonzero"/></svg>
-            <div class="mt-1 d-none d-md-block">Bar</div>
+            <div class="mt-1 d-none d-lg-block">Bar</div>
         </a>
         <a class="nav-link" id="v-pills-trends-tab" aria-label="Trends" data-toggle="pill"  href="#v-pills-trends" role="tab" aria-controls="v-pills-trends" aria-selected="false">
             <svg width="37" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37 20"><path d="m2 18.452 11.042-11.23 7.905 8.041A44.685 44.685 0 0 1 35.125 2" style="stroke: currentColor;" stroke-width="2.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <div class="mt-1 d-none d-md-block">Trends</div>
+            <div class="mt-1 d-none d-lg-block">Trends</div>
         </a>
         <a class="nav-link" id="v-pills-correlate-tab" aria-label="Correlate" data-toggle="pill"  href="#v-pills-correlate" role="tab" aria-controls="v-pills-correlate" aria-selected="false">
             <svg width="29" height="27" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 27"><g transform="translate(1 2)" fill="none" fill-rule="evenodd"><circle style="fill: currentColor;" cx="20.158" cy="5.427" r="2.5"/><circle style="fill: currentColor;" cx="10.3" cy="7.456" r="2.5"/><circle style="fill: currentColor;" cx="16.778" cy="12.529" r="2.5"/><circle style="fill: currentColor;" cx="10.3" cy="16.588" r="2.5"/><path style="stroke: currentColor;" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M.65 23.415h26M.65 23.415V0"/></g></svg>
-            <div class="mt-1 d-none d-md-block">Correlate</div>
+            <div class="mt-1 d-none d-lg-block">Correlate</div>
         </a>
         <a class="nav-link" id="v-pills-table-tab" aria-label="Table" data-toggle="pill"  href="#v-pills-table" role="tab" aria-controls="v-pills-table" aria-selected="false">
             <svg width="27" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 24"><path d="M0 2.727C0 1.22 1.066 0 2.38 0h21.89c1.314 0 2.38 1.222 2.38 2.727v18.546c0 1.505-1.066 2.727-2.38 2.727H2.38C1.064 24 0 22.779 0 21.273V2.727Zm24.746 5.455c0-.301-.213-.546-.475-.546h-9.518c-.263 0-.476.245-.476.546v2.182c0 .3.213.545.476.545h9.518c.262 0 .475-.244.475-.545V8.182Zm0 5.454c0-.3-.213-.545-.475-.545h-9.518c-.263 0-.476.244-.476.545v2.182c0 .301.213.546.476.546h9.518c.262 0 .475-.245.475-.546v-2.182Zm0 5.455c0-.301-.213-.546-.475-.546h-9.518c-.263 0-.476.245-.476.546v2.182c0 .3.213.545.476.545h9.518c.262 0 .475-.244.475-.545V19.09Zm-12.849 2.727c.263 0 .476-.244.476-.545V19.09c0-.301-.213-.546-.476-.546H2.38c-.262 0-.475.245-.475.546v2.182c0 .3.213.545.475.545h9.518ZM2.38 16.364h9.518c.263 0 .476-.245.476-.546v-2.182c0-.3-.213-.545-.476-.545H2.38c-.262 0-.475.244-.475.545v2.182c0 .301.213.546.475.546Zm0-5.455h9.518c.263 0 .476-.244.476-.545V8.182c0-.301-.213-.546-.476-.546H2.38c-.262 0-.475.245-.475.546v2.182c0 .3.213.545.475.545Z" style="fill: currentColor;" fill-rule="nonzero"/></svg>
-            <div class="mt-1 d-none d-md-block">Table</div>
+            <div class="mt-1 d-none d-lg-block">Table</div>
         </a>
-        <a class="nav-link border-md-top border-md-white d-flex justify-content-center flex-column" id="v-pills-ds-tab" data-toggle="pill" href="#v-pills-ds" role="tab" aria-controls="v-pills-ds" aria-selected="false" style="margin-top: auto;">
+        <a class="nav-link border-lg-top border-lg-white d-flex justify-content-center flex-column" id="v-pills-ds-tab" data-toggle="pill" href="#v-pills-ds" role="tab" aria-controls="v-pills-ds" aria-selected="false" style="margin-top: auto;">
             <div class="mt-1">Data<br>Sources</div>
         </a>
     </div>
 
     
-    <div class="align-items-center d-flex d-md-none dropup">
+    <div class="align-items-center d-flex d-lg-none dropup">
         <button class="d-flex align-items-center px-1" type="button" id="takeActionToggleMobile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #3B3B3B; height: 100%; border: none; color: inherit; padding: 0;">
             <div class="font-weight-bold px-1 text-white fs-xs">Take<br>Action</div>
         </button>
@@ -1291,7 +1292,8 @@
             <ul class="list-unstyled fs-sm">
                 <li class="mb-1 border-bottom border-gray-300 pb-1 font-weight-normal"><a href=/IndicatorPublic/take-action/email-electeds/>Email your elected officials</a></li>
                 <li class="mb-1 border-gray-300 pb-1 font-weight-normal">
-                    <span id="contact311LinksMobile" class="d-block destination311"><a href="#">Dynamic option</a></span>
+                    
+                    <span id="contact311LinksMobile" class="d-block destination311 hide"></span>
                 </li>
             </ul>
         </div>
@@ -1317,7 +1319,7 @@
     <h1>Data Explorer</h1>
     <p>Our site&rsquo;s data explorer contains hundreds of environmental health datasets. Get tables, maps, trends, and more to view neighborhood-level data on ways that environments affect health in NYC.</p>
 
-</div><script type="text/javascript" src="/IndicatorPublic/js/data-explorer/topic-indicator-selector.03deac7f9c2efb37.js" integrity="sha512-J6O6yS69ySbWDjlSbG2kIe831lqg8BV2aZKVtyb/4XPXXddIAMnDrRVHKf89jaj/YhbOKg6C1yG3tkqkrFB2TA==" defer></script>
+</div><script type="text/javascript" src="/IndicatorPublic/js/data-explorer/topic-indicator-selector.a864a181538a732b.js" integrity="sha512-ZWaqZt4dOf&#43;M4ubZeqCu5/rkNvgKLRjq/EFx4OfL5uQhyYLOG1&#43;XXwdPu71ZjQvaEz6gyGNxfmFmo/Td5yPanQ==" defer></script>
 
 
 <script>

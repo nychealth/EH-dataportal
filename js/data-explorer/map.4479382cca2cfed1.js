@@ -572,7 +572,13 @@ const renderUnmappedCitywide = (metadata) => {
 
         })
         .catch(error => {
+
             console.log(error);
+
+            // A newer render has replaced this map, so its failure is no longer on screen.
+
+            if (generation === mapRenderGeneration) showLoadError(DE.state.IndicatorID);
+
         });
 
     // send info for printing
@@ -888,7 +894,13 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
             });
         })
         .catch(error => {
+
             console.log(error);
+
+            // A newer render has replaced this map, so its failure is no longer on screen.
+
+            if (generation === mapRenderGeneration) showLoadError(DE.state.IndicatorID);
+
         });
 
     // send info for printing
@@ -1119,7 +1131,13 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
             });
         })
         .catch(error => {
+
             console.log(error);
+
+            // A newer render has replaced this map, so its failure is no longer on screen.
+
+            if (generation === mapRenderGeneration) showLoadError(DE.state.IndicatorID);
+
         });
 
     // send info for printing

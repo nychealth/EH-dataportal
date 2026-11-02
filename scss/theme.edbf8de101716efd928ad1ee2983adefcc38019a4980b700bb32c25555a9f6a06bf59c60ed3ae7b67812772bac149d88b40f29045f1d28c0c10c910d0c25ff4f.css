@@ -10337,9 +10337,20 @@ table .group td {
   font-size: 16px;
   padding: 6px 10px; }
 
-@media (min-width: 720px) {
+@media (min-width: 960px) {
   .de-nav-bar .nav-topic-selector {
     background-color: transparent; } }
+
+.de-load-error-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001;
+  width: 90%;
+  max-width: 360px; }
+  .de-load-error-overlay:empty {
+    display: none; }
 
 .de-wrapper {
   /* Ensure mobile bottom nav sits above iOS Safari toolbar */
@@ -10357,7 +10368,7 @@ table .group td {
     transform: translate(45%, 70%);
     font-size: 12px;
     padding: 5px 8px; }
-  @media (min-width: 720px) {
+  @media (min-width: 960px) {
     .de-wrapper .indicator-selector-prompt {
       right: 14px;
       bottom: 14px;
@@ -10380,7 +10391,7 @@ table .group td {
     background-color: #DCF4E7;
     font-size: 16px;
     padding-top: 0px; }
-  @media (min-width: 720px) {
+  @media (min-width: 960px) {
     .de-wrapper .de-accordion .card-body {
       padding-left: 122px; } }
   .de-wrapper .de-accordion button[aria-expanded="true"] svg {
@@ -10400,7 +10411,7 @@ table .group td {
     width: 100%; }
   .de-wrapper .de-tabs-panel-shell {
     width: 100%; }
-  @media (max-width: 719.98px) {
+  @media (max-width: 959.98px) {
     .de-wrapper {
       /* Give the page content breathing room equal to nav height + safe-area */ }
       .de-wrapper .de-tabs {
@@ -10450,7 +10461,7 @@ table .group td {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
   .de-wrapper .de-main-details .main-heading {
     font-size: 18px; }
-  @media (min-width: 720px) {
+  @media (min-width: 960px) {
     .de-wrapper .de-tabs {
       right: 2rem;
       left: auto;
@@ -10480,7 +10491,7 @@ table .group td {
     top: 0;
     z-index: 1000;
     background-color: white; }
-  @media (min-width: 720px) {
+  @media (min-width: 960px) {
     .de-wrapper .de-tabs-nav {
       height: calc(100vh - 8rem);
       overflow-y: visible; }
@@ -10558,7 +10569,7 @@ table .group td {
     flex: 1;
     text-align: center;
     padding: 10px 5px; }
-  @media (min-width: 720px) {
+  @media (min-width: 960px) {
     .de-wrapper .de-tabs-nav .nav-pills .nav-link,
     .de-wrapper .de-tabs-nav .nav-tabs .nav-link {
       width: auto;
@@ -10578,7 +10589,7 @@ table .group td {
   .de-wrapper .de-tabs-nav .nav-tabs .de-nav-action-link:hover {
     background-color: rgba(255, 255, 255, 0.14);
     color: white; }
-  @media (min-width: 720px) {
+  @media (min-width: 960px) {
     .de-wrapper .w-md-40 {
       width: 40% !important; } }
   .de-wrapper .hover-underline:hover {

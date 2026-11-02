@@ -11,7 +11,7 @@
 // all indicator metadata as global variable
 // ----------------------------------------------------------------------- //
 
-// Holds the parsed metadata.json response once indicatorsPromise resolves;
+// Holds the parsed metadata.json response once loadIndicatorMetadata resolves;
 // null until then, so callers must go through ensureIndicatorsLoaded.
 
 let indicators = null;
@@ -39,18 +39,40 @@ let indicatorSelectionConfirmed = false;
 // Immediately start loading metadata.json
 // ----------------------------------------------------------------------- //
 
-const indicatorsPromise = fetch(`${data_repo}${data_branch}/indicators/metadata/metadata.json`)
-    .then(response => response.json())
-    .then(data => {
+const metadataUrl = `${data_repo}${data_branch}/indicators/metadata/metadata.json`;
 
-        debugLog("* fetch metadata.json");
-        indicators = data; 
-        // console.log(">> indicators [fetch]", indicators);
+// One shared request, dropped if it fails: the next ensureIndicatorsLoaded then fetches again
+// instead of replaying the failure, which is what lets the load-failure overlay's "Try again"
+// recover from a metadata.json failure. Kept local rather than using global.js's loadOnce,
+// because the explorer landing page (data-explorer/section.html) loads this file without it.
 
-        return data; // resolve promise
+let metadataRequest = null;
 
-    })
-    .catch(error => console.error("# Error loading metadata.json:", error));
+const loadIndicatorMetadata = () => {
+
+    metadataRequest ??= fetch(metadataUrl)
+        .then(response => response.json())
+        .then(data => {
+
+            debugLog("* fetch metadata.json");
+            indicators = data;
+            // console.log(">> indicators [fetch]", indicators);
+
+            return data; // resolve promise
+
+        })
+        .catch(error => {
+            metadataRequest = null;
+            throw error;
+        });
+
+    return metadataRequest;
+
+};
+
+// Started at load time; a failure here reaches the visitor through whichever caller awaits next.
+
+loadIndicatorMetadata().catch(error => console.error("# Error loading metadata.json:", error));
 
 // Waits for metadata.json to finish loading before any indicator UI reads it.
 
@@ -62,14 +84,14 @@ const ensureIndicatorsLoaded = async (topic) => {
 
     if (indicators) {
 
-        return indicators; 
+        return indicators;
 
     } else {
 
         // Reuse the in-flight metadata request instead of starting a second fetch.
         // console.log("# Waiting for indicators to load for " + topic);
-        
-        return await indicatorsPromise; 
+
+        return await loadIndicatorMetadata();
 
     }
 };
@@ -568,7 +590,17 @@ const renderIndicatorInfo = async (IndicatorID) => {
         el.textContent = indicator.IndicatorDescription ?? "";
     });
 
-    // ----- rebuild "how calculated" paragraphs, collect unique sources ----- //
+    // ----- rebuild "how calculated" paragraphs and sources ----- //
+
+    renderIndicatorAbout(indicator);
+};
+
+
+// Writes the indicator-wide "About the data" (one paragraph per measure) and its unique sources.
+// Trend and correlate overwrite both with their own text via renderAboutSources, so
+// renderCurrentView (app.js) calls restoreIndicatorAbout on every other view to put these back.
+
+const renderIndicatorAbout = (indicator) => {
 
     const howCalculatedEl = document.getElementById('howCalculated');
     const dataSourcesEl = document.getElementById('dataSources');
@@ -597,6 +629,17 @@ const renderIndicatorInfo = async (IndicatorID) => {
         p.textContent = source;
         dataSourcesEl.appendChild(p);
     });
+};
+
+
+// Re-renders the current indicator's About and sources, if metadata.json has loaded.
+
+const restoreIndicatorAbout = () => {
+
+    const indicator = indicators?.find(d => Number(d.IndicatorID) === Number(DE.state.IndicatorID));
+
+    if (indicator) renderIndicatorAbout(indicator);
+
 };
 
 

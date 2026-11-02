@@ -324,7 +324,14 @@ const bindAreaOnlySearch = (dataTable) => {
 
     });
 
-    syncTableAreaSearchInput();
+    // A rebuilt table starts with no column search, so re-apply the kept Area term to it
+    // (setTableAreaSearch also refills the box); otherwise the box shows a filter that isn't on.
+
+    if (DE.table.tableAreaSearchValue) {
+        setTableAreaSearch(dataTable, DE.table.tableAreaSearchValue);
+    } else {
+        syncTableAreaSearchInput();
+    }
 
 };
 
