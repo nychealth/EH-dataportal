@@ -1,0 +1,12 @@
+{{/*  The citation sentence, shared by the Data Sources pane and every Cite popup (de-cite-popup.html).
+      Params: page, id (the copy link's data-citation-target), omitOverlay (cite the URL without its
+      overlay param, which the Data Sources pane always carries because it is that pane).
+      refreshCitation (global.js) fills the URL and date live; the rendered values are the no-JS fallback.
+      The de-citation class keeps the recently-updated icon out of the name (topic-indicator-selector.js).  */}}
+<span id="{{ .id }}" class="de-citation">
+    New York City Department of Health, Environment & Health Data Portal.
+    {{ .page.Title }} data:
+    <span class="indicator-name"></span>.
+    Accessed at <span class="citation-url"{{ if .omitOverlay }} data-citation-omit-overlay{{ end }}>{{ .page.Permalink }}</span> on
+    <span class="citation-date">{{ time.Now | time.Format ":date_medium" }}</span>.
+</span>

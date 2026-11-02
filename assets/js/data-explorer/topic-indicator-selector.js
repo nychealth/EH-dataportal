@@ -570,9 +570,9 @@ const renderIndicatorInfo = async (IndicatorID) => {
 
         // - - - append recently-updated icon - - - //
 
-        // The citation's name holder is copied as text, so it stays icon-free.
+        // Citation name holders are copied as text, so they stay icon-free.
 
-        if (showRecentlyUpdatedIcon && !el.closest('#citation')) {
+        if (showRecentlyUpdatedIcon && !el.closest('.de-citation')) {
 
             const icon = document.createElement('i');
             icon.className = 'fa-regular fa-clock ml-1 fs-sm';

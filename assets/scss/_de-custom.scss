@@ -1311,3 +1311,28 @@ $color-data-explorer: #0A408A;
     color: #2a2d5f;
     line-height: 1.4;
 }
+
+// Cite popups (de-cite-popup.html). Bootstrap's dropdown-menu is sized for one-line items, and the
+// citation is a paragraph carrying a long unbroken URL.
+.de-citation-menu {
+    width: 22rem;
+    max-width: 90vw;
+    white-space: normal;
+
+    .citation-url {
+        word-break: break-all;
+    }
+}
+
+// A <button> that looks like the site's links (theme.scss's `a` rule), for actions sitting beside
+// href links such as Save map. Bootstrap's .btn-link brings its own blue and a 1px border instead.
+.de-link-button {
+    background: none;
+    border: 0;
+    padding: 0;
+    color: $primary-dark;
+    cursor: pointer;
+    &:hover {
+        color: $hover;
+    }
+}

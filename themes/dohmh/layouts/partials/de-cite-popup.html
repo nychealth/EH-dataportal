@@ -1,0 +1,12 @@
+{{/*  A "Cite" dropdown holding the citation for the current view and its copy button.
+      Params: page, id (unique suffix per instance), class (the toggle's classes, to match its neighbours).
+      Buttons, not href="#" links: both are actions, so they get button semantics and Space activation natively.
+      global.js keeps clicks inside the menu from closing it, so Copy can show "Copied!" and the text
+      can be selected.  */}}
+<div class="dropdown d-inline-block de-cite-dropdown">
+    <button type="button" class="{{ .class }}" id="citeToggle-{{ .id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-quote-right mr-1" aria-hidden="true"></i>Cite</button>
+    <div class="dropdown-menu p-2 fs-sm de-citation-menu" aria-labelledby="citeToggle-{{ .id }}">
+        <p class="mb-1">{{ partial "de-citation-text.html" (dict "page" .page "id" (printf "citeText-%s" .id)) }}</p>
+        <button type="button" class="de-link-button fs-sm de-copy-citation-button" data-citation-target="citeText-{{ .id }}"><i class="fas fa-copy mr-1" aria-hidden="true"></i>Copy citation</button>
+    </div>
+</div>
