@@ -315,7 +315,10 @@ const copyCitation = (button = null) => {
 
     refreshCitation();
 
-    const citeText = citationTextElement.innerText;
+    // textContent, not innerText: Firefox's innerText reads the spans refreshCitation just
+    // rewrote as empty until layout runs, so the copy lost the URL and date (Zen user report,
+    // 2026-11). Collapsing whitespace stands in for the template's line breaks.
+    const citeText = citationTextElement.textContent.replace(/\s+/g, ' ').trim();
 
     navigator.clipboard.writeText(citeText).then(() => {
 
