@@ -118,13 +118,13 @@
             "zeroSize": 2
         },
         "links": {
-            "internal": 110,
+            "internal": 106,
             "external": 17,
-            "emptyHref": 11,
+            "emptyHref": 7,
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 46,
+            "button": 60,
             "input": 2,
             "select": 0,
             "textarea": 0,
