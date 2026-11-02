@@ -178,6 +178,7 @@ the "ask first" caution is about a server *you didn't start*.
 **Check whether a server is actually running before planning around one.** A process list is a point-in-time observation, and a server someone else started can exit between the check and the run — at which point the harness's own spawn path gives you a `dev_stage` server on :8080, matching the baseline prefix, with no workaround needed. Reach for the isolated-build route only once you have confirmed a server you must not disturb is holding the port.
 
 **Stopping a background task may orphan the server** — the wrapper is the tracked process, so `hugo.exe` can keep :8080. Check the port after stopping, and identify a running server by its command line before assuming it isn't yours.
+Never stop `hugo.exe` by image name: a `Stop-Process` call stops only PIDs whose `CommandLine` that same call printed and matched against this tree's path and port. Another worktree runs its own `hugo.exe` (`EH-dataportal.worktrees\<branch>`, on :8082), and `Get-Process hugo | Stop-Process` ends it too.
 
 ### Site characterization
 
