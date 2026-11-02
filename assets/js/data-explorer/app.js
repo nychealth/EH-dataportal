@@ -818,16 +818,17 @@ $("#groupByBoroughToggle").on("change", (e) => {
 // ----------------------------------------------------------------------- //
 
 // Citations sit in the Data Sources pane and in a Cite popup beside each save control.
-// `location` says which one (ds, map, bar, table, trends, correlate). Opening a popup is
-// its own event, so click_citation keeps counting copies only.
+// `citation_location` says which one (ds, map, bar, table, trends, correlate); not plain
+// `location`, which on this site reads as a place. Opening a popup is its own event, so
+// click_citation keeps counting copies only.
 
 $('.de-copy-citation-button[data-citation-target]').on('click', e => {
-    const location = e.currentTarget.closest('[data-citation-location]')?.dataset.citationLocation;
-    trackDataExplorerEvent('click_citation', location ? { location } : null);
+    const citationLocation = e.currentTarget.closest('[data-citation-location]')?.dataset.citationLocation;
+    trackDataExplorerEvent('click_citation', citationLocation ? { citation_location: citationLocation } : null);
 });
 
 $('.de-cite-dropdown').on('show.bs.dropdown', e => {
-    trackDataExplorerEvent('open_citation', { location: e.currentTarget.dataset.citationLocation });
+    trackDataExplorerEvent('open_citation', { citation_location: e.currentTarget.dataset.citationLocation });
 });
 
 // The old explorer tracked "how calculated" separately, because it was its own button
