@@ -148,11 +148,14 @@
         <div class="pt-md-0">
 
             <div id="table-filter-controls" class="p-2 pb-1 d-flex justify-content-end sr-only">
-                <button class="badge badge-pill badge-light border-0" type="button" id="tableFilterToggle">
+                {{/*  Text, not a button: nothing binds to it, and its container is sr-only, so it is the table's
+                      filter state for screen readers, written by updateTableFilterSummary (table.js) (A-160;
+                      Chris, 2026-10-31).  */}}
+                <p class="badge badge-pill badge-light border-0 mb-0" id="tableFilterToggle">
                     <i class="fas fa-sliders-h mr-1" aria-hidden="true"></i>
                     Table filters
                     <span id="tableFilterSummary" class="ml-1 text-muted d-none d-lg-inline">Current selection</span>
-                </button>
+                </p>
             </div>
 
 
@@ -352,6 +355,16 @@
         background-color: #FAFAFA;
         font-weight: 600;
         font-size: .9em;
+        }
+    /* the group label's button (table.js) takes the cell's look; only its focus ring is its own */
+    table .group td .de-group-toggle {
+        background: none;
+        border: 0;
+        padding: 0;
+        color: inherit;
+        font: inherit;
+        text-align: left;
+        width: 100%;
         }
     .de-tab {
         font-size: 16px;

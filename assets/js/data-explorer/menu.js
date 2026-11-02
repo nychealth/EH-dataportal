@@ -326,4 +326,37 @@ const handleSelection = (type, value, label) => {
 
     renderCurrentView(true);
 
+    // ----- tell screen readers what is now shown ----- //
+
+    announceSelection();
+
+};
+
+
+// ----------------------------------------------------------------------- //
+// selection announcement
+// ----------------------------------------------------------------------- //
+
+// Writes the full selection ("Showing Age-adjusted rate, CD, 2023") into the #selectionStatus live
+// region after a measure, boundary or time change (A-256; Chris, 2026-10-31). It reads the trigger
+// labels updateAllMenus has just written, so a cascaded boundary or time is announced as it now reads.
+// The region is emptied first and refilled on the next tick so the same text twice is still spoken.
+
+const announceSelection = () => {
+
+    const status = document.getElementById('selectionStatus');
+
+    if (!status) return;
+
+    const text = ['measure', 'geo', 'time']
+        .map(type => document.querySelector(`.${type}-name`)?.textContent.trim())
+        .filter(Boolean)
+        .join(', ');
+
+    status.textContent = '';
+
+    if (text) {
+        setTimeout(() => { status.textContent = `Showing ${text}`; }, 100);
+    }
+
 };
