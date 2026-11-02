@@ -270,6 +270,8 @@ const handleSelection = (type, value, label) => {
 
     // ----- update the one changed global ----- //
 
+    const previousGeoTime = [DE.state.GeoType, DE.state.TimePeriodID];
+
     if (type === 'measure') DE.state.MeasureID = value;
 
     if (type === 'geo') DE.state.GeoType = value;
@@ -294,7 +296,11 @@ const handleSelection = (type, value, label) => {
 
     // - - - resync table filters - - - //
 
-    if ((type === 'geo' || type === 'time') && typeof syncTableFiltersToMapSelection === 'function') {
+    // A measure change counts when updateAllMenus cascaded it into a new geo or time.
+
+    const geoTimeChanged = DE.state.GeoType !== previousGeoTime[0] || DE.state.TimePeriodID !== previousGeoTime[1];
+
+    if ((type === 'geo' || type === 'time' || geoTimeChanged) && typeof syncTableFiltersToMapSelection === 'function') {
 
         // Geo and time changes can invalidate the current Area search, so clear and resync first.
 

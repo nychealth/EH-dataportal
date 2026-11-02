@@ -39,6 +39,10 @@
                 <!-- map -->
             </div>
 
+            {{/*  Load-failure card, filled by showLoadError (app.js) when a fetch fails. Positioned over the map
+                  and tab panes rather than taking a row, so the layout does not move; empty, it renders nothing.  */}}
+            <div id="loadErrorOverlay" class="de-load-error-overlay"></div>
+
         </div>
 
     </section>

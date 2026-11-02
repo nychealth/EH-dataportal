@@ -114,7 +114,7 @@
             currently active, mirroring the Escape-key handler in
             de-tab-content.js. Hides along with the rest of #v-pills-tabContent
             when no pane is open (app.js sets display:none on the container).  */ -}}
-    <div class="bg-white d-none d-md-block" style="margin-left: -33px;">
+    <div class="bg-white d-none d-lg-block" style="margin-left: -33px;">
         <button type="button" class="bg-primary border-0 bl50 py-1 close-tab-pane de-close-tab-button" aria-label="Close">
             <img src={{ relURL "images/arrow-right.svg" }} style="margin-bottom: 2px;" alt="">
         </button>
@@ -122,7 +122,7 @@
 
     <!-- Bar -->
     <div class="tab-pane relative fade" id="v-pills-bar" role="tabpanel" aria-labelledby="v-pills-bar-tab">
-        <div class="p-2 pt-md-0">
+        <div class="p-2 pt-lg-0">
             <div id="barHolder" style="width:100%;min-height:500px;">
                 Bar chart to go here
             </div>
@@ -145,7 +145,7 @@
 
     <!-- Table -->
     <div class="tab-pane relative fade" id="v-pills-table" role="tabpanel" aria-labelledby="v-pills-table-tab">
-        <div class="pt-md-0">
+        <div class="pt-lg-0">
 
             <div id="table-filter-controls" class="p-2 pb-1 d-flex justify-content-end sr-only">
                 {{/*  Text, not a button: nothing binds to it, and its container is sr-only, so it is the table's
@@ -166,14 +166,14 @@
             <div id="tableFilterPanel" class="px-2 pb-2">
                 <div class="bg-white">
                     <div class="row">
-                        <div class="col-md-6 mb-2 mb-md-0" >
+                        <div class="col-lg-6 mb-2 mb-lg-0" >
                             <div>
                                 <p class="fs-xs mb-1">Time periods</p>
                                 <div id="tableTimeCheckboxes" class="border de-table-optionbox" style="height: 10vh; overflow-y:scroll;"></div>
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-lg-6">
                             <div>
                                 <p class="fs-xs mb-1">Geographies</p>
                                 <div id="tableGeoCheckboxes" class="border de-table-optionbox" style="height: 10vh; overflow-y:scroll;"></div>
@@ -217,7 +217,7 @@
 
     <!-- Trends -->
     <div class="tab-pane relative fade" id="v-pills-trends" role="tabpanel" aria-labelledby="v-pills-trends-tab">
-        <div class="p-2 pt-md-0">
+        <div class="p-2 pt-lg-0">
             <div id="trendPillControls" class="de-viz-pill-controls pt-1">
                 <div class="de-viz-pill-row">
                     <div id="trendMeasurePills" class="de-viz-pill-group"></div>
@@ -245,7 +245,7 @@
 
     <!-- Correlate -->
     <div class="tab-pane relative fade" id="v-pills-correlate" role="tabpanel" aria-labelledby="v-pills-correlate-tab">
-        <div class="p-2 pt-md-0">
+        <div class="p-2 pt-lg-0">
             <div id="correlatePillControls" class="de-viz-pill-controls pt-1">
                 <div class="de-viz-pill-group">
                     <span class="de-viz-pill-label">Show:</span>
@@ -289,7 +289,7 @@
 
     <!-- Data Source -->
     <div class="tab-pane relative fade" id="v-pills-ds" role="tabpanel" aria-labelledby="v-pills-ds-tab">
-        <div class="p-2 pt-md-0">
+        <div class="p-2 pt-lg-0">
             <p class="h5 pt-1">About the data</p>
 
             <p class="h6 border-top pt-1">How the data were calculated</p>

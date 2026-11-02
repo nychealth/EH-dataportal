@@ -501,6 +501,8 @@ const renderBar = (
         "layer": barDisplay
     };
 
+    wrapChartTitle(barSpec.title, barSpec.width);
+
 
     // ----- compile & finalize spec ----- //
 

@@ -110,9 +110,9 @@
             "zeroSize": 2
         },
         "links": {
-            "internal": 115,
+            "internal": 113,
             "external": 8,
-            "emptyHref": 14,
+            "emptyHref": 12,
             "noAccessibleText": 0
         },
         "controls": {
