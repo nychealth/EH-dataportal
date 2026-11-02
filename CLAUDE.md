@@ -368,7 +368,7 @@ on a branch mismatch.
 
 ### Data explorer harness
 
-- `node scripts/de-characterization.mjs --check` — Playwright characterization; diffs three indicators across the map/bar/table/trend views against the committed baseline in `scripts/de-characterization-baseline/`. `--baseline` re-captures. Write it as the `node` invocation, not `npm run characterize -- --check`: PowerShell eats the `--` and the script then sees no arguments. It shares `scripts/dev-server.mjs` with `smoke`, so the server rules above apply.
+- `node scripts/de-characterization.mjs --check` — Playwright characterization; diffs three indicators across the map/bar/table/trend views against the committed baseline for the served EHDP-data branch, `scripts/de-characterization-baseline/<data_branch>/`. `--baseline` re-captures that branch's directory only. It reads `data_branch` off the page, as `characterize:nr` does, because the two branches render these indicators differently (2380's correlate marks: 17 on staging, 43 on production `[2026-10-31]`); an unreadable branch exits 2, and a branch with no baseline fails rather than borrowing another's. Write it as the `node` invocation, not `npm run characterize -- --check`: PowerShell eats the `--` and the script then sees no arguments. It shares `scripts/dev-server.mjs` with `smoke`, so the server rules above apply.
 
 ### Four ways a local check silently lies
 

@@ -6,13 +6,13 @@
     "labels": {
         "measure": "Annual mean",
         "geo": "CD",
-        "time": "2024"
+        "time": "2025"
     },
     "map": {
         "interactivePathCount": 59,
-        "legendMin": "5.3",
-        "legendMax": "10.5",
-        "legendAria": "Legend: 5.3 (low) to 10.5 (high)"
+        "legendMin": "5.7",
+        "legendMax": "9.7",
+        "legendAria": "Legend: 5.7 (low) to 9.7 (high)"
     },
     "bar": {
         "present": true,
@@ -22,7 +22,7 @@
     "trend": {
         "present": true,
         "ariaLabel": "Trend chart of Fine particles (PM 2.5): Annual mean (mcg/m3)",
-        "markCount": 222,
+        "markCount": 235,
         "notes": ""
     },
     "trendComparison": null,
@@ -40,9 +40,9 @@
     "table": {
         "present": true,
         "rowCount": 59,
-        "totalRowCount": 2004,
+        "totalRowCount": 2145,
         "columnCount": 12,
-        "filterSummary": "2024 | CD | Synced"
+        "filterSummary": "2025 | CD | Synced"
     },
     "consoleErrors": []
 }
