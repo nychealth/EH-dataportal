@@ -64,3 +64,36 @@ whether `data-features/rat-report-archive/{2023,2024}/index.html` and the old
 `data-features/rat-report/{2023,2024}/index.html` exist, the sitemap's `<loc>` count, and that
 `rat-report-archive/index.html` is not emitted. Control: `data-features/heat-report-archive/2021/index.html`
 present in both builds (the row's own control).
+
+## Part 2: N-012 on production (2026-11-02)
+
+Reverses the decision above to leave N-012 with the rat branch (Chris, 2026-11-02). Branch
+`feature-audit-r4-rat-list`, cut from the local `feature-audit-r7-rat-archive` at `127315cca0`
+(stacked on #1540, for the audit's count table; no upstream set).
+
+The stray line in `content/data-features/rat-report/index.md`'s `<ol type="I">` ("a.
+Susceptibility to rat infestation") becomes an `<ol type="a"><li>` nested in item IV. Production's
+page treats it as IV's sub-item: the body has "IV. City agency referral letters" with "a.
+Susceptibility to rat infestation" under it. The rat branch rewrote this block for 2026 (the item
+becomes V), so its next merge of `production` conflicts here once; keep the branch's side.
+
+| Task | Step | Commit | Status | Proof that ran |
+|---|---|---|---|---|
+| 0 | reproduce: axe `list` on `data-features/rat-report/` | *no commit* (measurement) | **DONE 2026-11-02** | on `127315cca0`: axe 4.13.0, positive control FIRED, rendered-content control passed, `list` [serious] 1 page / 1 node |
+| 1 | nest the item | `b919421eed` | **DONE 2026-11-02** | same run on the edit: `list` gone, no WCAG violation on the page; the served build held `<ol type="a">` and not the stray line (grep of the isolated build's page; the harness labels the tree with `HEAD`, not the working tree). Rendered list, before (`ebdaf79fa7`'s build) and after, 1280px, screenshots compared: item IV keeps "a. Susceptibility…" beneath it, its marker now `lower-alpha` from the nested list instead of literal text, and its wrapped lines now hang under the text; the other five items unchanged |
+| 2 | characterization; smoke | *no commit*: no baseline moved | **DONE 2026-11-02** | `node scripts/characterize-env.mjs prod_prod`: PASSED against the baseline captured at `ebdaf79fa7`. Smoke not run: the change is list markup in content and adds no script, and smoke fails only on JavaScript errors |
+| 2b | the rat branch's merge of `production` | *no commit* (measurement) | **DONE 2026-11-02** | `git merge-tree --write-tree origin/update-rat-mitigation-report b919421eed` conflicts in `content/data-features/rat-report/index.md` as expected, beside the three that predate this work (Part 1, Task 2b) |
+| 3 | close N-012 in the audit | the ledger commit after `b919421eed` | **DONE 2026-11-02** | the row FIXED; the recount reproduced the parent's table (OPEN 3/47/132/2 = 184), then read OPEN 2/47/132/2 = 183, FIXED 280, matching the edited table; Roadmap P1+P2 50 → 49, R4 moved to the 0/0 rows, the R7 note's N-012 sentence updated |
+
+Closed 2026-11-02: N-012 FIXED by `b919421eed` on `feature-audit-r4-rat-list`, stacked on #1540
+(`127315cca0..b919421eed` plus the ledger commit after it). Next: push and a PR into `production`,
+which shows #1539's and #1540's commits until they merge.
+
+```
+git rev-parse --abbrev-ref HEAD                 # feature-audit-r4-rat-list
+git log --oneline 127315cca0..HEAD              # the fix and the ledger commit
+gh pr list --head feature-audit-r4-rat-list     # this branch's PR into production
+```
+
+Instrument: `A11Y_PAGES=data-features/rat-report/ node scripts/site-a11y-audit.mjs prod_prod`
+(positive and rendered-content controls built in), before and after.
