@@ -44,11 +44,11 @@
 <title>NYC Environment and Health Data Portal</title>
 
 
-<meta name="build_datetime" content='2026年11月2日星期一, EST 下午4:52:00'>
+<meta name="build_datetime" content='2026年11月3日星期二, EST 上午10:00:08'>
 <meta name="build_environment" content='prod_prod'>
 <meta name="git_branch" content='production'>
-<meta name="git_last_hash" content='dd1251ca46'>
-<meta name="git_last_msg" content='Merge pull request #1535 from nychealth:hotfix-DE-citation-wording'>
+<meta name="git_last_hash" content='11a5a2d34a'>
+<meta name="git_last_msg" content='Merge pull request #1539 from nychealth:feature-audit-r1-dialog-header-lang'>
 
 
         <link rel="alternate" hreflang="en" href="/IndicatorPublic/" title="English">
@@ -138,9 +138,9 @@
 <body>
     
     
-<a class="sr-only sr-only-focusable skip-menu" href="#skip-header-target">Skip Header</a>
+<a class="sr-only sr-only-focusable skip-menu" href="#skip-header-target" lang="en">Skip Header</a>
 
-<header id="global-header" role="banner">
+<header id="global-header" role="banner" lang="en">
 
     <div class="bg-black text-white d-print-none" id="nyc-top-header">
 
@@ -807,7 +807,7 @@
   
   <button id="openModalBtnWeather" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#weatherModal">Open Modal</button>
 
-    <div class="modal" tabindex="-1" role="dialog" id="weatherModal">
+    <div class="modal" tabindex="-1" role="dialog" id="weatherModal" aria-labelledby="weatherModalTitle">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
         <div class="modal-header">
