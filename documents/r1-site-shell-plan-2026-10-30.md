@@ -173,9 +173,48 @@ eighth was focused programmatically right after a mouse click, which `:focus-vis
 mouse focus. The probe blocked third-party hosts, and the explorer threw 3 errors (`reading
 'find'`) that look like its blocked EHDP-data fetches; the smoke sweep is the check for those.
 
+## Part 2: N-103 and N-104 (2026-11-02)
+
+Branch `feature-audit-r1-dialog-header-lang`, cut from the local `production` at `dd1251ca46`
+(level with `origin/production`; no upstream set).
+
+Decision (Chris, 2026-11-02): N-104 is closed by `lang="en"` on the English header chrome of es and
+zh pages, not by translating it. No i18n files exist, and the 11 topic titles link to English-only
+pages either way. The attribute is emitted only when `.Lang` is not `en`, on `#global-header` and
+the "Skip Header" link before it, in all three header partials (`header.html`, `header-de.html`,
+`header-ds.html`; the row names two, and `_default/list.html` renders the third). Nothing in the
+header is in another language: the `lang-select` links are in `footer.html`, and the built header
+text is the same 95 ASCII words on the en, es and zh home and es `data-stories/housing/`
+`[verified 2026-11-02: header-only text extraction with the sweep's element-stack parser]`.
+
+N-103: `aria-labelledby="weatherModalTitle"` on `#weatherModal` in `temp-popup.html`. The `<h5>` is
+empty until the file's script fills it, which happens before the script opens the dialog.
+
+| Task | Rows | Commit | Status | Proof that ran |
+|---|---|---|---|---|
+| 0 | both: reproduce on this branch's base | *no commit* (measurement) | **DONE 2026-11-02** | sweep on `dd1251ca46`: 970 real pages; unnamed `role="dialog"` on 3 (en/es/zh home, `#weatherModal`); `lang="en"` on `#global-header` and the skip link 0 of 51 es, 0 of 51 zh |
+| 1 | N-103 | `d446044806` | **DONE 2026-11-02** | sweep: unnamed dialogs 3 → 0. Chromium `ariaSnapshot` of the built modal markup, title filled as `temp-popup.html` fills it: before `dialog` (no name), after `dialog "It's hot!"` |
+| 2 | N-104 | `d446044806` | **DONE 2026-11-02** | sweep: `#global-header` and skip link `lang="en"` on 51 of 51 es and 51 of 51 zh, 0 of 868 en. Build diff before/after: 103 files changed (102 es/zh + en home), and the only lines moved are the two tags, the dialog tag on 3 home pages, and 3 `build_datetime` stamps |
+| 3 | smoke, characterization (re-baseline only if it moves) | *no commit*: no baseline moved | **DONE 2026-11-02** | `node scripts/characterize-env.mjs prod_prod`: 924/924, PASSED against the baseline captured at `6efa999ec2` (`lang` on an element is not a recorded field). `node scripts/smoke-env.mjs prod_prod`: 1187 pages clean |
+| 4 | close the rows in the audit | the ledger commit after `d446044806` | **DONE 2026-11-02** | both rows FIXED; recount of every `A-`/`N-` row's Status and Priority (status bucketed by its leading word) reproduced the committed table first (OPEN 6/47/132/2 = 187), then read OPEN 4/47/132/2 = 185, FIXED 278, all 511, matching the edited table; Roadmap P1+P2 53 → 51, R1 moved to the 0/0 rows |
+
+Closed 2026-11-02: N-103 and N-104 FIXED by `d446044806` on `feature-audit-r1-dialog-header-lang`
+(`dd1251ca46..d446044806` plus the ledger commit after it). Next: a PR into `production`.
+
+```
+git rev-parse --abbrev-ref HEAD                          # feature-audit-r1-dialog-header-lang
+git log --oneline dd1251ca46..HEAD                       # the fix and the ledger commit
+gh pr list --head feature-audit-r1-dialog-header-lang    # this branch's PR into production
+```
+
+Instrument: a built-HTML sweep over an isolated `prod_prod` build (`HUGO_RESOURCEDIR` and `-d` in
+temp), counting pages with a `role="dialog"` that has no `aria-label`/`aria-labelledby`, and, on
+es and zh pages, whether `#global-header` and the skip link carry `lang="en"`. Its control is the
+Part 1 count: 3 unnamed dialogs (en/es/zh home), and 0 `lang` inside `#global-header` on es/zh.
+
 ### Found, not fixed
 
-Both are now audit rows, OPEN in batch R1: the weather dialog is N-103 and the header language N-104. `heat-report-correction.html` turned out to be named, and `conditional-modal.html` is included by no template.
+Both became audit rows in batch R1, the weather dialog N-103 and the header language N-104, and were fixed in Part 2. `heat-report-correction.html` turned out to be named, and `conditional-modal.html` is included by no template.
 
 - Three more `role="dialog"` elements have no accessible name: `conditional-modal.html`
   (`#prototypeModal`, three copies), `temp-popup.html` (`#weatherModal`, on the home pages) and
