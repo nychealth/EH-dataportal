@@ -1,13 +1,13 @@
 {
-    "capturedAt": "2026-11-02T20:26:48.831Z",
-    "gitHead": "6efa999ec2ffce829d052adb84a8f2bfae20b0fb",
+    "capturedAt": "2026-11-03T03:54:40.333Z",
+    "gitHead": "ebdaf79fa7801f8ad3aa0ea8bcd47808d805cfb1",
     "baselineKey": "prod_prod",
     "hugoEnv": "prod_prod",
     "dataBranch": "production",
     "dataCommit": {
         "sha": "547482b9df589006543e13e8cdf6546e00ed9998",
         "date": "2026-10-24T03:19:55Z",
-        "fetchedAt": "2026-11-02T20:23:06.307Z"
+        "fetchedAt": "2026-11-03T03:51:06.644Z"
     },
     "pagefind": true,
     "hugo": {
@@ -16,7 +16,7 @@
     },
     "prefix": "/IndicatorPublic/",
     "mode": "all",
-    "pages": 924,
+    "pages": 926,
     "arbitrated": [],
     "cleared": [],
     "capped": false,
