@@ -27,6 +27,8 @@
             4,
             4,
             4,
+            4,
+            4,
             5,
             2
         ],
@@ -66,7 +68,7 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 68,
+            "internal": 70,
             "external": 18,
             "emptyHref": 20,
             "noAccessibleText": 0
@@ -90,6 +92,8 @@
         "title": "Pests – Environment & Health Data Portal",
         "headingText": [
             "More content about Pests:",
+            "Rat Mitigation Zone Report: January 2023 to June 2023",
+            "Asthma",
             "Bed bugs",
             "Cockroaches",
             "Mice and rats",
@@ -106,12 +110,14 @@
             "/categories/pests/",
             "/categories/pests/page/2/",
             "/data-explorer/",
+            "/data-explorer/asthma/",
             "/data-explorer/bed-bugs/",
             "/data-explorer/cockroaches/",
             "/data-explorer/mice-and-rats/",
             "/data-explorer/pesticides/",
             "/data-explorer/vector-borne-disease/",
             "/data-features/",
+            "/data-features/rat-report-archive/2023/",
             "/data-stories/",
             "/key-topics",
             "/key-topics/accessibility/",
