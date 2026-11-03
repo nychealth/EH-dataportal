@@ -142,3 +142,62 @@ git log --oneline --no-merges 095ebc5010..HEAD           # the task commits
 git rev-list --left-right --count origin/feature-audit-r5-contrast-focus...HEAD   # 0 0 means pushed
 gh pr list --head feature-audit-r5-contrast-focus
 ```
+
+## Part 2: N-005's legend colours (2026-11-02)
+
+Reverses Task 4's deferral (Chris, 2026-11-02). Branch `feature-audit-r5-legend-contrast`, cut from
+the local `feature-audit-r4-rat-list` at `0c59d7b4c1` (stacked on #1541, for the audit's count
+table; no upstream set).
+
+Decisions (Chris, 2026-11-02, options measured first):
+
+- **Words that name a chart series: a swatch, and the word in the body colour.** An `aria-hidden`
+  `fa-square` in the exact series colour before the word, which stays bold; the exemplar is HVI's
+  legend chip. Charts are untouched. Rejected: darkening each word within its hue (the word and its
+  line stop matching; `#82ad49` → `#5F7E35` reads olive), and darkening the charts too (new series
+  colours for the owners to sign off). Applied to every series word in the affected sentences, the
+  passing `#2b3fde`, `#00008B`, `#c73866` and `blue` included, so no sentence mixes the two forms.
+- **Badges: the smallest colour shift.** Congestion-pricing's data-source pills `#007153` →
+  `#00694D` (4.71 on `#D8D8D8`) and `#ae3400` → `#A93200` (4.69); AQE's `.badge-worse` background
+  `#8077b6` → `#756BB0` (white 4.68). Rejected: white pill backgrounds, and a swatch inside the AQE
+  badge.
+- **HVI** follows the first decision: the "1 (lowest risk)" chip's text goes white (5.49 on
+  dimgray) and its `fa-square`, which inherited the text colour, gets `#e9c213` itself.
+- My call, reversible: realtime-air-quality's `#exceeds` warning ("Exceeds NAAQS 24-hour
+  standard", hidden unless a monitor exceeds it) is red warning text, not a series label, so it
+  takes the site's `$red` (`#ea172b`, `_a-global-variables.scss`) if that passes, else a darker red.
+
+| Task | Step | Commit | Status | Proof that ran |
+|---|---|---|---|---|
+| 0 | reproduce: axe over the five pages | *no commit* (measurement) | **DONE 2026-11-02** | on `0c59d7b4c1`: axe 4.13.0, positive control FIRED, 5 of 5 audited; `color-contrast` 5 pages / 11 nodes, the same 11 as Task 4's list |
+| 1 | series words → swatch (rmz, congestion-pricing, realtime) | `28f5aafb91` | **DONE 2026-11-02** | `swatch.py` (below): 19 replacements, each file's count equal to its expected one (rmz 14, congestion-pricing template 2, its `analysis.md` 2, realtime 1), only the named lines rewritten. Each swatch then got `d-inline`; see Task 3 |
+| 2 | badges (congestion-pricing, AQE); HVI chip; `#exceeds` | `28f5aafb91` | **DONE 2026-11-02** | `$red` measured 4.51 on white before `#exceeds` took it; the compiled `.badge-worse` reads `#756BB0` (was `#8077b6`) |
+| 3 | axe after; screenshots; characterization; smoke | *no commit*: no baseline moved | **DONE 2026-11-02** | Final tree: axe on the five pages, positive control FIRED, `color-contrast` 0 violations (was 11); still incomplete on 5 of 5, so a floor. Line-break probe (`orphan-probe.mjs`): as first built, a swatch sat on a different line from its label in 130 of 1649 swatch × width checks (320–1280px, step 10), e.g. "■ / observed" on congestion-pricing; FontAwesome's `inline-block` icon is a break opportunity. With Bootstrap's `d-inline` on each swatch, 0 of 1649, in the probe's arm and on the rebuilt page. Screenshots (`n005-shots.mjs`, 8 elements, before = `ebdaf79fa7`'s build): swatches in the series colours beside bold body-colour words; the pills and the AQE badge a shade darker; HVI's chip white text and a yellow square. `node scripts/characterize-env.mjs prod_prod` PASSED against the baseline captured at `ebdaf79fa7`; `node scripts/smoke-env.mjs prod_prod` 1189 pages clean |
+| 4 | close N-005 in the audit | the ledger commit after `28f5aafb91` | **DONE 2026-11-03** | the row FIXED; the recount reproduced the parent's table (OPEN 2/47/132/2 = 183), then read OPEN 1/47/132/2 = 182, FIXED 281, matching the edited table; Roadmap P1+P2 49 → 48, R5 moved to the 0/0 rows; batch check: every open batch OK, OPEN P1/P2 48 |
+
+The three scripts are copied to the git-ignored `scripts/.sc-rebaseline/n005-legend-contrast/`
+(`swatch.py` made the swatch edit; it predates `d-inline`, which a `sed` over the same four files
+added to all 19).
+
+Not changed, and why: realtime's `allUnder` message (`color:green`, 5.14), the swatch-free monitors
+headings in `monitors.md` (`#007153` 6.02, `#ae3400` 6.38 on white), HVI's "5 (highest risk)" chip
+(`#793834` on lightgray, 5.78), and icon-only colours (rmz's red asterisk, realtime.js's exclamation icon),
+which are not text. The swatches themselves are not text either: `#82ad49` is 2.62 against white,
+the same colour the chart already draws its line in.
+
+Instrument: `A11Y_PAGES` set to the five pages below, `node scripts/site-a11y-audit.mjs prod_prod`,
+before and after; Task 4's 11 nodes are the expected before.
+
+```
+data-features/rat-mitigation-zones/,data-features/congestion-pricing-report/,data-features/realtime-air-quality/,data-features/neighborhood-air-quality/,data-features/hvi/
+```
+
+Part 2 done 2026-11-03: the fix at `28f5aafb91`, N-005 closed in the ledger commit after it, which
+closes R5. Branch state is derived, not recorded:
+
+```
+git log --oneline 0c59d7b4c1..feature-audit-r5-legend-contrast   # the fix and the ledger commit
+gh pr list --head feature-audit-r5-legend-contrast               # the PR, and its base
+```
+
+When #1541 merges, retarget this PR to `production`.
