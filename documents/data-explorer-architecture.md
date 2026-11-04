@@ -36,7 +36,8 @@ behaviour described here, update the prose and re-stamp.
 
 A full-screen Leaflet choropleth occupies the viewport. An overlay pane on the
 right shows one of: bar chart, summary table, trend chart, or correlate chart.
-Three dropdowns (Measure, Geography, Time Period) control what is displayed.
+Three controls in the details box set what is displayed: Measure and Boundary
+as one-click option pills, Time as a slider.
 Indicators are chosen from a modal, and data plus metadata are fetched from a
 GitHub-hosted JSON API at runtime.
 
@@ -76,9 +77,13 @@ fires both before its first `await`, since neither waits on the data fetch.
 
 ## 3. Interactions
 
-**Dropdown change** (`handleSelection`) — sets one field on `DE.state`, rebuilds
-all three dropdowns (which also auto-corrects a now-invalid GeoType or
-TimePeriodID), pushes to the URL, then `renderCurrentView(true)`. A geo or time change,
+**Measure / Boundary / Time change** (`handleSelection`) — a pill click (radio
+`change`) or a slider release (`change`, which keyboard steps also fire) sets one
+field on `DE.state`, rebuilds all three controls (which also auto-corrects a
+now-invalid GeoType or TimePeriodID), pushes to the URL, then
+`renderCurrentView(true)`. Dragging the slider only previews the period in its
+label; nothing re-renders until release. The pills are rebuilt on every change and
+hand focus to the new checked radio; the slider is updated in place, so it keeps focus. A geo or time change,
 or a measure change that cascades into one, first clears the table's Area search and
 re-syncs its filters to the map. `writeSelectionToURL` turns a push of the URL already
 showing into a `replaceState`, so a no-op choice adds no history entry.
@@ -87,7 +92,9 @@ showing into a `replaceState`, so a no-op choice adds no history entry.
 `links`, `table`, and `ds` for Data Sources, whose `renderCurrentView` case draws
 nothing) in `app.js`'s `tabMap`. Sets `DE.state.overlay`, pushes to the
 URL, then `renderCurrentView()` **without** `updateMap`: a tab switch reuses the
-map already on screen.
+map already on screen. `hover-open.js` also opens a tab after the mouse rests on it
+for half a second, by clicking it with `data-hover-open` set; the handler reads that
+flag and writes `replaceState` instead of a push, so hovering adds no history entry.
 
 **Tab toggle-off / close** — re-clicking the active tab, or its close button,
 sets overlay to `'none'`. `renderCurrentView`'s `'none'` branch deactivates every
@@ -204,7 +211,7 @@ together; a later re-render leaves the gray polygon speaking for itself.
 `GeoType` from it — it draws citywide geometry unconditionally — but the entry
 still flows through `expandMeasureTimesGeos` into `DE.lookups.aqMapTimesGeos`,
 which is what `measures.js` tests to decide whether a measure enters
-`DE.lookups.mapMeasures`. So it populates the Boundary and Time dropdowns *and*
+`DE.lookups.mapMeasures`. So it populates the Boundary and Time controls *and*
 leaves `mapMeasures` non-empty, which **enables the Bar tab** where the
 unpopulated `Map` array had left it disabled; the Bar chart then plots the single
 citywide row. Intended — the popup sends users to the other views — but a real
@@ -224,7 +231,7 @@ to Trends. Mode 1 has no value to show and deliberately does not move them.
 **Every mode resolves through one resolver.** `getIndicatorById` (global.js) is
 the only place an indicator is looked up in the cached catalog, because the
 normalisation above has to reach all of its callers — `data.js` on load,
-`menu.js` on *every dropdown change*, and `app.js` on `popstate`. It returns new
+`menu.js` on *every Measure, Boundary or Time change*, and `app.js` on `popstate`. It returns new
 objects for affected indicators and the original object otherwise, so the cached
 catalog is never mutated.
 

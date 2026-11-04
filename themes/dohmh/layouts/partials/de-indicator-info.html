@@ -43,50 +43,37 @@
         </div>
 
         <div>
-            <!-- Dropdown 1 -->
+            {{/*  Measure, Boundary and Time. Measure and Boundary are one-click option pills and Time is a
+                  slider, all filled by renderMenuSection (menu.js). Each hidden *-name span holds the current
+                  value as text, which announceSelection (menu.js) and scripts/de-characterization.mjs read.
+                  This mobile copy suffixes its ids and radio names with 1 so they stay unique on the page.  */}}
+
+            <!-- Measure -->
             <div class="card">
-                <div class="card-header pb-0">
-                    <div class="dropdown fs-sm">
-                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1" id="measureOptionsLabel1">Measure: </div>
-                        <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="measureOptionsDropdownButton1" aria-labelledby="measureOptionsLabel1 measureOptionsDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="flex-grow-1 measure-name"></span>
-                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-de w-100 border-none measures-holder" aria-labelledby="measureOptionsDropdownButton1">
-                        </div>
-                    </div>
+                <div class="card-header pb-2">
+                    <div class="font-weight-bold mr-2 text-primary fs-sm mb-1" id="measureOptionsLabel1">Measure:</div>
+                    <div class="de-option-pills measures-holder" role="radiogroup" aria-labelledby="measureOptionsLabel1" data-radio-name="deMeasure1"></div>
+                    <span class="measure-name" hidden></span>
                 </div>
             </div>
 
-            <!-- Dropdown 2 -->
+            <!-- Boundary -->
             <div class="card">
-                <div class="card-header pb-0">
-                    <div class="dropdown fs-sm">
-                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1" id="geoOptionsLabel1">Boundary: </div>
-                        <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="geoOptionsDropdownButton1" aria-labelledby="geoOptionsLabel1 geoOptionsDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="flex-grow-1 geo-name"></span>
-                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-de w-100 border-none geo-holder" aria-labelledby="geoOptionsDropdownButton1">
-
-                        </div>
-                    </div>
+                <div class="card-header pb-2">
+                    <div class="font-weight-bold mr-2 text-primary fs-sm mb-1" id="geoOptionsLabel1">Boundary:</div>
+                    <div class="de-option-pills geo-holder" role="radiogroup" aria-labelledby="geoOptionsLabel1" data-radio-name="deGeo1"></div>
+                    <span class="geo-name" hidden></span>
                 </div>
             </div>
 
-            <!-- Dropdown 3 -->
+            <!-- Time: the visible value is aria-hidden because the slider announces it as its aria-valuetext -->
             <div class="card">
-                <div class="card-header pb-0">
-                    <div class="dropdown fs-sm">
-                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1" id="timeOptionsLabel1">Time: </div>
-                        <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal mb-2" type="button" id="timeOptionsDropdownButton1" aria-labelledby="timeOptionsLabel1 timeOptionsDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="flex-grow-1 time-name"></span>
-                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-de w-100 border-none time-holder" aria-labelledby="timeOptionsDropdownButton1">
-
-                        </div>
+                <div class="card-header pb-2">
+                    <div class="d-flex align-items-baseline mb-1 fs-sm">
+                        <div class="font-weight-bold mr-2 text-primary" id="timeOptionsLabel1">Time:</div>
+                        <span class="font-weight-bold time-name" aria-hidden="true"></span>
                     </div>
+                    <div class="de-time-control time-holder" data-label-id="timeOptionsLabel1"></div>
                 </div>
             </div>
         </div>
@@ -99,46 +86,42 @@
         </div>
 
         <div>
-            <!-- Dropdown 1 -->
+            {{/*  Same three controls as the mobile copy above, with the label in a column to the left.  */}}
+
+            <!-- Measure -->
             <div class="card border-left border-right">
-                <div class="card-header pb-0">
-                    <div class="dropdown fs-sm d-flex align-items-center">
-                        <div class="font-weight-bold de-option-label fs-sm mr-2" style="white-space: nowrap; width:22%" id="measureOptionsLabel">Measure:</div>
-                        <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal flex-grow-1" type="button" id="measureOptionsDropdownButton" aria-labelledby="measureOptionsLabel measureOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="flex-grow-1 measure-name"></span>
-                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
-                        </button> 
-                        <div class="dropdown-menu dropdown-menu-de w-100 border-none measures-holder" aria-labelledby="measureOptionsDropdownButton">
+                <div class="card-header pb-2">
+                    <div class="fs-sm d-flex align-items-start">
+                        <div class="font-weight-bold de-option-label fs-sm mr-2 de-option-label-col" id="measureOptionsLabel">Measure:</div>
+                        <div class="flex-grow-1">
+                            <div class="de-option-pills measures-holder" role="radiogroup" aria-labelledby="measureOptionsLabel" data-radio-name="deMeasure"></div>
+                            <span class="measure-name" hidden></span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Dropdown 2 -->
+            <!-- Boundary -->
             <div class="card border-left border-right">
-                <div class="card-header pb-0">
-                    <div class="dropdown fs-sm d-flex align-items-center">
-                        <div class="font-weight-bold de-option-label fs-sm mr-2" style="white-space: nowrap; width:22%" id="geoOptionsLabel">Boundary:</div>
-                        <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal flex-grow-1" type="button" id="geoOptionsDropdownButton" aria-labelledby="geoOptionsLabel geoOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="flex-grow-1 geo-name"></span>
-                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-de w-100 border-none geo-holder" aria-labelledby="geoOptionsDropdownButton">
+                <div class="card-header pb-2">
+                    <div class="fs-sm d-flex align-items-start">
+                        <div class="font-weight-bold de-option-label fs-sm mr-2 de-option-label-col" id="geoOptionsLabel">Boundary:</div>
+                        <div class="flex-grow-1">
+                            <div class="de-option-pills geo-holder" role="radiogroup" aria-labelledby="geoOptionsLabel" data-radio-name="deGeo"></div>
+                            <span class="geo-name" hidden></span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Dropdown 3 -->
+            <!-- Time -->
             <div class="card border-left border-right border-bottom">
-                <div class="card-header pb-0">
-                    <div class="dropdown fs-sm d-flex align-items-center mb-2">
-                        <div class="font-weight-bold de-option-label fs-sm mr-2" style="white-space: nowrap; width:22%" id="timeOptionsLabel">Time:</div>
-                        <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal flex-grow-1" type="button" id="timeOptionsDropdownButton" aria-labelledby="timeOptionsLabel timeOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="flex-grow-1 time-name"></span>
-                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-de w-100 border-none time-holder" aria-labelledby="timeOptionsDropdownButton">
+                <div class="card-header pb-2">
+                    <div class="fs-sm d-flex align-items-start">
+                        <div class="font-weight-bold de-option-label fs-sm mr-2 de-option-label-col" id="timeOptionsLabel">Time:</div>
+                        <div class="flex-grow-1">
+                            <div class="font-weight-bold time-name" aria-hidden="true"></div>
+                            <div class="de-time-control time-holder" data-label-id="timeOptionsLabel"></div>
                         </div>
                     </div>
                 </div>

@@ -6,9 +6,11 @@
 // what a control does before clicking it. Three kinds of control, three
 // behaviors:
 //
-//   - Dropdowns (Measure, Boundary, Time, Cite, Take Action, the pill menus)
-//     open on hover and close when the pointer leaves. Clicking one that hover
-//     opened keeps it open, the way a click-opened menu stays open.
+//   - Dropdowns (Cite, Take Action, the pill menus in the view panes) open
+//     on hover and close when the pointer leaves. Clicking one that hover
+//     opened keeps it open, the way a click-opened menu stays open. Measure,
+//     Boundary and Time are not dropdowns: menu.js renders them as one-click
+//     pills and a slider, so they need no hover behavior.
 //   - Sidebar tabs (Bar, Trends, Correlate, Table, Data Sources) open their
 //     pane after the pointer rests on them, so sweeping across the sidebar does
 //     not flash every pane open. A hover-opened pane replaces the current
@@ -35,9 +37,9 @@
 const HOVER_OPEN_TIMING = {
     dropdownOpen: 150,
     dropdownClose: 300,
-    // After any dropdown closes, ignore hover briefly. Choosing a Measure closes
-    // its menu and leaves the pointer over the Boundary toggle below it, which
-    // would otherwise open the next menu without the user moving.
+    // After any dropdown closes, ignore hover briefly. Choosing an option closes
+    // its menu and can leave the pointer over another toggle, which would
+    // otherwise open the next menu without the user moving.
     dropdownCooldown: 400,
     tabOpen: 500,
     hintShow: 300,
@@ -53,25 +55,25 @@ const HOVER_OPEN_EXCLUDED = '#global-header, #nav-primary';
 
 const HOVER_OPEN_TEXT_FIELDS = 'input, textarea, select, [contenteditable="true"]';
 
-// Modal triggers and the hint each one shows. The text says what opens and that
-// the page itself does not change, which is the worry these hints address.
+// Modal triggers and the hint each one shows. "Opens ..." signals a pop-up rather
+// than a new page; kept to a short phrase.
 
 const HOVER_HINTS = [
     {
         selector: '#topicSelectorButton',
-        text: 'Opens a list of topics in a pop-up window. This page stays as it is until a topic is chosen.'
+        text: 'Opens topic list'
     },
     {
         selector: '.indicator-selector-trigger',
-        text: 'Opens a list of datasets for this topic in a pop-up window. Nothing changes until a dataset is chosen.'
+        text: 'Opens dataset list'
     },
     {
         selector: '[data-toggle="modal"][data-target="#learnMore"]',
-        text: 'Opens background on this topic in a pop-up window.'
+        text: 'Opens topic details'
     },
     {
         selector: '.de-save-map-button, .de-save-chart-button',
-        text: 'Opens save options in a pop-up window.'
+        text: 'Opens save options'
     }
 ];
 

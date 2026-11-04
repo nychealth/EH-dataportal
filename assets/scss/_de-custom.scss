@@ -477,17 +477,6 @@ $color-data-explorer: #0A408A;
 
 }
 
-// Data Explorer dropdown: subtly indicate the current selection.
-.dropdown-menu .dropdown-item.is-selected {
-    background-color: rgba(10, 64, 138, 0.08);
-    color: #0A408A;
-    font-weight: 600;
-}
-
-.dropdown-menu .dropdown-item.is-selected:hover,
-.dropdown-menu .dropdown-item.is-selected:focus {
-    background-color: rgba(10, 64, 138, 0.12);
-}
 @media (min-width: 480px) {
     .container-to-large {
         max-width: 448px; }
@@ -640,19 +629,105 @@ $color-data-explorer: #0A408A;
         }
     }
 
-    .dropdown-menu-de {
-        border: none;
-        border-bottom: 4px solid #008939;
-        padding: 10px;
-        font-size: 14px;
+    // Measure / Boundary / Time controls (menu.js renderMenuSection). The label column keeps the
+    // width the dropdowns had; its top padding lines the label up with the first row of pills.
+    .de-option-label-col {
+        flex: 0 0 22%;
+        white-space: nowrap;
+        padding-top: 0.3rem;
+    }
 
-        button {
-            border-bottom: 1px solid #D8D8D8;
-            padding: 8px 0;
+    // Option pills: native radios, visually hidden, inside clickable labels. White with a green
+    // outline at rest, filled green when selected. $primary-dark and white measure 5.49:1 either
+    // way round, and 5.13:1 on the #EFFAF4 hover fill, so every state passes AA text contrast.
+    .de-option-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+    }
+
+    .de-option-pill {
+        margin: 0;
+        padding: 0.3rem 0.7rem;
+        border: 1px solid $primary-dark;
+        border-radius: 999px;
+        background-color: white;
+        color: $primary-dark;
+        font-size: 0.8125rem;
+        line-height: 1.2;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #EFFAF4;
         }
-        button:hover {
-            background-color: #ffffff;
+
+        &.is-selected,
+        &.is-selected:hover {
+            background-color: $primary-dark;
+            color: white;
+            font-weight: 600;
         }
+
+        // The radio inside is what takes focus, so the ring is drawn on the pill around it.
+        // :focus-visible keeps it to keyboard use.
+        &:has(input:focus-visible) {
+            outline: 2px solid $primary-dark;
+            outline-offset: 2px;
+        }
+    }
+
+    // Time slider. The site-wide input[type=range] rules in __portal-custom.scss draw a 25px track
+    // and a 30px square thumb, sized for other pages; this one sits in a narrow column, so it gets a
+    // slim track and a round thumb. Those rules also set -webkit-appearance: none, which is why the
+    // track and thumb are styled here rather than tinted with accent-color. Keyboard focus keeps the
+    // browser's ring (outline on the input). Start and end periods sit underneath; the selected
+    // period is written above it (.time-name).
+    .de-time-slider {
+        display: block;
+        width: 100%;
+        height: 24px;
+        margin: 0.25rem 0 0;
+        background: transparent;
+        cursor: pointer;
+
+        &::-webkit-slider-runnable-track {
+            height: 6px;
+            border-radius: 3px;
+            background: #B9C4BD;
+        }
+
+        &::-webkit-slider-thumb {
+            width: 18px;
+            height: 18px;
+            margin-top: -6px;
+            border: 2px solid white;
+            border-radius: 50%;
+            background: $primary-dark;
+            box-shadow: 0 0 0 1px $primary-dark;
+        }
+
+        &::-moz-range-track {
+            height: 6px;
+            border-radius: 3px;
+            background: #B9C4BD;
+        }
+
+        &::-moz-range-thumb {
+            width: 14px;
+            height: 14px;
+            border: 2px solid white;
+            border-radius: 50%;
+            background: $primary-dark;
+            box-shadow: 0 0 0 1px $primary-dark;
+        }
+    }
+
+    .de-time-ends {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.5rem;
+        color: #3d4148;
+        font-size: 0.75rem;
     }
 
     .de-accordion .card {
