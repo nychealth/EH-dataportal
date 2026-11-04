@@ -138,7 +138,7 @@
             <div class="d-flex align-items-center pt-2">
                 <button type="button" class="btn-sm btn-light-green-bg-outline de-save-chart-button" data-print-target="chart" data-print-context="bar" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</button>
                 <span class="ml-2">{{ partial "de-cite-popup.html" (dict "page" . "id" "bar" "class" "btn-sm btn-light-green-bg-outline") }}</span>
-                <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#" onclick="downloadData(); return false;"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
+                <button type="button" class="btn-sm btn-light-green-bg-outline ml-auto" onclick="downloadData();"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</button>
 
             </div>
         </div>
@@ -212,7 +212,7 @@
             <div class="d-flex align-items-center p-2">
                 {{/*  The table has no Save Chart; Cite takes its place.  */}}
                 {{ partial "de-cite-popup.html" (dict "page" . "id" "table" "class" "btn-sm btn-light-green-bg-outline") }}
-                <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#" onclick="downloadTableData(); return false;"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
+                <button type="button" class="btn-sm btn-light-green-bg-outline ml-auto" onclick="downloadTableData();"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</button>
          
             </div>
         </div>
@@ -241,7 +241,7 @@
             <div class="d-flex align-items-center pt-2">
                 <button type="button" class="btn-sm btn-light-green-bg-outline de-save-chart-button" data-print-target="chart" data-print-context="trends" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</button>
                 <span class="ml-2">{{ partial "de-cite-popup.html" (dict "page" . "id" "trends" "class" "btn-sm btn-light-green-bg-outline") }}</span>
-                <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#" onclick="downloadData(); return false;"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
+                <button type="button" class="btn-sm btn-light-green-bg-outline ml-auto" onclick="downloadData();"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</button>
 
             </div>
         </div>
@@ -286,7 +286,7 @@
             <div class="d-flex align-items-center pt-2">
                 <button type="button" class="btn-sm btn-light-green-bg-outline de-save-chart-button" data-print-target="chart" data-print-context="correlate" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</button>
                 <span class="ml-2">{{ partial "de-cite-popup.html" (dict "page" . "id" "correlate" "class" "btn-sm btn-light-green-bg-outline") }}</span>
-                <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#" onclick="downloadData(); return false;"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
+                <button type="button" class="btn-sm btn-light-green-bg-outline ml-auto" onclick="downloadData();"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</button>
 
             </div>
         </div>
@@ -309,7 +309,7 @@
             <div id="citation" data-citation-location="ds">
                 <p>{{ partial "de-citation-text.html" (dict "page" . "id" "citeText" "omitOverlay" true) }}
                     <span class="float-right">
-                    <a href="#" id="citeButton" class="de-copy-citation-button" data-citation-target="citeText"><i class="fas fa-copy mr-1" aria-hidden="true"></i>Copy citation.</a>
+                    <button type="button" id="citeButton" class="de-link-button de-copy-citation-button" data-citation-target="citeText"><i class="fas fa-copy mr-1" aria-hidden="true"></i>Copy citation.</button>
                     </span>
                 </p>
             </div>

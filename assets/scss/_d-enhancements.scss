@@ -315,13 +315,38 @@ a:not(.btn).disabled {
     }
 }
 
-// Underline links in page content so they are not told apart from text by colour alone. Scoped to
-// <main> rather than #primary-content, which only some templates emit, and to unclassed links:
-// buttons, cards and nav links carry classes and style themselves. Breadcrumbs keep their plain
-// look (Chris, 2026-10-30).
+// Underline links inside sentences so they are not told apart from the text around them by colour
+// alone (WCAG 1.4.1). Scoped to paragraphs in <main>: list, table and card links stand apart by
+// their layout, and underlining them made those lists harder to read (Chris, 2026-11-03). Not
+// #primary-content, which only some templates emit. Unclassed links only: buttons, cards and nav
+// links carry classes and style themselves. documents/link-underlines-plan-2026-11-03.md has the
+// comparison, and the in-sentence links outside a <p> this leaves plain.
 
-main a:not([class]) {
+main p a:not([class]) {
     text-decoration: underline;
+}
+
+// A <button> that looks like a link: clears the browser's button chrome and takes the site's link
+// colours from theme.scss's `a` rule, including its hover and focus underline. Classes beside it
+// (text-reset, ...) adjust from there. For standalone actions written as href="#" links before.
+// Not for an action inside a sentence: a button is one inline-block box and cannot wrap across
+// lines with the text around it, so those stay links (Chris, 2026-11-03;
+// documents/href-hash-to-buttons-plan-2026-11-03.md).
+
+.link-button {
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    color: $primary-dark;
+    text-align: inherit;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        color: $hover;
+        text-decoration: underline;
+    }
 }
 
 .breadcrumb a:not([class]) {
