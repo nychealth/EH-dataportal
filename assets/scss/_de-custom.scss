@@ -702,10 +702,12 @@ $color-data-explorer: #0A408A;
             background: #B9C4BD;
         }
 
+        // Chrome sizes this thumb border-box, so its width is the whole of --de-thumb. The
+        // margin centers it on the 6px track.
         &::-webkit-slider-thumb {
-            width: 18px;
-            height: 18px;
-            margin-top: -6px;
+            width: var(--de-thumb);
+            height: var(--de-thumb);
+            margin-top: calc((6px - var(--de-thumb)) / 2);
             border: 2px solid white;
             border-radius: 50%;
             background: $primary-dark;
@@ -718,9 +720,10 @@ $color-data-explorer: #0A408A;
             background: #B9C4BD;
         }
 
+        // Firefox sizes this thumb content-box, so the 2px border on each side comes off --de-thumb.
         &::-moz-range-thumb {
-            width: 14px;
-            height: 14px;
+            width: calc(var(--de-thumb) - 4px);
+            height: calc(var(--de-thumb) - 4px);
             border: 2px solid white;
             border-radius: 50%;
             background: $primary-dark;
