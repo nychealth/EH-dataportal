@@ -89,13 +89,13 @@
             "mapMarkers": true
         },
         "links": {
-            "internal": 82,
+            "internal": 62,
             "external": 37,
-            "emptyHref": 26,
+            "emptyHref": 6,
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 25,
+            "button": 45,
             "input": 12,
             "select": 1,
             "textarea": 0,

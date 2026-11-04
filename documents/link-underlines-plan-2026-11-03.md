@@ -177,4 +177,4 @@ visually too.
 | 3 | | **DONE 2026-11-03** | `documents/site-wide-audit-2026-10.md`: N-004 OPEN P1 in new batch R18, N-061's evidence amended, counts and Roadmap total. Recount reproduced `HEAD`'s table first (OPEN 1/47/132/2 = 182, FIXED 281), then read OPEN 2/47/132/2 = 183, FIXED 280; batch check: R18 OK, ordered, 49 ids = OPEN P1/P2. It also flags R1, R4 and R7's closing cells naming row ids, which `HEAD` has too |
 | 4 | | **not scheduled** (Decision 1) | N-004 / R18 carries it |
 
-Next: commit, together with the buttons plan's work. See that plan's ledger for what is still open.
+Tasks 1 to 3 landed in `2e6e180b77` with the buttons plan's work. That plan's ledger records the re-baseline.
