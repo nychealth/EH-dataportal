@@ -305,15 +305,23 @@ const renderTimeSlider = (items, destination) => {
 
             if (container.dataset.labelId) slider.setAttribute('aria-labelledby', container.dataset.labelId);
 
+            // Tick marks under the track, one per period (filled in below). Decorative:
+            // the slider's aria-valuetext already names the period.
+
+            const ticks = document.createElement('div');
+            ticks.className = 'de-time-ticks';
+            ticks.setAttribute('aria-hidden', 'true');
+
             const ends = document.createElement('div');
             ends.className = 'de-time-ends';
             ends.setAttribute('aria-hidden', 'true');
             ends.append(document.createElement('span'), document.createElement('span'));
 
-            container.append(slider, ends);
+            container.append(slider, ticks, ends);
 
         }
 
+        const ticks = container.querySelector('.de-time-ticks');
         const ends = container.querySelector('.de-time-ends');
 
         // ----- update to the current periods and selection ----- //
@@ -323,6 +331,7 @@ const renderTimeSlider = (items, destination) => {
         const hasRange = periods.length > 1;
 
         slider.hidden = !hasRange;
+        ticks.hidden = !hasRange;
         ends.hidden = !hasRange;
 
         slider.max = Math.max(0, periods.length - 1);
@@ -334,6 +343,8 @@ const renderTimeSlider = (items, destination) => {
 
         ends.children[0].textContent = periods[0]?.label ?? '';
         ends.children[1].textContent = periods[periods.length - 1]?.label ?? '';
+
+        renderTimeTicks(ticks, periods.length);
 
         // ----- handlers (assigned, so repeated renders replace rather than stack) ----- //
 
@@ -362,6 +373,39 @@ const renderTimeSlider = (items, destination) => {
 
         };
     });
+};
+
+
+// Draws the tick marks under the Time slider, one per period, at the points the thumb stops at.
+// Most measures have 22 periods or fewer (90th percentile across the catalog); a few have up to
+// 100, and a tick for each of those would run together into a solid bar on a ~250px track. So
+// past MAX_TIME_TICKS the ticks are spaced every few periods, always including both ends.
+
+const MAX_TIME_TICKS = 25;
+
+const renderTimeTicks = (ticks, count) => {
+
+    ticks.textContent = '';
+
+    if (count < 2) return;
+
+    const lastIndex = count - 1;
+    const every = Math.ceil(lastIndex / (MAX_TIME_TICKS - 1));
+
+    for (let index = 0; index <= lastIndex; index++) {
+
+        if (index % every !== 0 && index !== lastIndex) continue;
+
+        // The thumb's center travels from one thumb-radius in from the left edge to one radius in
+        // from the right, so ticks are placed across that same span (--de-thumb in the SCSS).
+
+        const tick = document.createElement('span');
+        tick.className = 'de-time-tick';
+        tick.style.left = `calc(var(--de-thumb) / 2 + (100% - var(--de-thumb)) * ${index / lastIndex})`;
+
+        ticks.appendChild(tick);
+
+    }
 };
 
 

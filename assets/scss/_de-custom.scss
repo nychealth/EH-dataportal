@@ -682,6 +682,12 @@ $color-data-explorer: #0A408A;
     // track and thumb are styled here rather than tinted with accent-color. Keyboard focus keeps the
     // browser's ring (outline on the input). Start and end periods sit underneath; the selected
     // period is written above it (.time-name).
+    // --de-thumb is the thumb's full width; renderTimeTicks (menu.js) uses it to line the tick
+    // marks up with the thumb's stops, so change it there and in the thumb rules together.
+    .de-time-control {
+        --de-thumb: 18px;
+    }
+
     .de-time-slider {
         display: block;
         width: 100%;
@@ -720,6 +726,22 @@ $color-data-explorer: #0A408A;
             background: $primary-dark;
             box-shadow: 0 0 0 1px $primary-dark;
         }
+    }
+
+    // Tick marks: a 1px line at each period the thumb can stop on, tucked just under the track.
+    .de-time-ticks {
+        position: relative;
+        height: 6px;
+        margin-top: -6px;
+    }
+
+    .de-time-tick {
+        position: absolute;
+        top: 0;
+        width: 1px;
+        height: 6px;
+        margin-left: -0.5px;
+        background-color: #5c6b62;
     }
 
     .de-time-ends {
