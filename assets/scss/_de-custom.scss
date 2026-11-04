@@ -733,20 +733,23 @@ $color-data-explorer: #0A408A;
         }
     }
 
-    // Tick marks: a 1px line at each period the thumb can stop on, tucked just under the track.
+    // Tick marks at the periods the thumb can stop on, tucked just under the track: an SVG
+    // (renderTimeTicks, menu.js) inset by half a thumb on each side, so its width is exactly the
+    // thumb center's travel. Short ticks mark the quarters between years on quarterly data.
+    // crispEdges is what keeps every tick the same weight on fractionally scaled screens; see
+    // renderTimeTicks for the measurements. overflow: visible lets the end ticks, centered on
+    // the SVG's edges, draw their outer half.
     .de-time-ticks {
-        position: relative;
+        display: block;
+        width: calc(100% - var(--de-thumb));
         height: 6px;
-        margin-top: -6px;
+        margin: -6px calc(var(--de-thumb) / 2) 0;
+        overflow: visible;
+        shape-rendering: crispEdges;
     }
 
     .de-time-tick {
-        position: absolute;
-        top: 0;
-        width: 1px;
-        height: 6px;
-        margin-left: -0.5px;
-        background-color: #5c6b62;
+        fill: #5c6b62;
     }
 
     .de-time-ends {

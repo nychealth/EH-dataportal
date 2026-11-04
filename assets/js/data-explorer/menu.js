@@ -305,12 +305,13 @@ const renderTimeSlider = (items, destination) => {
 
             if (container.dataset.labelId) slider.setAttribute('aria-labelledby', container.dataset.labelId);
 
-            // Tick marks under the track, one per period (filled in below). Decorative:
-            // the slider's aria-valuetext already names the period.
+            // Tick marks under the track (filled in by renderTimeTicks), drawn as SVG; see
+            // renderTimeTicks for why. Decorative: the slider's aria-valuetext names the period.
 
-            const ticks = document.createElement('div');
-            ticks.className = 'de-time-ticks';
+            const ticks = document.createElementNS(SVG_NS, 'svg');
+            ticks.setAttribute('class', 'de-time-ticks');
             ticks.setAttribute('aria-hidden', 'true');
+            ticks.setAttribute('focusable', 'false');
 
             const ends = document.createElement('div');
             ends.className = 'de-time-ends';
@@ -318,6 +319,8 @@ const renderTimeSlider = (items, destination) => {
             ends.append(document.createElement('span'), document.createElement('span'));
 
             container.append(slider, ticks, ends);
+
+            if (!timeTickRatioWatchStarted) watchTimeTickPixelRatio();
 
         }
 
@@ -331,7 +334,7 @@ const renderTimeSlider = (items, destination) => {
         const hasRange = periods.length > 1;
 
         slider.hidden = !hasRange;
-        ticks.hidden = !hasRange;
+        ticks.toggleAttribute('hidden', !hasRange);   // an SVG element has no .hidden property
         ends.hidden = !hasRange;
 
         slider.max = Math.max(0, periods.length - 1);
@@ -344,7 +347,7 @@ const renderTimeSlider = (items, destination) => {
         ends.children[0].textContent = periods[0]?.label ?? '';
         ends.children[1].textContent = periods[periods.length - 1]?.label ?? '';
 
-        renderTimeTicks(ticks, periods.length);
+        renderTimeTicks(ticks, periods);
 
         // ----- handlers (assigned, so repeated renders replace rather than stack) ----- //
 
@@ -376,36 +379,129 @@ const renderTimeSlider = (items, destination) => {
 };
 
 
-// Draws the tick marks under the Time slider, one per period, at the points the thumb stops at.
-// Most measures have 22 periods or fewer (90th percentile across the catalog); a few have up to
-// 100, and a tick for each of those would run together into a solid bar on a ~250px track. So
-// past MAX_TIME_TICKS the ticks are spaced every few periods, always including both ends.
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// time slider ticks
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+// Most measures have 22 periods or fewer (90th percentile across the catalog), and each gets a
+// tick. Past this many, ticks would run together on a ~250px track. Only quarterly data goes past
+// it today (up to 100 quarters), and that has its own year-based ticks below; the cap is the
+// fallback for anything else that ever does.
 
 const MAX_TIME_TICKS = 25;
 
-const renderTimeTicks = (ticks, count) => {
+// Returns the calendar year a period starts in. start_period is a UTC timestamp on a quarter
+// boundary (checked across all 101 quarterly periods, 2026-11-04); the label's leading year is
+// the fallback for a period missing from the lookup.
 
-    ticks.textContent = '';
+const getPeriodYear = (period) => {
 
-    if (count < 2) return;
+    const start = DE.lookups.timeLookup[period.value]?.start_period;
 
-    const lastIndex = count - 1;
+    return start != null ? new Date(start).getUTCFullYear() : Number(String(period.label).slice(0, 4));
+
+};
+
+// Picks which periods get a tick, and whether each is a full (major) or short (minor) tick.
+// Quarterly data: a full tick at the first quarter of each year, so the years read at a glance,
+// and a short tick at each other quarter, to show the slider also stops between them.
+// Anything else: a full tick per period, thinned to every few periods past MAX_TIME_TICKS,
+// both ends always included.
+
+const pickTimeTicks = (periods) => {
+
+    const lastIndex = periods.length - 1;
+
+    const isQuarterly = periods.every(p => DE.lookups.timeLookup[p.value]?.TimeType === 'quarter');
+
+    if (isQuarterly) {
+
+        return periods.map((period, index) => ({
+            index,
+            major: index === 0 || getPeriodYear(period) !== getPeriodYear(periods[index - 1])
+        }));
+    }
+
     const every = Math.ceil(lastIndex / (MAX_TIME_TICKS - 1));
 
-    for (let index = 0; index <= lastIndex; index++) {
+    return periods
+        .map((_period, index) => ({ index, major: true }))
+        .filter(tick => tick.index % every === 0 || tick.index === lastIndex);
 
-        if (index % every !== 0 && index !== lastIndex) continue;
+};
 
-        // The thumb's center travels from one thumb-radius in from the left edge to one radius in
-        // from the right, so ticks are placed across that same span (--de-thumb in the SCSS).
+const SVG_NS = 'http://www.w3.org/2000/svg';
 
-        const tick = document.createElement('span');
-        tick.className = 'de-time-tick';
-        tick.style.left = `calc(var(--de-thumb) / 2 + (100% - var(--de-thumb)) * ${index / lastIndex})`;
+// Draws the tick marks under the Time slider, one per picked period, as rects in an SVG that spans
+// exactly the thumb center's travel (CSS insets it by half a thumb on each side), so a tick's x is
+// simply its fraction of the way along, as a percentage, and stays right at any width.
+//
+// Why SVG and not positioned boxes: some ticks drew darker and bolder than others on screens with
+// fractional scaling (Windows at 125% or 175%, or browser zoom). Measured in Chromium, 2026-11-04,
+// on air quality indicator 2023, from full-viewport screenshots: box ticks drew in 4 different pixel
+// patterns at 1.25x, 2 at 1.5x and 4 at 1.75x, and 1 at 1x and 2x. Those counts are how many
+// different fractional screen positions a whole CSS pixel can fall on at each scale, which fits
+// Chrome rounding boxes to whole CSS pixels before scaling them; placing boxes on exact screen
+// pixels from script left the patterns unchanged or worse. SVG with shape-rendering: crispEdges
+// (set in the SCSS) draws each rect straight onto screen pixels without blending, and a rect a whole
+// number of screen pixels wide then covers that many pixels wherever it lands.
+
+const renderTimeTicks = (ticks, periods) => {
+
+    ticks.replaceChildren();
+
+    if (periods.length < 2) return;
+
+    const lastIndex = periods.length - 1;
+
+    pickTimeTicks(periods).forEach(({ index, major }) => {
+
+        const tick = document.createElementNS(SVG_NS, 'rect');
+
+        tick.setAttribute('class', major ? 'de-time-tick' : 'de-time-tick de-time-tick-minor');
+        tick.setAttribute('x', `${(index / lastIndex) * 100}%`);
+        tick.setAttribute('y', 0);
+        tick.setAttribute('height', major ? 6 : 3);
 
         ticks.appendChild(tick);
 
-    }
+    });
+
+    sizeTimeTicks(ticks);
+
+};
+
+// Sets every tick's width to a whole number of screen pixels (1 up to 1.5x scaling, 2 from there
+// to 2.5x, and so on) and centers it on its x. Width is in CSS px, so it depends on the current
+// pixel ratio, and is redone when that changes (watchTimeTickPixelRatio).
+
+const sizeTimeTicks = (ticks) => {
+
+    const ratio = window.devicePixelRatio || 1;
+    const width = Math.max(1, Math.round(ratio)) / ratio;
+
+    ticks.querySelectorAll('.de-time-tick').forEach(tick => {
+        tick.setAttribute('width', width);
+        tick.setAttribute('transform', `translate(${-width / 2} 0)`);
+    });
+};
+
+// Re-sizes ticks when the screen's pixel ratio changes (browser zoom, or dragging the window to a
+// monitor with different scaling). A resolution media query matches only the ratio it was made for,
+// so each change re-arms it for the new one.
+
+let timeTickRatioWatchStarted = false;
+
+const watchTimeTickPixelRatio = () => {
+
+    timeTickRatioWatchStarted = true;
+
+    window.matchMedia(`(resolution: ${window.devicePixelRatio || 1}dppx)`).addEventListener('change', () => {
+
+        document.querySelectorAll('.de-time-ticks').forEach(sizeTimeTicks);
+        watchTimeTickPixelRatio();
+
+    }, { once: true });
 };
 
 
