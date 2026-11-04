@@ -629,6 +629,14 @@ $color-data-explorer: #0A408A;
         }
     }
 
+    // The part of the details panel that scrolls when it would run under the map legend; its
+    // max-height is set by fitDetailsPanel (de-tab-content.js). overscroll-behavior keeps a scroll
+    // that reaches the end from moving the map underneath.
+    .de-details-body {
+        overflow-y: auto;
+        overscroll-behavior: contain;
+    }
+
     // Measure / Boundary / Time controls (menu.js renderMenuSection). The label column keeps the
     // width the dropdowns had; its top padding lines the label up with the first row of pills.
     .de-option-label-col {

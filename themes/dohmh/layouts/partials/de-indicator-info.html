@@ -37,7 +37,7 @@
     </div>
 
     <!-- Mobile Collapsible Content -->
-    <div id="detailsContent" class="collapse d-lg-none">
+    <div id="detailsContent" class="collapse d-lg-none de-details-body">
         <div class="bg-white p-2 fs-sm">
             <p class="indicator-description">Loading indicator description...</p>
         </div>
@@ -81,59 +81,63 @@
 
     <!-- Desktop Content (always visible) -->
     <div class="d-none d-lg-block">
-        <div class="bg-white p-2 fs-sm border-left border-right">
-            <p class="indicator-description fs-sm">Loading indicator description... </p>
+        {{/*  Description and controls scroll inside the panel when it would otherwise run under the
+              map legend (fitDetailsPanel, de-tab-content.js). The Save map / Cite row stays outside the
+              scrolling part: a dropdown opened inside a scrolling box is clipped by it.  */}}
+        <div class="de-details-body">
+            <div class="bg-white p-2 fs-sm border-left border-right">
+                <p class="indicator-description fs-sm">Loading indicator description... </p>
+            </div>
+
+            <div>
+                {{/*  Same three controls as the mobile copy above, with the label in a column to the left.  */}}
+
+                <!-- Measure -->
+                <div class="card border-left border-right">
+                    <div class="card-header pb-2">
+                        <div class="fs-sm d-flex align-items-start">
+                            <div class="font-weight-bold de-option-label fs-sm mr-2 de-option-label-col" id="measureOptionsLabel">Measure:</div>
+                            <div class="flex-grow-1">
+                                <div class="de-option-pills measures-holder" role="radiogroup" aria-labelledby="measureOptionsLabel" data-radio-name="deMeasure"></div>
+                                <span class="measure-name" hidden></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Boundary -->
+                <div class="card border-left border-right">
+                    <div class="card-header pb-2">
+                        <div class="fs-sm d-flex align-items-start">
+                            <div class="font-weight-bold de-option-label fs-sm mr-2 de-option-label-col" id="geoOptionsLabel">Boundary:</div>
+                            <div class="flex-grow-1">
+                                <div class="de-option-pills geo-holder" role="radiogroup" aria-labelledby="geoOptionsLabel" data-radio-name="deGeo"></div>
+                                <span class="geo-name" hidden></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Time -->
+                <div class="card border-left border-right border-bottom">
+                    <div class="card-header pb-2">
+                        <div class="fs-sm d-flex align-items-start">
+                            <div class="font-weight-bold de-option-label fs-sm mr-2 de-option-label-col" id="timeOptionsLabel">Time:</div>
+                            <div class="flex-grow-1">
+                                <div class="font-weight-bold time-name" aria-hidden="true"></div>
+                                <div class="de-time-control time-holder" data-label-id="timeOptionsLabel"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div>
-            {{/*  Same three controls as the mobile copy above, with the label in a column to the left.  */}}
-
-            <!-- Measure -->
-            <div class="card border-left border-right">
-                <div class="card-header pb-2">
-                    <div class="fs-sm d-flex align-items-start">
-                        <div class="font-weight-bold de-option-label fs-sm mr-2 de-option-label-col" id="measureOptionsLabel">Measure:</div>
-                        <div class="flex-grow-1">
-                            <div class="de-option-pills measures-holder" role="radiogroup" aria-labelledby="measureOptionsLabel" data-radio-name="deMeasure"></div>
-                            <span class="measure-name" hidden></span>
-                        </div>
-                    </div>
+        <div class="card card-header p-0 bg-transparent d-inline-block printMap border-bottom border-left border-right">
+            <div style="background-color:#DCF4E7" class="py-1 d-inline-block">
+                    <button type="button" id="deSaveMapButton" class="de-link-button fs-sm mx-1 de-save-map-button" aria-haspopup="dialog" data-print-target="map"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save map</button>
+                    {{ partial "de-cite-popup.html" (dict "page" . "id" "map" "class" "de-link-button fs-sm mx-1") }}
                 </div>
-            </div>
-
-            <!-- Boundary -->
-            <div class="card border-left border-right">
-                <div class="card-header pb-2">
-                    <div class="fs-sm d-flex align-items-start">
-                        <div class="font-weight-bold de-option-label fs-sm mr-2 de-option-label-col" id="geoOptionsLabel">Boundary:</div>
-                        <div class="flex-grow-1">
-                            <div class="de-option-pills geo-holder" role="radiogroup" aria-labelledby="geoOptionsLabel" data-radio-name="deGeo"></div>
-                            <span class="geo-name" hidden></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Time -->
-            <div class="card border-left border-right border-bottom">
-                <div class="card-header pb-2">
-                    <div class="fs-sm d-flex align-items-start">
-                        <div class="font-weight-bold de-option-label fs-sm mr-2 de-option-label-col" id="timeOptionsLabel">Time:</div>
-                        <div class="flex-grow-1">
-                            <div class="font-weight-bold time-name" aria-hidden="true"></div>
-                            <div class="de-time-control time-holder" data-label-id="timeOptionsLabel"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card card-header p-0 bg-transparent d-inline-block printMap border-bottom border-left border-right">
-                <div style="background-color:#DCF4E7" class="py-1 d-inline-block">
-                        <button type="button" id="deSaveMapButton" class="de-link-button fs-sm mx-1 de-save-map-button" aria-haspopup="dialog" data-print-target="map"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save map</button>
-                        {{ partial "de-cite-popup.html" (dict "page" . "id" "map" "class" "de-link-button fs-sm mx-1") }}
-                    </div>
-            </div>
-
         </div>
     </div>
 </div>

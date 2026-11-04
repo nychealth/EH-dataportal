@@ -3,7 +3,8 @@
 // ======================================================================= //
 
 // UI behavior for the data-explorer tab panes (de-tab-content.html): tab
-// toggle-off, close buttons, Escape-to-close, mobile accordion, and the
+// toggle-off, close buttons, Escape-to-close, mobile accordion, the details
+// panel's height above the map legend, and the
 // has-open-panel state class. NOT part of the synchronous SPA bundle
 // (global.js … print.js); it's loaded on its own from de-tab-content.html and
 // only touches SPA globals (updateChartPlotSize, pushSelectionToURL, DE.state.overlay)
@@ -235,6 +236,85 @@ document.addEventListener('DOMContentLoaded', function() {
 
         });
     }
+});
+
+
+// ----------------------------------------------------------------------- //
+// details panel height
+// ----------------------------------------------------------------------- //
+
+// Keeps the details panel above the map legend. The panel and the legend are both positioned in
+// the map area, from its top and bottom, so a long panel runs under the legend, which is drawn
+// over it. With the Measure and Boundary pills and the Time slider the panel can be ~800px tall
+// (8 or 9 measures), and on a 1366x768 screen the legend covered up to 224px of it, including the
+// Time slider, which it then blocked from the pointer (measured 2026-11-04). So the scrolling part
+// of the panel (.de-details-body: the description and the three controls) gets a max-height that
+// ends just above the legend, and scrolls inside itself when its content is taller. The desktop
+// panel and the mobile one (#detailsContent) each have one; whichever is hidden is skipped.
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    const legend = document.querySelector('.de-legend');
+    const bodies = document.querySelectorAll('.de-details-body');
+
+    if (!legend || !bodies.length) return;
+
+    // Space kept between the panel and the legend, and the least height the panel is ever given:
+    // on a very short screen it overlaps the legend again rather than shrink to a sliver.
+
+    const GAP_PX = 8;
+    const MIN_HEIGHT_PX = 160;
+
+    // Measures the room from the top of each visible body to the top of the legend, less whatever
+    // the panel holds below the body (the desktop Save map / Cite row), and caps the body at it.
+    // The cap is cleared first so the measurement does not read a previous cap.
+
+    const fitDetailsPanel = () => {
+
+        const legendTop = legend.getBoundingClientRect().top;
+
+        bodies.forEach(body => {
+
+            body.style.maxHeight = '';
+
+            const box = body.getBoundingClientRect();
+
+            if (!box.width) return;   // hidden: the desktop body on a phone, or the mobile one closed
+
+            const panel = body.closest('.de-main-details') || body;
+            const below = Math.max(0, panel.getBoundingClientRect().bottom - box.bottom);
+
+            body.style.maxHeight = `${Math.max(MIN_HEIGHT_PX, Math.floor(legendTop - GAP_PX - below - box.top))}px`;
+
+        });
+    };
+
+    // Refit whenever the room can change: the map area the two are positioned in (it follows the
+    // window), the legend's own height (its contents change with each indicator), and the panel
+    // header above the body (a longer indicator name wraps onto more lines). One observer covers
+    // all three, and also runs once on start. A window resize listener backs it up.
+
+    if (typeof ResizeObserver === 'function') {
+
+        const observer = new ResizeObserver(fitDetailsPanel);
+
+        if (legend.offsetParent) observer.observe(legend.offsetParent);
+        observer.observe(legend);
+        document.querySelectorAll('.de-main-details .indicator-name').forEach(name => observer.observe(name));
+
+    } else {
+
+        fitDetailsPanel();
+
+    }
+
+    window.addEventListener('resize', fitDetailsPanel);
+
+    // The mobile panel has no height until it opens. Bootstrap's collapse events are triggered
+    // through jQuery, so they are listened for through jQuery too.
+
+    $('#detailsContent').on('shown.bs.collapse', fitDetailsPanel);
+
 });
 
 
