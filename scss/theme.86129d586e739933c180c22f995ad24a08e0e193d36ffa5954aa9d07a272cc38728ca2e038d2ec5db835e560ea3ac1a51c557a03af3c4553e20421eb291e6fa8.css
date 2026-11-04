@@ -7691,8 +7691,20 @@ a:not(.btn).disabled {
 .has-icon.active span.title, .wrap-file-input .file-input-label .active.file-choose span.title {
   text-decoration: underline; }
 
-main a:not([class]) {
+main p a:not([class]) {
   text-decoration: underline; }
+
+.link-button {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: #007a31;
+  text-align: inherit;
+  cursor: pointer; }
+  .link-button:hover, .link-button:focus {
+    color: #008939;
+    text-decoration: underline; }
 
 .breadcrumb a:not([class]) {
   text-decoration: none; }

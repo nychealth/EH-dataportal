@@ -181,7 +181,7 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/subscribe/</link>
       <pubDate>Thu, 30 Oct 2025 13:30:21 -0500</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/subscribe/</guid>
-      <description>&lt;p&gt;Thanks for visiting the Environment and Health Data Portal.&lt;/p&gt;&#xA;&lt;p&gt;We&amp;rsquo;d like to add you to our email list. We&amp;rsquo;ll email you every few months with site updates, and occasional opportunities to participate in user research. We won&amp;rsquo;t share your email and you can unsubscribe at any time.&lt;/p&gt;&#xA;&lt;div class=&#34;my-2&#34;&gt;&#xA;&#x9;&lt;a class=&#34;btn btn-primary&#34; href=&#34;#&#34; data-subscribe-click=&#34;subscribe-page&#34; data-toggle=&#34;modal&#34; data-target=&#34;#subscribeModal&#34;&gt;Open the subscription form&lt;/a&gt;&#xA;&lt;/div&gt;</description>
+      <description>&lt;p&gt;Thanks for visiting the Environment and Health Data Portal.&lt;/p&gt;&#xA;&lt;p&gt;We&amp;rsquo;d like to add you to our email list. We&amp;rsquo;ll email you every few months with site updates, and occasional opportunities to participate in user research. We won&amp;rsquo;t share your email and you can unsubscribe at any time.&lt;/p&gt;&#xA;&lt;div class=&#34;my-2&#34;&gt;&#xA;&#x9;&lt;button type=&#34;button&#34; class=&#34;btn btn-primary&#34; data-subscribe-click=&#34;subscribe-page&#34; data-toggle=&#34;modal&#34; data-target=&#34;#subscribeModal&#34;&gt;Open the subscription form&lt;/button&gt;&#xA;&lt;/div&gt;</description>
     </item>
     <item>
       <title>What climate change means for vector-borne disease in NYC</title>
