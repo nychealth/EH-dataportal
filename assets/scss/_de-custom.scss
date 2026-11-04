@@ -720,7 +720,9 @@ $color-data-explorer: #0A408A;
             background: #B9C4BD;
         }
 
-        // Firefox sizes this thumb content-box, so the 2px border on each side comes off --de-thumb.
+        // HYPOTHESIS (unverified, no Firefox to test with): Firefox sizes this thumb content-box,
+        // so the 2px border on each side comes off --de-thumb. Chromium's border-box sizing above
+        // was measured; if Firefox's thumb sits off its ticks, this is the line to check.
         &::-moz-range-thumb {
             width: calc(var(--de-thumb) - 4px);
             height: calc(var(--de-thumb) - 4px);
