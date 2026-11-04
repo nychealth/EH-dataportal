@@ -775,13 +775,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (el.classList.contains('disabled')) return;
 
+            // hover-open.js clicks a tab the pointer rested on and marks it with
+            // data-hover-open. That open replaces the history entry instead of adding
+            // one, so passing over tabs does not fill the Back button, and it reports
+            // its own analytics event so click_tab still counts only real clicks.
+
+            const openedByHover = el.dataset.hoverOpen === 'true';
+
             DE.state.overlay = value;
-            pushSelectionToURL();
+            writeSelectionToURL(openedByHover ? 'replaceState' : 'pushState');
             // Tab switches reuse the current map state, so they do not request a map redraw.
 
             renderCurrentView();
 
-            trackDataExplorerEvent('click_tab', { tab: value });
+            trackDataExplorerEvent(openedByHover ? 'hover_open_tab' : 'click_tab', { tab: value });
 
         });
     });
