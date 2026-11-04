@@ -88,9 +88,10 @@
             }
         },
         {
-            "description": "Direct labels at 95°F. label_y spaces the labels apart in data units; re-check them if the data changes.",
+            "description": "Direct labels at 95°F, each with its 95°F value. label_y spaces the labels apart in data units; re-check them if the data changes.",
             "transform": [
                 {"filter": "datum.temperature_F === 95"},
+                {"calculate": "datum.occupation + ' ' + format(datum.percent_change, '+.0f') + '%'", "as": "label_text"},
                 {
                     "lookup": "occupation",
                     "from": {
@@ -127,7 +128,7 @@
                             "select": {"type": "point", "fields": ["occupation"], "on": "pointerover", "clear": "pointerout"}
                         }
                     ],
-                    "mark": {"type": "rect", "fill": "transparent", "cursor": "pointer", "xOffset": 4, "x2Offset": 210},
+                    "mark": {"type": "rect", "fill": "transparent", "cursor": "pointer", "xOffset": 4, "x2Offset": 245},
                     "encoding": {
                         "x2": {"datum": 95},
                         "y": {"field": "hit_y", "type": "quantitative"},
@@ -152,7 +153,7 @@
                     "mark": {"type": "text", "align": "left", "baseline": "middle", "dx": 20, "fontSize": 11, "fontWeight": "bold", "color": "#1f1f1f", "cursor": "pointer"},
                     "encoding": {
                         "y": {"field": "label_y", "type": "quantitative"},
-                        "text": {"field": "occupation"},
+                        "text": {"field": "label_text"},
                         "opacity": {"condition": {"test": {"and": [{"param": "hover"}, {"param": "label_hover"}]}, "value": 1}, "value": 0.35}
                     }
                 },
@@ -161,7 +162,7 @@
                     "mark": {"type": "text", "align": "left", "baseline": "middle", "dx": 20, "fontSize": 11, "color": "#6b6b6b", "cursor": "pointer"},
                     "encoding": {
                         "y": {"field": "label_y", "type": "quantitative"},
-                        "text": {"field": "occupation"},
+                        "text": {"field": "label_text"},
                         "opacity": {"condition": {"test": {"and": [{"param": "hover"}, {"param": "label_hover"}]}, "value": 1}, "value": 0.35}
                     }
                 }

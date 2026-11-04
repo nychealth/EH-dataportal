@@ -64,21 +64,38 @@
                 "color": {
                     "field": "group",
                     "type": "nominal",
-                    "title": null,
-                    "sort": ["Industries with common heat exposure", "All industries", "All other industries"],
                     "scale": {
                         "domain": ["Industries with common heat exposure", "All industries", "All other industries"],
                         "range": ["#d95f02", "#4d4d4d", "#1f78b4"]
                     },
-                    "legend": {
-                        "orient": "top",
-                        "direction": "vertical",
-                        "symbolType": "stroke",
-                        "symbolStrokeWidth": 3,
-                        "labelLimit": 0
-                    }
+                    "legend": null
                 }
             }
+        },
+        {
+            "description": "Direct labels at the end of each line, in place of a legend. Wrapped by hand so the plot keeps its width on phones. Vega draws a multi-line label downward from its y, so each dy is -(lines - 1) * lineHeight / 2 to center the label on its line.",
+            "transform": [
+                {"filter": "datum.temperature_F === 100"},
+                {"fold": ["Heat-exposed industries", "All industries", "All other industries"], "as": ["series", "pct"]}
+            ],
+            "encoding": {"y": {"field": "pct", "type": "quantitative"}},
+            "layer": [
+                {
+                    "transform": [{"filter": "datum.series === 'Heat-exposed industries'"}],
+                    "mark": {"type": "text", "align": "left", "baseline": "middle", "dx": 8, "dy": -14, "fontSize": 12, "lineHeight": 14, "color": "#333333"},
+                    "encoding": {"text": {"value": ["Industries with", "common heat", "exposure"]}}
+                },
+                {
+                    "transform": [{"filter": "datum.series === 'All industries'"}],
+                    "mark": {"type": "text", "align": "left", "baseline": "middle", "dx": 8, "fontSize": 12, "lineHeight": 14, "color": "#333333"},
+                    "encoding": {"text": {"value": "All industries"}}
+                },
+                {
+                    "transform": [{"filter": "datum.series === 'All other industries'"}],
+                    "mark": {"type": "text", "align": "left", "baseline": "middle", "dx": 8, "dy": -7, "fontSize": 12, "lineHeight": 14, "color": "#333333"},
+                    "encoding": {"text": {"value": ["All other", "industries"]}}
+                }
+            ]
         },
         {
             "description": "Callouts at 95°F. The bottom line's label sits below it, where the line is flat enough to collide.",
@@ -176,7 +193,6 @@
             "domain": false,
             "ticks": false,
             "labelPadding": 6
-        },
-        "legend": {"labelFontSize": 12, "labelColor": "#333333", "symbolSize": 200}
+        }
     }
 }

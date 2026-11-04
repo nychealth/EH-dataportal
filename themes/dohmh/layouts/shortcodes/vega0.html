@@ -1,8 +1,101 @@
 <div id='{{ .Get "id" }}' style="width:100%; height: {{ .Get `height` }}"></div>
 <script type="text/javascript">
-    var spec = '{{ .Get "spec" }}';
-    vegaEmbed('#{{ .Get "id" }}', spec, {renderer: "svg"}).then(function(result) {
 
-        // TOOD: do something?
+    var spec = '{{ .Get "spec" }}';
+    vegaEmbed('#{{ .Get "id" }}', spec, {renderer: "svg"}).then((result) => {
+
+        // These helpers stay in this callback because a top-level const would be redeclared by the page's next vega0 chart
+
+        // ----- keep the tooltip on screen ----- //
+
+        // vega-tooltip falls back to above-left of the pointer when no corner fits, even if that is off-screen
+
+        const keepTooltipOnScreen = (event) => {
+
+            const tooltip = document.getElementById("vg-tooltip-element");
+
+            if (!tooltip || !tooltip.classList.contains("visible")) return;
+
+            const box = tooltip.getBoundingClientRect();
+            const isOnScreen = box.left >= 0 && box.top >= 0 && box.right <= window.innerWidth && box.bottom <= window.innerHeight;
+
+            if (isOnScreen) return;
+
+            const margin = 8;
+            const pointerGap = 10;
+            const maxLeft = window.innerWidth - box.width - margin;
+            const above = event.clientY - box.height - pointerGap;
+            const below = event.clientY + pointerGap;
+
+            // Center on the pointer as far as the screen allows, and prefer above it so a finger doesn't hide the text
+
+            let top = Math.max(margin, window.innerHeight - box.height - margin);
+
+            if (above >= margin) {
+
+                top = above;
+
+            } else if (below + box.height <= window.innerHeight - margin) {
+
+                top = below;
+
+            }
+
+            tooltip.style.left = Math.max(margin, Math.min(event.clientX - box.width / 2, maxLeft)) + "px";
+            tooltip.style.top = top + "px";
+
+        };
+
+        // Setting a tooltip handler resets Vega's renderer and empties the chart, so it has to be redrawn
+
+        const defaultTooltip = result.view.tooltip();
+
+        result.view.tooltip((handler, event, item, value) => {
+            defaultTooltip(handler, event, item, value);
+            keepTooltipOnScreen(event);
+        });
+
+        result.view.runAsync();
+
+        // ----- open the tooltip on tap ----- //
+
+        // Vega shows tooltips on pointermove, which a tap never fires, so replay the hover events once the tap has finished
+
+        const chart = document.getElementById('{{ .Get "id" }}');
+        let lastPointerType = null;
+        let tappedMark = null;
+
+        const sendToMark = (mark, type, event) => {
+            const init = {bubbles: true, clientX: event.clientX, clientY: event.clientY};
+            mark.dispatchEvent(type === "mouseout" ? new MouseEvent(type, init) : new PointerEvent(type, init));
+        };
+
+        // Any new touch closes this chart's open tooltip, because the tooltip is fixed and would otherwise stay put during a scroll
+
+        document.addEventListener("pointerdown", (event) => {
+
+            lastPointerType = event.pointerType;
+
+            if (event.pointerType !== "touch" || !tappedMark) return;
+
+            sendToMark(tappedMark, "pointerout", event);
+            sendToMark(tappedMark, "mouseout", event);
+            tappedMark = null;
+
+        });
+
+        // Waits for click because the browser's own pointerout, which clears hover highlights, comes earlier in a tap
+
+        chart.addEventListener("click", (event) => {
+
+            if (lastPointerType !== "touch") return;
+
+            tappedMark = event.target;
+            sendToMark(tappedMark, "pointerover", event);
+            sendToMark(tappedMark, "pointermove", event);
+
+        });
+
     }).catch(console.error);
+
 </script>
