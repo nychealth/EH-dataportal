@@ -277,9 +277,13 @@ const renderMenuSection = (items, destination, type) => {
 
 
 // Builds the Time slider in each copy on first use, then updates it in place. Updating rather
-// than rebuilding keeps keyboard focus on the slider across selections. Left is the oldest period,
-// right the most recent. Dragging previews the period in the label; the view re-renders on
-// release (the change event), which keyboard steps also fire, one per key press.
+// than rebuilding keeps keyboard focus on the slider across selections. Left is the oldest, right
+// the most recent. Dragging previews the period in the label; the view re-renders on release (the
+// change event), which keyboard steps also fire, one per key press.
+//
+// The slider moves between stops. Usually each stop is one period. Quarterly data has up to 100
+// periods, too many to tell apart on a ~250px track, so there each stop is a year, and a bubble
+// above the thumb holds that year's quarters (renderQuarterBubble).
 
 const renderTimeSlider = (items, destination) => {
 
@@ -287,11 +291,29 @@ const renderTimeSlider = (items, destination) => {
 
     const periods = [...items].reverse();
 
-    const selectedIndex = Math.max(0, periods.findIndex(p => Number(p.value) === Number(DE.state.TimePeriodID)));
+    const selectedPeriod = periods.find(p => Number(p.value) === Number(DE.state.TimePeriodID)) ?? periods[0];
+
+    const quarterly = isQuarterlyPeriods(periods);
+
+    // Each stop carries either one period or one year's quarters.
+
+    const stops = quarterly
+        ? groupPeriodsByYear(periods).map(year => ({ label: String(year.year), year }))
+        : periods.map(period => ({ label: period.label, period }));
+
+    const selectedStopIndex = Math.max(0, quarterly
+        ? stops.findIndex(stop => stop.year.year === getPeriodYear(selectedPeriod))
+        : periods.indexOf(selectedPeriod));
+
+    // Moving to a year keeps the selected quarter where that year has it, else the nearest one.
+
+    const selectedQuarter = quarterly ? getPeriodQuarter(selectedPeriod) : null;
+
+    const periodForStop = (stop) => stop.period ?? pickNearestQuarter(stop.year.quarters, selectedQuarter);
 
     document.querySelectorAll(destination).forEach(container => {
 
-        // ----- build once: the slider and its start/end labels ----- //
+        // ----- build once: the slider, its ticks, the quarter bubble, the start/end labels ----- //
 
         let slider = container.querySelector('.de-time-slider');
 
@@ -305,7 +327,7 @@ const renderTimeSlider = (items, destination) => {
 
             if (container.dataset.labelId) slider.setAttribute('aria-labelledby', container.dataset.labelId);
 
-            // Tick marks under the track (filled in by renderTimeTicks), drawn as SVG; see
+            // Tick marks across the track (filled in by renderTimeTicks), drawn as SVG; see
             // renderTimeTicks for why. Decorative: the slider's aria-valuetext names the period.
 
             const ticks = document.createElementNS(SVG_NS, 'svg');
@@ -313,54 +335,80 @@ const renderTimeSlider = (items, destination) => {
             ticks.setAttribute('aria-hidden', 'true');
             ticks.setAttribute('focusable', 'false');
 
+            // Quarter picker for quarterly data. It sits above the thumb on screen but after the
+            // slider in the page, so Tab goes from choosing the year to choosing the quarter.
+
+            const bubble = document.createElement('div');
+            bubble.className = 'de-quarter-bubble';
+            bubble.setAttribute('role', 'radiogroup');
+            bubble.setAttribute('aria-label', 'Quarter');
+
+            const arrow = document.createElement('div');
+            arrow.className = 'de-quarter-bubble-arrow';
+            arrow.setAttribute('aria-hidden', 'true');
+
             const ends = document.createElement('div');
             ends.className = 'de-time-ends';
             ends.setAttribute('aria-hidden', 'true');
             ends.append(document.createElement('span'), document.createElement('span'));
 
-            container.append(slider, ticks, ends);
+            container.append(slider, ticks, bubble, arrow, ends);
 
             if (!timeTickRatioWatchStarted) watchTimeTickPixelRatio();
 
         }
 
         const ticks = container.querySelector('.de-time-ticks');
+        const bubble = container.querySelector('.de-quarter-bubble');
+        const arrow = container.querySelector('.de-quarter-bubble-arrow');
         const ends = container.querySelector('.de-time-ends');
 
-        // ----- update to the current periods and selection ----- //
+        // ----- update to the current stops and selection ----- //
 
-        // One period (or none) leaves nothing to slide between; the label above names it.
+        // One stop (or none) leaves nothing to slide between; the label above names the period.
 
-        const hasRange = periods.length > 1;
+        const hasRange = stops.length > 1;
 
         slider.hidden = !hasRange;
         ticks.toggleAttribute('hidden', !hasRange);   // an SVG element has no .hidden property
         ends.hidden = !hasRange;
 
-        slider.max = Math.max(0, periods.length - 1);
-        slider.value = selectedIndex;
+        // The quarterly layout leaves room above the slider for the bubble (see the SCSS).
+
+        container.classList.toggle('is-quarterly', quarterly);
+        bubble.hidden = !quarterly;
+        arrow.hidden = !quarterly;
+
+        slider.max = Math.max(0, stops.length - 1);
+        slider.value = selectedStopIndex;
 
         // Screen readers announce the period name rather than the slider's position number.
 
-        slider.setAttribute('aria-valuetext', periods[selectedIndex]?.label ?? '');
+        slider.setAttribute('aria-valuetext', selectedPeriod?.label ?? '');
 
-        ends.children[0].textContent = periods[0]?.label ?? '';
-        ends.children[1].textContent = periods[periods.length - 1]?.label ?? '';
+        ends.children[0].textContent = stops[0]?.label ?? '';
+        ends.children[1].textContent = stops[stops.length - 1]?.label ?? '';
 
-        renderTimeTicks(ticks, periods);
+        renderTimeTicks(ticks, stops.length);
+
+        if (quarterly) renderQuarterBubble(container, stops, selectedStopIndex, selectedQuarter);
 
         // ----- handlers (assigned, so repeated renders replace rather than stack) ----- //
 
-        // While dragging: the label follows the thumb, without re-rendering the view yet.
+        // While dragging: the label (and on quarterly data the bubble) follows the thumb, without
+        // re-rendering the view yet.
 
         slider.oninput = () => {
 
-            const period = periods[Number(slider.value)];
+            const stop = stops[Number(slider.value)];
+            const period = stop && periodForStop(stop);
 
             if (!period) return;
 
             slider.setAttribute('aria-valuetext', period.label);
             setSelectionLabel('time', period.label);
+
+            if (quarterly) renderQuarterBubble(container, stops, Number(slider.value), getPeriodQuarter(period));
 
         };
 
@@ -368,7 +416,8 @@ const renderTimeSlider = (items, destination) => {
 
         slider.onchange = () => {
 
-            const period = periods[Number(slider.value)];
+            const stop = stops[Number(slider.value)];
+            const period = stop && periodForStop(stop);
 
             if (!period || Number(period.value) === Number(DE.state.TimePeriodID)) return;
 
@@ -380,15 +429,13 @@ const renderTimeSlider = (items, destination) => {
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-// time slider ticks
+// quarterly time periods
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-// Most measures have 22 periods or fewer (90th percentile across the catalog), and each gets a
-// tick. Past this many, ticks would run together on a ~250px track. Only quarterly data goes past
-// it today (up to 100 quarters), and that has its own year-based ticks below; the cap is the
-// fallback for anything else that ever does.
+// True when every period is a quarter (TimeType in TimePeriods.json).
 
-const MAX_TIME_TICKS = 25;
+const isQuarterlyPeriods = (periods) =>
+    periods.length > 0 && periods.every(p => DE.lookups.timeLookup[p.value]?.TimeType === 'quarter');
 
 // Returns the calendar year a period starts in. start_period is a UTC timestamp on a quarter
 // boundary (checked across all 101 quarterly periods, 2026-11-04); the label's leading year is
@@ -402,39 +449,157 @@ const getPeriodYear = (period) => {
 
 };
 
-// Picks which periods get a tick, and whether each is a full (major) or short (minor) tick.
-// Quarterly data: a full tick at the first quarter of each year, so the years read at a glance,
-// and a short tick at each other quarter, to show the slider also stops between them.
-// Anything else: a full tick per period, thinned to every few periods past MAX_TIME_TICKS,
-// both ends always included.
+// Returns a quarterly period's quarter, 1 to 4, from its start month; the label's "Q<n>" is the
+// fallback ("2021-Q4" style for all 101 quarterly periods, 2026-11-04).
 
-const pickTimeTicks = (periods) => {
+const getPeriodQuarter = (period) => {
 
-    const lastIndex = periods.length - 1;
+    const start = DE.lookups.timeLookup[period.value]?.start_period;
 
-    const isQuarterly = periods.every(p => DE.lookups.timeLookup[p.value]?.TimeType === 'quarter');
+    if (start != null) return Math.floor(new Date(start).getUTCMonth() / 3) + 1;
 
-    if (isQuarterly) {
+    return Number(String(period.label).match(/Q([1-4])/)?.[1]) || 1;
 
-        return periods.map((period, index) => ({
-            index,
-            major: index === 0 || getPeriodYear(period) !== getPeriodYear(periods[index - 1])
-        }));
+};
+
+// Groups quarterly periods into one entry per year, oldest first, each with its periods by
+// quarter: quarters[0] is Q1, and a quarter the year has no data for is null.
+
+const groupPeriodsByYear = (periods) => {
+
+    const years = [];
+
+    periods.forEach(period => {
+
+        const year = getPeriodYear(period);
+        let entry = years[years.length - 1];
+
+        if (!entry || entry.year !== year) {
+            entry = { year, quarters: [null, null, null, null] };
+            years.push(entry);
+        }
+
+        entry.quarters[getPeriodQuarter(period) - 1] = period;
+
+    });
+
+    return years;
+
+};
+
+// Returns the year's period for the wanted quarter, or for the nearest quarter it has, preferring
+// the later of two equally near ones (the more recent data).
+
+const pickNearestQuarter = (quarters, wantedQuarter) => {
+
+    const wanted = (wantedQuarter ?? 4) - 1;
+
+    for (let distance = 0; distance < 4; distance++) {
+
+        const later = quarters[wanted + distance];
+        const earlier = quarters[wanted - distance];
+
+        if (later) return later;
+        if (earlier) return earlier;
+
     }
 
+    return null;
+
+};
+
+// Fills the quarter bubble with Q1 to Q4 for the year at stopIndex and moves it over that year's
+// stop. Quarters the year has no data for are shown but disabled, so the four keep their places.
+// Each quarter is a native radio inside its label, like the Measure and Boundary pills.
+
+const renderQuarterBubble = (container, stops, stopIndex, checkedQuarter) => {
+
+    const bubble = container.querySelector('.de-quarter-bubble');
+    const stop = stops[stopIndex];
+
+    if (!bubble || !stop?.year) return;
+
+    // Where along the thumb's travel the bubble and its arrow point, 0 to 1 (used in the SCSS).
+
+    container.style.setProperty('--de-stop', stops.length > 1 ? stopIndex / (stops.length - 1) : 0);
+
+    // Rebuilding replaces a radio that may have focus; hand focus to the new checked one.
+
+    const hadFocus = bubble.contains(document.activeElement);
+
+    bubble.replaceChildren();
+
+    stop.year.quarters.forEach((period, index) => {
+
+        const option = document.createElement('label');
+        option.className = 'de-quarter-option';
+
+        const radio = document.createElement('input');
+        radio.type = 'radio';
+        radio.className = 'sr-only';
+
+        // One group per copy (desktop and mobile), named after that copy's Time label id.
+
+        radio.name = `${container.dataset.labelId || 'time'}Quarter`;
+        radio.value = index;
+        radio.disabled = !period;
+        radio.checked = index + 1 === checkedQuarter;
+
+        option.classList.toggle('is-selected', radio.checked);
+        option.classList.toggle('is-disabled', radio.disabled);
+
+        // The visible text is short; the accessible name says which year's quarter it is.
+
+        radio.setAttribute('aria-label', `Quarter ${index + 1}, ${stop.year.year}`);
+
+        option.append(radio, document.createTextNode(`Q${index + 1}`));
+        bubble.appendChild(option);
+
+    });
+
+    bubble.onchange = (event) => {
+
+        const radio = event.target.closest('input[type="radio"]');
+        const period = radio && stop.year.quarters[Number(radio.value)];
+
+        if (!period || Number(period.value) === Number(DE.state.TimePeriodID)) return;
+
+        handleSelection('time', period.value, period.label);
+
+    };
+
+    if (hadFocus) bubble.querySelector('input:checked')?.focus();
+
+};
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// time slider ticks
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+// Most measures have 22 periods or fewer (90th percentile across the catalog), and each stop gets
+// a tick. Quarterly data has a stop per year, at most 25 today. Past this many stops, ticks would
+// run together on a ~250px track, so they are thinned to every few stops, both ends included.
+
+const MAX_TIME_TICKS = 25;
+
+// Returns the stop indexes that get a tick.
+
+const pickTimeTicks = (count) => {
+
+    const lastIndex = count - 1;
     const every = Math.ceil(lastIndex / (MAX_TIME_TICKS - 1));
 
-    return periods
-        .map((_period, index) => ({ index, major: true }))
-        .filter(tick => tick.index % every === 0 || tick.index === lastIndex);
+    return Array.from({ length: count }, (_unused, index) => index)
+        .filter(index => index % every === 0 || index === lastIndex);
 
 };
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 
-// Draws the tick marks under the Time slider, one per picked period, as rects in an SVG that spans
-// exactly the thumb center's travel (CSS insets it by half a thumb on each side), so a tick's x is
-// simply its fraction of the way along, as a percentage, and stays right at any width.
+// Draws the tick marks across the Time slider's track, one per picked stop, as rects in an SVG
+// that spans exactly the thumb center's travel (CSS insets it by half a thumb on each side), so a
+// tick's x is simply its fraction of the way along, as a percentage, and stays right at any width.
 //
 // Why SVG and not positioned boxes: some ticks drew darker and bolder than others on screens with
 // fractional scaling (Windows at 125% or 175%, or browser zoom). Measured in Chromium, 2026-11-04,
@@ -446,22 +611,26 @@ const SVG_NS = 'http://www.w3.org/2000/svg';
 // (set in the SCSS) draws each rect straight onto screen pixels without blending, and a rect a whole
 // number of screen pixels wide then covers that many pixels wherever it lands.
 
-const renderTimeTicks = (ticks, periods) => {
+const renderTimeTicks = (ticks, count) => {
 
     ticks.replaceChildren();
 
-    if (periods.length < 2) return;
+    if (count < 2) return;
 
-    const lastIndex = periods.length - 1;
+    const lastIndex = count - 1;
 
-    pickTimeTicks(periods).forEach(({ index, major }) => {
+    pickTimeTicks(count).forEach(index => {
 
         const tick = document.createElementNS(SVG_NS, 'rect');
 
-        tick.setAttribute('class', major ? 'de-time-tick' : 'de-time-tick de-time-tick-minor');
+        tick.setAttribute('class', 'de-time-tick');
         tick.setAttribute('x', `${(index / lastIndex) * 100}%`);
+
+        // The full height of the 16px SVG (--de-tick-box), which is centered on the 6px track,
+        // so each tick shows 5px above and below it.
+
         tick.setAttribute('y', 0);
-        tick.setAttribute('height', major ? 6 : 3);
+        tick.setAttribute('height', 16);
 
         ticks.appendChild(tick);
 

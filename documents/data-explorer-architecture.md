@@ -82,7 +82,9 @@ fires both before its first `await`, since neither waits on the data fetch.
 field on `DE.state`, rebuilds all three controls (which also auto-corrects a
 now-invalid GeoType or TimePeriodID), pushes to the URL, then
 `renderCurrentView(true)`. Dragging the slider only previews the period in its
-label; nothing re-renders until release. The pills are rebuilt on every change and
+label; nothing re-renders until release. On quarterly data the slider steps by
+year and a bubble above the thumb picks the quarter; moving to another year keeps
+the quarter where that year has it, else the nearest one. The pills are rebuilt on every change and
 hand focus to the new checked radio; the slider is updated in place, so it keeps focus. A geo or time change,
 or a measure change that cascades into one, first clears the table's Area search and
 re-syncs its filters to the map. `writeSelectionToURL` turns a push of the URL already
