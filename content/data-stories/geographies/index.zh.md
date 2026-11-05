@@ -134,12 +134,17 @@ photocredit: "Edwin J. Torres/Mayoral Photography Office, City of New York"
 
             spec.layer[0].data.url = topo;
             spec.layer[1].data.url = topo;
+            // layer 0 is a lightgray backdrop; left in the accessibility tree
+            // it is an unnamed graphics-symbol group (axe svg-img-alt)
+            spec.layer[0].mark.aria = false;
             
             d3.csv(csv, d3.autoType).then(csv => {
                 
                 vegaEmbed(div, spec, {renderer: "svg"}).then((res) => {
 
                     resview = res.view.insert("csv", csv).run();
+                    // vega-embed's actions <summary> holds only an SVG and has no name
+                    document.querySelector(div + ' details > summary')?.setAttribute('aria-label', 'Export or view source for this map');
 
                 });
             });

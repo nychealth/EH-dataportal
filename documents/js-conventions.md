@@ -553,6 +553,18 @@ const headerHTML =
 
 ---
 
+## Browser differences
+
+No harness here runs Firefox (audit N-109), so these are recorded as they are found.
+
+- **Read text back with `textContent`, not `innerText`, straight after writing it.** Firefox's
+  `innerText` returns text nodes written moments earlier as empty until the page lays out again;
+  Chromium returns them. `copyCitation` in `global.js` copied "Accessed at  on ." in Firefox that
+  way (audit N-108). `textContent` does not depend on layout; collapse its whitespace with
+  `.replace(/\s+/g, ' ').trim()` where the markup's line breaks should not be copied.
+
+---
+
 ## Worked example
 
 ```js

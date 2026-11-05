@@ -78,7 +78,7 @@ photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 
 由于这种投资缩减，我们看到贫困和暴力之间存在着明显的关系。随着社区贫困程度的增加，袭击事件也在增加。 
 
-<iframe title='Poverty and assaults - ranks' aria-label="Interactive chart" id="datawrapper-chart-O0SUA"
+<iframe title='Poverty and assaults - ranks' id="datawrapper-chart-639n0"
     src='//datawrapper.dwcdn.net/639n0/1/' scrolling="no" frameborder="0"
     style="width: 0; min-width: 100% !important; border: none;" height='600'></iframe>
 <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();

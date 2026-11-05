@@ -94,7 +94,7 @@ image: ds-housing.jpeg
 </div>
 <div class="wide my-4">
 <div class="py-0 mb-4">
-    <iframe src="{{< relURL >}}maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
+    <iframe src="{{< relURL >}}maps/HOLC_map/HOLC_map.html" title="HOLC redlining map" scrolling="no" frameborder="0"
         style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
 </div>
@@ -242,12 +242,17 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
 
             spec.layer[0].data.url = topo;
             spec.layer[1].data.url = topo;
+            // layer 0 is a lightgray backdrop; left in the accessibility tree
+            // it is an unnamed graphics-symbol group (axe svg-img-alt)
+            spec.layer[0].mark.aria = false;
             
             d3.csv(csv, d3.autoType).then(csv => {
                 
                 vegaEmbed(div, spec, {renderer: "svg"}).then((res) => {
 
                     resview = res.view.insert("csv", csv).run();
+                    // vega-embed's actions <summary> holds only an SVG and has no name
+                    document.querySelector(div + ' details > summary')?.setAttribute('aria-label', 'Export or view source for this map');
                 });
             });
         });
@@ -382,11 +387,11 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
 </div>
 <div class="wide my-4">
 <ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item">
+    <li class="nav-item" role="presentation">
         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home"
             role="tab" aria-controls="home" aria-selected="true">条形图</a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" role="presentation">
         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"
             role="tab" aria-controls="profile" aria-selected="false">散点图</a>
     </li>

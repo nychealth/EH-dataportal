@@ -23,15 +23,25 @@
 
             {{- partial "de-tabs" . -}}
 
+            {{/*  Announces the measure, boundary and time after each change; filled by announceSelection (menu.js).  */}}
+            <div id="selectionStatus" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+
             {{/*  Leaflet has no built-in accessible representation: the choropleth conveys data through color and
-                  hover only, and vector features aren't in the tab order. role="img" stops screen readers from
-                  trying (and failing) to traverse the map's internal DOM; the visually-hidden link gives keyboard
-                  and screen-reader users a real path to the same data.  */}}
-            <div id="map" role="img" aria-label="Interactive map. The data shown here is also available in the Table tab.">
+                  hover only, and vector features aren't in the tab order. The map is a labelled region rather than
+                  role="img", because it holds focusable links (this one and Leaflet's attribution), which an img
+                  may not contain (A-159; Chris, 2026-10-31). The visually-hidden link gives keyboard and
+                  screen-reader users a real path to the same data. It clicks the Table tab only when the table
+                  is not already open: de-tab-content.js closes a pane when its active tab is clicked while the
+                  pane shows (N-047), so the guard tests the same two conditions.  */}}
+            <div id="map" role="region" aria-label="Interactive map. The data shown here is also available in the Table tab.">
                 <a href="#v-pills-table-tab" class="sr-only sr-only-focusable"
-                    onclick="document.getElementById('v-pills-table-tab').click(); return false;">View this data as a table</a>
+                    onclick="var t = document.getElementById('v-pills-table-tab'); if (!(t.classList.contains('active') &amp;&amp; document.getElementById('v-pills-table').classList.contains('show'))) t.click(); return false;">View this data as a table</a>
                 <!-- map -->
             </div>
+
+            {{/*  Load-failure card, filled by showLoadError (app.js) when a fetch fails. Positioned over the map
+                  and tab panes rather than taking a row, so the layout does not move; empty, it renders nothing.  */}}
+            <div id="loadErrorOverlay" class="de-load-error-overlay"></div>
 
         </div>
 

@@ -64,7 +64,8 @@ $accessible-colors: true;
 
 @if $accessible-colors {
 
-    $gray-600: #777677;
+    // $gray-600 is no longer overridden here (it was #777677, 4.52:1 on white): Bootstrap's
+    // #6c757d, 4.69:1, applies (Chris, 2026-10-30).
 
     $blue: #0029F7;
     $indigo: #8f51f4;

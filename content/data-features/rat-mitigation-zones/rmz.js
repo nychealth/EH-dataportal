@@ -97,7 +97,7 @@ function getGeoJSON(x) {
     });
 }
 
-getGeoJSON('https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/rmz.geojson');
+getGeoJSON(data_repo + data_branch + '/geography/rmz.geojson');
 
        
 

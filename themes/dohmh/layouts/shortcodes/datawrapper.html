@@ -1,6 +1,11 @@
 </div>
 <div class="wide my-4">
-    <iframe title='{{ .Get "title" }}' aria-label="Interactive chart" id="datawrapper-chart-O0SUA"
+    {{- /* The id carries the chart id, the first segment of src ("ZSG5m/1/"), because the
+           resize listener below finds its iframe by "datawrapper-chart-" + that id; it also
+           keeps the id unique on a page with several charts. No aria-label: it would
+           replace the title as every chart's accessible name. */}}
+    {{- $chartId := index (split (.Get "src") "/") 0 }}
+    <iframe title='{{ .Get "title" }}' id="datawrapper-chart-{{ $chartId }}"
         src='//datawrapper.dwcdn.net/{{ .Get "src" }}' scrolling="no" frameborder="0"
         style="width: 0; min-width: 100% !important; border: none;" height='{{ .Get "height" }}'></iframe>
     <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();

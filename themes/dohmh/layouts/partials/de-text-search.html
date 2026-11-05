@@ -2,8 +2,11 @@
     <div class="col-12">
         <div class="btn-group" role="group" style="width:100%!important;">
 
-            <input 
+            {{/* indicator-search-label is the visible "Search for an indicator:" span in
+                 the two indicator-catalog layouts that include this partial */}}
+            <input
                 id="flex_search"
+                aria-labelledby="indicator-search-label"
                 type='search'
                 class='flexdatalist form-control'
                 name='indicator_name_suggestion'
@@ -72,7 +75,13 @@
 
             const generated = document.getElementById($input.attr('id') + '-flexdatalist');
 
-            if (generated) wireComboboxState(generated);
+            // The library copies no ARIA onto the input it generates, so the label the
+            // authored input carries has to be repeated here
+
+            if (generated) {
+                generated.setAttribute('aria-labelledby', 'indicator-search-label');
+                wireComboboxState(generated);
+            }
 
 
             // ----- add flexdatalist select handler -------------------------------------------------- //
