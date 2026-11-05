@@ -26,6 +26,7 @@ indicators:
       - 2065
       - 2480
       - 2481
+      - 2482
 related:
   - title: "What hot weather means for food safety"
     url: "data-stories/food/"
