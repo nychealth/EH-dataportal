@@ -2010,6 +2010,11 @@ What remains genuinely open, and needs deciding before anything is built:
   workflow, and that GitHub disables scheduled workflows after 60 days without repository activity.
   The `workflow_dispatch` claim in `CLAUDE.md` § *Branching and deployment* got a docs quote before
   it was relied on; these want the same.
+  **Both checked 2026-11-05** against GitHub's "Events that trigger workflows" page, `schedule`
+  section: "Scheduled workflows will only run on the default branch", and "In a public repository,
+  scheduled workflows are automatically disabled when no repository activity has occurred in 60
+  days". The page gives the 60-day rule for public repositories only, and `nychealth/EH-dataportal`
+  is public (`gh repo view --json visibility`, 2026-11-05), so it applies here.
 
 ---
 
