@@ -3,8 +3,8 @@
 // ======================================================================= //
 
 // UI behavior for the data-explorer tab panes (de-tab-content.html): tab
-// toggle-off, close buttons, Escape-to-close, mobile accordion, and the
-// has-open-panel state class. NOT part of the synchronous SPA bundle
+// toggle-off, close buttons, Escape-to-close, mobile accordion, the details
+// panel's height above the map legend, and the has-open-panel state class. NOT part of the synchronous SPA bundle
 // (global.js … print.js); it's loaded on its own from de-tab-content.html and
 // only touches SPA globals (updateChartPlotSize, pushSelectionToURL, DE.state.overlay)
 // from inside deferred handlers, guarded so load order never matters.
@@ -235,6 +235,94 @@ document.addEventListener('DOMContentLoaded', function() {
 
         });
     }
+});
+
+
+// ----------------------------------------------------------------------- //
+// details panel height
+// ----------------------------------------------------------------------- //
+
+// Keeps the details panel above the map legend. Both are positioned in the map area, from its top
+// and bottom, so a long panel runs under the legend, which is drawn over it. The Time slider made
+// the panel a little taller than the Time dropdown was, and at 1280x720 the legend then sat over
+// indicator 2208's slider and blocked it from the pointer (it cleared the dropdown by 3px). On a
+// phone the legend already covered the Time dropdown on production (measured 2026-11-05).
+//
+// The indicator description is the part that varies most, so it gets a max-height that ends the
+// panel just above the legend, and scrolls inside itself when the text is longer. Only the
+// description scrolls: the Measure and Boundary dropdowns below it would be clipped if they opened
+// inside a scrolling box. The desktop panel and the mobile one (#detailsContent) each have a
+// description; whichever is hidden is skipped.
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    const legend = document.querySelector('.de-legend');
+    const descriptions = document.querySelectorAll('.de-details-description');
+
+    if (!legend || !descriptions.length) return;
+
+    // Space kept between the panel and the legend, and the least height the description is ever
+    // given: on a very short screen the panel overlaps the legend again rather than shrink the
+    // description to a sliver.
+
+    const GAP_PX = 8;
+    const MIN_HEIGHT_PX = 60;
+
+    // Measures the room from the top of each visible description to the top of the legend, less
+    // whatever the panel holds below it (the controls, and on desktop the Save map / Cite row), and
+    // caps the description at it. The cap is cleared first so the measurement does not read it.
+
+    const fitDetailsDescription = () => {
+
+        const legendTop = legend.getBoundingClientRect().top;
+
+        descriptions.forEach(description => {
+
+            description.style.maxHeight = '';
+
+            const box = description.getBoundingClientRect();
+
+            if (!box.width) return;   // hidden: the desktop copy on a phone, or the mobile one closed
+
+            const panel = description.closest('.de-main-details') || description;
+            const below = Math.max(0, panel.getBoundingClientRect().bottom - box.bottom);
+            const room = Math.floor(legendTop - GAP_PX - below - box.top);
+
+            // Leave it uncapped when it already fits, so a short description never gets a scrollbar.
+
+            if (room < box.height) description.style.maxHeight = `${Math.max(MIN_HEIGHT_PX, room)}px`;
+
+        });
+    };
+
+    // Refit whenever the room can change: the map area the two are positioned in (it follows the
+    // window), the legend's own height (its contents change with each indicator), the panel header
+    // (a longer indicator name wraps onto more lines), and the description and controls themselves
+    // (each indicator brings its own text and number of time periods). One observer covers all of
+    // these, and also runs once on start. A window resize listener backs it up.
+
+    if (typeof ResizeObserver === 'function') {
+
+        const observer = new ResizeObserver(fitDetailsDescription);
+
+        if (legend.offsetParent) observer.observe(legend.offsetParent);
+        observer.observe(legend);
+        document.querySelectorAll('.de-main-details .indicator-name, .de-details-description > *, .time-holder')
+            .forEach(element => observer.observe(element));
+
+    } else {
+
+        fitDetailsDescription();
+
+    }
+
+    window.addEventListener('resize', fitDetailsDescription);
+
+    // The mobile panel has no height until it opens. Bootstrap's collapse events are triggered
+    // through jQuery, so they are listened for through jQuery too.
+
+    $('#detailsContent').on('shown.bs.collapse', fitDetailsDescription);
+
 });
 
 

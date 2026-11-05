@@ -38,7 +38,7 @@
 
     <!-- Mobile Collapsible Content -->
     <div id="detailsContent" class="collapse d-lg-none">
-        <div class="bg-white p-2 fs-sm">
+        <div class="bg-white p-2 fs-sm de-details-description">
             <p class="indicator-description">Loading indicator description...</p>
         </div>
 
@@ -74,19 +74,19 @@
                 </div>
             </div>
 
-            <!-- Dropdown 3 -->
-            <div class="card">
-                <div class="card-header pb-0">
-                    <div class="dropdown fs-sm">
-                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1" id="timeOptionsLabel1">Time: </div>
-                        <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal mb-2" type="button" id="timeOptionsDropdownButton1" aria-labelledby="timeOptionsLabel1 timeOptionsDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="flex-grow-1 time-name"></span>
-                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-de w-100 border-none time-holder" aria-labelledby="timeOptionsDropdownButton1">
+            {{/*  Time is a slider, filled by renderTimeSlider (menu.js). The time-name span holds the current
+                  period as text, which announceSelection (menu.js) and scripts/de-characterization.mjs read. It is
+                  aria-hidden because the slider announces the same text as its aria-valuetext. This mobile copy
+                  suffixes its ids with 1 so they stay unique on the page.  */}}
 
-                        </div>
+            <!-- Time -->
+            <div class="card">
+                <div class="card-header pb-2">
+                    <div class="d-flex align-items-baseline mb-1 fs-sm">
+                        <div class="font-weight-bold mr-2 text-primary" id="timeOptionsLabel1">Time:</div>
+                        <span class="font-weight-bold time-name" aria-hidden="true"></span>
                     </div>
+                    <div class="de-time-control time-holder" data-label-id="timeOptionsLabel1"></div>
                 </div>
             </div>
         </div>
@@ -94,7 +94,10 @@
 
     <!-- Desktop Content (always visible) -->
     <div class="d-none d-lg-block">
-        <div class="bg-white p-2 fs-sm border-left border-right">
+        {{/*  The description scrolls inside itself when the panel would otherwise run under the map
+              legend (fitDetailsDescription, de-tab-content.js). Only the description: the Measure and
+              Boundary dropdowns would be clipped if they opened inside a scrolling box.  */}}
+        <div class="bg-white p-2 fs-sm border-left border-right de-details-description">
             <p class="indicator-description fs-sm">Loading indicator description... </p>
         </div>
 
@@ -129,16 +132,14 @@
                 </div>
             </div>
 
-            <!-- Dropdown 3 -->
+            <!-- Time: same slider as the mobile copy above, with the label in a column to the left -->
             <div class="card border-left border-right border-bottom">
-                <div class="card-header pb-0">
-                    <div class="dropdown fs-sm d-flex align-items-center mb-2">
-                        <div class="font-weight-bold de-option-label fs-sm mr-2" style="white-space: nowrap; width:22%" id="timeOptionsLabel">Time:</div>
-                        <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal flex-grow-1" type="button" id="timeOptionsDropdownButton" aria-labelledby="timeOptionsLabel timeOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="flex-grow-1 time-name"></span>
-                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-de w-100 border-none time-holder" aria-labelledby="timeOptionsDropdownButton">
+                <div class="card-header pb-2">
+                    <div class="fs-sm d-flex align-items-start">
+                        <div class="font-weight-bold de-option-label fs-sm mr-2 pt-1" style="white-space: nowrap; width:22%; flex-shrink: 0" id="timeOptionsLabel">Time:</div>
+                        <div class="flex-grow-1">
+                            <div class="font-weight-bold time-name pt-1" aria-hidden="true"></div>
+                            <div class="de-time-control time-holder" data-label-id="timeOptionsLabel"></div>
                         </div>
                     </div>
                 </div>

@@ -655,6 +655,192 @@ $color-data-explorer: #0A408A;
         }
     }
 
+    // The indicator description scrolls when the details panel would run under the map legend; its
+    // max-height is set by fitDetailsDescription (de-tab-content.js). overscroll-behavior keeps a
+    // scroll that reaches the end from moving the map underneath.
+    .de-details-description {
+        overflow-y: auto;
+        overscroll-behavior: contain;
+    }
+
+    // Time slider. The site-wide input[type=range] rules in __portal-custom.scss draw a 25px track
+    // and a 30px square thumb, sized for other pages; this one sits in a narrow column, so it gets a
+    // slim track and a round thumb. Those rules also set -webkit-appearance: none, which is why the
+    // track and thumb are styled here rather than tinted with accent-color. Keyboard focus keeps the
+    // browser's ring (outline on the input). Start and end periods sit underneath; the selected
+    // period is written above it (.time-name).
+    // --de-thumb is the thumb's full width; renderTimeTicks (menu.js) uses it to line the tick
+    // marks up with the thumb's stops, so change it there and in the thumb rules together.
+    // --de-slider-top and --de-slider-height place the slider; the tick SVG below is centered on
+    // the same line, so the three values move together. The space above the slider is this box's
+    // padding, not the slider's margin: a top margin on the first child collapses through this
+    // box, which put the ticks 4px below the track's center (measured 2026-11-04).
+    .de-time-control {
+        --de-thumb: 18px;
+        --de-slider-top: 0.25rem;
+        --de-slider-height: 24px;
+        --de-tick-box: 16px;
+        position: relative;
+        padding-top: var(--de-slider-top);
+    }
+
+    // Stacked above the ticks, so the track crosses over each tick's middle and the thumb covers
+    // the tick it sits on.
+    .de-time-slider {
+        position: relative;
+        z-index: 1;
+        display: block;
+        width: 100%;
+        height: var(--de-slider-height);
+        margin: 0;
+        background: transparent;
+        cursor: pointer;
+
+        &::-webkit-slider-runnable-track {
+            height: 6px;
+            border-radius: 3px;
+            background: #B9C4BD;
+        }
+
+        // Chrome sizes this thumb border-box, so its width is the whole of --de-thumb. The
+        // margin centers it on the 6px track.
+        &::-webkit-slider-thumb {
+            width: var(--de-thumb);
+            height: var(--de-thumb);
+            margin-top: calc((6px - var(--de-thumb)) / 2);
+            border: 2px solid white;
+            border-radius: 50%;
+            background: $primary-dark;
+            box-shadow: 0 0 0 1px $primary-dark;
+        }
+
+        &::-moz-range-track {
+            height: 6px;
+            border-radius: 3px;
+            background: #B9C4BD;
+        }
+
+        // HYPOTHESIS (unverified, no Firefox to test with): Firefox sizes this thumb content-box,
+        // so the 2px border on each side comes off --de-thumb. Chromium's border-box sizing above
+        // was measured; if Firefox's thumb sits off its ticks, this is the line to check.
+        &::-moz-range-thumb {
+            width: calc(var(--de-thumb) - 4px);
+            height: calc(var(--de-thumb) - 4px);
+            border: 2px solid white;
+            border-radius: 50%;
+            background: $primary-dark;
+            box-shadow: 0 0 0 1px $primary-dark;
+        }
+    }
+
+    // Tick marks at the stops the thumb can land on (a period, or a year on quarterly data): an
+    // SVG (renderTimeTicks, menu.js) behind the slider, centered on the track's line, so the track
+    // cuts across the middle of each tick and the tick shows above and below it. Inset by half a
+    // thumb on each side, so its width is exactly the thumb center's travel. crispEdges keeps
+    // every tick the same weight on fractionally scaled screens (renderTimeTicks has the
+    // measurements). overflow: visible lets the end ticks, centered on the SVG's edges, draw
+    // their outer half.
+    .de-time-ticks {
+        position: absolute;
+        z-index: 0;
+        top: calc(var(--de-slider-top) + (var(--de-slider-height) - var(--de-tick-box)) / 2);
+        left: calc(var(--de-thumb) / 2);
+        width: calc(100% - var(--de-thumb));
+        height: var(--de-tick-box);
+        overflow: visible;
+        shape-rendering: crispEdges;
+        pointer-events: none;
+    }
+
+    .de-time-tick {
+        fill: #5c6b62;
+    }
+
+    // Quarter bubble (renderQuarterBubble, menu.js): Q1 to Q4 for the year under the thumb, in a
+    // rounded box above it with a small arrow pointing down at the thumb. Quarterly data moves the
+    // slider down (--de-slider-top) to make room; the ticks follow, since they read the same
+    // variable. --de-stop (0 to 1, set by script) is how far along the thumb sits. The arrow always
+    // points at the thumb; the box is held inside the control at either end of the track.
+    .de-time-control.is-quarterly {
+        --de-slider-top: 2.25rem;
+        --de-bubble-w: 8.5rem;
+    }
+
+    .de-quarter-bubble {
+        position: absolute;
+        top: 0;
+        left: clamp(
+            calc(var(--de-bubble-w) / 2),
+            calc(var(--de-thumb) / 2 + (100% - var(--de-thumb)) * var(--de-stop, 0)),
+            calc(100% - var(--de-bubble-w) / 2)
+        );
+        display: flex;
+        gap: 2px;
+        width: var(--de-bubble-w);
+        padding: 2px;
+        transform: translateX(-50%);
+        border: 1px solid $primary-dark;
+        border-radius: 999px;
+        background-color: white;
+    }
+
+    .de-quarter-bubble-arrow {
+        position: absolute;
+        top: calc(var(--de-slider-top) - 0.6rem);
+        left: calc(var(--de-thumb) / 2 + (100% - var(--de-thumb)) * var(--de-stop, 0));
+        width: 0;
+        height: 0;
+        transform: translateX(-50%);
+        border-top: 5px solid $primary-dark;
+        border-right: 5px solid transparent;
+        border-left: 5px solid transparent;
+    }
+
+    // Pill-shaped, small: green text at rest, filled when selected. A quarter
+    // with no data that year stays in its place, greyed out (WCAG exempts disabled controls from
+    // the contrast minimum).
+    .de-quarter-option {
+        flex: 1 1 0;
+        margin: 0;
+        padding: 0.15rem 0;
+        border-radius: 999px;
+        color: $primary-dark;
+        font-size: 0.75rem;
+        line-height: 1.2;
+        text-align: center;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #EFFAF4;
+        }
+
+        &.is-selected,
+        &.is-selected:hover {
+            background-color: $primary-dark;
+            color: white;
+            font-weight: 600;
+        }
+
+        &.is-disabled {
+            color: #9aa39e;
+            background-color: transparent;
+            cursor: not-allowed;
+        }
+
+        &:has(input:focus-visible) {
+            outline: 2px solid $primary-dark;
+            outline-offset: 1px;
+        }
+    }
+
+    .de-time-ends {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.5rem;
+        color: #3d4148;
+        font-size: 0.75rem;
+    }
+
     .de-accordion .card {
         border-bottom: 1px solid white !important;
     }
