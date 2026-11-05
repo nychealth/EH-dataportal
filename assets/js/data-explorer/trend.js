@@ -31,7 +31,6 @@ const getTrendLayoutConfig = (viewportWidth) => {
     // ----- legend columns by breakpoint ----- //
 
     let columns;
-    let xAxisLabelField = 'fallbackYear';
 
     if (viewportWidth < 340) {
 
@@ -40,17 +39,14 @@ const getTrendLayoutConfig = (viewportWidth) => {
     } else if (viewportWidth < 440) {
 
         columns = 2;
-        // xAxisLabelField = 'fallbackYear';
 
     } else if (viewportWidth < 1200) {
 
         columns = 3;
-        // xAxisLabelField = 'fallbackYear';
 
     } else {
 
         columns = 6;
-        // xAxisLabelField = 'TimePeriodSplit';
 
     }
 
@@ -59,7 +55,7 @@ const getTrendLayoutConfig = (viewportWidth) => {
     let mobileLegend = null;
     let endLabelFontSize = 10;
 
-    if (viewportWidth < 720) {
+    if (viewportWidth < 960) {
 
         mobileLegend = {
             "columns": 3,
@@ -75,7 +71,6 @@ const getTrendLayoutConfig = (viewportWidth) => {
 
     return {
         columns,
-        xAxisLabelField,
         mobileLegend,
         endLabelFontSize
     };
@@ -196,7 +191,6 @@ const renderTrendChart = (
 
     let {
         columns,
-        xAxisLabelField,
         mobileLegend,
         endLabelFontSize
     } = getTrendLayoutConfig(window.innerWidth);
@@ -412,6 +406,15 @@ const renderTrendChart = (
 
     }
 
+    // ----- x-axis period label width ----- //
+
+    // The space one period label needs, for the label layer's thinning below. Labels break onto a
+    // new line at each space, so the longest line sets the width: ~6px per character at the 10px
+    // label font (measured on 4- and 9-character labels), rounded up, plus a 14px gap.
+
+    const longestLabelLine = Math.max(...data.array("TimePeriod").flatMap(period => String(period).split(" ")).map(line => line.length));
+    const periodLabelWidth = 6.5 * longestLabelLine + 14;
+
     // ----- Vega-Lite spec assembly (compspec2) ----- //
 
     // Assemble the full trend spec after titles, thresholds, and layout are resolved.
@@ -505,12 +508,6 @@ const renderTrendChart = (
                 "as": "valueWithDisplayWithNote"
             },
             {
-                "window": [
-                    { "op": "row_number", "as": "index" }
-                ],
-                "sort": [{ "field": "end_period", "order": "ascending" }]
-            },
-            {
                 "calculate": "datum.TimeType === 'quarter' ? replace(datum.TimePeriod, /-Q/, ' Q') : datum.TimePeriod",
                 "as": "TimeSplit1"
             },
@@ -525,10 +522,6 @@ const renderTrendChart = (
             {
                 "calculate": "year(datum.end_period)",
                 "as": "year_end_period"
-            },
-            {
-                "calculate": "(datum.TimeType !== 'quarter' && datum.index % 2 === 0) ? datum.TimePeriodSplit : (datum.TimeType === 'quarter' ? datum.TimePeriodSplit : '')",
-                "as": "fallbackYear"
             },
             {
                 "joinaggregate": [
@@ -673,11 +666,23 @@ const renderTrendChart = (
                 }
             },
             {
+                // Period labels, thinned to fit: one row per period, ranked oldest first, keeping the
+                // latest and every Nth before it. `width` is Vega's laid-out plot width, so N follows
+                // the real layout (the print preview's too) rather than the container's; the 40 is
+                // the x scale's 20px padding on each side.
                 "mark": { "type": "text", "fontWeight": 100, "fontSize": 10 },
                 "transform": [
                     {
                         "aggregate": [{ "op": "min", "field": "end_period", "as": "min_end_period" }],
-                        "groupby": [xAxisLabelField]
+                        "groupby": ["TimePeriodSplit"]
+                    },
+                    {
+                        "window": [{ "op": "row_number", "as": "periodRank" }],
+                        "sort": [{ "field": "min_end_period", "order": "ascending" }]
+                    },
+                    { "joinaggregate": [{ "op": "count", "as": "periodCount" }] },
+                    {
+                        "filter": `(datum.periodCount - datum.periodRank) % max(1, ceil(${periodLabelWidth} * (datum.periodCount - 1) / max(1, width - 40))) === 0`
                     }
                 ],
                 "encoding": {
@@ -687,12 +692,14 @@ const renderTrendChart = (
                         "axis": { "labels": false, "grid": false, "ticks": false }
                     },
                     "y": { "value": 415 },
-                    "text": { "field": xAxisLabelField, "type": "nominal" },
+                    "text": { "field": "TimePeriodSplit", "type": "nominal" },
                     "color": { "value": "black" }
                 }
             }
         ]
     };
+
+    wrapChartTitle(compspec2.title, compspec2.width);
 
     // ----- render & export ----- //
 

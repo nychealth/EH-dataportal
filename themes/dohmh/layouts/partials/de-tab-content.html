@@ -114,7 +114,7 @@
             currently active, mirroring the Escape-key handler in
             de-tab-content.js. Hides along with the rest of #v-pills-tabContent
             when no pane is open (app.js sets display:none on the container).  */ -}}
-    <div class="bg-white d-none d-md-block" style="margin-left: -33px;">
+    <div class="bg-white d-none d-lg-block" style="margin-left: -33px;">
         <button type="button" class="bg-primary border-0 bl50 py-1 close-tab-pane de-close-tab-button" aria-label="Close">
             <img src={{ relURL "images/arrow-right.svg" }} style="margin-bottom: 2px;" alt="">
         </button>
@@ -122,7 +122,7 @@
 
     <!-- Bar -->
     <div class="tab-pane relative fade" id="v-pills-bar" role="tabpanel" aria-labelledby="v-pills-bar-tab">
-        <div class="p-2 pt-md-0">
+        <div class="p-2 pt-lg-0">
             <div id="barHolder" style="width:100%;min-height:500px;">
                 Bar chart to go here
             </div>
@@ -136,8 +136,9 @@
                 <!-- INSERT UNRELIABILITY FLAGS HERE -->
             </div>
             <div class="d-flex align-items-center pt-2">
-                <a class="btn-sm btn-light-green-bg-outline de-save-chart-button" href="#" data-print-target="chart" data-print-context="bar" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</a>
-                <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#" onclick="downloadData(); return false;"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
+                <button type="button" class="btn-sm btn-light-green-bg-outline de-save-chart-button" data-print-target="chart" data-print-context="bar" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</button>
+                <span class="ml-2">{{ partial "de-cite-popup.html" (dict "page" . "id" "bar" "class" "btn-sm btn-light-green-bg-outline") }}</span>
+                <button type="button" class="btn-sm btn-light-green-bg-outline ml-auto" onclick="downloadData();"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</button>
 
             </div>
         </div>
@@ -145,14 +146,17 @@
 
     <!-- Table -->
     <div class="tab-pane relative fade" id="v-pills-table" role="tabpanel" aria-labelledby="v-pills-table-tab">
-        <div class="pt-md-0">
+        <div class="pt-lg-0">
 
             <div id="table-filter-controls" class="p-2 pb-1 d-flex justify-content-end sr-only">
-                <button class="badge badge-pill badge-light border-0" type="button" id="tableFilterToggle">
+                {{/*  Text, not a button: nothing binds to it, and its container is sr-only, so it is the table's
+                      filter state for screen readers, written by updateTableFilterSummary (table.js) (A-160;
+                      Chris, 2026-10-31).  */}}
+                <p class="badge badge-pill badge-light border-0 mb-0" id="tableFilterToggle">
                     <i class="fas fa-sliders-h mr-1" aria-hidden="true"></i>
                     Table filters
                     <span id="tableFilterSummary" class="ml-1 text-muted d-none d-lg-inline">Current selection</span>
-                </button>
+                </p>
             </div>
 
 
@@ -163,14 +167,14 @@
             <div id="tableFilterPanel" class="px-2 pb-2">
                 <div class="bg-white">
                     <div class="row">
-                        <div class="col-md-6 mb-2 mb-md-0" >
+                        <div class="col-lg-6 mb-2 mb-lg-0" >
                             <div>
                                 <p class="fs-xs mb-1">Time periods</p>
                                 <div id="tableTimeCheckboxes" class="border de-table-optionbox" style="height: 10vh; overflow-y:scroll;"></div>
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-lg-6">
                             <div>
                                 <p class="fs-xs mb-1">Geographies</p>
                                 <div id="tableGeoCheckboxes" class="border de-table-optionbox" style="height: 10vh; overflow-y:scroll;"></div>
@@ -206,7 +210,9 @@
             </div>
 
             <div class="d-flex align-items-center p-2">
-                <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#" onclick="downloadTableData(); return false;"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
+                {{/*  The table has no Save Chart; Cite takes its place.  */}}
+                {{ partial "de-cite-popup.html" (dict "page" . "id" "table" "class" "btn-sm btn-light-green-bg-outline") }}
+                <button type="button" class="btn-sm btn-light-green-bg-outline ml-auto" onclick="downloadTableData();"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</button>
          
             </div>
         </div>
@@ -214,7 +220,7 @@
 
     <!-- Trends -->
     <div class="tab-pane relative fade" id="v-pills-trends" role="tabpanel" aria-labelledby="v-pills-trends-tab">
-        <div class="p-2 pt-md-0">
+        <div class="p-2 pt-lg-0">
             <div id="trendPillControls" class="de-viz-pill-controls pt-1">
                 <div class="de-viz-pill-row">
                     <div id="trendMeasurePills" class="de-viz-pill-group"></div>
@@ -233,8 +239,9 @@
             </div>
 
             <div class="d-flex align-items-center pt-2">
-                <a class="btn-sm btn-light-green-bg-outline de-save-chart-button" href="#" data-print-target="chart" data-print-context="trends" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</a>
-                <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#" onclick="downloadData(); return false;"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
+                <button type="button" class="btn-sm btn-light-green-bg-outline de-save-chart-button" data-print-target="chart" data-print-context="trends" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</button>
+                <span class="ml-2">{{ partial "de-cite-popup.html" (dict "page" . "id" "trends" "class" "btn-sm btn-light-green-bg-outline") }}</span>
+                <button type="button" class="btn-sm btn-light-green-bg-outline ml-auto" onclick="downloadData();"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</button>
 
             </div>
         </div>
@@ -242,7 +249,7 @@
 
     <!-- Correlate -->
     <div class="tab-pane relative fade" id="v-pills-correlate" role="tabpanel" aria-labelledby="v-pills-correlate-tab">
-        <div class="p-2 pt-md-0">
+        <div class="p-2 pt-lg-0">
             <div id="correlatePillControls" class="de-viz-pill-controls pt-1">
                 <div class="de-viz-pill-group">
                     <span class="de-viz-pill-label">Show:</span>
@@ -277,8 +284,9 @@
             </div>
 
             <div class="d-flex align-items-center pt-2">
-                <a class="btn-sm btn-light-green-bg-outline de-save-chart-button" href="#" data-print-target="chart" data-print-context="correlate" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</a>
-                <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#" onclick="downloadData(); return false;"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
+                <button type="button" class="btn-sm btn-light-green-bg-outline de-save-chart-button" data-print-target="chart" data-print-context="correlate" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</button>
+                <span class="ml-2">{{ partial "de-cite-popup.html" (dict "page" . "id" "correlate" "class" "btn-sm btn-light-green-bg-outline") }}</span>
+                <button type="button" class="btn-sm btn-light-green-bg-outline ml-auto" onclick="downloadData();"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</button>
 
             </div>
         </div>
@@ -286,7 +294,7 @@
 
     <!-- Data Source -->
     <div class="tab-pane relative fade" id="v-pills-ds" role="tabpanel" aria-labelledby="v-pills-ds-tab">
-        <div class="p-2 pt-md-0">
+        <div class="p-2 pt-lg-0">
             <p class="h5 pt-1">About the data</p>
 
             <p class="h6 border-top pt-1">How the data were calculated</p>
@@ -298,16 +306,10 @@
             <p><a href="../../about/data-sources">About the data sources on this website</a>.</p>
 
             <p class="h6 border-top pt-1">Cite the data</p>
-            <div id="citation">
-                <p><span id="citeText">
-                    New York City Department of Health, Environment & Health Data Portal. 
-                    {{ .Title }} data: 
-                    <span class="indicator-name"></span>. 
-                    Accessed at <span class="citation-url">{{ .Permalink }}</span> on
-                    <span class="citation-date">{{ time.Now | time.Format ":date_medium" }}</span>.
-                    </span>
+            <div id="citation" data-citation-location="ds">
+                <p>{{ partial "de-citation-text.html" (dict "page" . "id" "citeText" "omitOverlay" true) }}
                     <span class="float-right">
-                    <a href="#" id="citeButton" class="de-copy-citation-button" data-citation-target="citeText"><i class="fas fa-copy mr-1" aria-hidden="true"></i>Copy citation.</a>
+                    <button type="button" id="citeButton" class="de-link-button de-copy-citation-button" data-citation-target="citeText"><i class="fas fa-copy mr-1" aria-hidden="true"></i>Copy citation.</button>
                     </span>
                 </p>
             </div>
@@ -352,6 +354,16 @@
         background-color: #FAFAFA;
         font-weight: 600;
         font-size: .9em;
+        }
+    /* the group label's button (table.js) takes the cell's look; only its focus ring is its own */
+    table .group td .de-group-toggle {
+        background: none;
+        border: 0;
+        padding: 0;
+        color: inherit;
+        font: inherit;
+        text-align: left;
+        width: 100%;
         }
     .de-tab {
         font-size: 16px;

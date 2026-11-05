@@ -10,6 +10,7 @@ keywords: ["pests"]
 layout: report
 image: ratportal-screenshot.png
 report: true
+hide: true
 ---
 
 The NYC Department of Health and Mental Hygiene (Department) submits this report pursuant

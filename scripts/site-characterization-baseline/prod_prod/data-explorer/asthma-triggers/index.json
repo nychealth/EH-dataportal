@@ -105,17 +105,17 @@
             "zeroSize": 2
         },
         "links": {
-            "internal": 123,
+            "internal": 102,
             "external": 9,
-            "emptyHref": 22,
+            "emptyHref": 2,
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 35,
+            "button": 62,
             "input": 2,
             "select": 0,
             "textarea": 0,
-            "noAccessibleName": 6
+            "noAccessibleName": 0
         },
         "tables": {
             "total": 0,
@@ -123,7 +123,7 @@
             "withCaption": 0
         },
         "iframes": [],
-        "overflowX": true
+        "overflowX": false
     },
     "content": {
         "title": "Data on asthma triggers in NYC – Environment & Health Data Portal",

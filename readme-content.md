@@ -19,6 +19,8 @@ Storing resources in /assets is rarely necessary – this is for items that Hugo
 
 We have it enabled to support some layout stuff, but it would be better to avoid it. As the HTML gets more complex, it becomes harder to edit and manage. In the future, we may want to reconsider ways to use shortcodes for embedding charts in data stories, for example. 
 
+When HTML is needed for a standalone control that *does* something rather than *goes* somewhere — opening the email sign-up form, opening a note — use a button, not a link to `#`. For example: `<button type="button" class="btn btn-primary" data-subscribe-click="subscribe-page" data-toggle="modal" data-target="#subscribeModal">Open the subscription form</button>`. Inside a sentence, keep the link (`<a href="#" …>`): a button cannot wrap across lines with the text around it.
+
 ## Always use relative links  
 
 This will ensure that links work on any environment: local, staging, production. Remember that the code needed to do a relative link from a template (using `{{ .Site.BaseURL }}`) is different from what you need to do from a markdown file (using the `{{< baseURL >}}` shortcode). 

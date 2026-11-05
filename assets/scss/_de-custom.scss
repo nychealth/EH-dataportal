@@ -190,6 +190,11 @@ $comp-bad-text: #7a5c00;
 // $color-key-topics: #800080;
 $color-data-features: #800080;
 $color-data-stories: #D75047;
+
+/* $color-data-stories as *text* is 4.10:1 on white, under WCAG AA. This is the same red darkened
+   to 4.86:1, for text only; $color-data-stories stays the section colour for icons and fills,
+   which need 3:1 as graphics. The same split as $primary / $primary-dark. */
+$color-data-stories-text: #C8433A;
 $color-n-reports: #197BBD;
 $color-data-explorer: #0A408A;
 
@@ -212,7 +217,7 @@ $color-data-explorer: #0A408A;
 }
 
 .data-stories {
-    color: $color-data-stories;
+    color: $color-data-stories-text;
 
     svg path {
         fill: $color-data-stories;
@@ -511,8 +516,17 @@ $color-data-explorer: #0A408A;
     padding-top: 20px;
 }
 
-#toggleButton[aria-expanded="true"] {
+// Key-topic "Show More" stays visible once expanded and reads "Show less", so keyboard focus stays
+// on it and the list can be collapsed again. Bootstrap's collapse keeps aria-expanded in step.
+#toggleButton[aria-expanded="false"] .toggle-expanded,
+#toggleButton[aria-expanded="true"] .toggle-collapsed {
     display: none;
+}
+
+// The explorer's Measure / Boundary / Time labels sit on the card header's #DCF4E7, where
+// $primary is 3.91:1; $primary-dark is 4.74:1.
+.de-option-label {
+    color: $primary-dark;
 }
 
 
@@ -584,9 +598,26 @@ $color-data-explorer: #0A408A;
     padding: 6px 10px;
 }
 
-@media (min-width: 720px) {
+@media (min-width: 960px) {
     .de-nav-bar .nav-topic-selector {
         background-color: transparent;
+    }
+}
+
+// Data explorer load-failure card (showLoadError, app.js). Absolute inside the explorer's
+// position-relative row, so it covers the map and panes without moving them. 1001 clears
+// Leaflet's control corners (1000); the row's own z-index: 2 keeps it under site modals.
+.de-load-error-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+    width: 90%;
+    max-width: 360px;
+
+    &:empty {
+        display: none;
     }
 }
 
@@ -599,7 +630,7 @@ $color-data-explorer: #0A408A;
         padding: 5px 8px;
     }
 
-    @media (min-width: 720px) {
+    @media (min-width: 960px) {
         .indicator-selector-prompt {
             right: 14px;
             bottom: 14px;
@@ -634,7 +665,7 @@ $color-data-explorer: #0A408A;
         padding-top: 0px;
     }
 
-    @media (min-width: 720px) {
+    @media (min-width: 960px) {
         .de-accordion .card-body {
             padding-left: 122px;
         }
@@ -670,7 +701,7 @@ $color-data-explorer: #0A408A;
     }
 
     /* Ensure mobile bottom nav sits above iOS Safari toolbar */
-    @media (max-width: 719.98px) {
+    @media (max-width: 959.98px) {
         .de-tabs {
             position: fixed !important;
             left: 0 !important;
@@ -737,7 +768,7 @@ $color-data-explorer: #0A408A;
         font-size: 18px;
     }
 
-    @media (min-width: 720px) {
+    @media (min-width: 960px) {
         .de-tabs {
             right: 2rem;
             left: auto;
@@ -784,7 +815,7 @@ $color-data-explorer: #0A408A;
         background-color: white;
     }
 
-    @media (min-width: 720px) {
+    @media (min-width: 960px) {
         .de-tabs-nav {
             height: calc(100vh - 8rem);
             overflow-y: visible;
@@ -891,7 +922,7 @@ $color-data-explorer: #0A408A;
         padding: 10px 5px;
     }
 
-    @media (min-width: 720px) {
+    @media (min-width: 960px) {
         .de-tabs-nav .nav-pills .nav-link,
         .de-tabs-nav .nav-tabs .nav-link {
             width: auto;
@@ -921,7 +952,7 @@ $color-data-explorer: #0A408A;
         color: white;
     }
 
-    @media (min-width: 720px) {
+    @media (min-width: 960px) {
         .w-md-40 {
             width: 40% !important;
         }
@@ -1279,4 +1310,42 @@ $color-data-explorer: #0A408A;
     font-size: 12px;
     color: #2a2d5f;
     line-height: 1.4;
+}
+
+// Cite popups (de-cite-popup.html). Bootstrap's dropdown-menu is sized for one-line items, and the
+// citation is a paragraph carrying a long unbroken URL.
+.de-citation-menu {
+    width: 22rem;
+    max-width: 90vw;
+    white-space: normal;
+
+    .citation-url {
+        word-break: break-all;
+    }
+}
+
+// A <button> that looks like the site's links (theme.scss's `a` rule), for actions sitting beside
+// href links such as Save map. Bootstrap's .btn-link brings its own blue and a 1px border instead.
+.de-link-button {
+    background: none;
+    border: 0;
+    padding: 0;
+    color: $primary-dark;
+    cursor: pointer;
+    &:hover {
+        color: $hover;
+        // The colour shift alone (#007a31 -> #008939) is barely visible; links beside these underline.
+        text-decoration: underline;
+    }
+}
+
+// Save map and Cite in the details box take .btn-light-green-bg-outline's hover fill instead of an
+// underline. The padding is there at rest too, so the fill does not shift the strip on hover.
+.printMap .de-link-button {
+    padding: 0 0.25rem;
+    &:hover {
+        background-color: #008939;
+        color: white;
+        text-decoration: none;
+    }
 }

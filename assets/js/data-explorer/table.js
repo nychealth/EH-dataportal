@@ -324,7 +324,14 @@ const bindAreaOnlySearch = (dataTable) => {
 
     });
 
-    syncTableAreaSearchInput();
+    // A rebuilt table starts with no column search, so re-apply the kept Area term to it
+    // (setTableAreaSearch also refills the box); otherwise the box shows a filter that isn't on.
+
+    if (DE.table.tableAreaSearchValue) {
+        setTableAreaSearch(dataTable, DE.table.tableAreaSearchValue);
+    } else {
+        syncTableAreaSearchInput();
+    }
 
 };
 
@@ -838,8 +845,11 @@ const renderTable = (tableData) => {
 
                     if (last !== key) {
 
+                        // The label is a native <button> so the header is reachable and operable by keyboard
+                        //  and announces its state; its click bubbles to the td handler in bindTableGroupToggles.
+
                         $(rows).eq(i).before(
-                            `<tr class="group" data-group-level="${lvl}" ${attrsFn(time, geoTypeDesc, borough)}><td colspan="${visibleColumnsCount}" data-group-level="${lvl}"> ${group}</td></tr>`
+                            `<tr class="group" data-group-level="${lvl}" ${attrsFn(time, geoTypeDesc, borough)}><td colspan="${visibleColumnsCount}" data-group-level="${lvl}"><button type="button" class="de-group-toggle" aria-expanded="true">${group}</button></td></tr>`
                         );
 
                         last = key;
@@ -988,6 +998,7 @@ const bindTableGroupToggles = () => {
             td.removeClass('hidden');
             descendants.show();
             descendants.find('td').removeClass('hidden');
+            descendants.find('.de-group-toggle').attr('aria-expanded', 'true');
 
         } else {
 
@@ -997,5 +1008,7 @@ const bindTableGroupToggles = () => {
             descendants.hide();
 
         }
+
+        td.find('.de-group-toggle').attr('aria-expanded', td.hasClass('hidden') ? 'false' : 'true');
     });
 };

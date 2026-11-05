@@ -12,7 +12,7 @@
          the +/- button is the same control as a real button, so keyboard and screen-reader users
          can reach it. The bar itself is not the toggle: it holds the "Change dataset" button, and
          a toggle containing a button is a nested control. -->
-    <div class="bg-primary text-white px-2 py-1 w-full d-flex d-md-none mobile-details-header" style="cursor: pointer;">
+    <div class="bg-primary text-white px-2 py-1 w-full d-flex d-lg-none mobile-details-header" style="cursor: pointer;">
         <div>
             <div class="h6 font-weight-bold mb-0 py-1 main-heading indicator-name" aria-live="polite" aria-atomic="true">Loading indicator...</div>
             <div class="position-relative d-inline-flex align-items-center indicator-selector-trigger-wrap">
@@ -26,7 +26,7 @@
     </div>
 
     <!-- Desktop Indicator Header (always visible) -->
-    <div class="bg-primary text-white px-2 py-1 w-full d-none d-md-flex">
+    <div class="bg-primary text-white px-2 py-1 w-full d-none d-lg-flex">
         <div class="h6 font-weight-bold mb-0 py-1 indicator-name" aria-live="polite" aria-atomic="true">Loading indicator...</div>
         <div class="ml-2 text-nowrap flex-grow-1 text-right">
             <div class="position-relative d-inline-flex align-items-center indicator-selector-trigger-wrap">
@@ -37,7 +37,7 @@
     </div>
 
     <!-- Mobile Collapsible Content -->
-    <div id="detailsContent" class="collapse d-md-none">
+    <div id="detailsContent" class="collapse d-lg-none">
         <div class="bg-white p-2 fs-sm">
             <p class="indicator-description">Loading indicator description...</p>
         </div>
@@ -47,8 +47,8 @@
             <div class="card">
                 <div class="card-header pb-0">
                     <div class="dropdown fs-sm">
-                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Measure: </div>
-                        <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="measureOptionsDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1" id="measureOptionsLabel1">Measure: </div>
+                        <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="measureOptionsDropdownButton1" aria-labelledby="measureOptionsLabel1 measureOptionsDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="flex-grow-1 measure-name"></span>
                             <i class="fas fa-chevron-down ml-auto text-primary"></i>
                         </button>
@@ -62,8 +62,8 @@
             <div class="card">
                 <div class="card-header pb-0">
                     <div class="dropdown fs-sm">
-                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Boundary: </div>
-                        <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="geoOptionsDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1" id="geoOptionsLabel1">Boundary: </div>
+                        <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="geoOptionsDropdownButton1" aria-labelledby="geoOptionsLabel1 geoOptionsDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="flex-grow-1 geo-name"></span>
                             <i class="fas fa-chevron-down ml-auto text-primary"></i>
                         </button>
@@ -78,8 +78,8 @@
             <div class="card">
                 <div class="card-header pb-0">
                     <div class="dropdown fs-sm">
-                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Time: </div>
-                        <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal mb-2" type="button" id="timeOptionsDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1" id="timeOptionsLabel1">Time: </div>
+                        <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal mb-2" type="button" id="timeOptionsDropdownButton1" aria-labelledby="timeOptionsLabel1 timeOptionsDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="flex-grow-1 time-name"></span>
                             <i class="fas fa-chevron-down ml-auto text-primary"></i>
                         </button>
@@ -93,7 +93,7 @@
     </div>
 
     <!-- Desktop Content (always visible) -->
-    <div class="d-none d-md-block">
+    <div class="d-none d-lg-block">
         <div class="bg-white p-2 fs-sm border-left border-right">
             <p class="indicator-description fs-sm">Loading indicator description... </p>
         </div>
@@ -103,8 +103,8 @@
             <div class="card border-left border-right">
                 <div class="card-header pb-0">
                     <div class="dropdown fs-sm d-flex align-items-center">
-                        <div class="font-weight-bold text-primary fs-sm mr-2" style="white-space: nowrap; width:22%">Measure:</div>
-                        <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal flex-grow-1" type="button" id="measureOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="font-weight-bold de-option-label fs-sm mr-2" style="white-space: nowrap; width:22%" id="measureOptionsLabel">Measure:</div>
+                        <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal flex-grow-1" type="button" id="measureOptionsDropdownButton" aria-labelledby="measureOptionsLabel measureOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="flex-grow-1 measure-name"></span>
                             <i class="fas fa-chevron-down ml-auto text-primary"></i>
                         </button> 
@@ -118,8 +118,8 @@
             <div class="card border-left border-right">
                 <div class="card-header pb-0">
                     <div class="dropdown fs-sm d-flex align-items-center">
-                        <div class="font-weight-bold text-primary fs-sm mr-2" style="white-space: nowrap; width:22%">Boundary:</div>
-                        <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal flex-grow-1" type="button" id="geoOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="font-weight-bold de-option-label fs-sm mr-2" style="white-space: nowrap; width:22%" id="geoOptionsLabel">Boundary:</div>
+                        <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal flex-grow-1" type="button" id="geoOptionsDropdownButton" aria-labelledby="geoOptionsLabel geoOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="flex-grow-1 geo-name"></span>
                             <i class="fas fa-chevron-down ml-auto text-primary"></i>
                         </button>
@@ -133,8 +133,8 @@
             <div class="card border-left border-right border-bottom">
                 <div class="card-header pb-0">
                     <div class="dropdown fs-sm d-flex align-items-center mb-2">
-                        <div class="font-weight-bold text-primary fs-sm mr-2" style="white-space: nowrap; width:22%">Time:</div>
-                        <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal flex-grow-1" type="button" id="timeOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="font-weight-bold de-option-label fs-sm mr-2" style="white-space: nowrap; width:22%" id="timeOptionsLabel">Time:</div>
+                        <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal flex-grow-1" type="button" id="timeOptionsDropdownButton" aria-labelledby="timeOptionsLabel timeOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="flex-grow-1 time-name"></span>
                             <i class="fas fa-chevron-down ml-auto text-primary"></i>
                         </button>
@@ -146,7 +146,8 @@
 
             <div class="card card-header p-0 bg-transparent d-inline-block printMap border-bottom border-left border-right">
                 <div style="background-color:#DCF4E7" class="py-1 d-inline-block">
-                        <a href="#" id="deSaveMapButton" class="fs-sm mx-1 py-0 de-save-map-button" role="button" aria-label="Save map" aria-haspopup="dialog" data-print-target="map"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save map</a>
+                        <button type="button" id="deSaveMapButton" class="de-link-button fs-sm mx-1 de-save-map-button" aria-haspopup="dialog" data-print-target="map"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save map</button>
+                        {{ partial "de-cite-popup.html" (dict "page" . "id" "map" "class" "de-link-button fs-sm mx-1") }}
                     </div>
             </div>
 

@@ -63,13 +63,13 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 74,
+            "internal": 45,
             "external": 18,
-            "emptyHref": 29,
+            "emptyHref": 0,
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 5,
+            "button": 34,
             "input": 1,
             "select": 0,
             "textarea": 0,
@@ -81,7 +81,7 @@
             "withCaption": 0
         },
         "iframes": [],
-        "overflowX": true
+        "overflowX": false
     },
     "content": {
         "title": "Asthma – Environment & Health Data Portal",

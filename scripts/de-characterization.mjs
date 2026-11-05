@@ -20,7 +20,8 @@
 //   npm run characterize -- --check
 
 import { chromium } from 'playwright';
-import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { execSync } from 'node:child_process';
 import { ensureDevServer } from './dev-server.mjs';
 
@@ -41,8 +42,12 @@ const TARGETS = [
     { id: 2023, topic: 'air-quality' }
 ];
 
-const BASELINE_DIR = 'scripts/de-characterization-baseline';
-const CURRENT_DIR = 'scripts/de-characterization-current';
+// Both are filed per EHDP-data branch (<root>/<data_branch>/), as nr-characterization.mjs
+// does: staging and production data render these indicators differently (2380's
+// correlate marks read 17 on staging and 43 on production, 2026-10-31), so one baseline
+// fails on one of the two whatever it holds.
+const BASELINE_ROOT = 'scripts/de-characterization-baseline';
+const CURRENT_ROOT = 'scripts/de-characterization-current';
 
 // Console noise that predates this refactor and is not a regression signal
 // (Pagefind dev-asset 404s, resource-load failures from the dev basemap/CDN).
@@ -344,19 +349,74 @@ const captureIndicator = async (browser, target, baseURL) => {
 // main
 // ----------------------------------------------------------------------- //
 
-// Captures every target into the mode's output directory; --check then diffs
-// against the committed baseline and fails the process on any difference.
+// Which EHDP-data branch the running server is serving, or null if it could not be read.
+// head.html declares `data_branch` as a top-level `let`, so it is reachable from an
+// evaluate() but is not a window property. Read from the page rather than taken from a
+// flag, because --baseline cannot fail and a mislabelled capture would install itself
+// as the wrong branch's reference.
+const readServedBranch = async (browser, baseURL) => {
+
+    const page = await browser.newPage();
+
+    try {
+        await page.goto(`${baseURL}data-explorer/`, { waitUntil: 'load', timeout: 45000 });
+        return await page.evaluate(() => (typeof data_branch === 'undefined' ? null : data_branch));
+    } catch {
+        return null;
+    } finally {
+        await page.close();
+    }
+
+};
+
+// Captures every target into the mode's output directory under the served branch;
+// --check then diffs against that branch's committed baseline and fails the process on
+// any difference.
 const main = async () => {
 
     const { baseURL, stop } = await ensureDevServer();
 
     const mode = process.argv.includes('--baseline') ? 'baseline' : 'check';
-    const outDir = mode === 'baseline' ? BASELINE_DIR : CURRENT_DIR;
-
-    rmSync(outDir, { recursive: true, force: true });
-    mkdirSync(outDir, { recursive: true });
 
     const browser = await chromium.launch({ headless: true });
+
+    // Everything is filed under the served branch, so an unreadable one aborts rather
+    // than defaulting to a directory that is plausible and wrong.
+    const branch = await readServedBranch(browser, baseURL);
+
+    if (!branch) {
+        await browser.close();
+        await stop();
+        console.error(
+            `\nREFUSING TO RUN — could not read the served EHDP-data branch from ${baseURL}.\n` +
+            `Captures are filed per branch, so there is nowhere correct to put this one.`
+        );
+        process.exitCode = 2;
+        return;
+    }
+
+    const baselineDir = join(BASELINE_ROOT, branch);
+    const currentDir = join(CURRENT_ROOT, branch);
+
+    if (mode === 'check' && !existsSync(baselineDir)) {
+        await browser.close();
+        await stop();
+        console.error(
+            `\nNO BASELINE for EHDP-data branch "${branch}" (looked in ${baselineDir}/).\n` +
+            `Run --baseline against this server first, or point DE_BASE_URL at a server ` +
+            `serving a branch that has one.`
+        );
+        process.exitCode = 1;
+        return;
+    }
+
+    const outDir = mode === 'baseline' ? baselineDir : currentDir;
+
+    console.log(`EHDP-data branch: ${branch} — ${mode === 'baseline' ? 'writing' : 'checking against'} ${baselineDir}/`);
+
+    // Scoped to this branch's directory, so re-capturing one branch never deletes the other's.
+    rmSync(outDir, { recursive: true, force: true });
+    mkdirSync(outDir, { recursive: true });
 
     try {
         for (const target of TARGETS) {
@@ -371,14 +431,14 @@ const main = async () => {
 
     if (mode === 'check') {
         try {
-            execSync(`git diff --no-index --exit-code ${BASELINE_DIR} ${CURRENT_DIR}`, { stdio: 'inherit' });
+            execSync(`git diff --no-index --exit-code ${baselineDir} ${currentDir}`, { stdio: 'inherit' });
             console.log('\nCharacterization check PASSED — output matches baseline.');
         } catch {
             console.error('\nCharacterization check FAILED — differences shown above.');
             process.exitCode = 1;
         }
     } else {
-        console.log(`\nBaseline written to ${BASELINE_DIR}/ — commit it.`);
+        console.log(`\nBaseline written to ${baselineDir}/ — commit it.`);
     }
 
 };

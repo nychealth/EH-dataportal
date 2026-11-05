@@ -480,7 +480,7 @@ function runFinal() {
     // Message: Hot and No AC
 
     if (maxTemp >= 85 && hasAC === 'No') {
-        msg = `<p>💡 Air conditioning is the best way to stay safe when it's this hot. Since you don't have AC, <a href='https://:finder.nyc.gov/coolingcenters/'>visit a cool public place</a>, or a friend or family member who has AC. Taking a cool shower can also help temporarily. If you can't leave your home, keep your windows open if it's hotter inside than outside. Make sure to drink lots of water and avoid alcohol, caffeine, and very sugary drinks. <a href="https://www.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-heat.page">Get more information on hot weather and health</a>.</p>`;
+        msg = `<p>💡 Air conditioning is the best way to stay safe when it's this hot. Since you don't have AC, <a href='https://finder.nyc.gov/coolingcenters/'>visit a cool public place</a>, or a friend or family member who has AC. Taking a cool shower can also help temporarily. If you can't leave your home, keep your windows open if it's hotter inside than outside. Make sure to drink lots of water and avoid alcohol, caffeine, and very sugary drinks. <a href="https://www.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-heat.page">Get more information on hot weather and health</a>.</p>`;
         finalMessageText.innerHTML+= msg + '<hr class="my-2">';
     }
 
@@ -501,7 +501,7 @@ function runFinal() {
     // OVERALL AIR QUALITY MESSAGE BUNDLE
 
     if (aqi === 1 || (aqi < 4 && sensitiveGroup === 'No')) {
-        msg = `<p>✅ The air quality today is fine for you. Stay informed - sign up for air quality alerts at <a href="https://www.airnow.gov/">AirNow</a> and sign up for <a href="a858-nycnotify.nyc.gov/notifynyc/">Notify NYC alerts</a>.</p>`;
+        msg = `<p>✅ The air quality today is fine for you. Stay informed - sign up for air quality alerts at <a href="https://www.airnow.gov/">AirNow</a> and sign up for <a href="https://a858-nycnotify.nyc.gov/notifynyc/">Notify NYC alerts</a>.</p>`;
         finalMessageText.innerHTML+= msg + '<hr class="my-2">';
     }
 

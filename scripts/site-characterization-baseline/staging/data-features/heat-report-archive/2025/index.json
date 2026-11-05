@@ -75,13 +75,13 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 94,
+            "internal": 65,
             "external": 36,
-            "emptyHref": 29,
+            "emptyHref": 0,
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 9,
+            "button": 38,
             "input": 1,
             "select": 0,
             "textarea": 0,
@@ -146,7 +146,6 @@
             "/data-features/hvi/",
             "/data-stories/",
             "/data-stories/urban-heat-island/",
-            "/heat-report-archive/2024/",
             "/key-topics",
             "/key-topics/accessibility/",
             "/key-topics/airquality/",

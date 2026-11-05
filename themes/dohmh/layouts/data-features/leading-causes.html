@@ -786,6 +786,10 @@
         vegaEmbed("#chart", spec, {renderer: "svg"}).then((result) => {
 
             const view = result.view;
+
+            // vega-embed's actions control is a <summary> holding only an SVG, so it has
+            // no name; there is no embed option for one (as in nr-report/chart.js)
+            document.querySelector('#chart details > summary')?.setAttribute('aria-label', 'Export or view source for this chart');
             
             // Mouse over event - sending to other function
 
