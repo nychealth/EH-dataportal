@@ -620,7 +620,7 @@ const renderIndicatorAbout = (indicator) => {
         p.innerHTML = DOMPurify.sanitize(`<strong>${measure.MeasurementType}:</strong> ${measure.how_calculated}`);
         howCalculatedEl.appendChild(p);
 
-        if (measure.Sources) uniqueSources.add(measure.Sources);
+        if (measure.Sources) uniqueSources.add(linkifyMeasureSources(measure));
 
     });
 
@@ -628,7 +628,7 @@ const renderIndicatorAbout = (indicator) => {
 
     uniqueSources.forEach(source => {
         const p = document.createElement('p');
-        p.textContent = source;
+        p.innerHTML = DOMPurify.sanitize(source, SOURCE_SANITIZE_OPTIONS);
         dataSourcesEl.appendChild(p);
     });
 };

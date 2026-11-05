@@ -143,6 +143,7 @@ const createComparisonData = async (comps) => {
             MeasureName: d => d.Measures.MeasureName,
             MeasurementType: d => d.Measures.MeasurementType,
             Sources: d => d.Measures.Sources,
+            DataSourceLink: d => d.Measures.DataSourceLink,
             how_calculated: d => d.Measures.how_calculated,
             DisplayType: d => d.Measures.DisplayType,
             TrendNoCompare: d => d.Measures.TrendNoCompare,
