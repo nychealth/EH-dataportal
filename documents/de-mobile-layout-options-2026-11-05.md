@@ -1,6 +1,7 @@
 # Data explorer: mobile layout, findings and options (2026-11-05)
 
-Status: **options for a decision**. Nothing here is built. Once an option is chosen, the execution
+Status: **decided 2026-11-05 — Stage 0, then Option C on phones; tablet layout to be tested** (see
+Decision, below Recommendation). Nothing here is built. Once an option is chosen, the execution
 plan and its ledger go in this file (or one beside it that this file links to).
 
 Measured on `production` @ `b730ddf7d3`, `hugo serve --environment development` (Hugo 0.147.3),
@@ -162,6 +163,26 @@ simplicity.
 
 Decision needed: which option, and whether 720–959px (tablets) should get the same treatment or
 something in between, since A-308 put them on the phone layout.
+
+## Decision (Chris, 2026-11-05)
+
+- **Phones: Stage 0, then Option C.**
+- **Tablets (720–959px): keep the map and the active chart on one screen, if that isn't too
+  cluttered; settle it by testing.** Not yet decided which layout does that. Before A-308's fix
+  (`082cd56d40`) this range got the desktop side panel at 38% width, which left charts 172–275px
+  wide and clipped titles, axis numbers and the correlate chart, so "the desktop layout" is not
+  one of the candidates. Three that are:
+  - **T1, two columns:** map on the left, active view on the right, each about half the width
+    (~360–480px of chart, the width the views already handle on phones). The dropdowns stay in
+    the card above the map.
+  - **T2, stacked but sized to fit:** Option C's order, with the map's height chosen so the map
+    and the top of the active view both fit in a portrait screen (768×1024).
+  - **T3, today's overlay with Option A's collision fixes,** kept for this range only.
+
+  The test: at 768×1024 and 1024×768 (plus one current tablet's viewport, read off a real device), build
+  T1 and T2 as CSS-only prototypes and check, for each of the five views, that the chart's own
+  width is at least what it gets at 375px, that nothing is clipped, and that there is one
+  vertical scroller. T3 is the fallback if neither reads as uncluttered.
 
 ## How the chosen option would be verified
 
