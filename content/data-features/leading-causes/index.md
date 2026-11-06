@@ -20,7 +20,7 @@ keywords:
 layout: leading-causes
 vega: true
 weight: 10
-aboutTheData: "This updated leading causes of death, hospitalizations, and emergency department visits analysis was conducted using data from the New York Statewide Planning and Research Cooperative System (SPARCS) and NYC DOHMH Vital Statistics. <a href='../../key-topics/injury-and-violence/'>Explore more data on injuries in New York City</a>. Visit <a href='https://wisqars.cdc.gov/lcd/'>WISQARS</a> to explore data on injury nationwide. <br><br><strong>Data for 2021 - 2023</strong>: <a href='data/leading-causes.xlsx'>Download data, descriptions, and sources (Excel)</a>.<br><br><strong>Cite this tool:</strong> New York City Department of Health, Environment & Health Data Portal: Leading causes of injuries and deaths in NYC (2021 - 2023) "
+aboutTheData: "This updated leading causes of death, hospitalizations, and emergency department visits analysis was conducted using data from the New York Statewide Planning and Research Cooperative System (SPARCS) and NYC DOHMH Vital Statistics. <a href='../../key-topics/injury-and-violence/'>Explore more data on injuries in New York City</a>. Visit <a href='https://wisqars.cdc.gov/lcd/'>WISQARS</a> to explore data on injury nationwide. <br><br><strong>Data for 2021 - 2023</strong>: <a href='data/leading-causes.xlsx'>Download data, descriptions, and sources (Excel)</a>.<br><br><strong>Cite this tool:</strong> New York City Department of Health, Environment & Health Data Portal. Leading causes of injuries and deaths in NYC (2021 - 2023). 10-29-2026. Accessed XXX. https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/leading-causes/"
 related:
   - title: "How homicide and suicide contribute to injury deaths"
     url: "data-stories/injury-deaths/"
