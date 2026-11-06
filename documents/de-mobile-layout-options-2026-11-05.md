@@ -199,20 +199,31 @@ something in between, since A-308 put them on the phone layout.
 
 ### Ledger
 
-**Status as of 2026-11-05: plan written; no task started.** Work branch: `feature-de-mobile-layout`,
-to be cut from `docs-de-mobile-layout-options` (which holds this document) so the plan and the
-code reach `production` in one PR.
+**Status as of 2026-11-06: Tasks 1–5 done, `c1801a007b`..`b32e6b5a7f`; Task 6 needs a phone;
+Task 7 measured and waits on Chris's pick; Task 8 partly run.** Work branch: `feature-de-mobile-layout`, cut from
+`docs-de-mobile-layout-options` (which holds this document) so the plan and the code reach
+`production` in one PR.
+
+**How Tasks 1–5 were committed.** They ran overnight on one working tree and were committed
+afterwards, on Chris's go. The cumulative diff against `9fa5fd7402` had been saved after each task
+as `scripts/.sc-rebaseline/de-mobile/after-task-N.patch` (git-ignored, so on this machine only),
+beside copies of the two new files and every probe output cited below. Each commit's tree was
+built by `git apply --cached` of that patch onto `9fa5fd7402` in a temporary index, excluding this
+document, plus the new files that task had; this document's edits land in the ledger commit
+after them. Task 5's tree equals the working tree that the proofs ran on `[verified 2026-11-06:
+git diff --stat <task-5 tree> outside this document, empty; cmp of both new files against their
+saved copies]`.
 
 | # | Task | Commit | Status | Proof that ran |
 |---|---|---|---|---|
-| 1 | Fix the "+" toggle's `aria-expanded` (F10) | — | Not started | — |
-| 2 | Phone-layout probe script, run against today's tree as its control | — | Not started | — |
-| 3 | Stage 0 CSS: `overflow-y: auto`, dead rules | — | Not started | — |
-| 4 | Reorder the explorer shell's DOM to card → map → legend → views (desktop unchanged) | — | Not started | — |
-| 5 | Option C phone layout below 720px | — | Not started | — |
-| 6 | Real-phone check: scroll gestures over the map, table scroller | — | Not started | — |
-| 7 | Tablet prototypes T1 and T2, then Chris picks | — | Not started; pauses for a decision | — |
-| 8 | Harnesses, re-baseline if needed, PR | — | Not started | — |
+| 1 | Fix the "+" toggle's `aria-expanded` (F10) | `c1801a007b` | **DONE 2026-11-06** | `[verified 2026-11-05: npm run lint exit 0; served de-tab-content.625c5a2eea46acdf.js contains the jQuery listener; at 375×812, aria-expanded/icon read false/plus at load, true/minus at +0, +110 and +410ms after the toggle, false/plus after closing, true/minus after a tap on the header bar]` |
+| 2 | Phone-layout probe script, run against today's tree as its control | `48e266267c` | **DONE 2026-11-06** | `[verified 2026-11-06: node --check clean; probe-task2-control.txt: exit 1, 9 of 10 FAIL. 375×812 bar/trend/correlate/table: scrollers page + #v-pills-tabContent, Measure/Boundary/Time/Legend covered; 360×640 the same plus Change dataset covered even after scrollIntoView (F6); 375 none PASS, so the probe can pass; 360 none FAIL on Boundary covered (unpredicted; the control value)]` |
+| 3 | Stage 0 CSS: `overflow-y: auto`, dead rules | `64913f49f9` | **DONE 2026-11-06** | `[verified 2026-11-06: served theme CSS before → after: ".de-wrapper .de-wrapper" 1 → 0, "closeTabPane" 1 → 0, new fingerprint; #v-pills-tabContent computed overflowY "auto" at 375×812; probe-task3.txt byte-identical to the control, as predicted]` |
+| 4 | Reorder the explorer shell's DOM to card → map → legend → views (desktop unchanged) | `47f753af9f` | **DONE 2026-11-06** | `[verified 2026-11-06: legend block moved verbatim (diff of HEAD's lines 158–188 against de-legend.html: none); served order card, #map, legend, tabs; desktop 1280×800 screenshots of none/bar/table, tiles hidden, sha256 identical before (twice) and after; control: a 1px legend nudge changed all three hashes; desktop tab order: the map's 5 stops moved as one block from after the view panel to after the card's Save map/Cite, nothing else moved; npm run smoke (curated) 44/44 clean; phone probe rows unchanged]` |
+| 5 | Option C phone layout below 720px | `b32e6b5a7f` | **DONE 2026-11-06** | `[verified 2026-11-06: probe-task5-a.txt exit 0, 10/10 PASS, scrollers=[page] on every view except table (plus its allowed scrollers); legend, card and "+" inside the 375px viewport by bounding box; every view's end meets the tab bar's top edge when scrolled to the bottom (64px padding = 64px bar); 768×1024 and 1024×768 probe rows identical to Task 4's; 719px PASS, 720px keeps today's layout; desktop hashes identical; smoke curated 44/44; screenshots .playwright-mcp/c-<view>-<size>.png]`. Q1 still open |
+| 6 | Real-phone check: scroll gestures over the map, table scroller | — | BLOCKED on Chris's phone | — |
+| 7 | Tablet prototypes T1 and T2, then Chris picks | — | Measurements ran 2026-11-06; **waiting on Chris's pick** | See Task 7's Results. Neither prototype is in the tree `[verified 2026-11-06: tree cmp'd equal to after-task-5.patch after each was removed]` |
+| 8 | Harnesses, re-baseline if needed, PR | — | Partly run 2026-11-06 on the Task 5 tree | `[verified 2026-11-06: npm run lint exit 0 (Task 1); node scripts/de-characterization.mjs --check PASSED against production/; node scripts/characterize-env.mjs prod_prod sample PASSED, 41/41 captured, data-explorer/asthma/ and three other explorer pages compared; asthma/?id=2380 and search-results/ have no baseline record and were not compared]`. No re-baseline needed so far |
 
 ### Decisions made in this plan, and open questions
 
@@ -249,8 +260,21 @@ code reach `production` in one PR.
 listener under the comment `// Also listen for click events on the header as a backup` (the
 `setTimeout(..., 100)` that re-reads `.show`).
 
-**Interfaces:** none. `updateIconState` stays; Bootstrap's `show.bs.collapse` / `hide.bs.collapse`
-listeners above it already keep the icon and attribute in step.
+**Interfaces:** none. `updateIconState` stays.
+
+**Correction (2026-11-05, during the task).** This section first said the `show.bs.collapse` /
+`hide.bs.collapse` listeners above the deleted one already keep the icon in step. They never ran:
+they were native `addEventListener` calls, and Bootstrap 4.6.2 triggers its events through jQuery
+only `[verified 2026-11-05: on one tap, a native show.bs.collapse listener fired 0 times and a
+$().on() one fired once]`. The deleted listener was the only thing updating the icon. With it gone,
+`aria-expanded` read correctly (Bootstrap sets it) and the icon stayed "+". So the task also
+switches those two listeners to `$(detailsContent).on(…)`.
+
+The same pattern is in five more places in the explorer, outside this task:
+`de-tab-content.js` (the "has-open-panel state class" block, `show/hide/shown/hidden.bs.tab`) and
+`bar.js` (`shown.bs.tab` on the bar tab). **Not checked whether they matter**: something else may
+set `has-open-panel`, since the desktop panel does resize. Recorded as a finding for the audit
+rather than fixed here; checking each is a matter of whether its handler ever runs.
 
 Steps:
 1. Delete the listener and its comment. Expected: `npm run lint` passes.
@@ -510,13 +534,47 @@ Steps, each recorded with what was seen:
 - **T2:** Task 5's block with the breakpoint widened to 959.98px and `#map` height reduced until
   the top of the bar chart is on the first screen at 768×1024.
 
+**Correction (2026-11-06).** The steps below first said to test at 1024×768. That cannot test
+this range: 1024px is above 960, so a landscape tablet already gets the desktop layout. The range
+holds portrait tablets only, so the run used 768×1024 and 900×1200. The same correction applies
+to Task 5 step 4 and Task 8 step 2, where `1024x768` measured the desktop layout.
+
 Steps:
-1. Build T1. Probe at `768x1024 1024x768`, screenshot each view. Record the chart's rendered width
+1. Build T1. Probe at `768x1024 900x1200`, screenshot each view. Record the chart's rendered width
    (`#v-pills-tabContent .tab-pane.active svg` box) beside its 375px width from Task 5.
 2. Revert T1, build T2, same measurements.
 3. **Stop: Chris picks T1, T2 or T3** from the screenshots. Record the choice and the reason in
    Decisions above, then commit the chosen block (or, for T3, Option A's fixes scoped to 720–959,
    planned as a further task here).
+
+**Results (2026-11-06).** Both prototypes pass the probe at both sizes (one page scroller per view,
+nothing covered). Measured by `scripts/.sc-rebaseline/de-mobile/tablet-measure.mjs`; screenshots
+`.playwright-mcp/T1-<view>-<size>.png` and `T2-…`. The blocks as measured are
+`scripts/.sc-rebaseline/de-mobile/prototype-T1.scss` (the two-column grid, `#map` sticky at
+`70svh`) and `prototype-T2.scss` (Task 5's block at 720–959, `#map` at `40svh`), each appended to
+the end of `_de-custom.scss` on the Task 5 tree.
+
+The first three columns are a first visit, with the "new Data Explorer" banner showing. The last
+two are a returning visitor who dismissed it, re-measured for T1 and T2 only; the banner is 63px
+tall at these widths and 106px on phones `[verified 2026-11-06: tablet-T1-nobanner.txt,
+tablet-T2-nobanner.txt; the scripts set the banner's localStorage key before load and throw if
+#de-announcement-explorer is still present; control: without the key the banner was present and
+#map's top read 280 at 375×812, with it 174]`.
+
+| | Chart width (768 / 900) | Chart starts at (768×1024) | Map on the first screen (768×1024) | Chart starts, banner dismissed | Map on the first screen, banner dismissed |
+|---|---|---|---|---|---|
+| Phone, Task 5 (375) | 341 | 813 of 748, below the fold | 447px | not re-measured | not re-measured |
+| Today's tablet layout | 734 / 866, over the map | 465 | covered by the panel | not re-measured | not re-measured |
+| **T1, two columns** | 350 / 416 | 148 | 654px, 384 wide, beside the chart | 85 | 717px |
+| **T2, stacked** | 734 / 866 | 711 of 960, ~250px of chart showing | 410px, full width | 648 of 960, ~310px of chart showing | 410px |
+
+Banner-dismissed screenshots: `.playwright-mcp/T1-nobanner-<view>-<size>.png` and
+`T2-nobanner-…`; the phone shots `c-<view>-<size>.png` were retaken with the banner dismissed.
+
+Reading of them: T1 is the one that puts map and chart on one screen, which is what Chris asked
+for; its charts are about phone width at 768 and wider at 900, and the table's four columns fit
+(`T1-table-768x1024.png`). T2 gives the charts twice the width but shows only the top of a chart
+until the page is scrolled. A recommendation, not a decision: T1.
 
 ### Task 8: Harnesses and PR
 
@@ -532,8 +590,12 @@ Steps:
 
 ### Next command
 
+Needs from Chris, in order: (1) Q1; (2) the T1 / T2 / T3 pick; (3) a phone for Task 6. Then
+build the chosen tablet block on the Task 5 tree and run Task 8.
+
 ```bash
-git switch -c feature-de-mobile-layout docs-de-mobile-layout-options
-git config --get branch.feature-de-mobile-layout.merge   # expect no output
-# then Task 1
+git rev-parse --abbrev-ref HEAD                 # expect feature-de-mobile-layout
+git log --oneline 9fa5fd7402..HEAD              # the five task commits, then the ledger commit
+node scripts/de-mobile-probe.mjs                # expect "0 failing of 10"
+node scripts/de-mobile-probe.mjs 768x1024 900x1200   # after the tablet block lands
 ```
