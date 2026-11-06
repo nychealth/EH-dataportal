@@ -36,7 +36,7 @@ Two people dined together at a restaurant. Three days later, both diners became 
 
 After receiving the 311 complaint, the Health Department launched an investigation into the potential outbreak.
 
-<img src="flow_chart.jpg">
+<img src="flow_chart.jpg" alt="flow chart that shows the progression of a foodborne illness case through three blue boxes. The first box from left says, 'Day 1: Patron dines at restaurant.' The middle box says, 'Day 4: Symptoms begin', the last box says 'Day 9: submits a 311 complaint'">
 
 To begin the investigation, we reached out to the two diners and learned that they both ate several chicken dishes, including chicken liver. Next, we conducted an environmental assessment at the restaurant. This involves reviewing food storage and preparation practices. We found several serious public health problems:
 
@@ -72,7 +72,30 @@ This chart shows how many people were interviewed, had illnesses consistent with
 
 Through the interviews we also discovered that people were still getting sick after eating at the restaurant, even after we instructed the restaurant owners on how to correct their practices. This required us to return to the restaurant to understand why their patrons were still getting sick. Inspectors conducted additional environmental assessments and did not find any more food safety violations. However, because patrons were still getting sick, the inspectors gathered food invoices to trace where the restaurant’s chicken came from. They also collected food samples from the restaurant for bacterial testing at the NYC Health Department Public Health Laboratory. We worked with healthcare providers caring for diners who became sick to collect stool samples and brought those to the Public Health Laboratory for analysis, too. These final pieces of evidence confirmed that Campylobacter was the bacterium responsible for the outbreak:
 
-<img src="11_out_of_13.png">
+<div class="row" alt="13 plus signs, 11 of which are red indicating that 11 out of 13 stool samples tested positive for the bacterium">
+  <div class="col-12 my-1 mt-1">
+    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:tomato;size:lg"></i>
+    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:tomato;"></i>
+    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:tomato;"></i>
+    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:tomato;"></i>
+    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:tomato;"></i>
+    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:tomato;"></i>
+    <i class="fa-regular fa-square-plus fa-2xl mx-1"></i>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 my-2">
+    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:tomato;size:lg"></i>
+    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:tomato;"></i>
+    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:tomato;"></i>
+    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:tomato;"></i>
+    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:tomato;"></i>
+    <i class="fa-regular fa-square-plus fa-2xl mx-1"></i>
+    <h3 class="m-1"><p>11 out of 13 stool samples from sick patrons were <span style="color:tomato;"><strong>positive</strong></span> for <em>Campylobacter</em></h3>
+  </div>
+  
+</div>
 
 - Food samples from the restaurant’s chicken came back positive for Campylobacter.
 
