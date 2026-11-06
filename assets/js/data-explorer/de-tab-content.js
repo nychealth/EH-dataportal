@@ -271,6 +271,10 @@ document.addEventListener('DOMContentLoaded', function() {
             deTabsElement.classList.remove('has-open-panel');
 
         }
+
+        // On phones and tablets an open view overlaps the map, so the map re-fits (map.js).
+
+        if (typeof layoutStackedMap === 'function') layoutStackedMap();
     }
 
     // Monitor all tab panes for show/hide events

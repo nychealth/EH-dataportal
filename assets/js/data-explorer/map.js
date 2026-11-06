@@ -79,6 +79,90 @@ const detachMapInterop = () => {
 
 // Initialize the base tile layer early so it loads in the background
 
+// The five boroughs' extent, Tottenville to the north Bronx and the Hudson to eastern Queens:
+// the opening view on phones and tablets.
+
+const NYC_BOUNDS = [[40.4774, -74.2591], [40.9176, -73.7004]];
+
+// The stacked phone and tablet layout's breakpoint; the same one as its block in _de-custom.scss.
+
+const STACKED_LAYOUT = window.matchMedia('(max-width: 959.98px)');
+
+// Share of the map an open view covers before the page is scrolled.
+
+const SHEET_SHARE = 0.45;
+
+// ----------------------------------------------------------------------- //
+// stacked layout: map height and fit
+// ----------------------------------------------------------------------- //
+
+// Below lg the map is pinned and fills the screen between the card and the legend + tab bar, so
+// with no view open nothing is left blank under it. An open view is pulled up over the bottom
+// SHEET_SHARE of the map, and the city is fitted into the part still showing. Runs at load, on
+// resize, and from de-tab-content.js when a view opens or closes. It re-fits only when the
+// map's size or the overlap changed, so a toolbar showing or hiding does not undo a pan.
+
+let stackedLayoutKey = null;
+let screenHeightProbe = null;
+
+const layoutStackedMap = () => {
+
+    const wrapper = document.querySelector('.de-wrapper');
+    if (!currentMap || !wrapper) return;
+
+    // Leaving the stacked layout: drop its sizing and hand the map back to the desktop CSS.
+
+    if (!STACKED_LAYOUT.matches) {
+        if (stackedLayoutKey === null) return;
+        stackedLayoutKey = null;
+        wrapper.classList.remove('de-sheet-open');
+        wrapper.style.removeProperty('--de-map-height');
+        wrapper.style.removeProperty('--de-sheet-overlap');
+        currentMap.invalidateSize();
+        return;
+    }
+
+    // The small viewport height (svh) rather than innerHeight, which grows and shrinks as a
+    // mobile browser's toolbar hides and shows. Browsers without svh fall back to vh.
+
+    if (!screenHeightProbe) {
+        screenHeightProbe = document.createElement('div');
+        screenHeightProbe.style.cssText = 'position:fixed;top:0;width:0;visibility:hidden;pointer-events:none;height:100vh;height:100svh';
+        document.body.appendChild(screenHeightProbe);
+    }
+    const screenHeight = screenHeightProbe.getBoundingClientRect().height;
+
+    // The map's place in the page is the card's bottom edge: the map itself is sticky, so its own
+    // position reads 0 once the page has scrolled.
+
+    const card = document.querySelector('.de-main-details');
+    const legend = document.querySelector('.de-legend');
+    const tabBar = document.querySelector('.de-tabs-nav');
+    const mapTop = card.getBoundingClientRect().bottom + window.scrollY;
+    const mapHeight = Math.max(200, Math.round(screenHeight - mapTop - legend.offsetHeight - tabBar.offsetHeight));
+
+    const sheetOpen = document.querySelector('.de-tabs')?.classList.contains('has-open-panel');
+    const overlap = sheetOpen ? Math.round(mapHeight * SHEET_SHARE) : 0;
+
+    const key = mapHeight + '/' + overlap;
+    if (key === stackedLayoutKey) return;
+    stackedLayoutKey = key;
+
+    wrapper.style.setProperty('--de-map-height', mapHeight + 'px');
+    wrapper.style.setProperty('--de-sheet-overlap', overlap + 'px');
+    wrapper.classList.toggle('de-sheet-open', sheetOpen);
+    currentMap.invalidateSize();
+
+    // With a view open, the fit trims the city's outer edges (pad -0.1) so it draws larger in the
+    // smaller space; with none open the whole city fits.
+
+    const bounds = L.latLngBounds(NYC_BOUNDS);
+    currentMap.fitBounds(sheetOpen ? bounds.pad(-0.1) : bounds, { paddingBottomRight: [0, overlap], animate: false });
+
+};
+
+window.addEventListener('resize', layoutStackedMap);
+
 // Creates the shared Leaflet base map once and reuses it across renders.
 
 const initBaseMap = () => {
@@ -87,15 +171,27 @@ const initBaseMap = () => {
 
     if (currentMap) return; // already initialized
 
+    // Half-step zoom lets the fitted view (layoutStackedMap) land between levels: the whole city
+    // needs about 814x845px at zoom 11, so whole steps would often leave it a full level too small.
+
     currentMap = L.map('map', {
-        zoomControl: false
-    }).setView([40.700142, -73.921546], 11);
+        zoomControl: false,
+        zoomSnap: 0.5
+    });
+
+    // Below lg the stacked layout sizes the map and fits the city (layoutStackedMap); the desktop
+    // view keeps its fixed centre and zoom.
+
+    if (STACKED_LAYOUT.matches) {
+        layoutStackedMap();
+    } else {
+        currentMap.setView([40.700142, -73.921546], 11);
+    }
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}' + (L.Browser.retina ? '@2x.png' : '.png') + '?key=cb1_2vaf_1_f87644104deb54c869cef554', {
         attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
         crossOrigin: true,
         subdomains: 'abcd',
-        maxZoom: 11,
         minZoom: 7
     }).addTo(currentMap);
 
