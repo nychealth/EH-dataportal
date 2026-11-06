@@ -1338,3 +1338,40 @@ $color-data-explorer: #0A408A;
         text-decoration: none;
     }
 }
+
+// ----- Phone layout (Option C, documents/de-mobile-layout-options-2026-11-05.md) ----- //
+// Below md the explorer stops floating its pieces over the map and stacks them in DOM order
+// (card, map, legend, views; data-explorer/single.html), so the page is the only vertical
+// scroller. The tab bar stays fixed to the bottom of the screen, and the page is padded by its
+// height so nothing ends under it. !important is needed against Bootstrap's .position-absolute
+// utility and the max-width: 959.98px rules above, which carry their own.
+@media (max-width: 719.98px) {
+    .de-wrapper {
+        padding-bottom: calc(64px + env(safe-area-inset-bottom));
+
+        .de-main-details,
+        .de-legend,
+        .de-tabs {
+            position: static !important;
+            width: 100% !important;
+        }
+
+        #map {
+            height: 55vh;
+            height: 55svh; // dropped by browsers without svh, leaving the vh line
+        }
+
+        .tab-content {
+            max-height: none;
+            overflow: visible;
+        }
+
+        .de-tabs-nav {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1010; // above Leaflet's controls (1000)
+        }
+    }
+}
