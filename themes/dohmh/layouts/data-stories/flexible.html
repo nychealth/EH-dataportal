@@ -43,7 +43,7 @@
                     {{ $src := .Resources.GetMatch .Params.image }}
                     {{ with $src }}
                     {{ $image := .Resize "1200x" }}
-                        <img class="block mb-3" src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="">
+                        <img class="block mb-3" src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="{{ $.Params.image_alt | default "" }}">
                     {{ end }}
                 </div>
             </div>

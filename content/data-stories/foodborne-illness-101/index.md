@@ -17,7 +17,8 @@ keywords:
     "food",
     "restaurants",
   ]
-image: food_prep.png
+image: "food_prep.png"
+image_alt: "Someone wearing a black apron over a white shirt preparing food in a commercial kitchen"
 photocredit: Public Domain
 related:
   - title: "NYC is working to protect your health — but we can’t do it alone"

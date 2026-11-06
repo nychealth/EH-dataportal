@@ -15,6 +15,8 @@ While most page-level resources can be stored in the page's content folder, HTML
 
 Storing resources in /assets is rarely necessary – this is for items that Hugo will process during the serve or build.   
 
+For data-story header images, set `image` to the image filename and `image_alt` to a concise description of the image. Leave `image_alt` empty when the image is decorative.
+
 ## Limit HTML in Markdown files  
 
 We have it enabled to support some layout stuff, but it would be better to avoid it. As the HTML gets more complex, it becomes harder to edit and manage. In the future, we may want to reconsider ways to use shortcodes for embedding charts in data stories, for example. 

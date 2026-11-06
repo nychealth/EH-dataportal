@@ -3,6 +3,7 @@ title:
 draft: false
 date:
 image:
+image_alt:
 photocredit:
 keywords:
 categories:
