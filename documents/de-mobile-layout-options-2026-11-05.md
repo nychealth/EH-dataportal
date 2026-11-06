@@ -199,8 +199,9 @@ something in between, since A-308 put them on the phone layout.
 
 ### Ledger
 
-**Status as of 2026-11-06: Tasks 1–5 done, `c1801a007b`..`b32e6b5a7f`; Task 6 needs a phone;
-Task 7 measured and waits on Chris's pick; Task 8 partly run.** Work branch: `feature-de-mobile-layout`, cut from
+**Status as of 2026-11-06: Tasks 1–5 done, `c1801a007b`..`b32e6b5a7f`; Task 7 done (T2, reworked
+into a pinned map), `c5c4a1a225` and `ddb619e114`; Task 6 needs a phone, on the CloudCannon preview;
+Task 8 partly run. Q1 still open.** Work branch: `feature-de-mobile-layout`, cut from
 `docs-de-mobile-layout-options` (which holds this document) so the plan and the code reach
 `production` in one PR.
 
@@ -222,7 +223,7 @@ saved copies]`.
 | 4 | Reorder the explorer shell's DOM to card → map → legend → views (desktop unchanged) | `47f753af9f` | **DONE 2026-11-06** | `[verified 2026-11-06: legend block moved verbatim (diff of HEAD's lines 158–188 against de-legend.html: none); served order card, #map, legend, tabs; desktop 1280×800 screenshots of none/bar/table, tiles hidden, sha256 identical before (twice) and after; control: a 1px legend nudge changed all three hashes; desktop tab order: the map's 5 stops moved as one block from after the view panel to after the card's Save map/Cite, nothing else moved; npm run smoke (curated) 44/44 clean; phone probe rows unchanged]` |
 | 5 | Option C phone layout below 720px | `b32e6b5a7f` | **DONE 2026-11-06** | `[verified 2026-11-06: probe-task5-a.txt exit 0, 10/10 PASS, scrollers=[page] on every view except table (plus its allowed scrollers); legend, card and "+" inside the 375px viewport by bounding box; every view's end meets the tab bar's top edge when scrolled to the bottom (64px padding = 64px bar); 768×1024 and 1024×768 probe rows identical to Task 4's; 719px PASS, 720px keeps today's layout; desktop hashes identical; smoke curated 44/44; screenshots .playwright-mcp/c-<view>-<size>.png]`. Q1 still open |
 | 6 | Real-phone check: scroll gestures over the map, table scroller | — | BLOCKED on Chris's phone | — |
-| 7 | Tablet prototypes T1 and T2, then Chris picks | — | Measurements ran 2026-11-06; **waiting on Chris's pick** | See Task 7's Results. Neither prototype is in the tree `[verified 2026-11-06: tree cmp'd equal to after-task-5.patch after each was removed]` |
+| 7 | Tablet prototypes T1 and T2, then Chris picks | `c5c4a1a225`, `ddb619e114` | **DONE 2026-11-06**: Chris picked T2, then asked for the whole city on the map, no blank space under it, and an open view that covers part of the map rather than shrinking it; see Task 7's Decision | `[verified 2026-11-06: npm run lint exit 0; de-mobile-probe.mjs at 375x812 360x640 768x1024 900x1200, 20/20 PASS (probe-sheet.txt); with no view open the legend meets the tab bar and the page does not scroll at all four sizes, and the whole city is inside the map (fit-sheet.txt); tab taps at 375x812 switch the overlap 0/227/0/227px and the map stays pinned after a 300px scroll (sheet-toggle.txt); zoomed to 12 on Harlem, opening and closing bar keeps zoom 12 and Harlem within 2px of the visible middle, while an untouched map re-fits (keep-zoom.txt); desktop screenshot hashes equal Task 4's (desk-sheet.txt)]` |
 | 8 | Harnesses, re-baseline if needed, PR | — | Partly run 2026-11-06 on the Task 5 tree | `[verified 2026-11-06: npm run lint exit 0 (Task 1); node scripts/de-characterization.mjs --check PASSED against production/; node scripts/characterize-env.mjs prod_prod sample PASSED, 41/41 captured, data-explorer/asthma/ and three other explorer pages compared; asthma/?id=2380 and search-results/ have no baseline record and were not compared]`. No re-baseline needed so far |
 
 ### Decisions made in this plan, and open questions
@@ -576,6 +577,19 @@ for; its charts are about phone width at 768 and wider at 900, and the table's f
 (`T1-table-768x1024.png`). T2 gives the charts twice the width but shows only the top of a chart
 until the page is scrolled. A recommendation, not a decision: T1.
 
+**Decision (Chris, 2026-11-06): T2, then reworked.** With T2 built, the stacked layout covers
+everything below 960px, and three requests followed from the screenshots: (1) show the whole city,
+a little cut off being acceptable, and remove the tiles' `maxZoom: 11` cap; (2) no blank space under
+the map when no view is open (`overlay=none` is the default for almost every indicator), so the map
+and the open view must not have fixed proportions; (3) an open view may cover part of the map, but
+both must stay usable. Built as: the map is sticky and sized by `layoutStackedMap` (`map.js`) to fill
+the screen between the card and the legend + tab bar; an open view is pulled up over the bottom
+`SHEET_SHARE` (0.45) of the map, which re-fits the city into the part still showing; once the visitor
+has zoomed or panned, opening or closing a view keeps their zoom, stepped by `SHEET_ZOOM_STEP` (0).
+A map height of 55% and 45% of the screen was screenshotted first and rejected for (2) and (3).
+Rejected with them: a fixed `40svh` map (T2 as prototyped), which cut off Staten Island and the
+north Bronx.
+
 ### Task 8: Harnesses and PR
 
 1. `npm run lint`; `npm run smoke`; `node scripts/de-characterization.mjs --check`;
@@ -590,12 +604,12 @@ until the page is scrolled. A recommendation, not a decision: T1.
 
 ### Next command
 
-Needs from Chris, in order: (1) Q1; (2) the T1 / T2 / T3 pick; (3) a phone for Task 6. Then
-build the chosen tablet block on the Task 5 tree and run Task 8.
+Needs from Chris: Task 6 on a real phone and tablet, on the branch's CloudCannon preview; Q1;
+and whether `SHEET_SHARE` (0.45) and `SHEET_ZOOM_STEP` (0) in `assets/js/data-explorer/map.js` stay.
+Then the rest of Task 8.
 
 ```bash
 git rev-parse --abbrev-ref HEAD                 # expect feature-de-mobile-layout
-git log --oneline 9fa5fd7402..HEAD              # the five task commits, then the ledger commit
-node scripts/de-mobile-probe.mjs                # expect "0 failing of 10"
-node scripts/de-mobile-probe.mjs 768x1024 900x1200   # after the tablet block lands
+gh pr list --head feature-de-mobile-layout       # the PR into production, and its checks
+node scripts/de-mobile-probe.mjs 375x812 360x640 768x1024 900x1200   # expect "0 failing of 20"
 ```
