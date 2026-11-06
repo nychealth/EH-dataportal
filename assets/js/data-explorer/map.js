@@ -92,6 +92,12 @@ const STACKED_LAYOUT = window.matchMedia('(max-width: 959.98px)');
 
 const SHEET_SHARE = 0.45;
 
+// Zoom levels the map steps out when a view opens over a map the visitor has zoomed or panned
+// (and back in when it closes). 0 keeps their zoom; showing the same area in the 55% left would
+// take about 0.86.
+
+const SHEET_ZOOM_STEP = 0;
+
 // ----------------------------------------------------------------------- //
 // stacked layout: map height and fit
 // ----------------------------------------------------------------------- //
@@ -101,8 +107,12 @@ const SHEET_SHARE = 0.45;
 // SHEET_SHARE of the map, and the city is fitted into the part still showing. Runs at load, on
 // resize, and from de-tab-content.js when a view opens or closes. It re-fits only when the
 // map's size or the overlap changed, so a toolbar showing or hiding does not undo a pan.
+// Once the visitor has zoomed or panned, it stops re-fitting: opening or closing a view keeps
+// their zoom (less SHEET_ZOOM_STEP) and keeps the point at the middle of the visible map there.
 
 let stackedLayoutKey = null;
+let stackedOverlap = null;
+let fittedView = null;
 let screenHeightProbe = null;
 
 const layoutStackedMap = () => {
@@ -148,16 +158,36 @@ const layoutStackedMap = () => {
     if (key === stackedLayoutKey) return;
     stackedLayoutKey = key;
 
+    // The visitor has moved the map if it no longer shows the view this function last fitted.
+    // Read the point at the middle of the visible part (above any overlap) before resizing.
+
+    const moved = fittedView !== null && (currentMap.getZoom() !== fittedView.zoom || !currentMap.getCenter().equals(fittedView.center));
+    const before = currentMap.getSize();
+    const anchor = moved ? currentMap.containerPointToLatLng([before.x / 2, (before.y - stackedOverlap) / 2]) : null;
+    const previousOverlap = stackedOverlap;
+    stackedOverlap = overlap;
+
     wrapper.style.setProperty('--de-map-height', mapHeight + 'px');
     wrapper.style.setProperty('--de-sheet-overlap', overlap + 'px');
     wrapper.classList.toggle('de-sheet-open', sheetOpen);
     currentMap.invalidateSize();
 
-    // With a view open, the fit trims the city's outer edges (pad -0.1) so it draws larger in the
-    // smaller space; with none open the whole city fits.
+    // Moved: keep the zoom (stepping it by SHEET_ZOOM_STEP as a view opens or closes) and put the
+    // anchor back at the middle of the visible part, which sits overlap / 2 above the map's centre.
+
+    if (anchor) {
+        const step = overlap > previousOverlap ? -SHEET_ZOOM_STEP : overlap < previousOverlap ? SHEET_ZOOM_STEP : 0;
+        currentMap.setView(anchor, currentMap.getZoom() + step, { animate: false });
+        currentMap.panBy([0, overlap / 2], { animate: false });
+        return;
+    }
+
+    // Not moved: fit the city. With a view open, the fit trims its outer edges (pad -0.1) so it
+    // draws larger in the smaller space; with none open the whole city fits.
 
     const bounds = L.latLngBounds(NYC_BOUNDS);
     currentMap.fitBounds(sheetOpen ? bounds.pad(-0.1) : bounds, { paddingBottomRight: [0, overlap], animate: false });
+    fittedView = { zoom: currentMap.getZoom(), center: currentMap.getCenter() };
 
 };
 
