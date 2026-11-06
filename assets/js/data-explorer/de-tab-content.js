@@ -209,13 +209,14 @@ document.addEventListener('DOMContentLoaded', function() {
             mobileDetailsToggle.click();
         });
 
-        // Listen for Bootstrap collapse events
+        // Listen for Bootstrap collapse events. Bootstrap 4 triggers these through jQuery, so a
+        // native addEventListener never receives them; $().on() does.
 
-        detailsContent.addEventListener('show.bs.collapse', function() {
+        $(detailsContent).on('show.bs.collapse', function() {
             updateIconState(true);
         });
 
-        detailsContent.addEventListener('hide.bs.collapse', function() {
+        $(detailsContent).on('hide.bs.collapse', function() {
             updateIconState(false);
         });
 
@@ -223,17 +224,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const isInitiallyOpen = detailsContent.classList.contains('show');
         updateIconState(isInitiallyOpen);
-
-        // Also listen for click events on the header as a backup
-
-        mobileAccordionHeader.addEventListener('click', function() {
-
-            setTimeout(() => {
-                const isCurrentlyOpen = detailsContent.classList.contains('show');
-                updateIconState(isCurrentlyOpen);
-            }, 100);
-
-        });
     }
 });
 
