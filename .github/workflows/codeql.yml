@@ -25,8 +25,9 @@ on:
 jobs:
   analyze:
     name: Analyze
-    # only run the action if it's a push or the PR was merged
-    if: github.event_name == 'push' || github.event.pull_request.merged == true
+    # Skip only a PR that closed without merging. The old test required `push`, which is
+    # not a trigger here, so the weekly schedule and manual runs were always skipped (audit N-034).
+    if: github.event_name != 'pull_request_target' || github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     permissions:
       actions: read
