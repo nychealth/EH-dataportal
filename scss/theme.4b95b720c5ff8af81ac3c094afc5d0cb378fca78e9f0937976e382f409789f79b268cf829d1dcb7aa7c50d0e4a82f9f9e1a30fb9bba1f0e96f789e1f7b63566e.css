@@ -10862,6 +10862,20 @@ table .group td {
     color: white;
     text-decoration: none; }
 
+.de-hover-hint {
+  position: absolute;
+  z-index: 1030;
+  max-width: 16rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.25rem;
+  background-color: #1f2328;
+  color: white;
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25); }
+  .de-hover-hint[hidden] {
+    display: none; }
+
 a {
   color: #007a31; }
   a:hover {
