@@ -5,8 +5,8 @@ A-104, A-129, N-073, N-074, N-075, N-078, N-081, N-095, N-099), on branch
 `feature-audit-r11-search-metadata`, cut from the local `production` at `b730ddf7d3`. This document
 is the plan and the ledger. Rows are closed in the audit document only once their proof has run.
 
-**Status as of 2026-11-06: Tasks 0–7 done (`d6c2c91312`..`fa99cd800d`, `ba495ea83a`); Task 8
-smoke and Pagefind done, site-characterization re-baseline owed; Task 9 after.**
+**Status as of 2026-11-07: Tasks 0–9 done (`d6c2c91312`..`fa99cd800d`, `ba495ea83a`, `8cd57b7129`,
+`1cf4e4e12a`); N-073 waits on a Search Console submission.**
 
 ## Decisions
 
@@ -248,8 +248,8 @@ paragraph, the Roadmap total, R11's batch row).
 | 5 | `e7a20dfaf1` | **DONE 2026-11-06** | `t5` vs `t4`: robots `noindex` on 44 of 44 retired-explorer pages, `resources` 3 unchanged, 839 others `all`. Same build carries a whitespace trim of Tasks 2 and 4's template lines (`{{-`), which removed 6 blank lines per head — 3 they added and 3 already there; nothing else changed |
 | 6 | `fa99cd800d` | **DONE 2026-11-06** | `t6` vs `t5`: `pageLanguage` en on 870 en, `es` on 8, `zh-CN` on 8; 0 unexplained lines. Browser A/B (`translate-ab.mjs`, baseline vs `t6`, es housing story's longest `<p>`, footer `français`, run twice): `en` arm keeps "hipotecarias" untranslated both runs, `es` arm gives "saisies immobilières" both runs; each arm reproduced its own output exactly; both arms log the same 404/`ERR_FAILED` resource lines. A first run on the es home page had no power: its sampled heading is English, and both arms translated it identically |
 | 7 | `ba495ea83a` | **DONE 2026-11-06** | (b) nav-bar dropdown; route on all 886 real pages, keyboard reach and translation on asthma ?id=2380 at 375 and 1280, layout unchanged against `t6` (see Task 7) |
-| 8 | | **In progress** — smoke and Pagefind done, re-baseline owed | On `8e4bf960d7` + Task 7's `header-de.html` edit. **Smoke** (`npm run smoke:prod_prod`): PASSED, 1103 pages, Pagefind index served; 1 page, `rat-report-archive/2023/`, failed under concurrency with `t.datasetSourceUrl is not a function` and was clean on the sequential re-check — the Datawrapper runtime signature recorded in `site-wide-audit-2026-06-27.md` and `smoke-workflow-plan-2026-08-26.md`, absent from this repo's code. **Pagefind** (`node scripts/pagefind-characterization.mjs --check`): exit 1, but the log is byte-identical to the same check on `production`'s `b730ddf7d3` (both in `scripts/.sc-rebaseline/r11/t8-pagefind*.log`), so R11 changes nothing in the index — expected, since `list.html`'s `<main>` carries no `data-pagefind-body` and the other edits are in `<head>` and the header. The committed baseline is behind `production` itself (2 rat-report archive pages newly indexed, word counts on 13 pages); not re-baselined here. **Site characterization** (`npm run characterize:site:prod_prod`): exit 1 as predicted, EHDP-data unmoved (`547482b9df`); 128 of 926 pages across two fields — 86 whole pages absent (43 es + 43 zh taxonomy pages, Task 1) and `controls.button` on 42 `data-explorer` pages, every one +11 (toggle + 10 languages, Task 7) with no other changed line. Past the 25-page re-check cap, so nothing was re-checked; all 128 have the causes just named |
-| 9 | | Not started | |
+| 8 | `8cd57b7129` | **DONE 2026-11-07** (proved 2026-11-06) | **Re-baseline** at `0f3672a42c` (`node scripts/site-characterization-rebaseline.mjs`, both keys): first run exit 1, 16 pages per key unclaimed — the prescribed globs were wrong in two ways. `es/categories/**` does not match the section root, which the tool keys as `es/categories`; and Task 1 also changed `content.internalTargets` on 5 es and 5 zh stories (their keyword links), which the list left out. Corrected globs, `--report-only`: exit 0, "Nothing unexplained", 138 of 840 changed per key = 42 `data-explorer` + 10 stories + 86 removed. Tally of `git diff -U0` by key: `button` 84 each way; story link targets `/es/keywords/…` and `/zh/keywords/…` → `/keywords/…`; `/zh/data-stories/…` lines equal in `+` and `-` (reordered); `_meta.json` `gitHead`, `pages` 926 → 840, and staging's EHDP-data `56d420bada` (2026-11-05), which moved no other field. Logs and report in `scripts/.sc-rebaseline/r11/t8-rebaseline*`. The checks below ran on `8e4bf960d7` + Task 7's `header-de.html` edit. **Smoke** (`npm run smoke:prod_prod`): PASSED, 1103 pages, Pagefind index served; 1 page, `rat-report-archive/2023/`, failed under concurrency with `t.datasetSourceUrl is not a function` and was clean on the sequential re-check — the Datawrapper runtime signature recorded in `site-wide-audit-2026-06-27.md` and `smoke-workflow-plan-2026-08-26.md`, absent from this repo's code. **Pagefind** (`node scripts/pagefind-characterization.mjs --check`): exit 1, but the log is byte-identical to the same check on `production`'s `b730ddf7d3` (both in `scripts/.sc-rebaseline/r11/t8-pagefind*.log`), so R11 changes nothing in the index — expected, since `list.html`'s `<main>` carries no `data-pagefind-body` and the other edits are in `<head>` and the header. The committed baseline is behind `production` itself (2 rat-report archive pages newly indexed, word counts on 13 pages); not re-baselined here. **Site characterization** (`npm run characterize:site:prod_prod`): exit 1 as predicted, EHDP-data unmoved (`547482b9df`); 128 of 926 pages across two fields — 86 whole pages absent (43 es + 43 zh taxonomy pages, Task 1) and `controls.button` on 42 `data-explorer` pages, every one +11 (toggle + 10 languages, Task 7) with no other changed line. Past the 25-page re-check cap, so nothing was re-checked; all 128 have the causes just named |
+| 9 | `1cf4e4e12a` | **DONE 2026-11-07** (proved 2026-11-06) | `documents/site-wide-audit-2026-10.md`: nine rows FIXED (N-097 P1; A-086, A-129, N-074, N-075, N-078, N-081, N-095, N-099 P2), each keeping its original evidence with the fix appended; A-104 `OPEN (declined)`; N-073 OPEN with the Search Console note; count table, Summary paragraph, Roadmap total (50 → 40) and R11's batch row (0 P1 / 1 P2, moved below R13). `recount.py` reproduced `HEAD`'s table first (OPEN 2/48/133/2 = 185, FIXED 284, 514 rows), then read OPEN 1/39/133/3 = 176, FIXED 293; `batchcheck.py` all OK, ordered, 40 ids = 40 OPEN P1/P2; `cellcheck.py` against `HEAD`: only Status, Evidence, Tree and Priority cells changed, on exactly the 11 rows; `git diff --numstat` 17/17 |
 
 Environment: baseline build at `C:/temp/r11/base`, per-task builds at `C:/temp/r11/t<N>`; rebuild
 from `b730ddf7d3` if gone. Tasks 1–6 were built from a detached worktree, `C:/temp/r11/wt`
@@ -265,11 +265,14 @@ server running, build in the main tree directly.
 
 Next command:
 
-Re-capture both committed baselines. `--expect` claims every field on the pages it covers, so tally the
-result by key before committing it:
+All nine tasks have run; what remains is outside the repo or after review. N-073 closes when the
+sitemap is submitted through Google Search Console (who submits is not yet recorded). Then push and
+open a PR into `production`:
 
 ```bash
-node scripts/site-characterization-rebaseline.mjs --expect "es/categories/**" --expect "es/keywords/**" --expect "es/tags/**" --expect "zh/categories/**" --expect "zh/keywords/**" --expect "zh/tags/**" --expect "data-explorer/**"
-git diff -U0 -- scripts/site-characterization-baseline/ | grep -E '^[+-]\s+"' | sed -E 's/^([+-])\s+"([^"]+)".*/\1 \2/' | sort | uniq -c
-# expect: only "button" lines, on data-explorer pages, plus the removed es/zh records and _meta.json
+git push -u origin feature-audit-r11-search-metadata
+gh pr create --base production --head feature-audit-r11-search-metadata
 ```
+
+Separately, not in this batch: the committed Pagefind baseline is behind `production` itself (Task 8).
+Re-baseline it on its own branch from `production`.
