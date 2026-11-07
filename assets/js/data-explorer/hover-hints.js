@@ -157,6 +157,8 @@ const showHint = (trigger, text) => {
 
     const element = ensureHintElement();
 
+    clearTimeout(hoverHint.showTimer);
+    hoverHint.showTimer = null;
     clearTimeout(hoverHint.hideTimer);
 
     if (hoverHint.trigger && hoverHint.trigger !== trigger) removeHintDescription(hoverHint.trigger);
