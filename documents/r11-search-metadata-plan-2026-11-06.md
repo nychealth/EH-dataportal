@@ -5,8 +5,8 @@ A-104, A-129, N-073, N-074, N-075, N-078, N-081, N-095, N-099), on branch
 `feature-audit-r11-search-metadata`, cut from the local `production` at `b730ddf7d3`. This document
 is the plan and the ledger. Rows are closed in the audit document only once their proof has run.
 
-**Status as of 2026-11-06: Tasks 0–6 done (`d6c2c91312`..`fa99cd800d`); Task 7 next, which needs
-a placement decision.**
+**Status as of 2026-11-06: Tasks 0–7 done (`d6c2c91312`..`fa99cd800d`, `ba495ea83a`); Task 8
+smoke and Pagefind done, site-characterization re-baseline owed; Task 9 after.**
 
 ## Decisions
 
@@ -17,19 +17,21 @@ Taken by Chris on 2026-11-06:
   Spanish and Chinese strings someone can vouch for, and leaves the stories' own English
   "Keywords:" label), and keeping the pages under `noindex` (fixes search, leaves the WCAG 3.1.1
   mismatch).
-- **N-078: unintended — fix it.** The new explorer's topic pages get a route to Google Translate.
-  Where it goes is Task 7's decision, taken after both placements are measured.
+- **N-078: unintended — fix it.** The new explorer's topic pages get a route to Google Translate:
+  a "Translate" dropdown in the explorer's nav bar (Chris, 2026-11-06, after Task 7's
+  measurements).
 - **A-104: declined.** Client rendering of explorer indicator text stays. The row becomes
   `OPEN (declined)`, Priority `— (declined)`, the form A-007 and A-237 already use.
 - **N-073: Search Console instead.** The host root is outside this repo, so the sitemap is
   submitted through Google Search Console by whoever owns the property. No commit closes it.
 
-Proposed, not yet taken (Task 9 asks):
+Taken by Chris on 2026-11-06, after Task 7:
 
-- **A-086** is the umbrella over N-097, N-081 and N-078. Once those three close, what remains is the
-  Google Translate SVG-removal hack in `js_bottom.html` (`googleTranslateElementInit`). Proposed:
-  close A-086 as covered by its three instances and file the hack as its own P3 row, so the
-  umbrella does not stay OPEN with no instance left behind it.
+- **A-086: close it; the SVG-removal hack is fine.** A-086 is the umbrella over N-097, N-081 and
+  N-078, all three fixed here. What remained was the Google Translate SVG-removal hack in
+  `js_bottom.html` (`googleTranslateElementInit`), whose comment says those SVGs recalculate
+  styles and are never shown; it is kept as deliberate and gets no row. Rejected: filing the hack
+  as its own P3 row (proposed), and keeping A-086 OPEN narrowed to it.
 
 Applied without a decision, each mechanical:
 
@@ -169,16 +171,47 @@ places), `themes/dohmh/layouts/partials/head.html` (the "content translations" b
 
 ## Task 7: N-078 — a translate route on explorer topic pages
 
-**Files:** decided in the task.
+**Files:** `themes/dohmh/layouts/partials/header-de.html` (the `.de-nav-bar`'s right-hand group,
+before the Learn More button).
 
-- [ ] Measure two placements on a phone (375px) and a desktop (1280px) viewport, against the
-      site's breakpoints (`md` 720, `lg` 960): (a) the footer's compact `#languages` list rendered
-      on `excludeFooter` pages; (b) a header-de control that opens `#global-language`, which
-      `header-de.html` already declares and nothing opens. For each: whether the translate widget is
-      reachable by keyboard, what it costs the pinned map on phones (`feature-de-mobile-layout`,
-      #1548, changes that layout — rebase onto it if it has merged).
-- [ ] Put both measurements to Chris; record the choice above.
-- [ ] Proof: 43 of 43 topic pages reach `setLanguage` by keyboard; `npm run smoke` passes.
+- [x] Measure two placements on a phone (375px) and a desktop (1280px) viewport.
+      **Correction to (b):** `#global-language` sits inside `#global-header`, which on explorer
+      pages is itself a collapse, closed by default and opened by the logo button — a control
+      opening `#global-language` is two steps. So (b) became a "Translate" dropdown in the
+      `.de-nav-bar`, beside Learn More and modelled on its "Take Action" dropdown, holding the
+      footer's ten `.lang-select` buttons. (a) renders the footer's `#languages` list alone below
+      the app on `excludeFooter` pages. Both reuse `main.js`'s `.lang-select` → `setLanguage`.
+      #1548 was OPEN (head `f327314393`) and touches none of the files either variant edits, so
+      all three arms were built on that head, to measure its phone layout.
+      `[verified 2026-11-06: scripts/.sc-rebaseline/r11/placement-probe.mjs on
+      data-explorer/asthma/?id=2380, control / t7a.patch / t7b.patch builds; output
+      t7-placement.json, screenshots t7-shots/]`:
+
+      | Arm | Width | Route visible on load | Keys to a language | Translates | Nav bar / map | Page height |
+      |---|---|---|---|---|---|---|
+      | control | 375 | none | — | — | 68px / top 280, 327px | 740 of 740 |
+      | control | 1280 | none | — | — | 68px / top 131, 736px | 867 of 800 |
+      | (a) footer list | 375 | no — starts at 772px, below the fold | 20 Tab | yes | unchanged | **964** of 740 |
+      | (a) footer list | 1280 | no — starts at 899px | 24 Tab | yes | unchanged | 995 of 800 |
+      | (b) nav dropdown | 375 | yes, at 24px | 4 Tab, Enter, 1 Tab | yes | unchanged | 740 of 740 |
+      | (b) nav dropdown | 1280 | yes, at 22px | 4 Tab, Enter, 1 Tab | yes | unchanged | 867 of 800 |
+
+      The control has no route but does initialize the widget (`.goog-te-combo` 1), so a route
+      only has to reach `setLanguage`. (a) makes the phone page, which fits one screen on #1548's
+      layout, scroll by 224px. Console errors other than resource loads: 0 in every arm.
+- [x] Put both measurements to Chris: **(b), the nav-bar dropdown** (Chris, 2026-11-06). Rejected:
+      (a), below the fold at both widths, 20–24 Tabs away, and it makes #1548's one-screen phone
+      page scroll by 224px.
+- [x] Proof, corrected from "43 of 43 topic pages reach `setLanguage` by keyboard": the build
+      shows the route on every page and the browser shows keyboard reach on one, since all 41
+      topic pages render the same partial. `[verified 2026-11-06: main-tree build of 8e4bf960d7 +
+      the header-de.html edit; 41 data-explorer/*/ pages carry #translateToggle and had no other
+      language route, data-index and indicator-catalog keep their footer and carry no dropdown,
+      /data-explorer/ (also excludeFooter) gains it, and all 886 real pages now have a route.
+      placement-probe.mjs on data-explorer/asthma/?id=2380: visible on load at 375 and 1280,
+      4 Tab + Enter + 1 Tab to a language, page translated, 0 console errors; nav bar, map and
+      page height identical to the t6 build (t7-final.json against t7-control-t6.json)]`. Smoke
+      is Task 8.
 
 ## Task 8: Guardrails and baselines
 
@@ -195,7 +228,7 @@ places), `themes/dohmh/layouts/partials/head.html` (the "content translations" b
 **Files:** `documents/site-wide-audit-2026-10.md` (each row, the count table, the Summary
 paragraph, the Roadmap total, R11's batch row).
 
-- [ ] Ask Chris for the A-086 decision (proposed above).
+- [x] A-086 decision: close it, no row for the hack (Decisions, above). Its fix-by cell names the three instances' commits.
 - [ ] FIXED with hashes: N-097, A-129, N-075, N-074, N-095, N-099, N-081, N-078. N-075's evidence
       gains the 972-padded finding.
 - [ ] A-104 → `OPEN (declined)`, `— (declined)`.
@@ -214,8 +247,8 @@ paragraph, the Roadmap total, R11's batch row).
 | 4 | `096f5a9b5c` | **DONE 2026-11-06** | `t4` vs `t3`: 88 pager pages (not 94 — Task 1 removed the 6 es/zh ones), 88 canonical to exactly their own URL and `og:url` equal; 0 of 798 non-pager pages moved either; 424 `page/` files before and after |
 | 5 | `e7a20dfaf1` | **DONE 2026-11-06** | `t5` vs `t4`: robots `noindex` on 44 of 44 retired-explorer pages, `resources` 3 unchanged, 839 others `all`. Same build carries a whitespace trim of Tasks 2 and 4's template lines (`{{-`), which removed 6 blank lines per head — 3 they added and 3 already there; nothing else changed |
 | 6 | `fa99cd800d` | **DONE 2026-11-06** | `t6` vs `t5`: `pageLanguage` en on 870 en, `es` on 8, `zh-CN` on 8; 0 unexplained lines. Browser A/B (`translate-ab.mjs`, baseline vs `t6`, es housing story's longest `<p>`, footer `français`, run twice): `en` arm keeps "hipotecarias" untranslated both runs, `es` arm gives "saisies immobilières" both runs; each arm reproduced its own output exactly; both arms log the same 404/`ERR_FAILED` resource lines. A first run on the es home page had no power: its sampled heading is English, and both arms translated it identically |
-| 7 | | Not started | |
-| 8 | | Not started | |
+| 7 | `ba495ea83a` | **DONE 2026-11-06** | (b) nav-bar dropdown; route on all 886 real pages, keyboard reach and translation on asthma ?id=2380 at 375 and 1280, layout unchanged against `t6` (see Task 7) |
+| 8 | | **In progress** — smoke and Pagefind done, re-baseline owed | On `8e4bf960d7` + Task 7's `header-de.html` edit. **Smoke** (`npm run smoke:prod_prod`): PASSED, 1103 pages, Pagefind index served; 1 page, `rat-report-archive/2023/`, failed under concurrency with `t.datasetSourceUrl is not a function` and was clean on the sequential re-check — the Datawrapper runtime signature recorded in `site-wide-audit-2026-06-27.md` and `smoke-workflow-plan-2026-08-26.md`, absent from this repo's code. **Pagefind** (`node scripts/pagefind-characterization.mjs --check`): exit 1, but the log is byte-identical to the same check on `production`'s `b730ddf7d3` (both in `scripts/.sc-rebaseline/r11/t8-pagefind*.log`), so R11 changes nothing in the index — expected, since `list.html`'s `<main>` carries no `data-pagefind-body` and the other edits are in `<head>` and the header. The committed baseline is behind `production` itself (2 rat-report archive pages newly indexed, word counts on 13 pages); not re-baselined here. **Site characterization** (`npm run characterize:site:prod_prod`): exit 1 as predicted, EHDP-data unmoved (`547482b9df`); 128 of 926 pages across two fields — 86 whole pages absent (43 es + 43 zh taxonomy pages, Task 1) and `controls.button` on 42 `data-explorer` pages, every one +11 (toggle + 10 languages, Task 7) with no other changed line. Past the 25-page re-check cap, so nothing was re-checked; all 128 have the causes just named |
 | 9 | | Not started | |
 
 Environment: baseline build at `C:/temp/r11/base`, per-task builds at `C:/temp/r11/t<N>`; rebuild
@@ -232,9 +265,11 @@ server running, build in the main tree directly.
 
 Next command:
 
-Task 7 starts by measuring both placements; first check whether #1548 has merged, since it
-changes the explorer's phone layout:
+Re-capture both committed baselines. `--expect` claims every field on the pages it covers, so tally the
+result by key before committing it:
 
 ```bash
-gh pr view 1548 --json state,mergeCommit
+node scripts/site-characterization-rebaseline.mjs --expect "es/categories/**" --expect "es/keywords/**" --expect "es/tags/**" --expect "zh/categories/**" --expect "zh/keywords/**" --expect "zh/tags/**" --expect "data-explorer/**"
+git diff -U0 -- scripts/site-characterization-baseline/ | grep -E '^[+-]\s+"' | sed -E 's/^([+-])\s+"([^"]+)".*/\1 \2/' | sort | uniq -c
+# expect: only "button" lines, on data-explorer pages, plus the removed es/zh records and _meta.json
 ```
