@@ -5,7 +5,8 @@ A-104, A-129, N-073, N-074, N-075, N-078, N-081, N-095, N-099), on branch
 `feature-audit-r11-search-metadata`, cut from the local `production` at `b730ddf7d3`. This document
 is the plan and the ledger. Rows are closed in the audit document only once their proof has run.
 
-**Status as of 2026-11-06: decisions taken, baseline measured, Task 0 done; Task 1 next.**
+**Status as of 2026-11-06: Tasks 0–6 done (`d6c2c91312`..`fa99cd800d`); Task 7 next, which needs
+a placement decision.**
 
 ## Decisions
 
@@ -156,9 +157,12 @@ places), `themes/dohmh/layouts/partials/head.html` (the "content translations" b
 
 **Files:** `themes/dohmh/layouts/partials/js_bottom.html` (`googleTranslateElementInit`).
 
-- [ ] Fetch Google's language-code list for the Translate widget and record its URL and date here.
-      Map en → `en`, es → `es`, zh → the code that list gives for Simplified Chinese (the footer's
-      buttons already use `zh-CN`).
+- [x] Language code for zh: `zh-CN`. Correction: no code list for the website widget itself was
+      found; `docs.cloud.google.com/translate/docs/languages` (fetched 2026-11-06, undated)
+      documents the Cloud Translation API and lists Simplified Chinese as `zh-CN` or `zh`. The
+      in-repo evidence carries more weight: the footer's own button passes `data-lang="zh-CN"` to
+      the widget's `.goog-te-combo`. `js_bottom.html` had no page context, so both callers
+      (`baseof.html`, `list.html`) now pass `.`.
 - [ ] Proof: build counts (870 / 51 / 51 → 870 en, 8 es, 8 zh after Task 1, each with its
       language's code). Browser: on the es home page under an isolated server, the widget loads with
       no console error and the footer's English button translates the page.
@@ -204,25 +208,33 @@ paragraph, the Roadmap total, R11's batch row).
 | # | Commit | Status | Proof that ran |
 |---|---|---|---|
 | 0 | *no commit* — git-ignored | **DONE 2026-11-06** | re-run on `C:/temp/r11/base`; output (`scripts/.sc-rebaseline/r11/base-measure.txt`) identical to the session run's |
-| 1 | | Not started | |
-| 2 | | Not started | |
-| 3 | | Not started | |
-| 4 | | Not started | |
-| 5 | | Not started | |
-| 6 | | Not started | |
+| 1 | `d6c2c91312` | **DONE 2026-11-06** | `t1` vs baseline: real pages 972 → 886 (es 8, zh 8, 0 with the heading); the 86 removed are exactly es/zh `categories` 9, `keywords` 33, `tags` 1 each; en pages changed only by losing `hreflang="es|zh"` entries; es/zh pages only by the keyword links; 96 links into taxonomy paths, 0 unresolved, 0 into es/zh taxonomies. `r11_diff.py` 0 unexplained lines besides those and `build_datetime` |
+| 2 | `3b1cd36f55` | **DONE 2026-11-06** | `t2` vs `t1`: `og:image` and `twitter:image` absolute, unpadded, resolving on 886 of 886, equal on 886; NR report misses 210 → 0; 0 unexplained lines |
+| 3 | `330a7d1c4a` | **DONE 2026-11-06** | `t3` vs `t2`: head alternates on 24 pages (home, 6 stories, 404 × 3 languages), 24 with a self-entry, all absolute; sitemaps en 737/737, es 7/7, zh 7/7 `<loc>` absolute and 21/21 `xhtml:link` each; the index already absolute; 0 unexplained lines |
+| 4 | `096f5a9b5c` | **DONE 2026-11-06** | `t4` vs `t3`: 88 pager pages (not 94 — Task 1 removed the 6 es/zh ones), 88 canonical to exactly their own URL and `og:url` equal; 0 of 798 non-pager pages moved either; 424 `page/` files before and after |
+| 5 | `e7a20dfaf1` | **DONE 2026-11-06** | `t5` vs `t4`: robots `noindex` on 44 of 44 retired-explorer pages, `resources` 3 unchanged, 839 others `all`. Same build carries a whitespace trim of Tasks 2 and 4's template lines (`{{-`), which removed 6 blank lines per head — 3 they added and 3 already there; nothing else changed |
+| 6 | `fa99cd800d` | **DONE 2026-11-06** | `t6` vs `t5`: `pageLanguage` en on 870 en, `es` on 8, `zh-CN` on 8; 0 unexplained lines. Browser A/B (`translate-ab.mjs`, baseline vs `t6`, es housing story's longest `<p>`, footer `français`, run twice): `en` arm keeps "hipotecarias" untranslated both runs, `es` arm gives "saisies immobilières" both runs; each arm reproduced its own output exactly; both arms log the same 404/`ERR_FAILED` resource lines. A first run on the es home page had no power: its sampled heading is English, and both arms translated it identically |
 | 7 | | Not started | |
 | 8 | | Not started | |
 | 9 | | Not started | |
 
-Environment: baseline build at `C:/temp/r11/base` (short path, for `git diff --no-index`); its
-resource dir at `C:/temp/r11/res-base`. Neither is needed once Task 0 has copied the script —
-rebuild from `b730ddf7d3` if gone.
+Environment: baseline build at `C:/temp/r11/base`, per-task builds at `C:/temp/r11/t<N>`; rebuild
+from `b730ddf7d3` if gone. Tasks 1–6 were built from a detached worktree, `C:/temp/r11/wt`
+(remove with `git worktree remove --force C:/temp/r11/wt` when the batch closes), through
+`bash scripts/.sc-rebaseline/r11/build.sh <tag>`, which applies the main tree's `git diff HEAD`
+there first. Reason: while a `hugo serve --environment development --port 8080` ran in the main
+tree (started 2026-11-05 22:48, not by this work), an isolated build started in the main tree
+stalled at "Start building sites" twice, at 0.5s CPU, while the same diff built from the worktree in
+31.8s. Chris had that server stopped on 2026-11-06; the main tree then built the same tree in
+32.3s with measurements identical to `t6`. So the server blocked builds, and how is not
+established (Hugo's `.hugo_build.lock` in the project directory is an untested guess). With no
+server running, build in the main tree directly.
 
 Next command:
 
+Task 7 starts by measuring both placements; first check whether #1548 has merged, since it
+changes the explorer's phone layout:
+
 ```bash
-# Task 1, after the two edits:
-HUGO_RESOURCEDIR="C:/temp/r11/res-t1" npx hugo --environment prod_prod -d "C:/temp/r11/t1"
-MSYS_NO_PATHCONV=1 python scripts/.sc-rebaseline/r11/r11_measure.py C:/temp/r11/t1 /IndicatorPublic/
-# expect: pages by lang en 870, es 8, zh 8; N-097 0 of 8 for both
+gh pr view 1548 --json state,mergeCommit
 ```
