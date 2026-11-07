@@ -170,6 +170,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # ESLint's no-undef over the explorer and NR report bundles (audit A-073). Under a
+      # second locally, so a failure here stops the run before the build and sweep start.
+
+      - name: Lint
+        run: npm run lint
+
       # hugo-extended is an OPTIONAL dependency, so a failed platform binary
       # install is silent. Fail here, where the message is legible, rather than
       # as a server that never answers.
