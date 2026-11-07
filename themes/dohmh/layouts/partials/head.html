@@ -92,9 +92,11 @@
 
 {{- /*  content translations  */ -}}
 
+{{- /* AllTranslations, not Translations: Google wants each page to list itself among its
+       alternates, and the URLs fully qualified (audit N-074). */ -}}
 {{- if .IsTranslated -}}
-    {{- range .Translations }}
-        <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .RelPermalink }}" title="{{ .Language.LanguageName }}">
+    {{- range .AllTranslations }}
+        <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" title="{{ .Language.LanguageName }}">
     {{- end -}}
 {{- end }}
 
