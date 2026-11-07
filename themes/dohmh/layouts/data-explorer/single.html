@@ -120,6 +120,7 @@
 {{- $disparities := resources.Get "js/data-explorer/disparities.js" -}}
 {{- $printMap  := resources.Get "js/data-explorer/print-map.js" -}}
 {{- $print     := resources.Get "js/data-explorer/print.js" -}}
+{{- $hoverHints := resources.Get "js/data-explorer/hover-hints.js" -}}
 
 
 {{- $global_secure    := $global | partial "short-fingerprint.html" -}}
@@ -137,6 +138,7 @@
 {{- $disparities_secure := $disparities | partial "short-fingerprint.html" -}}
 {{- $printMap_secure  := $printMap | partial "short-fingerprint.html" -}}
 {{- $print_secure     := $print | partial "short-fingerprint.html" -}}
+{{- $hoverHints_secure := $hoverHints | partial "short-fingerprint.html" -}}
 
 
 <script type="text/javascript" src="{{ $global_secure.RelPermalink }}" integrity="{{ $global_secure.Data.Integrity }}"></script>
@@ -158,6 +160,12 @@
 
 <script type="text/javascript" src="{{ $printMap_secure.RelPermalink }}" integrity="{{ $printMap_secure.Data.Integrity }}"></script>
 <script type="text/javascript" src="{{ $print_secure.RelPermalink }}" integrity="{{ $print_secure.Data.Integrity }}"></script>
+
+{{- /*  hover-hints.js: a short hint on the buttons that open a modal (topic list, Change
+        dataset, Learn More, Save). Registers listeners only and reads no SPA state, so it
+        does not depend on its place in this list.  */}}
+
+<script type="text/javascript" src="{{ $hoverHints_secure.RelPermalink }}" integrity="{{ $hoverHints_secure.Data.Integrity }}"></script>
 
 
 <script>

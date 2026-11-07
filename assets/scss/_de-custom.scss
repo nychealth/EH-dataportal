@@ -1349,3 +1349,25 @@ $color-data-explorer: #0A408A;
         text-decoration: none;
     }
 }
+
+// Hint shown on hover or keyboard focus over a data explorer button that opens a modal
+// (hover-hints.js). Created by script on first use and positioned in page coordinates, so it
+// sits on <body> outside every explorer container. Pointer events stay on so the pointer can
+// move onto the hint without it vanishing (WCAG 1.4.13). z-index sits above the explorer's
+// tab panes and legend but below Bootstrap's modal backdrop (1040), since a modal hides it.
+.de-hover-hint {
+    position: absolute;
+    z-index: 1030;
+    max-width: 16rem;
+    padding: 0.4rem 0.6rem;
+    border-radius: 0.25rem;
+    background-color: #1f2328;
+    color: white;
+    font-size: 0.8125rem;
+    line-height: 1.35;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+
+    &[hidden] {
+        display: none;
+    }
+}

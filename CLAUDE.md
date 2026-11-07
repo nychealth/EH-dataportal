@@ -452,11 +452,11 @@ Adding a library call to a template's JS means adding its `lib-*` include too �
 
 ### Data explorer
 
-`assets/js/data-explorer/` is sixteen vanilla-JS files loaded as classic `<script>` tags sharing one top-level scope. **Load order is set in [data-explorer/single.html](themes/dohmh/layouts/data-explorer/single.html) and is load-bearing:**
+`assets/js/data-explorer/` is seventeen vanilla-JS files loaded as classic `<script>` tags sharing one top-level scope. **Load order is set in [data-explorer/single.html](themes/dohmh/layouts/data-explorer/single.html) and is load-bearing:**
 
 `global → app → data → measures → table → map → 311 → topic-indicator-selector → menu → bar → trend → correlate → disparities → print-map → print`
 
-The sixteenth, `de-tab-content.js`, is loaded separately by `themes/dohmh/layouts/partials/de-tab-content.html`. The retired explorer at `/data-explorer-old/` keeps its own ten-file bundle in `assets/js/data-explorer-old/`, loaded by `themes/dohmh/layouts/data-explorer-old/single.html`; it is deliberately not linted. The retired explorer reuses 11 of the new one's element ids (`#trend`, `#links`, `#summary-table`, …), and `assets/scss/_de-custom.scss` compiles into the site-wide `assets/scss/theme.scss`, so scope a new-explorer id rule under `.de-tabs-panel-shell` `[2026-10-15]`.
+Two load outside that order: `de-tab-content.js`, from `themes/dohmh/layouts/partials/de-tab-content.html`, and `hover-hints.js`, after `print.js` in `single.html`. `hover-hints.js` shows a short hint on the buttons that open a modal; its top-level names carry a hint prefix so they cannot collide with the bundle's. The retired explorer at `/data-explorer-old/` keeps its own ten-file bundle in `assets/js/data-explorer-old/`, loaded by `themes/dohmh/layouts/data-explorer-old/single.html`; it is deliberately not linted. The retired explorer reuses 11 of the new one's element ids (`#trend`, `#links`, `#summary-table`, …), and `assets/scss/_de-custom.scss` compiles into the site-wide `assets/scss/theme.scss`, so scope a new-explorer id rule under `.de-tabs-panel-shell` `[2026-10-15]`.
 
 - `global.js` declares the shared state. Add new cross-file state there rather than assigning an undeclared name.
 - The renderers (`showMap`, `showTable`, …) are declared `let` in `global.js` and **assigned** in `measures.js`. Keep them assignments — writing `const showMap = …` in `measures.js` redeclares the same name in the same shared top-level scope, which is a load-time `SyntaxError` on every page that loads the bundle, not a localized failure.
