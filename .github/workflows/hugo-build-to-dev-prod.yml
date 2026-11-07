@@ -10,8 +10,10 @@ on:
   #     - closed
   workflow_dispatch:
 
+# Read-only by default; the build job asks for write itself, to push builds/dev-prod.
+
 permissions:
-  contents: write
+  contents: read
 
 env:
   TZ: America/New_York
@@ -29,6 +31,9 @@ jobs:
     # only run the action if it's a push, or the PR was merged, or it was manually triggered
 
     if: github.event_name == 'push' || github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+
+    permissions:
+      contents: write
 
     # wait for other triggered jobs to finish before running this
 
@@ -54,14 +59,18 @@ jobs:
         with: 
           ref: development
           fetch-depth: 0
+          # Nothing in this job pushes with the checkout's credentials: the publish step
+          # passes its own token. So the token is not left in .git/config during npm ci.
+          persist-credentials: false
 
-      # get last commit
+      # get last commit. The subject is written to an output as-is and is used only as
+      # an action input below, never pasted into a script with ${{ }} (audit N-030).
 
       - name: get last commit
         id: last_commit
         run: |
           echo "last_hash=$(git log -1 --format=%h --abbrev=10)" >> $GITHUB_OUTPUT
-          echo "last_msg=\"$(git log -1 --format=%s)\"" >> $GITHUB_OUTPUT
+          echo "last_msg=$(git log -1 --format=%s)" >> $GITHUB_OUTPUT
       
       # set up node and cache for npm
 
@@ -71,10 +80,12 @@ jobs:
           node-version: 24.x
           cache: "npm"
 
-      # install npm dependencies
+      # npm ci, not npm install: install exactly what the reviewed lockfile says. npm install
+      # re-resolved it here and a commit-back step pushed the result after review
+      # (audit A-079, N-038). A lockfile out of sync with package.json now fails here.
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       # list dependencies
       
@@ -114,22 +125,16 @@ jobs:
 
       - name: Build search with pagefind
         run: |
-          cd '${{ github.workspace }}'
+          cd "$GITHUB_WORKSPACE"
           npx -y pagefind --site docs
 
-      # commit built index
-
-      - name: Commit changes to package.json & package-lock.json
-        uses: elstudio/actions-js-build/commit@65bf468d1d03f013c2caa86f00af91dd50b7e43f # v4
-        with:
-          commitMessage: Update index & NPM package list
-
-      # publish to "builds/dev-prod" branch
+      # publish to "builds/dev-prod" branch. An action input is not a script, so ${{ }}
+      # is safe here; the quotes keep the commit message's `Build <hash> ("<subject>")` form.
 
       - name: Publish to "builds/dev-prod"
         uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4.1.0
         with:
-          full_commit_message: "Build ${{ steps.last_commit.outputs.last_hash }} (${{ steps.last_commit.outputs.last_msg }})"
+          full_commit_message: 'Build ${{ steps.last_commit.outputs.last_hash }} ("${{ steps.last_commit.outputs.last_msg }}")'
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: builds/dev-prod
           publish_dir: ./docs/
