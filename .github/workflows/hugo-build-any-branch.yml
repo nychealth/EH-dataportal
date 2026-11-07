@@ -87,7 +87,9 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with: 
           ref: ${{ inputs.branch }}
-          fetch-depth: 0
+          # fetch-depth 1: the only git command here is `git log -1`, and enableGitInfo is
+          # off (config/_default/config.toml). Turning it on would need full history again.
+          fetch-depth: 1
           # Nothing in this job pushes with the checkout's credentials: the publish step
           # passes its own token. So the token is not left in .git/config during npm ci.
           persist-credentials: false
