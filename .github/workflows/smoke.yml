@@ -71,7 +71,6 @@ on:
       - .github/workflows/codeql.yml
       - .github/workflows/hugo-build-any-branch.yml
       - .github/workflows/hugo-build-to-dev-prod.yml
-      - .github/workflows/hugo-build-to-dev-stage.yml
       - .github/workflows/hugo-build-to-prod-prod.yml
       - .github/workflows/site-characterization.yml
       - .github/workflows/test-print-branch.yml
@@ -84,8 +83,6 @@ on:
       - LICENSE
       - eslint.config.mjs
       - skills-lock.json
-      - trigger_dev-stage_workflow.ps1
-      - trigger_dev-stage_workflow.sh
       - trigger_prod-prod_workflow.ps1
       - trigger_prod-prod_workflow.sh
 
