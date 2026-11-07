@@ -4,7 +4,7 @@ Batch R8 of `documents/site-wide-audit-2026-10.md`: 13 P2 rows, all in `.github/
 from A-071 (ESLint config) and N-031 (repository settings). Branch `feature-audit-r8-ci-hardening`,
 cut from the local `production` at `b730ddf7d3`. This document is the ledger.
 
-**Status as of 2026-11-07: Tasks 1–7 committed (`0a817b4be3`..`b75dda4d50`) and checked locally on `feature-audit-r8-ci-hardening`; Task 8 (GitHub dispatches, audit rows) not started.**
+**Status as of 2026-11-07: Tasks 1–7 committed (`0a817b4be3`..`b75dda4d50`, and 7b in `e43f967978`) and checked locally on `feature-audit-r8-ci-hardening`; Task 8 (GitHub dispatches, audit rows) not started.**
 
 ## Decisions
 
@@ -40,6 +40,7 @@ the team's decision. N-032's workflow half (permissions blocks, `persist-credent
 | 5 | N-034 | `codeql.yml`: the job's `if:` lets `schedule` and `workflow_dispatch` through | `6349501fcb` | **DONE 2026-11-07** locally; GitHub proof is Task 8 | local, below |
 | 6 | A-078, N-032, N-036 | `check-deploy.yml`: `permissions: contents: read`, `persist-credentials: false`, `curl -fsS`, and the deployed hash checked against `^[0-9a-f]{40}$` before use | `d5e49cc67b` | **DONE 2026-11-07** locally; GitHub proof is Task 8 | local, below |
 | 7 | A-073 | `smoke.yml`: `npm run lint` after `npm ci` in the sweep job | `b75dda4d50` | **DONE 2026-11-07** locally; GitHub proof is Task 8 | local, below |
+| 7b | none (Chris, 2026-11-07, not an audit row) | `fetch-depth: 1` in the three build workflows: their only git reads are `git log -1`, and `enableGitInfo` is commented out in `config/_default/config.toml`. check-deploy keeps `0` for its `rev-list` and `log` between hashes | `e43f967978` | **DONE 2026-11-07** locally; GitHub proof is Task 8 | `grep` of every `git ` command in the three files: the two `git log -1` lines and `git config` only |
 | 8 | all | Proof on GitHub, then the audit rows | | Not started | |
 
 ## Proof plan (Task 8)
@@ -55,8 +56,8 @@ Each dispatch below is outward-facing and gets asked about first:
   `builds/r8-ci-test`'s commit message for the quoted subject, then delete that branch.
 - The same with `publish-branch=prod-prod`. Expected: fails at the guard, nothing published.
 - `codeql.yml` dispatched on this branch. Expected: the Analyze job runs instead of `skipped`.
-- `check-deploy.yml` dispatched on this branch. It emails the team if the live site trails
-  `builds/prod-prod`, so ask before running it.
+- `check-deploy.yml`: not dispatched (Chris, 2026-11-07), because it emails the team when the live site trails
+  `builds/prod-prod`. Its first scheduled run after the merge is its proof.
 
 Local, before pushing: every edited workflow parses as YAML, and N-030's injection is reproduced
 in `bash` against the old line form and shown inert against the new one.
