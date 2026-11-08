@@ -121,8 +121,20 @@ jobs:
   # -------------------------------
 
   smoke:
-    name: Load every page and fail on a console error
+    name: Load every page and fail on a console error (${{ matrix.engine }})
     runs-on: ubuntu-24.04
+
+    # One leg per browser engine. Firefox is here for audit N-109: a bug
+    # confined to Gecko (N-108, Copy citation in Firefox-based browsers)
+    # reached visitors with no harness running that engine. fail-fast off, so
+    # a red leg does not cancel the other and hide whether it is red too.
+    # smoke-pages.mjs reads the engine from SMOKE_ENGINE and lowers its
+    # default concurrency for Firefox; on this 4-core runner both legs floor
+    # at 6 anyway.
+    strategy:
+      fail-fast: false
+      matrix:
+        engine: [chromium, firefox]
 
     # 2.4x the measured job, the same multiple site-characterization.yml uses,
     # rounded up. Measured on the calibration run `[run 33019503991,
@@ -146,8 +158,11 @@ jobs:
     # `[run 32777189174: "Concurrency: 6 (4 logical processors)"]`.
     timeout-minutes: 25
 
-    concurrency: # one run per ref; a superseded PR push doesn't need its own sweep
-      group: ${{ github.workflow }}-${{ github.ref_name }}
+    # One run per ref AND engine; a superseded PR push doesn't need its own
+    # sweep. The engine is in the group because a job-level group is shared by
+    # every matrix leg, and with cancel-in-progress one leg would cancel the other.
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref_name }}-${{ matrix.engine }}
       cancel-in-progress: true
 
     steps:
@@ -180,8 +195,8 @@ jobs:
       - name: Confirm the locked Hugo is present
         run: npx hugo version
 
-      - name: Install Playwright Chromium
-        run: npx playwright install --with-deps chromium
+      - name: Install Playwright ${{ matrix.engine }}
+        run: npx playwright install --with-deps "${{ matrix.engine }}"
 
       # ---------------------------------------------------------------------
       # the site under test
@@ -242,7 +257,7 @@ jobs:
 
       # A green run must not be able to mean "the check was blind". KNOWN_NOISE
       # has one CONDITIONAL entry — { page: null, error: /pagefind/i, when: ()
-      # => !pagefindServed } (smoke-pages.mjs:115) — so if the index is missing,
+      # => !pagefindServed } (smoke-pages.mjs:145) — so if the index is missing,
       # every Pagefind error on every page is allowlisted and the sweep passes
       # while testing nothing about search. What that hides was measured: with
       # the predicate forced off and no index, smoke failed 33 of 33, and the
@@ -280,6 +295,7 @@ jobs:
         # site-urls.mjs]`. Its only subprocess is `git rev-parse HEAD`.
         env:
           DE_BASE_URL: ${{ env.SERVER_URL }}
+          SMOKE_ENGINE: ${{ matrix.engine }}
         run: |
           # inputs.scope is empty on a pull_request event, so PRs get the full sweep
           args="--report scripts/smoke-reports/"
@@ -310,7 +326,7 @@ jobs:
         if: always() && steps.check.outcome != 'success'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: smoke-${{ github.run_id }}
+          name: smoke-${{ matrix.engine }}-${{ github.run_id }}
           path: |
             scripts/smoke-reports/
             hugo-server.log
@@ -363,10 +379,20 @@ jobs:
   # ---------------------------------------------------------------------
 
   base-control:
-    name: Was the base branch red too?
+    name: Was the base branch red too? (${{ matrix.engine }})
     needs: smoke
     if: failure() && github.event_name == 'pull_request'
     runs-on: ubuntu-24.04
+
+    # The same two engines as the sweep, because a control in the wrong engine
+    # exonerates nothing. `needs` waits for every sweep leg and failure() is true
+    # when any one failed, so both control legs run even when only one sweep leg
+    # was red; the extra leg is ~10 minutes of runner, against the per-leg
+    # result plumbing it would take to skip it.
+    strategy:
+      fail-fast: false
+      matrix:
+        engine: [chromium, firefox]
 
     # Same 25 as the sweep, from the same run. This job was expected to be the
     # slower of the two — two checkouts and two npm ci — and measured, it is
@@ -375,8 +401,8 @@ jobs:
     # together and the second checkout 22s `[run 33019503991, 2026-08-26]`.
     timeout-minutes: 25
 
-    concurrency: # its own group — sharing the sweep's would have the two cancel each other
-      group: ${{ github.workflow }}-base-${{ github.ref_name }}
+    concurrency: # its own group per engine — sharing one would have the legs cancel each other
+      group: ${{ github.workflow }}-base-${{ github.ref_name }}-${{ matrix.engine }}
       cancel-in-progress: true
 
     steps:
@@ -414,8 +440,8 @@ jobs:
         working-directory: base
         run: npx hugo version
 
-      - name: Install Playwright Chromium
-        run: npx playwright install --with-deps chromium
+      - name: Install Playwright ${{ matrix.engine }}
+        run: npx playwright install --with-deps "${{ matrix.engine }}"
 
       - name: Start the base branch's Hugo server
         working-directory: base
@@ -479,6 +505,7 @@ jobs:
           # from base/. Without this the report records the PR merge ref and
           # is indistinguishable from the sweep job's own report.
           SITE_UNDER_TEST_COMMIT: ${{ github.event.pull_request.base.sha }}
+          SMOKE_ENGINE: ${{ matrix.engine }}
         run: node scripts/smoke-pages.mjs --all --report scripts/smoke-reports/
 
       - name: Verdict
@@ -488,7 +515,10 @@ jobs:
           OUTCOME: ${{ steps.control.outcome }}
         run: |
           {
-            echo "### Base-branch control"
+            echo "### Base-branch control (${{ matrix.engine }})"
+            echo
+            echo "Both engines' controls run whenever either sweep leg failed; read the one"
+            echo "matching the red sweep leg."
             echo
             echo "The sweep failed. This job rebuilt the site from \`${BASE_SHA}\` — the tip of"
             echo "\`${BASE_REF}\` — and ran THIS PR's harness against it, so the only thing that"
@@ -516,7 +546,7 @@ jobs:
         if: steps.control.outcome == 'failure'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: smoke-base-${{ github.run_id }}
+          name: smoke-base-${{ matrix.engine }}-${{ github.run_id }}
           path: |
             scripts/smoke-reports/
             hugo-server-base.log

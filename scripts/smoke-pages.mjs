@@ -26,9 +26,21 @@
 import { execFileSync } from "node:child_process";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { availableParallelism } from "node:os";
-import { chromium } from "playwright";
+import { chromium, firefox } from "playwright";
 import { ensureDevServer } from "./dev-server.mjs";
 import { collectAllPaths, collectExplorerIndicatorPaths, mapPool } from "./site-urls.mjs";
+
+// Browser engine, from SMOKE_ENGINE (default chromium). An environment variable
+// rather than a flag because smoke-env.mjs and npm both strip flags (see the NOTE
+// above); a variable passes through both. Firefox exists for audit N-109: a bug
+// confined to Gecko reached visitors unseen (N-108). An unknown name exits 2
+// rather than silently sweeping in Chromium under a Firefox label.
+const ENGINES = { chromium, firefox };
+const ENGINE_NAME = process.env.SMOKE_ENGINE ?? "chromium";
+if (!ENGINES[ENGINE_NAME]) {
+    console.error(`SMOKE_ENGINE must be one of ${Object.keys(ENGINES).join(", ")}; got "${ENGINE_NAME}".`);
+    process.exit(2);
+}
 
 // One page per template kind, prefix-relative — joined onto whatever baseURL
 // ensureDevServer() returns.
@@ -131,6 +143,21 @@ const KNOWN_NOISE = [
     // defined` `[2026-08-24]`. That last one is the downstream symptom the
     // CAUTION below is about, and it was being masked on every page.
     { page: null, error: /pagefind/i, when: () => !pagefindServed },
+    // Firefox only, and only against a local server. Datawrapper's embed script
+    // requests pt.dwcdn.net/<id>.css, which answers 200 with no Content-Type and
+    // an empty body, so Firefox logs `The stylesheet ... was not loaded because
+    // its MIME type, "text/plain", is not "text/css"` once per request. On the
+    // live https site Firefox makes the same requests and logs nothing (housing
+    // 7, rat-report 32, air-quality-snapshots 9) `[2026-11-07]`; whether the
+    // trigger is the http scheme or the localhost host was not separated. The
+    // body is empty, so nothing is lost either way. Site-wide because it follows
+    // Datawrapper, which any page may embed: 45 pages in one --all sweep. The
+    // pattern names the host and the MIME wording, so no other error matches it.
+    {
+        page: null,
+        error: /pt\.dwcdn\.net\/\w+\.css was not loaded because its MIME type/,
+        when: () => ENGINE_NAME === "firefox",
+    },
     // Generic dev-server resource noise: favicons and 404s of that kind say
     // nothing about the page.
     // CAUTION: the broad `Failed to load resource` entry also hides the *cause*
@@ -202,8 +229,13 @@ const BLOCKED_HOSTS = [
 // the repo. Raising the ceiling means measuring above it first.
 const CONCURRENCY_FLOOR = 6;
 const CONCURRENCY_CEILING = 24;
+// Firefox's ceiling is lower, measured here: a full --all sweep on an isolated
+// prod_prod build at 24 timed out on `load` for 85 of 1189 pages, every one of
+// which loaded in under 1.5s when re-visited sequentially; at 8, none timed out
+// `[2026-11-07, 24 logical processors]`. Values between 8 and 24 were not tried.
+const FIREFOX_CONCURRENCY_CEILING = 8;
 const DEFAULT_CONCURRENCY = Math.min(
-    CONCURRENCY_CEILING,
+    ENGINE_NAME === "firefox" ? FIREFOX_CONCURRENCY_CEILING : CONCURRENCY_CEILING,
     Math.max(CONCURRENCY_FLOOR, availableParallelism()),
 );
 
@@ -430,7 +462,8 @@ const main = async () => {
     // (see collectExplorerIndicatorPaths). The curated PAGES list is unchanged.
     const explorerPaths = all ? await collectExplorerIndicatorPaths(baseURL) : [];
     const paths = all ? [...await collectAllPaths(baseURL), ...explorerPaths] : PAGES;
-    const browser = await chromium.launch({ headless: true });
+    console.log(`Engine: ${ENGINE_NAME}, concurrency ${concurrency}`);
+    const browser = await ENGINES[ENGINE_NAME].launch({ headless: true });
     const userAgent = await browserUserAgent(browser);
 
     let failures = [];
@@ -531,6 +564,7 @@ const main = async () => {
             timestamp: new Date().toISOString(),
             baseURL,
             mode: all ? "all" : "curated",
+            engine: ENGINE_NAME,
             concurrency,
             gitHead: gitHead(),
             pagesChecked: paths.length,
