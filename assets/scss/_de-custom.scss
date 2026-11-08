@@ -733,6 +733,40 @@ $color-data-explorer: #0A408A;
         }
     }
 
+    // The selected period's dates as a darker band on the track (renderTimeBand, menu.js). It is a
+    // gradient on the track itself so it sits under the thumb, which a separate element could not
+    // do. --de-band-start and --de-band-end are fractions of the thumb center's travel, which is
+    // the track less half a thumb at each end; the calc() maps them onto the full track. Two rules
+    // rather than one: a browser drops a whole selector list holding a pseudo-element it does not
+    // know.
+    //
+    // The half thumb at each end of the track lies outside the timeline, so it is left clear: grey
+    // there would read as time before the first period or after the last.
+    .de-time-control.has-time-band .de-time-slider {
+        --de-track-a: calc(var(--de-thumb) / 2);
+        --de-track-b: calc(100% - var(--de-thumb) / 2);
+        --de-band-a: calc(var(--de-thumb) / 2 + (100% - var(--de-thumb)) * var(--de-band-start));
+        --de-band-b: calc(var(--de-thumb) / 2 + (100% - var(--de-thumb)) * var(--de-band-end));
+
+        &::-webkit-slider-runnable-track {
+            border-radius: 0;
+            background: linear-gradient(to right,
+                transparent var(--de-track-a), #B9C4BD var(--de-track-a),
+                #B9C4BD var(--de-band-a), $primary var(--de-band-a),
+                $primary var(--de-band-b), #B9C4BD var(--de-band-b),
+                #B9C4BD var(--de-track-b), transparent var(--de-track-b));
+        }
+
+        &::-moz-range-track {
+            border-radius: 0;
+            background: linear-gradient(to right,
+                transparent var(--de-track-a), #B9C4BD var(--de-track-a),
+                #B9C4BD var(--de-band-a), $primary var(--de-band-a),
+                $primary var(--de-band-b), #B9C4BD var(--de-band-b),
+                #B9C4BD var(--de-track-b), transparent var(--de-track-b));
+        }
+    }
+
     // Tick marks at the stops the thumb can land on (a period, or a year on quarterly data): an
     // SVG (renderTimeTicks, menu.js) behind the slider, centered on the track's line, so the track
     // cuts across the middle of each tick and the tick shows above and below it. Inset by half a

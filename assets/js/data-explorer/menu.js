@@ -268,11 +268,19 @@ const renderMenuSection = (items, destination, type) => {
 // Builds the Time slider in each copy on first use, then updates it in place. Updating rather
 // than rebuilding keeps keyboard focus on the slider across selections. Left is the oldest, right
 // the most recent. Dragging previews the period in the label; the view re-renders on release (the
-// change event), which keyboard steps also fire, one per key press.
+// change event), and on each key press.
 //
 // The slider moves between stops. Usually each stop is one period. Quarterly data has up to 100
 // periods, too many to tell apart on a ~250px track, so there each stop is a year, and a bubble
 // above the thumb holds that year's quarters (renderQuarterBubble).
+//
+// The track is a timeline drawn to scale (placeTimeStops): each stop sits at the middle of the
+// dates it covers, so a gap in the data shows as a gap on the track, and a darker band on the track
+// shows the dates the selected period covers, which is what tells a 5-year range from a single year.
+// Because stops are unevenly spaced, the slider's value is a position along the track
+// (0 to TIME_SLIDER_SCALE) rather than a stop number: wherever the pointer leaves it, the thumb
+// snaps to the nearest stop, and arrow keys and screen-reader gestures step from one stop to the
+// next.
 
 const renderTimeSlider = (items, destination) => {
 
@@ -288,11 +296,16 @@ const renderTimeSlider = (items, destination) => {
 
     const quarterly = isQuarterlyPeriods(periods) && new Set(periods.map(getPeriodYear)).size > 1;
 
-    // Each stop carries either one period or one year's quarters.
+    // Each stop carries either one period or one year's quarters, and the dates it covers.
 
     const stops = quarterly
-        ? groupPeriodsByYear(periods).map(year => ({ label: String(year.year), year }))
-        : periods.map(period => ({ label: period.label, period }));
+        ? groupPeriodsByYear(periods).map(year => ({ label: String(year.year), year, span: getYearSpan(year.year) }))
+        : periods.map(period => ({ label: period.label, period, span: getPeriodSpan(period) }));
+
+    // Adds each stop's position (0 to 1) and slider value; returns the scale, or null when the
+    // stops fall back to even spacing.
+
+    const timeline = placeTimeStops(stops);
 
     const selectedStopIndex = Math.max(0, quarterly
         ? stops.findIndex(stop => stop.year.year === getPeriodYear(selectedPeriod))
@@ -303,6 +316,11 @@ const renderTimeSlider = (items, destination) => {
     const selectedQuarter = quarterly ? getPeriodQuarter(selectedPeriod) : null;
 
     const periodForStop = (stop) => stop.period ?? pickNearestQuarter(stop.year.quarters, selectedQuarter);
+
+    // Returns the stop whose position is nearest a slider value.
+
+    const nearestStopIndex = (value) => stops.reduce((best, stop, index) =>
+        Math.abs(stop.value - value) < Math.abs(stops[best].value - value) ? index : best, 0);
 
     document.querySelectorAll(destination).forEach(container => {
 
@@ -316,6 +334,7 @@ const renderTimeSlider = (items, destination) => {
             slider.type = 'range';
             slider.className = 'de-time-slider';
             slider.min = 0;
+            slider.max = TIME_SLIDER_SCALE;
             slider.step = 1;
 
             if (container.dataset.labelId) slider.setAttribute('aria-labelledby', container.dataset.labelId);
@@ -372,50 +391,49 @@ const renderTimeSlider = (items, destination) => {
         bubble.hidden = !quarterly;
         arrow.hidden = !quarterly;
 
-        slider.max = Math.max(0, stops.length - 1);
-        slider.value = selectedStopIndex;
-
-        // Screen readers announce the period name rather than the slider's position number.
-
-        slider.setAttribute('aria-valuetext', selectedPeriod?.label ?? '');
-
         ends.children[0].textContent = stops[0]?.label ?? '';
         ends.children[1].textContent = stops[stops.length - 1]?.label ?? '';
 
-        renderTimeTicks(ticks, stops.length);
+        renderTimeTicks(ticks, stops);
 
         // A bubble left from an earlier quarterly measure is emptied, not only hidden.
 
-        if (quarterly) {
-            renderQuarterBubble(container, stops, selectedStopIndex, selectedQuarter);
-        } else {
-            bubble.replaceChildren();
-        }
+        if (!quarterly) bubble.replaceChildren();
 
-        // ----- handlers (assigned, so repeated renders replace rather than stack) ----- //
+        // The stop the thumb is on: the selection at rest, the previewed stop during a drag.
 
-        // While dragging: the label (and on quarterly data the bubble) follows the thumb, without
-        // re-rendering the view yet.
+        let shownIndex = selectedStopIndex;
 
-        slider.oninput = () => {
+        // Moves the thumb onto a stop and shows its period: the screen-reader value, the band on
+        // the track, and on quarterly data the bubble. The label above follows only when asked,
+        // since on first render updateAllMenus sets it.
 
-            const stop = stops[Number(slider.value)];
+        const showStop = (index, updateLabel) => {
+
+            const stop = stops[index];
             const period = stop && periodForStop(stop);
 
             if (!period) return;
 
-            slider.setAttribute('aria-valuetext', period.label);
-            setDropdownLabel('time', period.label);
+            shownIndex = index;
+            slider.value = stop.value;
 
-            if (quarterly) renderQuarterBubble(container, stops, Number(slider.value), getPeriodQuarter(period));
+            // Screen readers announce the period name rather than the slider's position number.
+
+            slider.setAttribute('aria-valuetext', period.label);
+
+            renderTimeBand(container, timeline, getPeriodSpan(period));
+
+            if (quarterly) renderQuarterBubble(container, stops, index, getPeriodQuarter(period));
+            if (updateLabel) setDropdownLabel('time', period.label);
 
         };
 
-        // On release: select the period. A drag that ends where it started changes nothing.
+        // Selects the period of the stop the thumb is on. Landing where it started changes nothing.
 
-        slider.onchange = () => {
+        const selectShownStop = () => {
 
-            const stop = stops[Number(slider.value)];
+            const stop = stops[shownIndex];
             const period = stop && periodForStop(stop);
 
             if (!period || Number(period.value) === Number(DE.state.TimePeriodID)) return;
@@ -423,7 +441,193 @@ const renderTimeSlider = (items, destination) => {
             handleSelection('time', period.value, period.label);
 
         };
+
+        if (hasRange) {
+            showStop(selectedStopIndex, false);
+        } else {
+            slider.setAttribute('aria-valuetext', selectedPeriod?.label ?? '');
+            renderTimeBand(container, null, null);
+        }
+
+        // ----- handlers (assigned, so repeated renders replace rather than stack) ----- //
+
+        // Whether a pointer (mouse, pen or finger) is pressed on the slider. Only a pointer moves
+        // the value to an arbitrary place along the track.
+
+        let pointerDown = false;
+
+        slider.onpointerdown = () => {
+
+            pointerDown = true;
+
+            const release = () => { pointerDown = false; };
+
+            window.addEventListener('pointerup', release, { once: true });
+            window.addEventListener('pointercancel', release, { once: true });
+
+        };
+
+        // While dragging, or after a click on the track: snap to the nearest stop and preview it,
+        // without re-rendering the view yet.
+        //
+        // A change with no pointer pressed and no key press (the keys are handled below) comes from
+        // a screen reader's increment or decrement: VoiceOver's swipe up or down, TalkBack's volume
+        // keys. Those move the value by one step, a fraction of a pixel, which would snap back to
+        // the same stop, so they move one stop that way instead.
+
+        slider.oninput = () => {
+
+            const value = Number(slider.value);
+            const shownValue = stops[shownIndex].value;
+
+            let index = nearestStopIndex(value);
+
+            if (!pointerDown && index === shownIndex && value !== shownValue) {
+                index = Math.min(stops.length - 1, Math.max(0, shownIndex + Math.sign(value - shownValue)));
+            }
+
+            showStop(index, true);
+
+        };
+
+        // On release: select the previewed period.
+
+        slider.onchange = selectShownStop;
+
+        // Keys step between stops instead of moving the value by one step, which is a fraction of
+        // a pixel and would snap back to the same stop. Page Up and Page Down jump about a tenth
+        // of the stops, as they jump a tenth of a native slider.
+
+        slider.onkeydown = (event) => {
+
+            const last = stops.length - 1;
+            const page = Math.max(1, Math.round(stops.length / 10));
+
+            const targets = {
+                ArrowLeft: shownIndex - 1,
+                ArrowDown: shownIndex - 1,
+                ArrowRight: shownIndex + 1,
+                ArrowUp: shownIndex + 1,
+                PageDown: shownIndex - page,
+                PageUp: shownIndex + page,
+                Home: 0,
+                End: last
+            };
+
+            if (!(event.key in targets)) return;
+
+            event.preventDefault();
+
+            const index = Math.min(last, Math.max(0, targets[event.key]));
+
+            if (index === shownIndex) return;
+
+            showStop(index, true);
+            selectShownStop();
+
+        };
     });
+};
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// time slider timeline
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+// The slider's value runs 0 to this, fine enough that a stop lands within a fraction of a pixel of
+// its place on any screen.
+
+const TIME_SLIDER_SCALE = 10000;
+
+const DAY_MS = 86400000;
+
+// Returns the dates a period covers as { start, end } in UTC milliseconds, end exclusive, or null
+// when TimePeriods.json gives no usable dates. Most end_period values are the period's last day
+// ("2000" ends 2000-12-31), so a day is added to reach the end of it. Seasonal and annual-average
+// periods end on the day after ("Summer 2009" ends 2009-09-01), and come out a day long, which is
+// a fraction of a pixel. Periods 184 to 186 ("2010-2011" and the next two) have the same start and
+// end; they come out one day long, and no measure uses them today (2026-11-08).
+
+const getPeriodSpan = (period) => {
+
+    const entry = DE.lookups.timeLookup[period.value];
+    const start = Number(entry?.start_period);
+    const end = Number(entry?.end_period);
+
+    if (!entry || !Number.isFinite(start) || !Number.isFinite(end) || end < start) return null;
+
+    return { start, end: end + DAY_MS };
+
+};
+
+// Returns a calendar year as { start, end } in UTC milliseconds, the span of a quarterly year stop.
+// Calendar years rather than the quarters a year has, so year stops stay evenly spaced when the
+// first or last year is partial.
+
+const getYearSpan = (year) => ({ start: Date.UTC(year, 0, 1), end: Date.UTC(year + 1, 0, 1) });
+
+// Stops closer together than this fraction of the track fall back to even spacing.
+
+const MIN_TIME_STOP_GAP = 0.01;
+
+// Sets each stop's position along the track (0 to 1) and slider value. Each stop sits at the
+// middle of its span, the track running from the earliest start to the latest end. Returns
+// { start, length } for placing the band, or null after falling back to even spacing.
+//
+// Even spacing is the fallback when a stop has no dates, or when two neighboring stops would sit
+// closer than MIN_TIME_STOP_GAP or out of order. Neither happens in the catalog today (2026-11-08:
+// at least 0.04 of the track apart in every list that is not quarterly, on both data branches),
+// but a list holding "2009" beside "2008-2010" would put both at mid-2009, where a pointer could
+// reach only one.
+
+const placeTimeStops = (stops) => {
+
+    const evenly = () => {
+        stops.forEach((stop, index) => {
+            stop.position = stops.length > 1 ? index / (stops.length - 1) : 0;
+            stop.value = Math.round(stop.position * TIME_SLIDER_SCALE);
+        });
+        return null;
+    };
+
+    if (stops.length < 2 || !stops.every(stop => stop.span)) return evenly();
+
+    const start = Math.min(...stops.map(stop => stop.span.start));
+    const length = Math.max(...stops.map(stop => stop.span.end)) - start;
+
+    const positions = stops.map(stop => ((stop.span.start + stop.span.end) / 2 - start) / length);
+
+    const tooClose = positions.some((position, index) => index > 0 && position - positions[index - 1] < MIN_TIME_STOP_GAP);
+
+    if (tooClose) return evenly();
+
+    stops.forEach((stop, index) => {
+        stop.position = positions[index];
+        stop.value = Math.round(positions[index] * TIME_SLIDER_SCALE);
+    });
+
+    return { start, length };
+
+};
+
+// Shows the selected period's dates as a band on the track, or hides it when the stops are evenly
+// spaced (no timeline) or the period has no dates. The band is a gradient on the slider's own track
+// (see the SCSS), so it sits under the thumb; these two values say where it starts and ends, as
+// fractions of the thumb's travel.
+
+const renderTimeBand = (container, timeline, span) => {
+
+    const show = Boolean(timeline && span);
+
+    container.classList.toggle('has-time-band', show);
+
+    if (!show) return;
+
+    const clamp = (fraction) => Math.min(1, Math.max(0, fraction));
+
+    container.style.setProperty('--de-band-start', clamp((span.start - timeline.start) / timeline.length));
+    container.style.setProperty('--de-band-end', clamp((span.end - timeline.start) / timeline.length));
+
 };
 
 
@@ -536,7 +740,7 @@ const renderQuarterBubble = (container, stops, stopIndex, checkedQuarter) => {
 
     // Where along the thumb's travel the bubble and its arrow point, 0 to 1 (used in the SCSS).
 
-    container.style.setProperty('--de-stop', stops.length > 1 ? stopIndex / (stops.length - 1) : 0);
+    container.style.setProperty('--de-stop', stop.position ?? 0);
 
     // Rebuilding replaces a radio that may have focus; hand focus to the new checked one.
 
@@ -614,7 +818,8 @@ const SVG_NS = 'http://www.w3.org/2000/svg';
 
 // Draws the tick marks across the Time slider's track, one per picked stop, as rects in an SVG
 // that spans exactly the thumb center's travel (CSS insets it by half a thumb on each side), so a
-// tick's x is simply its fraction of the way along, as a percentage, and stays right at any width.
+// tick's x is simply the stop's position (placeTimeStops) as a percentage, and stays right at any
+// width.
 //
 // Why SVG and not positioned boxes: some ticks drew darker and bolder than others on screens with
 // fractional scaling (Windows at 125% or 175%, or browser zoom). Measured in Chromium, 2026-11-04,
@@ -626,20 +831,18 @@ const SVG_NS = 'http://www.w3.org/2000/svg';
 // (set in the SCSS) draws each rect straight onto screen pixels without blending, and a rect a whole
 // number of screen pixels wide then covers that many pixels wherever it lands.
 
-const renderTimeTicks = (ticks, count) => {
+const renderTimeTicks = (ticks, stops) => {
 
     ticks.replaceChildren();
 
-    if (count < 2) return;
+    if (stops.length < 2) return;
 
-    const lastIndex = count - 1;
-
-    pickTimeTicks(count).forEach(index => {
+    pickTimeTicks(stops.length).forEach(index => {
 
         const tick = document.createElementNS(SVG_NS, 'rect');
 
         tick.setAttribute('class', 'de-time-tick');
-        tick.setAttribute('x', `${(index / lastIndex) * 100}%`);
+        tick.setAttribute('x', `${stops[index].position * 100}%`);
 
         // The full height of the 16px SVG (--de-tick-box), which is centered on the 6px track,
         // so each tick shows 5px above and below it.

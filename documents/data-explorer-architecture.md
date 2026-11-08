@@ -78,11 +78,16 @@ fires both before its first `await`, since neither waits on the data fetch.
 ## 3. Interactions
 
 **Measure / Boundary / Time change** (`handleSelection`) — a dropdown click or a
-Time slider release (`change`, which keyboard steps also fire) sets one field on
+Time slider release (`change`) or key press sets one field on
 `DE.state`, rebuilds all three controls (which also auto-corrects a now-invalid
 GeoType or TimePeriodID), pushes to the URL, then `renderCurrentView(true)`.
 Dragging the slider only previews the period in its label; nothing re-renders
-until release. The slider is updated in place, so it keeps focus. On quarterly
+until release. The slider is updated in place, so it keeps focus. Its track is a
+timeline drawn to scale (`placeTimeStops`): each period sits at the middle of its
+dates, so gaps in the data show as gaps, and a band on the track marks the dates
+the selected period covers. Stops are unevenly spaced, so the slider's value is a
+position along the track, not a stop number: the thumb snaps to the nearest stop,
+and arrow keys and screen-reader increments step one stop at a time. On quarterly
 data spanning two or more years it steps by year, and a bubble above the thumb
 picks the quarter; moving to another year keeps the quarter where that year has
 it, else the nearest one. A geo or time change,
