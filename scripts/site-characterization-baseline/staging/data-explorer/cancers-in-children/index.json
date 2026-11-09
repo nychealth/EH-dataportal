@@ -13,6 +13,7 @@
             "js/data-explorer/de-tab-content.js",
             "js/data-explorer/disparities.js",
             "js/data-explorer/global.js",
+            "js/data-explorer/hover-hints.js",
             "js/data-explorer/map.js",
             "js/data-explorer/measures.js",
             "js/data-explorer/menu.js",
@@ -43,7 +44,7 @@
             "translate.google.com",
             "www.googletagmanager.com"
         ],
-        "assetsWithIntegrity": 34,
+        "assetsWithIntegrity": 35,
         "headingLevels": [
             4,
             4,
