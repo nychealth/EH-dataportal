@@ -10,8 +10,10 @@ on:
       - closed
   workflow_dispatch:
 
+# Read-only by default; the build job asks for write itself, to push builds/prod-prod.
+
 permissions:
-  contents: write
+  contents: read
 
 env:
   HUGO_GIT_BRANCH: production
@@ -31,6 +33,9 @@ jobs:
     # only run the action if the PR was merged, or it was manually triggered
 
     if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+
+    permissions:
+      contents: write
 
     # wait for other triggered jobs to finish before running this
 
@@ -55,15 +60,22 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with: 
           ref: production
-          fetch-depth: 0
+          # fetch-depth 1: the only git command here is `git log -1`, and enableGitInfo is
+          # off (config/_default/config.toml). Turning it on would need full history again.
+          fetch-depth: 1
+          # Nothing in this job pushes with the checkout's credentials: the publish step
+          # passes its own token. So the token is not left in .git/config during npm ci.
+          persist-credentials: false
 
-      # get last commit
+      # get last commit. The subject is written to an output as-is and reaches later
+      # steps through env:, never pasted into a script with ${{ }}, where a quote in it
+      # broke the build and $(...) or backticks in it ran as commands (audit N-030).
 
       - name: get last commit
         id: last_commit
         run: |
           echo "last_hash=$(git log -1 --format=%h --abbrev=10)" >> $GITHUB_OUTPUT
-          echo "last_msg=\"$(git log -1 --format=%s)\"" >> $GITHUB_OUTPUT
+          echo "last_msg=$(git log -1 --format=%s)" >> $GITHUB_OUTPUT
 
       # set up node and cache for npm
 
@@ -71,11 +83,14 @@ jobs:
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 24.x
+          cache: "npm"
 
-      # install npm dependencies
+      # npm ci, not npm install: install exactly what the reviewed lockfile says. npm install
+      # re-resolved it here and a commit-back step pushed the result to production after
+      # review (audit A-079, N-038). A lockfile out of sync with package.json now fails here.
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       # list dependencies
       
@@ -109,31 +124,25 @@ jobs:
       # build site with Hugo
 
       - name: Build site with Hugo
-        run: | 
-          export HUGO_GIT_LAST_HASH=${{ steps.last_commit.outputs.last_hash }}
-          export HUGO_GIT_LAST_MSG=${{ steps.last_commit.outputs.last_msg }}
-          hugo --environment prod_prod --cleanDestinationDir --logLevel debug
+        env:
+          HUGO_GIT_LAST_HASH: ${{ steps.last_commit.outputs.last_hash }}
+          HUGO_GIT_LAST_MSG: ${{ steps.last_commit.outputs.last_msg }}
+        run: hugo --environment prod_prod --cleanDestinationDir --logLevel debug
 
       # run pagefind
 
       - name: Build search with pagefind
         run: |
-          cd '${{ github.workspace }}'
+          cd "$GITHUB_WORKSPACE"
           npx -y pagefind --site docs
 
-      # commit built index
-
-      - name: Commit changes to package.json & package-lock.json
-        uses: elstudio/actions-js-build/commit@65bf468d1d03f013c2caa86f00af91dd50b7e43f # v4
-        with:
-          commitMessage: Update index & NPM package list
-
-      # publish to "builds/prod-prod" branch
+      # publish to "builds/prod-prod" branch. An action input is not a script, so ${{ }}
+      # is safe here; the quotes keep the commit message's `Build <hash> ("<subject>")` form.
 
       - name: Publish to "builds/prod-prod"
         uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4.1.0
         with:
-          full_commit_message: "Build ${{ steps.last_commit.outputs.last_hash }} (${{ steps.last_commit.outputs.last_msg }})"
+          full_commit_message: 'Build ${{ steps.last_commit.outputs.last_hash }} ("${{ steps.last_commit.outputs.last_msg }}")'
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: builds/prod-prod
           publish_dir: ./docs/
