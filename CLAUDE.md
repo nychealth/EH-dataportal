@@ -452,11 +452,11 @@ Adding a library call to a template's JS means adding its `lib-*` include too �
 
 ### Data explorer
 
-`assets/js/data-explorer/` is sixteen vanilla-JS files loaded as classic `<script>` tags sharing one top-level scope. **Load order is set in [data-explorer/single.html](themes/dohmh/layouts/data-explorer/single.html) and is load-bearing:**
+`assets/js/data-explorer/` is seventeen vanilla-JS files loaded as classic `<script>` tags sharing one top-level scope. **Load order is set in [data-explorer/single.html](themes/dohmh/layouts/data-explorer/single.html) and is load-bearing:**
 
 `global → app → data → measures → table → map → 311 → topic-indicator-selector → menu → bar → trend → correlate → disparities → print-map → print`
 
-The sixteenth, `de-tab-content.js`, is loaded separately by `themes/dohmh/layouts/partials/de-tab-content.html`. The retired explorer at `/data-explorer-old/` keeps its own ten-file bundle in `assets/js/data-explorer-old/`, loaded by `themes/dohmh/layouts/data-explorer-old/single.html`; it is deliberately not linted. The retired explorer reuses 11 of the new one's element ids (`#trend`, `#links`, `#summary-table`, …), and `assets/scss/_de-custom.scss` compiles into the site-wide `assets/scss/theme.scss`, so scope a new-explorer id rule under `.de-tabs-panel-shell` `[2026-10-15]`.
+Two load outside that order: `de-tab-content.js`, from `themes/dohmh/layouts/partials/de-tab-content.html`, and `hover-hints.js`, after `print.js` in `single.html`. `hover-hints.js` shows a short hint on the buttons that open a modal; its top-level names carry a hint prefix so they cannot collide with the bundle's. The retired explorer at `/data-explorer-old/` keeps its own ten-file bundle in `assets/js/data-explorer-old/`, loaded by `themes/dohmh/layouts/data-explorer-old/single.html`; it is deliberately not linted. The retired explorer reuses 11 of the new one's element ids (`#trend`, `#links`, `#summary-table`, …), and `assets/scss/_de-custom.scss` compiles into the site-wide `assets/scss/theme.scss`, so scope a new-explorer id rule under `.de-tabs-panel-shell` `[2026-10-15]`.
 
 - `global.js` declares the shared state. Add new cross-file state there rather than assigning an undeclared name.
 - The renderers (`showMap`, `showTable`, …) are declared `let` in `global.js` and **assigned** in `measures.js`. Keep them assignments — writing `const showMap = …` in `measures.js` redeclares the same name in the same shared top-level scope, which is a load-time `SyntaxError` on every page that loads the bundle, not a localized failure.
@@ -594,7 +594,7 @@ Specify with `--environment ENV`. Each environment's own config.toml, under its 
 | Environment   | Data branch | Purpose                                                   |
 |---------------|-------------|-----------------------------------------------------------|
 | `development` | production  | Preview site changes (default local)                      |
-| `dev_stage`   | staging     | Preview combined site + data changes; also CI → `builds/dev-stage` |
+| `dev_stage`   | staging     | Preview combined site + data changes |
 | `dev_prod`    | production  | CI → `builds/dev-prod`. Same `baseURL`/`data_branch` as `development` |
 | `production`  | production  | Same config as `prod_prod`, but **no workflow builds with it** |
 | `prod_prod`   | production  | **The live build** — CI → `builds/prod-prod` on merge to `production` |
@@ -660,9 +660,7 @@ Available in markdown content files:
 
 ## Deployment
 
-Branches are auto-built by GitHub Actions on merge:
-- `production` → builds to `builds/prod-prod` (the deploy source — see below)
-- `build-to-dev-stage` → builds to `builds/dev-stage` (staging)
+One branch is auto-built by GitHub Actions on merge: `production` → `builds/prod-prod` (the deploy source — see below). The `build-to-dev-stage` → `builds/dev-stage` workflow was deleted on 2026-11-07, superseded by CloudCannon branch previews (readme-development.md, Branches).
 
 Branch from `production`, named `hotfix-[NAME]`, `content-[NAME]`, or `feature-[NAME]`, and merge to `production` to deploy. **Merging to `development` for testing is deprecated** — individual branches are staged in CloudCannon instead. The evidence was already in the repo when this line still said otherwise: `development` appears in no row of readme-development.md's branch table, and `hugo-build-to-dev-prod.yml` is marked "In use? No" in its workflow table `[corrected 2026-08-26]`. **A merge to `production` does not change the live site.** `builds/prod-prod` is the deploy source; the site goes live only through the team's own deploy to internal servers. The live server's `commit_hash.txt` names the deployed `builds/prod-prod` commit, and `.github/workflows/check-deploy.yml` emails when it trails the branch. EHDP-data, fetched at runtime, goes live as soon as it's pushed, so a data change that depends on a code change waits for the deploy, not the merge. Full workflow and environment tables: [readme-development.md](readme-development.md).
 
@@ -670,7 +668,7 @@ Branch from `production`, named `hotfix-[NAME]`, `content-[NAME]`, or `feature-[
 
 **Test a new workflow with a PR into `production`, not by merging it.** `workflow_dispatch` only registers from the default branch — GitHub documents that the event "will only trigger a workflow run if the workflow file exists on the default branch" — but `pull_request` carries no such requirement, and opening a PR into `production` does not deploy, because `hugo-build-to-prod-prod.yml` is `types: [closed]` with a `merged == true` guard on the job. Once the file is on `production`, `gh workflow run <wf> --ref <branch>` runs *that branch's* copy `[verified 2026-08-24]`. A green run proves only the unconditional steps: this workflow's `if: failure()` artifact upload was dropping half its payload, and a deliberately reverted one-line regression is what ran it `[2026-08-24, run 32777189174]`.
 
-A build can also be triggered on demand rather than by merging. `trigger_prod-prod_workflow.ps1` and `trigger_dev-stage_workflow.ps1` (with `.sh` equivalents) run `gh workflow run` against the matching workflow, and `.github/workflows/hugo-build-any-branch.yml` takes a `branch` input and publishes to `builds/[branch]`, or to a `publish-branch` input when one is given. These publish to real build branches — treat running one as a deploy, not a test.
+A build can also be triggered on demand rather than by merging. `trigger_prod-prod_workflow.ps1` (with a `.sh` equivalent) runs `gh workflow run` against the prod-prod workflow, and `.github/workflows/hugo-build-any-branch.yml` takes a `branch` input and publishes to `builds/[branch]`, or to a `publish-branch` input when one is given. It refuses to publish to `builds/prod-prod`. These publish to real build branches — treat running one as a deploy, not a test.
 
 ## Audit documents
 
