@@ -10424,36 +10424,27 @@ table .group td {
   .de-wrapper .de-tabs-panel-shell {
     width: 100%; }
   @media (max-width: 959.98px) {
-    .de-wrapper {
-      /* Give the page content breathing room equal to nav height + safe-area */ }
-      .de-wrapper .de-tabs {
-        position: fixed !important;
-        left: 0 !important;
-        right: 0 !important;
-        bottom: env(safe-area-inset-bottom) !important;
-        bottom: constant(safe-area-inset-bottom) !important;
-        /* iOS 11.0-11.2 fallback */
-        width: 100% !important;
-        max-width: none !important; }
-      .de-wrapper .de-wrapper {
-        padding-bottom: calc(56px + env(safe-area-inset-bottom));
-        padding-bottom: calc(56px + constant(safe-area-inset-bottom));
-        /* iOS 11.0-11.2 fallback */ }
-      .de-wrapper .de-tabs-nav {
-        /* Add extra padding for the home indicator area */
-        padding-bottom: calc(8px + env(safe-area-inset-bottom));
-        padding-bottom: calc(8px + constant(safe-area-inset-bottom));
-        /* iOS 11.0-11.2 fallback */ }
-      .de-wrapper .tab-content {
-        max-height: 50vh;
-        overflow-y: scroll;
-        overflow-x: auto;
-        position: relative;
-        z-index: 10;
-        padding-top: 10px; }
-      .de-wrapper .closeTabPane {
-        position: absolute;
-        left: -32px; } }
+    .de-wrapper .de-tabs {
+      position: fixed !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: env(safe-area-inset-bottom) !important;
+      bottom: constant(safe-area-inset-bottom) !important;
+      /* iOS 11.0-11.2 fallback */
+      width: 100% !important;
+      max-width: none !important; }
+    .de-wrapper .de-tabs-nav {
+      /* Add extra padding for the home indicator area */
+      padding-bottom: calc(8px + env(safe-area-inset-bottom));
+      padding-bottom: calc(8px + constant(safe-area-inset-bottom));
+      /* iOS 11.0-11.2 fallback */ }
+    .de-wrapper .tab-content {
+      max-height: 50vh;
+      overflow-y: auto;
+      overflow-x: auto;
+      position: relative;
+      z-index: 10;
+      padding-top: 10px; } }
   .de-wrapper .de-main-details {
     top: 2rem;
     left: 2rem;
@@ -10861,6 +10852,41 @@ table .group td {
     background-color: #008939;
     color: white;
     text-decoration: none; }
+
+@media (max-width: 959.98px) {
+  .de-wrapper {
+    padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
+    .de-wrapper > section > .row, [id="languages"] .de-wrapper > section > ul {
+      display: block; }
+    .de-wrapper .de-main-details {
+      position: static !important;
+      width: 100% !important;
+      max-width: none !important; }
+    .de-wrapper .de-legend,
+    .de-wrapper .de-tabs {
+      position: relative !important;
+      top: auto !important;
+      right: auto !important;
+      bottom: auto !important;
+      left: auto !important;
+      z-index: 2;
+      width: 100% !important;
+      max-width: none !important; }
+    .de-wrapper #map {
+      position: sticky;
+      top: 0;
+      height: var(--de-map-height, 55svh); }
+    .de-wrapper.de-sheet-open .de-legend {
+      margin-top: calc(-1 * var(--de-sheet-overlap, 0px)); }
+    .de-wrapper .tab-content {
+      max-height: none;
+      overflow: visible; }
+    .de-wrapper .de-tabs-nav {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1010; } }
 
 .de-hover-hint {
   position: absolute;

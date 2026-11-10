@@ -66,7 +66,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/","name":"The Environment and Health Data Portal: Home page","position":1},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/","name":"Data Explorer","position":2},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/birth-outcomes/","name":"Birth outcomes","position":3}]}</script>
 <script src="/IndicatorPublic/node_modules/jquery/dist/jquery.min.9d6bd9b75ea55acc.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR&#43;8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/css/all.min.c2b5ea5c3ed56d7e.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck&#43;w&#43;/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous"/>
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.4b95b720c5ff8af81ac3c094afc5d0cb378fca78e9f0937976e382f409789f79b268cf829d1dcb7aa7c50d0e4a82f9f9e1a30fb9bba1f0e96f789e1f7b63566e.css" integrity="sha512-S5W3IMX/ivgaw8CUr8XQyzePynjp8JN5duOC9Al4n3myaM&#43;CnR3LeqfFDQ5Kgvn54aMPubuh8OlveJ4fe2NWbg==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.8b4ad497206cb81d.js" integrity="sha512-2wT0W6vojz3cJuLoa/DxrPVQRinkfRjFWMWIDK4NghTqObEhpem1nEkeK0d9ZE&#43;/hyvfMNuJZlfxM4LsRgeoSA=="></script>
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.b3313ff7b2cb53321b53fd221d6c9cfb132cfa78caa97cb7cb0606512047463047bf9d9706f43a19b092ab08041d8bb741a0dbcc3e9203f2dadc4e75b0b2db6e.css" integrity="sha512-szE/97LLUzIbU/0iHWyc&#43;xMs&#43;njKqXy3ywYGUSBHRjBHv52XBvQ6GbCSqwgEHYu3QaDbzD6SA/La3E51sLLbbg==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.8b4ad497206cb81d.js" integrity="sha512-2wT0W6vojz3cJuLoa/DxrPVQRinkfRjFWMWIDK4NghTqObEhpem1nEkeK0d9ZE&#43;/hyvfMNuJZlfxM4LsRgeoSA=="></script>
 
 
 
@@ -1330,6 +1330,8 @@
     <section data-pagefind-ignore="all">
 
         <div class="row position-relative" style="z-index: 2;">
+
+            
 <div class="position-absolute  de-main-details border-top" data-recently-updated-ids='[2023,2024,2028,2025,2027,2433,14,2465,2466,2467,2468,2140,2458]'>
 
     
@@ -1492,7 +1494,11 @@
     </div>
 </div>
 
-
+            <div id="map" role="region" aria-label="Interactive map. The data shown here is also available in the Table tab.">
+                <a href="#v-pills-table-tab" class="sr-only sr-only-focusable"
+                    onclick="var t = document.getElementById('v-pills-table-tab'); if (!(t.classList.contains('active') &amp;&amp; document.getElementById('v-pills-table').classList.contains('show'))) t.click(); return false;">View this data as a table</a>
+                
+            </div>
 <div class="position-absolute de-legend">
 
     
@@ -1901,7 +1907,7 @@
 
         </div>
     </div>
-</div><script type="text/javascript" src="/IndicatorPublic/js/data-explorer/de-tab-content.4c28d467c05166fc.js" integrity="sha512-eDXYGBpDxE/VtFBsulHUm&#43;RCXIh8eVvDTT3nvqu9xRshWXmRqoxLnRLdOStdrnE8egH/HDWVZUx7NiPEs9rs2w=="></script>
+</div><script type="text/javascript" src="/IndicatorPublic/js/data-explorer/de-tab-content.3f0914105de2cffa.js" integrity="sha512-rYjJt6ynlxii0FuTO8tjW7i6ayfj5GdxeKS3s7xuZ94U&#43;RgccbhGg89eaOZtMRd1nFag03yUNSC4WqBFM1cPdw=="></script>
 
 <style>
          
@@ -2011,13 +2017,6 @@
 </div></div>
 </div>
             <div id="selectionStatus" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
-
-            
-            <div id="map" role="region" aria-label="Interactive map. The data shown here is also available in the Table tab.">
-                <a href="#v-pills-table-tab" class="sr-only sr-only-focusable"
-                    onclick="var t = document.getElementById('v-pills-table-tab'); if (!(t.classList.contains('active') &amp;&amp; document.getElementById('v-pills-table').classList.contains('show'))) t.click(); return false;">View this data as a table</a>
-                
-            </div>
 
             
             <div id="loadErrorOverlay" class="de-load-error-overlay"></div>
@@ -2209,7 +2208,7 @@
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/data.a7df391c61aeb34d.js" integrity="sha512-R5s6RRlDTkqzJ9Hb0SOCYuAi04/tgY5KCtF8v8cs7U2f35p5Xpn9w&#43;uf3hdALwrNDBYPe80DdqbY1njGzoeqAA=="></script>
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/measures.419b97bc4207b0ff.js" integrity="sha512-Xza3Njsx8Es4GV&#43;v3dsSnHoGV/uFynxO9DoCjwo3JbkaJhcLVkPMj1SkK9bUPLcaYLX7AVRcg1g9bSlD3Oyf6g=="></script>
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/table.dc5702f99f01f5a0.js" integrity="sha512-piH1WsVlnBxBUpsDlnBWqwB&#43;EYjIoQ4oSdvxmkVYJ&#43;r4ns25oxx68vLcDaOBLzJcI19e3WIDzwLViGSpF268jg=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/map.4479382cca2cfed1.js" integrity="sha512-UbBuKfP6zjynRxFcLXP5M/vl9QdZEp2ShlsBrmHqNJjLMaVLP8zsXhQW/q0vzczn0FBEGnuSTMyCq1Skj5vkqw=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/map.915bba403a09e1b5.js" integrity="sha512-S&#43;oRZPH9Z13gL6HFGywVlfbZ05/uf3zJtiX6MhWzKJqsXDG4AXd7Omh2PsXeFSiRk2nY5bZrYpwbVMZIhRQtww=="></script>
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/311.02bf62b1af6500ce.js" integrity="sha512-GyTrLU5LNh0jZXyEh&#43;Wb1cNov9wWaLETaJefaXdVl8tvo&#43;EiNhDrw&#43;1pKE4uEH4Lh6uzt6&#43;GyeAxE2kOLFM4NA=="></script>
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/topic-indicator-selector.ccff339b8699939c.js" integrity="sha512-SWDLF&#43;0PNFVUA/JoQ/I73DmFNeYTbdUCdfkBTnBUVW8VPHqP9Yo2ADhTHl5tpNWVtWTRE2ywJbO2gAl2k3PG3A=="></script>
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/menu.04e48a7e72605ccc.js" integrity="sha512-JfD9tg1JK4Z6feFT/ftLB6V9CG6hdxomPlJzfwK87pTItvQrQKADfE0B&#43;ANDBh6&#43;LcCJGB&#43;Sj/bsfBRr6RJh5A=="></script>
