@@ -1347,6 +1347,17 @@ $color-data-explorer: #0A408A;
 // utility and the max-width: 959.98px rules above, which carry their own. The map's opening view
 // at these widths is fitted to the city in initBaseMap (map.js), whose breakpoint matches this one.
 @media (max-width: 959.98px) {
+    // Always show the page's scrollbar. Where scrollbars take width (a narrow desktop window), the
+    // page grows past the screen during load, the scrollbar appears after the map has been fitted,
+    // and Leaflet re-centres the narrower map, moving the city about 7px. On body, not html: body's
+    // overflow-x: hidden is what the viewport takes its scrollbars from. Not scrollbar-gutter, which
+    // stacks with the padding Bootstrap's modals add for the scrollbar they hide. Not while a modal
+    // is open: .modal-open hides the scrollbar and pads by its width, which this would outrank.
+    // With overlay scrollbars, which take no width, this is a no-op.
+    body:not(.modal-open):has(.de-wrapper) {
+        overflow-y: scroll;
+    }
+
     .de-wrapper {
         padding-bottom: calc(64px + env(safe-area-inset-bottom));
 
