@@ -927,9 +927,29 @@
     }
 
     // ---------------------------------------------------------- //
+    // Citation access date
+    // ---------------------------------------------------------- //
+
+    // Fills "Accessed [Date]" in the About the data citation (aboutTheData front matter) with the
+    // reader's current date, in the same MM-DD-YYYY form as the citation's publication date. The
+    // "[Date]" placeholder stays as the no-JS fallback.
+
+    function fillCitationDate() {
+        const now = new Date();
+        const mm = String(now.getMonth() + 1).padStart(2, "0");
+        const dd = String(now.getDate()).padStart(2, "0");
+        const accessed = `${mm}-${dd}-${now.getFullYear()}`;
+
+        document.querySelectorAll(".citation-date").forEach((el) => {
+            el.textContent = accessed;
+        });
+    }
+
+    // ---------------------------------------------------------- //
     // Initialize chart
     // ---------------------------------------------------------- //
 
+    fillCitationDate();
     drawChart(outcome, intent, highlight);
     updateCauseMenu(outcome, intent);
 </script>
