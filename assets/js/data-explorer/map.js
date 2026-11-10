@@ -166,11 +166,17 @@ const layoutStackedMap = () => {
 
     // The visitor has moved the map if it no longer shows the view this function last fitted.
     // Read the point at the middle of the visible part (above any overlap) before resizing.
+    // Only once there is a fitted view: Leaflet caches the first size getSize() reads, and
+    // invalidateSize() cannot refresh it until the map has a view, so reading it before the
+    // first fit pins the pre-layout height and the fit centres in the wrong box.
 
-    const before = currentMap.getSize();
-    const moved = fittedView !== null && (currentMap.getZoom() !== fittedView.zoom ||
-        currentMap.latLngToContainerPoint(fittedView.center).distanceTo(before.divideBy(2)) > MOVED_THRESHOLD_PX);
-    const anchor = moved ? currentMap.containerPointToLatLng([before.x / 2, (before.y - stackedOverlap) / 2]) : null;
+    let anchor = null;
+    if (fittedView !== null) {
+        const before = currentMap.getSize();
+        const moved = currentMap.getZoom() !== fittedView.zoom ||
+            currentMap.latLngToContainerPoint(fittedView.center).distanceTo(before.divideBy(2)) > MOVED_THRESHOLD_PX;
+        if (moved) anchor = currentMap.containerPointToLatLng([before.x / 2, (before.y - stackedOverlap) / 2]);
+    }
     const previousOverlap = stackedOverlap;
     stackedOverlap = overlap;
 
