@@ -66,7 +66,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/","name":"The Environment and Health Data Portal: Home page","position":1},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/","name":"Data Explorer","position":2},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma-triggers/","name":"Asthma triggers at home","position":3}]}</script>
 <script src="/IndicatorPublic/node_modules/jquery/dist/jquery.min.9d6bd9b75ea55acc.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR&#43;8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/css/all.min.c2b5ea5c3ed56d7e.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck&#43;w&#43;/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous"/>
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.b3313ff7b2cb53321b53fd221d6c9cfb132cfa78caa97cb7cb0606512047463047bf9d9706f43a19b092ab08041d8bb741a0dbcc3e9203f2dadc4e75b0b2db6e.css" integrity="sha512-szE/97LLUzIbU/0iHWyc&#43;xMs&#43;njKqXy3ywYGUSBHRjBHv52XBvQ6GbCSqwgEHYu3QaDbzD6SA/La3E51sLLbbg==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.8b4ad497206cb81d.js" integrity="sha512-2wT0W6vojz3cJuLoa/DxrPVQRinkfRjFWMWIDK4NghTqObEhpem1nEkeK0d9ZE&#43;/hyvfMNuJZlfxM4LsRgeoSA=="></script>
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.9f24d77111d8c75329722235c7e8ff76ecaa0a39c9f6a44055fcd71614ff5c738237272a376cdfac1f42f295573f0bbb9c43b1f0fc5c453efb510ce6f33db1b0.css" integrity="sha512-nyTXcRHYx1MpciI1x&#43;j/duyqCjnJ9qRAVfzXFhT/XHOCNycqN2zfrB9C8pVXPwu7nEOx8PxcRT77UQzm8z2xsA==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.8b4ad497206cb81d.js" integrity="sha512-2wT0W6vojz3cJuLoa/DxrPVQRinkfRjFWMWIDK4NghTqObEhpem1nEkeK0d9ZE&#43;/hyvfMNuJZlfxM4LsRgeoSA=="></script>
 
 
 
@@ -1460,7 +1460,7 @@
     Asthma triggers at home data:
     <span class="indicator-name"></span>.
     Accessed at <span class="citation-url">https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma-triggers/</span> on
-    <span class="citation-date">Nov 9, 2026</span>.
+    <span class="citation-date">Nov 10, 2026</span>.
 </span>
 </p>
         <button type="button" class="de-link-button fs-sm de-copy-citation-button" data-citation-target="citeText-map"><i class="fas fa-copy mr-1" aria-hidden="true"></i>Copy citation</button>
@@ -1617,7 +1617,19 @@
 </style>
 
 
-<div class="tab-content bg-white pt-0 relative" id="v-pills-tabContent"><div class="bg-white d-none d-lg-block" style="margin-left: -33px;">
+<div class="tab-content bg-white pt-0 relative" id="v-pills-tabContent"><script>
+        (() => {
+            const params = new URLSearchParams(window.location.search);
+            const overlay = params.get('overlay');
+            const asksForView = params.get('id') && (overlay ? overlay !== 'none' : window.location.hash !== '');
+            const tabContent = document.getElementById('v-pills-tabContent');
+            if (asksForView) {
+                tabContent.closest('.de-tabs')?.classList.add('has-open-panel');
+            } else {
+                tabContent.style.display = 'none';
+            }
+        })();
+    </script><div class="bg-white d-none d-lg-block" style="margin-left: -33px;">
         <button type="button" class="bg-primary border-0 bl50 py-1 close-tab-pane de-close-tab-button" aria-label="Close">
             <img src=/IndicatorPublic/images/arrow-right.svg style="margin-bottom: 2px;" alt="">
         </button>
@@ -1648,7 +1660,7 @@
     Asthma triggers at home data:
     <span class="indicator-name"></span>.
     Accessed at <span class="citation-url">https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma-triggers/</span> on
-    <span class="citation-date">Nov 9, 2026</span>.
+    <span class="citation-date">Nov 10, 2026</span>.
 </span>
 </p>
         <button type="button" class="de-link-button fs-sm de-copy-citation-button" data-citation-target="citeText-bar"><i class="fas fa-copy mr-1" aria-hidden="true"></i>Copy citation</button>
@@ -1736,7 +1748,7 @@
     Asthma triggers at home data:
     <span class="indicator-name"></span>.
     Accessed at <span class="citation-url">https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma-triggers/</span> on
-    <span class="citation-date">Nov 9, 2026</span>.
+    <span class="citation-date">Nov 10, 2026</span>.
 </span>
 </p>
         <button type="button" class="de-link-button fs-sm de-copy-citation-button" data-citation-target="citeText-table"><i class="fas fa-copy mr-1" aria-hidden="true"></i>Copy citation</button>
@@ -1781,7 +1793,7 @@
     Asthma triggers at home data:
     <span class="indicator-name"></span>.
     Accessed at <span class="citation-url">https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma-triggers/</span> on
-    <span class="citation-date">Nov 9, 2026</span>.
+    <span class="citation-date">Nov 10, 2026</span>.
 </span>
 </p>
         <button type="button" class="de-link-button fs-sm de-copy-citation-button" data-citation-target="citeText-trends"><i class="fas fa-copy mr-1" aria-hidden="true"></i>Copy citation</button>
@@ -1842,7 +1854,7 @@
     Asthma triggers at home data:
     <span class="indicator-name"></span>.
     Accessed at <span class="citation-url">https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma-triggers/</span> on
-    <span class="citation-date">Nov 9, 2026</span>.
+    <span class="citation-date">Nov 10, 2026</span>.
 </span>
 </p>
         <button type="button" class="de-link-button fs-sm de-copy-citation-button" data-citation-target="citeText-correlate"><i class="fas fa-copy mr-1" aria-hidden="true"></i>Copy citation</button>
@@ -1876,7 +1888,7 @@
     Asthma triggers at home data:
     <span class="indicator-name"></span>.
     Accessed at <span class="citation-url" data-citation-omit-overlay>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma-triggers/</span> on
-    <span class="citation-date">Nov 9, 2026</span>.
+    <span class="citation-date">Nov 10, 2026</span>.
 </span>
 
                     <span class="float-right">
@@ -1887,7 +1899,7 @@
 
         </div>
     </div>
-</div><script type="text/javascript" src="/IndicatorPublic/js/data-explorer/de-tab-content.3f0914105de2cffa.js" integrity="sha512-rYjJt6ynlxii0FuTO8tjW7i6ayfj5GdxeKS3s7xuZ94U&#43;RgccbhGg89eaOZtMRd1nFag03yUNSC4WqBFM1cPdw=="></script>
+</div><script type="text/javascript" src="/IndicatorPublic/js/data-explorer/de-tab-content.2474d731a5621c88.js" integrity="sha512-CrdfkE0DytLzEvhkIGbYzSFnT3oPKX&#43;QsYA4ABwBL38U6nF4BXpk2EQEOmNnj1ZTducoGX&#43;TfBLkilSo31C5Qw=="></script>
 
 <style>
          
@@ -2143,7 +2155,7 @@
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/data.a7df391c61aeb34d.js" integrity="sha512-R5s6RRlDTkqzJ9Hb0SOCYuAi04/tgY5KCtF8v8cs7U2f35p5Xpn9w&#43;uf3hdALwrNDBYPe80DdqbY1njGzoeqAA=="></script>
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/measures.419b97bc4207b0ff.js" integrity="sha512-Xza3Njsx8Es4GV&#43;v3dsSnHoGV/uFynxO9DoCjwo3JbkaJhcLVkPMj1SkK9bUPLcaYLX7AVRcg1g9bSlD3Oyf6g=="></script>
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/table.dc5702f99f01f5a0.js" integrity="sha512-piH1WsVlnBxBUpsDlnBWqwB&#43;EYjIoQ4oSdvxmkVYJ&#43;r4ns25oxx68vLcDaOBLzJcI19e3WIDzwLViGSpF268jg=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/map.915bba403a09e1b5.js" integrity="sha512-S&#43;oRZPH9Z13gL6HFGywVlfbZ05/uf3zJtiX6MhWzKJqsXDG4AXd7Omh2PsXeFSiRk2nY5bZrYpwbVMZIhRQtww=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/map.398eab3074492341.js" integrity="sha512-DRbgOuKcb76G7qDhXZu5n5tdz10rcbuiVNo9WlbOII6TFvan2PEfF4xbQWJ/mpw9J/1SUtM&#43;Qoww8JBCJEdK2A=="></script>
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/311.02bf62b1af6500ce.js" integrity="sha512-GyTrLU5LNh0jZXyEh&#43;Wb1cNov9wWaLETaJefaXdVl8tvo&#43;EiNhDrw&#43;1pKE4uEH4Lh6uzt6&#43;GyeAxE2kOLFM4NA=="></script>
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/topic-indicator-selector.ccff339b8699939c.js" integrity="sha512-SWDLF&#43;0PNFVUA/JoQ/I73DmFNeYTbdUCdfkBTnBUVW8VPHqP9Yo2ADhTHl5tpNWVtWTRE2ywJbO2gAl2k3PG3A=="></script>
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/menu.04e48a7e72605ccc.js" integrity="sha512-JfD9tg1JK4Z6feFT/ftLB6V9CG6hdxomPlJzfwK87pTItvQrQKADfE0B&#43;ANDBh6&#43;LcCJGB&#43;Sj/bsfBRr6RJh5A=="></script>

@@ -98,6 +98,12 @@ const SHEET_SHARE = 0.45;
 
 const SHEET_ZOOM_STEP = 0;
 
+// How far (in screen px) the centre must drift from the last fit before the map counts as moved.
+// Leaflet's own resizes round its centre by a fraction of a pixel (0.5px measured about 1.4s
+// after load), which an exact comparison read as the visitor panning.
+
+const MOVED_THRESHOLD_PX = 4;
+
 // ----------------------------------------------------------------------- //
 // stacked layout: map height and fit
 // ----------------------------------------------------------------------- //
@@ -160,10 +166,17 @@ const layoutStackedMap = () => {
 
     // The visitor has moved the map if it no longer shows the view this function last fitted.
     // Read the point at the middle of the visible part (above any overlap) before resizing.
+    // Only once there is a fitted view: Leaflet caches the first size getSize() reads, and
+    // invalidateSize() cannot refresh it until the map has a view, so reading it before the
+    // first fit pins the pre-layout height and the fit centres in the wrong box.
 
-    const moved = fittedView !== null && (currentMap.getZoom() !== fittedView.zoom || !currentMap.getCenter().equals(fittedView.center));
-    const before = currentMap.getSize();
-    const anchor = moved ? currentMap.containerPointToLatLng([before.x / 2, (before.y - stackedOverlap) / 2]) : null;
+    let anchor = null;
+    if (fittedView !== null) {
+        const before = currentMap.getSize();
+        const moved = currentMap.getZoom() !== fittedView.zoom ||
+            currentMap.latLngToContainerPoint(fittedView.center).distanceTo(before.divideBy(2)) > MOVED_THRESHOLD_PX;
+        if (moved) anchor = currentMap.containerPointToLatLng([before.x / 2, (before.y - stackedOverlap) / 2]);
+    }
     const previousOverlap = stackedOverlap;
     stackedOverlap = overlap;
 
@@ -210,10 +223,16 @@ const initBaseMap = () => {
     });
 
     // Below lg the stacked layout sizes the map and fits the city (layoutStackedMap); the desktop
-    // view keeps its fixed centre and zoom.
+    // view keeps its fixed centre and zoom. The first stacked fit waits for DOMContentLoaded:
+    // de-tab-content.js only sets .has-open-panel then, so fitting now would paint a fit with no
+    // overlap and re-fit visibly once the open view is known.
 
     if (STACKED_LAYOUT.matches) {
-        layoutStackedMap();
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', layoutStackedMap);
+        } else {
+            layoutStackedMap();
+        }
     } else {
         currentMap.setView([40.700142, -73.921546], 11);
     }

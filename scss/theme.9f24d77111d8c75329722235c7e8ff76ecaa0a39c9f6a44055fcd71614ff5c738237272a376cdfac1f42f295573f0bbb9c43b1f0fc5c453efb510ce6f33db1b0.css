@@ -10854,6 +10854,8 @@ table .group td {
     text-decoration: none; }
 
 @media (max-width: 959.98px) {
+  body:not(.modal-open):has(.de-wrapper) {
+    overflow-y: scroll; }
   .de-wrapper {
     padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
     .de-wrapper > section > .row, [id="languages"] .de-wrapper > section > ul {
