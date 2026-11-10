@@ -646,9 +646,12 @@ $color-data-explorer: #0A408A;
         padding: 10px;
         font-size: 14px;
 
+        // Bootstrap's .dropdown-item is nowrap. On desktop the menu is the dropdown's width
+        // (de-indicator-info.html), narrower than the longest measure names, so they wrap instead.
         button {
             border-bottom: 1px solid #D8D8D8;
             padding: 8px 0;
+            white-space: normal;
         }
         button:hover {
             background-color: #ffffff;
