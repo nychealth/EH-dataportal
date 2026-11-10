@@ -107,6 +107,21 @@
 <!-- Tab content -->
 <div class="tab-content bg-white pt-0 relative" id="v-pills-tabContent">
 
+    {{- /*  Hide the views before their first paint unless the URL asks for one. Otherwise the
+            container shows (with its close tab) until the renderer hides it once data loads.
+            Inline and first in the container so it runs before the close tab is parsed. A view
+            needs an indicator id (without one the chooser opens) and an overlay other than
+            'none'; with no overlay param, a hash may be a legacy #display= link that app.js
+            has not rewritten yet, so it counts as asking. The renderers set display either way. */ -}}
+    <script>
+        (() => {
+            const params = new URLSearchParams(window.location.search);
+            const overlay = params.get('overlay');
+            const asksForView = params.get('id') && (overlay ? overlay !== 'none' : window.location.hash !== '');
+            if (!asksForView) document.getElementById('v-pills-tabContent').style.display = 'none';
+        })();
+    </script>
+
     {{- /*  One shared close button, outside every .tab-pane.fade, so tab switches
             don't fade a duplicate copy of it out and back in — CSS opacity on
             an ancestor composites its whole subtree, so a per-pane button can
