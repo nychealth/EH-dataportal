@@ -210,10 +210,16 @@ const initBaseMap = () => {
     });
 
     // Below lg the stacked layout sizes the map and fits the city (layoutStackedMap); the desktop
-    // view keeps its fixed centre and zoom.
+    // view keeps its fixed centre and zoom. The first stacked fit waits for DOMContentLoaded:
+    // de-tab-content.js only sets .has-open-panel then, so fitting now would paint a fit with no
+    // overlap and re-fit visibly once the open view is known.
 
     if (STACKED_LAYOUT.matches) {
-        layoutStackedMap();
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', layoutStackedMap);
+        } else {
+            layoutStackedMap();
+        }
     } else {
         currentMap.setView([40.700142, -73.921546], 11);
     }
