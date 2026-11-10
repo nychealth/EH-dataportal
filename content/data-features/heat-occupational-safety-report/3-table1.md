@@ -2,6 +2,8 @@
 draft: false
 ---
 
-<p><strong>Table 1:</strong> Medical characteristics among subset with review of health conditions in the medical examiner records (n=68) (2016-2025).</p>
+<p><strong>Figure 3:</strong> Heat affects a wide range of workplace injuries and illnesses, and how they occur.</p>
 
-<span style="color:red"><div style="min-height:341px" id="datawrapper-vis-Pzjzy"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/Pzjzy/embed.js" charset="utf-8" data-target="#datawrapper-vis-Pzjzy"></script><noscript><img src="https://datawrapper.dwcdn.net/Pzjzy/full.png" alt="Table" /></noscript></div></span>
+<span style="color:red">
+<div style="min-height:403px" id="datawrapper-vis-lRl97"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/lRl97/embed.js" charset="utf-8" data-target="#datawrapper-vis-lRl97"></script><noscript><img src="https://datawrapper.dwcdn.net/lRl97/full.png" alt="On a 95°F day, heat illness and other internal health conditions,  increase by 44% on the job (Range Plot)" /></noscript></div>
+</span>

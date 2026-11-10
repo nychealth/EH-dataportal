@@ -3,34 +3,44 @@ _schema: default
 draft: false
 ---
 
-Each summer, on average, approximately **500 New Yorkers die prematurely because of hot weather** in New York City. Of those deaths:
+## Heat is a workplace health and safety hazard in New York City
 
-- There was an average of **7 heat-stress deaths** (caused directly by heat) per year from 2016-2025. A record-breaking heat event in June 2025 resulted in 19 heat-stress deaths.
+NYC has a large and diverse workforce spanning many different job sectors. These workers are critical to the city’s economic wellbeing. However, they can also be exposed to dangerous heat at work, <a href="https://climateassessment.nyc/assessment/nyc-climate-risk-information-2022-observations-and-projections/">a risk that may increase as our climate warms.</a> The NYC Comptroller’s office, for example, has estimated that about <a href="https://comptroller.nyc.gov/reports/safeguarding-outdoor-workers-in-a-changing-climate/">one third of the city’s workforce works outside</a> for substantial periods of time [cite]. Employees can also be exposed to heat indoors, for instance in warehouses, kitchens, or other places that are not sufficiently cooled.
 
-- There was an average of about **490 heat-exacerbated deaths** (caused indirectly by heat worsening an underlying illness) per year from 2014-2023. These heat-related deaths account for about 3% of all deaths over the warm season months of May through September.
+Heat exposure can be dangerous to health. In NYC, the Health Department estimates that 500 deaths are attributable to heat each year. However, we know little about the burden of health problems caused by heat in workplaces. To better understand how heat is affecting NYC workers, we partnered with a health researcher from the Barry Commoner Center for Health and Environment at the City University of New York. We examined worker’s compensation claims to learn what they can tell us about how heat affects NYC workers.
 
-**Heat-exacerbated deaths have remained high in recent years, after increasing in the previous decade.** Increases were mainly due to hotter summers overall, with more “non-extreme hot days” from 82°F to below the extreme heat threshold (95°F).
-
-The **average annual number of heat-stress deaths increased from 5 to 7** for 2016-2025. The increase reflects a record-breaking heat event in June 2025 that resulted in 19 deaths.
-
-**Black and Latino New Yorkers are more likely to die from heat stress.** Black New Yorkers had heat-stress death rates three times higher and Latino New Yorkers had death rates two times higher than white New Yorkers. Black New Yorkers also have a higher likelihood of heat-exacerbated death compared to other New Yorkers. This inequity reflects past and current structural racism that creates economic, health care, housing, energy, and other systems that benefit white people and disadvantage people of color.
-
-<!--delete if not needed <a href="{{< baseurl >}}pdf/memo_heat_mort_2024.pdf" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none; height:500px;">See details on the correction here.</a> -->
-
-**Lack of access to home cooling remains an important risk factor for heat-stress death.** People who died from heat stress were most frequently exposed to heat in homes. Heat-exacerbated deaths were also more likely to occur at home, underscoring the importance of access to cooling at home.
-
-NYC summers are getting hotter because of climate change.  **Emergency response to extreme heat must be coupled with equitable investments in structural interventions and heat mitigation measures that reduce risk throughout the season.** For example, all New Yorkers will need energy-efficient home cooling that they can afford to run, and tree planting and greening can help reduce local temperatures while providing shade.
+While Occupational Safety and Health Administration (OSHA) rules state that employers have a legal and moral responsibility to provide a safe workplace, there are currently no national occupational safety standards for heat. In New York State, the Department of Labor issues heat guidance for outdoor workers, but we do not have enforceable state laws setting safety standards for working in hot conditions. In June 2026, NYC took a step forward when Mayor Mamdani signed <a href="https://www.nyc.gov/mayors-office/news/2026/06/executive-order-no--17">Executive Order 17, directing a whole-of-government response to protect workers from extreme heat.</a> This analysis of heat and worker’s compensation claims reflects one of the commitments the City laid out in the 2026 Executive Order to protect NYC workers from dangerous heat exposure at work.
 
 ---
 
-## Introduction
+## What workers’ compensation claims can tell us about heat and work
 
-Hot weather is dangerous to health, sometimes resulting in death. Heat-related deaths are preventable. In this sixth annual report on heat-related mortality, the NYC Health Department reports on heat-related deaths in three ways:
+### What are workers’ compensation claims?
 
-- **Heat-stress deaths** (also called heat stroke deaths) are caused directly by heat and happen when heat-related illnesses, such as heat exhaustion and hyperthermia, lead to death. These deaths are coded as heat-related in death certificates, and cases can be counted and investigated.
+Workers’ compensation provides medical care, payments for lost wages, and other benefits to workers who experience job-related injuries, illnesses, or death. Most New York employers are required to provide this coverage, although there are important exceptions.
 
-- **Heat-exacerbated deaths** happen when heat worsens existing chronic conditions, such as heart disease. These deaths are caused indirectly by heat and are estimated using statistical models. They are also often called “excess” mortality.
+Claims contain information about when and how reported workplace injuries and illnesses occur and about the workers affected, including their age, sex, occupation, and residential zip code. This makes workers’ compensation data an important source of information for tracking workplace health and safety.
 
-- **Neighborhood impacts** are tracked by looking at community-level differences in risk of heat-related death and are described using the NYC Health Department’s Heat Vulnerability Index (HVI).
+### How did we study the impact of heat?
+
+We examined de-identified workers’ compensation claims for all injuries and illnesses from the New York State Worker’s Compensation Board that occurred in NYC’s five boroughs from May through September (our “warm season”), 2016 to 2025. We looked at whether workplace injuries and illnesses occurred more often as temperatures increased. For each injury, we compared the temperature on the day it occurred with temperatures on similar days within the same month, year, and county, and on the same day of the week. This helps separate the effect of temperature from other factors that could affect injury risk, such as seasonal differences in how much outdoor work is taking place. We also accounted for rainfall, which can independently increase injury risk.
+
+Looking only at claims that specifically identify heat as the cause of an injury or illness would miss much of its impact. Heat can directly cause heat illness or heat stroke, but it can also increase fatigue, affect concentration and coordination, and place additional strain on the body, contributing to other injuries or worsening health conditions, such as heart disease.
+
+The results tell us, for example, how much more likely a reported workplace injury or illness was on a 95°F day than on a 70°F day. We use 70°F as our comparison because it is a common and generally comfortable spring and summer temperature when we would expect relatively low risk from heat.
+
+### How did we measure temperature?
+
+We used daily maximum temperature data from <a href="https://www.climatologylab.org/gridmet.html">gridMET, which combines data from the National Oceanic and Atmospheric Administration and other weather stations</a> with modeled meteorological data to provide daily temperature estimates across the United States. For each workers’ compensation claim, we assigned the daily maximum temperature for the borough where the injury or illness occurred. This temperature measure does not consider humidity.
+
+### What are limitations of this data?
+
+Many of the workers missing from these data have jobs that expose them to heat. As a result, our findings likely underestimate how many NYC workers are injured or become ill because of heat at work.
+
+Workers’ compensation data only capture injuries and illnesses that enter the workers’ compensation system. Think of them as the tip of the iceberg: many work-related injuries and illnesses may never appear in these data. For an injury or illness to be captured, a worker must be covered by workers’ compensation, recognize the injury or illness as work-related, notify their employer , and file a claim. Low-wage workers, immigrant workers, and workers in insecure jobs often face greater barriers to reporting injuries or filing claims, so their injuries may be less likely to appear in the data.
+
+Some workers are not covered by workers’ compensation at all. This includes many self-employed workers who do not purchase coverage, as well as gig workers classified as independent contractors, such as app-based food delivery workers, who generally do not receive employer-provided coverage. Day laborers, workers misclassified as independent contractors, and others in informal work arrangements may not appear in these data. Other workers, including NYC police officers, firefighters, sanitation workers, and most NYC public school teachers and school-based staff, are not included because their claims are handled through separate systems.
+
+--
 
 We report estimated trends in heat-exacerbated deaths for the current and past several decades (1974-2023) in 10-year rolling time windows to provide more stable estimates than previous 5-year aggregation and align with the 10-year period used to describe the temperature-risk relationship in this report. For heat-stress deaths, we report counts and the annual average for the past ten years (2016-2025). Please refer to the [footnote](#note-on-years-of-data-included) on available data for more information about the years included in this report. [Read reports from previous years.](#previous-reports)
