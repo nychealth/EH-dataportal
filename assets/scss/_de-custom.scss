@@ -712,12 +712,6 @@ $color-data-explorer: #0A408A;
             max-width: none !important;
         }
 
-        /* Give the page content breathing room equal to nav height + safe-area */
-        .de-wrapper {
-            padding-bottom: calc(56px + env(safe-area-inset-bottom));
-            padding-bottom: calc(56px + constant(safe-area-inset-bottom)); /* iOS 11.0-11.2 fallback */
-        }
-
         .de-tabs-nav {
             /* Add extra padding for the home indicator area */
             padding-bottom: calc(8px + env(safe-area-inset-bottom));
@@ -726,16 +720,11 @@ $color-data-explorer: #0A408A;
 
         .tab-content {
             max-height: 50vh;
-            overflow-y: scroll;
+            overflow-y: auto;
             overflow-x: auto;
             position: relative;
             z-index: 10;
             padding-top: 10px;
-        }
-
-        .closeTabPane {
-            position: absolute;
-            left: -32px;
         }
     }
 
@@ -1347,6 +1336,76 @@ $color-data-explorer: #0A408A;
         background-color: #008939;
         color: white;
         text-decoration: none;
+    }
+}
+
+// ----- Phone and tablet layout (Option C and T2, documents/de-mobile-layout-options-2026-11-05.md) ----- //
+// Below lg the explorer stops floating its pieces over the map and stacks them in DOM order
+// (card, map, legend, views; data-explorer/single.html), so the page is the only vertical
+// scroller. The tab bar stays fixed to the bottom of the screen, and the page is padded by its
+// height so nothing ends under it. !important is needed against Bootstrap's .position-absolute
+// utility and the max-width: 959.98px rules above, which carry their own. The map's opening view
+// at these widths is fitted to the city in initBaseMap (map.js), whose breakpoint matches this one.
+@media (max-width: 959.98px) {
+    .de-wrapper {
+        padding-bottom: calc(64px + env(safe-area-inset-bottom));
+
+        // The shell's .row (data-explorer/single.html) as block layout: as a wrapping flex row it
+        // put the legend on a flex line of its own, so the negative margin below moved the legend
+        // and left the view behind it, and stretched the legend to the margin's height.
+        > section > .row {
+            display: block;
+        }
+
+        .de-main-details {
+            position: static !important;
+            width: 100% !important;
+            max-width: none !important; // the 720-959px floating layout caps these
+        }
+
+        // Relative rather than static so they can sit above the map (z-index 1) when they overlap it.
+        // Relative also applies the floating layout's offsets (the legend's bottom: 9rem, the tabs'
+        // !important left/right/bottom), so those are reset.
+        .de-legend,
+        .de-tabs {
+            position: relative !important;
+            top: auto !important;
+            right: auto !important;
+            bottom: auto !important;
+            left: auto !important;
+            z-index: 2;
+            width: 100% !important;
+            max-width: none !important;
+        }
+
+        // The map stays pinned while the page scrolls, so an open view slides up over it rather than
+        // pushing it away. Its height fills the screen down to the legend and tab bar, and is set by
+        // layoutStackedMap (map.js) because the card above it varies in height; 55svh is the
+        // fallback until that runs.
+        #map {
+            position: sticky;
+            top: 0;
+            height: var(--de-map-height, 55svh);
+        }
+
+        // With a view open, the legend and view are pulled up over the bottom of the map by
+        // --de-sheet-overlap; layoutStackedMap fits the city into the part left showing.
+        &.de-sheet-open .de-legend {
+            margin-top: calc(-1 * var(--de-sheet-overlap, 0px));
+        }
+
+        .tab-content {
+            max-height: none;
+            overflow: visible;
+        }
+
+        .de-tabs-nav {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1010; // above Leaflet's controls (1000)
+        }
     }
 }
 

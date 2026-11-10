@@ -564,7 +564,7 @@ everything it needs comes from `data/`.
 
 `assets/scss/theme.scss` is the entrypoint, importing lettered partials in order (`a-global-variables` → `b-bootstrap-imports` → …). Bootstrap comes from the **vendored copy at `assets/bootstrap/scss/`** (v4.3.1), not from `node_modules` — `package.json` also lists `bootstrap ^4.3.1`, so a dependency bump does not move the styles and the two can drift.
 
-**This site redefines Bootstrap's breakpoints** (`assets/scss/_a-global-variables.scss`): `md` is 720px and `lg` 960px, not 768 and 992. A `-md-` utility therefore switches at 720, the width of the explorer's own `min-width: 720px` blocks in `_de-custom.scss`, and no utility class switches at 992 `[verified 2026-10-31: the built CSS puts .d-md-none under min-width: 720px]`.
+**This site redefines Bootstrap's breakpoints** (`assets/scss/_a-global-variables.scss`): `md` is 720px and `lg` 960px, not 768 and 992. A `-md-` utility therefore switches at 720, the width of the explorer's own `min-width: 720px` blocks in `_de-custom.scss`, and no utility class switches at 992 `[verified 2026-10-31: the built CSS puts .d-md-none under min-width: 720px]`. A viewport chosen to test a layout is checked against these: 1024×768 is a desktop viewport here, not a tablet one.
 
 ### Content sections
 

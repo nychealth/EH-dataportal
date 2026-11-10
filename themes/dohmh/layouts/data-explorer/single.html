@@ -19,12 +19,10 @@
 
         <div class="row position-relative" style="z-index: 2;">
 
+            {{/*  Order is load-bearing below 720px, where these stack in DOM order instead of floating over
+                  the map (the phone layout in _de-custom.scss): card, map, legend, views. On wider screens
+                  they are absolutely positioned, so the order changes nothing visible.  */}}
             {{- partial "de-indicator-info" . -}}
-
-            {{- partial "de-tabs" . -}}
-
-            {{/*  Announces the measure, boundary and time after each change; filled by announceSelection (menu.js).  */}}
-            <div id="selectionStatus" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
 
             {{/*  Leaflet has no built-in accessible representation: the choropleth conveys data through color and
                   hover only, and vector features aren't in the tab order. The map is a labelled region rather than
@@ -38,6 +36,13 @@
                     onclick="var t = document.getElementById('v-pills-table-tab'); if (!(t.classList.contains('active') &amp;&amp; document.getElementById('v-pills-table').classList.contains('show'))) t.click(); return false;">View this data as a table</a>
                 <!-- map -->
             </div>
+
+            {{- partial "de-legend" . -}}
+
+            {{- partial "de-tabs" . -}}
+
+            {{/*  Announces the measure, boundary and time after each change; filled by announceSelection (menu.js).  */}}
+            <div id="selectionStatus" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
 
             {{/*  Load-failure card, filled by showLoadError (app.js) when a fetch fails. Positioned over the map
                   and tab panes rather than taking a row, so the layout does not move; empty, it renders nothing.  */}}
