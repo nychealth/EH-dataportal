@@ -2,8 +2,11 @@
 {{- if .Params.keywords -}}
 
     <h5 class="font-weight-bold keywords fs-sm">Keywords:</h5>
+    {{- /* relURL, not relLangURL: only English builds taxonomy pages (config.toml,
+           disableKinds under es and zh), so a translated story's keywords link to the
+           English term page. On English pages the two give the same path. */}}
     <div class="fs-xs">
-        {{- range $i, $kw := .Params.keywords -}}{{- if $i }} | {{ end -}}<a class="" href="{{ "keywords/" | relLangURL }}{{ $kw | urlize }}/">{{ $kw }}</a>
+        {{- range $i, $kw := .Params.keywords -}}{{- if $i }} | {{ end -}}<a class="" href="{{ "keywords/" | relURL }}{{ $kw | urlize }}/">{{ $kw }}</a>
         {{- end -}}
     </div>
 
