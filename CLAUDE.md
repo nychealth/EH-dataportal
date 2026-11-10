@@ -99,6 +99,12 @@ page; `workflow_dispatch` offers the 33-page sample instead. A failing sweep tri
 against it — green means the PR caused it, red means the data or a third party moved. The harness
 aborts `www.googletagmanager.com`, so no sweep reports page views to Google Analytics.
 
+**After pushing to a PR branch, watch its CI runs in the background without being asked**
+(Chris, 2026-11-10). Get the run ids for the pushed commit with `gh run list --commit <sha>`,
+then run `gh run watch <id> --exit-status` as a background task, which exits non-zero when the
+run fails, and report each run's conclusion when it finishes. A single look that finds the runs
+still in progress is not watching them.
+
 **A docs-only push to an open PR re-runs both sweeps.** On `pull_request`, `paths-ignore` reads every
 file the PR changes, not the push, so `documents/**` in it only spares a PR that touches nothing else.
 To skip a push whose code CI has already checked, such as a ledger commit, put `[skip ci]` in its
