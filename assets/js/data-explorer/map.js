@@ -98,6 +98,12 @@ const SHEET_SHARE = 0.45;
 
 const SHEET_ZOOM_STEP = 0;
 
+// How far (in screen px) the centre must drift from the last fit before the map counts as moved.
+// Leaflet's own resizes round its centre by a fraction of a pixel (0.5px measured about 1.4s
+// after load), which an exact comparison read as the visitor panning.
+
+const MOVED_THRESHOLD_PX = 4;
+
 // ----------------------------------------------------------------------- //
 // stacked layout: map height and fit
 // ----------------------------------------------------------------------- //
@@ -161,8 +167,9 @@ const layoutStackedMap = () => {
     // The visitor has moved the map if it no longer shows the view this function last fitted.
     // Read the point at the middle of the visible part (above any overlap) before resizing.
 
-    const moved = fittedView !== null && (currentMap.getZoom() !== fittedView.zoom || !currentMap.getCenter().equals(fittedView.center));
     const before = currentMap.getSize();
+    const moved = fittedView !== null && (currentMap.getZoom() !== fittedView.zoom ||
+        currentMap.latLngToContainerPoint(fittedView.center).distanceTo(before.divideBy(2)) > MOVED_THRESHOLD_PX);
     const anchor = moved ? currentMap.containerPointToLatLng([before.x / 2, (before.y - stackedOverlap) / 2]) : null;
     const previousOverlap = stackedOverlap;
     stackedOverlap = overlap;
