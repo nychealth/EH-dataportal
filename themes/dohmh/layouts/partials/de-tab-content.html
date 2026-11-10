@@ -112,13 +112,21 @@
             Inline and first in the container so it runs before the close tab is parsed. A view
             needs an indicator id (without one the chooser opens) and an overlay other than
             'none'; with no overlay param, a hash may be a legacy #display= link that app.js
-            has not rewritten yet, so it counts as asking. The renderers set display either way. */ -}}
+            has not rewritten yet, so it counts as asking. The renderers set display either way.
+            When a view is asked for, .has-open-panel goes on the enclosing .de-tabs now too, so
+            the desktop panel paints at its open width instead of 72px; de-tab-content.js keeps
+            the class in step from DOMContentLoaded on. */ -}}
     <script>
         (() => {
             const params = new URLSearchParams(window.location.search);
             const overlay = params.get('overlay');
             const asksForView = params.get('id') && (overlay ? overlay !== 'none' : window.location.hash !== '');
-            if (!asksForView) document.getElementById('v-pills-tabContent').style.display = 'none';
+            const tabContent = document.getElementById('v-pills-tabContent');
+            if (asksForView) {
+                tabContent.closest('.de-tabs')?.classList.add('has-open-panel');
+            } else {
+                tabContent.style.display = 'none';
+            }
         })();
     </script>
 
