@@ -1339,6 +1339,21 @@ $color-data-explorer: #0A408A;
     }
 }
 
+// The question-mark icons that open the help modals (partials/de-help-modals.html). A real <button>
+// where the old explorer used a bare <i>, so they take focus; colour and purple hover match the old
+// explorer's .helper (data-explorer-old/single.html).
+.de-help-button {
+    background: none;
+    border: 0;
+    padding: 0;
+    line-height: 1;
+    color: $primary;
+    cursor: pointer;
+    &:hover {
+        color: purple;
+    }
+}
+
 // ----- Phone and tablet layout (Option C and T2, documents/de-mobile-layout-options-2026-11-05.md) ----- //
 // Below lg the explorer stops floating its pieces over the map and stacks them in DOM order
 // (card, map, legend, views; data-explorer/single.html), so the page is the only vertical
