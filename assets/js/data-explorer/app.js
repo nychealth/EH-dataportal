@@ -842,8 +842,8 @@ $('#v-pills-ds-tab').on('click', e => {
 
 // Question-mark help buttons (de-help-modals.html). The old explorer's icons sent no event,
 // so this one is new. `help_topic` is the modal id without its suffix (geo, time, measure,
-// trend, links). `help_location` (details, table, trends, correlate) separates the time modal's
-// two entry points; it is not plain `location` for the reason given above for citations.
+// trend, links). `help_location` (details, table, trends, correlate) separates the time and geo
+// modals' two entry points each; it is not plain `location` for the reason given above for citations.
 
 $('.de-help-button').on('click', e => {
     const button = e.currentTarget;
