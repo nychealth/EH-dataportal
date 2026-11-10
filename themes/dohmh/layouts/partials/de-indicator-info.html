@@ -114,9 +114,11 @@
             <div class="card border-left border-right">
                 <div class="card-header pb-0">
                     <div class="dropdown fs-sm d-flex align-items-center">
-                        {{/*  Label and help button share the label's old 22% column, so the dropdown keeps its
-                              width. Siblings, not nested, for the aria-labelledby reason given above.  */}}
-                        <div class="d-flex align-items-center mr-2" style="width:22%">
+                        {{/*  Label and help button share one fixed column, so the three dropdowns line up. It is
+                              sized to the widest pair, "Boundary:" plus its icon (90px at the default font size),
+                              in rem so it grows with the text; the old 22% let that pair overflow into the gap.
+                              Siblings, not nested, for the aria-labelledby reason given above.  */}}
+                        <div class="d-flex align-items-center mr-2" style="width:5.75rem">
                             <div class="font-weight-bold de-option-label fs-sm mr-1" style="white-space: nowrap;" id="measureOptionsLabel">Measure:</div>
                             <button type="button" class="de-help-button fs-sm" data-toggle="modal" data-target="#measureModal" aria-haspopup="dialog" aria-label="About measures"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
                         </div>
@@ -134,7 +136,7 @@
             <div class="card border-left border-right">
                 <div class="card-header pb-0">
                     <div class="dropdown fs-sm d-flex align-items-center">
-                        <div class="d-flex align-items-center mr-2" style="width:22%">
+                        <div class="d-flex align-items-center mr-2" style="width:5.75rem">
                             <div class="font-weight-bold de-option-label fs-sm mr-1" style="white-space: nowrap;" id="geoOptionsLabel">Boundary:</div>
                             <button type="button" class="de-help-button fs-sm" data-toggle="modal" data-target="#geoModal" aria-haspopup="dialog" aria-label="About neighborhood boundaries"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
                         </div>
@@ -152,7 +154,7 @@
             <div class="card border-left border-right border-bottom">
                 <div class="card-header pb-0">
                     <div class="dropdown fs-sm d-flex align-items-center mb-2">
-                        <div class="d-flex align-items-center mr-2" style="width:22%">
+                        <div class="d-flex align-items-center mr-2" style="width:5.75rem">
                             <div class="font-weight-bold de-option-label fs-sm mr-1" style="white-space: nowrap;" id="timeOptionsLabel">Time:</div>
                             <button type="button" class="de-help-button fs-sm" data-toggle="modal" data-target="#timeModal" aria-haspopup="dialog" aria-label="About available time periods"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
                         </div>
