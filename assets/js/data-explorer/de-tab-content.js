@@ -253,10 +253,18 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Also check if tab content container is visible
+        // Also check if tab content container is visible. The renderers set its display to 'block'
+        // or 'none'; an empty value means none has run yet (the first call, at DOMContentLoaded),
+        // so go by what the URL asks for. An overlay opens a view only with an indicator: without
+        // an id the chooser opens and no renderer runs. app.js has already rewritten legacy
+        // #display= hashes into the overlay param by then (normalizeLegacyURL, at parse time).
 
         const tabContent = document.querySelector('#v-pills-tabContent');
-        if (tabContent && tabContent.style.display !== 'none') {
+        if (tabContent && tabContent.style.display === '') {
+            const params = new URLSearchParams(window.location.search);
+            const overlay = params.get('overlay');
+            if (params.get('id') && overlay && overlay !== 'none') hasOpenPanel = true;
+        } else if (tabContent && tabContent.style.display !== 'none') {
             hasOpenPanel = true;
         }
 
