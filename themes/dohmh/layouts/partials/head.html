@@ -39,12 +39,16 @@
       content/resources/ stays noindex in production — decided 2026-08-21, after
       the question was raised in the audit backlog. The section holds
       health-code-reference and sugar-lookup, which are public tools; keeping
-      them out of the index is deliberate, not an oversight.  */}}
+      them out of the index is deliberate, not an oversight.
+
+      data-explorer-old/ is noindex too (audit N-099): the retired explorer is
+      already kept out of page lists, the sitemap and Pagefind by its section's
+      cascade, and without this it still asked to be indexed as its own canonical.  */}}
 
 {{- $robots := "all" -}}
 {{- if ne hugo.Environment "prod_prod" -}}
     {{- $robots = "noindex, nofollow" -}}
-{{- else if eq .Section "resources" -}}
+{{- else if in (slice "resources" "data-explorer-old") .Section -}}
     {{- $robots = "noindex" -}}
 {{- end }}
 
@@ -92,9 +96,11 @@
 
 {{- /*  content translations  */ -}}
 
+{{- /* AllTranslations, not Translations: Google wants each page to list itself among its
+       alternates, and the URLs fully qualified (audit N-074). */ -}}
 {{- if .IsTranslated -}}
-    {{- range .Translations }}
-        <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .RelPermalink }}" title="{{ .Language.LanguageName }}">
+    {{- range .AllTranslations }}
+        <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" title="{{ .Language.LanguageName }}">
     {{- end -}}
 {{- end }}
 

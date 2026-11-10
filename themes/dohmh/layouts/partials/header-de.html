@@ -400,6 +400,31 @@
         </div>
         <div class="flex-grow-1 pr-2 pr-md-0">
             <div class="d-flex justify-content-end align-items-center h-100 pr-1 pr-md-3">
+                <!-- Translate: explorer pages set excludeFooter, which drops the footer's
+                     language buttons, and #global-language above sits inside the collapsed
+                     header (audit N-078). Same ten buttons as the footer; main.js's
+                     .lang-select handler drives the Google Translate widget. aria-label
+                     because below md the visible "Translate" is display:none. -->
+                <div class="dropdown mr-2 mr-md-3">
+                    <button type="button" class="bg-transparent border-0 d-flex align-items-center text-white p-0" id="translateToggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Translate">
+                        <div class="font-weight-bold mr-1 fs-md d-none d-md-block">Translate</div>
+                        <i class="fas fa-language" aria-hidden="true" style="font-size: 21px"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right p-2" aria-labelledby="translateToggle">
+                        <ul class="list-unstyled mb-0 fs-sm" role="list">
+                            <li><button type="button" class="dropdown-item lang-select" data-lang="ar" lang="ar">عربى</button></li>
+                            <li><button type="button" class="dropdown-item lang-select" data-lang="bn" lang="bn">বাঙালি</button></li>
+                            <li><button type="button" class="dropdown-item lang-select" data-lang="zh-CN" lang="zh-CN">中文</button></li>
+                            <li><button type="button" class="dropdown-item lang-select" data-lang="fr" lang="fr">français</button></li>
+                            <li><button type="button" class="dropdown-item lang-select" data-lang="ht" lang="ht">Kreyòl Ayisyen</button></li>
+                            <li><button type="button" class="dropdown-item lang-select" data-lang="ko" lang="ko">한국어</button></li>
+                            <li><button type="button" class="dropdown-item lang-select" data-lang="pl" lang="pl">Polskie</button></li>
+                            <li><button type="button" class="dropdown-item lang-select" data-lang="ru" lang="ru">русский</button></li>
+                            <li><button type="button" class="dropdown-item lang-select" data-lang="es" lang="es">Español</button></li>
+                            <li><button type="button" class="dropdown-item lang-select" data-lang="ur" lang="ur">اردو</button></li>
+                        </ul>
+                    </div>
+                </div>
                 <!-- Modal Trigger -->
                 <!-- aria-label because below md the visible "Learn More" is display:none, leaving only the icon -->
                 <button type="button" class="bg-transparent border-0 d-flex align-items-center mr-md-3" data-toggle="modal" data-target="#learnMore" aria-label="Learn More">

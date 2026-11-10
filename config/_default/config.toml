@@ -48,12 +48,18 @@ timeZone = "America/New_York"
 [languages.es]
   languageName = "Español"
   weight = 2
+  # No taxonomy pages in es or zh: their template text is English under a non-English
+  # lang, and the six translated stories link to the English term pages instead
+  # (keywords.html). Audit N-097, documents/r11-search-metadata-plan-2026-11-06.md.
+  disableKinds = ["taxonomy", "term"]
   [languages.es.params]
     languageDesc = "Spanish-US"
 
 [languages.zh]
   languageName = "中文"
   weight = 3
+  # Same as es, above.
+  disableKinds = ["taxonomy", "term"]
   [languages.zh.params]
     languageDesc = "Chinese-Simplified"
 
