@@ -1,7 +1,8 @@
 # Data explorer improvements — ledger (2026-11-10)
 
-**Status as of 2026-11-10: all seven items Not started; item E4 needs a diagnosis before it can be
-specified; items E1, E2 and E6 each need a decision from Chris (listed under each).**
+**Status as of 2026-11-11: E5 done (`e326c6c222`); the other six Not started; item E4 needs a
+diagnosis before it can be specified; items E1, E2 and E6 each need a decision from Chris (listed
+under each).**
 
 Seven improvements Chris listed on 2026-11-10. Each gets its own branch off `production` and its
 own PR. This file is the single ledger for all seven: status, branch, commit and proof live here,
@@ -19,7 +20,7 @@ function or block name); line numbers are given only as hints and will move.
 | E2 | Add Citywide and Borough to the table automatically | `feature-de-table-context-geos` | this file (design already recorded, see below) | *none yet* | Not started — decision D2 open | — |
 | E3 | Scrollable dropdowns (quarterly measures have 90+ time periods) | `feature-de-scrollable-dropdowns` | this file | *none yet* | Not started — check overlap with `feature-de-time-slider` first | — |
 | E4 | Asthma ED / Hosp by NTA: 2 indicators have a number measure with no boundary or time | `hotfix-de-asthma-nta-number` | diagnosis first | *none yet* | Not started — needs diagnosis (code or EHDP-data?) | — |
-| E5 | Disparities chart title much larger than correlate's | `hotfix-de-disparities-title-size` | this file | *none yet* | Not started | — |
+| E5 | Disparities chart title much larger than correlate's | `hotfix-de-disparities-title-size` | this file | `hotfix-de-disparities-title-size @ e326c6c222` | **DONE 2026-11-11** — scope widened to wrap the correlate title too (see E5) | browser on `dev_stage`, see E5 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
 | E6 | Allow many more "recently updated" datasets; home page shows ~10 | `feature-recently-updated-more` | this file | *none yet* | Not started — decision D6 open | — |
 | E7 | Initial "select dataset" modal has no "recently updated" flags | `hotfix-de-chooser-updated-badges` | this file | *none yet* | Not started — cause is a source reading, not yet browser-confirmed | — |
 
@@ -126,6 +127,34 @@ while there, so all four agree.
 pair. N-105 (chart titles clipped at 992 and 1024px, fixed by `4f29000c69`) touched title layout —
 re-check those widths.
 
+**What landed (`e326c6c222`).** Disparities title 18 → 14, subtitle 13 → 12. Re-checking N-105's
+widths showed the disparities title overflowing the SVG at 992 and 1024px, and the font change
+alone left 12px of overflow at 992. So the scope widened (Chris, 2026-11-11, "Option A"): both
+`disparities.js` and `correlate.js` now pass `title.text` as a string, not a one-element array,
+and call `wrapChartTitle(spec.title, spec.width)` before `vegaEmbed`. Until then the helper was
+called only from `bar.js` and `trend.js`, and it does nothing when given an array. Bar and trend
+were not changed.
+
+**Proof that ran** `[2026-11-11: dev_stage server on :8080, Playwright probes, served fingerprints
+read from each page so a before/after run could not measure the same file]`:
+- Size: disparities 18px/13px before (`disparities.18a1b15773…`), 14px/12px after, on 2380 and
+  2382, the same as correlate.
+- Disparities wrap on 2380 (`disparities.0209e0c45fda596c.js`): past the SVG edge by 92px at 992
+  and 80px at 1024 before; after, 2 lines ending 39px and 51px inside. One line that fits at 400
+  and 1280.
+- Correlate wrap on 2380 (`correlate.00acfa20bef1b708.js`), longest option selected: 2 lines
+  ending 44px (992) and 51px (1024) inside the SVG. Its overflow before the fix was not measured.
+- No page errors in any probe. `npm run lint` exit 0; `npm run smoke` against :8080, 44 pages
+  passed.
+- `node scripts/de-characterization.mjs --check` exited 1, and no title field differed. The diffs
+  are staging data movement: years 2023→2024 and 2020→2022, legends, mark and row counts. The
+  `staging` baseline under `scripts/de-characterization-baseline/` predates them. Not caused by
+  E5, and not re-baselined here.
+
+**Known limit.** Line breaks are computed at render. The correlate/disparities resize handler
+re-widens the view without re-wrapping, so narrowing the window after load can still clip a long
+title. A reload or tab switch re-renders it. Before this change these titles did not wrap at all.
+
 ## E6 — More "recently updated" datasets; home page shows ~10
 
 **What exists.** `data/recently_updated_data.yml` has one list, `featured`, of 13 entries
@@ -169,9 +198,17 @@ in that topic. Smoke over the curated list (both templates are in `PAGES`; confi
 
 ## Next command
 
+E5's branch was cut from `docs-de-improvements-ledger`, so its PR carries this ledger's first
+commit too. To open it:
+
 ```
-git switch production; git switch -c hotfix-de-disparities-title-size   # E5, smallest, no decisions
+git push -u origin hotfix-de-disparities-title-size
+gh pr create --base production --head hotfix-de-disparities-title-size
 ```
 
-Then, on a dev server, open an indicator that has both a disparities and a correlate view (which
-ones do was not checked when this was written), and read both titles' computed `font-size`.
+Next item with no open decision: E7. First confirm its cause in the browser (see E7 "Confirm
+first"), then:
+
+```
+git switch production; git switch -c hotfix-de-chooser-updated-badges
+```
