@@ -104,6 +104,9 @@ aborts `www.googletagmanager.com`, so no sweep reports page views to Google Anal
 then run `gh run watch <id> --exit-status` as a background task, which exits non-zero when the
 run fails, and report each run's conclusion when it finishes. A single look that finds the runs
 still in progress is not watching them.
+In the same step, re-read the PR description against `git log production..HEAD`. It was written
+for the diff at the first push, and a later commit can falsify any line of it, a "Not included"
+line without changing a word `[2026-11-10]`.
 
 **A docs-only push to an open PR re-runs both sweeps.** On `pull_request`, `paths-ignore` reads every
 file the PR changes, not the push, so `documents/**` in it only spares a PR that touches nothing else.
