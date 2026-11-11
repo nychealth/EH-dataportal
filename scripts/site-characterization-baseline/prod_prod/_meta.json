@@ -1,13 +1,13 @@
 {
-    "capturedAt": "2026-11-10T22:33:45.975Z",
-    "gitHead": "bf50fc1b2037fc6fea54803a4541fbf8abddbd60",
+    "capturedAt": "2026-11-11T22:42:51.730Z",
+    "gitHead": "c42a64596b547dc7cc77a423d13a9b811f55d758",
     "baselineKey": "prod_prod",
     "hugoEnv": "prod_prod",
     "dataBranch": "production",
     "dataCommit": {
         "sha": "547482b9df589006543e13e8cdf6546e00ed9998",
         "date": "2026-10-24T03:19:55Z",
-        "fetchedAt": "2026-11-10T22:30:16.418Z"
+        "fetchedAt": "2026-11-11T22:39:27.929Z"
     },
     "pagefind": true,
     "hugo": {
@@ -17,9 +17,7 @@
     "prefix": "/IndicatorPublic/",
     "mode": "all",
     "pages": 840,
-    "arbitrated": [
-        "neighborhood-reports/bayside_little_neck/outdoor_air_and_health/"
-    ],
+    "arbitrated": [],
     "cleared": [],
     "capped": false,
     "viewport": {

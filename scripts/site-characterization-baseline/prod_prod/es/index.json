@@ -73,7 +73,7 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 82,
+            "internal": 79,
             "external": 22,
             "emptyHref": 1,
             "noAccessibleText": 0
@@ -119,10 +119,8 @@
             "/about/",
             "/data-explorer",
             "/data-explorer/",
-            "/data-explorer/accessibility/",
             "/data-explorer/air-quality/",
             "/data-explorer/chronic-disease/",
-            "/data-explorer/climate/",
             "/data-explorer/mice-and-rats/",
             "/data-explorer/social-conditions/",
             "/data-features",
