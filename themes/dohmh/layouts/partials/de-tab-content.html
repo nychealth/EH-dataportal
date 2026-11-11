@@ -192,14 +192,14 @@
                     <div class="row">
                         <div class="col-lg-6 mb-2 mb-lg-0" >
                             <div>
-                                <p class="fs-xs mb-1">Time periods</p>
+                                <p class="fs-xs mb-1">Time periods <button type="button" class="de-help-button fs-sm ml-1" data-help-location="table" data-toggle="modal" data-target="#timeModal" aria-haspopup="dialog" aria-label="About available time periods"><i class="fas fa-question-circle" aria-hidden="true"></i></button></p>
                                 <div id="tableTimeCheckboxes" class="border de-table-optionbox" style="height: 10vh; overflow-y:scroll;"></div>
                             </div>
                         </div>
 
                         <div class="col-lg-6">
                             <div>
-                                <p class="fs-xs mb-1">Geographies</p>
+                                <p class="fs-xs mb-1">Geographies <button type="button" class="de-help-button fs-sm ml-1" data-help-location="table" data-toggle="modal" data-target="#geoModal" aria-haspopup="dialog" aria-label="About neighborhood boundaries"><i class="fas fa-question-circle" aria-hidden="true"></i></button></p>
                                 <div id="tableGeoCheckboxes" class="border de-table-optionbox" style="height: 10vh; overflow-y:scroll;"></div>
                             </div>
                         </div>
@@ -248,6 +248,8 @@
                 <div class="de-viz-pill-row">
                     <div id="trendMeasurePills" class="de-viz-pill-group"></div>
                     <div id="trendComparisonPills" class="de-viz-pill-groups"></div>
+                    {{/*  A sibling of the two pill holders, which measures.js refills on every render.  */}}
+                    <button type="button" class="de-help-button fs-sm" data-help-location="trends" data-toggle="modal" data-target="#trendModal" aria-haspopup="dialog" aria-label="About trend charts"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
                 </div>
             </div>
 
@@ -287,6 +289,7 @@
                             </div>
                         </div>
                         <button class="badge badge-pill badge-light border-0 de-viz-pill-button" id="show-disparities" type="button">Disparities</button>
+                        <button type="button" class="de-help-button fs-sm" data-help-location="correlate" data-toggle="modal" data-target="#linksModal" aria-haspopup="dialog" aria-label="About correlation"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
                     </div>
                 </div>
             </div>

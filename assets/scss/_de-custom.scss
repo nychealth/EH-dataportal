@@ -646,9 +646,12 @@ $color-data-explorer: #0A408A;
         padding: 10px;
         font-size: 14px;
 
+        // Bootstrap's .dropdown-item is nowrap. On desktop the menu is the dropdown's width
+        // (de-indicator-info.html), narrower than the longest measure names, so they wrap instead.
         button {
             border-bottom: 1px solid #D8D8D8;
             padding: 8px 0;
+            white-space: normal;
         }
         button:hover {
             background-color: #ffffff;
@@ -1336,6 +1339,21 @@ $color-data-explorer: #0A408A;
         background-color: #008939;
         color: white;
         text-decoration: none;
+    }
+}
+
+// The question-mark icons that open the help modals (partials/de-help-modals.html). A real <button>
+// where the old explorer used a bare <i>, so they take focus; colour and purple hover match the old
+// explorer's .helper (data-explorer-old/single.html).
+.de-help-button {
+    background: none;
+    border: 0;
+    padding: 0;
+    line-height: 1;
+    color: $primary;
+    cursor: pointer;
+    &:hover {
+        color: purple;
     }
 }
 

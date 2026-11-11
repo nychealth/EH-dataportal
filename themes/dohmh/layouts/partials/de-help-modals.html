@@ -1,0 +1,126 @@
+{{- /*  Help modals opened by the question-mark buttons (.de-help-button) beside the explorer's
+        controls: Measure, Boundary and Time in de-indicator-info.html, the table's Time periods
+        filter, and the Trends and Correlate pill controls in de-tab-content.html. Text and ids are
+        carried over unchanged from the retired explorer (data-explorer-old/single.html), which
+        keeps its own copy. Its sixth modal, How calculated, is not ported: the About the data
+        pane already shows that text (#howCalculated).  */ -}}
+
+<!-- Data Modal - Geography -->
+<div class="modal fade" id="geoModal" tabindex="-1" role="dialog" aria-labelledby="geoModalLabel" aria-hidden="true" data-pagefind-ignore="all">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="geoModalLabel"><i class="fas fa-question-circle mr-1" aria-hidden="true"></i>About neighborhood boundaries</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{- /*  The old copy wrapped this <ul> in the <p>, which HTML does not allow: the
+                        browser closed the <p> early and left an empty one after the list.  */}}
+                <p>There are many schemes of neighborhood boundaries (or geographies) available for different datasets. These include:</p>
+                <ul>
+                    <li>Citywide</li>
+                    <li>Borough</li>
+                    <li>United Hospital Fund 42 (UHF42) and United Hospital Fund 34 (UHF34) neighborhoods</li>
+                    <li>Community Districts (CD), and, related, Community District Tabulation Areas (CDTA)</li>
+                    <li>Public Use Microdata Areas (PUMA)</li>
+                    <li>Neighborhood Tabulation Areas (NTA)</li>
+                </ul>
+                <p>We try to make data available at as fine a geographic resolution as we can. <a href={{ relURL "data-stories/geographies" }} target="_blank">Read more about different geographies at this data story</a>.</p>
+                <p>It would be convenient if each dataset could be made available at the same geography, but this is not always possible. The neighborhood boundaries available depend on the specifics of the underlying dataset.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Data Modal - Trend -->
+<div class="modal fade" id="trendModal" tabindex="-1" role="dialog" aria-labelledby="trendModalLabel" aria-hidden="true" data-pagefind-ignore="all">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="trendModalLabel"><i class="fas fa-question-circle mr-1" aria-hidden="true"></i>About trend charts</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>When we have multiple years of data, we show the data as trend charts.</p>
+                <p>Trends for individual neighborhoods tend to be very unstable (or "bouncy"), due to small counts for outcomes in individual neighborhoods. To show clearer trends, we usually aggregate up and show trend data by Borough.</p>
+                <p>Options on some indicators let you compare this indicator to other similar indicators.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Data Modal - Times -->
+<div class="modal fade" id="timeModal" tabindex="-1" role="dialog" aria-labelledby="timeModalLabel" aria-hidden="true" data-pagefind-ignore="all">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="timeModalLabel"><i class="fas fa-question-circle mr-1" aria-hidden="true"></i>Available time periods</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>We try to make data available as soon as we can.</p>
+                <p>Many datasets take a long time to reach us — a "lag" of several years, during which data are gathered from different entities to try to create a complete dataset; data are processed (cleaned, deduplicated, etc), and analyzed. It can take several years to prepare a dataset — so a dataset that is several years old is sometimes the most up-to-date information available. Still, this data continues to show us valuable trends and insights. </p>
+                <p>We also try to display datasets that have been available for many years. Some datasets (like those that are asked on surveys) are not asked every year of the survey, which means that we cannot provide annual data.</p>
+                <p>For some datasets, we have to aggregate time periods in order to break down data by borough or neighborhood.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Data Modal - Measures -->
+<div class="modal fade" id="measureModal" tabindex="-1" role="dialog" aria-labelledby="measureModalLabel" aria-hidden="true" data-pagefind-ignore="all">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="measureModalLabel"><i class="fas fa-question-circle mr-1" aria-hidden="true"></i>About measures</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Measures are the numeric ways that a dataset (or indicator) are expressed. Examples of different measures might be: number, percent or rate. </p>
+                <p>A number tells us how much of an outcome is in a certain area. But a rate (usually expressed as, for example, 40 per 100,000) tells us how much of an outcome there is, <em>relative to the population of the area in question</em>. This lets us compare neighborhoods of different sizes.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Data Modal - Links -->
+<div class="modal fade" id="linksModal" tabindex="-1" role="dialog" aria-labelledby="linksModalLabel" aria-hidden="true" data-pagefind-ignore="all">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="linksModalLabel"><i class="fas fa-question-circle mr-1" aria-hidden="true"></i>About correlation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>On this site, we try to show how environmental factors might be connected to health outcomes. One way we do this is with <strong>Correlates</strong>. We choose potentially-related datasets and display them on a scatterplot so you can see how these two datasets are correlated.</p>
+                <p>The <strong>Disparities view</strong> displays neighborhoods by poverty category to show underlying disparities in the data.</p>
+                <p><a href={{ relURL "data-stories/povasthma" }} target="_blank">Read more about correlation here</a>.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

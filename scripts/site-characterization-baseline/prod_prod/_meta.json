@@ -1,13 +1,13 @@
 {
-    "capturedAt": "2026-11-10T19:09:47.548Z",
-    "gitHead": "0d4c5d827f519deb36c2cb13c7cdfc7befcee338",
+    "capturedAt": "2026-11-10T22:33:45.975Z",
+    "gitHead": "bf50fc1b2037fc6fea54803a4541fbf8abddbd60",
     "baselineKey": "prod_prod",
     "hugoEnv": "prod_prod",
     "dataBranch": "production",
     "dataCommit": {
         "sha": "547482b9df589006543e13e8cdf6546e00ed9998",
         "date": "2026-10-24T03:19:55Z",
-        "fetchedAt": "2026-11-10T19:06:27.857Z"
+        "fetchedAt": "2026-11-10T22:30:16.418Z"
     },
     "pagefind": true,
     "hugo": {
@@ -18,7 +18,7 @@
     "mode": "all",
     "pages": 840,
     "arbitrated": [
-        "data-features/heat-syndrome/"
+        "neighborhood-reports/bayside_little_neck/outdoor_air_and_health/"
     ],
     "cleared": [],
     "capped": false,

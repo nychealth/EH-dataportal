@@ -47,7 +47,12 @@
             <div class="card">
                 <div class="card-header pb-0">
                     <div class="dropdown fs-sm">
-                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1" id="measureOptionsLabel1">Measure: </div>
+                        {{/*  The help button sits beside the label, not inside it: the dropdown takes its
+                              name from the label (aria-labelledby), which would then read the button's too.  */}}
+                        <div class="d-flex align-items-center mb-1">
+                            <div class="font-weight-bold mr-1 text-primary fs-sm" id="measureOptionsLabel1">Measure: </div>
+                            <button type="button" class="de-help-button fs-sm" data-help-location="details" data-toggle="modal" data-target="#measureModal" aria-haspopup="dialog" aria-label="About measures"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
+                        </div>
                         <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="measureOptionsDropdownButton1" aria-labelledby="measureOptionsLabel1 measureOptionsDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="flex-grow-1 measure-name"></span>
                             <i class="fas fa-chevron-down ml-auto text-primary"></i>
@@ -62,7 +67,10 @@
             <div class="card">
                 <div class="card-header pb-0">
                     <div class="dropdown fs-sm">
-                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1" id="geoOptionsLabel1">Boundary: </div>
+                        <div class="d-flex align-items-center mb-1">
+                            <div class="font-weight-bold mr-1 text-primary fs-sm" id="geoOptionsLabel1">Boundary: </div>
+                            <button type="button" class="de-help-button fs-sm" data-help-location="details" data-toggle="modal" data-target="#geoModal" aria-haspopup="dialog" aria-label="About neighborhood boundaries"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
+                        </div>
                         <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="geoOptionsDropdownButton1" aria-labelledby="geoOptionsLabel1 geoOptionsDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="flex-grow-1 geo-name"></span>
                             <i class="fas fa-chevron-down ml-auto text-primary"></i>
@@ -78,7 +86,10 @@
             <div class="card">
                 <div class="card-header pb-0">
                     <div class="dropdown fs-sm">
-                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1" id="timeOptionsLabel1">Time: </div>
+                        <div class="d-flex align-items-center mb-1">
+                            <div class="font-weight-bold mr-1 text-primary fs-sm" id="timeOptionsLabel1">Time: </div>
+                            <button type="button" class="de-help-button fs-sm" data-help-location="details" data-toggle="modal" data-target="#timeModal" aria-haspopup="dialog" aria-label="About available time periods"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
+                        </div>
                         <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal mb-2" type="button" id="timeOptionsDropdownButton1" aria-labelledby="timeOptionsLabel1 timeOptionsDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="flex-grow-1 time-name"></span>
                             <i class="fas fa-chevron-down ml-auto text-primary"></i>
@@ -102,14 +113,24 @@
             <!-- Dropdown 1 -->
             <div class="card border-left border-right">
                 <div class="card-header pb-0">
-                    <div class="dropdown fs-sm d-flex align-items-center">
-                        <div class="font-weight-bold de-option-label fs-sm mr-2" style="white-space: nowrap; width:22%" id="measureOptionsLabel">Measure:</div>
-                        <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal flex-grow-1" type="button" id="measureOptionsDropdownButton" aria-labelledby="measureOptionsLabel measureOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="flex-grow-1 measure-name"></span>
-                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
-                        </button> 
-                        <div class="dropdown-menu dropdown-menu-de w-100 border-none measures-holder" aria-labelledby="measureOptionsDropdownButton">
+                    <div class="fs-sm d-flex align-items-center">
+                        {{/*  The label column is a fixed width, so the three dropdowns line up. It is sized to
+                              the widest label, "Boundary:", in rem so it grows with the text. The help button
+                              sits after the dropdown, as the old explorer's floated right at the end of the label
+                              line, so the eye moves from label to choice without crossing it; phones keep it
+                              beside the label. Siblings, not nested, for the aria-labelledby reason given above.
+                              The toggle and its menu get their own .dropdown so the menu's w-100 is the toggle's
+                              width, not the row's; min-width:0 lets a long selected name shrink rather than widen it.  */}}
+                        <div class="font-weight-bold de-option-label fs-sm mr-2 flex-shrink-0" style="white-space: nowrap; width:4.5rem" id="measureOptionsLabel">Measure:</div>
+                        <div class="dropdown flex-grow-1" style="min-width:0">
+                            <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal w-100" type="button" id="measureOptionsDropdownButton" aria-labelledby="measureOptionsLabel measureOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="flex-grow-1 measure-name"></span>
+                                <i class="fas fa-chevron-down ml-auto text-primary"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-de w-100 border-none measures-holder" aria-labelledby="measureOptionsDropdownButton">
+                            </div>
                         </div>
+                        <button type="button" class="de-help-button fs-sm ml-2" data-help-location="details" data-toggle="modal" data-target="#measureModal" aria-haspopup="dialog" aria-label="About measures"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
                     </div>
                 </div>
             </div>
@@ -117,14 +138,17 @@
             <!-- Dropdown 2 -->
             <div class="card border-left border-right">
                 <div class="card-header pb-0">
-                    <div class="dropdown fs-sm d-flex align-items-center">
-                        <div class="font-weight-bold de-option-label fs-sm mr-2" style="white-space: nowrap; width:22%" id="geoOptionsLabel">Boundary:</div>
-                        <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal flex-grow-1" type="button" id="geoOptionsDropdownButton" aria-labelledby="geoOptionsLabel geoOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="flex-grow-1 geo-name"></span>
-                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-de w-100 border-none geo-holder" aria-labelledby="geoOptionsDropdownButton">
+                    <div class="fs-sm d-flex align-items-center">
+                        <div class="font-weight-bold de-option-label fs-sm mr-2 flex-shrink-0" style="white-space: nowrap; width:4.5rem" id="geoOptionsLabel">Boundary:</div>
+                        <div class="dropdown flex-grow-1" style="min-width:0">
+                            <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal w-100" type="button" id="geoOptionsDropdownButton" aria-labelledby="geoOptionsLabel geoOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="flex-grow-1 geo-name"></span>
+                                <i class="fas fa-chevron-down ml-auto text-primary"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-de w-100 border-none geo-holder" aria-labelledby="geoOptionsDropdownButton">
+                            </div>
                         </div>
+                        <button type="button" class="de-help-button fs-sm ml-2" data-help-location="details" data-toggle="modal" data-target="#geoModal" aria-haspopup="dialog" aria-label="About neighborhood boundaries"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
                     </div>
                 </div>
             </div>
@@ -132,14 +156,17 @@
             <!-- Dropdown 3 -->
             <div class="card border-left border-right border-bottom">
                 <div class="card-header pb-0">
-                    <div class="dropdown fs-sm d-flex align-items-center mb-2">
-                        <div class="font-weight-bold de-option-label fs-sm mr-2" style="white-space: nowrap; width:22%" id="timeOptionsLabel">Time:</div>
-                        <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal flex-grow-1" type="button" id="timeOptionsDropdownButton" aria-labelledby="timeOptionsLabel timeOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="flex-grow-1 time-name"></span>
-                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-de w-100 border-none time-holder" aria-labelledby="timeOptionsDropdownButton">
+                    <div class="fs-sm d-flex align-items-center mb-2">
+                        <div class="font-weight-bold de-option-label fs-sm mr-2 flex-shrink-0" style="white-space: nowrap; width:4.5rem" id="timeOptionsLabel">Time:</div>
+                        <div class="dropdown flex-grow-1" style="min-width:0">
+                            <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal w-100" type="button" id="timeOptionsDropdownButton" aria-labelledby="timeOptionsLabel timeOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="flex-grow-1 time-name"></span>
+                                <i class="fas fa-chevron-down ml-auto text-primary"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-de w-100 border-none time-holder" aria-labelledby="timeOptionsDropdownButton">
+                            </div>
                         </div>
+                        <button type="button" class="de-help-button fs-sm ml-2" data-help-location="details" data-toggle="modal" data-target="#timeModal" aria-haspopup="dialog" aria-label="About available time periods"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
                     </div>
                 </div>
             </div>

@@ -99,6 +99,12 @@ page; `workflow_dispatch` offers the 33-page sample instead. A failing sweep tri
 against it — green means the PR caused it, red means the data or a third party moved. The harness
 aborts `www.googletagmanager.com`, so no sweep reports page views to Google Analytics.
 
+**After pushing to a PR branch, watch its CI runs in the background without being asked**
+(Chris, 2026-11-10). Get the run ids for the pushed commit with `gh run list --commit <sha>`,
+then run `gh run watch <id> --exit-status` as a background task, which exits non-zero when the
+run fails, and report each run's conclusion when it finishes. A single look that finds the runs
+still in progress is not watching them.
+
 **A docs-only push to an open PR re-runs both sweeps.** On `pull_request`, `paths-ignore` reads every
 file the PR changes, not the push, so `documents/**` in it only spares a PR that touches nothing else.
 To skip a push whose code CI has already checked, such as a ledger commit, put `[skip ci]` in its
@@ -465,6 +471,7 @@ Two load outside that order: `de-tab-content.js`, from `themes/dohmh/layouts/par
 - UI state uses prettified geotypes (`NTA`, `CDTA`, `PUMA`) while data rows may carry versioned values (`NTA2020`). Normalize with `prettifyGeoType` (`global.js`) before comparing. `assignGeoRank` derives its ranking from the same shape, so a new versioned variant should be handled in one place, not two.
 - **Every EHDP-data path the explorer fetches at runtime must exist on EHDP-data `production` before merging.** `dev_stage` reads `staging`, so a staging-only file passes there and 404s live. CI's `prod_prod` sweep reads `production` and fails on any EHDP-data 4xx (smoke, above), but loads each indicator in one view, so a file only another view fetches can still pass; the pinned run in the smoke plan's Task 3 caught the citywide 404 on 56 pages across all five views. `curl -s -o /dev/null -w '%{http_code}'` the production raw URL `[2026-10-02: geography/citywide.topo.json was staging-only; the unmapped map drew nothing on 68 indicators]`.
 - `isDataTable` is reached via the lowercase-`d` jQuery plugin property, not the capitalised one.
+- **Every new GA event or event parameter ships with a custom-dimension table.** The explorer sends events through `trackDataExplorerEvent` (`assets/js/data-explorer/global.js`). A parameter appears in GA4's standard reports only once it is registered as a custom dimension in the GA admin, which is outside this repo. So in the report that lands the event, give one event-scoped row per new parameter: dimension name, description listing its values, and the parameter name exactly as the code sends it `[Chris, 2026-11-10]`.
 - `#searchModal` is defined in `themes/dohmh/layouts/partials/search-modal.html`, included from `baseof.html` and from `themes/dohmh/layouts/_default/list.html` `[verified 2026-10-16: grep for the id and the partial across themes/]`.
 - **`head.html` no longer carries a library block at all.** It used to gate one on `.Kind`/`.Section`, and that gate missed section pages — which is what made the data explorer landing page throw `aq is not defined` (site-wide audit §5f). Libraries are now per-template `lib-*` partials, and `themes/dohmh/layouts/data-explorer/section.html` includes `lib-arquero.html`. See "Library loading" above before assuming a library is available on a template.
 
