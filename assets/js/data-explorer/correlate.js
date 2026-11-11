@@ -527,7 +527,7 @@ const renderCorrelate = (
         // measuring; starts at one row (more columns than there are boroughs).
         "params": [{ "name": "legendColumns", "value": CORRELATE_LEGEND_MAX_COLUMNS }],
         "title": {
-            "text": [`${yIndicatorName}`],
+            "text": `${yIndicatorName}`,
             "align": "left",
             "anchor": "start",
             "fontSize": 14,
@@ -720,6 +720,9 @@ const renderCorrelate = (
             }
         ]
     };
+
+    // A long indicator name would otherwise run past the SVG's right edge (N-105).
+    wrapChartTitle(correlateSpec.title, correlateSpec.width);
 
     // ----- render, bookkeeping & CSV export ----- //
 
