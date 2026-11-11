@@ -1,8 +1,8 @@
 # Data explorer improvements — ledger (2026-11-10)
 
-**Status as of 2026-11-11: E5 done (`e326c6c222`); the other six Not started; item E4 needs a
-diagnosis before it can be specified; items E1, E2 and E6 each need a decision from Chris (listed
-under each).**
+**Status as of 2026-11-11: E5 done, merged via #1559; E6 done (`c42a64596b`); the other five Not
+started; item E4 needs a diagnosis before it can be specified; items E1 and E2 each need a
+decision from Chris (listed under each), and E3 needs the time-slider question answered.**
 
 Seven improvements Chris listed on 2026-11-10. Each gets its own branch off `production` and its
 own PR. This file is the single ledger for all seven: status, branch, commit and proof live here,
@@ -20,8 +20,8 @@ function or block name); line numbers are given only as hints and will move.
 | E2 | Add Citywide and Borough to the table automatically | `feature-de-table-context-geos` | this file (design already recorded, see below) | *none yet* | Not started — decision D2 open | — |
 | E3 | Scrollable dropdowns (quarterly measures have 90+ time periods) | `feature-de-scrollable-dropdowns` | this file | *none yet* | Not started — check overlap with `feature-de-time-slider` first | — |
 | E4 | Asthma ED / Hosp by NTA: 2 indicators have a number measure with no boundary or time | `hotfix-de-asthma-nta-number` | diagnosis first | *none yet* | Not started — needs diagnosis (code or EHDP-data?) | — |
-| E5 | Disparities chart title much larger than correlate's | `hotfix-de-disparities-title-size` | this file | `hotfix-de-disparities-title-size @ e326c6c222` | **DONE 2026-11-11** — scope widened to wrap the correlate title too (see E5) | browser on `dev_stage`, see E5 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
-| E6 | Allow many more "recently updated" datasets; home page shows ~10 | `feature-recently-updated-more` | this file | *none yet* | Not started — decision D6 open | — |
+| E5 | Disparities chart title much larger than correlate's | `hotfix-de-disparities-title-size` | this file | `hotfix-de-disparities-title-size @ e326c6c222`; PR #1559, merge `2c8f5e065e` | **DONE 2026-11-11** — scope widened to wrap the correlate title too (see E5) | browser on `dev_stage`, see E5 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
+| E6 | Allow many more "recently updated" datasets; home page shows ~10 | `feature-recently-updated-more` | this file | `feature-recently-updated-more @ c42a64596b`; re-baseline `af4bac8f6b` | **DONE 2026-11-11** — D6 decided: file order | isolated build, see E6 "Proof that ran"; site-characterization re-baseline, nothing unexplained |
 | E7 | Initial "select dataset" modal has no "recently updated" flags | `hotfix-de-chooser-updated-badges` | this file | *none yet* | Not started — cause is a source reading, not yet browser-confirmed | — |
 
 E5 and E7 are small enough to share one branch if Chris prefers; they touch different files
@@ -175,6 +175,33 @@ File order is the ranking.
 `.de-main-details[data-recently-updated-ids]` = full count. `characterize:site` on `(home)` if the
 link count changes.
 
+**Decided** (Chris, 2026-11-11): D6 is file order, newest first. Rejected: a date on each entry,
+which costs a hand-entered field per entry and needs a rule for undated ones.
+
+**What landed (`c42a64596b`).** The home page loop in `index.html` is `range first 10`, with a
+comment that file order is the ranking. A comment at the top of `data/recently_updated_data.yml`
+says the same for editors. The badge partial and the retired explorer still read the whole list.
+The file's shape is unchanged, so E7 does not depend on E6.
+
+**Proof that ran:**
+- `[2026-11-11: isolated development build into temp dirs, exit 0]`: the English, Spanish and
+  Chinese home pages each show 10 links. On the English page the link text matches the file's
+  first 10 entries, in order. The air-quality topic page's badge attribute still carries all 13
+  ids.
+- `[2026-11-11: site-characterization-rebaseline.mjs --expect "" --expect "es/" --expect "zh/",
+  both keys, at c42a64596b]`: 3 of 840 pages changed per key, all claimed, nothing unexplained.
+  Tally of changed fields: `internal` link count −3 on each home page, and the link targets lose
+  `/data-explorer/climate/` and `/data-explorer/accessibility/`. The third dropped entry links to
+  `chronic-disease`, which entries still shown also link to. Committed as `af4bac8f6b`.
+- Production (with #1559) was merged in after the re-baseline. #1559's own site-characterization
+  CI run passed without a re-baseline, so the merge should move no recorded structure; CI on this
+  PR checks that.
+
+**Open for Chris.** With the current 13 entries, the home page drops "Dialysis patients",
+"Residents living in a hurricane evacuation zone" and "Walking distance to an accessible subway
+station". The current file order was not checked against update dates; if it is not newest first,
+reorder it.
+
 ## E7 — No "recently updated" flags in the initial select-dataset modal
 
 **Cause, from source only (unverified in a browser).** `topic-indicator-selector.js`'s modal
@@ -198,12 +225,12 @@ in that topic. Smoke over the curated list (both templates are in `PAGES`; confi
 
 ## Next command
 
-E5's branch was cut from `docs-de-improvements-ledger`, so its PR carries this ledger's first
-commit too. To open it:
+E6's PR:
 
 ```
-git push -u origin hotfix-de-disparities-title-size
-gh pr create --base production --head hotfix-de-disparities-title-size
+git push -u origin feature-recently-updated-more
+gh pr create --base production --head feature-recently-updated-more
+gh pr list --head feature-recently-updated-more   # confirms it exists, and its base
 ```
 
 Next item with no open decision: E7. First confirm its cause in the browser (see E7 "Confirm
