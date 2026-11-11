@@ -66,7 +66,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/","name":"The Environment and Health Data Portal: Home page","position":1},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/","name":"Data Explorer","position":2},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-safety/","name":"Housing safety","position":3}]}</script>
 <script src="/IndicatorPublic/node_modules/jquery/dist/jquery.min.9d6bd9b75ea55acc.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR&#43;8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/css/all.min.c2b5ea5c3ed56d7e.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck&#43;w&#43;/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous"/>
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.9f24d77111d8c75329722235c7e8ff76ecaa0a39c9f6a44055fcd71614ff5c738237272a376cdfac1f42f295573f0bbb9c43b1f0fc5c453efb510ce6f33db1b0.css" integrity="sha512-nyTXcRHYx1MpciI1x&#43;j/duyqCjnJ9qRAVfzXFhT/XHOCNycqN2zfrB9C8pVXPwu7nEOx8PxcRT77UQzm8z2xsA==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.8b4ad497206cb81d.js" integrity="sha512-2wT0W6vojz3cJuLoa/DxrPVQRinkfRjFWMWIDK4NghTqObEhpem1nEkeK0d9ZE&#43;/hyvfMNuJZlfxM4LsRgeoSA=="></script>
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.4c5f3e9a28e0c9785dd93d12fdd79b8a7d1576a99e30e5ab8430d7b5771b52936c6527dc1a843300f7056ffa5c09dbb1044fc518cc0bfa9bf5ad2797078069c1.css" integrity="sha512-TF8&#43;mijgyXhd2T0S/debin0VdqmeMOWrhDDXtXcbUpNsZSfcGoQzAPcFb/pcCduxBE/FGMwL&#43;pv1rSeXB4BpwQ==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.8b4ad497206cb81d.js" integrity="sha512-2wT0W6vojz3cJuLoa/DxrPVQRinkfRjFWMWIDK4NghTqObEhpem1nEkeK0d9ZE&#43;/hyvfMNuJZlfxM4LsRgeoSA=="></script>
 
 
 
@@ -1373,7 +1373,11 @@
             <div class="card">
                 <div class="card-header pb-0">
                     <div class="dropdown fs-sm">
-                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1" id="measureOptionsLabel1">Measure: </div>
+                        
+                        <div class="d-flex align-items-center mb-1">
+                            <div class="font-weight-bold mr-1 text-primary fs-sm" id="measureOptionsLabel1">Measure: </div>
+                            <button type="button" class="de-help-button fs-sm" data-help-location="details" data-toggle="modal" data-target="#measureModal" aria-haspopup="dialog" aria-label="About measures"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
+                        </div>
                         <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="measureOptionsDropdownButton1" aria-labelledby="measureOptionsLabel1 measureOptionsDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="flex-grow-1 measure-name"></span>
                             <i class="fas fa-chevron-down ml-auto text-primary"></i>
@@ -1388,7 +1392,10 @@
             <div class="card">
                 <div class="card-header pb-0">
                     <div class="dropdown fs-sm">
-                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1" id="geoOptionsLabel1">Boundary: </div>
+                        <div class="d-flex align-items-center mb-1">
+                            <div class="font-weight-bold mr-1 text-primary fs-sm" id="geoOptionsLabel1">Boundary: </div>
+                            <button type="button" class="de-help-button fs-sm" data-help-location="details" data-toggle="modal" data-target="#geoModal" aria-haspopup="dialog" aria-label="About neighborhood boundaries"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
+                        </div>
                         <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="geoOptionsDropdownButton1" aria-labelledby="geoOptionsLabel1 geoOptionsDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="flex-grow-1 geo-name"></span>
                             <i class="fas fa-chevron-down ml-auto text-primary"></i>
@@ -1404,7 +1411,10 @@
             <div class="card">
                 <div class="card-header pb-0">
                     <div class="dropdown fs-sm">
-                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1" id="timeOptionsLabel1">Time: </div>
+                        <div class="d-flex align-items-center mb-1">
+                            <div class="font-weight-bold mr-1 text-primary fs-sm" id="timeOptionsLabel1">Time: </div>
+                            <button type="button" class="de-help-button fs-sm" data-help-location="details" data-toggle="modal" data-target="#timeModal" aria-haspopup="dialog" aria-label="About available time periods"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
+                        </div>
                         <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal mb-2" type="button" id="timeOptionsDropdownButton1" aria-labelledby="timeOptionsLabel1 timeOptionsDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="flex-grow-1 time-name"></span>
                             <i class="fas fa-chevron-down ml-auto text-primary"></i>
@@ -1428,14 +1438,18 @@
             
             <div class="card border-left border-right">
                 <div class="card-header pb-0">
-                    <div class="dropdown fs-sm d-flex align-items-center">
-                        <div class="font-weight-bold de-option-label fs-sm mr-2" style="white-space: nowrap; width:22%" id="measureOptionsLabel">Measure:</div>
-                        <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal flex-grow-1" type="button" id="measureOptionsDropdownButton" aria-labelledby="measureOptionsLabel measureOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="flex-grow-1 measure-name"></span>
-                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
-                        </button> 
-                        <div class="dropdown-menu dropdown-menu-de w-100 border-none measures-holder" aria-labelledby="measureOptionsDropdownButton">
+                    <div class="fs-sm d-flex align-items-center">
+                        
+                        <div class="font-weight-bold de-option-label fs-sm mr-2 flex-shrink-0" style="white-space: nowrap; width:4.5rem" id="measureOptionsLabel">Measure:</div>
+                        <div class="dropdown flex-grow-1" style="min-width:0">
+                            <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal w-100" type="button" id="measureOptionsDropdownButton" aria-labelledby="measureOptionsLabel measureOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="flex-grow-1 measure-name"></span>
+                                <i class="fas fa-chevron-down ml-auto text-primary"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-de w-100 border-none measures-holder" aria-labelledby="measureOptionsDropdownButton">
+                            </div>
                         </div>
+                        <button type="button" class="de-help-button fs-sm ml-2" data-help-location="details" data-toggle="modal" data-target="#measureModal" aria-haspopup="dialog" aria-label="About measures"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
                     </div>
                 </div>
             </div>
@@ -1443,14 +1457,17 @@
             
             <div class="card border-left border-right">
                 <div class="card-header pb-0">
-                    <div class="dropdown fs-sm d-flex align-items-center">
-                        <div class="font-weight-bold de-option-label fs-sm mr-2" style="white-space: nowrap; width:22%" id="geoOptionsLabel">Boundary:</div>
-                        <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal flex-grow-1" type="button" id="geoOptionsDropdownButton" aria-labelledby="geoOptionsLabel geoOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="flex-grow-1 geo-name"></span>
-                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-de w-100 border-none geo-holder" aria-labelledby="geoOptionsDropdownButton">
+                    <div class="fs-sm d-flex align-items-center">
+                        <div class="font-weight-bold de-option-label fs-sm mr-2 flex-shrink-0" style="white-space: nowrap; width:4.5rem" id="geoOptionsLabel">Boundary:</div>
+                        <div class="dropdown flex-grow-1" style="min-width:0">
+                            <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal w-100" type="button" id="geoOptionsDropdownButton" aria-labelledby="geoOptionsLabel geoOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="flex-grow-1 geo-name"></span>
+                                <i class="fas fa-chevron-down ml-auto text-primary"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-de w-100 border-none geo-holder" aria-labelledby="geoOptionsDropdownButton">
+                            </div>
                         </div>
+                        <button type="button" class="de-help-button fs-sm ml-2" data-help-location="details" data-toggle="modal" data-target="#geoModal" aria-haspopup="dialog" aria-label="About neighborhood boundaries"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
                     </div>
                 </div>
             </div>
@@ -1458,14 +1475,17 @@
             
             <div class="card border-left border-right border-bottom">
                 <div class="card-header pb-0">
-                    <div class="dropdown fs-sm d-flex align-items-center mb-2">
-                        <div class="font-weight-bold de-option-label fs-sm mr-2" style="white-space: nowrap; width:22%" id="timeOptionsLabel">Time:</div>
-                        <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal flex-grow-1" type="button" id="timeOptionsDropdownButton" aria-labelledby="timeOptionsLabel timeOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="flex-grow-1 time-name"></span>
-                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-de w-100 border-none time-holder" aria-labelledby="timeOptionsDropdownButton">
+                    <div class="fs-sm d-flex align-items-center mb-2">
+                        <div class="font-weight-bold de-option-label fs-sm mr-2 flex-shrink-0" style="white-space: nowrap; width:4.5rem" id="timeOptionsLabel">Time:</div>
+                        <div class="dropdown flex-grow-1" style="min-width:0">
+                            <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal w-100" type="button" id="timeOptionsDropdownButton" aria-labelledby="timeOptionsLabel timeOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="flex-grow-1 time-name"></span>
+                                <i class="fas fa-chevron-down ml-auto text-primary"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-de w-100 border-none time-holder" aria-labelledby="timeOptionsDropdownButton">
+                            </div>
                         </div>
+                        <button type="button" class="de-help-button fs-sm ml-2" data-help-location="details" data-toggle="modal" data-target="#timeModal" aria-haspopup="dialog" aria-label="About available time periods"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
                     </div>
                 </div>
             </div>
@@ -1719,14 +1739,14 @@
                     <div class="row">
                         <div class="col-lg-6 mb-2 mb-lg-0" >
                             <div>
-                                <p class="fs-xs mb-1">Time periods</p>
+                                <p class="fs-xs mb-1">Time periods <button type="button" class="de-help-button fs-sm ml-1" data-help-location="table" data-toggle="modal" data-target="#timeModal" aria-haspopup="dialog" aria-label="About available time periods"><i class="fas fa-question-circle" aria-hidden="true"></i></button></p>
                                 <div id="tableTimeCheckboxes" class="border de-table-optionbox" style="height: 10vh; overflow-y:scroll;"></div>
                             </div>
                         </div>
 
                         <div class="col-lg-6">
                             <div>
-                                <p class="fs-xs mb-1">Geographies</p>
+                                <p class="fs-xs mb-1">Geographies <button type="button" class="de-help-button fs-sm ml-1" data-help-location="table" data-toggle="modal" data-target="#geoModal" aria-haspopup="dialog" aria-label="About neighborhood boundaries"><i class="fas fa-question-circle" aria-hidden="true"></i></button></p>
                                 <div id="tableGeoCheckboxes" class="border de-table-optionbox" style="height: 10vh; overflow-y:scroll;"></div>
                             </div>
                         </div>
@@ -1791,6 +1811,8 @@
                 <div class="de-viz-pill-row">
                     <div id="trendMeasurePills" class="de-viz-pill-group"></div>
                     <div id="trendComparisonPills" class="de-viz-pill-groups"></div>
+                    
+                    <button type="button" class="de-help-button fs-sm" data-help-location="trends" data-toggle="modal" data-target="#trendModal" aria-haspopup="dialog" aria-label="About trend charts"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
                 </div>
             </div>
 
@@ -1846,6 +1868,7 @@
                             </div>
                         </div>
                         <button class="badge badge-pill badge-light border-0 de-viz-pill-button" id="show-disparities" type="button">Disparities</button>
+                        <button type="button" class="de-help-button fs-sm" data-help-location="correlate" data-toggle="modal" data-target="#linksModal" aria-haspopup="dialog" aria-label="About correlation"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
                     </div>
                 </div>
             </div>
@@ -2079,6 +2102,123 @@
         overflow:auto;  
     }
 </style>
+<div class="modal fade" id="geoModal" tabindex="-1" role="dialog" aria-labelledby="geoModalLabel" aria-hidden="true" data-pagefind-ignore="all">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="geoModalLabel"><i class="fas fa-question-circle mr-1" aria-hidden="true"></i>About neighborhood boundaries</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>There are many schemes of neighborhood boundaries (or geographies) available for different datasets. These include:</p>
+                <ul>
+                    <li>Citywide</li>
+                    <li>Borough</li>
+                    <li>United Hospital Fund 42 (UHF42) and United Hospital Fund 34 (UHF34) neighborhoods</li>
+                    <li>Community Districts (CD), and, related, Community District Tabulation Areas (CDTA)</li>
+                    <li>Public Use Microdata Areas (PUMA)</li>
+                    <li>Neighborhood Tabulation Areas (NTA)</li>
+                </ul>
+                <p>We try to make data available at as fine a geographic resolution as we can. <a href=/IndicatorPublic/data-stories/geographies target="_blank">Read more about different geographies at this data story</a>.</p>
+                <p>It would be convenient if each dataset could be made available at the same geography, but this is not always possible. The neighborhood boundaries available depend on the specifics of the underlying dataset.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="trendModal" tabindex="-1" role="dialog" aria-labelledby="trendModalLabel" aria-hidden="true" data-pagefind-ignore="all">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="trendModalLabel"><i class="fas fa-question-circle mr-1" aria-hidden="true"></i>About trend charts</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>When we have multiple years of data, we show the data as trend charts.</p>
+                <p>Trends for individual neighborhoods tend to be very unstable (or "bouncy"), due to small counts for outcomes in individual neighborhoods. To show clearer trends, we usually aggregate up and show trend data by Borough.</p>
+                <p>Options on some indicators let you compare this indicator to other similar indicators.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="timeModal" tabindex="-1" role="dialog" aria-labelledby="timeModalLabel" aria-hidden="true" data-pagefind-ignore="all">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="timeModalLabel"><i class="fas fa-question-circle mr-1" aria-hidden="true"></i>Available time periods</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>We try to make data available as soon as we can.</p>
+                <p>Many datasets take a long time to reach us — a "lag" of several years, during which data are gathered from different entities to try to create a complete dataset; data are processed (cleaned, deduplicated, etc), and analyzed. It can take several years to prepare a dataset — so a dataset that is several years old is sometimes the most up-to-date information available. Still, this data continues to show us valuable trends and insights. </p>
+                <p>We also try to display datasets that have been available for many years. Some datasets (like those that are asked on surveys) are not asked every year of the survey, which means that we cannot provide annual data.</p>
+                <p>For some datasets, we have to aggregate time periods in order to break down data by borough or neighborhood.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="measureModal" tabindex="-1" role="dialog" aria-labelledby="measureModalLabel" aria-hidden="true" data-pagefind-ignore="all">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="measureModalLabel"><i class="fas fa-question-circle mr-1" aria-hidden="true"></i>About measures</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Measures are the numeric ways that a dataset (or indicator) are expressed. Examples of different measures might be: number, percent or rate. </p>
+                <p>A number tells us how much of an outcome is in a certain area. But a rate (usually expressed as, for example, 40 per 100,000) tells us how much of an outcome there is, <em>relative to the population of the area in question</em>. This lets us compare neighborhoods of different sizes.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="linksModal" tabindex="-1" role="dialog" aria-labelledby="linksModalLabel" aria-hidden="true" data-pagefind-ignore="all">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="linksModalLabel"><i class="fas fa-question-circle mr-1" aria-hidden="true"></i>About correlation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>On this site, we try to show how environmental factors might be connected to health outcomes. One way we do this is with <strong>Correlates</strong>. We choose potentially-related datasets and display them on a scatterplot so you can see how these two datasets are correlated.</p>
+                <p>The <strong>Disparities view</strong> displays neighborhoods by poverty category to show underlying disparities in the data.</p>
+                <p><a href=/IndicatorPublic/data-stories/povasthma target="_blank">Read more about correlation here</a>.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 
@@ -2147,7 +2287,7 @@
 
 
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/global.7cc60cac5c254fd3.js" integrity="sha512-5btRU/LChh/ogkRaIEcyN9LXWQbqpteoPHlKqQshRvpfAPdA6HKq4Yy2r&#43;gEQcjcZqEdM57oqSNulPK8YDoj2A=="></script>
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/app.0a15ea118650dc85.js" integrity="sha512-JusdIZYFIHe3sN5dN&#43;Ozjtspllb8lQ8/iTwTnM7JufsygDOH1HN5y0&#43;8thr/y2I67i5YcFEsgnMRsg4UTKjuxg=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/app.194a50090120b2ce.js" integrity="sha512-lyC129RJ&#43;Fmq4JsjRjAg3dF63hXMOdADAeeELohFdxAAz5nVrm2vg6pmoVDSpflJPlw9xQKR21ZFrAR2aXeQ9w=="></script>
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/data.a7df391c61aeb34d.js" integrity="sha512-R5s6RRlDTkqzJ9Hb0SOCYuAi04/tgY5KCtF8v8cs7U2f35p5Xpn9w&#43;uf3hdALwrNDBYPe80DdqbY1njGzoeqAA=="></script>
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/measures.419b97bc4207b0ff.js" integrity="sha512-Xza3Njsx8Es4GV&#43;v3dsSnHoGV/uFynxO9DoCjwo3JbkaJhcLVkPMj1SkK9bUPLcaYLX7AVRcg1g9bSlD3Oyf6g=="></script>
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/table.dc5702f99f01f5a0.js" integrity="sha512-piH1WsVlnBxBUpsDlnBWqwB&#43;EYjIoQ4oSdvxmkVYJ&#43;r4ns25oxx68vLcDaOBLzJcI19e3WIDzwLViGSpF268jg=="></script>
@@ -2163,7 +2303,7 @@
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/print-map.16dd6dfddef9c02a.js" integrity="sha512-hQVnKvGQKtffaCQaWEdtpImk0iumyzD2pBkovwgP8X5Wk76HYMN6YYkjNPq4ybtRRz5Cc0joxOVaS3d6pnmi1w=="></script>
 <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/print.47852e471e510b57.js" integrity="sha512-WL2uM&#43;etf2oRArCO92jKofdn7utfsKPSTuI0d5FutXQdIQZjzBUN0dxs/RdTz6T1FQt/L9&#43;CXABDuSo7yASG6A=="></script>
 
-<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/hover-hints.36d9ef37b3828c36.js" integrity="sha512-ICt1RPDR94lbn9B&#43;A9RRzOmxTzzSVABCzKEk90AZanqkTW9fDhPiVePcr7sxoK7BjSuy6VXYWSCyEJywsZUiWg=="></script>
+<script type="text/javascript" src="/IndicatorPublic/js/data-explorer/hover-hints.86daf4ae3f9de1a9.js" integrity="sha512-u9w3cMUpGA5&#43;Osr&#43;GWw&#43;/0nmPrjavI51NJy28FHVDLIR/4MU&#43;5hMM0yDip8dKwJ0QrdNiky90ZZ4TB6AhmqC4w=="></script>
 
 
 <script>

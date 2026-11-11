@@ -56,6 +56,30 @@ const HOVER_HINTS = [
         // opened by print.js for the map and for each chart pane.
         selector: '.de-save-map-button, .de-save-chart-button',
         text: 'Opens save options'
+    },
+
+    // The question-mark help buttons (de-help-modals.html). Icon-only, so the hint is their
+    // only visible text. One entry per modal, since several buttons open each one: the detail
+    // card and the table's filters both open #geoModal and #timeModal.
+    {
+        selector: '.de-help-button[data-target="#measureModal"]',
+        text: 'Opens help on measures'
+    },
+    {
+        selector: '.de-help-button[data-target="#geoModal"]',
+        text: 'Opens help on boundaries'
+    },
+    {
+        selector: '.de-help-button[data-target="#timeModal"]',
+        text: 'Opens help on time periods'
+    },
+    {
+        selector: '.de-help-button[data-target="#trendModal"]',
+        text: 'Opens help on trend charts'
+    },
+    {
+        selector: '.de-help-button[data-target="#linksModal"]',
+        text: 'Opens help on correlations'
     }
 ];
 

@@ -10394,7 +10394,8 @@ table .group td {
     font-size: 14px; }
     .de-wrapper .dropdown-menu-de button {
       border-bottom: 1px solid #D8D8D8;
-      padding: 8px 0; }
+      padding: 8px 0;
+      white-space: normal; }
     .de-wrapper .dropdown-menu-de button:hover {
       background-color: #ffffff; }
   .de-wrapper .de-accordion .card {
@@ -10852,6 +10853,16 @@ table .group td {
     background-color: #008939;
     color: white;
     text-decoration: none; }
+
+.de-help-button {
+  background: none;
+  border: 0;
+  padding: 0;
+  line-height: 1;
+  color: #008939;
+  cursor: pointer; }
+  .de-help-button:hover {
+    color: purple; }
 
 @media (max-width: 959.98px) {
   body:not(.modal-open):has(.de-wrapper) {
