@@ -1,7 +1,7 @@
 # Data explorer improvements — ledger (2026-11-10)
 
-**Status as of 2026-11-11: E5 done, merged via #1559; E6 done (`c42a64596b`); the other five Not
-started; item E4 needs a diagnosis before it can be specified; items E1 and E2 each need a
+**Status as of 2026-11-11: E5 done, merged via #1559; E6 done, merged via #1560; E7 done
+(`9700909479`); the other four Not started; item E4 needs a diagnosis before it can be specified; items E1 and E2 each need a
 decision from Chris (listed under each), and E3 needs the time-slider question answered.**
 
 Seven improvements Chris listed on 2026-11-10. Each gets its own branch off `production` and its
@@ -21,8 +21,8 @@ function or block name); line numbers are given only as hints and will move.
 | E3 | Scrollable dropdowns (quarterly measures have 90+ time periods) | `feature-de-scrollable-dropdowns` | this file | *none yet* | Not started — check overlap with `feature-de-time-slider` first | — |
 | E4 | Asthma ED / Hosp by NTA: 2 indicators have a number measure with no boundary or time | `hotfix-de-asthma-nta-number` | diagnosis first | *none yet* | Not started — needs diagnosis (code or EHDP-data?) | — |
 | E5 | Disparities chart title much larger than correlate's | `hotfix-de-disparities-title-size` | this file | `hotfix-de-disparities-title-size @ e326c6c222`; PR #1559, merge `2c8f5e065e` | **DONE 2026-11-11** — scope widened to wrap the correlate title too (see E5) | browser on `dev_stage`, see E5 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
-| E6 | Allow many more "recently updated" datasets; home page shows ~10 | `feature-recently-updated-more` | this file | `feature-recently-updated-more @ c42a64596b`; re-baseline `af4bac8f6b` | **DONE 2026-11-11** — D6 decided: file order | isolated build, see E6 "Proof that ran"; site-characterization re-baseline, nothing unexplained |
-| E7 | Initial "select dataset" modal has no "recently updated" flags | `hotfix-de-chooser-updated-badges` | this file | *none yet* | Not started — cause is a source reading, not yet browser-confirmed | — |
+| E6 | Allow many more "recently updated" datasets; home page shows ~10 | `feature-recently-updated-more` | this file | `feature-recently-updated-more @ c42a64596b`; re-baseline `af4bac8f6b`; PR #1560, merge `729b313e02` | **DONE 2026-11-11** — D6 decided: file order | isolated build, see E6 "Proof that ran"; site-characterization re-baseline, nothing unexplained |
+| E7 | Initial "select dataset" modal has no "recently updated" flags | `hotfix-de-chooser-updated-badges` | this file | `hotfix-de-chooser-updated-badges @ 9700909479` | **DONE 2026-11-11** — cause browser-confirmed first | browser probe on both entry points, see E7 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
 
 E5 and E7 are small enough to share one branch if Chris prefers; they touch different files
 (`disparities.js` and `section.html` / `topic-indicator-selector.js`), so a combined PR has no
@@ -223,19 +223,37 @@ and have the selector read that instead of `.de-main-details`.
 **Proof.** Browser on both entry points: badge count in the modal equals the number of listed ids
 in that topic. Smoke over the curated list (both templates are in `PAGES`; confirm).
 
+**What landed (`9700909479`).** The id list is built in a new partial,
+`themes/dohmh/layouts/partials/de-recently-updated-ids.html`, which returns it as JSON.
+`de-indicator-info.html` calls it on the `.de-main-details` box, as before. `data-explorer/section.html`
+calls it on an empty `hidden` element. Both lookups in `topic-indicator-selector.js` (the modal
+builder `renderIndicatorList`, and the title clock icon) read `[data-recently-updated-ids]`, with
+the local variable renamed from `indicatorInfoRoot` to `recentlyUpdatedSource`.
+
+**Proof that ran** `[2026-11-11: dev_stage server on :8080, Playwright probe opening the modal from
+/data-explorer/ (Air quality topic) and from /data-explorer/air-quality/?id=2023 ("Change
+dataset")]`:
+- Before (`topic-indicator-selector.ccff339b…`): the chooser badged 0 of 10 cards and the page had
+  no `.de-main-details`. The topic page badged 5 (2023, 2024, 2028, 2025, 2027). The cause
+  matched the source reading.
+- After (`topic-indicator-selector.6b6b119b…`): both entry points badge the same 5. The topic
+  page's attribute still carries all 13 ids. No page errors.
+- `npm run lint` exit 0. `npm run smoke` against :8080: 44 pages passed. `data-explorer/` and
+  `data-explorer/asthma/` are both in its list.
+- Not probed: the title clock icon (second lookup). On topic pages the attribute is still on the
+  same element, `.de-main-details`. Site characterization was not run locally; CI runs it on the
+  PR.
+
 ## Next command
 
-E6's PR:
+E7's PR:
 
 ```
-git push -u origin feature-recently-updated-more
-gh pr create --base production --head feature-recently-updated-more
-gh pr list --head feature-recently-updated-more   # confirms it exists, and its base
+git push -u origin hotfix-de-chooser-updated-badges
+gh pr create --base production --head hotfix-de-chooser-updated-badges
+gh pr list --head hotfix-de-chooser-updated-badges   # confirms it exists, and its base
 ```
 
-Next item with no open decision: E7. First confirm its cause in the browser (see E7 "Confirm
-first"), then:
-
-```
-git switch production; git switch -c hotfix-de-chooser-updated-badges
-```
+After E7, every remaining item waits on something: E4 on a diagnosis (no code, see E4), E1 on
+D1a/D1b, E2 on D2, E3 on whether `feature-de-time-slider` goes ahead. E4's diagnosis needs no
+decision and can start any time.
