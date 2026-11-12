@@ -3,6 +3,8 @@ _schema: default
 draft: false
 ---
 
+<div class="asidebox my-4">Visit Nyc.gov/health/workplaceheat for heat safety guidance and resources for employers and workers.</div>
+
 ## Heat is a workplace health and safety hazard in New York City
 
 NYC has a large and diverse workforce spanning many different job sectors. These workers are critical to the city’s economic wellbeing. However, they can also be exposed to dangerous heat at work, <a href="https://climateassessment.nyc/assessment/nyc-climate-risk-information-2022-observations-and-projections/">a risk that may increase as our climate warms.</a> The NYC Comptroller’s office, for example, has estimated that about <a href="https://comptroller.nyc.gov/reports/safeguarding-outdoor-workers-in-a-changing-climate/">one third of the city’s workforce works outside</a> for substantial periods of time [cite]. Employees can also be exposed to heat indoors, for instance in warehouses, kitchens, or other places that are not sufficiently cooled.
