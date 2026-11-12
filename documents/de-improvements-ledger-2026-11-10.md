@@ -2,8 +2,8 @@
 
 **Status as of 2026-11-12: E5 done, merged via #1559; E6 done, merged via #1560; E7 done, merged
 via #1561; E4 diagnosed and fixed on the staging database, waiting on the migration to production
-and a metadata re-export; E3 done, merged via #1562; E1 done, merged via #1563; E2 built,
-browser-checked and its explorer-harness baselines re-captured on its branch.**
+and a metadata re-export; E3 done, merged via #1562; E1 done, merged via #1563; E2 done, merged via
+#1564, and audit row A-032 closed. E4 is the one item left.**
 
 Seven improvements Chris listed on 2026-11-10. Each gets its own branch off `production` and its
 own PR. This file is the single ledger for all seven: status, branch, commit and proof live here,
@@ -18,7 +18,7 @@ function or block name); line numbers are given only as hints and will move.
 | # | Item | Branch (proposed) | Doc | Commit | Status | Proof that ran |
 |---|---|---|---|---|---|---|
 | E1 | Measure / Boundary / Time box collapsible on desktop, default open | `feature-de-desktop-details-collapse` | this file | `feature-de-desktop-details-collapse @ e234e4efb6`; re-baseline `abf3ce6ab4`; PR #1563, merge `55554654bd` | **DONE 2026-11-12** — header layout decided (D1c) | browser probe at 1440 / 960 / 959 / 390 and screenshots, see E1 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
-| E2 | Add Citywide and Borough to the table automatically | `feature-de-table-context-geos` | this file (design already recorded, see below) | `feature-de-table-context-geos @ fe17145b21`; DE harness baselines `627c4a7bfa` | **In progress** — built and browser-checked; A-032 to close in the audit when it lands | table probe on 2380 and 26 with a before arm, see E2 "Proof that ran"; `de-characterization` re-captured on both data branches; `npm run lint` exit 0; curated smoke 44/44 |
+| E2 | Add Citywide and Borough to the table automatically | `feature-de-table-context-geos` | this file (design already recorded, see below) | `feature-de-table-context-geos @ fe17145b21`; DE harness baselines `627c4a7bfa`; PR #1564, merge `dae0ab25e6` | **DONE 2026-11-12** — A-032 closed in `documents/site-wide-audit-2026-10.md` | table probe on 2380 and 26 with a before arm, see E2 "Proof that ran"; `de-characterization` re-captured on both data branches; `npm run lint` exit 0; curated smoke 44/44 |
 | E3 | Scrollable dropdowns (quarterly measures have 90+ time periods) | `feature-de-scrollable-dropdowns` | this file | `feature-de-scrollable-dropdowns @ 92c7919119`; PR #1562, merge `846378cf79` | **DONE 2026-11-12** — time slider deferred (Chris, 2026-11-12), so all three menus are covered | browser probe at desktop and phone with a no-handler control, see E3 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
 | E4 | Asthma ED / Hosp by NTA: 2 indicators have a number measure with no boundary or time | *none — no change in this repo* | this file | `cgettings-EHDP-work @ 9e972416` (step 6 script; run on local staging 2026-11-11) | **In progress** — staging fixed; BLOCKED on the staging→production migration, then `DE_metadata_json.R` re-export | browser menu probe, EHDP-data metadata sweep, database reads; see E4 "Proof that ran" |
 | E5 | Disparities chart title much larger than correlate's | `hotfix-de-disparities-title-size` | this file | `hotfix-de-disparities-title-size @ e326c6c222`; PR #1559, merge `2c8f5e065e` | **DONE 2026-11-11** — scope widened to wrap the correlate title too (see E5) | browser on `dev_stage`, see E5 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
@@ -400,9 +400,5 @@ DE_BASE_URL=<server>/ node scripts/.sc-rebaseline/e4/e4-menus.mjs 2384 2383 2378
 Pass: no measure on any of the three has an empty Boundary or Time menu, and 2384 / 2383 list 3
 and 2 measures.
 
-E2: push `feature-de-table-context-geos` and open a PR into `production`; CI's two sweeps should
-pass with no site-characterization change. When it merges, close A-032 in
-`documents/site-wide-audit-2026-10.md` (five places — the audit's "Closing a row" sentence).
-
-E4 is then the only open item: after Chris's staging→production migration and the
+E4 is the only open item: after Chris's staging→production migration and the
 `DE_metadata_json.R` re-export, run the E4 probe above.
