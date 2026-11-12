@@ -1,8 +1,9 @@
 # Data explorer improvements — ledger (2026-11-10)
 
-**Status as of 2026-11-11: E5 done, merged via #1559; E6 done (`c42a64596b`); the other five Not
-started; item E4 needs a diagnosis before it can be specified; items E1 and E2 each need a
-decision from Chris (listed under each), and E3 needs the time-slider question answered.**
+**Status as of 2026-11-11: E5 done, merged via #1559; E6 done, merged via #1560; E7 done
+(`9700909479`); E4 diagnosed and fixed on the staging database, waiting on the migration to
+production and a metadata re-export; E1, E2 and E3 Not started — E1 and E2 each need a decision
+from Chris (listed under each), and E3 needs the time-slider question answered.**
 
 Seven improvements Chris listed on 2026-11-10. Each gets its own branch off `production` and its
 own PR. This file is the single ledger for all seven: status, branch, commit and proof live here,
@@ -19,10 +20,10 @@ function or block name); line numbers are given only as hints and will move.
 | E1 | Measure / Boundary / Time box collapsible on desktop, default open | `feature-de-desktop-details-collapse` | spec to write | *none yet* | Not started — decisions D1a, D1b open | — |
 | E2 | Add Citywide and Borough to the table automatically | `feature-de-table-context-geos` | this file (design already recorded, see below) | *none yet* | Not started — decision D2 open | — |
 | E3 | Scrollable dropdowns (quarterly measures have 90+ time periods) | `feature-de-scrollable-dropdowns` | this file | *none yet* | Not started — check overlap with `feature-de-time-slider` first | — |
-| E4 | Asthma ED / Hosp by NTA: 2 indicators have a number measure with no boundary or time | `hotfix-de-asthma-nta-number` | diagnosis first | *none yet* | Not started — needs diagnosis (code or EHDP-data?) | — |
+| E4 | Asthma ED / Hosp by NTA: 2 indicators have a number measure with no boundary or time | *none — no change in this repo* | this file | `cgettings-EHDP-work @ 9e972416` (step 6 script; run on local staging 2026-11-11) | **In progress** — staging fixed; BLOCKED on the staging→production migration, then `DE_metadata_json.R` re-export | browser menu probe, EHDP-data metadata sweep, database reads; see E4 "Proof that ran" |
 | E5 | Disparities chart title much larger than correlate's | `hotfix-de-disparities-title-size` | this file | `hotfix-de-disparities-title-size @ e326c6c222`; PR #1559, merge `2c8f5e065e` | **DONE 2026-11-11** — scope widened to wrap the correlate title too (see E5) | browser on `dev_stage`, see E5 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
-| E6 | Allow many more "recently updated" datasets; home page shows ~10 | `feature-recently-updated-more` | this file | `feature-recently-updated-more @ c42a64596b`; re-baseline `af4bac8f6b` | **DONE 2026-11-11** — D6 decided: file order | isolated build, see E6 "Proof that ran"; site-characterization re-baseline, nothing unexplained |
-| E7 | Initial "select dataset" modal has no "recently updated" flags | `hotfix-de-chooser-updated-badges` | this file | *none yet* | Not started — cause is a source reading, not yet browser-confirmed | — |
+| E6 | Allow many more "recently updated" datasets; home page shows ~10 | `feature-recently-updated-more` | this file | `feature-recently-updated-more @ c42a64596b`; re-baseline `af4bac8f6b`; PR #1560, merge `729b313e02` | **DONE 2026-11-11** — D6 decided: file order | isolated build, see E6 "Proof that ran"; site-characterization re-baseline, nothing unexplained |
+| E7 | Initial "select dataset" modal has no "recently updated" flags | `hotfix-de-chooser-updated-badges` | this file | `hotfix-de-chooser-updated-badges @ 9700909479` | **DONE 2026-11-11** — cause browser-confirmed first | browser probe on both entry points, see E7 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
 
 E5 and E7 are small enough to share one branch if Chris prefers; they touch different files
 (`disparities.js` and `section.html` / `topic-indicator-selector.js`), so a combined PR has no
@@ -111,6 +112,52 @@ number measure — EHDP-data fix, or the explorer should hide the measure; (b) r
 versioned geotype (`NTA2020`) the menu build does not normalize — `prettifyGeoType` in `global.js`;
 (c) something else in the menu build. Related but distinct: audit A-234 (measures with no Citywide
 row leave empty dropdowns in the unmapped state).
+
+**Diagnosis: (a), in the database's display flags, not the data or the explorer.** The two are
+2384 (adult ED visits by NTA, measure 1207) and 2383 (ED visits age 5 to 17 by NTA, measure 1205).
+Each is a plain "Number" measure: a 3-year total at period 282 (2017-2019), 3.0x the "Average
+annual number" measure beside it (1218 / 1217) at the median across all 194 geographies. Chain:
+
+- `subtopic_indicators` rows 43112–43114 and 43121–43123 (Borough, Citywide, NTA2010, subtopic 11)
+  were loaded 2021-01-12 with `ban_summary_flag = 1`, `mapping = 0`, `trend_time_graph = 0`, but
+  `creator_id = 1` (the stage flag) under a public subtopic.
+- The `DE_metadata` view maps those to `Table = 1 − ban_summary_flag`, `Map = mapping`,
+  `Trend = trend_time_graph`, and keeps any row with a public subtopic and stage flag 1.
+- `EHDP-data/export-scripts/DE_metadata_json.R` builds `VisOptions` only from rows where a flag is
+  1, so both measures were exported with `{"GeoType": null, "TimePeriodID": []}` in every view.
+- The explorer builds Boundary and Time from `VisOptions[0].Table/Map/Trend`
+  (`expandMeasureTimesGeos` in `assets/js/data-explorer/data.js`), so it listed the measure and
+  then offered nothing.
+
+**Decided** (Chris, 2026-11-11): hide them (option A), by setting the stage flag to 0. That is the
+state of the third family member, 2378's average-annual-number measure 1296, which is hidden
+under a non-public subtopic. Rejected: B, showing them as a 3-year total, which also needed 1207's
+truncated `how_calculated` completed; C, an explorer guard hiding measures with no geotypes, which
+would also have changed the 7 other measures with the same shape (poverty rank 870 and 869, and
+NY Harbor standards 1357–1361), none of them checked.
+
+**Proof that ran:**
+- `[2026-11-11: dev_stage server, Playwright probe selecting each measure]`: on 2384 and 2383,
+  Number left Boundary and Time empty, and every other measure offered Borough and NTA plus two
+  periods. On control 2378, Number offered Borough, NTA and 2014-2016. No page errors. Staging's
+  metadata for all 7 measures is the same as production's.
+- `[2026-11-11: EHDP-data production metadata.json, all 731 measures]`: 9 have no geotype in any
+  view; control, 714 name a Table geotype. Grouping the local `BESP_Indicator` `DE_metadata` view
+  by measure gives the same 9, so the local database is the one the JSON was exported from.
+- `[2026-11-11: local BESP_Indicator, every integer indicator_id / MeasureID column]`: outside their
+  own data, definitions and sources, 1205 and 1207 appear only in 1 `keyword_indicator` row; no
+  `i_to_i` links, `report_content` or `nr_indicators`.
+- `[2026-11-11: cgettings-EHDP-work code/Asthma/06-hide-nta-ed-number-measures.R on local
+  BESP_IndicatorAnalysis]`: dry run passed its checks. The real run updated 6 rows in one
+  transaction. Its verify read stage flag 0 on all 6, 0 `DE_metadata` rows for 1205 / 1207, and
+  both 1217 and 1218 still present. A separate read showed local `BESP_Indicator` still at stage
+  flag 1.
+
+**Remaining.** The migration (`migrate_stag_to_prod_push_ready`) copies every `push_ready = 1`
+`subtopic_indicators` row, stage flag included; all 6 are `push_ready = 1`. After it, re-export
+`metadata.json` with `DE_metadata_json.R` against production, then re-run the menu probe: 2384
+should list 3 measures and 2383 two, each filling Boundary and Time. The probe is
+`e4-menus.mjs`, saved beside this repo's other E4 evidence in `scripts/.sc-rebaseline/e4/`.
 
 ## E5 — Disparities title size
 
@@ -223,19 +270,38 @@ and have the selector read that instead of `.de-main-details`.
 **Proof.** Browser on both entry points: badge count in the modal equals the number of listed ids
 in that topic. Smoke over the curated list (both templates are in `PAGES`; confirm).
 
+**What landed (`9700909479`).** The id list is built in a new partial,
+`themes/dohmh/layouts/partials/de-recently-updated-ids.html`, which returns it as JSON.
+`de-indicator-info.html` calls it on the `.de-main-details` box, as before. `data-explorer/section.html`
+calls it on an empty `hidden` element. Both lookups in `topic-indicator-selector.js` (the modal
+builder `renderIndicatorList`, and the title clock icon) read `[data-recently-updated-ids]`, with
+the local variable renamed from `indicatorInfoRoot` to `recentlyUpdatedSource`.
+
+**Proof that ran** `[2026-11-11: dev_stage server on :8080, Playwright probe opening the modal from
+/data-explorer/ (Air quality topic) and from /data-explorer/air-quality/?id=2023 ("Change
+dataset")]`:
+- Before (`topic-indicator-selector.ccff339b…`): the chooser badged 0 of 10 cards and the page had
+  no `.de-main-details`. The topic page badged 5 (2023, 2024, 2028, 2025, 2027). The cause
+  matched the source reading.
+- After (`topic-indicator-selector.6b6b119b…`): both entry points badge the same 5. The topic
+  page's attribute still carries all 13 ids. No page errors.
+- `npm run lint` exit 0. `npm run smoke` against :8080: 44 pages passed. `data-explorer/` and
+  `data-explorer/asthma/` are both in its list.
+- Not probed: the title clock icon (second lookup). On topic pages the attribute is still on the
+  same element, `.de-main-details`. Site characterization was not run locally; CI runs it on the
+  PR.
+
 ## Next command
 
-E6's PR:
+E4, after Chris has run the staging→production migration and the `DE_metadata_json.R` re-export
+(EHDP-data `production`), against a server on production data:
 
 ```
-git push -u origin feature-recently-updated-more
-gh pr create --base production --head feature-recently-updated-more
-gh pr list --head feature-recently-updated-more   # confirms it exists, and its base
+DE_BASE_URL=<server>/ node scripts/.sc-rebaseline/e4/e4-menus.mjs 2384 2383 2378
 ```
 
-Next item with no open decision: E7. First confirm its cause in the browser (see E7 "Confirm
-first"), then:
+Pass: no measure on any of the three has an empty Boundary or Time menu, and 2384 / 2383 list 3
+and 2 measures.
 
-```
-git switch production; git switch -c hotfix-de-chooser-updated-badges
-```
+Every other remaining item waits on a decision: E1 on D1a/D1b, E2 on D2, E3 on whether
+`feature-de-time-slider` goes ahead.

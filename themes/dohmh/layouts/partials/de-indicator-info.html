@@ -1,12 +1,5 @@
-{{/*  loop through recently updated for decoration  */}}
-
-{{- $recentlyUpdatedIds := slice -}}
-{{- range .Site.Data.recently_updated_data.featured -}}
-    {{- $recentlyUpdatedIds = $recentlyUpdatedIds | append (int .id) -}}
-{{- end -}}
-
 <!-- Upper left indicator detail box -->
-<div class="position-absolute  de-main-details border-top" data-recently-updated-ids='{{ $recentlyUpdatedIds | jsonify }}'>
+<div class="position-absolute  de-main-details border-top" data-recently-updated-ids='{{ partial "de-recently-updated-ids.html" . }}'>
 
     <!-- Mobile Indicator Header. A tap anywhere on the bar opens the details (de-tab-content.js);
          the +/- button is the same control as a real button, so keyboard and screen-reader users
