@@ -433,9 +433,9 @@ const renderIndicatorList = async (indList, destination) => {
             // keep working without inline handlers.
 
             return `
-                <div class="indicator-card border-bottom border-gray-300 pb-1 mb-1">
+                <div class="indicator-card de-chooser-card">
                     <div class="d-flex flex-wrap align-items-start">
-                        <button type="button" class="h6 font-weight-bold border-0 text-primary bg-transparent hover-underline p-0 text-left de-select-indicator-button" data-indicator-id="${indicator.IndicatorID}">${indicator.IndicatorName}</button>
+                        <button type="button" class="h6 font-weight-bold border-0 text-primary bg-transparent hover-underline p-0 text-left de-select-indicator-button stretched-link" data-indicator-id="${indicator.IndicatorID}">${indicator.IndicatorName}</button>
                         ${recentlyUpdatedBadge}
                     </div>
                     <p class="mb-0" style="font-size: 14px;">${indicator.IndicatorDescription}</p>

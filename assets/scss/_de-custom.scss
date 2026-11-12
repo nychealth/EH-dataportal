@@ -1321,6 +1321,36 @@ $color-data-explorer: #0A408A;
     }
 }
 
+// Topic and dataset cards in the chooser modals (de-chooser-modal.html, and the dataset list
+// built in topic-indicator-selector.js). Top level, not under .de-wrapper: the modals render in
+// header-de.html, outside the explorer's <article>. The title carries .stretched-link, so the
+// whole card is the click target.
+.de-chooser-card {
+    position: relative;
+    border: 1px solid $gray-300;
+    border-radius: 6px;
+    padding: 8px 10px;
+    margin-bottom: 8px;
+    transition: background-color 0.15s, border-color 0.15s;
+
+    &:hover,
+    &:focus-within {
+        border-color: $hover;
+        background-color: #EFFAF4;
+
+        // The title turns $primary / $hover (#008939) on hover, 4.24:1 on #EFFAF4, under the
+        // 4.5:1 the 16px dataset titles need; $primary-dark clears it. !important to beat
+        // Bootstrap's .text-primary on the dataset button.
+        .stretched-link {
+            color: $primary-dark !important;
+        }
+    }
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+}
+
 // A <button> that looks like the site's links (theme.scss's `a` rule), for actions sitting beside
 // href links such as Save map. Bootstrap's .btn-link brings its own blue and a 1px border instead.
 .de-link-button {

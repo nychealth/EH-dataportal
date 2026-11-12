@@ -33,10 +33,10 @@
 
         {{- $json := $indicatorsJSON | jsonify -}}
 
-        <div class="border-bottom pb-1 mb-1">
+        <div class="de-chooser-card">
             <a
                 href="{{ .RelPermalink }}"
-                class="font-weight-bold de-topic-indicator-link"
+                class="font-weight-bold de-topic-indicator-link stretched-link"
                 data-indicators="{{ $json }}"
                 data-topic-title="{{ .Title }}"
                 data-topic-destination="{{ .RelPermalink }}">
