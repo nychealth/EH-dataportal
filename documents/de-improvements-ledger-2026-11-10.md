@@ -3,9 +3,10 @@
 **Status as of 2026-11-12: E5 done, merged via #1559; E6 done, merged via #1560; E7 done, merged
 via #1561; E4 diagnosed and fixed on the staging database, waiting on the migration to production
 and a metadata re-export; E3 done, merged via #1562; E1 done, merged via #1563; E2 done, merged via
-#1564, and audit row A-032 closed. E4 is the one item left.**
+#1564, and audit row A-032 closed. E4 is waiting on the database migration. E8–E14, added
+2026-11-12, are not started; all their decisions were made the same day.**
 
-Seven improvements Chris listed on 2026-11-10. Each gets its own branch off `production` and its
+Seven improvements Chris listed on 2026-11-10, and seven more on 2026-11-12 (E8–E14). Each gets its own branch off `production` and its
 own PR. This file is the single ledger for all seven: status, branch, commit and proof live here,
 in the table below. Where an item needs more than its section here, a separate spec or plan is
 written and linked from its row; the smaller items are specified in place and need no second doc.
@@ -24,6 +25,13 @@ function or block name); line numbers are given only as hints and will move.
 | E5 | Disparities chart title much larger than correlate's | `hotfix-de-disparities-title-size` | this file | `hotfix-de-disparities-title-size @ e326c6c222`; PR #1559, merge `2c8f5e065e` | **DONE 2026-11-11** — scope widened to wrap the correlate title too (see E5) | browser on `dev_stage`, see E5 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
 | E6 | Allow many more "recently updated" datasets; home page shows ~10 | `feature-recently-updated-more` | this file | `feature-recently-updated-more @ c42a64596b`; re-baseline `af4bac8f6b`; PR #1560, merge `729b313e02` | **DONE 2026-11-11** — D6 decided: file order | isolated build, see E6 "Proof that ran"; site-characterization re-baseline, nothing unexplained |
 | E7 | Initial "select dataset" modal has no "recently updated" flags | `hotfix-de-chooser-updated-badges` | this file | `hotfix-de-chooser-updated-badges @ 9700909479` | **DONE 2026-11-11** — cause browser-confirmed first | browser probe on both entry points, see E7 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
+| E8 | Dropdown's rotating icon: don't underline it | `hotfix-de-icon-underline` | this file | — | Not started — D8 decided | — |
+| E9 | Topic chooser: 3 columns on desktop | `feature-de-topic-chooser-columns` | this file | — | Not started | — |
+| E10 | Selected neighborhood stays highlighted on bar, map and legend, and across overlay switches | `feature-de-persistent-selection` | this file; a spec if D10 widens it | — | Not started — D10 decided | — |
+| E11 | Citywide-only indicators: no bar chart (it draws one large bar) | `feature-de-citywide-no-bar` | this file | — | Not started — D11 decided | — |
+| E12 | Map controls: zoom in/out and reset zoom | `feature-de-map-controls` (E12–E14 share it, D12) | this file | — | Not started | — |
+| E13 | Map control: turn the geography layer off | `feature-de-map-controls` | this file | — | Not started — D13 decided | — |
+| E14 | Map control: geography layer opacity | `feature-de-map-controls` | this file | — | Not started — D13 decided | — |
 
 E5 and E7 are small enough to share one branch if Chris prefers; they touch different files
 (`disparities.js` and `section.html` / `topic-indicator-selector.js`), so a combined PR has no
@@ -388,7 +396,181 @@ dataset")]`:
   same element, `.de-main-details`. Site characterization was not run locally; CI runs it on the
   PR.
 
+## E8–E14 — added 2026-11-12
+
+Locators below were read on 2026-11-12 on a tree whose `assets/` and `themes/` are identical to
+`production @ dae0ab25e6` (`git diff --name-only` empty).
+
+**Against the audit.** None of the seven is a row in `documents/site-wide-audit-2026-10.md`
+`[2026-11-12: keyword sweep of the audit and of every documents/*.md — underline, rotate /
+chevron / caret, column, highlight / persist / selected, citywide-only / single bar, zoom,
+opacity / transparent, layer / toggle / basemap]`. A row worded in other terms could still be
+missed. Related rows and records, none of which covers an item:
+- N-048 (OPEN, question): the automatic jump to Trends for citywide-only indicators happens on a
+  direct load but not after an in-place pick. Touches the same case as E11.
+- `documents/data-explorer-architecture.md`, "The substituted entry is not inert": the bar chart
+  plotting the single citywide row is recorded there as intended. E11 reverses that, so that
+  paragraph changes with it.
+- N-101 (FIXED): every leaflet-easybutton had an empty accessible name until `aria-label` was set
+  by hand. E12's reset button needs the same.
+
+### E8 — Rotating dropdown icon underlined
+
+**Confirm first: which icon.** The explorer has three rotating or dropdown icons, and the source
+does not say which one underlines:
+- `fa-chevron-down` in the Measure / Boundary / Time buttons (`de-indicator-info.html`, six
+  copies across the desktop and phone boxes). It rotates only under `.card-header
+  .btn[aria-expanded="true"]` (`_de-custom.scss`, "Rotate chevron when accordion is open").
+- The `.de-accordion` button `svg`, rotated on `aria-expanded="true"` (`_de-custom.scss`); the
+  same block already sets `text-decoration: none` on `.de-accordion button:hover`.
+- `fa-chevron-circle-down` on the chart pills (`#linksDropdownToggle` in `de-tab-content.html`,
+  and `createBadgePillDropdown` in `measures.js`). No rotate rule.
+
+The underline is likely a hover rule on the button reaching the icon's inline box; that is a
+guess until read off computed styles.
+
+**D8 for Chris:** which icon, on which page, and on hover or at rest.
+
+**Decided (Chris, 2026-11-12):** the chevron — read as the rotating `fa-chevron-down` in the
+Measure / Boundary / Time buttons, since the pills' `fa-chevron-circle-down` does not rotate.
+Hover or at rest was not said; the browser check before the fix settles it.
+
+**Proof.** Browser: the icon's computed `text-decoration-line` (and the button's) on hover and at
+rest, before and after; the button's label text keeps whatever underline it had.
+
+### E9 — Topic chooser in 3 columns on desktop
+
+**What exists.** `themes/dohmh/layouts/partials/de-chooser-modal.html` splits the topic list into
+two `col-md-6` halves by `$half := div (len $pages | add 1) 2`, then appends the
+`hideFromRange` pages as `col-6` rows. `$pages` includes the `hideFromRange` pages it later skips,
+so the two halves can hold unequal numbers of visible topics. Included from `header-de.html`
+(the `de-chooser-modal` call).
+
+**Likely shape.** Filter `hideFromRange` out first, then three `col-md-6 col-lg-4` thirds (two
+columns between 720 and 960, three from this site's `lg`, 960px), keeping alphabetical order down
+each column. The two halves' bodies are duplicated, so a `range` over the three slices removes
+the copy.
+
+**Proof.** Browser at 1440, 960, 959 and 390: column count, alphabetical order down then across,
+no topic lost (link count equals the number of non-hidden topic pages). `characterize:site` on
+the chooser pages (structure should not move; links are reordered only).
+
+### E10 — Selected neighborhood stays highlighted
+
+**What exists.** The map↔bar highlight is hover only. In `renderChoroplethMap` (`map.js`) each
+polygon's `click` calls `setBarSelection(geoID)`, but its `mouseout` calls `resetHighlight`,
+`clearHoverUI` and `setBarSelection(null)`, so a click's highlight ends when the pointer leaves.
+The bubble map (`renderBubbleMap`) has the same `click` / `mouseout` pair on its circles. The bar
+side is the Vega `selectedGeo` signal in `bar.js`, set from the map by `setBarSelection`; the
+map side is `window.mapInterop.highlight` / `reset`, published by each renderer. The legend's
+hover panel is filled by `updateHoverUI` and cleared by `clearHoverUI`. Polygons also open a
+popup on click (`bindPopup`).
+
+**Likely shape.** A selected GeoID in shared state (`global.js`), set by a click on a polygon,
+bubble or bar, and cleared by a second click on it or a click elsewhere. Hover still highlights
+on top; on `mouseout`, the highlight returns to the selection instead of to nothing. Each
+renderer re-applies the selection after drawing.
+
+**D10 for Chris.**
+- D10a: what selects — click (and Enter, for the keyboard) on the map and on the bar? And what
+  clears — a second click, a click on empty map, an explicit "clear" control?
+- D10b: which changes keep the selection: overlay switch (named), time period, measure? A
+  boundary change (UHF42 → CD) leaves the GeoID meaningless; drop it then?
+- D10c: does the selection go in the URL, so a shared link opens with it?
+- D10d: the click popup stays as it is?
+
+**Decided (Chris, 2026-11-12).**
+- D10a: a click selects. A second click on the selected one, a click off the map, or Escape
+  clears it. A click on a different one moves the selection to it; it does not clear.
+- D10b: the selection survives an overlay switch, a time-period change and a measure change; a
+  boundary change clears it.
+- D10c: the selection does not go in the URL. D10d: the click popup stays (Chris, 2026-11-12).
+
+**Proof.** Browser, choropleth and bubble indicators: select on the map, move the pointer away,
+read the polygon style, the bar's highlighted mark and the legend panel; the same after each
+change D10b keeps, and cleared after each it drops. Keyboard path. `de-characterization --check`
+(map and bar views are captured).
+
+### E11 — Citywide-only indicators: no bar chart
+
+**What exists.** `renderMap` (`map.js`) sets `isCitywideOnly` when the measure's only map
+geography is Citywide, and uses it to draw the citywide polygon and to send a click to Trends
+(`switchToTrendTabOnce`, the N-048 behaviour). The bar chart is drawn regardless (`showBar` in
+`bar.js`), one bar. `measures.js` disables the map/bar tab only when `DE.lookups.mapMeasures` is
+empty, which an unmapped measure's substituted Citywide entry prevents (architecture doc, above).
+
+**D11 for Chris.** "Citywide-only" can mean (a) the selected map geography is Citywide, (b) the
+measure offers no other map geography, or (c) the indicator has no other geography in any view.
+They differ when a user picks Citywide in the Boundary menu of a measure that also has
+neighborhoods. And what fills the bar's space: nothing (the map widens), or a short note?
+
+**Decided (Chris, 2026-11-12):** the test is the outcome — if the current selection would draw a
+single bar, the bar chart is off. That covers (a), (b) and (c). In its place, a short note
+like correlate's: `correlate.js` writes `<div class="alert alert-warning mb-0 w-100"
+role="alert">` with text from `getNoCorrelatesMessage` ("No correlates available for … Change
+the Measure on the map to see available correlates.") into the chart container.
+
+**Proof.** Browser on a citywide-only indicator (`?id=55` is the one N-048 used) and on a mapped
+one with Citywide picked, per D11: bar container absent or hidden, map and legend unaffected, no
+page errors. `de-characterization --check`; `characterize:site` if the bar container is removed
+from the DOM rather than hidden.
+
+### E12–E14 — Map controls
+
+**What exists.** `initBaseMap` (`map.js`) creates the map with `zoomControl: false`. Below `lg`
+the stacked layout fits the city through `layoutStackedMap`, which records the fit in
+`fittedView`; on desktop the view is a fixed `setView([40.700142, -73.921546], 11)`. Choropleth
+polygons are drawn at `fillOpacity` 0.65 (hover 0.9); the bubble map puts circles over gray
+polygons at 0.3. The off-screen export map (`print-map.js`) builds its own layers and is separate.
+
+**Exemplar for E12.** The NR maps: Leaflet's zoom control plus a "Reset zoom" `L.easyButton`
+(`fas fa-undo`) with `aria-label` set by hand (N-101) — `nr-leaflet.html` and
+`assets/js/nr-report/map.js`'s map setup. The explorer does not load easyButton:
+`data-explorer/single.html` includes `lib-leaflet` but not `lib-easybutton-coloricon`, which must
+follow it.
+
+**E12 — zoom and reset.** Turn `zoomControl` on and add the reset button. Reset returns to the
+same view load gives: `fittedView` (or a fresh `layoutStackedMap`) when stacked, the fixed
+centre and zoom on desktop.
+
+**E13 / E14 — layer off, opacity.** No control of either kind exists in the explorer or the
+site's own Leaflet code; the only opacity slider on the site is a generated widget,
+`static/maps/HOLC-shootings/map.html`. A shared style setting (in `DE.map` state) is needed so
+a re-render — boundary, time or measure change — keeps the user's choice rather than resetting
+to 0.65.
+
+**D12 for Chris:** one branch and PR for E12–E14 (they share `initBaseMap` and the control
+corner), or E12 first on its own?
+
+**D13 for Chris.**
+- D13a: what "the geography layer" is on the bubble map — the circles, the gray polygons, or both.
+- D13b: does the opacity control also change the hover fill (0.9), or only the resting fill?
+- D13c: is "layer off" a separate button, or opacity 0 on the same control?
+- D13d: should the choices carry into the saved map (`print-map.js`)?
+
+**Decided (Chris, 2026-11-12).** D12: one branch and PR for E12–E14. The purpose of E13 / E14
+is to let people see the map features, specifically the neighborhood boundaries, unobscured.
+- D13a: on the bubble map, the circles only.
+- Possible addition (Chris "might want" it, so build it so it can be shown and judged): a gray,
+  no-fill boundary layer under the choropleth, so the boundaries stay visible when the fill is
+  off or faint.
+- D13b: the hover fill scales by the same ratio as the resting fill (hover 0.9 x chosen / 0.65 on
+  the choropleth).
+- D13c: "off" is its own button; it may be implemented as opacity 0.
+- D13d: neither choice carries into the saved map.
+
+**Proof.** Browser at desktop and phone widths: zoom buttons work and have accessible names;
+reset after a zoom and a pan returns to the load view (centre and zoom read off the map); layer
+off removes the polygons and keeps the basemap; opacity reads back on the polygons' `fill-opacity`
+and survives a boundary change. Keyboard reaches every control. `npm run lint`; smoke;
+`characterize:site` (adds controls on every explorer page, so expect a re-baseline of the topic
+pages, as E1 did).
+
 ## Next command
+
+E8–E14: D8, D10, D11, D12 and D13 all decided 2026-11-12; nothing open.
+Next: each item on its own branch off `production` (E12–E14 share one), E8 and E9 first as the
+smallest.
 
 E4, after Chris has run the staging→production migration and the `DE_metadata_json.R` re-export
 (EHDP-data `production`), against a server on production data:
@@ -400,5 +582,5 @@ DE_BASE_URL=<server>/ node scripts/.sc-rebaseline/e4/e4-menus.mjs 2384 2383 2378
 Pass: no measure on any of the three has an empty Boundary or Time menu, and 2384 / 2383 list 3
 and 2 measures.
 
-E4 is the only open item: after Chris's staging→production migration and the
+Of E1–E7, E4 is the only open item: after Chris's staging→production migration and the
 `DE_metadata_json.R` re-export, run the E4 probe above.
