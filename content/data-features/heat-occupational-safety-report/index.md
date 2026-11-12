@@ -2,7 +2,7 @@
 _schema: default
 title: NYC Occupational Heat Safety Report
 aliases:
-  - /key-topics/climatehealth/heat-report/
+  - /key-topics/climatehealth/occupational-heat-report/
 draft: false
 date: 2026-06-14T10:14:56-04:00
 categories: [climatehealth, inequality, healthoutcomes]
