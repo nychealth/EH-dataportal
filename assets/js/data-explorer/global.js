@@ -531,6 +531,16 @@ const assignGeoRank = (GeoType) => GEO_RANK_BY_PRETTY_TYPE[prettifyGeoType(GeoTy
 
 const geoTypes = Object.keys(GEO_RANK_BY_PRETTY_TYPE);
 
+// The table follows the map's geography, with Citywide and Borough always shown alongside it for
+// context (Chris, 2026-11-12; site-wide audit A-032). On a Citywide or Borough map that is just those
+// two. Returns the subset of availableGeos to check, in availableGeos's order, so pass it in geoTypes
+// order to keep the rows coarsest-first.
+
+const TABLE_CONTEXT_GEOS = ['Citywide', 'Borough'];
+
+const pickSyncedTableGeos = (availableGeos, mapGeo) =>
+    availableGeos.filter(geo => TABLE_CONTEXT_GEOS.includes(geo) || geo === mapGeo);
+
 // Shared-geo helpers keep links and disparities limited to measures that can join.
 
 const getLinksMeasureGeos = (measure) => (measure?.AvailableGeoTypes || []).filter(g => !/Citywide|Borough/.test(g));
