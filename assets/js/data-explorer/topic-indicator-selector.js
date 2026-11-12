@@ -381,12 +381,13 @@ const renderIndicatorList = async (indList, destination) => {
     const data = await ensureIndicatorsLoaded('indicator selection modal');
     // console.log("Indicators ready to print to indicator selection modal!", data);
 
-    // Hugo exposes the curated updated-ID list on the shared indicator shell.
-    // Reuse it here so modal decorations match the main indicator header.
+    // Hugo writes the curated updated-ID list into a data-recently-updated-ids attribute
+    // on both the topic page and the chooser page (de-recently-updated-ids.html), so
+    // the modal badges the same indicators from either one.
 
-    const indicatorInfoRoot = document.querySelector('.de-main-details');
+    const recentlyUpdatedSource = document.querySelector('[data-recently-updated-ids]');
     const recentlyUpdatedIndicatorIds = JSON.parse(
-        indicatorInfoRoot?.dataset.recentlyUpdatedIds ?? '[]'
+        recentlyUpdatedSource?.dataset.recentlyUpdatedIds ?? '[]'
     ).map(Number);
 
     // ----- clear existing content ----- //
@@ -540,9 +541,9 @@ const renderIndicatorInfo = async (IndicatorID) => {
     // Hugo writes the curated "recently updated" indicator IDs into the shell.
     // Read them here so the indicator title can reflect updated datasets.
 
-    const indicatorInfoRoot = document.querySelector('.de-main-details');
+    const recentlyUpdatedSource = document.querySelector('[data-recently-updated-ids]');
     const recentlyUpdatedIndicatorIds = JSON.parse(
-        indicatorInfoRoot?.dataset.recentlyUpdatedIds ?? '[]'
+        recentlyUpdatedSource?.dataset.recentlyUpdatedIds ?? '[]'
     ).map(Number);
     const showRecentlyUpdatedIcon = recentlyUpdatedIndicatorIds.includes(normalizedIndicatorId);
 

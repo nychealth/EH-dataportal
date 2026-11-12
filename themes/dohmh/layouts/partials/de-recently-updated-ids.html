@@ -1,0 +1,11 @@
+{{/*  Returns the "recently updated" indicator ids from data/recently_updated_data.yml as a JSON
+      array. topic-indicator-selector.js reads it from a data-recently-updated-ids attribute, which
+      both the topic page (de-indicator-info.html) and the chooser page (data-explorer/section.html)
+      render, so the modal badges the same indicators from either page.  */}}
+
+{{- $recentlyUpdatedIds := slice -}}
+{{- range .Site.Data.recently_updated_data.featured -}}
+    {{- $recentlyUpdatedIds = $recentlyUpdatedIds | append (int .id) -}}
+{{- end -}}
+
+{{- return ($recentlyUpdatedIds | jsonify) -}}
