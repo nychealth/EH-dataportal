@@ -166,39 +166,50 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // ----------------------------------------------------------------------- //
-// mobile accordion
+// details accordions (mobile and desktop)
 // ----------------------------------------------------------------------- //
 
-// Keeps the mobile details accordion's plus/minus icon in sync with its state, and lets a tap
-// anywhere on the header bar toggle it, as the bar did when it was the collapse trigger itself.
+// Keeps a details toggle's plus/minus icon and aria-expanded in step with its collapse. Phones and
+// desktop each have their own copy of the details box (de-indicator-info.html), so each has a toggle.
+
+const syncDetailsToggleIcon = (toggle, content) => {
+
+    const toggleIcon = toggle.querySelector('.toggle-icon');
+
+    const updateIconState = isOpen => {
+        toggleIcon.classList.toggle('fa-minus', isOpen);
+        toggleIcon.classList.toggle('fa-plus', !isOpen);
+        toggle.setAttribute('aria-expanded', String(isOpen));
+    };
+
+    // Bootstrap 4 triggers collapse events through jQuery, so a native addEventListener never
+    // receives them; $().on() does.
+
+    $(content).on('show.bs.collapse', () => updateIconState(true));
+    $(content).on('hide.bs.collapse', () => updateIconState(false));
+
+    updateIconState(content.classList.contains('show'));
+};
+
+// Phones: the details start closed, and a tap anywhere on the header bar toggles them, as the bar
+// did when it was the collapse trigger itself. Desktop: open at every load, toggled by its button only.
 
 document.addEventListener('DOMContentLoaded', function() {
+
+    const desktopDetailsToggle = document.querySelector('.desktop-details-toggle');
+    const desktopDetailsContent = document.querySelector('#detailsContentDesktop');
+
+    if (desktopDetailsToggle && desktopDetailsContent) {
+        syncDetailsToggleIcon(desktopDetailsToggle, desktopDetailsContent);
+    }
 
     const mobileAccordionHeader = document.querySelector('.mobile-details-header');
     const mobileDetailsToggle = document.querySelector('.mobile-details-toggle');
     const detailsContent = document.querySelector('#detailsContent');
-    const toggleIcon = mobileDetailsToggle ? mobileDetailsToggle.querySelector('.toggle-icon') : null;
 
-    if (mobileAccordionHeader && mobileDetailsToggle && detailsContent && toggleIcon) {
+    if (mobileAccordionHeader && mobileDetailsToggle && detailsContent) {
 
-        // Function to update icon state
-
-        function updateIconState(isOpen) {
-
-            if (isOpen) {
-
-                toggleIcon.classList.remove('fa-plus');
-                toggleIcon.classList.add('fa-minus');
-                mobileDetailsToggle.setAttribute('aria-expanded', 'true');
-
-            } else {
-
-                toggleIcon.classList.remove('fa-minus');
-                toggleIcon.classList.add('fa-plus');
-                mobileDetailsToggle.setAttribute('aria-expanded', 'false');
-
-            }
-        }
+        syncDetailsToggleIcon(mobileDetailsToggle, detailsContent);
 
         // A tap on the bar goes through the toggle button. Clicks on a button are left alone: the
         // toggle handles its own, and "Change dataset" opens its modal without also opening the
@@ -208,22 +219,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (e.target.closest('button')) return;
             mobileDetailsToggle.click();
         });
-
-        // Listen for Bootstrap collapse events. Bootstrap 4 triggers these through jQuery, so a
-        // native addEventListener never receives them; $().on() does.
-
-        $(detailsContent).on('show.bs.collapse', function() {
-            updateIconState(true);
-        });
-
-        $(detailsContent).on('hide.bs.collapse', function() {
-            updateIconState(false);
-        });
-
-        // Handle initial state
-
-        const isInitiallyOpen = detailsContent.classList.contains('show');
-        updateIconState(isInitiallyOpen);
     }
 });
 

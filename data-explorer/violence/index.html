@@ -1340,13 +1340,16 @@
 
     
     <div class="bg-primary text-white px-2 py-1 w-full d-none d-lg-flex">
-        <div class="h6 font-weight-bold mb-0 py-1 indicator-name" aria-live="polite" aria-atomic="true">Loading indicator...</div>
-        <div class="ml-2 text-nowrap flex-grow-1 text-right">
+        <div>
+            <div class="h6 font-weight-bold mb-0 py-1 indicator-name" aria-live="polite" aria-atomic="true">Loading indicator...</div>
             <div class="position-relative d-inline-flex align-items-center indicator-selector-trigger-wrap">
                 <button type="button" class="badge badge-pill badge-light border-0 de-viz-pill-button text-nowrap indicator-selector-trigger" data-toggle="modal" data-target="#indicatorSelector">Change dataset&nbsp;&nbsp;<i class="fa-solid fa-right-left fs-xs"></i></button>
                 <span id="indicatorSelectorPromptDesktop" class="indicator-selector-prompt d-none" aria-hidden="true" role="status">Choose dataset</span>
             </div>
         </div>
+        <button type="button" class="btn btn-link p-0 ml-auto align-self-start text-white desktop-details-toggle" data-toggle="collapse" data-target="#detailsContentDesktop" aria-expanded="true" aria-controls="detailsContentDesktop" aria-label="Dataset details">
+            <i class="fas fa-minus text-white toggle-icon" aria-hidden="true" style="padding-top: 4px;"></i>
+        </button>
     </div>
 
     
@@ -1417,6 +1420,8 @@
 
     
     <div class="d-none d-lg-block">
+        
+        <div id="detailsContentDesktop" class="collapse show">
         <div class="bg-white p-2 fs-sm border-left border-right">
             <p class="indicator-description fs-sm">Loading indicator description... </p>
         </div>
@@ -1476,7 +1481,10 @@
                     </div>
                 </div>
             </div>
+        </div>
+        </div>
 
+        <div>
             <div class="card card-header p-0 bg-transparent d-inline-block printMap border-bottom border-left border-right">
                 <div style="background-color:#DCF4E7" class="py-1 d-inline-block">
                         <button type="button" id="deSaveMapButton" class="de-link-button fs-sm mx-1 de-save-map-button" aria-haspopup="dialog" data-print-target="map"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save map</button>
@@ -1932,7 +1940,7 @@
 
         </div>
     </div>
-</div><script type="text/javascript" src="/IndicatorPublic/js/data-explorer/de-tab-content.2474d731a5621c88.js" integrity="sha512-CrdfkE0DytLzEvhkIGbYzSFnT3oPKX&#43;QsYA4ABwBL38U6nF4BXpk2EQEOmNnj1ZTducoGX&#43;TfBLkilSo31C5Qw=="></script>
+</div><script type="text/javascript" src="/IndicatorPublic/js/data-explorer/de-tab-content.7de0d98549994cb2.js" integrity="sha512-XkU7YMVma/eMmW1skUZa5nK5YNzsKEaYdDvnP/hEphXcdA9rpDN6V172Wj&#43;4ukwmO&#43;5jtVWPln3Tt4n4N36OPQ=="></script>
 
 <style>
          
