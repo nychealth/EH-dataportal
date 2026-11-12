@@ -44,10 +44,10 @@
     },
     "table": {
         "present": true,
-        "rowCount": 59,
+        "rowCount": 65,
         "totalRowCount": 1160,
         "columnCount": 12,
-        "filterSummary": "2023 | CD | Synced"
+        "filterSummary": "2023 | 3 geographies | Synced"
     },
     "consoleErrors": []
 }

@@ -39,10 +39,10 @@
     },
     "table": {
         "present": true,
-        "rowCount": 59,
+        "rowCount": 65,
         "totalRowCount": 2145,
         "columnCount": 12,
-        "filterSummary": "2025 | CD | Synced"
+        "filterSummary": "2025 | 3 geographies | Synced"
     },
     "consoleErrors": []
 }

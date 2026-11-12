@@ -101,10 +101,14 @@ const getCurrentMapTableFilters = (rows) => {
     const geoValuesForSelectedTime = [...new Set(rowsForSelectedTime.map(d => prettifyGeoType(d.GeoType)))];
     const availableGeosForSelectedTime = geoTypes.filter(geo => geoValuesForSelectedTime.includes(geo));
 
+    // The map's geography plus Citywide and Borough, as far as this time slice has them.
+
+    const syncedGeos = pickSyncedTableGeos(availableGeosForSelectedTime, currentGeo);
+
     return {
         timeSelection,
-        geoSelection: currentGeo && availableGeosForSelectedTime.includes(currentGeo)
-            ? [currentGeo]
+        geoSelection: syncedGeos.length
+            ? syncedGeos
             : (availableGeosForSelectedTime[0]
                 ? [availableGeosForSelectedTime[0]]
                 : (availableGeos[0] ? [availableGeos[0]] : []))
@@ -409,7 +413,12 @@ const renderTableFilterControls = (rows) => {
         // is unavailable for the selected table time period.
 
         if (!DE.table.selectedTableGeography.length && dataGeos.length && !DE.table.tableGeoFilterIsManual) {
-            DE.table.selectedTableGeography = [DE.state.GeoType && dataGeos.includes(DE.state.GeoType) ? DE.state.GeoType : dataGeos[0]];
+
+            // dataGeos is in data order; geoTypes order keeps the synced rows coarsest-first.
+
+            const syncedGeos = pickSyncedTableGeos(geoTypes.filter(geo => dataGeos.includes(geo)), DE.state.GeoType);
+
+            DE.table.selectedTableGeography = syncedGeos.length ? syncedGeos : [dataGeos[0]];
         }
     }
 

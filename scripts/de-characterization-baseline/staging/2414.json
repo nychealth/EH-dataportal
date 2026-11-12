@@ -6,13 +6,13 @@
     "labels": {
         "measure": "Percent",
         "geo": "UHF34",
-        "time": "2020"
+        "time": "2022"
     },
     "map": {
         "interactivePathCount": 34,
-        "legendMin": "7.7%",
-        "legendMax": "26.0%",
-        "legendAria": "Legend: 7.7% (low) to 26.0% (high)"
+        "legendMin": "8.2%",
+        "legendMax": "24.6%",
+        "legendAria": "Legend: 8.2% (low) to 24.6% (high)"
     },
     "bar": {
         "present": true,
@@ -20,10 +20,10 @@
         "markCount": 68
     },
     "trend": {
-        "present": false,
-        "ariaLabel": "",
-        "markCount": null,
-        "notes": ""
+        "present": true,
+        "ariaLabel": "Trend chart of Adults with asthma: Percent",
+        "markCount": 70,
+        "notes": "A change in sampling methods in 2021 may explain some differences in estimates from earlier years."
     },
     "trendComparison": null,
     "links": {
@@ -35,10 +35,10 @@
     "disparities": null,
     "table": {
         "present": true,
-        "rowCount": 34,
-        "totalRowCount": 40,
+        "rowCount": 40,
+        "totalRowCount": 120,
         "columnCount": 12,
-        "filterSummary": "All time periods | UHF34 | Synced"
+        "filterSummary": "2022 | All geographies | Synced"
     },
     "consoleErrors": []
 }
