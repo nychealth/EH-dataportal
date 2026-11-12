@@ -3,8 +3,14 @@
 **Status as of 2026-11-12: E5 done, merged via #1559; E6 done, merged via #1560; E7 done, merged
 via #1561; E4 diagnosed and fixed on the staging database, waiting on the migration to production
 and a metadata re-export; E3 done, merged via #1562; E1 done, merged via #1563; E2 done, merged via
-#1564, and audit row A-032 closed. E4 is waiting on the database migration. E8–E14, added
-2026-11-12, are not started; all their decisions were made the same day.**
+#1564, and audit row A-032 closed. E4 is waiting on the database migration. E8–E14 were added
+2026-11-12, with all their decisions made the same day: E8 (#1566) and E9 (#1567) are built,
+CI-green and waiting to merge; E10–E14 are not started.**
+
+**Where this file is edited.** Ledger changes are committed to `docs-de-improvements-ledger` and
+pushed after each commit; the branch goes to `production` in one PR when the batch is done (Chris,
+2026-11-12). Feature branches are cut from `production` and never merge this branch, so the copy
+of this file on `production` lags the branch until that PR.
 
 Seven improvements Chris listed on 2026-11-10, and seven more on 2026-11-12 (E8–E14). Each gets its own branch off `production` and its
 own PR. This file is the single ledger for all seven: status, branch, commit and proof live here,
@@ -25,8 +31,8 @@ function or block name); line numbers are given only as hints and will move.
 | E5 | Disparities chart title much larger than correlate's | `hotfix-de-disparities-title-size` | this file | `hotfix-de-disparities-title-size @ e326c6c222`; PR #1559, merge `2c8f5e065e` | **DONE 2026-11-11** — scope widened to wrap the correlate title too (see E5) | browser on `dev_stage`, see E5 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
 | E6 | Allow many more "recently updated" datasets; home page shows ~10 | `feature-recently-updated-more` | this file | `feature-recently-updated-more @ c42a64596b`; re-baseline `af4bac8f6b`; PR #1560, merge `729b313e02` | **DONE 2026-11-11** — D6 decided: file order | isolated build, see E6 "Proof that ran"; site-characterization re-baseline, nothing unexplained |
 | E7 | Initial "select dataset" modal has no "recently updated" flags | `hotfix-de-chooser-updated-badges` | this file | `hotfix-de-chooser-updated-badges @ 9700909479` | **DONE 2026-11-11** — cause browser-confirmed first | browser probe on both entry points, see E7 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
-| E8 | Dropdown's rotating icon: don't underline it | `hotfix-de-icon-underline` | this file | — | Not started — D8 decided | — |
-| E9 | Topic chooser: 3 columns on desktop | `feature-de-topic-chooser-columns` | this file | — | Not started | — |
+| E8 | Dropdown's rotating icon: don't underline it | `hotfix-de-icon-underline` | this file | `hotfix-de-icon-underline @ df7e4926d8`; PR #1566 | **Built**, CI green (smoke, site characterization); waiting to merge | chevron probe at 1440 / 390 with a before arm, see E8 "Proof that ran"; curated smoke 44/44 |
+| E9 | Topic chooser: 3 columns on desktop; topics and datasets as cards | `feature-de-topic-chooser-columns` | this file | `feature-de-topic-chooser-columns @ 64eb473573` (columns), `bb747a6aae` (cards); PR #1567 | **Built**, CI green (smoke, site characterization); waiting to merge — cards added (Chris, 2026-11-12) | column probe at five widths with a before arm, card probe at 1440 / 390, see E9 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; site characterization `prod_prod` 840/840 |
 | E10 | Selected neighborhood stays highlighted on bar, map and legend, and across overlay switches | `feature-de-persistent-selection` | this file; a spec if D10 widens it | — | Not started — D10 decided | — |
 | E11 | Citywide-only indicators: no bar chart (it draws one large bar) | `feature-de-citywide-no-bar` | this file | — | Not started — D11 decided | — |
 | E12 | Map controls: zoom in/out and reset zoom | `feature-de-map-controls` (E12–E14 share it, D12) | this file | — | Not started | — |
@@ -438,6 +444,30 @@ Hover or at rest was not said; the browser check before the fix settles it.
 **Proof.** Browser: the icon's computed `text-decoration-line` (and the button's) on hover and at
 rest, before and after; the button's label text keeps whatever underline it had.
 
+**Cause, browser-confirmed.** `_d-enhancements.scss` underlines every `.btn` on `:hover` and
+`:focus` (`a, .btn, .nav-link, …` with `hover-focus`). The button keeps focus while its menu is
+open, so the underline stays. These buttons are flex containers, so the chevron is a blockified
+flex item and the button's underline carries down into it; rotated open, it draws above the icon.
+
+**What was built** (`df7e4926d8`). One rule in `_de-custom.scss`, inside `.de-wrapper`:
+`.btn[data-toggle="dropdown"]` drops its own underline on hover and focus and its label
+`> span` takes it, the pattern `_d-enhancements.scss` uses for `.btn.file-choose`. Inside
+`.de-wrapper` it matches only these six buttons; the site's other `.btn` dropdowns (heatstory,
+rmz) are outside it.
+
+**Proof that ran** `[2026-11-12, isolated dev_stage server on :8091 with temp -d and
+HUGO_RESOURCEDIR, /data-explorer/air-quality/?id=2023]`. Probe
+`scripts/.sc-rebaseline/e8/e8-chevron.mjs`, logs and screenshots beside it.
+- The :8080 `dev_stage` server was not used: all 37 fingerprinted assets on the page pointed
+  under `/local-prod/` and returned 404 (the two-builders symptom), with `renderIndicatorList is
+  not defined` on load.
+- Each visible button read at rest, hover, open + hover and open at rest, at 1440 and 390. The
+  button's own underline: 18 of 24 readings before, 0 of 24 after. The label is underlined in
+  exactly the states the button was. Screenshots: before, a line under the chevron on hover and
+  above it when open; after, none.
+- The new rule was confirmed in the served stylesheet before the after run. 0 page errors.
+- Curated smoke 44/44. CI on #1566: smoke and site characterization passed.
+
 ### E9 — Topic chooser in 3 columns on desktop
 
 **What exists.** `themes/dohmh/layouts/partials/de-chooser-modal.html` splits the topic list into
@@ -454,6 +484,46 @@ the copy.
 **Proof.** Browser at 1440, 960, 959 and 390: column count, alphabetical order down then across,
 no topic lost (link count equals the number of non-hidden topic pages). `characterize:site` on
 the chooser pages (structure should not move; links are reordered only).
+
+**Cards (Chris, 2026-11-12).** After the columns, Chris asked whether each topic should be a
+small card. A mock-up (CSS injected on the served page, `e9-cards-mock.mjs`) showed both steps,
+topics and datasets, as cards; Chris chose cards on both. Notes from it: the site's
+`content-card` carries a 200px image, too heavy here, so the card is a light one; the dataset
+list was the same divider-row style, so both steps change together.
+
+**What was built.**
+- `64eb473573`: `de-chooser-modal.html` drops the `hideFromRange` pages first, then splits the
+  41 topics into three `col-md-6 col-lg-4` columns (14 / 14 / 13). One `range` over three slices
+  replaces the two copied halves. Below 960px the dialog is 500px, so the third column wraps
+  under the first.
+- `bb747a6aae`: each topic (`de-chooser-modal.html`) and dataset (`topic-indicator-selector.js`)
+  is a `.de-chooser-card`, its title carrying Bootstrap's `.stretched-link`. The rule is at the
+  top level of `_de-custom.scss`, since the modals render in `header-de.html`, outside
+  `.de-wrapper`. On hover and focus the border and fill turn green and the title switches to
+  `$primary-dark`.
+
+**Proof that ran** `[2026-11-12, isolated dev_stage server on :8091]`. Probes
+`scripts/.sc-rebaseline/e9/e9-columns.mjs` and `e9-cards.mjs`, logs and screenshots beside them.
+- Columns, before (old partial stashed; the served page checked for 0 `col-lg-4` wrappers) and
+  after (checked for 3), at 1440, 960, 959, 720 and 390: the same 41 topic links at every width,
+  alphabetical down then across, both hidden-topic links listed, no horizontal scroll. Before:
+  two columns of 21 / 20 (the halving counted the hidden pages). After: three across at 960 and
+  1440; two across with the third wrapping at 720 and 959. Re-run after the cards: same link set.
+- Cards, at 1440 and 390: 41 topic cards, 18 for Asthma. A click on a card's blank corner opens
+  the dataset step, and on a dataset card loads it (`?id=2414`, modal closed). Focusing a title
+  gives its card the green border.
+- Contrast: the first build's hover title was `#008939` on `#EFFAF4`, 4.24:1, under 4.5:1 for the
+  16px dataset titles; with `$primary-dark` both steps read 5.13:1.
+- Height of the scrollable list, rows → cards: topics 1241 → 1412px at desktop (+14%), 2868 →
+  3258px on the phone; Asthma's datasets 1981 → 2143px (+8%), 2937 → 3265px.
+- `npm run lint` exit 0; curated smoke 44/44; 0 page errors. Site characterization
+  (`characterize-env.mjs prod_prod`, uncommitted cards included): 840/840 match the baseline. The
+  change adds no links or buttons, so this rules out a structural change and cannot see the
+  restyle. CI on #1567: smoke and site characterization passed.
+
+**Found, not changed.** The `.indicator-card` and `.indicator-grid` rules in `_de-custom.scss`
+match no element: they are nested under `.de-wrapper`, and the only element with either class is
+the dataset card, in the modal outside it.
 
 ### E10 — Selected neighborhood stays highlighted
 
@@ -568,9 +638,9 @@ pages, as E1 did).
 
 ## Next command
 
-E8–E14: D8, D10, D11, D12 and D13 all decided 2026-11-12; nothing open.
-Next: each item on its own branch off `production` (E12–E14 share one), E8 and E9 first as the
-smallest.
+E8–E14: D8, D10, D11, D12 and D13 all decided 2026-11-12; nothing open. E8 (#1566) and E9
+(#1567) wait on Chris's merge; then record their merge commits here. Next build: E11, on
+`feature-de-citywide-no-bar` cut from local `production`; then E10, then E12–E14 on one branch.
 
 E4, after Chris has run the staging→production migration and the `DE_metadata_json.R` re-export
 (EHDP-data `production`), against a server on production data:
