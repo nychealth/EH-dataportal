@@ -10391,7 +10391,9 @@ table .group td {
     border: none;
     border-bottom: 4px solid #008939;
     padding: 10px;
-    font-size: 14px; }
+    font-size: 14px;
+    max-height: 50vh;
+    overflow-y: auto; }
     .de-wrapper .dropdown-menu-de button {
       border-bottom: 1px solid #D8D8D8;
       padding: 8px 0;
