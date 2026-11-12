@@ -102,7 +102,9 @@ aborts `www.googletagmanager.com`, so no sweep reports page views to Google Anal
 **After pushing to a PR branch, watch its CI runs in the background without being asked**
 (Chris, 2026-11-10). Get the run ids for the pushed commit with `gh run list --commit <sha>`,
 then run `gh run watch <id> --exit-status` as a background task, which exits non-zero when the
-run fails, and report each run's conclusion when it finishes. A single look that finds the runs
+run fails and also when it loses the network (`lookup api.github.com: no such host`), so read
+`gh run view <id> --json conclusion` before reporting a failure. Report each run's conclusion
+when it finishes. A single look that finds the runs
 still in progress is not watching them.
 In the same step, re-read the PR description against `git log production..HEAD`. It was written
 for the diff at the first push, and a later commit can falsify any line of it, a "Not included"
