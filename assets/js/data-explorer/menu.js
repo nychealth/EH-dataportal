@@ -366,3 +366,25 @@ const announceSelection = () => {
     }
 
 };
+
+
+// ----------------------------------------------------------------------- //
+// selected item in view
+// ----------------------------------------------------------------------- //
+
+// The menus scroll past 50vh (_de-custom.scss), so a selection further down a long Time list
+// would open out of sight. Centre it in the menu each time one opens. Bootstrap 4 fires its
+// dropdown events through jQuery, which addEventListener does not receive.
+
+$(document).on('shown.bs.dropdown', '.dropdown', event => {
+
+    const menu = event.currentTarget.querySelector('.dropdown-menu-de');
+    const selected = menu?.querySelector('.is-selected');
+
+    if (!selected) return;
+
+    // the menu is absolutely positioned, so it is the selected item's offsetParent
+
+    menu.scrollTop = selected.offsetTop - (menu.clientHeight - selected.offsetHeight) / 2;
+
+});

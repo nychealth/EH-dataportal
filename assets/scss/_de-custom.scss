@@ -646,6 +646,11 @@ $color-data-explorer: #0A408A;
         padding: 10px;
         font-size: 14px;
 
+        // Quarterly measures list 100 time periods, a menu ~3800px tall that ran off the screen.
+        // Cap it and scroll inside; menu.js scrolls the selected item into view on open.
+        max-height: 50vh;
+        overflow-y: auto;
+
         // Bootstrap's .dropdown-item is nowrap. On desktop the menu is the dropdown's width
         // (de-indicator-info.html), narrower than the longest measure names, so they wrap instead.
         button {
