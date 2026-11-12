@@ -2,8 +2,8 @@
 
 **Status as of 2026-11-12: E5 done, merged via #1559; E6 done, merged via #1560; E7 done, merged
 via #1561; E4 diagnosed and fixed on the staging database, waiting on the migration to production
-and a metadata re-export; E3 done, merged via #1562; E1 built, browser-checked and
-re-baselined on its branch; E2 Not started, D2 answered (Chris, 2026-11-12).**
+and a metadata re-export; E3 done, merged via #1562; E1 done, merged via #1563; E2 built,
+browser-checked and its explorer-harness baselines re-captured on its branch.**
 
 Seven improvements Chris listed on 2026-11-10. Each gets its own branch off `production` and its
 own PR. This file is the single ledger for all seven: status, branch, commit and proof live here,
@@ -17,8 +17,8 @@ function or block name); line numbers are given only as hints and will move.
 
 | # | Item | Branch (proposed) | Doc | Commit | Status | Proof that ran |
 |---|---|---|---|---|---|---|
-| E1 | Measure / Boundary / Time box collapsible on desktop, default open | `feature-de-desktop-details-collapse` | this file | `feature-de-desktop-details-collapse @ e234e4efb6`; re-baseline `abf3ce6ab4` | **In progress** — built and browser-checked; header layout decided (D1c); site characterization re-baselined | browser probe at 1440 / 960 / 959 / 390 and screenshots, see E1 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
-| E2 | Add Citywide and Borough to the table automatically | `feature-de-table-context-geos` | this file (design already recorded, see below) | *none yet* | Not started — D2 decided 2026-11-12 | — |
+| E1 | Measure / Boundary / Time box collapsible on desktop, default open | `feature-de-desktop-details-collapse` | this file | `feature-de-desktop-details-collapse @ e234e4efb6`; re-baseline `abf3ce6ab4`; PR #1563, merge `55554654bd` | **DONE 2026-11-12** — header layout decided (D1c) | browser probe at 1440 / 960 / 959 / 390 and screenshots, see E1 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
+| E2 | Add Citywide and Borough to the table automatically | `feature-de-table-context-geos` | this file (design already recorded, see below) | `feature-de-table-context-geos @ fe17145b21`; DE harness baselines `627c4a7bfa` | **In progress** — built and browser-checked; A-032 to close in the audit when it lands | table probe on 2380 and 26 with a before arm, see E2 "Proof that ran"; `de-characterization` re-captured on both data branches; `npm run lint` exit 0; curated smoke 44/44 |
 | E3 | Scrollable dropdowns (quarterly measures have 90+ time periods) | `feature-de-scrollable-dropdowns` | this file | `feature-de-scrollable-dropdowns @ 92c7919119`; PR #1562, merge `846378cf79` | **DONE 2026-11-12** — time slider deferred (Chris, 2026-11-12), so all three menus are covered | browser probe at desktop and phone with a no-handler control, see E3 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
 | E4 | Asthma ED / Hosp by NTA: 2 indicators have a number measure with no boundary or time | *none — no change in this repo* | this file | `cgettings-EHDP-work @ 9e972416` (step 6 script; run on local staging 2026-11-11) | **In progress** — staging fixed; BLOCKED on the staging→production migration, then `DE_metadata_json.R` re-export | browser menu probe, EHDP-data metadata sweep, database reads; see E4 "Proof that ran" |
 | E5 | Disparities chart title much larger than correlate's | `hotfix-de-disparities-title-size` | this file | `hotfix-de-disparities-title-size @ e326c6c222`; PR #1559, merge `2c8f5e065e` | **DONE 2026-11-11** — scope widened to wrap the correlate title too (see E5) | browser on `dev_stage`, see E5 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
@@ -118,6 +118,38 @@ after the change it should show Citywide + Borough + the map geography. `node
 scripts/de-characterization.mjs --check` (table view is captured; expect a re-baseline), smoke,
 `characterize:site`. Close A-032 in the audit when it lands (five places — see the audit's
 "Closing a row" sentence).
+
+**What was built** (`fe17145b21`). `global.js`: `TABLE_CONTEXT_GEOS` and
+`pickSyncedTableGeos(availableGeos, mapGeo)`, as §4c wrote them. Called from the "table defaults"
+block in `renderMeasures` (`measures.js`), `getCurrentMapTableFilters` (`table.js`), and the
+fallback in `renderTableFilterControls` (`table.js`), each keeping its fall-back to the first
+available geography. The last passes `dataGeos` through `geoTypes` first, since `dataGeos` is in
+data order. All three files load only from `data-explorer/single.html`, which loads `global.js`
+before them.
+
+**Proof that ran** `[2026-11-12, dev_stage on :8080, 1440x900]`. Probe
+`scripts/.sc-rebaseline/e2/e2-table.mjs`, logs beside it; it opens the table view and reads
+`DE.table.selectedTableGeography`, the checked filter boxes, and the rendered `#tableID` rows.
+- Before (`table.dc5702f9…`), 2380 (asthma; map offers Borough / CD / UHF42): the table shows the
+  map's geography alone — CD 59 rows, UHF42 42, Borough 5. 26 (birth defects, unmapped): Citywide,
+  1 row.
+- After (`table.012d69c5…`), 2380: Citywide + Borough + CD, 65 rows; + UHF42, 48; a Borough map
+  gives Citywide + Borough, 6. 26: Citywide + Borough, 6 rows. Rows are coarsest-first.
+- D2 part 2: unchecking Citywide in the table, then "Sync to map", restores Citywide on both
+  indicators (`tableGeoFilterIsManual` true, then false).
+- Not exercised on its own: the `renderTableFilterControls` fallback, which runs only when every
+  checked geography is pruned away.
+- 0 page errors. `npm run lint` exit 0. Curated smoke 44/44.
+- `de-characterization` (not run by CI). Production: the old baseline still matched the
+  unmodified tree (`--check` exit 0, on an isolated `development` server on :8091 with temp `-d`
+  and `HUGO_RESOURCEDIR`, stopped after); re-captured with E2, the diff is the table's `rowCount`
+  +6 and `filterSummary` ("3 geographies", or "All geographies" for 2414, whose table offers only
+  Citywide, Borough and UHF34) on 2023, 2380 and 2414, nothing else. Staging: the same two fields,
+  plus EHDP-data changes since the last capture (2380 and 2414 default to newer time periods),
+  separated by diffing same-day captures of the unmodified tree and of E2; the new baseline
+  matches an earlier E2 capture byte for byte.
+- `characterize:site` not run locally: its sweep loads explorer pages without `?id=`, which
+  render no indicator table.
 
 ## E3 — Scrollable dropdowns
 
@@ -368,7 +400,9 @@ DE_BASE_URL=<server>/ node scripts/.sc-rebaseline/e4/e4-menus.mjs 2384 2383 2378
 Pass: no measure on any of the three has an empty Boundary or Time menu, and 2384 / 2383 list 3
 and 2 measures.
 
-E1: push `feature-de-desktop-details-collapse` and open a PR into `production`. CI's two sweeps
-should pass against the re-captured baseline.
+E2: push `feature-de-table-context-geos` and open a PR into `production`; CI's two sweeps should
+pass with no site-characterization change. When it merges, close A-032 in
+`documents/site-wide-audit-2026-10.md` (five places — the audit's "Closing a row" sentence).
 
-E2 has its decision (above) and is ready to build on its own branch off `production`.
+E4 is then the only open item: after Chris's staging→production migration and the
+`DE_metadata_json.R` re-export, run the E4 probe above.
