@@ -100,8 +100,10 @@ against it — green means the PR caused it, red means the data or a third party
 aborts `www.googletagmanager.com`, so no sweep reports page views to Google Analytics.
 
 **After pushing to a PR branch, watch its CI runs in the background without being asked**
-(Chris, 2026-11-10). Get the run ids for the pushed commit with `gh run list --commit <sha>`,
-then run `gh run watch <id> --exit-status` as a background task, which exits non-zero when the
+(Chris, 2026-11-10). Get the run ids for the pushed commit with
+`gh run list --commit $(git rev-parse <sha>)`. It needs the full 40-character hash: a short one
+returns `[]` with no error, which reads as "no runs" `[2026-11-12, gh 2.92.0: 4 runs on
+`1415fb780e` by full hash, 0 by short]`. Then run `gh run watch <id> --exit-status` as a background task, which exits non-zero when the
 run fails and also when it loses the network (`lookup api.github.com: no such host`), so read
 `gh run view <id> --json conclusion` before reporting a failure. Report each run's conclusion
 when it finishes. A single look that finds the runs
