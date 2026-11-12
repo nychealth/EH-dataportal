@@ -35,10 +35,10 @@
     "disparities": null,
     "table": {
         "present": true,
-        "rowCount": 34,
+        "rowCount": 40,
         "totalRowCount": 40,
         "columnCount": 12,
-        "filterSummary": "All time periods | UHF34 | Synced"
+        "filterSummary": "All time periods | All geographies | Synced"
     },
     "consoleErrors": []
 }
