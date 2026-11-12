@@ -1905,11 +1905,13 @@ const renderMeasures = async () => {
 
     const dropdownTableGeoTypes = geoTypes.filter(g => tableGeoTypes.includes(g));
 
-    // Default the table to the currently selected geography when available.
+    // Default the table to the currently selected geography, plus Citywide and Borough, when available.
 
-    if (DE.state.GeoType && dropdownTableGeoTypes.includes(DE.state.GeoType)) {
+    const syncedTableGeos = pickSyncedTableGeos(dropdownTableGeoTypes, DE.state.GeoType);
 
-        DE.table.selectedTableGeography = [DE.state.GeoType];
+    if (syncedTableGeos.length) {
+
+        DE.table.selectedTableGeography = syncedTableGeos;
 
     } else if (dropdownTableGeoTypes.length) {
 
