@@ -18,15 +18,21 @@
         </button>
     </div>
 
-    <!-- Desktop Indicator Header (always visible) -->
+    <!-- Desktop Indicator Header (always visible), laid out as the phone header is: title, the
+         "Change dataset" pill under it, and a +/- button that collapses the description and the
+         three dropdowns below. Beside the title, the button wrapped short titles to a second line.
+         The details open on every load and nothing remembers the choice (Chris, 2026-11-12). -->
     <div class="bg-primary text-white px-2 py-1 w-full d-none d-lg-flex">
-        <div class="h6 font-weight-bold mb-0 py-1 indicator-name" aria-live="polite" aria-atomic="true">Loading indicator...</div>
-        <div class="ml-2 text-nowrap flex-grow-1 text-right">
+        <div>
+            <div class="h6 font-weight-bold mb-0 py-1 indicator-name" aria-live="polite" aria-atomic="true">Loading indicator...</div>
             <div class="position-relative d-inline-flex align-items-center indicator-selector-trigger-wrap">
                 <button type="button" class="badge badge-pill badge-light border-0 de-viz-pill-button text-nowrap indicator-selector-trigger" data-toggle="modal" data-target="#indicatorSelector">Change dataset&nbsp;&nbsp;<i class="fa-solid fa-right-left fs-xs"></i></button>
                 <span id="indicatorSelectorPromptDesktop" class="indicator-selector-prompt d-none" aria-hidden="true" role="status">Choose dataset</span>
             </div>
         </div>
+        <button type="button" class="btn btn-link p-0 ml-auto align-self-start text-white desktop-details-toggle" data-toggle="collapse" data-target="#detailsContentDesktop" aria-expanded="true" aria-controls="detailsContentDesktop" aria-label="Dataset details">
+            <i class="fas fa-minus text-white toggle-icon" aria-hidden="true" style="padding-top: 4px;"></i>
+        </button>
     </div>
 
     <!-- Mobile Collapsible Content -->
@@ -96,8 +102,10 @@
         </div>
     </div>
 
-    <!-- Desktop Content (always visible) -->
+    <!-- Desktop Content -->
     <div class="d-none d-lg-block">
+        <!-- Collapsible part, open at load: description and dropdowns. Save map stays visible. -->
+        <div id="detailsContentDesktop" class="collapse show">
         <div class="bg-white p-2 fs-sm border-left border-right">
             <p class="indicator-description fs-sm">Loading indicator description... </p>
         </div>
@@ -163,7 +171,10 @@
                     </div>
                 </div>
             </div>
+        </div>
+        </div>
 
+        <div>
             <div class="card card-header p-0 bg-transparent d-inline-block printMap border-bottom border-left border-right">
                 <div style="background-color:#DCF4E7" class="py-1 d-inline-block">
                         <button type="button" id="deSaveMapButton" class="de-link-button fs-sm mx-1 de-save-map-button" aria-haspopup="dialog" data-print-target="map"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save map</button>

@@ -2,8 +2,8 @@
 
 **Status as of 2026-11-12: E5 done, merged via #1559; E6 done, merged via #1560; E7 done, merged
 via #1561; E4 diagnosed and fixed on the staging database, waiting on the migration to production
-and a metadata re-export; E3 built and browser-checked on its branch; E1 and E2 Not started, all
-their decisions answered (Chris, 2026-11-12).**
+and a metadata re-export; E3 done, merged via #1562; E1 built, browser-checked and
+re-baselined on its branch; E2 Not started, D2 answered (Chris, 2026-11-12).**
 
 Seven improvements Chris listed on 2026-11-10. Each gets its own branch off `production` and its
 own PR. This file is the single ledger for all seven: status, branch, commit and proof live here,
@@ -17,9 +17,9 @@ function or block name); line numbers are given only as hints and will move.
 
 | # | Item | Branch (proposed) | Doc | Commit | Status | Proof that ran |
 |---|---|---|---|---|---|---|
-| E1 | Measure / Boundary / Time box collapsible on desktop, default open | `feature-de-desktop-details-collapse` | spec to write | *none yet* | Not started — D1a, D1b decided 2026-11-12 | — |
+| E1 | Measure / Boundary / Time box collapsible on desktop, default open | `feature-de-desktop-details-collapse` | this file | `feature-de-desktop-details-collapse @ e234e4efb6`; re-baseline `abf3ce6ab4` | **In progress** — built and browser-checked; header layout decided (D1c); site characterization re-baselined | browser probe at 1440 / 960 / 959 / 390 and screenshots, see E1 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
 | E2 | Add Citywide and Borough to the table automatically | `feature-de-table-context-geos` | this file (design already recorded, see below) | *none yet* | Not started — D2 decided 2026-11-12 | — |
-| E3 | Scrollable dropdowns (quarterly measures have 90+ time periods) | `feature-de-scrollable-dropdowns` | this file | `feature-de-scrollable-dropdowns @ 92c7919119` | **In progress** — built and browser-checked; time slider deferred (Chris, 2026-11-12), so all three menus are covered | browser probe at desktop and phone with a no-handler control, see E3 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
+| E3 | Scrollable dropdowns (quarterly measures have 90+ time periods) | `feature-de-scrollable-dropdowns` | this file | `feature-de-scrollable-dropdowns @ 92c7919119`; PR #1562, merge `846378cf79` | **DONE 2026-11-12** — time slider deferred (Chris, 2026-11-12), so all three menus are covered | browser probe at desktop and phone with a no-handler control, see E3 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
 | E4 | Asthma ED / Hosp by NTA: 2 indicators have a number measure with no boundary or time | *none — no change in this repo* | this file | `cgettings-EHDP-work @ 9e972416` (step 6 script; run on local staging 2026-11-11) | **In progress** — staging fixed; BLOCKED on the staging→production migration, then `DE_metadata_json.R` re-export | browser menu probe, EHDP-data metadata sweep, database reads; see E4 "Proof that ran" |
 | E5 | Disparities chart title much larger than correlate's | `hotfix-de-disparities-title-size` | this file | `hotfix-de-disparities-title-size @ e326c6c222`; PR #1559, merge `2c8f5e065e` | **DONE 2026-11-11** — scope widened to wrap the correlate title too (see E5) | browser on `dev_stage`, see E5 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
 | E6 | Allow many more "recently updated" datasets; home page shows ~10 | `feature-recently-updated-more` | this file | `feature-recently-updated-more @ c42a64596b`; re-baseline `af4bac8f6b`; PR #1560, merge `729b313e02` | **DONE 2026-11-11** — D6 decided: file order | isolated build, see E6 "Proof that ran"; site-characterization re-baseline, nothing unexplained |
@@ -53,6 +53,39 @@ is wired before writing anything.
 
 **Decided (Chris, 2026-11-12).** D1a: not remembered — every load opens on desktop. D1b: just
 hide the dropdowns; the layout does not reflow.
+
+**D1c, decided (Chris, 2026-11-12).** With the toggle beside the title and the "Change dataset"
+pill, short titles wrapped to a second line ("Fine particles (PM 2.5)": title 190px → 171px wide,
+header 51px → 70px, measured by hiding the toggle in the same page). Chosen: lay the desktop
+header out as the phone's is — title, pill under it, toggle at the right. Rejected: keep it
+beside the title; a "Hide details" link on its own row under the header.
+
+**What was built** (`e234e4efb6`). `de-indicator-info.html`: the desktop header is rearranged as
+above, with a `.desktop-details-toggle` button; the desktop description and three dropdowns sit
+in `#detailsContentDesktop` (`collapse show`). Save map stays outside it, visible when collapsed.
+`de-tab-content.js`: the phone toggle's icon / `aria-expanded` sync is now
+`syncDetailsToggleIcon(toggle, content)`, used by both toggles; the phone's tap-the-bar handler
+is unchanged and the desktop toggle has no bar handler.
+
+**Proof that ran** `[2026-11-12, dev_stage on :8080, /data-explorer/air-quality/?id=2023]`. Probe
+`scripts/.sc-rebaseline/e1/e1-collapse.mjs`, logs and screenshots beside it.
+- 1440x900 and 960x800 (desktop): open at load (`aria-expanded` true, minus icon); click
+  collapses (false, plus, Time dropdown hidden, Save map shown, box 509 → 127px with the phone-style header); click reopens;
+  Enter on the focused toggle collapses; a reload opens again. The `.leaflet-container` rect is
+  identical in every state (`[131,0,1440,836]` / `[131,0,960,736]`).
+- 959x800 and 390x844 (phone): the desktop toggle is not shown; the phone box loads closed and
+  its toggle opens it, as before (`de-tab-content.2474d731…` → `7de0d985…`, same readings).
+- Screenshots `before-*.png` / `after-*.png`: open, collapsed, and the "Choose dataset" prompt
+  (closing the chooser with no dataset). The prompt now sits under the pill inside the box,
+  where it hung off the box's right edge before.
+- 0 page errors. `npm run lint` exit 0. Curated smoke 44/44.
+- Site characterization, re-baselined at `32a59cb200` (E1 plus `production` with #1562 merged in):
+  `node scripts/site-characterization-rebaseline.mjs --expect "data-explorer/**"` reported, for
+  both `prod_prod` and `staging`, 41 of 840 pages changed, all 41 under the glob, "Nothing
+  unexplained". `git diff -U0` tally: 82 changed lines, every one `controls.button` +1 (41 topic
+  pages x 2 keys); no other field. Unchanged under the glob: `data-explorer/` (the chooser),
+  `data-index/` and `indicator-catalog/`, none of which renders the details box. Each
+  `_meta.json` changes only `capturedAt`, `gitHead` and the EHDP-data `fetchedAt`.
 
 **Proof.** Browser, at desktop (≥960px, this site's `lg`) and phone widths: toggle state,
 `aria-expanded`, icon, and that phones still default closed. `npm run smoke`; `characterize:site`
@@ -335,8 +368,7 @@ DE_BASE_URL=<server>/ node scripts/.sc-rebaseline/e4/e4-menus.mjs 2384 2383 2378
 Pass: no measure on any of the three has an empty Boundary or Time menu, and 2384 / 2383 list 3
 and 2 measures.
 
-E3: commit on `feature-de-scrollable-dropdowns`, push, open a PR into `production`; CI's
-site-characterization sweep is the check not run locally.
+E1: push `feature-de-desktop-details-collapse` and open a PR into `production`. CI's two sweeps
+should pass against the re-captured baseline.
 
-E1 and E2 have their decisions (above) and are ready to build, each on its own branch off
-`production`.
+E2 has its decision (above) and is ready to build on its own branch off `production`.
