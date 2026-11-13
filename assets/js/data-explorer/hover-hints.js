@@ -84,10 +84,31 @@ const HOVER_HINTS = [
         text: 'Opens help on correlations'
     },
 
-    // The map's eye button and opacity slider (map.js, addMapControls; Chris,
-    // 2026-11-13). The eye is icon-only and toggles, so its hint is a function read
-    // when the hint opens: aria-pressed is its state, and the hint says what a click
-    // will do. The slider's value is shown beside it, so its hint names it only.
+    // The map's control stack (map.js, addMapControls; Chris, 2026-11-13), all
+    // icon-only, so every one gets the same hint rather than a mix of these and the
+    // browser's title tooltips. Scoped to #map so no other Leaflet map's controls match.
+    // The three zoom buttons sit in a column, so a hint below one covered the next
+    // (measured 2026-11-13: "Zoom in" lay over the Zoom out button); theirs open to the
+    // right, over the map.
+    {
+        selector: '#map .leaflet-control-zoom-in',
+        text: 'Zoom in',
+        placement: 'right'
+    },
+    {
+        selector: '#map .leaflet-control-zoom-out',
+        text: 'Zoom out',
+        placement: 'right'
+    },
+    {
+        selector: '#map .de-map-reset',
+        text: 'Reset zoom',
+        placement: 'right'
+    },
+
+    // The eye toggles, so its hint is a function read when the hint opens:
+    // aria-pressed is its state, and the hint says what a click will do. The slider's
+    // value is shown beside it, so its hint names it only.
     {
         selector: '.de-map-fill-toggle',
         text: (trigger) => (trigger.getAttribute('aria-pressed') === 'true' ? 'Show data layer' : 'Hide data layer')
@@ -115,6 +136,7 @@ const isHintMousePointer = (event) => event.pointerType === 'mouse';
 const hoverHint = {
     element: null,
     trigger: null,
+    placement: undefined,
     showTimer: null,
     hideTimer: null,
     // A trigger that was just clicked. Its modal is opening, and when the modal
@@ -146,7 +168,7 @@ const findHintTrigger = (element) => {
         if (!trigger) continue;
         if (trigger.closest(HOVER_HINT_PROMPTED)) return null;
         const text = typeof hint.text === 'function' ? hint.text(trigger) : hint.text;
-        return { trigger, text };
+        return { trigger, text, placement: hint.placement };
     }
 
     return null;
@@ -175,14 +197,22 @@ const ensureHintElement = () => {
 };
 
 // Places the hint below the trigger, or above it when there is no room below,
-// and keeps it inside the viewport horizontally.
+// and keeps it inside the viewport horizontally. An entry placed 'right' sits
+// beside its trigger, centred on it, unless that would leave the viewport.
 
-const positionHint = (element, trigger) => {
+const positionHint = (element, trigger, placement) => {
 
     const gap = 6;
     const edge = 8;
     const rect = trigger.getBoundingClientRect();
     const hintRect = element.getBoundingClientRect();
+
+    if (placement === 'right' && rect.right + gap + hintRect.width <= window.innerWidth - edge) {
+        const sideTop = rect.top + (rect.height / 2) - (hintRect.height / 2);
+        element.style.top = `${Math.max(edge, sideTop) + window.scrollY}px`;
+        element.style.left = `${rect.right + gap + window.scrollX}px`;
+        return;
+    }
 
     let top = rect.bottom + gap;
     if (top + hintRect.height > window.innerHeight - edge) top = rect.top - gap - hintRect.height;
@@ -197,7 +227,7 @@ const positionHint = (element, trigger) => {
 
 // Shows the hint for a trigger and links the two for assistive tech.
 
-const showHint = (trigger, text) => {
+const showHint = (trigger, text, placement) => {
 
     const element = ensureHintElement();
 
@@ -209,7 +239,7 @@ const showHint = (trigger, text) => {
 
     element.textContent = text;
     element.hidden = false;
-    positionHint(element, trigger);
+    positionHint(element, trigger, placement);
 
     const describedBy = (trigger.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean);
     if (!describedBy.includes(HOVER_HINT_ID)) {
@@ -217,6 +247,7 @@ const showHint = (trigger, text) => {
     }
 
     hoverHint.trigger = trigger;
+    hoverHint.placement = placement;
 
 };
 
@@ -278,7 +309,7 @@ document.addEventListener('pointerover', (event) => {
     if (found.trigger === hoverHint.trigger) return;
 
     clearTimeout(hoverHint.showTimer);
-    hoverHint.showTimer = setTimeout(() => showHint(found.trigger, found.text), HOVER_HINT_TIMING.show);
+    hoverHint.showTimer = setTimeout(() => showHint(found.trigger, found.text, found.placement), HOVER_HINT_TIMING.show);
 
 });
 
@@ -310,7 +341,7 @@ document.addEventListener('focusin', (event) => {
     if (!found || found.trigger === hoverHint.suppressedFor) return;
     if (!found.trigger.matches(':focus-visible')) return;
 
-    showHint(found.trigger, found.text);
+    showHint(found.trigger, found.text, found.placement);
 
 });
 
@@ -386,7 +417,7 @@ window.addEventListener('scroll', () => {
     const inView = rect.bottom > 0 && rect.top < window.innerHeight && rect.right > 0 && rect.left < window.innerWidth;
 
     if (inView) {
-        positionHint(element, trigger);
+        positionHint(element, trigger, hoverHint.placement);
     } else {
         hideHint();
     }

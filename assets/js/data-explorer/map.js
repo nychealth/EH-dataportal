@@ -337,7 +337,14 @@ const applyFillSettings = () => {
 
 const addMapControls = () => {
 
-    L.control.zoom({ position: 'topleft' }).addTo(currentMap);
+    const zoomControl = L.control.zoom({ position: 'topleft' }).addTo(currentMap);
+
+    // hover-hints.js gives every button in this stack the explorer's own hint, so the
+    // browser's title tooltip comes off Leaflet's zoom links (Chris, 2026-11-13). Removed
+    // after creation rather than by passing an empty title, because Leaflet sets the
+    // links' aria-label from the same option.
+
+    zoomControl.getContainer().querySelectorAll('a').forEach(link => link.removeAttribute('title'));
 
     const MapToolsControl = L.Control.extend({
 
@@ -349,7 +356,7 @@ const addMapControls = () => {
 
             container.innerHTML = `
                 <div class="leaflet-bar">
-                    <button type="button" class="de-map-reset" title="Reset zoom" aria-label="Reset zoom">
+                    <button type="button" class="de-map-reset" aria-label="Reset zoom">
                         <i class="fas fa-undo" aria-hidden="true"></i>
                     </button>
                 </div>
