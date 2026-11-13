@@ -6,7 +6,8 @@ and a metadata re-export; E3 done, merged via #1562; E1 done, merged via #1563; 
 #1564, and audit row A-032 closed. E4 is waiting on the database migration. E8–E14 were added
 2026-11-12, with all their decisions made the same day: E8 and E9 are done, merged via #1566 and
 #1567 the same day; E11 is built, PR held (Chris); E12–E14 are built, PR #1568 open 2026-11-13,
-waiting on Chris's iOS check; E10 is not started.**
+iOS check passed (Chris, 2026-11-13), ready to merge; E10 is not started. E15 was added and built
+2026-11-13 on `hotfix-de-map-details-gap`.**
 
 **Where this file is edited.** Ledger changes are committed to `docs-de-improvements-ledger` and
 pushed after each commit; the branch goes to `production` in one PR when the batch is done (Chris,
@@ -36,9 +37,10 @@ function or block name); line numbers are given only as hints and will move.
 | E9 | Topic chooser: 3 columns on desktop; topics and datasets as cards | `feature-de-topic-chooser-columns` | this file | `feature-de-topic-chooser-columns @ 64eb473573` (columns), `bb747a6aae` (cards); PR #1567, merge `2dc3f791a5` | **DONE 2026-11-12** — cards added (Chris, 2026-11-12) | column probe at five widths with a before arm, card probe at 1440 / 390, see E9 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; site characterization `prod_prod` 840/840 |
 | E10 | Selected neighborhood stays highlighted on bar, map and legend, and across overlay switches | `feature-de-persistent-selection` | this file; a spec if D10 widens it | — | Not started — D10 decided | — |
 | E11 | Citywide-only indicators: no bar chart (it draws one large bar) | `feature-de-citywide-no-bar` | this file | `feature-de-citywide-no-bar @ 9c71cca181`, not pushed | **Built**; PR held (Chris, 2026-11-12) | bar probe, five arms incl. an injected one-of-many, see E11 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; `de-characterization --check` passed |
-| E12 | Map controls: zoom in/out and reset zoom | `feature-de-map-controls` (E12–E14 share it, D12) | this file | `feature-de-map-controls @ 913be741d7`; re-baseline `4244a5003a`; hints `a6487447bb`, `ac5b841181`, `a82e4ccd60`; PR #1568 | **Built**; PR open, iOS check owed (Chris) | probes in Chromium, Firefox and WebKit at 1440 / 960 / 959 / 390, see E12–E14 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; site-characterization re-baseline, nothing unexplained; CI smoke and site characterization passed on `4244a5003a` and `a6487447bb` |
+| E12 | Map controls: zoom in/out and reset zoom | `feature-de-map-controls` (E12–E14 share it, D12) | this file | `feature-de-map-controls @ 913be741d7`; re-baseline `4244a5003a`; hints `a6487447bb`, `ac5b841181`, `a82e4ccd60`; PR #1568 | **Built**; PR open, ready to merge | probes in Chromium, Firefox and WebKit at 1440 / 960 / 959 / 390, see E12–E14 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; site-characterization re-baseline, nothing unexplained; CI smoke and site characterization passed on `4244a5003a`, `a6487447bb` and `a82e4ccd60`; iPhone check on the preview (Chris, 2026-11-13) |
 | E13 | Map control: turn the geography layer off | `feature-de-map-controls` | this file | as E12 | **Built** — one eye button with E14 (Chris, 2026-11-13) | as E12 |
 | E14 | Map control: geography layer opacity | `feature-de-map-controls` | this file | as E12 | **Built** — slider shows actual opacity (Chris, 2026-11-13) | as E12 |
+| E15 | Below lg, opening and closing the details soon after load leaves blank space under the map | `hotfix-de-map-details-gap` | this file | `hotfix-de-map-details-gap @ dfdc71cbe1` | **Built** — D15 decided: the map keeps its size (Chris, 2026-11-13) | gap probe, three arms, before (Chromium) and after (Chromium, Firefox, WebKit), see E15 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
 
 E5 and E7 are small enough to share one branch if Chris prefers; they touch different files
 (`disparities.js` and `section.html` / `topic-indicator-selector.js`), so a combined PR has no
@@ -711,10 +713,11 @@ server on :8091; `PW_BROWSER` picks the browser):
   `controls.input` +1, `links.internal` +2, `links.emptyHref` +2 (Leaflet's `<a href="#">` zoom
   links). The `_meta.json` files record `gitHead` `2dc3f791a5`: the capture ran on the
   uncommitted tree.
-- Not run: iOS Safari. Playwright's WebKit on Windows is a desktop build, and the first-tap /
+- iOS Safari, by hand: Playwright's WebKit on Windows is a desktop build, and the first-tap /
   second-tap sequence depends on iOS's tap event order. CloudCannon site 161357
   (`feature-de-map-controls`, `serene-wolverine.cloudvent.net`) was created 2026-11-13 for that
-  check.
+  check; Chris ran it on an iPhone against the build of `a82e4ccd60` and reported it working
+  (2026-11-13).
 
 **Hover hints, added after review (Chris, 2026-11-13).** The eye's only label was its native
 `title`, and the slider had none and showed no number.
@@ -746,18 +749,59 @@ order kept the probe off the close button). `npm run lint` exit 0. CI's smoke an
 characterization passed on `a6487447bb`: the readout and the removed `title`s move no recorded
 field.
 
+## E15 — Blank space under the stacked map after the details open and close (added 2026-11-13)
+
+**Report (Chris, 2026-11-13).** Below lg, on an iPhone and in a narrow desktop window, on
+`production` and on the #1568 preview: open the details box right after an indicator loads, and
+the map re-fits to the smaller space; close it, and a large blank space is left between the
+legend and the tab bar. Waiting a few seconds before opening avoids it. Not part of the map
+controls, so on its own branch from local `production` (`2dc3f791a5`).
+
+**Cause, browser-confirmed.** `layoutStackedMap` (`assets/js/data-explorer/map.js`) sizes the
+map to fill the screen below the details card, measured from the card's bottom edge, and only a
+window `resize` re-runs it. One synthetic `resize` (`isTrusted: false`) fires about 1.2s after
+`load` (1192–1273ms across the runs below). Its timing matches the `#printVis` `ResizeObserver` in
+`global.js` (1000ms debounce, then `updateChartPlotSize`'s 200ms `setTimeout`), but no stack was
+captured. If the details are open when any `resize` arrives, the map is sized for the open card,
+here the 200px floor, and closing the details re-runs nothing. A real resize while the details are
+open does the same, for example a phone rotation.
+
+**D15 (Chris, 2026-11-13): the map keeps its size.** It is always sized as if the details were
+closed, and open details push it down the page, as already happened when the visitor waited. The
+rejected option was to re-fit on every open and close, which leaves the map at the 200px floor
+with the details open at 390×844.
+
+**Built.** `layoutStackedMap` subtracts `#detailsContent`'s rendered height from the card's
+bottom edge. That height is 0 while the details are closed (`display: none`) and the animated
+height while they open or close. Above lg the function returns before measuring, so desktop is
+unchanged.
+
+**Proof that ran.** `scripts/.sc-rebaseline/e15/details-gap.mjs` (git-ignored; logs beside it), on
+2380 at 390×844 on an isolated `dev_stage` server, with the served `map.js` fingerprint checked
+for the edit before each arm. Map height after the details close, where 431px is the closed-layout
+height:
+
+| Arm | Before (Chromium) | After (Chromium, Firefox, WebKit) |
+|---|---|---|
+| open at `load`, close after 3s | 200 | 431, 431, 431 |
+| open 5s after `load`, close | 431 | 431, 431, 431 |
+| open 5s after `load`, resize to 390×800 and back, close | 200 | 431, 431, 431 |
+
+0 page errors in every run. `npm run lint` exit 0. Curated smoke 44/44 against the same server.
+Site characterization not run locally: it loads at 1280×900, where `layoutStackedMap` returns
+early. Merges cleanly with #1568's `feature-de-map-controls` (`git merge-tree` exit 0; the merged
+`map.js` carries the fix and #1568's `fillOpacityFor`).
+
 ## Next command
 
 E8–E14: D8, D10, D11, D12 and D13 all decided 2026-11-12; nothing open. E8 and E9 merged
 (#1566 `d545957e0b`, #1567 `2dc3f791a5`). E11 built at `9c71cca181` on
 `feature-de-citywide-no-bar`, not pushed; Chris is holding its PR. E12–E14 built on
 `feature-de-map-controls` (`913be741d7`, re-baseline `4244a5003a`, hover hints `a6487447bb`,
-`ac5b841181`, `a82e4ccd60`), PR #1568 open. Before it merges: Chris checks the eye on a real
-iPhone, on CloudCannon site 161357 — first tap unfolds the slider only, with "65%" beside it,
-second hides the layer, third restores it, a tap on the map folds it. If the
-first tap hides the layer, iOS orders its tap events differently from the probes, and the
-`pointerdown` / `click` handling in `addMapControls` needs revisiting. Next: E10, cut from local
-`production`.
+`ac5b841181`, `a82e4ccd60`), PR #1568 open; Chris's iPhone check passed 2026-11-13, so it
+is ready to merge. E15 built at `dfdc71cbe1` on `hotfix-de-map-details-gap`; it merges cleanly with #1568, which
+also edits `map.js` (`git merge-tree --write-tree feature-de-map-controls dfdc71cbe1` exit 0,
+merged `map.js` carrying both changes). Its PR is next, then E10, cut from local `production`.
 
 E4, after Chris has run the staging→production migration and the `DE_metadata_json.R` re-export
 (EHDP-data `production`), against a server on production data:
