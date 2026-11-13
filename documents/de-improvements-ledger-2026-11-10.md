@@ -5,7 +5,7 @@ via #1561; E4 diagnosed and fixed on the staging database, waiting on the migrat
 and a metadata re-export; E3 done, merged via #1562; E1 done, merged via #1563; E2 done, merged via
 #1564, and audit row A-032 closed. E4 is waiting on the database migration. E8–E14 were added
 2026-11-12, with all their decisions made the same day: E8 (#1566) and E9 (#1567) are built,
-CI-green and waiting to merge; E10–E14 are not started.**
+merged via #1566 and #1567 the same day; E10–E14 are not started.**
 
 **Where this file is edited.** Ledger changes are committed to `docs-de-improvements-ledger` and
 pushed after each commit; the branch goes to `production` in one PR when the batch is done (Chris,
@@ -31,8 +31,8 @@ function or block name); line numbers are given only as hints and will move.
 | E5 | Disparities chart title much larger than correlate's | `hotfix-de-disparities-title-size` | this file | `hotfix-de-disparities-title-size @ e326c6c222`; PR #1559, merge `2c8f5e065e` | **DONE 2026-11-11** — scope widened to wrap the correlate title too (see E5) | browser on `dev_stage`, see E5 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
 | E6 | Allow many more "recently updated" datasets; home page shows ~10 | `feature-recently-updated-more` | this file | `feature-recently-updated-more @ c42a64596b`; re-baseline `af4bac8f6b`; PR #1560, merge `729b313e02` | **DONE 2026-11-11** — D6 decided: file order | isolated build, see E6 "Proof that ran"; site-characterization re-baseline, nothing unexplained |
 | E7 | Initial "select dataset" modal has no "recently updated" flags | `hotfix-de-chooser-updated-badges` | this file | `hotfix-de-chooser-updated-badges @ 9700909479` | **DONE 2026-11-11** — cause browser-confirmed first | browser probe on both entry points, see E7 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
-| E8 | Dropdown's rotating icon: don't underline it | `hotfix-de-icon-underline` | this file | `hotfix-de-icon-underline @ df7e4926d8`; PR #1566 | **Built**, CI green (smoke, site characterization); waiting to merge | chevron probe at 1440 / 390 with a before arm, see E8 "Proof that ran"; curated smoke 44/44 |
-| E9 | Topic chooser: 3 columns on desktop; topics and datasets as cards | `feature-de-topic-chooser-columns` | this file | `feature-de-topic-chooser-columns @ 64eb473573` (columns), `bb747a6aae` (cards); PR #1567 | **Built**, CI green (smoke, site characterization); waiting to merge — cards added (Chris, 2026-11-12) | column probe at five widths with a before arm, card probe at 1440 / 390, see E9 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; site characterization `prod_prod` 840/840 |
+| E8 | Dropdown's rotating icon: don't underline it | `hotfix-de-icon-underline` | this file | `hotfix-de-icon-underline @ df7e4926d8`; PR #1566, merge `d545957e0b` | **DONE 2026-11-12** | chevron probe at 1440 / 390 with a before arm, see E8 "Proof that ran"; curated smoke 44/44 |
+| E9 | Topic chooser: 3 columns on desktop; topics and datasets as cards | `feature-de-topic-chooser-columns` | this file | `feature-de-topic-chooser-columns @ 64eb473573` (columns), `bb747a6aae` (cards); PR #1567, merge `2dc3f791a5` | **DONE 2026-11-12** — cards added (Chris, 2026-11-12) | column probe at five widths with a before arm, card probe at 1440 / 390, see E9 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; site characterization `prod_prod` 840/840 |
 | E10 | Selected neighborhood stays highlighted on bar, map and legend, and across overlay switches | `feature-de-persistent-selection` | this file; a spec if D10 widens it | — | Not started — D10 decided | — |
 | E11 | Citywide-only indicators: no bar chart (it draws one large bar) | `feature-de-citywide-no-bar` | this file | — | Not started — D11 decided | — |
 | E12 | Map controls: zoom in/out and reset zoom | `feature-de-map-controls` (E12–E14 share it, D12) | this file | — | Not started | — |
@@ -638,8 +638,8 @@ pages, as E1 did).
 
 ## Next command
 
-E8–E14: D8, D10, D11, D12 and D13 all decided 2026-11-12; nothing open. E8 (#1566) and E9
-(#1567) wait on Chris's merge; then record their merge commits here. Next build: E11, on
+E8–E14: D8, D10, D11, D12 and D13 all decided 2026-11-12; nothing open. E8 and E9 merged
+(#1566 `d545957e0b`, #1567 `2dc3f791a5`). Next build: E11, on
 `feature-de-citywide-no-bar` cut from local `production`; then E10, then E12–E14 on one branch.
 
 E4, after Chris has run the staging→production migration and the `DE_metadata_json.R` re-export
