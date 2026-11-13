@@ -10843,6 +10843,21 @@ table .group td {
   .de-citation-menu .citation-url {
     word-break: break-all; }
 
+.de-chooser-card {
+  position: relative;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin-bottom: 8px;
+  transition: background-color 0.15s, border-color 0.15s; }
+  .de-chooser-card:hover, .de-chooser-card:focus-within {
+    border-color: #008939;
+    background-color: #EFFAF4; }
+    .de-chooser-card:hover .stretched-link, .de-chooser-card:focus-within .stretched-link {
+      color: #007a31 !important; }
+  .de-chooser-card p:last-child {
+    margin-bottom: 0; }
+
 .de-link-button {
   background: none;
   border: 0;
