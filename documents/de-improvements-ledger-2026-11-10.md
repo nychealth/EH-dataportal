@@ -36,7 +36,7 @@ function or block name); line numbers are given only as hints and will move.
 | E9 | Topic chooser: 3 columns on desktop; topics and datasets as cards | `feature-de-topic-chooser-columns` | this file | `feature-de-topic-chooser-columns @ 64eb473573` (columns), `bb747a6aae` (cards); PR #1567, merge `2dc3f791a5` | **DONE 2026-11-12** — cards added (Chris, 2026-11-12) | column probe at five widths with a before arm, card probe at 1440 / 390, see E9 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; site characterization `prod_prod` 840/840 |
 | E10 | Selected neighborhood stays highlighted on bar, map and legend, and across overlay switches | `feature-de-persistent-selection` | this file; a spec if D10 widens it | — | Not started — D10 decided | — |
 | E11 | Citywide-only indicators: no bar chart (it draws one large bar) | `feature-de-citywide-no-bar` | this file | `feature-de-citywide-no-bar @ 9c71cca181`, not pushed | **Built**; PR held (Chris, 2026-11-12) | bar probe, five arms incl. an injected one-of-many, see E11 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; `de-characterization --check` passed |
-| E12 | Map controls: zoom in/out and reset zoom | `feature-de-map-controls` (E12–E14 share it, D12) | this file | `feature-de-map-controls @ 913be741d7`; re-baseline `4244a5003a`; PR #1568 | **Built**; PR open, iOS check owed (Chris) | probes in Chromium, Firefox and WebKit at 1440 / 960 / 959 / 390, see E12–E14 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; site-characterization re-baseline, nothing unexplained |
+| E12 | Map controls: zoom in/out and reset zoom | `feature-de-map-controls` (E12–E14 share it, D12) | this file | `feature-de-map-controls @ 913be741d7`; re-baseline `4244a5003a`; hints `a6487447bb`, `ac5b841181`, `a82e4ccd60`; PR #1568 | **Built**; PR open, iOS check owed (Chris) | probes in Chromium, Firefox and WebKit at 1440 / 960 / 959 / 390, see E12–E14 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; site-characterization re-baseline, nothing unexplained; CI smoke and site characterization passed on `4244a5003a` and `a6487447bb` |
 | E13 | Map control: turn the geography layer off | `feature-de-map-controls` | this file | as E12 | **Built** — one eye button with E14 (Chris, 2026-11-13) | as E12 |
 | E14 | Map control: geography layer opacity | `feature-de-map-controls` | this file | as E12 | **Built** — slider shows actual opacity (Chris, 2026-11-13) | as E12 |
 
@@ -713,16 +713,48 @@ server on :8091; `PW_BROWSER` picks the browser):
   uncommitted tree.
 - Not run: iOS Safari. Playwright's WebKit on Windows is a desktop build, and the first-tap /
   second-tap sequence depends on iOS's tap event order. CloudCannon site 161357
-  (`feature-de-map-controls`) was created 2026-11-13 for that check.
+  (`feature-de-map-controls`, `serene-wolverine.cloudvent.net`) was created 2026-11-13 for that
+  check.
+
+**Hover hints, added after review (Chris, 2026-11-13).** The eye's only label was its native
+`title`, and the slider had none and showed no number.
+- `a6487447bb`: the eye and slider get the explorer's own hint (`hover-hints.js`): "Hide data
+  layer" / "Show data layer" off `aria-pressed`, and "Data layer opacity". A hint's text may now
+  be a function of its trigger. A focus leaving a trigger lifts its click suppression unless a
+  modal is open, so a keyboard user sees the eye's hint again. A fixed-width `aria-hidden`
+  readout beside the slider ("65%") shows the value on touch, where hints do not show. One
+  Escape hides a hint, the next folds the panel.
+- `ac5b841181`: Zoom in, Zoom out and Reset move from native `title` tooltips to the same hint
+  (the `title` comes off Leaflet's links after creation, since an empty `zoomInTitle` also
+  empties their `aria-label`). A hint below one zoom button covered the next, so entries can be
+  placed `'right'`, falling back to below; the three zoom buttons use it.
+- `a82e4ccd60`: from a sweep of every visible control without visible text
+  (`e12-icon-controls.mjs`, `?id=2380` at 1440 and 390, at rest and with each view open), hints on
+  the header logo ("Show site menu" / "Hide site menu"; it expands `#global-header`), the details
+  card's minus / plus ("Hide dataset details" / "Show dataset details", off `aria-expanded`) and a
+  view pane's × ("Close this view"). Not hinted: the announcement's ×, and table inputs with
+  visible labels.
+
+Proof (probes in `scripts/.sc-rebaseline/e12/`, Chromium, Firefox and WebKit, 0 page errors):
+`e12-hints.mjs` — hints on mouse rest and keyboard focus, none on touch, Learn More's hint still
+down after its modal closes, "100%" (30.7px) inside the readout (34.8px), one panel width from 5%
+to 100%. `e12-zoom-hints.mjs` — all five map controls hinted, no `title`, names kept, no hint
+overlapping another control (`e12-covers-control.mjs`: the old placement reports Zoom out
+covered), no `title` at maximum zoom. `e12-more-hints.mjs` — the three new hints on mouse rest,
+toggles reversed after a click, keyboard focus in Chromium and Firefox (WebKit's default Tab
+order kept the probe off the close button). `npm run lint` exit 0. CI's smoke and site
+characterization passed on `a6487447bb`: the readout and the removed `title`s move no recorded
+field.
 
 ## Next command
 
 E8–E14: D8, D10, D11, D12 and D13 all decided 2026-11-12; nothing open. E8 and E9 merged
 (#1566 `d545957e0b`, #1567 `2dc3f791a5`). E11 built at `9c71cca181` on
 `feature-de-citywide-no-bar`, not pushed; Chris is holding its PR. E12–E14 built on
-`feature-de-map-controls` (`913be741d7`, re-baseline `4244a5003a`), PR #1568 open. Before it
-merges: Chris checks the eye on a real iPhone, on CloudCannon site 161357 — first tap unfolds
-the slider only, second hides the layer, third restores it, a tap on the map folds it. If the
+`feature-de-map-controls` (`913be741d7`, re-baseline `4244a5003a`, hover hints `a6487447bb`,
+`ac5b841181`, `a82e4ccd60`), PR #1568 open. Before it merges: Chris checks the eye on a real
+iPhone, on CloudCannon site 161357 — first tap unfolds the slider only, with "65%" beside it,
+second hides the layer, third restores it, a tap on the map folds it. If the
 first tap hides the layer, iOS orders its tap events differently from the probes, and the
 `pointerdown` / `click` handling in `addMapControls` needs revisiting. Next: E10, cut from local
 `production`.
