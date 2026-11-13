@@ -10387,6 +10387,10 @@ table .group td {
       transform: translate(100%, 100%);
       font-size: 14px;
       padding: 6px 10px; } }
+  .de-wrapper .btn[data-toggle="dropdown"]:hover, .de-wrapper .btn[data-toggle="dropdown"]:focus {
+    text-decoration: none; }
+    .de-wrapper .btn[data-toggle="dropdown"]:hover > span, .de-wrapper .btn[data-toggle="dropdown"]:focus > span {
+      text-decoration: underline; }
   .de-wrapper .dropdown-menu-de {
     border: none;
     border-bottom: 4px solid #008939;
