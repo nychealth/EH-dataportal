@@ -5,8 +5,9 @@
 // Short hints on the data explorer buttons that open a modal, so a mouse user
 // can see what a click will do before making it. Modals cover the page and take
 // focus, so hover never opens them; it only says what will open. Since
-// 2026-11-13 also on the map's own icon-only controls (map.js, addMapControls),
-// which act in place rather than opening anything.
+// 2026-11-13 also on icon-only buttons that act in place rather than opening
+// anything: the map's own controls (map.js, addMapControls), the header logo, the
+// dataset details toggle and a view pane's close button.
 //
 // Hints show after the mouse rests on a trigger, or right away on keyboard focus,
 // and hide when the pointer or focus leaves, on Escape, on scroll or resize, and
@@ -82,6 +83,26 @@ const HOVER_HINTS = [
     {
         selector: '.de-help-button[data-target="#linksModal"]',
         text: 'Opens help on correlations'
+    },
+
+    // Icon-only buttons that act in place (Chris, 2026-11-13). The two collapse
+    // toggles read aria-expanded, which Bootstrap's collapse keeps current, so the
+    // hint says what a click will do.
+    {
+        // The portal logo in header-de.html. It expands #global-header: the nyc.gov
+        // bar, the portal title, its menu (All topics, Search) and the language picker.
+        selector: '[data-target="#global-header"]',
+        text: (trigger) => (trigger.getAttribute('aria-expanded') === 'true' ? 'Hide site menu' : 'Show site menu')
+    },
+    {
+        // The minus / plus on the dataset details card (de-indicator-info.html).
+        selector: '.desktop-details-toggle, .mobile-details-toggle',
+        text: (trigger) => (trigger.getAttribute('aria-expanded') === 'true' ? 'Hide dataset details' : 'Show dataset details')
+    },
+    {
+        // The close button on an open view pane (de-tab-content.html).
+        selector: '.de-close-tab-button',
+        text: 'Close this view'
     },
 
     // The map's control stack (map.js, addMapControls; Chris, 2026-11-13), all
