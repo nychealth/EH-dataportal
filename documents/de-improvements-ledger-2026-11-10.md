@@ -5,7 +5,8 @@ via #1561; E4 diagnosed and fixed on the staging database, waiting on the migrat
 and a metadata re-export; E3 done, merged via #1562; E1 done, merged via #1563; E2 done, merged via
 #1564, and audit row A-032 closed. E4 is waiting on the database migration. E8–E14 were added
 2026-11-12, with all their decisions made the same day: E8 and E9 are done, merged via #1566 and
-#1567 the same day; E11 is built, PR held (Chris); E12–E14 are in progress; E10 is not started.**
+#1567 the same day; E11 is built, PR held (Chris); E12–E14 are built, PR #1568 open 2026-11-13,
+waiting on Chris's iOS check; E10 is not started.**
 
 **Where this file is edited.** Ledger changes are committed to `docs-de-improvements-ledger` and
 pushed after each commit; the branch goes to `production` in one PR when the batch is done (Chris,
@@ -35,9 +36,9 @@ function or block name); line numbers are given only as hints and will move.
 | E9 | Topic chooser: 3 columns on desktop; topics and datasets as cards | `feature-de-topic-chooser-columns` | this file | `feature-de-topic-chooser-columns @ 64eb473573` (columns), `bb747a6aae` (cards); PR #1567, merge `2dc3f791a5` | **DONE 2026-11-12** — cards added (Chris, 2026-11-12) | column probe at five widths with a before arm, card probe at 1440 / 390, see E9 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; site characterization `prod_prod` 840/840 |
 | E10 | Selected neighborhood stays highlighted on bar, map and legend, and across overlay switches | `feature-de-persistent-selection` | this file; a spec if D10 widens it | — | Not started — D10 decided | — |
 | E11 | Citywide-only indicators: no bar chart (it draws one large bar) | `feature-de-citywide-no-bar` | this file | `feature-de-citywide-no-bar @ 9c71cca181`, not pushed | **Built**; PR held (Chris, 2026-11-12) | bar probe, five arms incl. an injected one-of-many, see E11 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; `de-characterization --check` passed |
-| E12 | Map controls: zoom in/out and reset zoom | `feature-de-map-controls` (E12–E14 share it, D12) | this file | — | In progress | — |
-| E13 | Map control: turn the geography layer off | `feature-de-map-controls` | this file | — | In progress — D13 decided | — |
-| E14 | Map control: geography layer opacity | `feature-de-map-controls` | this file | — | In progress — D13 decided | — |
+| E12 | Map controls: zoom in/out and reset zoom | `feature-de-map-controls` (E12–E14 share it, D12) | this file | `feature-de-map-controls @ 913be741d7`; re-baseline `4244a5003a`; PR #1568 | **Built**; PR open, iOS check owed (Chris) | probes in Chromium, Firefox and WebKit at 1440 / 960 / 959 / 390, see E12–E14 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; site-characterization re-baseline, nothing unexplained |
+| E13 | Map control: turn the geography layer off | `feature-de-map-controls` | this file | as E12 | **Built** — one eye button with E14 (Chris, 2026-11-13) | as E12 |
+| E14 | Map control: geography layer opacity | `feature-de-map-controls` | this file | as E12 | **Built** — slider shows actual opacity (Chris, 2026-11-13) | as E12 |
 
 E5 and E7 are small enough to share one branch if Chris prefers; they touch different files
 (`disparities.js` and `section.html` / `topic-indicator-selector.js`), so a combined PR has no
@@ -664,12 +665,67 @@ and survives a boundary change. Keyboard reaches every control. `npm run lint`; 
 `characterize:site` (adds controls on every explorer page, so expect a re-baseline of the topic
 pages, as E1 did).
 
+**Changed during the build (Chris, 2026-11-13).** Reviewed in screenshots after the first build:
+- Placement kept: zoom, then the explorer's own stack, beside the details card from 960px.
+- The opacity slider folds behind a button, and its row is the button's 30px height (slimmer
+  copy of the site's range style, label visually hidden).
+- D13c reversed: "off" is not its own button. One eye button does both: hover or a first tap
+  unfolds the slider, a click or second tap hides the layer (opacity 0), the next restores the
+  level from before.
+- The gray no-fill boundary layer was built, shown, and dropped: the choropleth's own thin black
+  borders stay when it is hidden.
+- The slider shows the layer's actual fill opacity (65 on a choropleth, 90 on the bubble map's
+  circles), not a 0–100 multiplier.
+- Hover still highlights a hidden choropleth area, and hidden circles cannot be hovered: both
+  accepted as they are.
+
+**Built (`913be741d7`).** `addMapControls` (`map.js`), called once from `initBaseMap`: Leaflet's
+zoom control plus a custom `L.Control` (`.de-map-tools`) holding a Reset `<button>` and the eye
+`<button>` (`aria-pressed`, name "Hide data layer") with the slider panel. `<button>`s rather than
+easyButton, so Space works and no library is added. `DE.map.fillScale` (`global.js`) is a
+multiplier on the default fills, 0 meaning hidden, and `DE.map.fillRestore` the level the eye
+restores; `fillOpacityFor` applies it to resting and hover fills, capped at 1, and
+`applyFillSettings` re-styles the layer on the map. A render calls `syncMapControls` so the slider
+shows the new layer's opacity, snapped to its 5-point step. Styles under `.de-map-tools` in
+`_de-custom.scss`; from 960px the control corner moves beside the details card. `print-map.js`
+is untouched, so the saved map ignores both settings (D13d).
+
+**Proof that ran** (probes in `scripts/.sc-rebaseline/e12/`, against an isolated `dev_stage`
+server on :8091; `PW_BROWSER` picks the browser):
+- `e12-controls.mjs` at 1440, 960, 959 and 390: no control overlaps the details card or the view
+  tabs; accessible names Zoom in, Zoom out, Reset zoom, Hide data layer, Opacity; Reset by click
+  and by Space returns to the load view (same zoom, within 0.71px).
+- `e12-eye.mjs`: mouse, touch-emulated and keyboard sequences — fill 0.65 → 0 → 0.65, from 40:
+  0.4 → 0 → 0.4; slider dragged to 0 counts as hidden and the eye restores the default; hidden
+  survives a change to Borough; bubble map 42 circles off and back on; Tab order zoom in, zoom out,
+  Reset, eye, slider; Escape folds and leaves focus on the eye.
+- `e12-real-opacity.mjs`: slider 65 / fill 0.65 at load, 40 / 0.4 (hover 0.554), 100 / 1 (hover
+  1); bubble map 90 / 0.9, 45 / 0.45; then the Percent measure (a choropleth) reads 35 / 0.35.
+- Chromium, Firefox 1538 and WebKit 2336 (Playwright 1.62.1) gave the same panel state, fill,
+  slider value and `aria-pressed` at every step. WebKit differs only in focus: a click does not
+  focus the eye, and Tab skips Leaflet's Zoom out link (WebKit's default tabs to form controls,
+  not links). `e12-clickaway.mjs`: a press on the map folds the panel in all three.
+- 0 page errors in every run. `npm run lint` exit 0; curated smoke 44/44 against :8091.
+- Site characterization (`4244a5003a`), `--expect "data-explorer/**"`: nothing unexplained; in
+  each key 41 of 840 pages changed, and all 82 records move by `controls.button` +2,
+  `controls.input` +1, `links.internal` +2, `links.emptyHref` +2 (Leaflet's `<a href="#">` zoom
+  links). The `_meta.json` files record `gitHead` `2dc3f791a5`: the capture ran on the
+  uncommitted tree.
+- Not run: iOS Safari. Playwright's WebKit on Windows is a desktop build, and the first-tap /
+  second-tap sequence depends on iOS's tap event order. CloudCannon site 161357
+  (`feature-de-map-controls`) was created 2026-11-13 for that check.
+
 ## Next command
 
 E8–E14: D8, D10, D11, D12 and D13 all decided 2026-11-12; nothing open. E8 and E9 merged
 (#1566 `d545957e0b`, #1567 `2dc3f791a5`). E11 built at `9c71cca181` on
-`feature-de-citywide-no-bar`, not pushed; Chris is holding its PR. Now: E12–E14 on
-`feature-de-map-controls`, cut from local `production`. Then E10.
+`feature-de-citywide-no-bar`, not pushed; Chris is holding its PR. E12–E14 built on
+`feature-de-map-controls` (`913be741d7`, re-baseline `4244a5003a`), PR #1568 open. Before it
+merges: Chris checks the eye on a real iPhone, on CloudCannon site 161357 — first tap unfolds
+the slider only, second hides the layer, third restores it, a tap on the map folds it. If the
+first tap hides the layer, iOS orders its tap events differently from the probes, and the
+`pointerdown` / `click` handling in `addMapControls` needs revisiting. Next: E10, cut from local
+`production`.
 
 E4, after Chris has run the staging→production migration and the `DE_metadata_json.R` re-export
 (EHDP-data `production`), against a server on production data:
