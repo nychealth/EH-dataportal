@@ -7,7 +7,7 @@ and a metadata re-export; E3 done, merged via #1562; E1 done, merged via #1563; 
 2026-11-12, with all their decisions made the same day: E8 and E9 are done, merged via #1566 and
 #1567 the same day; E11 is built, PR held (Chris); E12–E14 are built, PR #1568 open 2026-11-13,
 iOS check passed (Chris, 2026-11-13), ready to merge; E10 is not started. E15 was added and built
-2026-11-13 on `hotfix-de-map-details-gap`.**
+2026-11-13, PR #1569 open, iPhone check passed (Chris, 2026-11-13).**
 
 **Where this file is edited.** Ledger changes are committed to `docs-de-improvements-ledger` and
 pushed after each commit; the branch goes to `production` in one PR when the batch is done (Chris,
@@ -40,7 +40,7 @@ function or block name); line numbers are given only as hints and will move.
 | E12 | Map controls: zoom in/out and reset zoom | `feature-de-map-controls` (E12–E14 share it, D12) | this file | `feature-de-map-controls @ 913be741d7`; re-baseline `4244a5003a`; hints `a6487447bb`, `ac5b841181`, `a82e4ccd60`; PR #1568 | **Built**; PR open, ready to merge | probes in Chromium, Firefox and WebKit at 1440 / 960 / 959 / 390, see E12–E14 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; site-characterization re-baseline, nothing unexplained; CI smoke and site characterization passed on `4244a5003a`, `a6487447bb` and `a82e4ccd60`; iPhone check on the preview (Chris, 2026-11-13) |
 | E13 | Map control: turn the geography layer off | `feature-de-map-controls` | this file | as E12 | **Built** — one eye button with E14 (Chris, 2026-11-13) | as E12 |
 | E14 | Map control: geography layer opacity | `feature-de-map-controls` | this file | as E12 | **Built** — slider shows actual opacity (Chris, 2026-11-13) | as E12 |
-| E15 | Below lg, opening and closing the details soon after load leaves blank space under the map | `hotfix-de-map-details-gap` | this file | `hotfix-de-map-details-gap @ dfdc71cbe1` | **Built** — D15 decided: the map keeps its size (Chris, 2026-11-13) | gap probe, three arms, before (Chromium) and after (Chromium, Firefox, WebKit), see E15 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
+| E15 | Below lg, opening and closing the details soon after load leaves blank space under the map | `hotfix-de-map-details-gap` | this file | `hotfix-de-map-details-gap @ dfdc71cbe1`; PR #1569 | **Built**; PR open — D15 decided: the map keeps its size (Chris, 2026-11-13) | gap probe, three arms, before (Chromium) and after (Chromium, Firefox, WebKit), see E15 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; CI smoke and site characterization passed on `dfdc71cbe1`; iPhone check on the preview (Chris, 2026-11-13) |
 
 E5 and E7 are small enough to share one branch if Chris prefers; they touch different files
 (`disparities.js` and `section.html` / `topic-indicator-selector.js`), so a combined PR has no
@@ -790,7 +790,10 @@ height:
 0 page errors in every run. `npm run lint` exit 0. Curated smoke 44/44 against the same server.
 Site characterization not run locally: it loads at 1280×900, where `layoutStackedMap` returns
 early. Merges cleanly with #1568's `feature-de-map-controls` (`git merge-tree` exit 0; the merged
-`map.js` carries the fix and #1568's `fillOpacityFor`).
+`map.js` carries the fix and #1568's `fillOpacityFor`). CI's smoke (run 43512627665) and site
+characterization (run 43512627695) passed on `dfdc71cbe1`. On an iPhone, Chris checked CloudCannon site 161374
+(`haloed-wolf.cloudvent.net`, built 2026-11-13 and serving `map.066b802d3554941a.js`, the fixed
+file) and reported it working (2026-11-13).
 
 ## Next command
 
@@ -801,7 +804,10 @@ E8–E14: D8, D10, D11, D12 and D13 all decided 2026-11-12; nothing open. E8 and
 `ac5b841181`, `a82e4ccd60`), PR #1568 open; Chris's iPhone check passed 2026-11-13, so it
 is ready to merge. E15 built at `dfdc71cbe1` on `hotfix-de-map-details-gap`; it merges cleanly with #1568, which
 also edits `map.js` (`git merge-tree --write-tree feature-de-map-controls dfdc71cbe1` exit 0,
-merged `map.js` carrying both changes). Its PR is next, then E10, cut from local `production`.
+merged `map.js` carrying both changes); PR #1569 open, CI passed, iPhone check passed 2026-11-13, ready to merge. Neither
+PR depends on the other's merge order. Next: E10, cut from local `production`. Before building,
+ask Chris whether a click on a bar selects too: D10a's question named the map and the bar, and
+its recorded answer says only "a click selects".
 
 E4, after Chris has run the staging→production migration and the `DE_metadata_json.R` re-export
 (EHDP-data `production`), against a server on production data:
