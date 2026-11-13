@@ -4,8 +4,8 @@
 via #1561; E4 diagnosed and fixed on the staging database, waiting on the migration to production
 and a metadata re-export; E3 done, merged via #1562; E1 done, merged via #1563; E2 done, merged via
 #1564, and audit row A-032 closed. E4 is waiting on the database migration. E8–E14 were added
-2026-11-12, with all their decisions made the same day: E8 (#1566) and E9 (#1567) are built,
-merged via #1566 and #1567 the same day; E10–E14 are not started.**
+2026-11-12, with all their decisions made the same day: E8 and E9 are done, merged via #1566 and
+#1567 the same day; E11 is built, PR held (Chris); E12–E14 are in progress; E10 is not started.**
 
 **Where this file is edited.** Ledger changes are committed to `docs-de-improvements-ledger` and
 pushed after each commit; the branch goes to `production` in one PR when the batch is done (Chris,
@@ -34,10 +34,10 @@ function or block name); line numbers are given only as hints and will move.
 | E8 | Dropdown's rotating icon: don't underline it | `hotfix-de-icon-underline` | this file | `hotfix-de-icon-underline @ df7e4926d8`; PR #1566, merge `d545957e0b` | **DONE 2026-11-12** | chevron probe at 1440 / 390 with a before arm, see E8 "Proof that ran"; curated smoke 44/44 |
 | E9 | Topic chooser: 3 columns on desktop; topics and datasets as cards | `feature-de-topic-chooser-columns` | this file | `feature-de-topic-chooser-columns @ 64eb473573` (columns), `bb747a6aae` (cards); PR #1567, merge `2dc3f791a5` | **DONE 2026-11-12** — cards added (Chris, 2026-11-12) | column probe at five widths with a before arm, card probe at 1440 / 390, see E9 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; site characterization `prod_prod` 840/840 |
 | E10 | Selected neighborhood stays highlighted on bar, map and legend, and across overlay switches | `feature-de-persistent-selection` | this file; a spec if D10 widens it | — | Not started — D10 decided | — |
-| E11 | Citywide-only indicators: no bar chart (it draws one large bar) | `feature-de-citywide-no-bar` | this file | — | Not started — D11 decided | — |
-| E12 | Map controls: zoom in/out and reset zoom | `feature-de-map-controls` (E12–E14 share it, D12) | this file | — | Not started | — |
-| E13 | Map control: turn the geography layer off | `feature-de-map-controls` | this file | — | Not started — D13 decided | — |
-| E14 | Map control: geography layer opacity | `feature-de-map-controls` | this file | — | Not started — D13 decided | — |
+| E11 | Citywide-only indicators: no bar chart (it draws one large bar) | `feature-de-citywide-no-bar` | this file | `feature-de-citywide-no-bar @ 9c71cca181`, not pushed | **Built**; PR held (Chris, 2026-11-12) | bar probe, five arms incl. an injected one-of-many, see E11 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; `de-characterization --check` passed |
+| E12 | Map controls: zoom in/out and reset zoom | `feature-de-map-controls` (E12–E14 share it, D12) | this file | — | In progress | — |
+| E13 | Map control: turn the geography layer off | `feature-de-map-controls` | this file | — | In progress — D13 decided | — |
+| E14 | Map control: geography layer opacity | `feature-de-map-controls` | this file | — | In progress — D13 decided | — |
 
 E5 and E7 are small enough to share one branch if Chris prefers; they touch different files
 (`disparities.js` and `section.html` / `topic-indicator-selector.js`), so a combined PR has no
@@ -585,6 +585,34 @@ one with Citywide picked, per D11: bar container absent or hidden, map and legen
 page errors. `de-characterization --check`; `characterize:site` if the bar container is removed
 from the DOM rather than hidden.
 
+**Built (`9c71cca181`).** `renderBar` (`bar.js`) counts the bars the chart would draw — distinct
+GeoIDs over rows with a numeric `Value` — and when there is exactly one, `renderSingleBarMessage`
+writes correlate's `alert alert-warning` note into `#barHolder` instead of embedding the chart:
+"No bar chart: {measure} has only one reported value for {boundary}.", plus "Change the Boundary
+on the map to compare areas." when the measure's `AvailableGeoTypes` has more than one entry. The
+caption under the chart is hidden, Save Chart disabled (`aria-disabled`, `tabindex=-1`, as
+correlate's `setCorrelateActionState`), `DE.print.printSpec` and `window.myVegaView` nulled;
+Download data still exports the rows. A later render that draws bars restores all three.
+
+Counting rows with a value rather than areas widens D11's reading: Vega-Lite draws no bar for a
+suppressed (`**`, null) value, so one reported value among suppressed ones also draws one bar.
+Found on 2076 / measure 538 at CD, whose 59 rows are all suppressed at the default period and
+draw an empty chart. That all-suppressed case (zero bars) is outside D11 and unchanged.
+
+**Proof that ran** (`scripts/.sc-rebaseline/e11/e11-single-bar.mjs`, isolated `dev_stage`
+server on :8091, 1440px; output `scripts/.sc-rebaseline/e11/probe.log`):
+- `?id=55` (citywide-only): note without the hint, no SVG, caption hidden, Save disabled, 1
+  Boundary option, 1 map path, CSV 2 lines.
+- `?id=2076&MeasureID=538` — the only staging measure whose map offers Citywide plus another
+  boundary — then Citywide picked: note with the hint; map 1 path.
+- Then Borough: chart back (3 bars drawn), caption visible, Save enabled; map 8 paths.
+- Injected: those Borough rows with all but one `Value` nulled, through `renderBar`: note.
+- No page errors in any arm. `npm run lint` exit 0; curated smoke 44/44 against :8091;
+  `de-characterization --check` passed. `characterize:site` not run: `#barHolder` stays in the
+  DOM.
+- Save Chart is not visibly dimmed when disabled (these buttons are not `.btn`, so Bootstrap's
+  `.disabled` style does not reach them) — the same as correlate's.
+
 ### E12–E14 — Map controls
 
 **What exists.** `initBaseMap` (`map.js`) creates the map with `zoomControl: false`. Below `lg`
@@ -639,8 +667,9 @@ pages, as E1 did).
 ## Next command
 
 E8–E14: D8, D10, D11, D12 and D13 all decided 2026-11-12; nothing open. E8 and E9 merged
-(#1566 `d545957e0b`, #1567 `2dc3f791a5`). Next build: E11, on
-`feature-de-citywide-no-bar` cut from local `production`; then E10, then E12–E14 on one branch.
+(#1566 `d545957e0b`, #1567 `2dc3f791a5`). E11 built at `9c71cca181` on
+`feature-de-citywide-no-bar`, not pushed; Chris is holding its PR. Now: E12–E14 on
+`feature-de-map-controls`, cut from local `production`. Then E10.
 
 E4, after Chris has run the staging→production migration and the `DE_metadata_json.R` re-export
 (EHDP-data `production`), against a server on production data:
