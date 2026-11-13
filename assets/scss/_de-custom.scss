@@ -702,6 +702,16 @@ $color-data-explorer: #0A408A;
             margin: 0;
         }
 
+        // The value beside the slider. A fixed width that holds "100%", with tabular
+        // digits, so the slider does not shift as the number changes length.
+        .de-map-opacity-value {
+            width: 2.9em;
+            margin-left: 8px;
+            font-size: 12px;
+            font-variant-numeric: tabular-nums;
+            text-align: right;
+        }
+
         input[type=range]::-webkit-slider-runnable-track {
             height: 6px;
             border-radius: 3px;

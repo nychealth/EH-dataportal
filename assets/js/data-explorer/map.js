@@ -354,12 +354,13 @@ const addMapControls = () => {
                     </button>
                 </div>
                 <div class="leaflet-bar de-map-opacity">
-                    <button type="button" class="de-map-fill-toggle" title="Hide data layer" aria-label="Hide data layer" aria-pressed="false">
+                    <button type="button" class="de-map-fill-toggle" aria-label="Hide data layer" aria-pressed="false">
                         <i class="fas fa-eye" aria-hidden="true"></i>
                     </button>
                     <div class="de-map-opacity-panel" id="de-map-opacity-panel" hidden>
                         <label for="de-map-opacity-input">Opacity</label>
                         <input type="range" id="de-map-opacity-input" min="0" max="100" step="5" value="65" aria-valuetext="65%">
+                        <span class="de-map-opacity-value" aria-hidden="true">65%</span>
                     </div>
                 </div>`;
 
@@ -372,21 +373,24 @@ const addMapControls = () => {
             const eyeButton = container.querySelector('.de-map-fill-toggle');
             const opacityPanel = container.querySelector('#de-map-opacity-panel');
             const slider = container.querySelector('#de-map-opacity-input');
+            const sliderReadout = container.querySelector('.de-map-opacity-value');
 
             // Mirrors DE.map.fillScale onto the controls. The eye's name stays fixed and
             // aria-pressed carries its state; the icon shows the layer's state (open eye while
-            // it shows) and the title says what a click will do. The slider shows the layer's
-            // actual fill opacity (65 on a choropleth by default, 90 on the bubble map's
-            // circles), not the multiplier (Chris, 2026-11-13).
+            // it shows), and hover-hints.js says what a click will do. The slider shows the
+            // layer's actual fill opacity (65 on a choropleth by default, 90 on the bubble
+            // map's circles), not the multiplier (Chris, 2026-11-13). The readout repeats it
+            // on screen, for touch, where hover hints do not show; it is aria-hidden because
+            // aria-valuetext already gives screen readers the value.
 
             const syncControls = () => {
                 const isHidden = DE.map.fillScale === 0;
                 eyeButton.setAttribute('aria-pressed', String(isHidden));
-                eyeButton.title = isHidden ? 'Show data layer' : 'Hide data layer';
                 eyeButton.querySelector('i').className = isHidden ? 'fas fa-eye-slash' : 'fas fa-eye';
                 const opacity = Math.round(fillOpacityFor(currentFillBase()) * 100);
                 slider.value = String(opacity);
                 slider.setAttribute('aria-valuetext', `${slider.value}%`);
+                sliderReadout.textContent = `${slider.value}%`;
 
                 // The slider snaps to its 5-point steps, and a setting carried from one map type
                 // to the other can fall between them (45 on the bubble map is 32.5 on a
@@ -482,8 +486,11 @@ const addMapControls = () => {
                 panelOpenAtPress = !opacityPanel.hidden;
             });
 
+            // A press hover-hints.js already used to dismiss a hint is skipped, so one Escape
+            // does one thing, as de-tab-content.js does.
+
             opacityBox.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && !opacityPanel.hidden) {
+                if (e.key === 'Escape' && !e.defaultPrevented && !opacityPanel.hidden) {
                     setPanelOpen(false);
                     reopenOnFocus = false;
                     eyeButton.focus();

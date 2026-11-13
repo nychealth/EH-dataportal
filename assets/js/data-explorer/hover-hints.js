@@ -4,7 +4,9 @@
 
 // Short hints on the data explorer buttons that open a modal, so a mouse user
 // can see what a click will do before making it. Modals cover the page and take
-// focus, so hover never opens them; it only says what will open.
+// focus, so hover never opens them; it only says what will open. Since
+// 2026-11-13 also on the map's own icon-only controls (map.js, addMapControls),
+// which act in place rather than opening anything.
 //
 // Hints show after the mouse rests on a trigger, or right away on keyboard focus,
 // and hide when the pointer or focus leaves, on Escape, on scroll or resize, and
@@ -80,6 +82,19 @@ const HOVER_HINTS = [
     {
         selector: '.de-help-button[data-target="#linksModal"]',
         text: 'Opens help on correlations'
+    },
+
+    // The map's eye button and opacity slider (map.js, addMapControls; Chris,
+    // 2026-11-13). The eye is icon-only and toggles, so its hint is a function read
+    // when the hint opens: aria-pressed is its state, and the hint says what a click
+    // will do. The slider's value is shown beside it, so its hint names it only.
+    {
+        selector: '.de-map-fill-toggle',
+        text: (trigger) => (trigger.getAttribute('aria-pressed') === 'true' ? 'Show data layer' : 'Hide data layer')
+    },
+    {
+        selector: '#de-map-opacity-input',
+        text: 'Data layer opacity'
     }
 ];
 
@@ -118,7 +133,9 @@ const HOVER_HINT_ID = 'deHoverHint';
 
 const HOVER_HINT_PROMPTED = '.topic-selector-required, .indicator-selector-required';
 
-// Returns the hint config entry and trigger element for an element inside one.
+// Returns the hint config entry and trigger element for an element inside one. An
+// entry's text may be a function of the trigger, for a control whose hint follows
+// its state.
 
 const findHintTrigger = (element) => {
 
@@ -126,7 +143,10 @@ const findHintTrigger = (element) => {
 
     for (const hint of HOVER_HINTS) {
         const trigger = element.closest(hint.selector);
-        if (trigger) return trigger.closest(HOVER_HINT_PROMPTED) ? null : { trigger, text: hint.text };
+        if (!trigger) continue;
+        if (trigger.closest(HOVER_HINT_PROMPTED)) return null;
+        const text = typeof hint.text === 'function' ? hint.text(trigger) : hint.text;
+        return { trigger, text };
     }
 
     return null;
@@ -298,9 +318,20 @@ document.addEventListener('focusout', (event) => {
 
     if (hoverHint.trigger && hoverHint.trigger.contains(event.target)) hideHint();
 
+    // A trigger that acts in place (the map's eye) is never followed by a modal
+    // closing, so without this a keyboard user who pressed it would not see its hint
+    // again. While a modal is open the focus is leaving for the modal, and the
+    // suppression must outlast it.
+
+    if (hoverHint.suppressedFor?.contains(event.target) && !document.body.classList.contains('modal-open')) {
+        hoverHint.suppressedFor = null;
+    }
+
 });
 
-// Activating a trigger opens its modal, so the hint has done its job.
+// Activating a trigger opens its modal, so the hint has done its job. On the map's
+// eye the click changes what its hint would say, so keeping it down until the
+// pointer leaves also stops a hint that has just gone stale.
 
 document.addEventListener('click', (event) => {
 
