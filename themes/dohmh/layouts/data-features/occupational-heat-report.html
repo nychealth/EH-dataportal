@@ -1,5 +1,22 @@
 {{- define "main" -}}
 
+{{- /*  Figures 1, 4 and 5 are Vega-Lite charts embedded with the vega0 shortcode, whose inline
+      script calls vegaEmbed as the page parses, so Vega has to load here in main, above them.  */}}
+{{- partial "lib-vega.html" . }}
+
+<style>
+    /* Keep Vega tooltips compact, and let long keys (Figure 1's group names) and long values (Figure 4's
+       sector descriptions) wrap in full. min-width stops a long value squeezing the short keys onto several lines.
+       max-content makes the size independent of where the tooltip last sat, so the vega0 shortcode can place it reliably.
+       pointer-events stops a tooltip that overlaps the pointer from stealing it and hiding itself.
+       vega-embed injects its own tooltip CSS at runtime with a more specific selector, hence !important. */
+    #vg-tooltip-element { width: max-content; max-width: min(340px, calc(100vw - 16px)); pointer-events: none; }
+    #vg-tooltip-element td.key,
+    #vg-tooltip-element td.value { font-size: 12px !important; vertical-align: top; }
+    #vg-tooltip-element td.key { min-width: 120px; white-space: normal; }
+    #vg-tooltip-element td.value { max-height: none !important; white-space: normal; text-align: left; }
+</style>
+
 <article class="container-fluid">
     <div class="row">
         <div class="col-md-7 col-sm-12 mx-auto mb-4">
