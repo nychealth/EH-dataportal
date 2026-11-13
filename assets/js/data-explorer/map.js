@@ -88,6 +88,31 @@ const NYC_BOUNDS = [[40.4774, -74.2591], [40.9176, -73.7004]];
 
 const STACKED_LAYOUT = window.matchMedia('(max-width: 959.98px)');
 
+// The desktop opening view, which Reset zoom returns to on desktop.
+
+const DESKTOP_CENTER = [40.700142, -73.921546];
+const DESKTOP_ZOOM = 11;
+
+// Data-layer fill opacities before the visitor touches the map's opacity control. The control
+// multiplies resting and hover fills alike (DE.map.fillScale), so a hovered area stays as much
+// stronger than its neighbours as it was, up to fully opaque.
+
+const CHOROPLETH_FILL = 0.65;
+const CHOROPLETH_HOVER_FILL = 0.9;
+const BUBBLE_FILL = 0.9;
+const BUBBLE_HOVER_FILL = 1;
+
+const fillOpacityFor = (base) => Math.min(1, base * DE.map.fillScale);
+
+// The resting fill of the layer on the map now, which is what the slider shows: the circles on
+// the bubble map, the areas otherwise.
+
+const currentFillBase = () => (currentBubbleMarkers.length ? BUBBLE_FILL : CHOROPLETH_FILL);
+
+// Set by addMapControls; a render calls it so the slider shows the new layer's opacity.
+
+let syncMapControls = () => {};
+
 // Share of the map an open view covers before the page is scrolled.
 
 const SHEET_SHARE = 0.45;
@@ -195,8 +220,16 @@ const layoutStackedMap = () => {
         return;
     }
 
-    // Not moved: fit the city. With a view open, the fit trims its outer edges (pad -0.1) so it
-    // draws larger in the smaller space; with none open the whole city fits.
+    fitStackedCity(sheetOpen, overlap);
+
+};
+
+// Fits the city into the part of the stacked map an open view leaves showing. With a view open,
+// the fit trims its outer edges (pad -0.1) so it draws larger in the smaller space; with none
+// open the whole city fits. Records the fit so layoutStackedMap can tell a visitor's pan from
+// its own view. Also Reset zoom's target below lg.
+
+const fitStackedCity = (sheetOpen, overlap) => {
 
     const bounds = L.latLngBounds(NYC_BOUNDS);
     currentMap.fitBounds(sheetOpen ? bounds.pad(-0.1) : bounds, { paddingBottomRight: [0, overlap], animate: false });
@@ -234,8 +267,10 @@ const initBaseMap = () => {
             layoutStackedMap();
         }
     } else {
-        currentMap.setView([40.700142, -73.921546], 11);
+        currentMap.setView(DESKTOP_CENTER, DESKTOP_ZOOM);
     }
+
+    addMapControls();
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}' + (L.Browser.retina ? '@2x.png' : '.png') + '?key=cb1_2vaf_1_f87644104deb54c869cef554', {
         attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
@@ -245,6 +280,230 @@ const initBaseMap = () => {
     }).addTo(currentMap);
 
     debugLog("* initBaseMap: tile layer ready");
+
+};
+
+// ----------------------------------------------------------------------- //
+// map controls: zoom, reset, data-layer fill
+// ----------------------------------------------------------------------- //
+
+// Returns the map to the view a page load gives: the fitted city below lg, the fixed desktop
+// view above it.
+
+const resetMapView = () => {
+
+    if (STACKED_LAYOUT.matches) {
+        const sheetOpen = document.querySelector('.de-tabs')?.classList.contains('has-open-panel');
+        fitStackedCity(sheetOpen, stackedOverlap || 0);
+    } else {
+        currentMap.setView(DESKTOP_CENTER, DESKTOP_ZOOM);
+    }
+
+};
+
+// Re-applies the fill settings to the layers on the map now. The choropleth's style function
+// reads DE.map.fillScale, so resetStyle re-runs it; on the bubble map the setting governs the
+// circles only (Chris, 2026-11-12), and at 0 they come off the map so an invisible circle
+// cannot still open a popup or catch a hover.
+
+const applyFillSettings = () => {
+
+    if (!currentMap) return;
+
+    if (currentBubbleMarkers.length) {
+
+        currentBubbleMarkers.forEach(circle => {
+            if (DE.map.fillScale === 0) {
+                currentMap.removeLayer(circle);
+            } else {
+                circle.setStyle({ fillOpacity: fillOpacityFor(BUBBLE_FILL) });
+                circle.addTo(currentMap);
+            }
+        });
+
+    } else if (currentGeojsonLayer?.options?.style) {
+
+        currentGeojsonLayer.resetStyle();
+
+    }
+};
+
+// Adds Leaflet's zoom control and one control of the explorer's own beneath it: Reset zoom, and
+// an eye button that hides the data layer, with an opacity slider for that layer folded out
+// beside it. The purpose of the last two is to let people see the basemap and the boundaries
+// unobscured (Chris, 2026-11-12). Buttons rather than Leaflet's <a role="button">, so Space works
+// as well as Enter. Below lg the corner is the map's own; from lg up _de-custom.scss moves it
+// beside the details card, which covers it.
+
+const addMapControls = () => {
+
+    L.control.zoom({ position: 'topleft' }).addTo(currentMap);
+
+    const MapToolsControl = L.Control.extend({
+
+        options: { position: 'topleft' },
+
+        onAdd: () => {
+
+            const container = L.DomUtil.create('div', 'de-map-tools');
+
+            container.innerHTML = `
+                <div class="leaflet-bar">
+                    <button type="button" class="de-map-reset" title="Reset zoom" aria-label="Reset zoom">
+                        <i class="fas fa-undo" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="leaflet-bar de-map-opacity">
+                    <button type="button" class="de-map-fill-toggle" title="Hide data layer" aria-label="Hide data layer" aria-pressed="false">
+                        <i class="fas fa-eye" aria-hidden="true"></i>
+                    </button>
+                    <div class="de-map-opacity-panel" id="de-map-opacity-panel" hidden>
+                        <label for="de-map-opacity-input">Opacity</label>
+                        <input type="range" id="de-map-opacity-input" min="0" max="100" step="5" value="65" aria-valuetext="65%">
+                    </div>
+                </div>`;
+
+            // Clicks, drags and wheel turns on the control must not pan or zoom the map under it.
+
+            L.DomEvent.disableClickPropagation(container);
+            L.DomEvent.disableScrollPropagation(container);
+
+            const opacityBox = container.querySelector('.de-map-opacity');
+            const eyeButton = container.querySelector('.de-map-fill-toggle');
+            const opacityPanel = container.querySelector('#de-map-opacity-panel');
+            const slider = container.querySelector('#de-map-opacity-input');
+
+            // Mirrors DE.map.fillScale onto the controls. The eye's name stays fixed and
+            // aria-pressed carries its state; the icon shows the layer's state (open eye while
+            // it shows) and the title says what a click will do. The slider shows the layer's
+            // actual fill opacity (65 on a choropleth by default, 90 on the bubble map's
+            // circles), not the multiplier (Chris, 2026-11-13).
+
+            const syncControls = () => {
+                const isHidden = DE.map.fillScale === 0;
+                eyeButton.setAttribute('aria-pressed', String(isHidden));
+                eyeButton.title = isHidden ? 'Show data layer' : 'Hide data layer';
+                eyeButton.querySelector('i').className = isHidden ? 'fas fa-eye-slash' : 'fas fa-eye';
+                const opacity = Math.round(fillOpacityFor(currentFillBase()) * 100);
+                slider.value = String(opacity);
+                slider.setAttribute('aria-valuetext', `${slider.value}%`);
+
+                // The slider snaps to its 5-point steps, and a setting carried from one map type
+                // to the other can fall between them (45 on the bubble map is 32.5 on a
+                // choropleth). Move the layer to the step shown, so the number stays true.
+
+                if (Number(slider.value) !== opacity) {
+                    DE.map.fillScale = Number(slider.value) / 100 / currentFillBase();
+                    applyFillSettings();
+                }
+            };
+
+            syncMapControls = syncControls;
+
+            const setFillScale = (scale) => {
+                DE.map.fillScale = scale;
+                syncControls();
+                applyFillSettings();
+            };
+
+            container.querySelector('.de-map-reset').addEventListener('click', resetMapView);
+
+            // Hiding sets the opacity to 0 and remembers the level it replaced; showing puts that
+            // level back (Chris, 2026-11-13). A layer the slider itself took to 0 has no level to
+            // return to, so it comes back at the default.
+
+            const toggleFill = () => {
+                if (DE.map.fillScale === 0) {
+                    setFillScale(DE.map.fillRestore || 1);
+                } else {
+                    DE.map.fillRestore = DE.map.fillScale;
+                    setFillScale(0);
+                }
+            };
+
+            slider.addEventListener('input', () => {
+                DE.map.fillRestore = 1;
+                setFillScale(Number(slider.value) / 100 / currentFillBase());
+            });
+
+            // The slider stays folded behind the eye until wanted (Chris, 2026-11-13). It opens
+            // on hover, on keyboard focus reaching the eye (so the next Tab reaches the slider),
+            // and on a first tap of the eye. It closes when the pointer and the focus have both
+            // left, on a press outside it, and on Escape.
+
+            const setPanelOpen = (isOpen) => {
+                opacityPanel.hidden = !isOpen;
+            };
+
+            const closeUnlessInUse = () => {
+                if (!opacityBox.matches(':hover') && !opacityBox.contains(document.activeElement)) {
+                    setPanelOpen(false);
+                }
+            };
+
+            opacityBox.addEventListener('mouseenter', () => setPanelOpen(true));
+            opacityBox.addEventListener('mouseleave', closeUnlessInUse);
+
+            // Escape moves focus back to the eye, which would open the panel again at once; this
+            // flag lets that one focus through without reopening it.
+
+            let reopenOnFocus = true;
+
+            eyeButton.addEventListener('focus', () => {
+                if (reopenOnFocus) setPanelOpen(true);
+            });
+
+            // relatedTarget is where focus went; null means it left the page or went to the map.
+
+            opacityBox.addEventListener('focusout', (e) => {
+                if (!opacityBox.contains(e.relatedTarget) && !opacityBox.matches(':hover')) {
+                    setPanelOpen(false);
+                }
+            });
+
+            // Whether the panel was already open when this press began. A mouse has opened it
+            // by hovering first, so its click hides or shows. A tap opens it during the tap
+            // itself (the browser's emulated mouseenter, then focus), so the first tap only
+            // leaves it open and the next one hides or shows. A keyboard press has no
+            // pointerdown and arrives as a click with detail 0, which always hides or shows.
+
+            let panelOpenAtPress = false;
+
+            eyeButton.addEventListener('pointerdown', () => {
+                panelOpenAtPress = !opacityPanel.hidden;
+            });
+
+            eyeButton.addEventListener('click', (e) => {
+                if (e.detail !== 0 && !panelOpenAtPress) {
+                    setPanelOpen(true);
+                } else {
+                    toggleFill();
+                }
+                panelOpenAtPress = !opacityPanel.hidden;
+            });
+
+            opacityBox.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !opacityPanel.hidden) {
+                    setPanelOpen(false);
+                    reopenOnFocus = false;
+                    eyeButton.focus();
+                    reopenOnFocus = true;
+                }
+            });
+
+            // Capture phase, so a press on the map closes it even where Leaflet handles the event.
+
+            document.addEventListener('pointerdown', (e) => {
+                if (!opacityBox.contains(e.target)) setPanelOpen(false);
+            }, true);
+
+            syncControls();
+
+            return container;
+        }
+    });
+
+    new MapToolsControl().addTo(currentMap);
 
 };
 
@@ -318,6 +577,7 @@ const resetMapForRender = () => {
         currentMap.removeLayer(currentGeojsonLayer);
         currentGeojsonLayer = null;
     }
+
     return currentMap;
 
 };
@@ -854,7 +1114,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
             fillColor: value != null ? colorScale(value) : '#ccc',
             weight: 0.35,
             color: 'black',
-            fillOpacity: 0.65
+            fillOpacity: fillOpacityFor(CHOROPLETH_FILL)
         };
     };
 
@@ -883,7 +1143,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
         layer.setStyle({
             weight: 3,
             color: '#000',
-            fillOpacity: 0.9
+            fillOpacity: fillOpacityFor(CHOROPLETH_HOVER_FILL)
         });
 
         if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
@@ -1006,6 +1266,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
             }).addTo(map);
 
             currentGeojsonLayer = geojsonLayer;
+            syncMapControls();
 
             if (isCitywideOnly) handleCitywideOnly(map, data, metadata);
 
@@ -1137,13 +1398,13 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                 }
 
                 if (highlightedMarker) {
-                    highlightedMarker.marker.setStyle(highlightedMarker.originalStyle);
+                    highlightedMarker.marker.setStyle({ ...highlightedMarker.originalStyle, fillOpacity: fillOpacityFor(BUBBLE_FILL) });
                 }
 
                 markerEntry.marker.setStyle({
                     weight: 3,
                     color: '#000',
-                    fillOpacity: 1
+                    fillOpacity: fillOpacityFor(BUBBLE_HOVER_FILL)
                 });
 
                 highlightedMarker = markerEntry;
@@ -1156,7 +1417,7 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
 
                 if (!highlightedMarker) return;
 
-                highlightedMarker.marker.setStyle(highlightedMarker.originalStyle);
+                highlightedMarker.marker.setStyle({ ...highlightedMarker.originalStyle, fillOpacity: fillOpacityFor(BUBBLE_FILL) });
                 highlightedMarker = null;
 
             };
@@ -1190,10 +1451,13 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                         color: '#333',  // dark stroke
                         weight: 1,
                         opacity: 1,
-                        fillOpacity: 0.9
-                    }).addTo(map);
+                        fillOpacity: fillOpacityFor(BUBBLE_FILL)
+                    });
 
-                    // Track for cleanup
+                    // Off the map while the visitor has the data layer hidden (applyFillSettings
+                    // adds it back); tracked either way, for cleanup and for that re-add.
+
+                    if (DE.map.fillScale !== 0) circle.addTo(map);
 
                     currentBubbleMarkers.push(circle);
 
@@ -1211,8 +1475,7 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                             fillColor: colorScale(item.Value),
                             color: '#333',
                             weight: 1,
-                            opacity: 1,
-                            fillOpacity: 0.9
+                            opacity: 1
                         }
                     };
 
@@ -1251,6 +1514,8 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                     });
                 }
             });
+
+            syncMapControls();
 
             if (isCitywideOnly) handleCitywideOnly(map, data, metadata);
 
