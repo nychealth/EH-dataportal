@@ -381,11 +381,11 @@ The Rat Academy Team attends community events to promote best practices in rat p
 
 #### 4. Explanations of the creation or elimination of rat mitigation zones, or any change of boundaries of such zone, since the previous report, if applicable.
 
-The creation of the RMZ by rule promulgated on July 7, 2023, is described above. There has been no change in the rat mitigation zones or changes in boundaries of the zones since the previous report. Rat Mitigation Zones are labor intensive areas and resources are needed to implement programming by multiple agencies. There were no new resources available in FY2026 and the team that was assigned to conducting the city agency surveys was not funded resulting in a decline in city agency survey work.
+The creation of the RMZ by rule promulgated on July 7, 2023, is described above. There has been no change in the rat mitigation zones or changes in boundaries of the zones since the previous report.
 
-The Department does however routinely conduct proactive rat indexing inspections in 29 annual indexing zones that are outside of the established Rat Mitigation Zones. Annual indexing zones can be areas historically deemed to have higher rat activity, or they can be newly emerging areas identified by higher 311 complaints. The primary goal of annual indexing zones is to identify any new areas with high rat activity and therefore would need to be considered as an RMZ in the future. The information on all rat indexing inspection results can be accessed on the Rat Information Portal and the Environmental & Health Data Portal or downloaded through Open Data.
+The Department also routinely conducts proactive rat indexing inspections in 29 annual indexing zones that are outside of the established Rat Mitigation Zones. Annual indexing zones can be areas historically deemed to have higher rat activity, or they can be newly emerging areas identified by higher 311 complaints. The primary goal of annual indexing zones is to identify any new areas with high rat activity and therefore would need to be considered as an RMZ in the future. The information on all rat indexing inspection results can be accessed on the Rat Information Portal and the Environmental & Health Data Portal or downloaded through Open Data.
 
-#### 5. Explanations of any changes to the rat mitigation measured used in each such zone since the previous report, if applicable.
+#### 5. Explanations of any changes to the rat mitigation measures used in each such zone since the previous report, if applicable.
 
 There are no changes in rat mitigation measures since the 2024 report. Please refer to the appendix for reporting differences in metrics in the published 2023 report and the current report.
 
@@ -399,13 +399,13 @@ There are no changes in rat mitigation measures since the 2024 report. Please re
 <em>Tables and paragraphs marked \* above refer to this appendix.</em>
 
 <strong>Date range</strong><br>
-Counts presented in the annual report for first half of 2023 included inspections, compliances, treatments and stoppage visits ranging from January 1 to June 29, 2023. For this update, the first round was considered January 1 to June 30, 2023 and the second round is considered July 1 to December 2023.<br>
+Counts presented in the annual report for first half of 2023 included inspections, compliances, treatments and stoppage visits ranging from January 1 to June 29, 2023. For updates since the first report, the first round was considered January 1 to June 30, 2023, and the second round is considered July 1 to December 31 2023. All subsequent years were broken into two rounds similar to 2023.<br>
 
 <br><strong>Initial inspections</strong><br>
 Counts presented for initial inspections for the first half of 2023 in the annual report are count of letters mailed secondary to the inspection finding. During the QA process, it was noted that some inspections may generate multiple letters. Either a letter was returned and another mailed to contact the owner, or owner information was updated, which then updated the letter type. Both scenarios can result in multiple letters associated with an inspection. To remove duplicates, the last letter mailed out was the one counted for this update.
 
 <strong>Compliance inspections</strong><br>
-Counts for compliances previously did not include FSCS compliance inspections. FSCS compliance inspections are reported in the Mayor’s Monthly Report. To keep reporting consistent, updated counts include FSCS compliance inspections.
+Counts for compliances previously did not include Food Safety & Community Sanitation compliance inspections. FSCS compliance inspections are reported in the Mayor’s Monthly Report. To keep reporting consistent, updated counts include FSCS compliance inspections.
 
 <strong>Visits by a Pest Management Professional</strong><br>
 For treatment visits, initial counts presented for treatment visits for the first half of 2023 in the annual report are count of products applied. Most visits had one product applied, but some visits may have multiple products applied. To remove duplicates, any entry with a product for the same work order was considered one visit with bait application.
