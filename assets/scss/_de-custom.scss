@@ -640,6 +640,20 @@ $color-data-explorer: #0A408A;
         }
     }
 
+    // The Measure / Boundary / Time buttons (de-indicator-info.html). _d-enhancements.scss
+    // underlines every .btn on hover and focus, and these buttons are flex containers, so the
+    // chevron is a blockified flex item and gets the underline too; rotated open, it draws above
+    // the icon. Underline the label instead, as that file does for .btn.file-choose.
+    .btn[data-toggle="dropdown"] {
+        @include hover-focus {
+            text-decoration: none;
+
+            > span {
+                text-decoration: underline;
+            }
+        }
+    }
+
     .dropdown-menu-de {
         border: none;
         border-bottom: 4px solid #008939;
