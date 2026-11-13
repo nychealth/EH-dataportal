@@ -33,7 +33,7 @@ required, this report includes:
 
 ### Introduction
 
-The Department’s rat control program takes a multi-pronged, evidence-based approach across New York City that builds on our decades of experience. We know that rats thrive when they have ready access to food, water, a place to live, and effective transportation routes. Reducing the rat population, therefore, requires managing garbage, eliminating nesting areas and sealing cracks and holes in sidewalks and buildings. Our approach, called Integrated Pest Management (IPM) includes the following:
+The Department’s rat control program takes a multi-pronged, evidence-based approach across New York City that builds on our decades of experience. We know that rats thrive when they have ready access to food, water, a place to live, and effective transportation routes. Reducing the rat population, therefore, requires managing garbage, eliminating nesting areas and sealing cracks and holes in sidewalks and buildings. Our approach, called Integrated Pest Management (IPM), includes the following:
 
 - Inspecting properties to identify areas with rat activity by conducting:
   - Proactive inspections of every property in a particular area to enable the Department to
@@ -83,7 +83,7 @@ The Department is using the following metrics to measure the efficacy of rat mit
 <li>&ensp;<em>Summonses.</em> The number and percentage of compliance/follow up inspections for rat activity for private properties within an RMZ that have resulted in the issuance of a summons pursuant to section 151.02 of the Health Code in each 6-month period from January 2023 to June 2026.</li>
 <li>&ensp;<em>Visits by the Department’s Pest Management Professionals.</em> The number of rat baiting, monitoring, contraceptive applications and stoppage visits by the Department at properties within an RMZ in each 6-month period from January 2023 to June 2026, executed by the Department pursuant to section 17-147 of the Administrative Code following a failure to comply with an order issued pursuant to section 151.02 of the Health Code.</li>
 <li>&ensp;<em>City agency referral letters.</em> The number and percentage of inspections for city-owned properties within a RMZ that resulted in the issuance of a city agency referral letter by the Department in each 6-month period from January 2023 to June 2026.</li>
-<li>&ensp;<em>Susceptibility to rat infestation.</em> The number of properties that are managed by the NYC Parks that have failed inspection for rat infestation (or are susceptible to rat infestation) in a 6-month period from January 2023 to June 2026 within an RMZ.</li>
+<li>&ensp;<em>Susceptibility to rat infestation.</em> The number of properties that are managed by NYC Parks that have failed inspection for rat infestation (or are susceptible to rat infestation) in a 6-month period from January 2023 to June 2026 within an RMZ.</li>
 <li>&ensp;<em>Reports to 311.</em> The number and nature of 311 requests for service or complaints related to rat activity within each 6-month period from January 2023 to June 2026 within an RMZ.</li>
 </ol>
 <strong>I.&ensp;<em>Commissioner orders to abate (COTA)</em></strong>
@@ -95,7 +95,7 @@ Overall, in the first six months of 2026 in the four RMZs, the Department issued
 <!-- TABLE 2-->
 
 <div class="border-top border-bottom mb-4 py-2">
-<strong>Table 2: Initial Inspections (Insp) and Commissioner Orders to Abate (COTA) by RMZ*</strong><br>
+<strong>Table 2: Initial Inspections and Commissioner Orders to Abate (COTA) by RMZ*</strong><br>
 <button class="btn btn-sm btn-outline-primary active table2Buttons" id="2-1" onclick="changeTable(2,1)">BX: Grand Concourse</button>
 <button class="btn btn-sm btn-outline-primary table2Buttons" id="2-2" onclick="changeTable(2,2)">MN: Harlem</button>
 <button class="btn btn-sm btn-outline-primary table2Buttons" id="2-3" onclick="changeTable(2,3)">MN: EV / Chinatown</button>
@@ -156,7 +156,7 @@ Table 3a shows the total number of compliance inspections for each RMZ in a 6-mo
 
 <!-- table 3a Compliance inspections by elevation level -->
 <div class="border-top border-bottom mb-4 py-2">
-<strong>Table 3a: Compliance Inspections (Insp) by elevation level (first to fourth+ comp) and RMZ*</strong>
+<strong>Table 3a: Compliance Inspections by elevation level (first to fourth+ comp) and RMZ*</strong>
 
 <button class="btn btn-sm btn-outline-primary active table33Buttons" id="33-1" onclick="changeTable(33,1)">BX: Grand Concourse</button>
 <button class="btn btn-sm btn-outline-primary table33Buttons" id="33-2" onclick="changeTable(33,2)">MN: Harlem</button>
@@ -235,7 +235,7 @@ In the first six months of 2026 in the four RMZs, 1,228 city agency referrals (3
 <!-- TABLE 5 -->
 
 <div class="border-top border-bottom mb-4 py-2">
-<strong>Table 5: Initial Inspections (Insp) and City agency referrals by RMZ*</strong>
+<strong>Table 5: Initial Inspections and City agency referrals by RMZ*</strong>
 
 <button class="btn btn-sm btn-outline-primary active table5Buttons" id="5-1" onclick="changeTable(5,1)">BX: Grand Concourse</button>
 <button class="btn btn-sm btn-outline-primary table5Buttons" id="5-2" onclick="changeTable(5,2)">MN: Harlem</button>
@@ -265,7 +265,7 @@ In the first six months of 2026 in the four RMZs, 1,228 city agency referrals (3
 
 <strong>V.&ensp;Susceptibility to rat infestation</strong>
 
-Properties that are managed by the New York City Department of Parks and Recreation (NYC DPR) are heavily used for multiple recreational purposes, many of which can result in creating food sources for rats. Combined with the ample earthen spaces that rats love to burrow in, parks are very attractive to rats and uniquely susceptible to them. These properties are routinely inspected by the NYC Health Department.
+Properties that are managed by NYC Parks are heavily used for multiple recreational purposes, many of which can result in creating food sources for rats. Combined with the ample earthen spaces that rats love to burrow in, parks are very attractive to rats and uniquely susceptible to them. These properties are routinely inspected by the NYC Health Department.
 
 In the first six months of 2026 in the four RMZs, 156 NYC Parks properties failed initial inspection (74% of 210 properties) (Table 5a). The percent of properties that failed initial inspection decreased from 80% in January to June 2025 to 74% in January to June 2026. This pattern was seen consistent across all RMZs except East Village/Chinatown (Bronx from 78% to 74%; Brooklyn from 73% to 67%; Harlem from 85% to 75%; East Village/Chinatown remained at 80%).
 
@@ -358,10 +358,10 @@ With the Department’s focus on elevating compliances in late 2024, the percent
 <em>Visits by the Department’s Pest Management Professionals</em><br>
 When private property owners fail to maintain their property free of rats and conditions conducive to rats, the Department may treat and monitor the property and bill the owners for the service. Health Department exterminators may also treat public spaces like tree pits, street areas or parks on an emergency basis. Overall treatment visits in the four RMZs decreased between 2025 and 2026 (Table 4.) The Department is working with other agencies to evaluate the types of rodent treatments used by exterminators and have started to deploy new methods and products in the past year. The Department launched a comprehensive pilot using three rat contraceptive products in the Harlem RMZ. The Department is also working to increase the use of alternative products such as carbon monoxide and carbon dioxide treatments and structural and behavioral controls for rats.
 
-<em><p id="collaboration">Collaboration with NYC DPR, NYCHA, and NYC Public Schools</p></em><br>
+<em><p id="collaboration">Collaboration with NYC Parks, NYCHA, and NYC Public Schools</p></em><br>
 Under the Neighborhood Rat Reduction Initiative, the Department has collaborated with NYC Parks, NYCHA and NYC Public Schools to assess rat activity and conditions conducive to rats in their respective properties in the four RMZs by conducting surveys at least every two months and using this data to test and evaluate rat mitigation methods, with a renewed focus on IPM. From June 2025 to June 2026, 210 parks, 72 NYCHA developments, and 184 school buildings were surveyed bimonthly.
 
-Metrics collected in the surveys include earthen burrow counts, structural holes, other signs of rat activity, presence of garbage and/or harborage, and individual agency remediation efforts. This inter-agency work is being carefully tracked in monthly Rat Task Force meetings convened by City Hall. The goal for all agencies is to decrease the primary metric of interest (earthen burrow count for NYCHA and DPR and percent failed on survey for NYC Public Schools) by 30%.
+Metrics collected in the surveys include earthen burrow counts, structural holes, other signs of rat activity, presence of garbage and/or harborage, and individual agency remediation efforts. This inter-agency work is being carefully tracked in monthly Rat Task Force meetings convened by City Hall. The goal for all agencies is to decrease the primary metric of interest (earthen burrow count for NYCHA and NYC Parks and percent failed on survey for NYC Public Schools) by 30%.
 
 #### 3. A description of the public outreach measures undertaken by the department in relation to rat mitigation in each such zone.
 
@@ -405,7 +405,7 @@ Counts presented in the annual report for first half of 2023 included inspection
 Counts presented for initial inspections for the first half of 2023 in the annual report are count of letters mailed secondary to the inspection finding. During the QA process, it was noted that some inspections may generate multiple letters. Either a letter was returned and another mailed to contact the owner, or owner information was updated, which then updated the letter type. Both scenarios can result in multiple letters associated with an inspection. To remove duplicates, the last letter mailed out was the one counted for this update.
 
 <strong>Compliance inspections</strong><br>
-Counts for compliances previously did not include Food Safety & Community Sanitation compliance inspections. FSCS compliance inspections are reported in the Mayor’s Monthly Report. To keep reporting consistent, updated counts include FSCS compliance inspections.
+Counts for compliances previously did not include Food Safety & Community Sanitation (FSCS) compliance inspections. FSCS compliance inspections are reported in the Mayor’s Monthly Report. To keep reporting consistent, updated counts include FSCS compliance inspections.
 
 <strong>Visits by a Pest Management Professional</strong><br>
 For treatment visits, initial counts presented for treatment visits for the first half of 2023 in the annual report are count of products applied. Most visits had one product applied, but some visits may have multiple products applied. To remove duplicates, any entry with a product for the same work order was considered one visit with bait application.
