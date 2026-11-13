@@ -1,76 +1,57 @@
 {{/* de-chooser-modal.html */}} 
 
-{{- $pages := where .Site.RegularPages.ByTitle "Section" "data-explorer" -}} 
-{{- $half := div (len $pages | add 1) 2 -}}
+{{- $pages := where .Site.RegularPages.ByTitle "Section" "data-explorer" -}}
 
-<div class="col-md-6">
+{{/* Topics listed in the columns. The hideFromRange pages (data index, indicator catalog) are
+     listed separately below, so drop them before splitting, or the columns come out uneven. */}}
 
-    {{- range first $half $pages }} 
-
-        {{- if not .Params.hideFromRange }} 
-
-            {{/* Build JSON for this page */}} 
-            
-            {{- $indicatorsJSON := slice -}} 
-            
-            {{- range .Params.indicators }} 
-                {{- $indicatorsJSON = $indicatorsJSON | append (dict "header" .header "indicators" .IndicatorID) -}} 
-            {{- end }} 
-            
-            {{- $json := $indicatorsJSON | jsonify -}}
-            
-            <div class="border-bottom pb-1 mb-1">
-                <a
-                    href="{{ .RelPermalink }}"
-                    class="font-weight-bold de-topic-indicator-link"
-                    data-indicators="{{ $json }}"
-                    data-topic-title="{{ .Title }}"
-                    data-topic-destination="{{ .RelPermalink }}">
-                    {{ .Title }}
-                </a>
-
-                {{ with .Params.blurb }} <p style="font-size:14px" class=""> {{ . }} </p>{{ end }}
-
-            </div>
-        {{- end }} 
+{{- $topics := slice -}}
+{{- range $pages }}
+    {{- if not .Params.hideFromRange }}
+        {{- $topics = $topics | append . -}}
     {{- end }}
-</div>
+{{- end }}
 
-<div class="col-md-6">
+{{/* Three columns from lg (960px), two from md (720px), one below; alphabetical down each
+     column. Below lg the third column wraps under the first two, so reading order holds. */}}
 
-{{- range after $half $pages }} 
+{{- $perColumn := div (add (len $topics) 2) 3 -}}
 
-    {{- if not .Params.hideFromRange }} 
-    
-        {{/* Build JSON for this page */}} 
-        
-        {{- $indicatorsJSON := slice -}} 
+{{- range $column := seq 0 2 }}
 
-        {{- range .Params.indicators }} 
-            {{- $indicatorsJSON = $indicatorsJSON | append (dict "header" .header "indicators" .IndicatorID) -}} 
-        {{- end }} 
-        
+<div class="col-md-6 col-lg-4">
+
+    {{- range first $perColumn (after (mul $column $perColumn) $topics) }}
+
+        {{/* Build JSON for this page */}}
+
+        {{- $indicatorsJSON := slice -}}
+
+        {{- range .Params.indicators }}
+            {{- $indicatorsJSON = $indicatorsJSON | append (dict "header" .header "indicators" .IndicatorID) -}}
+        {{- end }}
+
         {{- $json := $indicatorsJSON | jsonify -}}
-        
-        <div class="border-bottom pb-1 mb-1">
+
+        <div class="de-chooser-card">
             <a
                 href="{{ .RelPermalink }}"
-                class="font-weight-bold de-topic-indicator-link"
+                class="font-weight-bold de-topic-indicator-link stretched-link"
                 data-indicators="{{ $json }}"
                 data-topic-title="{{ .Title }}"
                 data-topic-destination="{{ .RelPermalink }}">
                 {{ .Title }}
             </a>
-            
+
             {{ with .Params.blurb }} <p style="font-size:14px" class=""> {{ . }} </p>{{ end }}
 
         </div>
 
-    {{- end }} 
-    
-{{- end }}
+    {{- end }}
 
 </div>
+
+{{- end }}
 
 {{- range .Site.RegularPages.ByTitle }} 
 
