@@ -35,12 +35,12 @@ function or block name); line numbers are given only as hints and will move.
 | E7 | Initial "select dataset" modal has no "recently updated" flags | `hotfix-de-chooser-updated-badges` | this file | `hotfix-de-chooser-updated-badges @ 9700909479` | **DONE 2026-11-11** — cause browser-confirmed first | browser probe on both entry points, see E7 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
 | E8 | Dropdown's rotating icon: don't underline it | `hotfix-de-icon-underline` | this file | `hotfix-de-icon-underline @ df7e4926d8`; PR #1566, merge `d545957e0b` | **DONE 2026-11-12** | chevron probe at 1440 / 390 with a before arm, see E8 "Proof that ran"; curated smoke 44/44 |
 | E9 | Topic chooser: 3 columns on desktop; topics and datasets as cards | `feature-de-topic-chooser-columns` | this file | `feature-de-topic-chooser-columns @ 64eb473573` (columns), `bb747a6aae` (cards); PR #1567, merge `2dc3f791a5` | **DONE 2026-11-12** — cards added (Chris, 2026-11-12) | column probe at five widths with a before arm, card probe at 1440 / 390, see E9 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; site characterization `prod_prod` 840/840 |
-| E10 | Selected neighborhood stays highlighted on bar, map and legend, and across overlay switches | `feature-de-persistent-selection` | this file; a spec if D10 widens it | — | Not started — D10 decided | — |
+| E10 | Selected neighborhood stays highlighted on bar, map and legend, and across overlay switches | `feature-de-persistent-selection` (cut from `production` @ `5d59489c80`) | this file | `feature-de-persistent-selection @ 4f8e70c922`; PR #1570 | **PR open**; Chris confirmed the three choices in E10 "Choices made" (2026-11-13); CloudCannon site 161415 | selection probe, choropleth and bubble, 21 steps, Chromium/Firefox/WebKit identical, plus a control on the old code; `npm run lint` exit 0; `de-characterization --check` passed; curated smoke 44/44 |
 | E11 | Citywide-only indicators: no bar chart (it draws one large bar) | `feature-de-citywide-no-bar` | this file | `feature-de-citywide-no-bar @ 9c71cca181`, not pushed | **Built**; PR held (Chris, 2026-11-12) | bar probe, five arms incl. an injected one-of-many, see E11 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; `de-characterization --check` passed |
-| E12 | Map controls: zoom in/out and reset zoom | `feature-de-map-controls` (E12–E14 share it, D12) | this file | `feature-de-map-controls @ 913be741d7`; re-baseline `4244a5003a`; hints `a6487447bb`, `ac5b841181`, `a82e4ccd60`; PR #1568 | **Built**; PR open, ready to merge | probes in Chromium, Firefox and WebKit at 1440 / 960 / 959 / 390, see E12–E14 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; site-characterization re-baseline, nothing unexplained; CI smoke and site characterization passed on `4244a5003a`, `a6487447bb` and `a82e4ccd60`; iPhone check on the preview (Chris, 2026-11-13) |
-| E13 | Map control: turn the geography layer off | `feature-de-map-controls` | this file | as E12 | **Built** — one eye button with E14 (Chris, 2026-11-13) | as E12 |
-| E14 | Map control: geography layer opacity | `feature-de-map-controls` | this file | as E12 | **Built** — slider shows actual opacity (Chris, 2026-11-13) | as E12 |
-| E15 | Below lg, opening and closing the details soon after load leaves blank space under the map | `hotfix-de-map-details-gap` | this file | `hotfix-de-map-details-gap @ dfdc71cbe1`; PR #1569 | **Built**; PR open — D15 decided: the map keeps its size (Chris, 2026-11-13) | gap probe, three arms, before (Chromium) and after (Chromium, Firefox, WebKit), see E15 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; CI smoke and site characterization passed on `dfdc71cbe1`; iPhone check on the preview (Chris, 2026-11-13) |
+| E12 | Map controls: zoom in/out and reset zoom | `feature-de-map-controls` (E12–E14 share it, D12) | this file | `feature-de-map-controls @ 913be741d7`; re-baseline `4244a5003a`; hints `a6487447bb`, `ac5b841181`, `a82e4ccd60`; PR #1568 | **Merged** — #1568, `5d59489c80` (2026-11-13) | probes in Chromium, Firefox and WebKit at 1440 / 960 / 959 / 390, see E12–E14 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; site-characterization re-baseline, nothing unexplained; CI smoke and site characterization passed on `4244a5003a`, `a6487447bb` and `a82e4ccd60`; iPhone check on the preview (Chris, 2026-11-13) |
+| E13 | Map control: turn the geography layer off | `feature-de-map-controls` | this file | as E12 | **Merged** with E12 — one eye button with E14 (Chris, 2026-11-13) | as E12 |
+| E14 | Map control: geography layer opacity | `feature-de-map-controls` | this file | as E12 | **Merged** with E12 — slider shows actual opacity (Chris, 2026-11-13) | as E12 |
+| E15 | Below lg, opening and closing the details soon after load leaves blank space under the map | `hotfix-de-map-details-gap` | this file | `hotfix-de-map-details-gap @ dfdc71cbe1`; PR #1569 | **Merged** — #1569, `78b1965486` (2026-11-13); D15: the map keeps its size (Chris, 2026-11-13) | gap probe, three arms, before (Chromium) and after (Chromium, Firefox, WebKit), see E15 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; CI smoke and site characterization passed on `dfdc71cbe1`; iPhone check on the preview (Chris, 2026-11-13) |
 
 E5 and E7 are small enough to share one branch if Chris prefers; they touch different files
 (`disparities.js` and `section.html` / `topic-indicator-selector.js`), so a combined PR has no
@@ -565,6 +565,68 @@ read the polygon style, the bar's highlighted mark and the legend panel; the sam
 change D10b keeps, and cleared after each it drops. Keyboard path. `de-characterization --check`
 (map and bar views are captured).
 
+**Built** (`feature-de-persistent-selection`, from `production` @ `5d59489c80`, after #1568 and
+#1569 merged).
+- `global.js`: `DE.map.selection`, `{ geoID, geoType }` or null.
+- `map.js`: a "persistent selection" section with `toggleMapSelection`, `clearMapSelection`,
+  `setBarPin` and a per-render `showMapSelection`. Each renderer keeps a selected layer or marker
+  beside its hovered one, and its resets skip the selected one; on mouseout the legend shows the
+  selection instead of "Hover for details". A click on an area or bubble toggles the selection
+  and stops propagation; the map's own `click` (bound once in `initBaseMap`) clears it.
+  `renderMap` clears a selection made under another `GeoType` before drawing. `applyFillSettings`
+  redraws the selection after its restyle (the opacity control).
+- `bar.js`: a `pinnedGeo` signal, seeded from `DE.map.selection`, added to the 8 stroke tests
+  beside `selectedGeo`; a click on a bar with a value toggles the selection.
+- `de-tab-content.js`: Escape clears a selection before it closes the open view.
+
+**Choices made, confirmed by Chris 2026-11-13.**
+- Escape order: with a selection, the first Escape clears it and the second closes the open view.
+  The bar view is the default, so the other order would close the chart the selection is drawn on.
+- Bubble map: a click on the gray areas under the bubbles counts as "off the map" and clears;
+  only bubbles select there.
+- An indicator change keeps the selection when the new indicator opens on the same boundary,
+  since the rule is the boundary's. Read from the code (`renderMap`), not run in a browser.
+- Not in scope: map shapes take no keyboard focus (as before E10), so the keyboard can clear a
+  selection (Escape) but not make one.
+
+**Proof that ran** (2026-11-13, isolated `dev_stage` server on :8091; served `map.26d3d7d9a8047007.js`
+carries `toggleMapSelection`). `scripts/.sc-rebaseline/e10/selection.mjs`, 1440×900, bar view open,
+2380 (choropleth, CD) and id=1 MeasureID=1 (bubble, CD), real mouse and keyboard; each step reads
+`DE.map.selection`, the shapes drawn at weight 3, the bar's `pinnedGeo` and its outlined marks, and
+the legend's geography.
+
+| Step | Both arms, Chromium, Firefox and WebKit |
+|---|---|
+| click A, pointer away | selection A; map outlines A; bar pinned A, 1 outlined mark; legend A |
+| hover B, then away | A and B outlined, legend B; then A alone, legend A |
+| time change; table then bar; opacity 0.5 | selection, outline, pin and legend all A |
+| Escape, Escape | first clears everything with the bar view still open; second closes the view |
+| click A twice, pointer away | cleared |
+| click A, click empty map | cleared |
+| click A, click B | selection B, outline B only |
+| click a bar (GeoID 208) | selection 208, map outlines 208 |
+| measure change (boundary unchanged) | selection A kept |
+| boundary change (CD → Borough) | cleared, no outline, pin null |
+
+- The three browsers' step tables are identical: 0 differing lines of 42. 0 page errors.
+- Control: the same probe against the old `map.js` (stashed, served `map.1be8a949a137d934.js`).
+  After the click and the pointer moving away, the outline, bar mark and legend all read empty in
+  both arms, so the probe tells the two behaviours apart.
+- WebKit first read 6 of 14 arm-runs with a second click leaving the shape selected. Recording each
+  click's target showed a probe click landing on an SVG `<g>` while the map was still panning, and
+  firing the map's own click. Every click that reached `path.leaflet-interactive` toggled as
+  expected (15 of 15), and `toggle-diag.mjs` gave 14 of 14 pairs. The probe now waits for the shape
+  to hold still before clicking. The 6 failures before that recorded no target; they are attributed
+  to the same cause, not shown.
+- `npm run lint` exit 0; it also resolves `clearMapSelection`, called from `de-tab-content.js` but
+  declared in `map.js`. `de-tab-content.js` loads only through `data-explorer/single.html`, which
+  loads `map.js`.
+- `node scripts/de-characterization.mjs --check`: passed (staging baseline, 2380, 2414, 2023).
+- Curated smoke against :8091: 44/44.
+- Not run: site characterization (nothing renders differently at load: no selection exists then;
+  CI runs it), and a phone. Below `lg` a tap is Leaflet's click, so it selects, but that was not
+  run.
+
 ### E11 — Citywide-only indicators: no bar chart
 
 **What exists.** `renderMap` (`map.js`) sets `isCitywideOnly` when the measure's only map
@@ -798,20 +860,16 @@ file) and reported it working (2026-11-13).
 
 ## Next command
 
-E8–E14: D8, D10, D11, D12 and D13 all decided 2026-11-12; nothing open. E8 and E9 merged
-(#1566 `d545957e0b`, #1567 `2dc3f791a5`). E11 built at `9c71cca181` on
-`feature-de-citywide-no-bar`, not pushed; Chris is holding its PR. E12–E14 built on
-`feature-de-map-controls` (`913be741d7`, re-baseline `4244a5003a`, hover hints `a6487447bb`,
-`ac5b841181`, `a82e4ccd60`), PR #1568 open; Chris's iPhone check passed 2026-11-13, so it
-is ready to merge. E15 built at `dfdc71cbe1` on `hotfix-de-map-details-gap`; it merges cleanly with #1568, which
-also edits `map.js` (`git merge-tree --write-tree feature-de-map-controls dfdc71cbe1` exit 0,
-merged `map.js` carrying both changes); PR #1569 open, CI passed, iPhone check passed 2026-11-13, ready to merge. Neither
-PR depends on the other's merge order. Next: E10, on `feature-de-persistent-selection`; D10 is
-fully decided. #1568 edits the `renderChoroplethMap` and `renderBubbleMap` handlers E10 rewrites
-(its `map.js` hunks at production lines 857, 886, 1008 and 1140–1254), so a cut from
-`production` at `2dc3f791a5` would conflict with it there. Chris will merge #1568 and #1569 and
-say when (2026-11-13); then update local `production` and cut `feature-de-persistent-selection`
-from it.
+E8–E15: all decisions made; E8, E9, E12–E14 and E15 merged (#1566 `d545957e0b`, #1567
+`2dc3f791a5`, #1568 `5d59489c80`, #1569 `78b1965486`). E11 built at `9c71cca181` on
+`feature-de-citywide-no-bar`, not pushed; Chris is holding its PR.
+
+E10 is built on `feature-de-persistent-selection`, cut from `production` @ `5d59489c80`; see E10
+"Built" and "Proof that ran". Chris confirmed the three choices in E10 "Choices made" on
+2026-11-13. Committed as `4f8e70c922`, PR #1570 into `production`; CI smoke run 43554624760 and
+site characterization run 43554624776 started on it; CloudCannon preview site 161415. Next: Chris
+checks on an iPhone against that preview that a tap selects, moves and clears a selection (not run
+below `lg`), and merges #1570.
 
 E4, after Chris has run the staging→production migration and the `DE_metadata_json.R` re-export
 (EHDP-data `production`), against a server on production data:
