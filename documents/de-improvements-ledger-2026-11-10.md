@@ -554,7 +554,8 @@ renderer re-applies the selection after drawing.
 
 **Decided (Chris, 2026-11-12).**
 - D10a: a click selects. A second click on the selected one, a click off the map, or Escape
-  clears it. A click on a different one moves the selection to it; it does not clear.
+  clears it. A click on a different one moves the selection to it; it does not clear. A click on
+  a bar selects too, the same as a click on the map (Chris, 2026-11-13).
 - D10b: the selection survives an overlay switch, a time-period change and a measure change; a
   boundary change clears it.
 - D10c: the selection does not go in the URL. D10d: the click popup stays (Chris, 2026-11-12).
@@ -715,7 +716,7 @@ server on :8091; `PW_BROWSER` picks the browser):
   uncommitted tree.
 - iOS Safari, by hand: Playwright's WebKit on Windows is a desktop build, and the first-tap /
   second-tap sequence depends on iOS's tap event order. CloudCannon site 161357
-  (`feature-de-map-controls`, `serene-wolverine.cloudvent.net`) was created 2026-11-13 for that
+  (`feature-de-map-controls`) was created 2026-11-13 for that
   check; Chris ran it on an iPhone against the build of `a82e4ccd60` and reported it working
   (2026-11-13).
 
@@ -792,7 +793,7 @@ Site characterization not run locally: it loads at 1280×900, where `layoutStack
 early. Merges cleanly with #1568's `feature-de-map-controls` (`git merge-tree` exit 0; the merged
 `map.js` carries the fix and #1568's `fillOpacityFor`). CI's smoke (run 43512627665) and site
 characterization (run 43512627695) passed on `dfdc71cbe1`. On an iPhone, Chris checked CloudCannon site 161374
-(`haloed-wolf.cloudvent.net`, built 2026-11-13 and serving `map.066b802d3554941a.js`, the fixed
+(built 2026-11-13 and serving `map.066b802d3554941a.js`, the fixed
 file) and reported it working (2026-11-13).
 
 ## Next command
@@ -805,9 +806,12 @@ E8–E14: D8, D10, D11, D12 and D13 all decided 2026-11-12; nothing open. E8 and
 is ready to merge. E15 built at `dfdc71cbe1` on `hotfix-de-map-details-gap`; it merges cleanly with #1568, which
 also edits `map.js` (`git merge-tree --write-tree feature-de-map-controls dfdc71cbe1` exit 0,
 merged `map.js` carrying both changes); PR #1569 open, CI passed, iPhone check passed 2026-11-13, ready to merge. Neither
-PR depends on the other's merge order. Next: E10, cut from local `production`. Before building,
-ask Chris whether a click on a bar selects too: D10a's question named the map and the bar, and
-its recorded answer says only "a click selects".
+PR depends on the other's merge order. Next: E10, on `feature-de-persistent-selection`; D10 is
+fully decided. #1568 edits the `renderChoroplethMap` and `renderBubbleMap` handlers E10 rewrites
+(its `map.js` hunks at production lines 857, 886, 1008 and 1140–1254), so a cut from
+`production` at `2dc3f791a5` would conflict with it there. Chris will merge #1568 and #1569 and
+say when (2026-11-13); then update local `production` and cut `feature-de-persistent-selection`
+from it.
 
 E4, after Chris has run the staging→production migration and the `DE_metadata_json.R` re-export
 (EHDP-data `production`), against a server on production data:
