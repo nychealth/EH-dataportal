@@ -109,7 +109,15 @@ const DE = {
         // unmapped state. Gates both halves of that hint — the message popup and the outline on the
         // visualization bar — so they share one lifetime. Without it, every measure/geo/time
         // re-render would re-apply a hint the user had already dismissed by clicking the bar.
-        unmappedHintPending: false
+        unmappedHintPending: false,
+
+        // The visitor's map-layer settings from the map's own controls (map.js, addMapControls):
+        // a multiplier on the data layer's default fill (map.js, fillOpacityFor), where 0 is
+        // the layer hidden and 1 the default; and the
+        // level the eye button restores after hiding it. Kept here so a measure, boundary or
+        // time change redraws with them; the saved map (print-map.js) deliberately ignores both.
+        fillScale: 1,
+        fillRestore: 1
     },
 
     // Print/export state: the current view's Vega spec, caption fields, and chart

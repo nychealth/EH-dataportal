@@ -604,6 +604,139 @@ $color-data-explorer: #0A408A;
     }
 }
 
+// The explorer map's own controls under Leaflet's zoom buttons (map.js, addMapControls). They
+// are <button>s, which Leaflet's .leaflet-bar styles do not reach (it styles <a>), so this
+// copies the look of its touch-size zoom links: 30px square, white, hairline dividers.
+.de-map-tools {
+    // A column that does not stretch its children: the button bar keeps its 30px width
+    // instead of taking the slider box's.
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .leaflet-bar button {
+        display: block;
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        border: 0;
+        border-bottom: 1px solid #ccc;
+        background-color: #fff;
+        color: #000;
+        font-size: 14px;
+        line-height: 30px;
+        text-align: center;
+        cursor: pointer;
+
+        &:first-child {
+            border-top-left-radius: 2px;
+            border-top-right-radius: 2px;
+        }
+
+        &:last-child {
+            border-bottom: 0;
+            border-bottom-left-radius: 2px;
+            border-bottom-right-radius: 2px;
+        }
+
+        &:hover {
+            background-color: #f4f4f4;
+        }
+
+        &[aria-pressed="true"] {
+            background-color: #EFFAF4;
+            color: $primary-dark;
+        }
+
+        // Mouse focus only, as the site's range style does (__portal-custom.scss): a click
+        // otherwise leaves Bootstrap's focus ring on the button. Keyboard focus keeps it.
+        &:focus:not(:focus-visible) {
+            outline: none;
+        }
+    }
+
+    // The eye button with the opacity slider folding out to its right (map.js shows and hides
+    // the panel through the hidden attribute).
+    .de-map-opacity {
+        display: flex;
+        align-items: stretch;
+        margin-top: 10px;
+        background-color: #fff;
+
+        .de-map-fill-toggle {
+            flex: 0 0 auto;
+            border-bottom: 0;
+            border-radius: 2px;
+        }
+    }
+
+    // One row at the button's 30px height (Chris, 2026-11-13). The label is hidden visually but
+    // still names the slider.
+    .de-map-opacity-panel {
+        display: flex;
+        align-items: center;
+        height: 30px;
+        padding: 0 10px;
+        border-left: 1px solid #ccc;
+
+        &[hidden] {
+            display: none;
+        }
+
+        label {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+        }
+
+        // A slimmer copy of the site's range style (__portal-custom.scss: 25px track, 30px
+        // thumb), which cannot fit a 30px row. Same colours; the thumb is centred on the track
+        // by the negative margin, (track - thumb) / 2.
+        input[type=range] {
+            display: block;
+            width: 120px;
+            height: 30px;
+            margin: 0;
+        }
+
+        // The value beside the slider. A fixed width that holds "100%", with tabular
+        // digits, so the slider does not shift as the number changes length.
+        .de-map-opacity-value {
+            width: 2.9em;
+            margin-left: 8px;
+            font-size: 12px;
+            font-variant-numeric: tabular-nums;
+            text-align: right;
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            height: 6px;
+            border-radius: 3px;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            width: 16px;
+            height: 16px;
+            margin-top: -5px;
+            border-radius: 50%;
+        }
+
+        input[type=range]::-moz-range-track {
+            height: 6px;
+            border-radius: 3px;
+        }
+
+        input[type=range]::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+        }
+    }
+}
+
 // Data explorer load-failure card (showLoadError, app.js). Absolute inside the explorer's
 // position-relative row, so it covers the map and panes without moving them. 1001 clears
 // Leaflet's control corners (1000); the row's own z-index: 2 keeps it under site modals.
@@ -795,6 +928,14 @@ $color-data-explorer: #0A408A;
             left: 2rem;
             top: 2rem;
             width: 380px;
+        }
+
+        // The details card covers the map's top-left corner here, so its controls (map.js,
+        // addMapControls) move to just right of the card, top-aligned with it. Leaflet gives
+        // each control a 10px margin, which the top offset takes back.
+        .leaflet-top.leaflet-left {
+            left: calc(2rem + 380px);
+            top: calc(2rem - 10px);
         }
 
         // Let the panel shrink within the tab shell so DataTables scrolls horizontally
