@@ -17,7 +17,7 @@
     "bar": {
         "present": true,
         "ariaLabel": "Bar chart of Asthma emergency department visits (adults): Asthma ED visits (adults), Age-adjusted rate",
-        "markCount": 118
+        "markCount": 177
     },
     "trend": {
         "present": true,
