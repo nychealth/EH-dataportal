@@ -130,6 +130,19 @@ const drawSelectionOutline = (makeLine) => {
 
 const selectedGeoID = () => DE.map.selection?.geoID ?? null;
 
+// A tap fires mouseover before click, so hover's plain black outline painted first and the
+// selection's white line followed, a visible step on an iPhone (Chris, 2026-11-14). Taps therefore
+// skip hover: the selection shows the same geography in the legend and on both views. The mouse
+// events a tap fires do not say they came from a finger; the pointer events before them do.
+
+let lastPointerType = null;
+
+['pointerdown', 'pointerover'].forEach(type => {
+    document.addEventListener(type, (event) => { lastPointerType = event.pointerType; }, true);
+});
+
+const isTouchInput = () => lastPointerType === 'touch';
+
 // Selects a geography, or clears the selection when it is the one already selected. GeoIDs arrive
 // as numbers from some sources and strings from others, so they are compared as strings.
 
@@ -1410,6 +1423,8 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
 
                     layer.on('mouseover', (e) => {
 
+                        if (isTouchInput()) return;
+
                         const props = feature.properties;
                         const linkedGeoID = props.GeoID ?? props.GEOCODE;
                         const hasMappedValue = props.Value != null;
@@ -1726,6 +1741,8 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                     });
 
                     circle.on('mouseover', (e) => {
+
+                        if (isTouchInput()) return;
 
                         highlightMarker(markerEntry);
 

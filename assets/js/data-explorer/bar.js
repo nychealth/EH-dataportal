@@ -113,6 +113,12 @@ const renderBar = (
     const PINNED_BAR_TEST = "datum.Value != null && datum.GeoID == pinnedGeo";
     const PINNED_LINE_STYLE = 'pinnedOutline';
 
+    // Hover outlines a bar for a mouse or pen, not a finger: a tap would paint hover's black before
+    // the selection's white (see isTouchInput, map.js). Mouse events cannot tell, pointer events can.
+
+    const HOVER_ON = "pointerover[event.pointerType !== 'touch']";
+    const HOVER_CLEAR = "pointerout";
+
 
     // ----- display-rule resolution (CI detection, percent formatting) ----- //
 
@@ -163,7 +169,7 @@ const renderBar = (
                     "params": [
                         {
                             "name": "highlight",
-                            "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}
+                            "select": {"type": "point", "on": HOVER_ON, "clear": HOVER_CLEAR}
                         }
                     ],
                     "encoding": {
@@ -244,8 +250,8 @@ const renderBar = (
                             "name": "highlight",
                             "select": {
                                 "type": "point",
-                                "on": "mouseover",
-                                "clear": "mouseout"
+                                "on": HOVER_ON,
+                                "clear": HOVER_CLEAR
                             }
                         }
                     ],
@@ -378,7 +384,7 @@ const renderBar = (
                     "params": [
                         {
                             "name": "highlight",
-                            "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}
+                            "select": {"type": "point", "on": HOVER_ON, "clear": HOVER_CLEAR}
                         }
                     ],
                     "encoding": {
@@ -641,7 +647,7 @@ const renderBar = (
 
             const geoID = item?.datum?.GeoID;
 
-            if (geoID == null || !window.mapInterop.ready) return;
+            if (geoID == null || !window.mapInterop.ready || isTouchInput()) return;
 
             window.mapInterop.highlight(geoID);
 
