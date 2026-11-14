@@ -35,7 +35,7 @@ function or block name); line numbers are given only as hints and will move.
 | E7 | Initial "select dataset" modal has no "recently updated" flags | `hotfix-de-chooser-updated-badges` | this file | `hotfix-de-chooser-updated-badges @ 9700909479` | **DONE 2026-11-11** — cause browser-confirmed first | browser probe on both entry points, see E7 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
 | E8 | Dropdown's rotating icon: don't underline it | `hotfix-de-icon-underline` | this file | `hotfix-de-icon-underline @ df7e4926d8`; PR #1566, merge `d545957e0b` | **DONE 2026-11-12** | chevron probe at 1440 / 390 with a before arm, see E8 "Proof that ran"; curated smoke 44/44 |
 | E9 | Topic chooser: 3 columns on desktop; topics and datasets as cards | `feature-de-topic-chooser-columns` | this file | `feature-de-topic-chooser-columns @ 64eb473573` (columns), `bb747a6aae` (cards); PR #1567, merge `2dc3f791a5` | **DONE 2026-11-12** — cards added (Chris, 2026-11-12) | column probe at five widths with a before arm, card probe at 1440 / 390, see E9 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; site characterization `prod_prod` 840/840 |
-| E10 | Selected neighborhood stays highlighted on bar, map and legend, and across overlay switches | `feature-de-persistent-selection` (cut from `production` @ `5d59489c80`) | this file | `feature-de-persistent-selection @ 57e5551aa3`; PR #1570 | **PR open**; Chris confirmed the three choices in E10 "Choices made" (2026-11-13), and chose the two-tone selection outline (2026-11-13); CloudCannon site 161415 | selection probe, choropleth and bubble, 21 steps, Chromium/Firefox/WebKit identical, plus a control on the old code; two-tone outline: 44-step probe in three browsers, bar order checked on 4 indicators; `npm run lint` exit 0; `de-characterization --check` passed after a markCount-only re-baseline; curated smoke 44/44 |
+| E10 | Selected neighborhood stays highlighted on bar, map and legend, and across overlay switches | `feature-de-persistent-selection` (cut from `production` @ `5d59489c80`) | this file | `feature-de-persistent-selection @ 0bd94ca03a`; PR #1570 | **PR open**; Chris confirmed the three choices in E10 "Choices made" (2026-11-13), and chose the two-tone selection outline (2026-11-13); CloudCannon site 161415 | selection probe, choropleth and bubble, 21 steps, Chromium/Firefox/WebKit identical, plus a control on the old code; two-tone outline: 44-step probe in three browsers, bar order checked on 4 indicators; bar outline above neighbours: pixel probe 72/72 against 21/72 on the prior commit; taps skip hover: tap probe with a control on the prior commit; `npm run lint` exit 0; `de-characterization --check` passed after a markCount-only re-baseline; curated smoke 44/44 |
 | E11 | Citywide-only indicators: no bar chart (it draws one large bar) | `feature-de-citywide-no-bar` | this file | `feature-de-citywide-no-bar @ 9c71cca181`, not pushed | **Built**; PR held (Chris, 2026-11-12) | bar probe, five arms incl. an injected one-of-many, see E11 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; `de-characterization --check` passed |
 | E12 | Map controls: zoom in/out and reset zoom | `feature-de-map-controls` (E12–E14 share it, D12) | this file | `feature-de-map-controls @ 913be741d7`; re-baseline `4244a5003a`; hints `a6487447bb`, `ac5b841181`, `a82e4ccd60`; PR #1568 | **Merged** — #1568, `5d59489c80` (2026-11-13) | probes in Chromium, Firefox and WebKit at 1440 / 960 / 959 / 390, see E12–E14 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; site-characterization re-baseline, nothing unexplained; CI smoke and site characterization passed on `4244a5003a`, `a6487447bb` and `a82e4ccd60`; iPhone check on the preview (Chris, 2026-11-13) |
 | E13 | Map control: turn the geography layer off | `feature-de-map-controls` | this file | as E12 | **Merged** with E12 — one eye button with E14 (Chris, 2026-11-13) | as E12 |
@@ -674,6 +674,29 @@ the surrounding bars"). `1df9800bb0`, re-baseline `57e5551aa3`.
   `de-characterization` re-baselined (markCount only: 2023 177 → 236, 2380 118 → 177, 2414
   136 → 204, both branches) and re-checked exit 0 on :8091 and :8092.
 
+**Taps skip hover** (Chris, 2026-11-14: on mobile a tap drew the black line first and the white
+one after a noticeable delay, on the map and the bar). `0bd94ca03a`.
+- Measured first (`tap-timing.mjs`, Chromium 390×844 touch, CPU 4×, 4 taps): Vega's hover run took
+  2–3 ms and the selection's 3–4 ms, and hover black and the bar's white first painted in the same
+  frame (91–122 ms after touch). So the drawing is not slow; the step is a tap firing `mouseover`
+  (hover's plain black) before `click` (the white). Before the two-tone outline the two were the
+  same black, so any gap was invisible. That iOS paints between the two is inferred, not measured:
+  Playwright's WebKit on Windows does not behave as iOS Safari here.
+- Change: `map.js` records the last `pointerdown`/`pointerover` type (`isTouchInput`); the map's
+  area and bubble `mouseover` handlers and the bar's hover link into the map return on touch. The
+  bar chart's hover param triggers on `pointerover[event.pointerType !== 'touch']`, cleared on
+  `pointerout` (Vega 5.33.1 handles pointer events). Mouse hover is unchanged.
+- Proof: `tap-hover.mjs` (touch at 390×844, mouse at 1440×900). Tap on a map area: Vega runs
+  `pinnedGeo` only; tap on a bar: bar hover store empty in every frame, 0 map-hover calls. Control
+  on `57e5551aa3`: tap on a map area ran `selectedGeo` (the hover link); tap on a bar set the hover
+  store in 91 frames and called the map hover once. Mouse rows identical on both. Selection probe
+  in three browsers unchanged in Chromium and Firefox apart from the clicked bar's `label`, now
+  empty since outline paths carry none; WebKit lost a first bubble click to the container again
+  (the known race) and its mouse hover works. Lint exit 0; curated smoke 44/44;
+  `de-characterization --check` exit 0 on both data branches, no re-baseline.
+- Not shown here: that the step is gone on an iPhone. Chromium painted a tap in one frame before
+  the change too, so it cannot show the step.
+
 ### E11 — Citywide-only indicators: no bar chart
 
 **What exists.** `renderMap` (`map.js`) sets `isCitywideOnly` when the measure's only map
@@ -917,10 +940,11 @@ E10 is built on `feature-de-persistent-selection`, cut from `production` @ `5d59
 site characterization run 43554624776 passed on it. The two-tone outline followed as `a4f6044ea5`
 and its re-baseline as `4d80e3c20f`, pushed 2026-11-14; CI smoke run 43604785105 and site
 characterization run 43604785078 passed on it. The bar outline fix followed as `1df9800bb0` and
-`57e5551aa3`; CI smoke run 43608975328 and site characterization run 43608975396 started on
-it. CloudCannon preview site 161415. Next: Chris
-checks on an iPhone against that preview that a tap selects, moves and clears a selection, with
-the two-tone outline (not run below `lg`), and merges #1570. Open question for Chris: fix the
+`57e5551aa3`; CI smoke run 43608975328 and site characterization run 43608975396 passed on it.
+Taps skipping hover followed as `0bd94ca03a`; CI smoke run 43612622028 and site characterization
+run 43612622077 passed on it. CloudCannon preview site 161415. Next: Chris checks on an iPhone
+against that preview that a tap selects, moves and clears a selection, and that the black and
+white outline now appear together on the map and the bar (not run below `lg`), and merges #1570. Open question for Chris: fix the
 WebKit first-click scroll (Leaflet focuses the map container on mousedown) as its own item?
 
 E4, after Chris has run the staging→production migration and the `DE_metadata_json.R` re-export
