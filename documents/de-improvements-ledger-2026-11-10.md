@@ -6,8 +6,8 @@ and a metadata re-export; E3 done, merged via #1562; E1 done, merged via #1563; 
 #1564, and audit row A-032 closed. E4 is waiting on the database migration. E8–E14 were added
 2026-11-12, with all their decisions made the same day: E8 and E9 are done, merged via #1566 and
 #1567 the same day; E11 is built, PR held (Chris); E12–E14 are built, PR #1568 open 2026-11-13,
-iOS check passed (Chris, 2026-11-13), ready to merge; E10 is built, PR #1570 open. E15 was added and built
-2026-11-13, PR #1569 open, iPhone check passed (Chris, 2026-11-13).**
+iOS check passed (Chris, 2026-11-13), ready to merge; E10 is built, PR #1570 open, iPhone check passed (Chris, 2026-11-14), ready to merge. E15 was added and built
+2026-11-13, PR #1569 open, iPhone check passed (Chris, 2026-11-13). E16 was added 2026-11-14, not started.**
 
 **Where this file is edited.** Ledger changes are committed to `docs-de-improvements-ledger` and
 pushed after each commit; the branch goes to `production` in one PR when the batch is done (Chris,
@@ -35,12 +35,13 @@ function or block name); line numbers are given only as hints and will move.
 | E7 | Initial "select dataset" modal has no "recently updated" flags | `hotfix-de-chooser-updated-badges` | this file | `hotfix-de-chooser-updated-badges @ 9700909479` | **DONE 2026-11-11** — cause browser-confirmed first | browser probe on both entry points, see E7 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
 | E8 | Dropdown's rotating icon: don't underline it | `hotfix-de-icon-underline` | this file | `hotfix-de-icon-underline @ df7e4926d8`; PR #1566, merge `d545957e0b` | **DONE 2026-11-12** | chevron probe at 1440 / 390 with a before arm, see E8 "Proof that ran"; curated smoke 44/44 |
 | E9 | Topic chooser: 3 columns on desktop; topics and datasets as cards | `feature-de-topic-chooser-columns` | this file | `feature-de-topic-chooser-columns @ 64eb473573` (columns), `bb747a6aae` (cards); PR #1567, merge `2dc3f791a5` | **DONE 2026-11-12** — cards added (Chris, 2026-11-12) | column probe at five widths with a before arm, card probe at 1440 / 390, see E9 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; site characterization `prod_prod` 840/840 |
-| E10 | Selected neighborhood stays highlighted on bar, map and legend, and across overlay switches | `feature-de-persistent-selection` (cut from `production` @ `5d59489c80`) | this file | `feature-de-persistent-selection @ 0bd94ca03a`; PR #1570 | **PR open**; Chris confirmed the three choices in E10 "Choices made" (2026-11-13), and chose the two-tone selection outline (2026-11-13); CloudCannon site 161415 | selection probe, choropleth and bubble, 21 steps, Chromium/Firefox/WebKit identical, plus a control on the old code; two-tone outline: 44-step probe in three browsers, bar order checked on 4 indicators; bar outline above neighbours: pixel probe 72/72 against 21/72 on the prior commit; taps skip hover: tap probe with a control on the prior commit; `npm run lint` exit 0; `de-characterization --check` passed after a markCount-only re-baseline; curated smoke 44/44 |
+| E10 | Selected neighborhood stays highlighted on bar, map and legend, and across overlay switches | `feature-de-persistent-selection` (cut from `production` @ `5d59489c80`) | this file | `feature-de-persistent-selection @ 0bd94ca03a`; PR #1570 | **PR open, ready to merge**; Chris confirmed the three choices in E10 "Choices made" (2026-11-13), and chose the two-tone selection outline (2026-11-13); iPhone check on the preview passed (Chris, 2026-11-14); CloudCannon site 161415 | selection probe, choropleth and bubble, 21 steps, Chromium/Firefox/WebKit identical, plus a control on the old code; two-tone outline: 44-step probe in three browsers, bar order checked on 4 indicators; bar outline above neighbours: pixel probe 72/72 against 21/72 on the prior commit; taps skip hover: tap probe with a control on the prior commit; `npm run lint` exit 0; `de-characterization --check` passed after a markCount-only re-baseline; curated smoke 44/44; CI smoke and site characterization passed on `0bd94ca03a`; iPhone check on the preview (Chris, 2026-11-14) |
 | E11 | Citywide-only indicators: no bar chart (it draws one large bar) | `feature-de-citywide-no-bar` | this file | `feature-de-citywide-no-bar @ 9c71cca181`, not pushed | **Built**; PR held (Chris, 2026-11-12) | bar probe, five arms incl. an injected one-of-many, see E11 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; `de-characterization --check` passed |
 | E12 | Map controls: zoom in/out and reset zoom | `feature-de-map-controls` (E12–E14 share it, D12) | this file | `feature-de-map-controls @ 913be741d7`; re-baseline `4244a5003a`; hints `a6487447bb`, `ac5b841181`, `a82e4ccd60`; PR #1568 | **Merged** — #1568, `5d59489c80` (2026-11-13) | probes in Chromium, Firefox and WebKit at 1440 / 960 / 959 / 390, see E12–E14 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; site-characterization re-baseline, nothing unexplained; CI smoke and site characterization passed on `4244a5003a`, `a6487447bb` and `a82e4ccd60`; iPhone check on the preview (Chris, 2026-11-13) |
 | E13 | Map control: turn the geography layer off | `feature-de-map-controls` | this file | as E12 | **Merged** with E12 — one eye button with E14 (Chris, 2026-11-13) | as E12 |
 | E14 | Map control: geography layer opacity | `feature-de-map-controls` | this file | as E12 | **Merged** with E12 — slider shows actual opacity (Chris, 2026-11-13) | as E12 |
 | E15 | Below lg, opening and closing the details soon after load leaves blank space under the map | `hotfix-de-map-details-gap` | this file | `hotfix-de-map-details-gap @ dfdc71cbe1`; PR #1569 | **Merged** — #1569, `78b1965486` (2026-11-13); D15: the map keeps its size (Chris, 2026-11-13) | gap probe, three arms, before (Chromium) and after (Chromium, Firefox, WebKit), see E15 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; CI smoke and site characterization passed on `dfdc71cbe1`; iPhone check on the preview (Chris, 2026-11-13) |
+| E16 | WebKit: a first click on the map can land on the map container instead of the area | *not cut yet* (from local `production`) | this file | — | **Not started**; added 2026-11-14 (Chris); first step is to reproduce it in real Safari | Playwright WebKit only, see E16 |
 
 E5 and E7 are small enough to share one branch if Chris prefers; they touch different files
 (`disparities.js` and `section.html` / `topic-indicator-selector.js`), so a combined PR has no
@@ -928,6 +929,47 @@ characterization (run 43512627695) passed on `dfdc71cbe1`. On an iPhone, Chris c
 (built 2026-11-13 and serving `map.066b802d3554941a.js`, the fixed
 file) and reported it working (2026-11-13).
 
+## E16 — WebKit: first map click lands on the container (added 2026-11-14)
+
+**Found while proving E10, not reported by a visitor.** In Playwright's WebKit at 1440×900, the
+first click on a map area after load sometimes selects nothing: the click lands on the map
+container, whose own handler clears the selection.
+
+**What exists, observed in Playwright WebKit only.** Leaflet 1.9.4's Keyboard handler,
+`_onMouseDown` (`leaflet-src.js:14001-14011`), calls `container.focus()` on the first press and then
+`window.scrollTo` to restore the scroll position. In WebKit the page still scrolls, by 67px at
+1440×900, where the map container's top is at 131px and it is 836px high, so it runs past the
+window. The area moves out from under the pointer between press and release, and the click
+lands on the container. It predates E10: on `production`'s explorer code the first click hit the
+container in 4 of 4 WebKit runs (`scripts/.sc-rebaseline/e10/first-click.mjs`, git-ignored), with
+no popup. In E10's three later WebKit runs of the selection probe (`twotone-`, `fix-`,
+`touch-webkit.log`), 4 map clicks missed: 2 on the map container (choropleth `clickA`, choropleth
+`toggleOn`, so not always the first click) and 2 on an SVG `g` (bubble `clickA`, in two runs);
+that the `g` misses share the cause is not shown. Chromium and Firefox missed none.
+
+**Not known.** Whether real Safari does this, on a Mac or an iPhone. Playwright's WebKit on
+Windows is not Safari, and Chris's iPhone checks of E10 (2026-11-13, 2026-11-14) reported no lost
+first tap. Per the root-cause rule in `CLAUDE.md`, nothing is built until it reproduces in real
+Safari.
+
+**Likely shape, if it reproduces.** Focus the container without scrolling,
+`focus({ preventScroll: true })`, in place of Leaflet's focus-then-scroll-back: either by
+replacing the Keyboard handler's `_onMouseDown` on the explorer's map, or by turning the handler
+off and focusing the container ourselves. Every map in the explorer goes through `initBaseMap`
+(`map.js`), so one place covers them; `print-map.js`'s off-screen export map is never clicked.
+The other Leaflet maps on the site (`nr-leaflet.html`, `assets/js/nr-report/map.js`, FVI's
+`fvi.js`, the rat mitigation zones' `rmz.js`) are out of scope unless they reproduce too.
+
+**D16 for Chris.**
+- D16a: can you check real Safari? On a Mac, load an explorer indicator with the map taller than the
+  window, and click a map area once, straight after load: does it select it, or does the page jump
+  and nothing get selected? On an iPhone the same with the first tap.
+- D16b: if it reproduces, the explorer's map only, or the site's other Leaflet maps too?
+
+**Proof, when built.** `first-click.mjs` against the change in WebKit, with `production`'s code as
+the control arm (it lost 4 of 4); the selection probe in three browsers; then Chris in real
+Safari.
+
 ## Next command
 
 E8–E15: all decisions made; E8, E9, E12–E14 and E15 merged (#1566 `d545957e0b`, #1567
@@ -944,8 +986,11 @@ characterization run 43604785078 passed on it. The bar outline fix followed as `
 Taps skipping hover followed as `0bd94ca03a`; CI smoke run 43612622028 and site characterization
 run 43612622077 passed on it. CloudCannon preview site 161415. Next: Chris checks on an iPhone
 against that preview that a tap selects, moves and clears a selection, and that the black and
-white outline now appear together on the map and the bar (not run below `lg`), and merges #1570. Open question for Chris: fix the
-WebKit first-click scroll (Leaflet focuses the map container on mousedown) as its own item?
+white outline now appear together on the map and the bar (not run below `lg`): passed (Chris,
+2026-11-14). Next: Chris merges #1570.
+
+E16 (added 2026-11-14): Chris answers D16a, a check in real Safari. Nothing is built until it
+reproduces there.
 
 E4, after Chris has run the staging→production migration and the `DE_metadata_json.R` re-export
 (EHDP-data `production`), against a server on production data:
