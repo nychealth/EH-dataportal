@@ -117,7 +117,13 @@ const DE = {
         // level the eye button restores after hiding it. Kept here so a measure, boundary or
         // time change redraws with them; the saved map (print-map.js) deliberately ignores both.
         fillScale: 1,
-        fillRestore: 1
+        fillRestore: 1,
+
+        // The geography the visitor selected by clicking it on the map or the bar chart, as
+        // { geoID, geoType }, or null (map.js, toggleMapSelection). geoType is the boundary it was
+        // picked on: a GeoID names a different place under another boundary, so a boundary change
+        // drops it, while a measure, time-period or view change keeps it.
+        selection: null
     },
 
     // Print/export state: the current view's Vega spec, caption fields, and chart

@@ -150,6 +150,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (event.defaultPrevented) return;
 
+        // A selected geography (map.js, "persistent selection") goes first: the bar view is the
+        // default view, so with this last in line the first Escape would close the chart the
+        // selection is drawn on, and Escape is the keyboard's only way to clear a selection.
+
+        if (clearMapSelection()) return;
+
         const openPane = document.querySelector('#v-pills-tabContent .tab-pane.show.active');
 
         if (openPane?.id) {
