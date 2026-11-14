@@ -64,6 +64,116 @@ const setBarSelection = (geoID) => {
 
 };
 
+// ----------------------------------------------------------------------- //
+// persistent selection
+// ----------------------------------------------------------------------- //
+
+// A click on a map area, a bubble or a bar selects that geography (Chris, 2026-11-12, D10): it
+// stays outlined on the map and the bar chart, and fills the legend panel, after the pointer
+// leaves. Hover still highlights on top of it, and the legend returns to the selection when the
+// hover ends. A second click on it, a click on the map away from any area or bubble, or Escape
+// clears it; a click on another moves it. The state is DE.map.selection (global.js).
+
+// Set by the renderer on screen: outlines the given geography on the map and shows it in the
+// legend panel, or removes both for null. A no-op while no render has drawn.
+
+let showMapSelection = () => {};
+
+// Pushes the selection into the bar chart's own signal for it (bar.js, pinnedGeo), separate from
+// the hover signal setBarSelection drives, so a hover elsewhere leaves the selected bar outlined.
+
+const setBarPin = (geoID) => {
+
+    if (!window.myVegaView) return;
+
+    window.myVegaView.signal("pinnedGeo", geoID).run();
+
+};
+
+// The selected geography's outline, told apart from hover's plain black (Chris, 2026-11-13): a
+// black line with a white one on top. No single colour contrasts 3:1 with both ends of the
+// viridis fills; one of these two lines always does. It sits in a pane of its own above the
+// shapes, so a hovered neighbour brought to the front cannot cover it, and that pane ignores the
+// pointer, so clicks and hovers still reach the shape underneath. makeLine builds one line from
+// the options it is given; null removes the outline.
+
+const SELECTION_PANE = 'deSelectionPane';
+
+let selectionOutline = null;
+
+const drawSelectionOutline = (makeLine) => {
+
+    if (selectionOutline) {
+        selectionOutline.remove();
+        selectionOutline = null;
+    }
+
+    if (!makeLine || !currentMap) return;
+
+    // Above Leaflet's overlay pane (z-index 400), where the shapes are, and below its tooltip and
+    // popup panes.
+
+    if (!currentMap.getPane(SELECTION_PANE)) {
+        const pane = currentMap.createPane(SELECTION_PANE);
+        pane.style.zIndex = 450;
+        pane.style.pointerEvents = 'none';
+    }
+
+    const options = { pane: SELECTION_PANE, interactive: false, fill: false };
+
+    selectionOutline = L.layerGroup([
+        makeLine({ ...options, color: '#000', weight: 5 }),
+        makeLine({ ...options, color: '#fff', weight: 2 })
+    ]).addTo(currentMap);
+
+};
+
+const selectedGeoID = () => DE.map.selection?.geoID ?? null;
+
+// A tap fires mouseover before click, so hover's plain black outline painted first and the
+// selection's white line followed, a visible step on an iPhone (Chris, 2026-11-14). Taps therefore
+// skip hover: the selection shows the same geography in the legend and on both views. The mouse
+// events a tap fires do not say they came from a finger; the pointer events before them do.
+
+let lastPointerType = null;
+
+['pointerdown', 'pointerover'].forEach(type => {
+    document.addEventListener(type, (event) => { lastPointerType = event.pointerType; }, true);
+});
+
+const isTouchInput = () => lastPointerType === 'touch';
+
+// Selects a geography, or clears the selection when it is the one already selected. GeoIDs arrive
+// as numbers from some sources and strings from others, so they are compared as strings.
+
+const toggleMapSelection = (geoID) => {
+
+    const current = selectedGeoID();
+    const next = current != null && String(current) === String(geoID) ? null : geoID;
+
+    DE.map.selection = next == null ? null : { geoID: next, geoType: DE.state.GeoType };
+
+    showMapSelection(next);
+    setBarPin(next);
+
+};
+
+// Clears the selection. Returns whether there was one, so the Escape handler
+// (de-tab-content.js) knows whether the key was used.
+
+const clearMapSelection = () => {
+
+    if (!DE.map.selection) return false;
+
+    DE.map.selection = null;
+
+    showMapSelection(null);
+    setBarPin(null);
+
+    return true;
+
+};
+
 // Points the contract back at the no-ops. Called synchronously at the start of every render so
 // that a bar hover during the geometry fetch can't reach the outgoing map's discarded layers —
 // that used to silently no-op the highlight while still writing the previous geography's name
@@ -277,6 +387,12 @@ const initBaseMap = () => {
 
     addMapControls();
 
+    // A click on the map away from any area or bubble clears the selection. Clicks on the
+    // selectable shapes stop propagation in their own handlers, so they never reach this one, and
+    // the controls' container blocks clicks from reaching the map (addMapControls).
+
+    currentMap.on('click', clearMapSelection);
+
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}' + (L.Browser.retina ? '@2x.png' : '.png') + '?key=cb1_2vaf_1_f87644104deb54c869cef554', {
         attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
         crossOrigin: true,
@@ -331,6 +447,10 @@ const applyFillSettings = () => {
         currentGeojsonLayer.resetStyle();
 
     }
+
+    // Both branches restyle every shape, the selected one included, so outline it again.
+
+    showMapSelection(selectedGeoID());
 };
 
 // Adds Leaflet's zoom control and one control of the explorer's own beneath it: Reset zoom, and
@@ -564,6 +684,12 @@ const resetMapForRender = () => {
     mapRenderGeneration += 1;
 
     detachMapInterop();
+
+    // The outgoing render's selection drawer holds its discarded layers; the incoming render
+    // installs its own and redraws the selection once its geometry is on the map.
+
+    showMapSelection = () => {};
+    drawSelectionOutline(null);
 
     // The outgoing render's hover text describes geography that is about to disappear, and with
     // the interop detached no mouseout can clear it — so clear it here, at the render boundary.
@@ -1041,6 +1167,13 @@ const renderMap = (
     debugLog("** renderMap");
     debugLog("** renderMap: metadata", metadata);
 
+    // ----- drop a selection made under another boundary ----- //
+
+    // Its GeoID would name a different place here (CD 501 and CDTA 501 are in different boroughs).
+    // Runs before either renderer and before showBar, which seeds the bar chart from DE.map.selection.
+
+    if (DE.map.selection && DE.map.selection.geoType !== DE.state.GeoType) clearMapSelection();
+
     // ----- bail out to the unmapped state before reading any measure fields ----- //
 
     // Two ways to get here with no map to draw, and both must be caught before the reads below:
@@ -1149,15 +1282,15 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
 
     let highlightedLayer = null;
 
-    // Applies the hover-highlight outline, clearing any previous highlight, and brings the feature to the front of the layer stack.
+    // The selected polygon (see "persistent selection" above). It keeps the highlight outline when
+    // a hover moves elsewhere, so every reset below skips it.
 
-    const highlightFeature = (e) => {
+    let selectedLayer = null;
 
-        const layer = e.target;
+    // Draws the highlight outline on a polygon and brings it to the front of the layer stack, so
+    // its neighbours' strokes don't cover it.
 
-        if (highlightedLayer && highlightedLayer !== layer) {
-            geojsonLayer.resetStyle(highlightedLayer);
-        }
+    const outlineLayer = (layer) => {
 
         layer.setStyle({
             weight: 3,
@@ -1168,13 +1301,28 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
         if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
             layer.bringToFront();
         }
+    };
+
+    // Applies the hover-highlight outline, clearing any previous hover highlight.
+
+    const highlightFeature = (e) => {
+
+        const layer = e.target;
+
+        if (highlightedLayer && highlightedLayer !== layer && highlightedLayer !== selectedLayer) {
+            geojsonLayer.resetStyle(highlightedLayer);
+        }
+
+        outlineLayer(layer);
 
         highlightedLayer = layer;
 
     };
 
-    // Restores a layer's base style. Falls back to the tracked layer so callers that don't hold a
-    // reference (or pass a stale one) still clear the highlight that is actually on screen.
+    // Restores a layer's base style, unless it is the selected one. Falls back to the tracked layer
+    // so callers that don't hold a reference (or pass a stale one) still clear the highlight that
+    // is actually on screen. The hovered polygon was brought to the front, so the selected one goes
+    // back in front of it.
 
     const resetHighlight = (layer) => {
 
@@ -1182,10 +1330,13 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
 
         if (!target || !geojsonLayer) return;
 
-        geojsonLayer.resetStyle(target);
+        if (target !== selectedLayer) geojsonLayer.resetStyle(target);
 
         if (target === highlightedLayer) highlightedLayer = null;
 
+        if (selectedLayer && !L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+            selectedLayer.bringToFront();
+        }
     };
 
     // Builds popup markup for a feature, substituting the citywide popup when the data is citywide-only.
@@ -1205,6 +1356,16 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
     };
 
     const { updateHoverUI } = createHoverUIHelpers(metadata, minValue, maxValue, 1);
+
+    // What the legend panel shows when nothing is hovered: the selection, or its idle text.
+
+    const showSelectionInLegend = () => {
+        if (selectedLayer) {
+            updateHoverUI(selectedLayer.feature.properties);
+        } else {
+            clearHoverUI();
+        }
+    };
 
     const mapRenderPromise = loadMapGeojson(topoFile, dataLookup)
         .then(geojson => {
@@ -1247,15 +1408,22 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
                         const props = feature.properties;
                         debugLog("** click", feature.properties);
 
+                        // Keep this click from reaching the map's own handler, which clears the
+                        // selection (initBaseMap). The popup opens from the layer, so it still does.
+
+                        L.DomEvent.stopPropagation(e);
+
                         if (isCitywideOnly) switchToTrendTabOnce();
 
                         const linkedGeoID = props.GeoID ?? props.GEOCODE;
 
-                        if (linkedGeoID != null) setBarSelection(linkedGeoID);
+                        if (linkedGeoID != null) toggleMapSelection(linkedGeoID);
 
                     });
 
                     layer.on('mouseover', (e) => {
+
+                        if (isTouchInput()) return;
 
                         const props = feature.properties;
                         const linkedGeoID = props.GeoID ?? props.GEOCODE;
@@ -1276,7 +1444,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
                     layer.on('mouseout', (e) => {
 
                         resetHighlight(e.target);
-                        clearHoverUI();
+                        showSelectionInLegend();
 
                         setBarSelection(null);
 
@@ -1313,10 +1481,39 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
                     // highlight from either source (map hover or bar chart) clears correctly.
 
                     resetHighlight();
-                    clearHoverUI();
+                    showSelectionInLegend();
 
                 }
             });
+
+            // ----- draw the selection, now and on later changes ----- //
+
+            // Outlines the polygon for a GeoID (looked up as for the bar hover above) and shows it
+            // in the legend panel, unless a hover is showing there now; null removes it. A
+            // selection with no polygon on this map stays in DE.map.selection and is drawn again
+            // if a later render has one.
+
+            showMapSelection = (geoID) => {
+
+                const previous = selectedLayer;
+
+                selectedLayer = geoID == null ? null : (geoIDtoLayer[geoID] ?? geoIDtoLayer[String(geoID)] ?? null);
+
+                if (previous && previous !== selectedLayer && previous !== highlightedLayer) {
+                    geojsonLayer.resetStyle(previous);
+                }
+
+                if (selectedLayer) outlineLayer(selectedLayer);
+
+                const outlined = selectedLayer;
+
+                drawSelectionOutline(outlined && ((options) => L.polygon(outlined.getLatLngs(), options)));
+
+                if (!highlightedLayer) showSelectionInLegend();
+
+            };
+
+            showMapSelection(selectedGeoID());
         })
         .catch(error => {
 
@@ -1408,7 +1605,26 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
 
             let highlightedMarker = null;
 
-            // Applies the hover-highlight style to a marker entry, clearing any previous one.
+            // The selected bubble (see "persistent selection" above). It keeps the highlight style
+            // when a hover moves elsewhere, so the resets below skip it.
+
+            let selectedMarker = null;
+
+            // Draws the highlight style on a marker entry, or restores its base style.
+
+            const outlineMarker = (markerEntry) => {
+                markerEntry.marker.setStyle({
+                    weight: 3,
+                    color: '#000',
+                    fillOpacity: fillOpacityFor(BUBBLE_HOVER_FILL)
+                });
+            };
+
+            const restoreMarker = (markerEntry) => {
+                markerEntry.marker.setStyle({ ...markerEntry.originalStyle, fillOpacity: fillOpacityFor(BUBBLE_FILL) });
+            };
+
+            // Applies the hover-highlight style to a marker entry, clearing any previous hover.
 
             const highlightMarker = (markerEntry) => {
 
@@ -1416,29 +1632,35 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                     return;
                 }
 
-                if (highlightedMarker) {
-                    highlightedMarker.marker.setStyle({ ...highlightedMarker.originalStyle, fillOpacity: fillOpacityFor(BUBBLE_FILL) });
-                }
+                if (highlightedMarker && highlightedMarker !== selectedMarker) restoreMarker(highlightedMarker);
 
-                markerEntry.marker.setStyle({
-                    weight: 3,
-                    color: '#000',
-                    fillOpacity: fillOpacityFor(BUBBLE_HOVER_FILL)
-                });
+                outlineMarker(markerEntry);
 
                 highlightedMarker = markerEntry;
 
             };
 
-            // Restores whichever marker is currently highlighted, whoever highlighted it.
+            // Restores whichever marker is currently highlighted, whoever highlighted it, unless
+            // it is the selected one.
 
             const resetMarkerHighlight = () => {
 
                 if (!highlightedMarker) return;
 
-                highlightedMarker.marker.setStyle({ ...highlightedMarker.originalStyle, fillOpacity: fillOpacityFor(BUBBLE_FILL) });
+                if (highlightedMarker !== selectedMarker) restoreMarker(highlightedMarker);
+
                 highlightedMarker = null;
 
+            };
+
+            // What the legend panel shows when nothing is hovered: the selection, or its idle text.
+
+            const showSelectionInLegend = () => {
+                if (selectedMarker) {
+                    updateHoverUI(selectedMarker.row);
+                } else {
+                    clearHoverUI();
+                }
             };
 
             // ----- Add the GeoJSON overlay (light gray polygons) ----- //
@@ -1506,13 +1728,21 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
 
                         debugLog("** click", item);
 
+                        // Keep this click from reaching the map's own handler, which clears the
+                        // selection (initBaseMap). A click on the gray areas under the bubbles
+                        // does reach it: on this map the bubbles are what a click selects.
+
+                        L.DomEvent.stopPropagation(e);
+
                         if (isCitywideOnly) switchToTrendTabOnce();
 
-                        setBarSelection(item.GeoID);
+                        toggleMapSelection(item.GeoID);
 
                     });
 
                     circle.on('mouseover', (e) => {
+
+                        if (isTouchInput()) return;
 
                         highlightMarker(markerEntry);
 
@@ -1526,7 +1756,7 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
 
                         resetMarkerHighlight();
 
-                        clearHoverUI();
+                        showSelectionInLegend();
 
                         setBarSelection(null);
 
@@ -1555,9 +1785,39 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
 
                 reset: () => {
                     resetMarkerHighlight();
-                    clearHoverUI();
+                    showSelectionInLegend();
                 }
             });
+
+            // ----- draw the selection, now and on later changes ----- //
+
+            // As on the choropleth: outlines the bubble for a GeoID and shows it in the legend
+            // panel unless a hover is showing there; null removes it. A geography with no bubble
+            // on this map (no value, or no coordinates) stays selected and draws nothing.
+
+            showMapSelection = (geoID) => {
+
+                const previous = selectedMarker;
+
+                selectedMarker = geoID == null ? null : (circleMarkers.find(c => String(c.geoID) === String(geoID)) ?? null);
+
+                if (previous && previous !== selectedMarker && previous !== highlightedMarker) restoreMarker(previous);
+
+                if (selectedMarker) outlineMarker(selectedMarker);
+
+                // No outline while the eye has taken the bubbles off the map (applyFillSettings).
+
+                const outlined = DE.map.fillScale === 0 ? null : selectedMarker?.marker;
+
+                drawSelectionOutline(outlined && ((options) =>
+                    L.circleMarker(outlined.getLatLng(), { ...options, radius: outlined.getRadius() })
+                ));
+
+                if (!highlightedMarker) showSelectionInLegend();
+
+            };
+
+            showMapSelection(selectedGeoID());
         })
         .catch(error => {
 
