@@ -149,12 +149,17 @@ const layoutStackedMap = () => {
     const screenHeight = screenHeightProbe.getBoundingClientRect().height;
 
     // The map's place in the page is the card's bottom edge: the map itself is sticky, so its own
-    // position reads 0 once the page has scrolled.
+    // position reads 0 once the page has scrolled. The card is measured as if its details were
+    // closed: open details push the map down the page rather than shrink it, and nothing re-runs
+    // this when they open or close, so a resize while they were open (one fires ~1.2s after load)
+    // left the map sized for them, with a gap under it once they closed.
 
     const card = document.querySelector('.de-main-details');
+    const details = document.getElementById('detailsContent');
     const legend = document.querySelector('.de-legend');
     const tabBar = document.querySelector('.de-tabs-nav');
-    const mapTop = card.getBoundingClientRect().bottom + window.scrollY;
+    const detailsHeight = details ? details.getBoundingClientRect().height : 0;
+    const mapTop = card.getBoundingClientRect().bottom + window.scrollY - detailsHeight;
     const mapHeight = Math.max(200, Math.round(screenHeight - mapTop - legend.offsetHeight - tabBar.offsetHeight));
 
     const sheetOpen = document.querySelector('.de-tabs')?.classList.contains('has-open-panel');
