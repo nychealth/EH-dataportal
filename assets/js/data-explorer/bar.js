@@ -185,7 +185,7 @@ const renderBar = (
                             "condition": [
                                 {"param": "highlight", "empty": false, "value": "black"},
                                 {
-                                    "test": "datum.Value != null && datum.GeoID == selectedGeo",
+                                    "test": "datum.Value != null && (datum.GeoID == selectedGeo || datum.GeoID == pinnedGeo)",
                                     "value": "black"
                                 }
                             ],
@@ -214,7 +214,7 @@ const renderBar = (
                 "x": {"field": "Value", "type": "quantitative"},
                 "color": {
                 "condition": {
-                "test": "datum.Value != null && datum.GeoID == selectedGeo",
+                "test": "datum.Value != null && (datum.GeoID == selectedGeo || datum.GeoID == pinnedGeo)",
                 "value": "black"
                 },
                 "value": "transparent"
@@ -278,7 +278,7 @@ const renderBar = (
                             "condition": [
                                 {"param": "highlight", "empty": false, "value": "black"},
                                 {
-                                    "test": "datum.Value != null && datum.GeoID == selectedGeo",
+                                    "test": "datum.Value != null && (datum.GeoID == selectedGeo || datum.GeoID == pinnedGeo)",
                                     "value": "black"
                                 }
                             ],
@@ -288,7 +288,7 @@ const renderBar = (
                             "condition": [
                                 {"param": "highlight", "empty": false, "value": 2},
                                 {
-                                    "test": "datum.Value != null && datum.GeoID == selectedGeo",
+                                    "test": "datum.Value != null && (datum.GeoID == selectedGeo || datum.GeoID == pinnedGeo)",
                                     "value": 2
                                 }
                             ],
@@ -343,7 +343,7 @@ const renderBar = (
                         "stroke": {
                             "condition": [
                                 {
-                                    "test": "datum.Value != null && datum.GeoID == selectedGeo",
+                                    "test": "datum.Value != null && (datum.GeoID == selectedGeo || datum.GeoID == pinnedGeo)",
                                     "value": "black"
                                 }
                             ],
@@ -353,7 +353,7 @@ const renderBar = (
                             "condition": [
                                 {"param": "highlight", "empty": false, "value": 2},
                                 {
-                                    "test": "datum.Value != null && datum.GeoID == selectedGeo",
+                                    "test": "datum.Value != null && (datum.GeoID == selectedGeo || datum.GeoID == pinnedGeo)",
                                     "value": 2
                                 }
                             ],
@@ -400,7 +400,7 @@ const renderBar = (
                             "condition": [
                                 {"param": "highlight", "empty": false, "value": "black"},
                                 {
-                                    "test": "datum.Value != null && datum.GeoID == selectedGeo",
+                                    "test": "datum.Value != null && (datum.GeoID == selectedGeo || datum.GeoID == pinnedGeo)",
                                     "value": "black"
                                 }
                             ],
@@ -424,7 +424,7 @@ const renderBar = (
                         "x": {"field": "Value", "type": "quantitative"},
                         "color": {
                             "condition": {
-                                "test": "datum.Value != null && datum.GeoID == selectedGeo",
+                                "test": "datum.Value != null && (datum.GeoID == selectedGeo || datum.GeoID == pinnedGeo)",
                                 "value": "black"
                             },
                         "value": "transparent"
@@ -517,8 +517,17 @@ const renderBar = (
         "name": "selectedGeo",
         "value": null
     };
-    
+
     vegaSpec.signals.push(geoSignal);
+
+    // The geography the visitor selected by a click (map.js, "persistent selection"), outlined
+    // like a hovered one. Seeded from the shared state because a measure, time-period or view
+    // change redraws this chart while the selection stands.
+
+    vegaSpec.signals.push({
+        "name": "pinnedGeo",
+        "value": DE.map.selection?.geoID ?? null
+    });
 
     DE.print.printSpec = vegaSpec;
     DE.print.vizSource = metadata[0]?.Sources;
@@ -578,6 +587,19 @@ const renderBar = (
             if (!window.mapInterop.ready) return;
 
             window.mapInterop.reset();
+
+        });
+
+        // A click on a bar selects its geography, as a click on the map does (Chris, 2026-11-13).
+        // A row with no value is never outlined (the stroke tests above), so it is not selectable.
+
+        result.view.addEventListener('click', (event, item) => {
+
+            const geoID = item?.datum?.GeoID;
+
+            if (geoID == null || item.datum.Value == null) return;
+
+            toggleMapSelection(geoID);
 
         });
     });
