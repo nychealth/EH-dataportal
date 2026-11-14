@@ -108,10 +108,10 @@ const renderBar = (
     let setCircleSize = 250;
 
     // The selected geography (map.js, "persistent selection") is outlined in two tones, as on the
-    // map: its mark's black stroke widens, and pinnedInnerLine below draws a white line on top.
+    // map: pinnedOutline below draws a black line and a white one over it, above every mark.
 
     const PINNED_BAR_TEST = "datum.Value != null && datum.GeoID == pinnedGeo";
-    const PINNED_LINE_STYLE = 'pinnedInnerLine';
+    const PINNED_LINE_STYLE = 'pinnedOutline';
 
 
     // ----- display-rule resolution (CI detection, percent formatting) ----- //
@@ -198,7 +198,6 @@ const renderBar = (
                             "value": "transparent"
                         },
                         "strokeWidth": {
-                            "condition": {"test": PINNED_BAR_TEST, "value": 4},
                             "value": 2
                         }
                     }
@@ -293,7 +292,6 @@ const renderBar = (
                         },
                         "strokeWidth": {
                             "condition": [
-                                {"test": PINNED_BAR_TEST, "value": 4},
                                 {"param": "highlight", "empty": false, "value": 2},
                                 {
                                     "test": "datum.Value != null && (datum.GeoID == selectedGeo || datum.GeoID == pinnedGeo)",
@@ -359,7 +357,6 @@ const renderBar = (
                         },
                         "strokeWidth": {
                             "condition": [
-                                {"test": PINNED_BAR_TEST, "value": 4},
                                 {"param": "highlight", "empty": false, "value": 2},
                                 {
                                     "test": "datum.Value != null && (datum.GeoID == selectedGeo || datum.GeoID == pinnedGeo)",
@@ -416,7 +413,6 @@ const renderBar = (
                             "value": "transparent"
                         },
                         "strokeWidth": {
-                            "condition": {"test": PINNED_BAR_TEST, "value": 4},
                             "value": 2
                         }
                     }
@@ -446,10 +442,13 @@ const renderBar = (
         }
 
 
-    // ----- selected geography's white inner line ----- //
+    // ----- selected geography's two-tone outline ----- //
 
-    // One layer per selectable mark: the same geometry, drawn unfilled over it, white on the
-    // selected row and transparent on the rest. It keeps every row rather than filtering to the
+    // Two layers per selectable mark, black then white: the same geometry, drawn unfilled over it,
+    // coloured on the selected row and transparent on the rest. Both sit above all the marks,
+    // because a mark's own stroke is painted over by any neighbour drawn after it, and marks are
+    // drawn in data order, not rank order (seen on an iPhone 2026-11-14: the selected bar's widened
+    // black stroke showed only at its ends). Each keeps every row rather than filtering to the
     // selected one: a filtered layer has its own y domain, and Vega-Lite drops the "-x" ranking
     // sort when it has to union two (measured 2026-11-13: 2380's bars fell back to GeoID order).
     // Width and height are copied for the same reason, since the layers that set them conflict
@@ -459,7 +458,7 @@ const renderBar = (
     const isSelectableLayer = (layer) => [].concat(layer.encoding?.stroke?.condition ?? [])
         .some(condition => condition.test?.includes('pinnedGeo'));
 
-    const pinnedInnerLine = (layer) => {
+    const pinnedOutline = (layer, colour, width) => {
 
         const { type, size } = layer.mark;
         const { x, x2, y } = layer.encoding;
@@ -467,21 +466,35 @@ const renderBar = (
         return {
             ...(layer.width != null && { "width": layer.width }),
             ...(layer.height != null && { "height": layer.height }),
-            "mark": { type, ...(size != null && { size }), "filled": false, "style": PINNED_LINE_STYLE },
+            // Opacity 1: Vega-Lite draws unaggregated points at 0.7 by default, which greys both lines.
+            // aria false: otherwise each layer adds one more screen-reader item per row.
+            "mark": {
+                type,
+                ...(size != null && { size }),
+                "filled": false,
+                "opacity": 1,
+                "aria": false,
+                "style": PINNED_LINE_STYLE
+            },
             "encoding": {
                 "x": type === 'bar' && !x2 ? { ...x, "stack": null } : x,
                 ...(x2 && { x2 }),
                 y,
                 "color": {
-                    "condition": { "test": PINNED_BAR_TEST, "value": "white" },
+                    "condition": { "test": PINNED_BAR_TEST, "value": colour },
                     "value": "transparent"
                 },
-                "strokeWidth": { "value": 1.5 }
+                "strokeWidth": { "value": width }
             }
         };
     };
 
-    barDisplay = barDisplay.concat(barDisplay.filter(isSelectableLayer).map(pinnedInnerLine));
+    const selectableLayers = barDisplay.filter(isSelectableLayer);
+
+    barDisplay = barDisplay.concat(
+        selectableLayers.map(layer => pinnedOutline(layer, 'black', 4)),
+        selectableLayers.map(layer => pinnedOutline(layer, 'white', 1.5))
+    );
 
 
     // ----- bar spec assembly (barSpec) ----- //
