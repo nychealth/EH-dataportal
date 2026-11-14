@@ -90,6 +90,44 @@ const setBarPin = (geoID) => {
 
 };
 
+// The selected geography's outline, told apart from hover's plain black (Chris, 2026-11-13): a
+// black line with a white one on top. No single colour contrasts 3:1 with both ends of the
+// viridis fills; one of these two lines always does. It sits in a pane of its own above the
+// shapes, so a hovered neighbour brought to the front cannot cover it, and that pane ignores the
+// pointer, so clicks and hovers still reach the shape underneath. makeLine builds one line from
+// the options it is given; null removes the outline.
+
+const SELECTION_PANE = 'deSelectionPane';
+
+let selectionOutline = null;
+
+const drawSelectionOutline = (makeLine) => {
+
+    if (selectionOutline) {
+        selectionOutline.remove();
+        selectionOutline = null;
+    }
+
+    if (!makeLine || !currentMap) return;
+
+    // Above Leaflet's overlay pane (z-index 400), where the shapes are, and below its tooltip and
+    // popup panes.
+
+    if (!currentMap.getPane(SELECTION_PANE)) {
+        const pane = currentMap.createPane(SELECTION_PANE);
+        pane.style.zIndex = 450;
+        pane.style.pointerEvents = 'none';
+    }
+
+    const options = { pane: SELECTION_PANE, interactive: false, fill: false };
+
+    selectionOutline = L.layerGroup([
+        makeLine({ ...options, color: '#000', weight: 5 }),
+        makeLine({ ...options, color: '#fff', weight: 2 })
+    ]).addTo(currentMap);
+
+};
+
 const selectedGeoID = () => DE.map.selection?.geoID ?? null;
 
 // Selects a geography, or clears the selection when it is the one already selected. GeoIDs arrive
@@ -638,6 +676,7 @@ const resetMapForRender = () => {
     // installs its own and redraws the selection once its geometry is on the map.
 
     showMapSelection = () => {};
+    drawSelectionOutline(null);
 
     // The outgoing render's hover text describes geography that is about to disappear, and with
     // the interop detached no mouseout can clear it — so clear it here, at the render boundary.
@@ -1451,6 +1490,10 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
 
                 if (selectedLayer) outlineLayer(selectedLayer);
 
+                const outlined = selectedLayer;
+
+                drawSelectionOutline(outlined && ((options) => L.polygon(outlined.getLatLngs(), options)));
+
                 if (!highlightedLayer) showSelectionInLegend();
 
             };
@@ -1744,6 +1787,14 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                 if (previous && previous !== selectedMarker && previous !== highlightedMarker) restoreMarker(previous);
 
                 if (selectedMarker) outlineMarker(selectedMarker);
+
+                // No outline while the eye has taken the bubbles off the map (applyFillSettings).
+
+                const outlined = DE.map.fillScale === 0 ? null : selectedMarker?.marker;
+
+                drawSelectionOutline(outlined && ((options) =>
+                    L.circleMarker(outlined.getLatLng(), { ...options, radius: outlined.getRadius() })
+                ));
 
                 if (!highlightedMarker) showSelectionInLegend();
 
