@@ -6,7 +6,7 @@ and a metadata re-export; E3 done, merged via #1562; E1 done, merged via #1563; 
 #1564, and audit row A-032 closed. E4 is waiting on the database migration. E8–E14 were added
 2026-11-12, with all their decisions made the same day: E8 and E9 are done, merged via #1566 and
 #1567 the same day; E11 is built, PR held (Chris); E12–E14 are built, PR #1568 open 2026-11-13,
-iOS check passed (Chris, 2026-11-13), ready to merge; E10 is not started. E15 was added and built
+iOS check passed (Chris, 2026-11-13), ready to merge; E10 is built, PR #1570 open. E15 was added and built
 2026-11-13, PR #1569 open, iPhone check passed (Chris, 2026-11-13).**
 
 **Where this file is edited.** Ledger changes are committed to `docs-de-improvements-ledger` and
@@ -35,7 +35,7 @@ function or block name); line numbers are given only as hints and will move.
 | E7 | Initial "select dataset" modal has no "recently updated" flags | `hotfix-de-chooser-updated-badges` | this file | `hotfix-de-chooser-updated-badges @ 9700909479` | **DONE 2026-11-11** — cause browser-confirmed first | browser probe on both entry points, see E7 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44 |
 | E8 | Dropdown's rotating icon: don't underline it | `hotfix-de-icon-underline` | this file | `hotfix-de-icon-underline @ df7e4926d8`; PR #1566, merge `d545957e0b` | **DONE 2026-11-12** | chevron probe at 1440 / 390 with a before arm, see E8 "Proof that ran"; curated smoke 44/44 |
 | E9 | Topic chooser: 3 columns on desktop; topics and datasets as cards | `feature-de-topic-chooser-columns` | this file | `feature-de-topic-chooser-columns @ 64eb473573` (columns), `bb747a6aae` (cards); PR #1567, merge `2dc3f791a5` | **DONE 2026-11-12** — cards added (Chris, 2026-11-12) | column probe at five widths with a before arm, card probe at 1440 / 390, see E9 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; site characterization `prod_prod` 840/840 |
-| E10 | Selected neighborhood stays highlighted on bar, map and legend, and across overlay switches | `feature-de-persistent-selection` (cut from `production` @ `5d59489c80`) | this file | `feature-de-persistent-selection @ 4f8e70c922`; PR #1570 | **PR open**; Chris confirmed the three choices in E10 "Choices made" (2026-11-13); CloudCannon site 161415 | selection probe, choropleth and bubble, 21 steps, Chromium/Firefox/WebKit identical, plus a control on the old code; `npm run lint` exit 0; `de-characterization --check` passed; curated smoke 44/44 |
+| E10 | Selected neighborhood stays highlighted on bar, map and legend, and across overlay switches | `feature-de-persistent-selection` (cut from `production` @ `5d59489c80`) | this file | `feature-de-persistent-selection @ 57e5551aa3`; PR #1570 | **PR open**; Chris confirmed the three choices in E10 "Choices made" (2026-11-13), and chose the two-tone selection outline (2026-11-13); CloudCannon site 161415 | selection probe, choropleth and bubble, 21 steps, Chromium/Firefox/WebKit identical, plus a control on the old code; two-tone outline: 44-step probe in three browsers, bar order checked on 4 indicators; `npm run lint` exit 0; `de-characterization --check` passed after a markCount-only re-baseline; curated smoke 44/44 |
 | E11 | Citywide-only indicators: no bar chart (it draws one large bar) | `feature-de-citywide-no-bar` | this file | `feature-de-citywide-no-bar @ 9c71cca181`, not pushed | **Built**; PR held (Chris, 2026-11-12) | bar probe, five arms incl. an injected one-of-many, see E11 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; `de-characterization --check` passed |
 | E12 | Map controls: zoom in/out and reset zoom | `feature-de-map-controls` (E12–E14 share it, D12) | this file | `feature-de-map-controls @ 913be741d7`; re-baseline `4244a5003a`; hints `a6487447bb`, `ac5b841181`, `a82e4ccd60`; PR #1568 | **Merged** — #1568, `5d59489c80` (2026-11-13) | probes in Chromium, Firefox and WebKit at 1440 / 960 / 959 / 390, see E12–E14 "Proof that ran"; `npm run lint` exit 0; curated smoke 44/44; site-characterization re-baseline, nothing unexplained; CI smoke and site characterization passed on `4244a5003a`, `a6487447bb` and `a82e4ccd60`; iPhone check on the preview (Chris, 2026-11-13) |
 | E13 | Map control: turn the geography layer off | `feature-de-map-controls` | this file | as E12 | **Merged** with E12 — one eye button with E14 (Chris, 2026-11-13) | as E12 |
@@ -627,6 +627,53 @@ the legend's geography.
   CI runs it), and a phone. Below `lg` a tap is Leaflet's click, so it selects, but that was not
   run.
 
+**Two-tone selection outline** (Chris, 2026-11-13: "can the selected polygon outline be a different
+color than hover?"; chose "Two-tone: white inside black" for map and bar). `a4f6044ea5`.
+- `map.js`: `drawSelectionOutline` draws a 5px black and a 2px white line in a `deSelectionPane`
+  (z-index 450, `pointerEvents: none`, paths non-interactive). Not drawn while the bubbles are
+  hidden (`DE.map.fillScale === 0`).
+- `bar.js`: the selected mark's stroke widens 2 → 4 (`PINNED_BAR_TEST`), and `pinnedInnerLine`
+  layers a 1.5px white line over each selectable layer. The layer is unfiltered, white on the
+  selected row and transparent elsewhere: a layer filtered to that row made Vega-Lite drop the sort,
+  and 2380 and indicator 1 fell to GeoID order. Its compiled marks get `interactive = false`.
+- Why two tones: no single colour reaches 3:1 against both ends of viridis; one of black and white
+  always does. Computed against opaque fills (the map draws them at 65%), not seen in a browser.
+
+**Proof that ran** (2026-11-13, isolated servers; served `bar.a9d7705915e59c71.js`,
+`map.244b670efa220cbd.js`).
+- `selection.mjs`, 44 steps, three browsers: every selected state draws both lines on the selected
+  shape. Tooltip still shows on the selected bar; with the white layer made interactive it does not,
+  so that check discriminates. Chromium and Firefox agree on all 44 steps.
+- WebKit differs only on the 10 steps after its first map click, which lands on the map container:
+  Leaflet's Keyboard handler focuses the container on mousedown, and WebKit scrolls 67px at 1440×900.
+  On `production`'s code the same click hit the container 4 of 4 runs (`first-click.mjs`), so it
+  predates E10. Not fixed; not checked in real Safari.
+- `variants.mjs`: plain (2380, 1), CI (2338, 2414) and mean-dot (2023) layouts each draw both lines
+  on the selected mark; bar order matches the pre-change code on 2380, 1, 2338 and 2023. The one
+  console warning (2023) also appears on the pre-change code.
+- `npm run lint` exit 0; curated smoke 44/44; `de-characterization --check` passes on :8091
+  (staging) and :8092 (production) after the re-baseline, `4d80e3c20f`, which moved `markCount`
+  only: 2023 118 → 177, 2380 59 → 118, 2414 68 → 136, both branches.
+- Not run: the saved bar chart (`print.js` clones `DE.print.printSpec`) is read from the code to
+  show the selection standing at the last render, not one made after it.
+
+**Bar outline fix** (Chris, 2026-11-14, iPhone screenshot: "The bar outline is often partially under
+the surrounding bars"). `1df9800bb0`, re-baseline `57e5551aa3`.
+- Cause: the black was the selected bar's own widened stroke, and a neighbour drawn after it (data
+  order, not rank order) painted over it; the white layer sat above everything. Now the black 4px
+  line is its own layer under the white one, and the bar's own stroke is back to 2.
+- Two more defects in `a4f6044ea5`, fixed in the same commit: the overlay inherited Vega-Lite's 0.7
+  default opacity on points, so mean-dot rings were gray (set to 1); and each overlay layer added a
+  screen-reader item per row (`aria: false`).
+- Proof: `occlusion.mjs` (dark pixels within 2.5 CSS px outside each edge, DPR 2, every third
+  geography): 72 of 72 selections black on all four sides across 2380, 2414, 1, 2023; on
+  `4d80e3c20f` 21 of 72, the misses on 2380/2414/1 all top or bottom. `aria-count.mjs`: labelled
+  items 62/71/121 on 2380/2414/2023, equal to `4f8e70c922` (before any overlay); `4d80e3c20f` read
+  121/139/180. Selection probe, three browsers: tooltip on the selected bar shows. `variants.mjs`:
+  bar order equal to the pre-change run on 2380, 1, 2338. Lint exit 0; curated smoke 44/44;
+  `de-characterization` re-baselined (markCount only: 2023 177 → 236, 2380 118 → 177, 2414
+  136 → 204, both branches) and re-checked exit 0 on :8091 and :8092.
+
 ### E11 — Citywide-only indicators: no bar chart
 
 **What exists.** `renderMap` (`map.js`) sets `isCitywideOnly` when the measure's only map
@@ -867,9 +914,14 @@ E8–E15: all decisions made; E8, E9, E12–E14 and E15 merged (#1566 `d545957e0
 E10 is built on `feature-de-persistent-selection`, cut from `production` @ `5d59489c80`; see E10
 "Built" and "Proof that ran". Chris confirmed the three choices in E10 "Choices made" on
 2026-11-13. Committed as `4f8e70c922`, PR #1570 into `production`; CI smoke run 43554624760 and
-site characterization run 43554624776 started on it; CloudCannon preview site 161415. Next: Chris
-checks on an iPhone against that preview that a tap selects, moves and clears a selection (not run
-below `lg`), and merges #1570.
+site characterization run 43554624776 passed on it. The two-tone outline followed as `a4f6044ea5`
+and its re-baseline as `4d80e3c20f`, pushed 2026-11-14; CI smoke run 43604785105 and site
+characterization run 43604785078 passed on it. The bar outline fix followed as `1df9800bb0` and
+`57e5551aa3`; CI smoke run 43608975328 and site characterization run 43608975396 started on
+it. CloudCannon preview site 161415. Next: Chris
+checks on an iPhone against that preview that a tap selects, moves and clears a selection, with
+the two-tone outline (not run below `lg`), and merges #1570. Open question for Chris: fix the
+WebKit first-click scroll (Leaflet focuses the map container on mousedown) as its own item?
 
 E4, after Chris has run the staging→production migration and the `DE_metadata_json.R` re-export
 (EHDP-data `production`), against a server on production data:
