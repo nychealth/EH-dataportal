@@ -368,7 +368,13 @@
                 }
                 
                 let tableBody = document.getElementById('newTableBody');
-                
+
+                // Every cell below carries www.mygovnyc.org's response, so each goes through DOMPurify,
+                // which also drops a javascript: href (audit N-122). target is allowed back because
+                // DOMPurify strips it by default and these links open in a new tab.
+
+                const sanitizeCell = (html) => DOMPurify.sanitize(html, { ADD_ATTR: ['target'] });
+
                 for (let i = 0; i < data.length; i++) {
 
                     // Create table row
@@ -379,19 +385,19 @@
                     
                     if (office.includes('Council')) {
 
-                        cell_office.innerHTML = office + ' District ' + data[i].district;
+                        cell_office.innerHTML = sanitizeCell(office + ' District ' + data[i].district);
 
                     } else if (office.includes('Community')) {
 
-                        cell_office.innerHTML = office + ' ' + data[i].district;
+                        cell_office.innerHTML = sanitizeCell(office + ' ' + data[i].district);
 
                     } else if (office.includes('Borough')) {
 
-                        cell_office.innerHTML = data[i].districttitle;
+                        cell_office.innerHTML = sanitizeCell(data[i].districttitle);
 
                     } else {
 
-                        cell_office.innerHTML = office;
+                        cell_office.innerHTML = sanitizeCell(office);
 
                     }
                     
@@ -399,21 +405,21 @@
                     let cell_name = document.createElement('td');
                     let url = data[i].website ? data[i].website : '';
                     let name = data[i].firstname ? data[i].firstname + ' ' + data[i].lastname : 'Chairperson ' + data[i].chairperso;
-                    cell_name.innerHTML = `<a href="${url}" target="_blank">${name}</a>`;
+                    cell_name.innerHTML = sanitizeCell(`<a href="${url}" target="_blank">${name}</a>`);
                     
                     let cell_phone = document.createElement('td');
                     let phone = data[i].phone_capital ? data[i].phone_capital + '<br>' + data[i].phone_dist1 : data[i].phone;
-                    cell_phone.innerHTML = office === 'Mayor' ? 'Not available' : phone; 
+                    cell_phone.innerHTML = office === 'Mayor' ? 'Not available' : sanitizeCell(phone);
                     
                     let cell_email = document.createElement('td');
                     let email = data[i].email;
                     if (isValidEmail(email) === true) {
 
-                        cell_email.innerHTML =  `<strong><a href="mailto:${email}">${email}</a></strong>`;
+                        cell_email.innerHTML = sanitizeCell(`<strong><a href="mailto:${email}">${email}</a></strong>`);
 
                     } else {
 
-                        cell_email.innerHTML =  `<strong><a href="${email}" target="_blank"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Contact page</a></strong>`;
+                        cell_email.innerHTML = sanitizeCell(`<strong><a href="${email}" target="_blank"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Contact page</a></strong>`);
 
                     }
                     
