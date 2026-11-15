@@ -70,6 +70,30 @@ Step 3's proof, all on an isolated prod_prod server on :8090 (`serve.mjs`) of th
 - Not covered: the geography type at `data-index.html`'s geography list, which the probe never
   rewrites (its key does not match the probe's text-key pattern); sanitized anyway, unproven.
 
+**Does sanitizing change anything in the real data?** No, checked 2026-11-14 over every indicator's
+data file, `metadata.json`, `GeoLookup.json` and `TimePeriods.json` on both EHDP-data branches
+(`production` 267 indicators, `staging` 285):
+
+- `data-census.py` counts, per field, the characters DOMPurify acts on and the tag starts (`<`
+  followed by a letter, `/`, `!` or `?`). Its control string scores one. No field this branch
+  sanitizes has a tag start, except one data `Note`. `MeasurementType` and `DisplayType` hold
+  none of `< & >` or a non-breaking space, so the table's column names stay byte-for-byte the
+  same. The re-encoded characters render as before: `>` in one `IndicatorName`, `&` in 6
+  `Sources` and 93 geography names. `<` appears in 121 `DisplayValue`s on `production` (693 on
+  `staging`), always as `<1,000*`, which is not a tag start (`data-census-*.out`).
+- `note-markup.mjs`: the one `Note` with markup, on 36 rows of indicators 2380 and 2382, is
+  `†  <strong style="color: red;">Data from 2015 are not shown…</strong>`. It parses to the same
+  HTML with and without DOMPurify, `style` included, so the map popup's red warning is unchanged
+  (`note-markup-*.out`).
+- `purify-roundtrip.mjs`: every distinct affected string (171 and 194) shows the same visible text
+  sanitized. Its markup controls show the limit: comparing visible text cannot see a stripped
+  attribute, and the script exits 1 for that reason. The two checks above cover attributes
+  (`purify-roundtrip-*.out`).
+- Already true before this branch, not changed by it: `how_calculated` holds
+  `<a … target="_blank">` links on 54 measures (75 on `staging`), and DOMPurify drops their
+  `target`, because `global.js` sanitized that field before this branch.
+- Not sampled: the elected-officials API's live responses.
+
 ## Next command
 
 Push and open a PR into `production`:
