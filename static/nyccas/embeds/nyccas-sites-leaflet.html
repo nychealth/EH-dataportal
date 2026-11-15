@@ -6,8 +6,9 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
 
-    <!--D3-->
-    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- D3, self-hosted: config.toml mounts node_modules/d3/dist at vendor/d3/. Relative, so it
+    resolves under every environment's path prefix. -->
+    <script src="../../vendor/d3/d3.min.js"></script>
 
     <style>
         #map {
