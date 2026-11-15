@@ -8,10 +8,10 @@
                     <nav aria-label="breadcrumb" class="mb-4">
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ relURL "" }}">Home</a></li>
-                            <li class="breadcrumb-item">
-                                <a href=".."> {{- with .Parent -}} {{ .Title }} </a>
-                            </li>
-                            {{- end -}}
+                            {{- /*  Not `..` or `.Parent`: the archive years' parent, heat-report-archive/,
+                                    is `render: never` and has no URL. report.html, the 2021-2023 layout,
+                                    links Data Features the same way.  */ -}}
+                            <li class="breadcrumb-item"><a href="{{ relURL "data-features/" }}">Data Features</a></li>
                             <li class="breadcrumb-item active" aria-current="page">
                                 {{ .Title }}
                             </li>
