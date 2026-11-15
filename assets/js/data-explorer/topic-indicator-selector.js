@@ -453,7 +453,9 @@ const renderIndicatorList = async (indList, destination) => {
             </div>
         `;
 
-        indicatorDestination.innerHTML += sectionHtml;
+        // Indicator names and descriptions are EHDP-data text, published without review (audit N-120).
+
+        indicatorDestination.innerHTML += DOMPurify.sanitize(sectionHtml);
 
     });
 };

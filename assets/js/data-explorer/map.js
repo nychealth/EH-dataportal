@@ -799,7 +799,9 @@ const createMapPopupContent = (properties, metadata, options = {}) => {
         ? `<div class="popup-note">${properties.Note}</div>`
         : '';
 
-    return `
+    // The name, display type and note are EHDP-data text, which is published without review (audit N-120).
+
+    return DOMPurify.sanitize(`
         <div class="popup-content">
             <div class="popup-header">
                 <strong>${properties.Geography}</strong>
@@ -818,7 +820,7 @@ const createMapPopupContent = (properties, metadata, options = {}) => {
             </div>
             ${note}
         </div>
-    `;
+    `);
 
 };
 
@@ -940,7 +942,9 @@ const loadMapGeojson = (topoFile, dataLookup) => {
 
 const createCitywidePopupContent = (citywideData, metadata) => {
 
-    return `
+    // Sanitized for the same reason as createMapPopupContent (audit N-120).
+
+    return DOMPurify.sanitize(`
         <div class="popup-content">
             <div class="popup-header">
                 <strong>NYC</strong>
@@ -959,7 +963,7 @@ const createCitywidePopupContent = (citywideData, metadata) => {
             </div>
             <div class="popup-note fs-xs">This dataset isn't available broken down by neighborhood.</div>
         </div>
-    `;
+    `);
 
 };
 
