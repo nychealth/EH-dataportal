@@ -26,7 +26,7 @@ indicators:
       - 16
 related:
   - title: "Lead poisoning affects adults too"
-    url: "data-features/adult-lead/"
+    url: "data-stories/adult-lead/"
   - title: "Housing creates health"
     url: "data-stories/housing-creates-health/"
   - title: "A brief history of redlining"
