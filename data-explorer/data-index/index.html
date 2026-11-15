@@ -613,14 +613,16 @@
                     let cell_1 = document.createElement('td'); 
 
                     
+                    
+                    
 
                     if (topics.length > 0) {
 
-                        cell_1.innerHTML = "<a href='" + "/IndicatorPublic/data-explorer" + "/" + topics[0].topic + "/" + "?id=" + indicators[i].IndicatorID + "'>" + indicators[i].IndicatorName + "</a>";
+                        cell_1.innerHTML = DOMPurify.sanitize("<a href='" + "/IndicatorPublic/data-explorer" + "/" + topics[0].topic + "/" + "?id=" + indicators[i].IndicatorID + "'>" + indicators[i].IndicatorName + "</a>");
 
                     } else {
 
-                        cell_1.innerHTML = indicators[i].IndicatorName; 
+                        cell_1.innerHTML = DOMPurify.sanitize(indicators[i].IndicatorName); 
 
                     }
 
@@ -708,7 +710,7 @@
                     cell_3.appendChild(ums);
                     for (m = 0; m < unique_measurements.length; m++) {
                         let li = document.createElement('li');
-                        li.innerHTML = unique_measurements[m];
+                        li.innerHTML = DOMPurify.sanitize(unique_measurements[m]);
                         ums.appendChild(li);
                     }
 
@@ -757,7 +759,7 @@
 
                         
 
-                        li.innerHTML = pretty_unique_geographies[l];
+                        li.innerHTML = DOMPurify.sanitize(pretty_unique_geographies[l]);
                         li.setAttribute("geo", pretty_unique_geographies[l]);
                         li.classList.add("btn", "btn-sm", "geobullets", pretty_unique_geographies[l]);
 
@@ -795,7 +797,7 @@
 
                     for (src = 0; src < unique_sources.length; src++) {
                         let li = document.createElement('li');
-                        li.innerHTML = unique_sources[src];
+                        li.innerHTML = DOMPurify.sanitize(unique_sources[src]);
                         usrc.appendChild(li);
                     }
 
