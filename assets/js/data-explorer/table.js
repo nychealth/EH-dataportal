@@ -580,7 +580,15 @@ const renderTable = (tableData) => {
     // ----- table column alignment (unchanged) ----- //
 
     const measureAlignMap = new Map();
-    const measures = [...new Set(tableData.map(d => d.MeasurementDisplay))];
+
+    // The pivot turns each MeasurementDisplay (EHDP-data's MeasurementType and DisplayType) into a
+    // column name, and Arquero's toHTML writes column names into <th> unescaped (it escapes only
+    // cell values), so each distinct name is sanitized once here rather than per row (audit N-120).
+
+    const safeMeasureName = new Map(
+        [...new Set(tableData.map(d => d.MeasurementDisplay))].map(m => [m, DOMPurify.sanitize(m)])
+    );
+    const measures = [...safeMeasureName.values()];
 
     // Default all value columns to right alignment after the Arquero pivot creates the final shape.
 
@@ -590,7 +598,10 @@ const renderTable = (tableData) => {
     // ----- pivot data (UNCHANGED) ----- //
 
     const filteredTableAqData = aq.from(tableData)
-        .derive({ GeoTypePretty: aq.escape(d => prettifyGeoType(d.GeoType)) })
+        .derive({
+            GeoTypePretty: aq.escape(d => prettifyGeoType(d.GeoType)),
+            MeasurementDisplay: aq.escape(d => safeMeasureName.get(d.MeasurementDisplay))
+        })
         .groupby("TimePeriod", "GeoTypePretty", "GeoTypeDesc", "GeoID", "GeoRank", "BoroID", "Borough", "Geography")
         .pivot("MeasurementDisplay", "DisplayCI", {sort: false})
         // Build a grouped Area label that optionally appends borough context for nested geographies.

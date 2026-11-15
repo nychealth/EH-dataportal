@@ -115,15 +115,17 @@
                     let row_i = document.createElement('tr'); // create row
                     let cell_1 = document.createElement('td'); // create cell
 
-                    // if there's a topic, link; if not, just name
+                    // if there's a topic, link; if not, just name. Every value this table writes as
+                    // HTML is EHDP-data text, published without review, so each goes through
+                    // DOMPurify (audit N-120).
 
                     if (topics.length > 0) {
 
-                        cell_1.innerHTML = "<a href='" + {{ relURL "data-explorer" }} + "/" + topics[0].topic + "/" + "?id=" + indicators[i].IndicatorID + "'>" + indicators[i].IndicatorName + "</a>";
+                        cell_1.innerHTML = DOMPurify.sanitize("<a href='" + {{ relURL "data-explorer" }} + "/" + topics[0].topic + "/" + "?id=" + indicators[i].IndicatorID + "'>" + indicators[i].IndicatorName + "</a>");
 
                     } else {
 
-                        cell_1.innerHTML = indicators[i].IndicatorName; // fill cell with indicator name.
+                        cell_1.innerHTML = DOMPurify.sanitize(indicators[i].IndicatorName); // fill cell with indicator name.
 
                     }
 
@@ -211,7 +213,7 @@
                     cell_3.appendChild(ums);
                     for (m = 0; m < unique_measurements.length; m++) {
                         let li = document.createElement('li');
-                        li.innerHTML = unique_measurements[m];
+                        li.innerHTML = DOMPurify.sanitize(unique_measurements[m]);
                         ums.appendChild(li);
                     }
 
@@ -260,7 +262,7 @@
 
                         // setting id as geo name
 
-                        li.innerHTML = pretty_unique_geographies[l];
+                        li.innerHTML = DOMPurify.sanitize(pretty_unique_geographies[l]);
                         li.setAttribute("geo", pretty_unique_geographies[l]);
                         li.classList.add("btn", "btn-sm", "geobullets", pretty_unique_geographies[l]);
 
@@ -298,7 +300,7 @@
 
                     for (src = 0; src < unique_sources.length; src++) {
                         let li = document.createElement('li');
-                        li.innerHTML = unique_sources[src];
+                        li.innerHTML = DOMPurify.sanitize(unique_sources[src]);
                         usrc.appendChild(li);
                     }
 
