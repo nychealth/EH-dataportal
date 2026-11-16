@@ -87,7 +87,7 @@ Racism has always played a role in residential patterns in New York City. When N
 
 In 1661, when Black people petitioned the colony for land in the area, they were given land north of the wall, outside of the city proper.
 
-{{< figure src="colonial.png" alt="A colonial map of New York City, showing the wall at Wall Street.">}}
+{{< figure src="colonial.webp" alt="A colonial map of New York City, showing the wall at Wall Street.">}}
 
 Throughout history, many different practices have shaped racial and residential patterns in New York City. In the 20th century, a practice called redlining made racism a federal policy – with long-lasting repercussions for our housing and our health.
 
@@ -643,7 +643,7 @@ But a poorly maintained, unhealthy home can’t provide a truly safe haven. Inst
 
 **_So how can we create a city in which race - and racism - doesn't determine whether you have an opportunity to stay healthy?_**
 
-{{< figure src="h1.jpeg" alt="Workers work on a building.">}}
+{{< figure src="h1.webp" alt="Workers work on a building.">}}
 
 <div class="card card-left-border shadow-sm mb-4">
     <div class="card-body">
@@ -655,7 +655,7 @@ But a poorly maintained, unhealthy home can’t provide a truly safe haven. Inst
     </div>
   </div>
 
-{{< figure src="h2.jpeg" alt="A New York City residential street.">}}
+{{< figure src="h2.webp" alt="A New York City residential street.">}}
 
 <div class="card card-left-border shadow-sm mb-4">
     <div class="card-body">
@@ -667,7 +667,7 @@ But a poorly maintained, unhealthy home can’t provide a truly safe haven. Inst
     </div>
   </div>
 
-{{< figure src="h3.jpeg" alt="A New York City apartment building.">}}
+{{< figure src="h3.webp" alt="A New York City apartment building.">}}
 
 <div class="card card-left-border shadow-sm mb-4">
     <div class="card-body">

@@ -197,8 +197,8 @@ Effective solutions to racial inequities in wealth and health must simultaneousl
   </div>
   <div class="col-md-4 card content-card mb-3">
     <div class="card-content primary p-2">
-      <img src="rwg_visual_abstract.png">
-      <em class="fs-sm"><a href="rwg_visual_abstract.png" target="_blank" alt="Analyzing the racial wealth gap and implications for health full report">Full-size visual abstract for this report</a>.</em>
+      <img src="rwg_visual_abstract.webp">
+      <em class="fs-sm"><a href="rwg_visual_abstract.webp" target="_blank" alt="Analyzing the racial wealth gap and implications for health full report">Full-size visual abstract for this report</a>.</em>
     </div>
   </div>
 </div>

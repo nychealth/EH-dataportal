@@ -1,0 +1,35 @@
+{{- /*
+    Overrides Hugo's built-in figure shortcode (copied from v0.147.3) so its <img> goes through
+    partials/body-image.html, which resizes oversized bundle images and adds width/height and lazy
+    loading. Everything else is the built-in's markup, unchanged. The width/height/loading
+    parameters the built-in accepted are dropped: no content passes them (2026-11-15), and the
+    partial now sets all three.
+*/ -}}
+<figure{{ with .Get "class" }} class="{{ . }}"{{ end }}>
+  {{- if .Get "link" -}}
+    <a href="{{ .Get "link" }}"{{ with .Get "target" }} target="{{ . }}"{{ end }}{{ with .Get "rel" }} rel="{{ . }}"{{ end }}>
+  {{- end -}}
+
+  {{- $img := dict "page" .Page "src" (.Get "src") -}}
+  {{- if or (.Get "alt") (.Get "caption") -}}
+    {{- $img = merge $img (dict "alt" (or (.Get "alt") (.Get "caption" | markdownify | plainify))) -}}
+  {{- end -}}
+  {{- partial "body-image.html" $img -}}
+
+  {{- if .Get "link" }}</a>{{ end -}}
+  {{- if or (or (.Get "title") (.Get "caption")) (.Get "attr") -}}
+    <figcaption>
+      {{ with (.Get "title") -}}
+        <h4>{{ . }}</h4>
+      {{- end -}}
+      {{- if or (.Get "caption") (.Get "attr") -}}<p>
+        {{- .Get "caption" | markdownify -}}
+        {{- with .Get "attrlink" }}
+          <a href="{{ . }}">
+        {{- end -}}
+        {{- .Get "attr" | markdownify -}}
+        {{- if .Get "attrlink" }}</a>{{ end }}</p>
+      {{- end }}
+    </figcaption>
+  {{- end }}
+</figure>
