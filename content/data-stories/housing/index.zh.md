@@ -423,7 +423,7 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
 {{< rawhtml >}}
 <div class="greyblock">
 {{< /rawhtml >}}
-{{< figure src="h1.jpeg" alt="Workers work on a building.">}}
+{{< figure src="h1.webp" alt="Workers work on a building.">}}
 政策制定者和社区倡导者可以支持种族正义倡议：
 - 投资那些被结构性种族主义历史所伤害的社区。促进经济和教育公平，支持[Where We Live 倡议](https://wherewelive.cityofnewyork.us/)。
 - 支持房屋维护及发展局（Department of Housing Preservation and Development，DHPD）为修复老房而提出的倡议。
@@ -432,7 +432,7 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
 
 <div class="greyblock">
 {{< /rawhtml >}}
-{{< figure src="h2.jpeg" alt="A New York City residential street.">}}
+{{< figure src="h2.webp" alt="A New York City residential street.">}}
 
 租户和业主可以进入此处的系统以为您提供援助：
 - [如果您的建筑物管理人不解决问题，可以拨打311发起业主维修投诉。](https://www1.nyc.gov/nyc-resources/service/1950/residential-maintenance-complaint).
@@ -445,7 +445,7 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
 {{< /rawhtml >}}
 
 
-{{< figure src="h3.jpeg" alt="A New York City apartment building.">}}
+{{< figure src="h3.webp" alt="A New York City apartment building.">}}
 建筑物所有者和业主应保持公寓的安全和卫生——这是法律的要求。
 - 及时修理租户报告的问题。
 - 除虫、除霉、封缝、补漏、改善垃圾管理。

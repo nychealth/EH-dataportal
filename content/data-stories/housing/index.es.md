@@ -431,7 +431,7 @@ Sin embargo, una vivienda insalubre y mal mantenida no puede ofrecer un lugar se
 {{< rawhtml >}}
 <div class="greyblock">
 {{< /rawhtml >}}
-{{< figure src="h1.jpeg" alt="Workers work on a building.">}}
+{{< figure src="h1.webp" alt="Workers work on a building.">}}
 Los responsables políticos y los defensores comunitarios pueden apoyar iniciativas de justicia racial:
 - Invertir en vecindarios dañados por una historia de racismo estructural. Promover la igualdad económica y educativa, y apoyar las [iniciativas de Where We Live.](https://wherewelive.cityofnewyork.us/).
 - Apoyar las iniciativas del Departamento de Preservación y Desarrollo de Vivienda (Department of Housing Preservation and Development, DHPD) que buscan rehabilitar las viviendas más antiguas.
@@ -440,7 +440,7 @@ Los responsables políticos y los defensores comunitarios pueden apoyar iniciati
 
 <div class="greyblock">
 {{< /rawhtml >}}
-{{< figure src="h2.jpeg" alt="A New York City residential street.">}}
+{{< figure src="h2.webp" alt="A New York City residential street.">}}
 
 Los inquilinos y propietarios pueden acceder a sistemas que están disponibles para ayudarles:
 - Informar los problemas de mantenimiento a la administración de su edificio. Si el administrador del edificio no resuelve el problema, llamar al 311 para [presentar una queja sobre mantenimiento contra el arrendador](https://www1.nyc.gov/nyc-resources/service/1950/residential-maintenance-complaint).
@@ -453,7 +453,7 @@ Los inquilinos y propietarios pueden acceder a sistemas que están disponibles p
 {{< /rawhtml >}}
 
 
-{{< figure src="h3.jpeg" alt="A New York City apartment building.">}}
+{{< figure src="h3.webp" alt="A New York City apartment building.">}}
 Los propietarios y los arrendadores de edificios deben mantener los apartamentos seguros y limpios: es la ley.
 - Resolver de forma oportuna los problemas que los inquilinos informen.
 - Eliminar las plagas y el moho, sellar las grietas, reparar las goteras y mejorar el manejo de la basura.
