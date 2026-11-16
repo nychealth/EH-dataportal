@@ -155,7 +155,7 @@ Select Start a new NYC run. Give it a name and description - the model and resul
 **Select ZIP Codes.**
 These are the ZIP Codes you’d like to focus on.
 
-{{< figure src="Zappa1.png" alt="Left hand side has a menu with dropdowns. Top to bottom it says: Name and Description, ZIP Codes and waterways, Modify Traffic & Emissions, Advanced, and Review changes. The right hand side has a map of NYC with all ZIP Codes outlined in yellow." >}}
+{{< figure src="Zappa1.webp" alt="Left hand side has a menu with dropdowns. Top to bottom it says: Name and Description, ZIP Codes and waterways, Modify Traffic & Emissions, Advanced, and Review changes. The right hand side has a map of NYC with all ZIP Codes outlined in yellow." >}}
 
 For the scenarios in this data story, here’s what we used:
 
