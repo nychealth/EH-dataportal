@@ -219,7 +219,10 @@ are printed as a harness-health number and deliberately **not** baselined — th
   and note their author reads "No Name", so an `--author` search finds none. So a check that also
   gated on titles and link text would
   fail on commits that never touch a template — and a check that fails routinely stops being read.
-  `--content` widens it when you want that.
+  `--content` widens it when you want that. The cost: a content change merged since the last
+  capture never reaches the baseline, so the next re-baseline reports its pages as unexplained.
+  Match each one to the commit that made it before committing, and claim it with `--expect`
+  `[2026-11-15: five pages per key, R21's link fixes in `00d8daffa5`]`.
 - **`characterize:site` checks whichever environment your machine happens to be serving; the
   `:env` scripts pick one.** `dev-server.mjs` reuses any server answering on :8080/:8081/:1313 and
   otherwise spawns `dev_stage` into the repo's own `docs/` and `resources/_gen`, so what

@@ -103,7 +103,6 @@
         ],
         "internalTargets": [
             "/",
-            "/%e2%80%9cdata-stories/redesign/%22",
             "/about/",
             "/data-explorer/",
             "/data-features/",
@@ -111,6 +110,7 @@
             "/data-stories/",
             "/data-stories/codesign/",
             "/data-stories/geographies/",
+            "/data-stories/redesign/",
             "/data-stories/roadmap/",
             "/key-topics",
             "/key-topics/accessibility/",

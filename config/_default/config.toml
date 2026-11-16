@@ -119,6 +119,12 @@ timeZone = "America/New_York"
     source = "node_modules"
     target = "assets/node_modules"
 
+  # Publishes d3 at a fixed URL, vendor/d3/d3.min.js, for the plain HTML embeds in static/,
+  # which cannot use resources.Get. The version is whatever package-lock.json resolves.
+  [[module.mounts]]
+    source = "node_modules/d3/dist"
+    target = "static/vendor/d3"
+
  [[module.mounts]]
     source = "content"
     target = "content"
