@@ -87,7 +87,7 @@ Racism has always played a role in residential patterns in New York City. When N
 
 In 1661, when Black people petitioned the colony for land in the area, they were given land north of the wall, outside of the city proper.
 
-{{< figure src="colonial.png" alt="A colonial map of New York City, showing the wall at Wall Street.">}}
+{{< figure src="colonial.webp" alt="A colonial map of New York City, showing the wall at Wall Street.">}}
 
 Throughout history, many different practices have shaped racial and residential patterns in New York City. In the 20th century, a practice called redlining made racism a federal policy – with long-lasting repercussions for our housing and our health.
 

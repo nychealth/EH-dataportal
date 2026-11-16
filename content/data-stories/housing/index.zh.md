@@ -47,7 +47,7 @@ image: ds-housing.jpeg
 
 1661年，黑人向殖民地申请在此拥有土地，他们得到了城墙以北、市区以外的土地。
 
-{{< figure src="colonial.png" alt="A colonial map of New York City, showing the wall at Wall Street.">}}
+{{< figure src="colonial.webp" alt="A colonial map of New York City, showing the wall at Wall Street.">}}
 
 纵观历史，许多不同的做法塑造了纽约市的种族主义居住模式。在20世纪，一种被称为“红线圈定”的做法使种族主义成为一项联邦政策，对我们的住房和健康产生了持久的影响。
 

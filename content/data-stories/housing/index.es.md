@@ -46,7 +46,7 @@ El racismo siempre ha desempeñado un papel en los patrones residenciales de la 
 
 En 1661, cuando las personas negras le solicitaron a la colonia tierras en el área, recibieron las tierras ubicadas al norte del muro, fuera de la ciudad propiamente dicha.
 
-{{< figure src="colonial.png" alt="A colonial map of New York City, showing the wall at Wall Street.">}}
+{{< figure src="colonial.webp" alt="A colonial map of New York City, showing the wall at Wall Street.">}}
 
 A lo largo de la historia, muchas prácticas diferentes han moldeado los patrones raciales y residenciales en la ciudad de Nueva York. En el siglo XX, una práctica denominada “redlining” convirtió al racismo en una política federal, con repercusiones duraderas para nuestra situación de vivienda y la salud.
 

@@ -228,4 +228,4 @@ You can toggle through the estimated impacts of the policy change in the final m
 
 {{< figure src="Zappa8.png" alt="Grey drop down menu of Category: Concentrations, Health Impacts, Economic Impacts and Health Impacts is selected." >}}
 
-{{< figure src="Zappa9.png" alt="Displayed results for Health Impacts and Metric of Mortality (low estimate) with citywide totals listed. The map of NYC has all ZIP Codes outlined in black with varying shades of blue." >}}
+{{< figure src="Zappa9.webp" alt="Displayed results for Health Impacts and Metric of Mortality (low estimate) with citywide totals listed. The map of NYC has all ZIP Codes outlined in black with varying shades of blue." >}}
