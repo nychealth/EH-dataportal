@@ -7,6 +7,7 @@
             "js/accessible-autocomplete.min.js",
             "js/main.js",
             "js/site.js",
+            "js/theme-adapters.js",
             "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
             "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
             "node_modules/dompurify/dist/purify.min.js",
@@ -18,7 +19,7 @@
             "translate.google.com",
             "www.googletagmanager.com"
         ],
-        "assetsWithIntegrity": 9,
+        "assetsWithIntegrity": 10,
         "headingLevels": [
             2,
             3,
@@ -79,7 +80,7 @@
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 38,
+            "button": 39,
             "input": 1,
             "select": 0,
             "textarea": 0,

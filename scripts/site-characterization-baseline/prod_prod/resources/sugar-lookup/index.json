@@ -8,6 +8,7 @@
             "js/lib-datatables-bundle.js",
             "js/main.js",
             "js/site.js",
+            "js/theme-adapters.js",
             "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
             "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
             "node_modules/d3/dist/d3.min.js",
@@ -20,7 +21,7 @@
             "translate.google.com",
             "www.googletagmanager.com"
         ],
-        "assetsWithIntegrity": 11,
+        "assetsWithIntegrity": 12,
         "headingLevels": [
             1,
             5,
@@ -68,7 +69,7 @@
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 35,
+            "button": 36,
             "input": 2,
             "select": 1,
             "textarea": 0,

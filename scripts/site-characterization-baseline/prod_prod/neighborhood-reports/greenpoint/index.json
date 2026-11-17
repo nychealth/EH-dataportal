@@ -7,6 +7,7 @@
             "js/L.colorIcon.js",
             "js/main.js",
             "js/site.js",
+            "js/theme-adapters.js",
             "js/uhflist-data.js",
             "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
             "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
@@ -23,7 +24,7 @@
             "translate.google.com",
             "www.googletagmanager.com"
         ],
-        "assetsWithIntegrity": 14,
+        "assetsWithIntegrity": 15,
         "headingLevels": [
             1,
             2,
@@ -76,7 +77,7 @@
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 35,
+            "button": 36,
             "input": 1,
             "select": 0,
             "textarea": 0,

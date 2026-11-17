@@ -11,6 +11,7 @@
             "js/lib-vega-bundle.js",
             "js/main.js",
             "js/site.js",
+            "js/theme-adapters.js",
             "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
             "node_modules/arquero/dist/arquero.min.js",
             "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
@@ -28,7 +29,7 @@
             "translate.google.com",
             "www.googletagmanager.com"
         ],
-        "assetsWithIntegrity": 17,
+        "assetsWithIntegrity": 18,
         "headingLevels": [
             1,
             2,
@@ -95,7 +96,7 @@
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 45,
+            "button": 46,
             "input": 12,
             "select": 1,
             "textarea": 0,

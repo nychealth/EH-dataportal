@@ -8,6 +8,7 @@
             "datawrapper.dwcdn.net",
             "js/main.js",
             "js/site.js",
+            "js/theme-adapters.js",
             "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
             "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
             "node_modules/dompurify/dist/purify.min.js",
@@ -19,7 +20,7 @@
             "translate.google.com",
             "www.googletagmanager.com"
         ],
-        "assetsWithIntegrity": 8,
+        "assetsWithIntegrity": 9,
         "headingLevels": [
             1,
             3,
@@ -74,7 +75,7 @@
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 63,
+            "button": 64,
             "input": 1,
             "select": 0,
             "textarea": 0,

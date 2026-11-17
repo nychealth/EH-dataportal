@@ -27,6 +27,7 @@
             "js/main.js",
             "js/naturalSort.js",
             "js/site.js",
+            "js/theme-adapters.js",
             "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
             "node_modules/arquero/dist/arquero.min.js",
             "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
@@ -44,7 +45,7 @@
             "translate.google.com",
             "www.googletagmanager.com"
         ],
-        "assetsWithIntegrity": 35,
+        "assetsWithIntegrity": 36,
         "headingLevels": [
             4,
             4,
@@ -148,7 +149,7 @@
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 108,
+            "button": 110,
             "input": 3,
             "select": 0,
             "textarea": 0,

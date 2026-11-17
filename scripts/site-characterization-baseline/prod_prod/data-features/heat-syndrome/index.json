@@ -9,6 +9,7 @@
             "js/lib-vega-bundle.js",
             "js/main.js",
             "js/site.js",
+            "js/theme-adapters.js",
             "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
             "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
             "node_modules/d3/dist/d3.min.js",
@@ -22,7 +23,7 @@
             "weatherwidget.io",
             "www.googletagmanager.com"
         ],
-        "assetsWithIntegrity": 10,
+        "assetsWithIntegrity": 11,
         "headingLevels": [
             1,
             2,
@@ -79,7 +80,7 @@
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 51,
+            "button": 52,
             "input": 1,
             "select": 0,
             "textarea": 0,

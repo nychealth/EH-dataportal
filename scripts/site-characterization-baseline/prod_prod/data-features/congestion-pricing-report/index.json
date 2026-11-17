@@ -16,6 +16,7 @@
             "js/lib-vega-bundle.js",
             "js/main.js",
             "js/site.js",
+            "js/theme-adapters.js",
             "maps.nyc.gov",
             "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
             "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
@@ -33,7 +34,7 @@
             "translate.google.com",
             "www.googletagmanager.com"
         ],
-        "assetsWithIntegrity": 22,
+        "assetsWithIntegrity": 23,
         "headingLevels": [
             1,
             2,
@@ -95,7 +96,7 @@
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 52,
+            "button": 53,
             "input": 1,
             "select": 0,
             "textarea": 0,
