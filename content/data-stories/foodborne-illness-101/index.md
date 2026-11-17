@@ -75,25 +75,25 @@ Through the interviews we also discovered that people were still getting sick af
 
 <div class="row" alt="13 plus signs, 11 of which are red indicating that 11 out of 13 stool samples tested positive for the bacterium">
   <div class="col-12 my-1 mt-1">
-    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:tomato;size:lg"></i>
-    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:tomato;"></i>
-    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:tomato;"></i>
-    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:tomato;"></i>
-    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:tomato;"></i>
-    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:tomato;"></i>
+    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:#AD1A00;size:lg"></i>
+    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:#AD1A00;"></i>
+    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:#AD1A00;"></i>
+    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:#AD1A00;"></i>
+    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:#AD1A00;"></i>
+    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:#AD1A00;"></i>
     <i class="fa-regular fa-square-plus fa-2xl mx-1"></i>
   </div>
 </div>
 
 <div class="row">
   <div class="col-12 my-2">
-    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:tomato;size:lg"></i>
-    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:tomato;"></i>
-    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:tomato;"></i>
-    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:tomato;"></i>
-    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:tomato;"></i>
+    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:#AD1A00;size:lg"></i>
+    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:#AD1A00;"></i>
+    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:#AD1A00;"></i>
+    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:#AD1A00;"></i>
+    <i class="fa-regular fa-square-plus fa-2xl mx-1" style="color:#AD1A00;"></i>
     <i class="fa-regular fa-square-plus fa-2xl mx-1"></i>
-    <h3 class="m-1"><p>11 out of 13 stool samples from sick patrons were <span style="color:tomato;"><strong>positive</strong></span> for <em>Campylobacter</em></h3>
+    <h3 class="m-1"><p>11 out of 13 stool samples from sick patrons were <span style="color:#AD1A00;"><strong>positive</strong></span> for <em>Campylobacter</em></h3>
   </div>
   
 </div>
