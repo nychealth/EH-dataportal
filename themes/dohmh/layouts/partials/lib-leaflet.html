@@ -17,3 +17,59 @@
 
 {{- $leaflet_marker_icon.Publish -}}
 {{- $leaflet_marker_shadow.Publish -}}
+
+{{- /*  Dark basemap. Every in-page Leaflet map loads through this partial, so the hook lives here.
+      A CARTO tile layer (light_all or voyager) is served from CARTO's dark_all style while the
+      page is dark, and redrawn when the theme changes; the site's key works for dark_all. A tile
+      layer from any other provider is marked for the CSS filter in _i-dark-mode.scss instead. A
+      layer created with `keepLightBasemap: true` stays light: the explorer's map export
+      (print-map.js), so a download from a dark page is the same image as from a light one.
+      Grid layers that are not tile layers (the heat story's georaster) are data, and untouched.
+      Design: documents/dark-mode-design-2026-11-17.md  */}}
+<script>
+
+    (() => {
+
+        // The style segment of a CARTO basemap URL: light_all or voyager, with or without the
+        // rastertiles/ prefix the voyager URLs carry
+        const CARTO_LIGHT_STYLE = /(basemaps\.cartocdn\.com\/)(?:rastertiles\/)?(?:light_all|voyager)\//;
+
+        const layersOnMaps = new Set();
+        const lightTileUrl = L.TileLayer.prototype.getTileUrl;
+
+        // Read the theme per tile, so a layer added after a toggle is never stale
+
+        L.TileLayer.include({
+
+            getTileUrl(coords) {
+
+                const url = lightTileUrl.call(this, coords);
+
+                return (this.themedBasemap && ehdpTheme.current() === 'dark')
+                    ? url.replace(CARTO_LIGHT_STYLE, '$1dark_all/')
+                    : url;
+            },
+        });
+
+        // Classify each tile layer as it is created; only layers on a map are redrawn, so the
+        // set never holds one a page has discarded
+
+        L.TileLayer.addInitHook(function () {
+
+            if (this.options.keepLightBasemap) return;
+
+            if (!CARTO_LIGHT_STYLE.test(this._url)) {
+                this.options.className = ((this.options.className || '') + ' basemap-filtered').trim();
+                return;
+            }
+
+            this.themedBasemap = true;
+            this.on('add', () => layersOnMaps.add(this));
+            this.on('remove', () => layersOnMaps.delete(this));
+        });
+
+        ehdpTheme.onChange(() => layersOnMaps.forEach((layer) => layer.redraw()));
+
+    })();
+
+</script>

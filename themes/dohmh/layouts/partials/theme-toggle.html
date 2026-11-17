@@ -1,0 +1,15 @@
+{{- /*  Dark-mode toggle, one per header (header.html, header-de.html, header-ds.html).
+      A toggle button: the name stays "Dark mode" and aria-pressed carries the state, which
+      assets/js/theme-adapters.js sets on load and on every change. Hidden in print, which
+      is always light.
+
+      Icon-only below md (720px here): with the text, the black top bar wrapped from 40px to
+      64px at 375px wide. aria-label carries the name at every width, so hiding the text
+      does not hide it from screen readers.  */ -}}
+<li class="d-print-none">
+    <button type="button" class="theme-toggle text-reset" data-theme-toggle aria-pressed="false" aria-label="Dark mode" title="Switch between light and dark colors">
+        <i class="fas fa-fw fa-moon theme-toggle-icon-dark" aria-hidden="true"></i>
+        <i class="fas fa-fw fa-sun theme-toggle-icon-light" aria-hidden="true"></i>
+        <strong class="ml-1 d-none d-md-inline" aria-hidden="true">Dark mode</strong>
+    </button>
+</li>

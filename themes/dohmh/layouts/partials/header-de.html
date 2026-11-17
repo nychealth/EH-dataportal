@@ -31,6 +31,7 @@
 
                 <div class="col-auto">
                     <ul class="extensible-list horizontal fs-md">
+                        {{ partial "theme-toggle.html" . }}
                         <li class="d-print-none">
                             <a class="text-reset" href="https://www1.nyc.gov/">
                                 <strong>311</strong>
@@ -400,6 +401,16 @@
         </div>
         <div class="flex-grow-1 pr-2 pr-md-0">
             <div class="d-flex justify-content-end align-items-center h-100 pr-1 pr-md-3">
+                <!-- Dark mode: the site header's toggle (theme-toggle.html) sits inside the
+                     collapsed #global-header here, so the explorer's bar carries its own;
+                     theme-adapters.js wires every [data-theme-toggle]. Its text shows from lg
+                     up, not md like its neighbours': at 720px a third label ran into the topic
+                     title. Below lg, the icon alone, named by aria-label. -->
+                <button type="button" class="theme-toggle d-flex align-items-center text-white mr-2 mr-md-3" data-theme-toggle aria-pressed="false" aria-label="Dark mode" title="Switch between light and dark colors">
+                    <div class="font-weight-bold mr-1 fs-md d-none d-lg-block" aria-hidden="true">Dark mode</div>
+                    <i class="fas fa-fw fa-moon theme-toggle-icon-dark" aria-hidden="true" style="font-size: 21px"></i>
+                    <i class="fas fa-fw fa-sun theme-toggle-icon-light" aria-hidden="true" style="font-size: 21px"></i>
+                </button>
                 <!-- Translate: explorer pages set excludeFooter, which drops the footer's
                      language buttons, and #global-language above sits inside the collapsed
                      header (audit N-078). Same ten buttons as the footer; main.js's

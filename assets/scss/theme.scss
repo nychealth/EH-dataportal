@@ -1000,3 +1000,6 @@ table.dataTable thead > tr > td.sorting_desc_disabled:after {
     font-size: 1em !important;
 }
 
+
+// Dark theme last, so the compiled CSS above it is unchanged and its rules win ties
+@import "i-dark-mode.scss";

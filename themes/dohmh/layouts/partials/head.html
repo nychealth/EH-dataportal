@@ -1,3 +1,75 @@
+{{- /*  Colour theme. This runs before the stylesheet and before <body> is parsed, so a dark
+      choice never flashes the light theme first. A stored choice (the header toggle) wins;
+      otherwise the OS setting decides, and the page follows the OS if it changes while open.
+      The CSS also carries a prefers-color-scheme fallback, so a visitor without JS still
+      gets dark mode from the OS. Design: documents/dark-mode-design-2026-11-17.md  */}}
+<script>
+
+    const ehdpTheme = (() => {
+
+        const STORAGE_KEY = 'ehdp-theme';
+        const osDark = window.matchMedia('(prefers-color-scheme: dark)');
+        const listeners = [];
+
+        // Reading or writing storage throws where the browser blocks site data; that only
+        // means the choice lasts for this page, so the throw is swallowed
+
+        const readStored = () => {
+
+            try {
+
+                const stored = localStorage.getItem(STORAGE_KEY);
+                return (stored === 'light' || stored === 'dark') ? stored : null;
+
+            } catch (e) {
+
+                return null;
+            }
+        };
+
+        let mode = readStored() || (osDark.matches ? 'dark' : 'light');
+
+        // Writes the attribute every dark rule in _i-dark-mode.scss keys on, and tells
+        // subscribers (the Vega, Datawrapper and toggle adapters)
+
+        const apply = (next) => {
+
+            const changed = next !== mode;
+            mode = next;
+            document.documentElement.setAttribute('data-theme', mode);
+
+            if (changed) {
+                listeners.forEach((fn) => {
+                    try { fn(mode); } catch (e) { console.error(e); }
+                });
+            }
+        };
+
+        // Follow the OS only while the visitor hasn't chosen on this site
+
+        osDark.addEventListener('change', (e) => {
+            if (!readStored()) apply(e.matches ? 'dark' : 'light');
+        });
+
+        document.documentElement.setAttribute('data-theme', mode);
+
+        return {
+
+            current: () => mode,
+
+            set: (next) => {
+
+                try { localStorage.setItem(STORAGE_KEY, next); } catch (e) {}
+                apply(next);
+            },
+
+            onChange: (fn) => { listeners.push(fn); },
+        };
+
+    })();
+
+</script>
+
 {{/*  add GA code for prod data  */}}
 
 {{ if eq hugo.Environment "prod_prod" }}

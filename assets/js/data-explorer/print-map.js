@@ -571,7 +571,10 @@ const buildTemporaryLeafletExport = async (width, height) => {
         subdomains: 'abcd',
         maxNativeZoom: 11,
         maxZoom: EXPORT_MAP_MAX_ZOOM,
-        minZoom: 7
+        minZoom: 7,
+
+        // A download is the same image whatever the page's theme (lib-leaflet.html)
+        keepLightBasemap: true
     }).addTo(exportMap);
 
     // ----- prepare shared export state ----- //

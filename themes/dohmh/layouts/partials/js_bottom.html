@@ -57,6 +57,16 @@
     integrity="{{ $main.Data.Integrity }}"
 ></script>
 
+{{- /* Dark-mode toggle and embed adapters; theme state itself is set in head.html */}}
+
+{{- $themeAdapters := resources.Get "js/theme-adapters.js" | partial "short-fingerprint.html" }}
+
+<script
+    type="text/javascript"
+    src="{{ $themeAdapters.RelPermalink }}"
+    integrity="{{ $themeAdapters.Data.Integrity }}"
+></script>
+
 {{- $site := resources.Get "js/site.js" | partial "short-fingerprint.html" }}
 
 <script

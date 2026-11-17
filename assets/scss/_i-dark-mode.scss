@@ -1,0 +1,1827 @@
+// ======================================================================= //
+// _i-dark-mode.scss
+// ======================================================================= //
+
+// Dark theme. Imported last in theme.scss, and every rule here sits behind a dark selector
+// under @media screen, so the light theme's compiled CSS is unchanged and print is always
+// light. Bootstrap 4's Sass colour functions can't take var() values, so this overrides the
+// compiled components rather than re-parameterizing them.
+// Design: documents/dark-mode-design-2026-11-17.md
+
+// ----------------------------------------------------------------------- //
+// selectors
+// ----------------------------------------------------------------------- //
+
+// Two routes to dark: head.html's script sets data-theme from the toggle or the OS; with no
+// JS there is no attribute, and the OS media query decides. The :not() keeps a visitor who
+// chose light on a dark OS in light.
+
+@mixin dark {
+
+    @media screen {
+        html[data-theme="dark"] & { @content; }
+    }
+
+    @media screen and (prefers-color-scheme: dark) {
+        html:not([data-theme="light"]) & { @content; }
+    }
+}
+
+// Base-element rules (a bare `a`) at the specificity of the light rule they replace: :where()
+// adds nothing, so any light rule that colours a link with a class still wins, as it did in
+// the light theme
+
+@mixin dark-base {
+
+    @media screen {
+        :where(html[data-theme="dark"]) & { @content; }
+    }
+
+    @media screen and (prefers-color-scheme: dark) {
+        :where(html:not([data-theme="light"])) & { @content; }
+    }
+}
+
+// The same, for rules on <html> itself, where there is no parent to prefix
+
+@mixin dark-root {
+
+    @media screen {
+        html[data-theme="dark"] { @content; }
+    }
+
+    @media screen and (prefers-color-scheme: dark) {
+        html:not([data-theme="light"]) { @content; }
+    }
+}
+
+
+// ----------------------------------------------------------------------- //
+// palette
+// ----------------------------------------------------------------------- //
+
+// Surfaces derived from $dark (#0A1438), the site's own navy. Contrast measured with the WCAG 2
+// formula, 2026-11-17: --dm-text 14.4:1 on --dm-bg and 11.6:1 on --dm-raised; --dm-muted 8.3
+// and 6.7; --dm-green 8.1 and 6.5; --dm-link 7.5 and 6.0. The brand green #008939 as text
+// measures 3.97:1 on --dm-bg, which is why --dm-green exists; white on #008939 measures 4.53:1,
+// so filled green buttons keep their colours.
+
+@include dark-root {
+
+    color-scheme: dark;
+
+    // The browser's dark scrollbar is a neutral grey close to the dark basemap's land; these
+    // are the palette's own border and page colours. Inherited, so the explorer's inner
+    // scrollers (table, panels) follow.
+    scrollbar-color: #34406b #0d1530;
+
+    --dm-bg: #0d1530;
+    --dm-surface: #151e3d;
+    --dm-raised: #1c2750;
+    --dm-hover: #26325f;
+    --dm-border: #34406b;
+    --dm-text: #e3e6ee;
+    --dm-muted: #a9b0c6;
+    --dm-green: #4cc47a;
+    --dm-link: #6ea8fe;
+    --dm-plate: #e3e6ee;
+
+    // Section identity colours lightened for text and icons: the light-theme values measure
+    // 1.81 (explorer), 1.91 (features), 3.70 (stories) and 3.95 (reports) on --dm-bg; these
+    // measure 7.4–7.9 on --dm-bg and 5.96–6.32 on --dm-raised
+
+    --dm-sec-stories: #ff8a80;
+    --dm-sec-features: #d68fd6;
+    --dm-sec-reports: #5fb3ea;
+    --dm-sec-explorer: #7fa8e8;
+}
+
+
+// ----------------------------------------------------------------------- //
+// page
+// ----------------------------------------------------------------------- //
+
+body {
+
+    @include dark {
+        background-color: var(--dm-bg);
+        color: var(--dm-text);
+    }
+}
+
+// The site's links are green (theme.scss: a { color: $primary-dark }), so the dark theme keeps
+// them green. #7fd9a0 measures 10.6:1 on --dm-bg.
+
+a {
+
+    @include dark-base {
+        color: var(--dm-green);
+    }
+}
+
+a:hover {
+
+    @include dark-base {
+        color: #7fd9a0;
+    }
+}
+
+hr {
+
+    @include dark {
+        border-top-color: var(--dm-border);
+    }
+}
+
+
+// ----------------------------------------------------------------------- //
+// Bootstrap utilities
+// ----------------------------------------------------------------------- //
+
+// The utilities are !important in Bootstrap, so their dark versions must be too
+
+.bg-white,
+.bg-light {
+
+    @include dark {
+        background-color: var(--dm-surface) !important;
+    }
+}
+
+.text-dark,
+.text-body,
+.text-black {
+
+    @include dark {
+        color: var(--dm-text) !important;
+    }
+}
+
+.text-muted,
+.text-secondary {
+
+    @include dark {
+        color: var(--dm-muted) !important;
+    }
+}
+
+.text-primary,
+a.text-primary {
+
+    @include dark {
+        color: var(--dm-green) !important;
+    }
+}
+
+.border,
+.border-top,
+.border-right,
+.border-bottom,
+.border-left {
+
+    @include dark {
+        border-color: var(--dm-border) !important;
+    }
+}
+
+
+// ----------------------------------------------------------------------- //
+// Bootstrap components
+// ----------------------------------------------------------------------- //
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// surfaces
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+// The site sets .card { background-color: #fff !important }, so the dark surface must be
+// !important too. A card carrying a bg-* utility keeps its deliberate colour.
+
+.card:not([class*="bg-"]) {
+
+    @include dark {
+        background-color: var(--dm-surface) !important;
+    }
+}
+
+.card,
+.list-group-item,
+.jumbotron,
+.page-link,
+.input-group-text {
+
+    @include dark {
+        background-color: var(--dm-surface);
+        border-color: var(--dm-border);
+        color: var(--dm-text);
+    }
+}
+
+// The breadcrumb's light panel ($breadcrumb-bg) drops away to the page: its links (--dm-green,
+// 8.1:1) and current page (--dm-muted, 8.3:1) are measured against --dm-bg already
+
+.breadcrumb {
+
+    @include dark {
+        background-color: transparent;
+        color: var(--dm-text);
+    }
+}
+
+// Figure captions (stories' Datawrapper notes): the site sets them in Bootstrap's body colour
+
+.figure-caption {
+
+    @include dark {
+        color: var(--dm-muted);
+    }
+}
+
+// A content card (home tools, listing pages) paints its outer .card, so the inner
+// .card-content's bottom margin and a grid column's gutter padding showed in the card colour
+// (white on white in light, so never seen). The inner element carries the shadow and holds
+// everything visible (content-card-check.mjs: 105 cards on 11 page kinds, nothing outside
+// it), so it becomes the surface and the outer card the page.
+
+.card.content-card {
+
+    @include dark {
+        background-color: transparent !important;
+        border-color: transparent;
+    }
+}
+
+.content-card .card-content {
+
+    @include dark {
+        background-color: var(--dm-surface);
+    }
+}
+
+// The card border override above recoloured this stripe; it is the site's green in light
+// mode, so it stays green. Not every striped box is a .card: the home page's "Get updates" and
+// "Find what you need" boxes are plain divs, transparent on the page, so they take the
+// surface (a .card keeps its own fill, set above).
+
+.card-left-border {
+
+    @include dark {
+        background-color: var(--dm-surface);
+        border-left-color: #008939;
+    }
+}
+
+// The home page's bottom cards sit on a band that is itself --dm-surface; raised, so they
+// read as cards on it
+
+[style*="#EEEDEA" i] .card {
+
+    @include dark {
+        background-color: var(--dm-raised) !important;
+    }
+}
+
+.card-header,
+.card-footer {
+
+    @include dark {
+        background-color: var(--dm-raised);
+        border-color: var(--dm-border);
+    }
+}
+
+.dropdown-menu,
+.modal-content,
+.popover,
+.toast {
+
+    @include dark {
+        background-color: var(--dm-raised);
+        border-color: var(--dm-border);
+        color: var(--dm-text);
+    }
+}
+
+.modal-header,
+.modal-footer {
+
+    @include dark {
+        border-color: var(--dm-border);
+    }
+}
+
+.dropdown-item {
+
+    @include dark {
+        color: var(--dm-text);
+
+        &:hover,
+        &:focus {
+            background-color: var(--dm-hover);
+            color: var(--dm-text);
+        }
+    }
+}
+
+// The explorer's current choice in a dropdown (menu.js adds .is-selected): #0A408A on an 8% tint
+// in the light theme, which reads as dark-on-dark here. The pale-green family's dark pair below.
+
+.dropdown-menu .dropdown-item.is-selected,
+.de-viz-pill-menu .dropdown-item.active,
+.de-viz-pill-menu .dropdown-item:active {
+
+    @include dark {
+        background-color: var(--dm-hover);
+        color: var(--dm-green);
+    }
+}
+
+// The explorer's view pills (de-tab-content.html): an available, unselected pill is
+// .badge-light, which the badge rule makes --dm-raised, too close to the panel. A lifted fill
+// (text 6.84:1) with an outline; the unavailable state keeps its own opacity: 0.55.
+
+.de-viz-pill-button.badge-light {
+
+    @include dark {
+        background-color: #3d4a7a;
+        box-shadow: inset 0 0 0 1px #5a6694;
+        color: var(--dm-text);
+    }
+}
+
+.close {
+
+    @include dark {
+        color: var(--dm-text);
+        text-shadow: none;
+    }
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// forms
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+.form-control,
+.custom-select {
+
+    @include dark {
+        background-color: var(--dm-surface);
+        border-color: var(--dm-muted);
+        color: var(--dm-text);
+
+        &::placeholder {
+            color: var(--dm-muted);
+        }
+
+        &:disabled,
+        &[readonly] {
+            background-color: var(--dm-raised);
+        }
+    }
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// tables
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+.table {
+
+    @include dark {
+        color: var(--dm-text);
+
+        th,
+        td,
+        thead th {
+            border-color: var(--dm-border);
+        }
+    }
+}
+
+// Striping at 4% white was too faint to follow a row (Chris, 2026-11-17); 7%, shared with the
+// DataTables stripe below
+
+.table-striped tbody tr:nth-of-type(odd) {
+
+    @include dark {
+        background-color: rgba(255, 255, 255, 0.07);
+    }
+}
+
+// DataTables (the explorer's table, the heat report's tables) draws its cell borders in 15%
+// black and its stripe and hover as inset shadows in black at 2-4%, none of which shows on navy.
+// Its own dark styles key on html.dark, which this site does not set.
+
+table.dataTable.cell-border > tbody > tr > th,
+table.dataTable.cell-border > tbody > tr > td,
+table.dataTable.row-border > tbody > tr > th,
+table.dataTable.row-border > tbody > tr > td,
+table.dataTable.display > tbody > tr > th,
+table.dataTable.display > tbody > tr > td {
+
+    @include dark {
+        border-color: var(--dm-border);
+    }
+}
+
+table.dataTable.stripe > tbody > tr.odd > *,
+table.dataTable.display > tbody > tr.odd > * {
+
+    @include dark {
+        box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0.07);
+    }
+}
+
+table.dataTable.hover > tbody > tr:hover > *,
+table.dataTable.display > tbody > tr:hover > * {
+
+    @include dark {
+        box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0.12);
+    }
+}
+
+.table-hover tbody tr:hover {
+
+    @include dark {
+        background-color: var(--dm-hover);
+        color: var(--dm-text);
+    }
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// buttons with light fills
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+.btn-light,
+.btn-outline-dark,
+.btn-outline-secondary {
+
+    @include dark {
+        background-color: var(--dm-raised);
+        border-color: var(--dm-border);
+        color: var(--dm-text);
+
+        &:hover,
+        &:focus {
+            background-color: var(--dm-hover);
+            color: var(--dm-text);
+        }
+    }
+}
+
+// At rest only, so Bootstrap's hover, focus and pressed fills keep their white text: a colour
+// here outranked .btn-outline-primary:hover's #fff and left green text on the green fill
+// (2.05:1, hover-check.mjs)
+
+.btn-outline-primary:not(:hover):not(:focus):not(:active):not(.active) {
+
+    @include dark {
+        color: var(--dm-green);
+    }
+}
+
+.btn-outline-primary {
+
+    @include dark {
+        border-color: var(--dm-green);
+    }
+}
+
+// A plain .btn with no variant (nyccas's "by source" buttons) takes Bootstrap's body colour
+
+.by-btns.btn {
+
+    @include dark {
+        color: var(--dm-text);
+    }
+}
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// alerts
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+// Same hue family as Bootstrap's pale alerts, as dark fills with light text
+
+.alert-warning {
+
+    @include dark {
+        background-color: #3b300c;
+        border-color: #6b5614;
+        color: #f5e3a3;
+    }
+}
+
+.alert-info,
+.alert-primary {
+
+    @include dark {
+        background-color: #0f2f45;
+        border-color: #1d5677;
+        color: #bfe3f7;
+    }
+}
+
+.alert-success {
+
+    @include dark {
+        background-color: #0f3320;
+        border-color: #1d6a3e;
+        color: #bfeccf;
+    }
+}
+
+.alert-danger {
+
+    @include dark {
+        background-color: #3d1418;
+        border-color: #7a2a31;
+        color: #f6c6cb;
+    }
+}
+
+.alert-secondary,
+.alert-light {
+
+    @include dark {
+        background-color: var(--dm-raised);
+        border-color: var(--dm-border);
+        color: var(--dm-text);
+    }
+}
+
+// Links inside an alert take the alert's text colour, underlined, rather than --dm-link,
+// which is tuned for the page background
+
+.alert a:not(.btn) {
+
+    @include dark {
+        color: inherit;
+        text-decoration: underline;
+    }
+}
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// badges, breadcrumbs, tabs
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+.badge-light {
+
+    @include dark {
+        background-color: var(--dm-raised);
+        color: var(--dm-text);
+    }
+}
+
+.breadcrumb-item.active {
+
+    @include dark {
+        color: var(--dm-muted);
+    }
+}
+
+.nav-tabs {
+
+    @include dark {
+        border-color: var(--dm-border);
+    }
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+
+    @include dark {
+        background-color: var(--dm-surface);
+        border-color: var(--dm-border) var(--dm-border) var(--dm-surface);
+        color: var(--dm-text);
+    }
+}
+
+// White, as in the light theme: the active pill keeps Bootstrap's green fill, where white
+// measures 4.53:1 and --dm-text 3.63:1 (the data-stories filter pills, hover-check.mjs)
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+
+    @include dark {
+        color: #fff;
+    }
+}
+
+// Bootstrap's code pink (#e8006d) measures 3.99:1 on the page; lightened, 7.64:1
+
+code {
+
+    @include dark-base {
+        color: #ff7eb6;
+    }
+}
+
+// Pagination's disabled button keeps Bootstrap's white fill
+
+.page-item.disabled .page-link {
+
+    @include dark {
+        background-color: var(--dm-surface);
+        border-color: var(--dm-border);
+        color: var(--dm-muted);
+    }
+}
+
+// Accordion headers: the shortcode's pale green and the NR report's white are both
+// !important in the light theme
+
+.card-header {
+
+    @include dark {
+        background-color: var(--dm-raised) !important;
+        color: var(--dm-text);
+    }
+}
+
+.table .thead-light th {
+
+    @include dark {
+        background-color: var(--dm-raised);
+        border-color: var(--dm-border);
+        color: var(--dm-text);
+    }
+}
+
+// .table th is !important (#585858) in the light theme
+
+.table th {
+
+    @include dark {
+        color: var(--dm-text) !important;
+    }
+}
+
+
+// ----------------------------------------------------------------------- //
+// site classes
+// ----------------------------------------------------------------------- //
+
+// Light-theme rules that hard-code a dark text colour or a pale fill, each found by the
+// coverage probe (scripts/.sc-rebaseline/dark-mode/dark-probe.mjs) naming its source rule
+
+.home-label,
+.combo-label,
+.combo-value,
+p.txt {
+
+    @include dark {
+        color: var(--dm-text);
+    }
+}
+
+// Story and report side notes: #FBFBFB80 (half-transparent white), which composites to a mid
+// grey on the dark page — 2.83:1 under --dm-text (axe, housing story, 2026-11-17)
+
+.asidebox {
+
+    @include dark {
+        background-color: rgba(255, 255, 255, 0.05);
+        border-left-color: var(--dm-border);
+    }
+}
+
+.keywords {
+
+    @include dark {
+        color: var(--dm-muted);
+    }
+}
+
+// Data-index geography pills: each geography class sets `color: black`
+
+.geobullets {
+
+    @include dark {
+        color: var(--dm-text);
+    }
+}
+
+// Heat-report tables colour headers $info (#841972); 2.02:1 on --dm-bg
+
+table th {
+
+    @include dark-base {
+        color: var(--dm-sec-features);
+    }
+}
+
+.btn-outline-info {
+
+    @include dark {
+        border-color: var(--dm-sec-features);
+    }
+}
+
+// At rest only, as .btn-outline-primary above
+
+.btn-outline-info:not(:hover):not(:focus):not(:active):not(.active) {
+
+    @include dark {
+        color: var(--dm-sec-features);
+    }
+}
+
+// The info utility (the explorer's "Choose topic > Select dataset" line) is the features
+// purple, #841972, 2.0:1 on the page; Bootstrap makes it !important
+
+.text-info {
+
+    @include dark {
+        color: var(--dm-sec-features) !important;
+    }
+}
+
+// Pale green fills: NR topic and neighborhood buttons, the NR report's action buttons
+
+.btn-light-green-bg,
+.neighborhood-list-button,
+.btn-report {
+
+    @include dark {
+        background-color: var(--dm-raised) !important;
+        border-color: var(--dm-border);
+        color: var(--dm-green);
+    }
+}
+
+.btn-report:hover,
+.neighborhood-list-button:hover,
+.btn-light-green-bg:hover {
+
+    @include dark {
+        background-color: var(--dm-hover) !important;
+    }
+}
+
+// Data explorer and AQE panels
+
+.de-wrapper .de-legend,
+.sourceBox-active,
+th.tablehead {
+
+    @include dark {
+        background-color: var(--dm-raised) !important;
+        color: var(--dm-text);
+    }
+}
+
+// Card bodies and accordion-header buttons set Bootstrap's body colour (#212529) themselves
+
+.content-card .card-content,
+.card-header .btn,
+.nav-pills .nav-link,
+.nav-tabs .nav-link {
+
+    @include dark {
+        color: var(--dm-text);
+    }
+}
+
+.breadcrumb-item.active a {
+
+    @include dark {
+        color: var(--dm-muted);
+    }
+}
+
+.neighborhood-list-button .text-lg {
+
+    @include dark {
+        color: var(--dm-green) !important;
+    }
+}
+
+.df-accent {
+
+    @include dark {
+        color: var(--dm-sec-features);
+    }
+}
+
+#cpReportMap .legend {
+
+    @include dark {
+        background-color: var(--dm-raised);
+        color: var(--dm-text);
+    }
+}
+
+// Realtime AQ's status line is green inline (3.5:1 on --dm-bg)
+
+#allUnder {
+
+    @include dark {
+        color: var(--dm-green) !important;
+    }
+}
+
+// Pale fills kept as they are, because they carry meaning (realtime AQ's value bars, the
+// block-by-block story's population/displacement categories): their text is pinned dark,
+// since it would otherwise inherit the page's light text
+
+// (bbb.html's .pop and .dis are opaque pale fills; its .housing, .health and .transpo are
+// translucent tints, which read as dark on the dark page and keep light text)
+
+.barchart,
+.pop,
+.dis,
+.pop p.txt,
+.dis p.txt,
+.pop p.date,
+.dis p.date {
+
+    @include dark {
+        color: #212529;
+    }
+}
+
+.pop a,
+.dis a {
+
+    @include dark {
+        color: #0a4ea8;
+    }
+}
+
+// The block-by-block timeline's dates, on the translucent tints
+
+p.date {
+
+    @include dark {
+        border-bottom-color: var(--dm-border);
+        color: var(--dm-muted);
+    }
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// the pale-green family
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+// The light theme's active/hover vocabulary is a pale green fill (#EFFAF4, $light-green
+// #F8FCF7, $active #DCF4E7) with $primary-dark text. Dark equivalent: a raised or hover
+// surface with --dm-green text (5.57:1 on --dm-hover, 7.38:1 on --dm-surface).
+
+.btn-light-green-bg-outline {
+
+    @include dark {
+        background-color: var(--dm-raised);
+        border-color: var(--dm-green);
+        color: var(--dm-green);
+    }
+}
+
+.btn-light-green-bg-outline:hover,
+.btn-light-green-bg:hover,
+.btn-report:hover,
+.printMap .de-link-button:hover {
+
+    @include dark {
+        background-color: var(--dm-green) !important;
+        color: var(--dm-bg) !important;
+    }
+}
+
+.de-link-button {
+
+    @include dark {
+        color: var(--dm-green);
+    }
+}
+
+.chart-note {
+
+    @include dark {
+        background-color: rgba(255, 255, 255, 0.06);
+        color: var(--dm-text);
+    }
+}
+
+.neighborhood-list {
+
+    @include dark {
+        background-color: var(--dm-surface);
+    }
+}
+
+.de-map-tools .leaflet-bar button[aria-pressed="true"],
+.de-chooser-card:hover,
+.de-chooser-card:focus-within,
+.itemfocus:hover,
+.nav-item-search:hover,
+.indicator-anchor:hover,
+.list-group-item-action:hover,
+.list-group-item-action:focus,
+.list-group.custom-active a.active {
+
+    @include dark {
+        background-color: var(--dm-hover) !important;
+        color: var(--dm-text);
+    }
+}
+
+.de-chooser-card:hover .stretched-link,
+.de-chooser-card:focus-within .stretched-link {
+
+    @include dark {
+        color: var(--dm-green) !important;
+    }
+}
+
+// The NR picker accordion's header (white, hover #EFFAF4, both !important in _de-custom.scss)
+
+.card-header:hover {
+
+    @include dark {
+        background-color: var(--dm-hover) !important;
+    }
+}
+
+// The NR report's indicator rows are accordion headers, white on a white section in light
+// mode; the generic header fill above made them lighter than their section, so they take the
+// section's (the page's) colour and keep the hover
+
+.nr-report-accordion .card-header:not(:hover) {
+
+    @include dark {
+        background-color: transparent !important;
+    }
+}
+
+// The NR maps (nr-report/map.js, nr-leaflet.html) outline the other neighborhoods in black,
+// hover in #444 and mark the selected one in #008939, all chosen for a light basemap. Leaflet
+// writes them as SVG attributes. Scoped to these two maps: the explorer's black outline is the
+// dark half of a two-tone selection halo, and stays.
+
+#nr-map,
+.nr-uhf-map {
+
+    @include dark {
+
+        .leaflet-overlay-pane path[stroke="black"] { stroke: var(--dm-muted); }
+        .leaflet-overlay-pane path[stroke="#444"] { stroke: var(--dm-text); }
+        .leaflet-overlay-pane path[stroke="#008939"] { stroke: var(--dm-green); }
+        .leaflet-overlay-pane path[fill="#008939"] { fill: var(--dm-green); }
+    }
+}
+
+.itemfocus:hover {
+
+    @include dark {
+        box-shadow: none;
+    }
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// explorer views (rules from de-tab-content.html's inline <style> and _de-custom.scss)
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+// The view rail's active tab is a white block with green text, !important
+
+.de-tabs-nav .nav-pills .nav-link.active,
+.de-tabs-nav .nav-pills .nav-link.active:hover,
+.de-wrapper .nav-pills .nav-link.active,
+.de-wrapper .nav-pills .nav-link.active:hover {
+
+    @include dark {
+        background-color: var(--dm-bg) !important;
+        color: var(--dm-green) !important;
+    }
+}
+
+// Table view: grouped header rows (#F0F0F0 / #F5F5F5 / #FAFAFA, green text) and the filter panel
+
+table .group td {
+
+    @include dark {
+        background-color: var(--dm-raised);
+        color: var(--dm-green);
+    }
+}
+
+table .group td[data-group-level="1"],
+table .group td[data-group-level="2"] {
+
+    @include dark {
+        background-color: var(--dm-surface);
+    }
+}
+
+#tableFilterPanel .de-table-optionbox {
+
+    @include dark {
+        background: var(--dm-raised);
+    }
+}
+
+#tableFilterPanel .checkbox-time,
+#tableFilterPanel .checkbox-geo,
+#summary-table table thead tr th {
+
+    @include dark {
+        color: var(--dm-text);
+    }
+}
+
+.de-viz-pill-label {
+
+    @include dark {
+        color: var(--dm-muted);
+    }
+}
+
+// Inline pure red (the trend view's unreliability notes, from EHDP-data's markup): #ff0000
+// is under 4.5:1 on the raised surface; the lightened red matches --dm-sec-stories
+
+[style*="color: red" i],
+[style*="color:red" i],
+[style*="color: #ff0000" i],
+[style*="color:#ff0000" i] {
+
+    @include dark {
+        color: var(--dm-sec-stories) !important;
+    }
+}
+
+// The explorer's Measure / Boundary / Time labels: $primary-dark, chosen for the light
+// panel, measures under 3:1 on the dark one
+
+.de-option-label {
+
+    @include dark {
+        color: var(--dm-green);
+    }
+}
+
+// Bootstrap generates .btn-outline-active from $active (#DCF4E7) in theme-colors; its
+// pressed state fills with that pale green behind (0,4,0) selectors, hence !important
+
+.btn-outline-active {
+
+    @include dark {
+        border-color: var(--dm-green);
+        color: var(--dm-text);
+    }
+}
+
+.btn-outline-active.active,
+.btn-outline-active:active,
+.btn-outline-active:hover {
+
+    @include dark {
+        background-color: var(--dm-hover) !important;
+        border-color: var(--dm-green) !important;
+        color: var(--dm-text) !important;
+    }
+}
+
+// The explorer's unreliability and "not mapped" notes: a translucent pale-yellow fill (alpha
+// ~0.31) in the light theme, which blends to a muddy brown under light text; given the
+// .alert-warning dark pair instead
+
+.popup-note {
+
+    @include dark {
+        background-color: #3b300c !important;
+        color: #f5e3a3;
+    }
+}
+
+// Take Action's address search sits on a 90%-white box
+
+#searchHolder,
+#searchHolder .srch {
+
+    @include dark {
+        background-color: var(--dm-raised) !important;
+    }
+}
+
+// AQE's tertile badges and the NR report's comparison pills (theme.scss .better / .middle /
+// .worse) are a data vocabulary and keep their pale fills; their text would inherit the page's
+// light text, so it is pinned back to dark
+
+.badge-better,
+.badge-medium,
+.better,
+.middle,
+.worse {
+
+    @include dark {
+        color: #212529;
+    }
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+
+    @include dark {
+        color: var(--dm-muted) !important;
+    }
+}
+
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing,
+.dataTables_wrapper .dataTables_paginate {
+
+    @include dark {
+        color: var(--dm-text);
+    }
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+
+    @include dark {
+        color: var(--dm-text) !important;
+    }
+}
+
+table.dataTable tbody tr {
+
+    @include dark {
+        background-color: transparent;
+    }
+}
+
+
+// ----------------------------------------------------------------------- //
+// section identity colours
+// ----------------------------------------------------------------------- //
+
+// _de-custom.scss colours each section's headings and icons; lightened here as text. Data
+// colours are not section colours and are not touched.
+
+.data-stories,
+.data-stories i {
+
+    @include dark {
+        color: var(--dm-sec-stories);
+    }
+}
+
+.data-stories svg path {
+
+    @include dark {
+        fill: var(--dm-sec-stories);
+    }
+}
+
+.data-features svg path {
+
+    @include dark {
+        fill: var(--dm-sec-features);
+    }
+}
+
+.n-reports,
+.n-reports i {
+
+    @include dark {
+        color: var(--dm-sec-reports);
+    }
+}
+
+.n-reports svg path {
+
+    @include dark {
+        fill: var(--dm-sec-reports);
+    }
+}
+
+.data-explorer,
+.data-explorer i {
+
+    @include dark {
+        color: var(--dm-sec-explorer);
+    }
+}
+
+.data-explorer svg path {
+
+    @include dark {
+        fill: var(--dm-sec-explorer);
+    }
+}
+
+.key-topics i {
+
+    @include dark {
+        color: var(--dm-green);
+    }
+}
+
+.key-topics svg path {
+
+    @include dark {
+        fill: var(--dm-green);
+    }
+}
+
+
+// ----------------------------------------------------------------------- //
+// site header
+// ----------------------------------------------------------------------- //
+
+// The green header photo stays, multiplied down so it does not glare; the header's own
+// white fill (seen below the photo on narrow screens) becomes the page colour
+
+#global-header {
+
+    @include dark {
+        background-color: var(--dm-bg);
+    }
+}
+
+.site-header {
+
+    @include dark {
+        background-color: #5a5f73;
+        background-blend-mode: multiply;
+    }
+}
+
+// Not the Subscribe button's inner link, which takes its colour from .btn-outline-warning
+// (yellow at rest, dark on the yellow hover fill) as in the light theme
+
+#global-header .nav-item:not(.subscribe-button) .nav-link,
+#global-header .dropdown-menu a {
+
+    @include dark {
+        color: var(--dm-text);
+    }
+}
+
+// At rest only: on hover Bootstrap's .btn-outline-warning fills yellow and turns the text
+// dark, and a dark fill here outranked the yellow, leaving dark text on navy
+
+#global-header .subscribe-button:not(:hover):not(:focus-within):not(:active) {
+
+    @include dark {
+        background-color: rgba(13, 21, 48, 0.6);
+
+        // Its inner link keeps the light theme's dark nav colour, meant for the half-white
+        // fill there; light on the navy fill, and dark again on the yellow hover
+        .nav-link {
+            color: var(--dm-text);
+        }
+    }
+}
+
+// ----------------------------------------------------------------------- //
+// inline pale fills
+// ----------------------------------------------------------------------- //
+
+// Templates and content set pale panel fills inline: the home page's grey band (#EEEDEA),
+// "background: white" story panels, the #fafafa/#f1f1f1/#f2f2f2 feature boxes, and the AQ
+// snapshots story's pastel sections. Matched by their literal style text rather than by editing
+// ~20 files, so light-mode HTML is untouched. A white panel holding an image is left alone,
+// since it may be a plate behind dark-on-transparent artwork.
+
+[style*="#EEEDEA" i],
+[style*="#DCF4E7" i],
+[style*="background: white" i]:not(:has(img)),
+[style*="background:white" i]:not(:has(img)),
+[style*="#fafafa" i],
+[style*="#f1f1f1" i],
+[style*="#f2f2f2" i],
+[style*="#FFFADE" i],
+[style*="#FAF3FB" i],
+[style*="#EEF4E3" i],
+[style*="#EDF2F7" i] {
+
+    @include dark {
+        background: var(--dm-surface) !important;
+        color: var(--dm-text);
+    }
+}
+
+// The explorer table's sub-labels (table.js writes color: #434343 inline)
+
+[style*="#434343" i] {
+
+    @include dark {
+        color: var(--dm-muted) !important;
+    }
+}
+
+
+// Inline light-grey highlight boxes in stories (poweroutages): they keep their fill, so text
+// that sets no colour of its own is pinned dark; an inline colour still wins
+
+[style*="lightgray" i],
+[style*="lightgrey" i] {
+
+    @include dark {
+        color: #212529;
+    }
+}
+
+// Inline text colours that key a chart, map or figure (a series name written in its line's
+// colour): each under 4.5:1 on the dark page (inline-colors.py, 2026-11-17). Each is lightened in
+// its own hue and saturation to the lowest lightness reaching 5:1 on --dm-surface
+// (lighten-keys.py, same date), so it still reads as its series. A white plate keeping the
+// exact colour was tried first and read as jarring (Chris, 2026-11-17). A hex is matched as a
+// substring; none of these appears in a background attribute (grep, same date). Named colours
+// are matched on span only, so a font icon used as a swatch (congestion pricing's blue square)
+// and realtime AQ's green status paragraph are left out. The 2023 heat archive's orange key
+// passes on the page as it is.
+
+@each $from, $to in (
+    "#00008B": #8181ff, "#2b3fde": #7c88eb, "#c73866": #d66e8f, "#1d8f3f": #22a549,
+    "#7e0000": #ff4e4e, "#104e34": #22a46e, "#22669e": #4394d6, "#00694D": #00a67a,
+    "#A93200": #ff5209, "#ae3400": #ff530a, "#007153": #00a579, "#b820bb": #df54e2,
+    "#c04543": #d07574, "#DF0E0E": #f55b5b
+) {
+    [style*="#{$from}" i] {
+
+        @include dark {
+            color: $to !important;
+        }
+    }
+}
+
+// Named colours: the congestion pricing report's site name and the heat archive's key are
+// "blue", the heat archive's other key "green"
+
+span[style^="color:blue" i],
+span[style^="color: blue" i] {
+
+    @include dark {
+        color: #8282ff !important;
+    }
+}
+
+span[style^="color:green;font-weight: normal" i] {
+
+    @include dark {
+        color: #00a600 !important;
+    }
+}
+
+// Light fills that appear only after an interaction, set in page-local <style> blocks: the
+// congestion pricing report's heading bar once it sticks on scroll, AQE's hovered source box,
+// realtime AQ's hovered or selected location row. Found by listing every light background in
+// a template or content <style> block, then triggering each state (2026-11-17).
+
+.cp-sticky-header.cp-is-fixed {
+
+    @include dark {
+        background: rgba(13, 21, 48, 0.94);
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+    }
+}
+
+.sourceBox:hover,
+.location-row:hover,
+.row-active {
+
+    @include dark {
+        background-color: var(--dm-hover);
+    }
+}
+
+// Inline greys that are not keys, only quiet text
+
+[style*="#474747" i],
+[style*="#5e5e5e" i],
+[style*="rgb(83, 83, 83)" i],
+[style*="rgb(109, 109, 109)" i] {
+
+    @include dark {
+        color: var(--dm-muted) !important;
+    }
+}
+
+// Inline accent text: list.html's brand green (3.97:1) and realtime AQ's red status (3.99:1)
+
+[style*="color: #008939" i] {
+
+    @include dark {
+        color: var(--dm-green) !important;
+    }
+}
+
+[style*="#ea172b" i] {
+
+    @include dark {
+        color: #ff8a80 !important;
+    }
+}
+
+// Neighborhood Reports label their ZIP list and demographics source inline in darkslategray
+
+[style*="darkslategray" i],
+[style*="darkslategrey" i] {
+
+    @include dark {
+        color: var(--dm-muted) !important;
+    }
+}
+
+
+// ----------------------------------------------------------------------- //
+// header toggle
+// ----------------------------------------------------------------------- //
+
+// Not dark-scoped: the button exists in both themes and shows the icon for the mode it
+// switches to. Background and border cleared so it reads like the bar's other links.
+
+// 24px minimum target: icon-only below md, where the glyph alone is ~16px (WCAG 2.2 SC 2.5.8)
+
+.theme-toggle {
+    background: none;
+    border: 0;
+    cursor: pointer;
+    min-height: 24px;
+    min-width: 24px;
+    padding: 0;
+}
+
+.theme-toggle-icon-light {
+    display: none;
+}
+
+.theme-toggle-icon-dark {
+
+    @include dark {
+        display: none;
+    }
+}
+
+.theme-toggle-icon-light {
+
+    @include dark {
+        display: inline-block;
+    }
+}
+
+
+// ----------------------------------------------------------------------- //
+// maps (Leaflet)
+// ----------------------------------------------------------------------- //
+
+// CARTO basemaps switch to CARTO's own dark_all style (lib-leaflet.html). A tile layer from
+// any other provider (the proximity feature's MapTiler) is marked .basemap-filtered there and
+// inverted here; hue-rotate 180deg puts inverted water back to blue-ish. The filter is on that
+// layer alone, never the whole tile pane, because grid layers holding data (the heat story's
+// georaster) draw in the tile pane too.
+
+.leaflet-container {
+
+    @include dark {
+        background-color: var(--dm-bg);
+    }
+}
+
+.leaflet-layer.basemap-filtered {
+
+    @include dark {
+        filter: invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9);
+    }
+}
+
+.leaflet-bar a,
+.leaflet-bar button,
+.de-map-tools .leaflet-bar button,
+.de-map-tools .de-map-opacity,
+.leaflet-control.info,
+.leaflet-control.legend,
+.leaflet-control-layers,
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip,
+.leaflet-tooltip {
+
+    @include dark {
+        background-color: var(--dm-raised);
+        border-color: var(--dm-border);
+        color: var(--dm-text);
+    }
+}
+
+// The explorer map's popup body (map.js): a light header panel and greys chosen for white,
+// all set in _de-custom.scss; only drawn after a click, so the load-time sweep never saw it
+
+.popup-header {
+
+    @include dark {
+        background: var(--dm-hover);
+        border-bottom-color: var(--dm-border);
+        color: var(--dm-text);
+    }
+}
+
+.popup-indicator,
+.popup-period,
+.value-unit {
+
+    @include dark {
+        color: var(--dm-muted);
+    }
+}
+
+.value-number {
+
+    @include dark {
+        color: var(--dm-text);
+    }
+}
+
+.leaflet-bar a:hover {
+
+    @include dark {
+        background-color: var(--dm-hover);
+    }
+}
+
+.leaflet-control-scale-line {
+
+    @include dark {
+        background-color: rgba(13, 21, 48, 0.8);
+        border-color: var(--dm-muted);
+        color: var(--dm-text);
+    }
+}
+
+.leaflet-control-attribution {
+
+    @include dark {
+        background-color: rgba(13, 21, 48, 0.8) !important;
+        color: var(--dm-muted);
+    }
+}
+
+.leaflet-container a {
+
+    @include dark {
+        color: var(--dm-link);
+    }
+}
+
+// Leaflet's zoom buttons and the explorer's map tools draw dark glyphs; the easyButton icons
+// are Font Awesome and inherit
+
+.leaflet-bar a,
+.leaflet-bar button {
+
+    @include dark {
+        color: var(--dm-text);
+    }
+}
+
+// Leaflet draws a tooltip's arrow with a border in the tooltip's own colour
+
+.leaflet-tooltip-top::before {
+
+    @include dark {
+        border-top-color: var(--dm-raised);
+    }
+}
+
+.leaflet-tooltip-bottom::before {
+
+    @include dark {
+        border-bottom-color: var(--dm-raised);
+    }
+}
+
+.leaflet-tooltip-left::before {
+
+    @include dark {
+        border-left-color: var(--dm-raised);
+    }
+}
+
+.leaflet-tooltip-right::before {
+
+    @include dark {
+        border-right-color: var(--dm-raised);
+    }
+}
+
+
+// ----------------------------------------------------------------------- //
+// charts (Vega)
+// ----------------------------------------------------------------------- //
+
+// Every current vegaEmbed call passes renderer: "svg" (one grep over assets/, themes/ and
+// content/, 2026-11-17), and Vega writes chart colours as SVG presentation attributes
+// (fill="#000"), which any CSS rule outranks. So charts are themed here rather than through
+// Vega config: a toggle restyles a drawn chart live, and exports stay light, because
+// view.toImageURL renders from Vega's scenegraph, which CSS never touches. Only chrome is
+// selected by role class; role-mark (the data) is never touched, except text marks drawn in
+// plain black, which are labels.
+
+// vega-embed sets the chart's white background inline on the <svg>
+
+.vega-embed svg.marks {
+
+    @include dark {
+        background-color: transparent !important;
+    }
+}
+
+.vega-embed {
+
+    @include dark {
+
+        .role-axis-label text,
+        .role-axis-title text,
+        .role-legend-label text,
+        .role-legend-title text,
+        .role-title-text text,
+        .role-header-label text,
+        .role-header-title text {
+            fill: var(--dm-text);
+        }
+
+        .role-title-subtitle text {
+            fill: var(--dm-muted);
+        }
+
+        .role-axis-grid line {
+            stroke: var(--dm-border);
+        }
+
+        .role-axis-domain line,
+        .role-axis-tick line {
+            stroke: var(--dm-muted);
+        }
+
+        // Vega-Lite's view outline
+        .role-cell > path[stroke="#ddd"] {
+            stroke: var(--dm-border);
+        }
+
+        .role-mark text[fill="#000"],
+        .role-mark text[fill="#000000"],
+        .role-mark text[fill="black"],
+        .role-mark text[fill="#333"],
+        .role-mark text[fill="#333333"] {
+            fill: var(--dm-text);
+        }
+    }
+}
+
+// Explorer series too dark to see on the dark surface, lightened in their own hue (Chris,
+// 2026-11-17: a departure from "data colours identical", for these only). Each measured on
+// --dm-surface: trend's NYC #000000ff 1.28:1 -> --dm-text 13.1:1; BX #374c80 (trend and
+// disparities) 1.95:1 -> #7d93d6 5.46:1; correlate's Brooklyn #000F89 1.11:1 -> #7c8cff
+// 5.49:1. Every other series colour in the three views measures 3.20:1 or more. Matched on the
+// literal attribute Vega writes (chart-colors.mjs); exports keep the light originals.
+
+.vega-embed {
+
+    @include dark {
+
+        [stroke="#000000ff"] { stroke: var(--dm-text); }
+        [fill="#000000ff"] { fill: var(--dm-text); }
+
+        [stroke="#374c80"] { stroke: #7d93d6; }
+        [fill="#374c80"] { fill: #7d93d6; }
+
+        [stroke="#000F89" i] { stroke: #7c8cff; }
+        [fill="#000F89" i] { fill: #7c8cff; }
+
+        // The bar view outlines a highlighted bar in black, which vanishes on the dark surface
+        .role-mark path[stroke="black"] { stroke: var(--dm-text); }
+    }
+}
+
+// Series colours under 3:1 on the dark surface in any Vega chart, found on the congestion
+// pricing report (its interpretation guide and site charts, 2026-11-17): named blue, purple
+// and black, and five hexes. Lightened in hue by the 5:1 method of lighten-keys.py, except purple,
+// whose fully saturated result was neon, so it takes the features purple. Translucent marks keep
+// their opacity attribute: the guide's grey standard-error bar is black at 20%, which on navy
+// was invisible and is now light at 20%. Marks and legend symbols only; text marks are above.
+
+@each $from, $to in (
+    "blue": #8282ff, "purple": var(--dm-sec-features), "black": var(--dm-text),
+    "#9b2c2c": #d67070, "#276749": #3da273, "#2b6cb0": #5493d5, "#9c179e": #e34de5,
+    "#545454": #909090
+) {
+    .vega-embed .role-mark :is(path, line)[fill="#{$from}" i],
+    .vega-embed .role-legend-symbol path[fill="#{$from}" i] {
+
+        @include dark {
+            fill: $to;
+        }
+    }
+
+    .vega-embed .role-mark :is(path, line)[stroke="#{$from}" i],
+    .vega-embed .role-legend-symbol path[stroke="#{$from}" i] {
+
+        @include dark {
+            stroke: $to;
+        }
+    }
+}
+
+// The trend chart draws its own x-axis ticks as black tick marks (trend.js), which are chrome
+
+#trend .mark-rect.role-mark path[fill="black"] {
+
+    @include dark {
+        fill: var(--dm-muted);
+    }
+}
+
+// The HTML pieces vega-embed and vega-tooltip draw around the chart
+
+.vega-embed summary {
+
+    @include dark {
+        background-color: var(--dm-raised);
+        border-color: var(--dm-border);
+        color: var(--dm-text);
+    }
+}
+
+.vega-embed .vega-actions {
+
+    @include dark {
+        background-color: var(--dm-raised);
+        border-color: var(--dm-border);
+
+        a {
+            color: var(--dm-text);
+        }
+
+        a:hover {
+            background-color: var(--dm-hover);
+        }
+    }
+}
+
+#vg-tooltip-element.vg-tooltip {
+
+    @include dark {
+        background-color: var(--dm-raised);
+        border-color: var(--dm-border);
+        color: var(--dm-text);
+    }
+}
+
+
+// ----------------------------------------------------------------------- //
+// Datawrapper
+// ----------------------------------------------------------------------- //
+
+// While theme-adapters.js's DATAWRAPPER_FOLLOWS_THEME is false, embeds stay in Datawrapper's
+// light theme and get a light plate; while it is true the script sets data-dw-follow on <html>
+// and these rules stand down (the :not() below), since the charts draw dark themselves. The
+// script-embed container is a transparent div with inline `all: initial`, so a light chart's
+// dark text would otherwise sit on the dark page; hence !important. Iframes paint their own
+// white.
+
+.datawrapper-script-embed:not([data-dw-follow] *) {
+
+    @include dark {
+        background-color: #fff !important;
+        border-radius: 4px;
+        color-scheme: light;
+        display: block !important;
+        padding: 0.5rem !important;
+    }
+}
+
+// Screen-reader-only copies of charts (the AQ snapshots story's tables inside .sr-only) keep
+// their light-theme layout: the plate's padding widened them from 1px to 16px
+
+.sr-only .datawrapper-script-embed:not([data-dw-follow] *) {
+
+    @include dark {
+        display: inline !important;
+        padding: 0 !important;
+    }
+}
+
+iframe[src*="datawrapper.dwcdn.net"]:not([data-dw-follow] *) {
+
+    @include dark {
+        border-radius: 4px;
+        color-scheme: light;
+    }
+}
+
+
+// ----------------------------------------------------------------------- //
+// Pagefind search UI
+// ----------------------------------------------------------------------- //
+
+// Pagefind UI styles itself from these custom properties
+
+.pagefind-ui {
+
+    @include dark {
+        --pagefind-ui-primary: var(--dm-text);
+        --pagefind-ui-text: var(--dm-text);
+        --pagefind-ui-background: var(--dm-surface);
+        --pagefind-ui-border: var(--dm-border);
+        --pagefind-ui-tag: var(--dm-raised);
+    }
+}
