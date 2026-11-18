@@ -17,9 +17,9 @@ keywords:
     "food",
     "restaurants",
   ]
-image: "food_prep.png"
-image_alt: "Someone wearing a black apron over a white shirt preparing food in a commercial kitchen"
-photocredit: Public Domain
+image: "darren-ahmed-arceo.jpg"
+image_alt: "a cutting board in a commercial kitchen with red peppers, onions, carrots, garlic, ginger, and a chef's knife"
+photocredit: Darren Ahmed Arceo
 related:
   - title: "NYC is working to protect your health — but we can’t do it alone"
     url: "data-stories/federal-funding/"
