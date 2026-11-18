@@ -72,7 +72,13 @@ const load_flexdatalist = async () => {
 
             const generated = document.getElementById($input.attr('id') + '-flexdatalist');
 
-            if (generated) wireComboboxState(generated);
+            // The library copies no ARIA onto the input it generates, so the label the
+            // authored input carries in hvi.html has to be repeated here
+
+            if (generated) {
+                generated.setAttribute('aria-labelledby', 'hvi-search-label');
+                wireComboboxState(generated);
+            }
 
             // ----- add flexdatalist select handler -------------------------------------------------- //
 
@@ -284,6 +290,11 @@ function buildMap(div, spec, csv, topo, nbr) {
         //  top_url is a shallow copy / reference to the spec
         
         topo_url.url = topo;
+
+        // the borough outlines come from EHDP-data on this environment's data_branch, which a
+        // static spec file cannot read, so the spec carries the placeholder "borough_topo"
+
+        spec.data.filter(data => {return data.url === "borough_topo";})[0].url = data_repo + data_branch + "/geography/borough.topo.json";
         
         vegaEmbed(div, spec, {renderer: "svg", actions: false}).then(async res => {
                 

@@ -124,3 +124,7 @@ documents/rat-report-2026-figures-to-confirm.html
 /EHDP feedback for MOD-Lab.md
 /README-MOD.md
 /.cursor/
+
+# In-repo worktree directories. A gitlink committed from one made every CI checkout run
+# git submodule foreach against a submodule with no .gitmodules entry (audit R8).
+/.worktrees/

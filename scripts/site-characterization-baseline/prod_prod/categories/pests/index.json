@@ -68,13 +68,13 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 79,
+            "internal": 50,
             "external": 18,
-            "emptyHref": 29,
+            "emptyHref": 0,
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 5,
+            "button": 34,
             "input": 1,
             "select": 0,
             "textarea": 0,
@@ -86,7 +86,7 @@
             "withCaption": 0
         },
         "iframes": [],
-        "overflowX": true
+        "overflowX": false
     },
     "content": {
         "title": "Pests – Environment & Health Data Portal",
@@ -96,11 +96,11 @@
             "Rat Mitigation Zones",
             "Rat Information Portal",
             "Rat Mitigation Zone Report: January 2025 to June 2025",
+            "Rat Mitigation Zone Report: January 2024 to June 2024",
             "What climate change means for vector-borne disease in NYC",
             "Inspection data are the key to controlling NYC’s rats",
             "Rat complaints and NYC’s rat problem",
             "Why trash is a public health issue",
-            "Asthma",
             "Search",
             "Page Footer"
         ],
@@ -110,10 +110,10 @@
             "/categories/pests/",
             "/categories/pests/page/2/",
             "/data-explorer/",
-            "/data-explorer/asthma/",
             "/data-features/",
             "/data-features/rat-information-portal/",
             "/data-features/rat-mitigation-zones/",
+            "/data-features/rat-report-archive/2024/",
             "/data-features/rat-report/",
             "/data-features/rats-in-your-neighborhood/",
             "/data-stories/",

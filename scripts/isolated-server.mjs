@@ -108,10 +108,22 @@ export const startServer = async (environment) => {
     // directory can hold a space, which an args array never has to care about.
     const quote = (a) => (/\s/.test(a) ? `"${a}"` : a);
     const spawnEnv = { ...process.env, HUGO_RESOURCEDIR: resourceDir };
+    const stdio = ["ignore", "pipe", "pipe"];
     const child = process.platform === "win32"
         ? spawn([HUGO_BIN, ...args].map(quote).join(" "),
-            { cwd: REPO_ROOT, shell: true, stdio: "ignore", env: spawnEnv })
-        : spawn(HUGO_BIN, args, { cwd: REPO_ROOT, stdio: "ignore", env: spawnEnv });
+            { cwd: REPO_ROOT, shell: true, stdio, env: spawnEnv })
+        : spawn(HUGO_BIN, args, { cwd: REPO_ROOT, stdio, env: spawnEnv });
+
+    // Hugo's output is kept, capped, so a server that never answers can say why. Discarding it
+    // made a template error on the first build read as a bare timeout. Both streams are drained
+    // continuously, so a full pipe can never stall the server.
+    let output = "";
+    const keep = (chunk) => { output = (output + chunk).slice(-8000); };
+    child.stdout.on("data", keep);
+    child.stderr.on("data", keep);
+    let exitCode = null;
+    child.once("exit", (code) => { exitCode = code ?? -1; });
+    const failure = (what) => new Error(`The ${environment} server ${what}. Hugo's last output:\n${output.trim() || "(none)"}`);
 
     const stop = makeStop(child);
     process.once("exit", stop);
@@ -122,10 +134,11 @@ export const startServer = async (environment) => {
             const baseURL = `http://localhost:${PORT}${prefix}`;
             if (await responds(baseURL)) return { baseURL, destDir, stop };
         }
+        if (exitCode !== null) throw failure(`exited (code ${exitCode}) before answering on :${PORT}`);
         await sleep(1000);
     }
 
     stop();
-    throw new Error(`The ${environment} server did not answer on :${PORT} within ${SERVER_TIMEOUT_S}s.`);
+    throw failure(`did not answer on :${PORT} within ${SERVER_TIMEOUT_S}s`);
 };
 

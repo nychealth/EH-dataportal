@@ -34,9 +34,10 @@ A run-down of main branches, actions, and purposes are:
 | Deploy to          | `EH-dataportal` branch: | `EHDP-data` branch: | Action on merge:             | Used for:              |
 |--------------------|-------------------------|---------------------|------------------------------|------------------------|
 | Production servers | `production`            | `production`        | Builds to `builds/prod-prod` | Live site              |
-| 307 (internal)     | `build-to-dev-stage`    | `staging`           | Builds to `builds/dev-stage` | Demoing data & content |
 
-On merge, these branches are automatically [built](https://github.com/peaceiris/actions-hugo) and [served](https://github.com/peaceiris/actions-gh-pages) to other branches using Github Actions (triggerd by a merged pull request).  _(Note that this requires a workflow YAML file in both [`production`](https://github.com/nychealth/EH-dataportal/blob/production/.github/workflows/hugo-build-to-dev-prod.yml) and the build branch, e.g. [`build-to-dev-stage`](https://github.com/nychealth/EH-dataportal/blob/build-to-dev-stage/.github/workflows/hugo-build-to-dev-stage.yml).)_
+On merge, this branch is automatically [built](https://github.com/peaceiris/actions-hugo) and [served](https://github.com/peaceiris/actions-gh-pages) to other branches using Github Actions (triggerd by a merged pull request).  _(Note that this requires the workflow YAML file on [`production`](https://github.com/nychealth/EH-dataportal/blob/production/.github/workflows/hugo-build-to-prod-prod.yml).)_
+
+Until 2026-11-07 a second branch, `build-to-dev-stage`, was meant to build to `builds/dev-stage` for the internal 307 server through `hugo-build-to-dev-stage.yml`, with `trigger_dev-stage_workflow.ps1` and `.sh` to run it by hand. That workflow never ran in the retained history, and CloudCannon branch previews took over its purpose, so all three were deleted (audit N-033). The last commit holding them is `b730ddf7d3`.
 
 ### Automated actions
 
@@ -48,9 +49,8 @@ Current workflows:
 | Workflow:                     | `EH-dataportal` branch: | `EHDP-data` branch:   | Action on merge:                                  | In use?      |
 |-------------------------------|-------------------------|-----------------------|---------------------------------------------------|--------------|
 | `hugo-build-to-prod-prod.yml` | `production`            | `production`          | Builds to `builds/prod-prod`                      | Yes          |
-| `hugo-build-to-dev-stage.yml` | `build-to-dev-stage`    | `staging`             | Builds to `builds/dev-stage`                      | Yes          |
 | `hugo-build-to-dev-prod.yml`  | `development`           | `production`          | Builds to `builds/dev-prod`                       | No           |
-| `hugo-build-any-branch.yml`   | Any (need to specify)   | Any (need to specify) | By default, builds to `builds/[specified-branch]` | Yes          |
+| `hugo-build-any-branch.yml`   | Any (need to specify)   | Any (need to specify) | By default, builds to `builds/[specified-branch]`; refuses `builds/prod-prod` | Yes          |
 
 **Note:**
 GitHub Actions and the deployment pipeline are set up to convert all end-of-line characters to Unix style (`LF`). This is configured in the workflow YAML files (step `set git EOL`). This is nice for consistency and for avoiding git flagging hundreds of inconsequential changes, but it's actually important for subresource integrity calculations.

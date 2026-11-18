@@ -13,6 +13,7 @@
             "js/data-explorer/de-tab-content.js",
             "js/data-explorer/disparities.js",
             "js/data-explorer/global.js",
+            "js/data-explorer/hover-hints.js",
             "js/data-explorer/map.js",
             "js/data-explorer/measures.js",
             "js/data-explorer/menu.js",
@@ -43,7 +44,7 @@
             "translate.google.com",
             "www.googletagmanager.com"
         ],
-        "assetsWithIntegrity": 34,
+        "assetsWithIntegrity": 35,
         "headingLevels": [
             4,
             4,
@@ -57,6 +58,11 @@
             4,
             4,
             4,
+            5,
+            5,
+            5,
+            5,
+            5,
             5,
             1,
             2,
@@ -117,20 +123,20 @@
             "total": 7,
             "missingAlt": 0,
             "emptyAlt": 4,
-            "zeroSize": 2
+            "zeroSize": 3
         },
         "links": {
-            "internal": 125,
+            "internal": 108,
             "external": 15,
-            "emptyHref": 22,
+            "emptyHref": 4,
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 39,
-            "input": 2,
+            "button": 100,
+            "input": 3,
             "select": 0,
             "textarea": 0,
-            "noAccessibleName": 6
+            "noAccessibleName": 0
         },
         "tables": {
             "total": 0,
@@ -138,7 +144,7 @@
             "withCaption": 0
         },
         "iframes": [],
-        "overflowX": true
+        "overflowX": false
     },
     "content": {
         "title": "Air quality data for NYC – Environment & Health Data Portal",
@@ -156,6 +162,11 @@
             "You might also be interested in:",
             "More related to:",
             "Save this visualization",
+            "About neighborhood boundaries",
+            "About trend charts",
+            "Available time periods",
+            "About measures",
+            "About correlation",
             "Fine particles (PM 2.5)",
             "Concentration of fine particles in the air. Fine particles are emitted by vehicles, building boilers, and other combustion — and are a major form of air pollution that harms health. Neighborhood sensors measure PM2.5 at the street-level, where people are most active. These sensors are designed to let us measure differences in air pollution over time and locations within New York City.",
             "Black carbon",
@@ -236,6 +247,8 @@
             "/data-features/realtime-air-quality/",
             "/data-stories/",
             "/data-stories/car-free-zones/",
+            "/data-stories/geographies",
+            "/data-stories/povasthma",
             "/key-topics",
             "/key-topics/accessibility/",
             "/key-topics/airquality/",

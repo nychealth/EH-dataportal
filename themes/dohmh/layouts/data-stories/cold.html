@@ -15,7 +15,7 @@
         {{- if .IsTranslated -}}
             <nav class="navbar navbar-default my-2">
                     <ul class="nav navbar-nav fs-sm">
-                        <span class="mr-2">Read this data story in:</span>
+                        <li class="mr-2">Read this data story in:</li>
                         {{- range .Translations -}}
                         <li class="mb-1"><a href="{{ .RelPermalink }}">{{ .Language.LanguageName }}</a>&nbsp;|&nbsp;</li>
                         {{- end -}}
@@ -44,7 +44,7 @@
             <h1>{{ partial "section-icon.html" $.Section }}{{ .Title }}</h1>
                 {{- .Content -}}
 
-            <iframe src="source/index.html" frameborder="off" style="width:100%;height: 750px;"></iframe>
+            <iframe src="source/index.html" title="Winter Weather Safety" frameborder="off" style="width:100%;height: 750px;"></iframe>
 
         </div>
 

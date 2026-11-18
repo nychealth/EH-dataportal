@@ -73,13 +73,13 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 115,
+            "internal": 82,
             "external": 22,
-            "emptyHref": 30,
-            "noAccessibleText": 1
+            "emptyHref": 1,
+            "noAccessibleText": 0
         },
         "controls": {
-            "button": 9,
+            "button": 38,
             "input": 1,
             "select": 0,
             "textarea": 0,
@@ -120,10 +120,8 @@
             "/about/jobs/",
             "/data-explorer",
             "/data-explorer/",
-            "/data-explorer/accessibility/",
             "/data-explorer/air-quality/",
             "/data-explorer/chronic-disease/",
-            "/data-explorer/climate/",
             "/data-explorer/mice-and-rats/",
             "/data-explorer/social-conditions/",
             "/data-features",

@@ -1,5 +1,9 @@
 {{- define "main" -}}
 
+{{- /*  Loads the tab-deferred Datawrapper embeds the same way single.html does: without it,
+      a pane's data-lazy-src iframe never gets a src (air-quality-snapshots, audit N-053).  */}}
+{{- $lazyTabEmbedsJS := resources.Get "js/data-stories/lazy-tab-embeds.js" | partial "short-fingerprint.html" }}
+<script src="{{ $lazyTabEmbedsJS.RelPermalink }}" integrity="{{ $lazyTabEmbedsJS.Data.Integrity }}"></script>
 
 <!-- This flexible data story template puts content only within a row, and puts related content below -->
 

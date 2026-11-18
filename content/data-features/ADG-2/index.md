@@ -18,7 +18,7 @@ keywords:
   ]
 
 layout: resourceportal
-image: ADG.png
+image: ADG.webp
 destination: "https://www.nyc.gov/assets/doh/downloads/pdf/environmental/active-design-guidelines-2025.pdf"
 externalPortal: true
 blurb: Read the new Active Design Guidelines.

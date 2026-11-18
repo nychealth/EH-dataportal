@@ -64,13 +64,13 @@
             "zeroSize": 8
         },
         "links": {
-            "internal": 118,
+            "internal": 89,
             "external": 18,
-            "emptyHref": 29,
-            "noAccessibleText": 16
+            "emptyHref": 0,
+            "noAccessibleText": 0
         },
         "controls": {
-            "button": 5,
+            "button": 34,
             "input": 1,
             "select": 0,
             "textarea": 0,

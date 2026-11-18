@@ -13,6 +13,7 @@
             "js/data-explorer/de-tab-content.js",
             "js/data-explorer/disparities.js",
             "js/data-explorer/global.js",
+            "js/data-explorer/hover-hints.js",
             "js/data-explorer/map.js",
             "js/data-explorer/measures.js",
             "js/data-explorer/menu.js",
@@ -43,7 +44,7 @@
             "translate.google.com",
             "www.googletagmanager.com"
         ],
-        "assetsWithIntegrity": 34,
+        "assetsWithIntegrity": 35,
         "headingLevels": [
             4,
             4,
@@ -58,6 +59,11 @@
             4,
             4,
             4,
+            5,
+            5,
+            5,
+            5,
+            5,
             5,
             1,
             2,
@@ -135,20 +141,20 @@
             "total": 7,
             "missingAlt": 0,
             "emptyAlt": 4,
-            "zeroSize": 2
+            "zeroSize": 3
         },
         "links": {
-            "internal": 122,
+            "internal": 105,
             "external": 9,
-            "emptyHref": 22,
+            "emptyHref": 4,
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 47,
-            "input": 2,
+            "button": 108,
+            "input": 3,
             "select": 0,
             "textarea": 0,
-            "noAccessibleName": 6
+            "noAccessibleName": 0
         },
         "tables": {
             "total": 0,
@@ -156,7 +162,7 @@
             "withCaption": 0
         },
         "iframes": [],
-        "overflowX": true
+        "overflowX": false
     },
     "content": {
         "title": "Pesticide data for NYC – Environment & Health Data Portal",
@@ -175,6 +181,11 @@
             "You might also be interested in:",
             "More related to:",
             "Save this visualization",
+            "About neighborhood boundaries",
+            "About trend charts",
+            "Available time periods",
+            "About measures",
+            "About correlation",
             "Regular exterminator service",
             "Households that report using a regular exterminator service.",
             "Adults reporting personal use of pesticides",
@@ -269,7 +280,9 @@
             "/data-features/",
             "/data-features/rat-mitigation-zones/",
             "/data-stories/",
+            "/data-stories/geographies",
             "/data-stories/housing-creates-health/",
+            "/data-stories/povasthma",
             "/key-topics",
             "/key-topics/accessibility/",
             "/key-topics/airquality/",

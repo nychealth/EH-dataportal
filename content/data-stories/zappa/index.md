@@ -155,7 +155,7 @@ Select Start a new NYC run. Give it a name and description - the model and resul
 **Select ZIP Codes.**
 These are the ZIP Codes you’d like to focus on.
 
-{{< figure src="Zappa1.png" alt="Left hand side has a menu with dropdowns. Top to bottom it says: Name and Description, ZIP Codes and waterways, Modify Traffic & Emissions, Advanced, and Review changes. The right hand side has a map of NYC with all ZIP Codes outlined in yellow." >}}
+{{< figure src="Zappa1.webp" alt="Left hand side has a menu with dropdowns. Top to bottom it says: Name and Description, ZIP Codes and waterways, Modify Traffic & Emissions, Advanced, and Review changes. The right hand side has a map of NYC with all ZIP Codes outlined in yellow." >}}
 
 For the scenarios in this data story, here’s what we used:
 
@@ -228,4 +228,4 @@ You can toggle through the estimated impacts of the policy change in the final m
 
 {{< figure src="Zappa8.png" alt="Grey drop down menu of Category: Concentrations, Health Impacts, Economic Impacts and Health Impacts is selected." >}}
 
-{{< figure src="Zappa9.png" alt="Displayed results for Health Impacts and Metric of Mortality (low estimate) with citywide totals listed. The map of NYC has all ZIP Codes outlined in black with varying shades of blue." >}}
+{{< figure src="Zappa9.webp" alt="Displayed results for Health Impacts and Metric of Mortality (low estimate) with citywide totals listed. The map of NYC has all ZIP Codes outlined in black with varying shades of blue." >}}

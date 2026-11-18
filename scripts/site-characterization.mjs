@@ -1001,6 +1001,27 @@ export const githubSlug = (repoUrl) => {
 // Null is a real answer, not an error: an unreachable host, a rate-limited API,
 // a 404, a repo URL that is not a GitHub one. The caller prints "@ unknown" and
 // carries on.
+// A token for api.github.com: GITHUB_TOKEN when set (CI sets it), otherwise the
+// local gh CLI's login. Read once per process. No gh, or gh not logged in, gives
+// null and the request goes unauthenticated, as it did before.
+let githubTokenCache;
+const githubToken = () => {
+    if (githubTokenCache !== undefined) return githubTokenCache;
+    githubTokenCache = process.env.GITHUB_TOKEN || null;
+    if (!githubTokenCache) {
+        try {
+            githubTokenCache = execFileSync("gh", ["auth", "token"], {
+                encoding: "utf8",
+                stdio: ["ignore", "pipe", "ignore"],
+                timeout: 5000,
+            }).trim() || null;
+        } catch {
+            githubTokenCache = null;
+        }
+    }
+    return githubTokenCache;
+};
+
 export const fetchDataCommit = async (repoUrl, branch) => {
     const slug = githubSlug(repoUrl);
     if (!slug || !branch) return null;
@@ -1010,11 +1031,11 @@ export const fetchDataCommit = async (repoUrl, branch) => {
             headers: {
                 Accept: "application/vnd.github+json",
                 // Unauthenticated api.github.com allows 60 requests an hour PER
-                // IP, and a GitHub-hosted runner's IP is shared with everyone
-                // else's job — so without this the field would most often be
-                // null exactly where it is worth having. Absent locally, where
-                // one request per run is nowhere near the limit.
-                ...(process.env.GITHUB_TOKEN ? { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` } : {}),
+                // IP. A GitHub-hosted runner's IP is shared with everyone else's
+                // job, and locally a day of sweeps beside other gh/API use has
+                // also run out (prod_prod's 2026-11-10 re-baseline recorded null),
+                // so every run authenticates when it can: see githubToken().
+                ...(githubToken() ? { Authorization: `Bearer ${githubToken()}` } : {}),
             },
             signal: AbortSignal.timeout(5000),
         });

@@ -62,17 +62,17 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 70,
+            "internal": 41,
             "external": 18,
-            "emptyHref": 29,
+            "emptyHref": 0,
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 6,
+            "button": 35,
             "input": 3,
             "select": 0,
             "textarea": 0,
-            "noAccessibleName": 2
+            "noAccessibleName": 0
         },
         "tables": {
             "total": 0,

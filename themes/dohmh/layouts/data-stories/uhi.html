@@ -34,7 +34,7 @@
                     <div class="col-12">
                     <nav class="navbar navbar-default my-2">
                             <ul class="nav navbar-nav fs-sm">
-                                <span class="mr-2">Read this data story in:</span>
+                                <li class="mr-2">Read this data story in:</li>
                                 {{- range .Translations -}}
                                 <li class="mb-1"><a href="{{ .RelPermalink }}">{{ .Language.LanguageName }}</a>&nbsp;|&nbsp;</li>
                                 {{- end -}}
@@ -354,7 +354,7 @@
                             <div id="gs" class="outputbox">XX%</div>
                         </div>
                         <div class="col-6 px-2">
-                            Change the ratio<br>
+                            <label for="slider" class="mb-0">Change the ratio</label><br>
                             <input id="slider" type="range" min="0" max="100" step="5" value="50">
                         </div>
                         <div class="col-3">
@@ -503,7 +503,7 @@
                     <label for="2019btn">2019</label>&nbsp;&nbsp;&nbsp;
                 </div>
             </form>
-            <iframe id="mapframe" width="100%" height="600" frameborder="0" scrolling="no"
+            <iframe id="mapframe" title="Map of summer temperatures measured by sensors" width="100%" height="600" frameborder="0" scrolling="no"
                 src="{{ .Site.BaseURL }}maps/UHI/2019.html"></iframe>
             </iframe>
             <div class="float-right fs-sm">

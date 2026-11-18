@@ -5,7 +5,6 @@
         "lang": "en",
         "assets": [
             "cdn.jsdelivr.net",
-            "cdn.rawgit.com",
             "cdnjs.cloudflare.com",
             "data-features/rats-in-your-neighborhood/neighborhood-rats.js",
             "js/L.colorIcon.js",
@@ -75,17 +74,17 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 82,
+            "internal": 53,
             "external": 22,
-            "emptyHref": 31,
+            "emptyHref": 2,
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 14,
+            "button": 43,
             "input": 3,
             "select": 0,
             "textarea": 0,
-            "noAccessibleName": 2
+            "noAccessibleName": 1
         },
         "tables": {
             "total": 0,
