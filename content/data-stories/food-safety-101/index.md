@@ -24,8 +24,8 @@ related:
     url: "data-stories/federal-funding/"
   - title: "What hot weather means for food safety"
     url: "data-stories/food/"
-  - title: "Rat Mitigation Zone report"
-    url: "data-features/rat-report/"
+  - title: "How a 311 complaint can stop a foodborne illness outbreak"
+    url: "data-stories/foodborne-illness-complaints/"
 ---
 
 Each year, the NYC Health Department receives thousands of complaints of foodborne illness, commonly called “food poisoning.” When two or more people get sick after consuming a common food or drink, we investigate a potential foodborne illness outbreak.

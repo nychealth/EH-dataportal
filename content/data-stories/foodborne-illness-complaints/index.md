@@ -21,12 +21,12 @@ image: "darren-ahmed-arceo.jpg"
 image_alt: "a cutting board in a commercial kitchen with red peppers, onions, carrots, garlic, ginger, and a chef's knife"
 photocredit: Darren Ahmed Arceo
 related:
+  - title: "Tracking food poisoning outbreaks in NYC restaurants—what makes us sick and why"
+    url: "data-stories/food-safety-101/"
   - title: "NYC is working to protect your health — but we can’t do it alone"
     url: "data-stories/federal-funding/"
   - title: "What hot weather means for food safety"
     url: "data-stories/food/"
-  - title: "Tracking food poisoning outbreaks in NYC restaurants—what makes us sick and why"
-    url: "data-stories/foodborne-illness-101/"
 ---
 
 Foodborne illness affects thousands of New Yorkers every year. [A foodborne illness outbreak is when two or more people get sick from consuming food or drink from the same establishment,]({{< relURL >}}data-stories/food-safety-101/) prompting the New York City Health Department to investigate and try to prevent further illness.
