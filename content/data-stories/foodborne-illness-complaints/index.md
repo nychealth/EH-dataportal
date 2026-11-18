@@ -1,7 +1,7 @@
 ---
 title: How a 311 complaint can stop a foodborne illness outbreak
 shortTitle: Foodborne illness 101
-date: 2026-10-18T09:01:00-04:00
+date: 2026-11-19T09:01:00-04:00
 draft: false
 seo_title: "What happens to food poisoning complaints in NYC"
 seo_description: "A data story about understanding food safety and how NYC tracks and prevents outbreaks."
