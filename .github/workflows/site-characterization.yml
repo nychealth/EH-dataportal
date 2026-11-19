@@ -281,6 +281,12 @@ jobs:
       #
       # Truncated below GitHub's comment-body limit, with the run link always
       # last so a truncated report still says where the rest is.
+      #
+      # The footer @mentions the PR's author, because a plain bot comment did
+      # not reach them by email (Chris, 2026-11-19, PR #1583) and a mention
+      # notifies whatever the reader's watch settings. Skipped for bot authors
+      # such as dependabot[bot]. The author login comes from the event payload,
+      # not from PR text, so it cannot carry anything but a real login.
 
       - name: Create or update the comment
         env:
@@ -292,6 +298,7 @@ jobs:
           # The PR branch's own tip. GITHUB_SHA here is the merge commit, which
           # names nothing the author can find in their branch.
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          AUTHOR: ${{ github.event.pull_request.user.login }}
         run: |
           marker="<!-- site-characterization-report -->"
           limit=60000
@@ -312,6 +319,10 @@ jobs:
             } > body.md
           fi
           printf '\n[Run log](%s) · PR head %s\n' "$RUN_URL" "${HEAD_SHA:0:10}" >> body.md
+          case "$AUTHOR" in
+            *"[bot]") ;;
+            *) printf '\ncc @%s\n' "$AUTHOR" >> body.md ;;
+          esac
 
           id=$(gh api --paginate "repos/$REPO/issues/$PR/comments" \
             --jq ".[] | select(.user.login == \"github-actions[bot]\" and (.body | startswith(\"$marker\"))) | .id" \
