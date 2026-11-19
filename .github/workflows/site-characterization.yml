@@ -135,22 +135,41 @@ jobs:
       # NO `ref:` on this checkout: on a pull_request event actions/checkout takes
       # refs/pull/N/merge, the PR head already merged onto the base tip — the
       # site as it would be after merging, which is the head side we want.
-      # fetch-depth 1: the compare reads `git rev-parse HEAD` and nothing older.
+      # fetch-depth 2, so the merge commit's parents are present for the next step.
 
       - name: Checkout this PR (merged onto its base)
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          fetch-depth: 1
+          fetch-depth: 2
 
-      # base.sha is the BASE BRANCH TIP, not the merge base `[verified 2026-08-24
-      # on PR #1480]` — the tip is what this PR merges into, so it is the right
-      # comparison, and it needs no history. A manual run has no PR, so it
-      # compares the branch it was dispatched on against production.
+      # The base is the merge commit's FIRST PARENT: by construction, the base
+      # tip the head side was merged onto. NOT github.event.pull_request.base.sha,
+      # which can lag the merge ref — run 44568676537 built its base from
+      # base.sha c0f6be6c9a, while its merge commit f727b1631d had first parent
+      # 5edbab83ea, production's newer tip `[2026-11-19, PR #1584]`.
+      # Had production's newer commit changed a page, the report would have
+      # credited it to the PR. Both values are printed so a lag shows in the log.
+      # A manual run has no merge commit, so it compares against production.
 
-      - name: Checkout the base branch tip
+      - name: Pick the base commit
+        id: base
+        env:
+          EVENT: ${{ github.event_name }}
+          EVENT_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          if [ "$EVENT" = "pull_request" ]; then
+            sha=$(git rev-parse HEAD^1)
+            echo "merge commit $(git rev-parse HEAD), first parent $sha; event base.sha ${EVENT_BASE_SHA}"
+          else
+            sha=production
+            echo "manual run: comparing against production"
+          fi
+          echo "ref=$sha" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout the base
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ github.event.pull_request.base.sha || 'production' }}
+          ref: ${{ steps.base.outputs.ref }}
           path: base
           fetch-depth: 1
 
