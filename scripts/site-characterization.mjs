@@ -164,11 +164,22 @@ const DIFF_DIR = "scripts/.sc-check";
 // Kept: whether head.html still emits the <script> tag that loads it, since
 // that tag is parser-inserted and appears in `assets` either way. It also makes
 // the baseline independent of Google's uptime, which would otherwise churn it.
+//
+// The CARTO basemap hosts are blocked for a different reason: every tile spends
+// the site's monthly tile quota, which was 80% used when the key was restricted
+// to the live domain on 2026-11-19. No probe here reads tiles — `img` stopped
+// counting Leaflet tiles in 2026-08 — so aborting them changes no recorded field
+// except through a map that reacts to tile errors, and both sides of a
+// comparison abort the same requests.
 const BLOCKED_HOSTS = [
     "translate.google.com",
     "translate.googleapis.com",
     "www.gstatic.com",
     "www.googletagmanager.com",
+    "a.basemaps.cartocdn.com",
+    "b.basemaps.cartocdn.com",
+    "c.basemaps.cartocdn.com",
+    "d.basemaps.cartocdn.com",
 ];
 
 // The Task 1 sample: smoke's own one-per-template-kind list, plus pages that
