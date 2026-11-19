@@ -24,7 +24,8 @@
 */}}
 
 {{/* The indicator spec for this category. `measures` is flat; `empty_state` is present
-     only on a category with no measures, and Mental Health is that category. */}}
+     only on a category with no measures (none since Mental Health was removed on
+     2026-11-19). `note` is optional, an extra sentence under the list. */}}
 {{- $contentKey := .Params.content_yml -}}
 {{- $content := index .Site.Data.globals.NDHR_content $contentKey -}}
 {{- $measures := $content.measures -}}
@@ -154,43 +155,15 @@
                         <span class="fs-xs" style="color:darkslategray;"><strong>Source:</strong> American Community Survey (2019-2023)</span>
                     </div>
 
-                    {{/* NO CONTACT BLOCK, and its absence is a decision rather than an
-                        omission. The NDHR screenshot marks this corner of the left column
-                        "Population Demographic and Contact Information", so a reader
-                        comparing the two will look for the second half here.
-
-                        Plan DECIDED-9 defers the contact form: this is a Hugo static site
-                        published to a GitHub build branch, so there is no server to post to,
-                        and both routes out of that cost something outside the prototype —
-                        a third-party endpoint is a procurement and privacy question, a link
-                        to an existing DOHMH form needs one to exist. The page carries no
-                        affordance at all rather than a disabled one, which would advertise
-                        a feature that does not exist. What brings it forward is a decision
-                        on which of the two routes. */}}
-
-                    <hr class="my-2">
-                    {{/* Ignored by Pagefind: this explainer is byte-identical on all 295
-                         report pages, so indexing it would make every report a match for
-                         "tertile" and "lowest third" without telling those searches apart.
-                         It stays visible and its alt text stays in the accessibility tree;
-                         only the index skips it.
-
-                         "community districts" rather than "neighborhoods", and the image is
-                         the NR one — the diagram is about the shape of a distribution and
-                         carries no geography of its own. Its alt text is reworded to match. */}}
-                    <div class="asidebox m-2 pxy-2 text-muted" data-pagefind-ignore="all">
-                        <strong>Indicator rankings</strong>
-                        <p class="leading-sm">For each dataset, we divide community districts up into <strong>tertiles</strong>, or thirds. This provides a rough comparison of this community district, to all other NYC community districts, for this indicator.</p>
-                        <div class="row no-gutters">
-                            <div class="col-4 mr-auto fs-xs" style="line-height: 100%">
-                                <strong>Lower</strong>: for that dataset, the community district is in the lowest third of all community districts.
-                            </div>
-                            <div class="col-4 ml-auto fs-xs" style="line-height: 100%;">
-                                <strong>Higher</strong>: for that dataset, the community district is in the upper third of all community districts.
-                            </div>
-                        </div>
-                        <img class="my-1" src="{{ .Site.BaseURL }}images/edited_tertile.jpg" style="width:100%" alt="An example bar chart. The one-third of areas with the lowest values are labelled Lower. The one-third of areas with the highest values are labelled Higher.">
-                        <p class="leading-sm"><span class="fs-xs">These are only based on the distribution of data values, not the range. The absolute values of indicators in different categories may not be all that different.</span></p>
+                    {{/* Contact box, where the tertile explainer used to sit. The
+                        reviewed source document marks this corner "Population Demographic
+                        and Contact Information", and reviewers asked for the explainer to
+                        move behind the chart's menu so this could take its place
+                        (2026-11-19). The explainer is now #ndhr-tertile-modal below, opened
+                        from each chart's "…" menu by chart.js. The partial explains why it
+                        is an email link and not a form. */}}
+                    <div class="mt-3">
+                        {{ partial "ndhr-contact.html" . }}
                     </div>
 
                 </div>
@@ -258,8 +231,9 @@
                         A category with no measures renders its stated empty state HERE,
                         server-side, rather than waiting for JS. A category that renders
                         nothing is indistinguishable from a template bug, and a server-rendered
-                        sentence says which it is with JS off as well as on. Mental Health is
-                        the case (plan DECIDED-7).
+                        sentence says which it is with JS off as well as on. No category has
+                        been empty since Mental Health was removed (2026-11-19); the branch
+                        stays for the next one.
                     */}}
                     {{- if $measures }}
                         {{/*
@@ -278,8 +252,8 @@
                             and hands to someone, which is where an unqualified strategy does
                             the most damage.
 
-                            Inside the $measures branch because the empty-state category
-                            (Mental Health) lists no strategies for it to qualify.
+                            Inside the $measures branch because an empty-state category lists
+                            no strategies for it to qualify.
 
                             Wording is the source document's, verbatim, with a period closing
                             the first — it runs on in the original because it was a footnote
@@ -296,6 +270,13 @@
                             <div id="ndhr-indicators">
                             </div>
                         </div>
+
+                        {{/* The content YAML's optional `note`: Active Design uses it to say
+                             which of its source-document indicators are not published for
+                             community districts. Server-rendered, so it prints too. */}}
+                        {{- with $content.note }}
+                            <p id="ndhr-category-note" class="fs-sm text-muted">{{ . }}</p>
+                        {{- end }}
                     {{- else }}
                         <div class="my-4 report-section pt-2 border-left border-right border-bottom" id="ndhr-accordion">
                             <div class="px-2 py-2 fs-sm text-muted">
@@ -308,7 +289,7 @@
                         below, which runs from renderAll() rather than at load: the Leaflet map
                         can switch district in place, and a code generated once would then
                         point at the wrong report. */}}
-                    {{/* Ignored by Pagefind for the same reason as the tertile box: one
+                    {{/* Ignored by Pagefind for the same reason as the tertile modal: one
                          identical caption on 295 pages, in print-only markup that was never on
                          screen for the searcher who landed on it. */}}
                     <div class="row print-only" data-pagefind-ignore="all">
@@ -329,6 +310,43 @@
                 footer comes from data/globals/NR_footer/, which has no NDHR equivalent — the
                 NDHR source documents put that content in a per-indicator strategies column
                 instead, which is Task 8. */}}
+
+            {{/* Tertile explainer, opened from the "About these rankings" link chart.js
+                 adds to each chart's "…" menu. It sat in the left column under the map
+                 until reviewers moved it behind the chart it explains (2026-11-19).
+
+                 Ignored by Pagefind: this text is byte-identical on all 295 report pages,
+                 so indexing it would make every report a match for "tertile" and "lowest
+                 third" without telling those searches apart.
+
+                 "community districts" rather than "neighborhoods", and the image is the
+                 NR one — the diagram is about the shape of a distribution and carries no
+                 geography of its own. Its alt text is reworded to match. */}}
+            <div class="modal fade" id="ndhr-tertile-modal" tabindex="-1" role="dialog" aria-labelledby="ndhr-tertile-modal-title" aria-hidden="true" data-pagefind-ignore="all">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title h5" id="ndhr-tertile-modal-title">Indicator rankings</h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="leading-sm">For each dataset, we divide community districts up into <strong>tertiles</strong>, or thirds. This provides a rough comparison of this community district, to all other NYC community districts, for this indicator.</p>
+                            <div class="row no-gutters">
+                                <div class="col-5 mr-auto fs-xs" style="line-height: 110%">
+                                    <strong>Lower</strong>: for that dataset, the community district is in the lowest third of all community districts.
+                                </div>
+                                <div class="col-5 ml-auto fs-xs" style="line-height: 110%;">
+                                    <strong>Higher</strong>: for that dataset, the community district is in the upper third of all community districts.
+                                </div>
+                            </div>
+                            <img class="my-2" src="{{ .Site.BaseURL }}images/edited_tertile.jpg" style="width:100%" alt="An example bar chart. The one-third of areas with the lowest values are labelled Lower. The one-third of areas with the highest values are labelled Higher.">
+                            <p class="leading-sm mb-0"><span class="fs-xs">These are only based on the distribution of data values, not the range. The absolute values of indicators in different categories may not be all that different.</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
@@ -393,7 +411,7 @@
         // receives one long string instead of a list. jsonify still escapes <, > and & to
         // their unicode form, so a "</script>" in the YAML cannot break out of the block
         measures: {{ $measures | jsonify | safeJS }},
-        // null on the four categories that have measures; the string only on Mental Health
+        // null on every category that has measures; a string only on an empty one
         emptyState: {{ $emptyState | jsonify | safeJS }},
         // Indicator → IndicatorID[] map, used to build each card's "Full dataset" link back
         // to the data explorer. A published Hugo resource, not a static file —

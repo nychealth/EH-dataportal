@@ -85,6 +85,12 @@
                         <p class="fs-sm text-muted">{{ $content.empty_state }}</p>
                     {{- end }}
 
+                    {{/* The content YAML's optional `note`, the same sentence the report
+                         pages render under their list */}}
+                    {{- with $content.note }}
+                        <p class="fs-sm text-muted">{{ . }}</p>
+                    {{- end }}
+
                     <h2 class="h4 mt-4">Choose a community district</h2>
 
                     {{/* Typeahead above the district list, matching the landing page. A

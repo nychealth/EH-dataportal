@@ -1,0 +1,45 @@
+# Climate — indicator spec for the NDHR report page.
+# Field contract, shape and sources: see the header of active_design.yml.
+#
+# Split from the former "Climate and Active Design" category on reviewer request
+# (2026-11-19). Vegetative cover moved here from Neighborhood Conditions, where the
+# source document now lists it under Climate.
+#
+# This is the only category reading at all three geotypes — one CD row, one CDTA2020,
+# one PUMA2020 — which is why scripts/ndhr-characterization.mjs targets it.
+#
+# Not listed here, and deliberately: households using electric medical equipment
+# (2377) has no PUMA2020 data. See DECIDED-1 and DECIDED-10.
+
+measures:
+
+  - MeasureID: 822
+    IndicatorID: 2191
+    MeasureName: "Heat Vulnerability Index, Score"
+    IndicatorName: "Heat vulnerability index"
+    geotype: CDTA2020
+    description: "The risk of community-level heat impacts like deaths due to extreme heat events. The HVI is made from data on surface temperature, green space, air conditioning access, median income, and Black population (the population most excluded from heat resources). Differences in community-level heat impacts stem from structural racism, which limits access to preventive resources."
+    strategy: "Increase shade, vegetation, or reflective surfaces to combat heat vulnerability"
+    strategy_description: '<a href="https://www.nyc.gov/content/climate/pages/reports-and-publications/climate-resiliency-design-guidelines">The Climate Resilience Design Guidelines</a> suggest adding shade and plants, or using surfaces that reflect sunlight, to help protect people from heat.'
+
+  # The with-AC framing, matching what the NR Climate report already shows (781).
+  # 1045 is the same data stated as households WITHOUT air conditioning, which
+  # would invert the tertile reading against every other row on the page.
+  - MeasureID: 781
+    IndicatorID: 2185
+    MeasureName: "Households with AC, Percent (with AC)"
+    IndicatorName: "Household air conditioning"
+    geotype: PUMA2020
+    description: "Households reporting functioning air conditioning (AC). AC is an important way to prevent heat stress, especially for people with limited mobility."
+    strategy: "Increase access to cooling"
+    strategy_description: "Air conditioning and lower energy bills can help households stay cool."
+
+  - MeasureID: 690
+    IndicatorID: 2143
+    MeasureName: "Grass and tree cover, Percent"
+    IndicatorName: "Vegetative cover"
+    geotype: CD
+    description: "Land covered by trees, grass, or other plants. Vegetative cover reduces temperatures in the immediate area, and may increase air quality."
+    strategy: "Contribute to the Parks Tree Fund, become a Super Steward, participate in the NYC Urban Agriculture program"
+    strategy_html: 'Contribute to the <a href="https://www.nycgovparks.org/trees/street-tree-planting/tree-fund">Parks Tree Fund</a>, become a <a href="https://www.nycgovparks.org/reg/advanced-stewardship">Super Steward</a>, participate in the <a href="https://www.nyc.gov/site/agriculture/index.page">NYC Urban Agriculture</a> program'
+    strategy_description: "Well-planned, well-cared-for green spaces can cool outdoor areas and support mental health. The Parks Department offers actions people can take. City agencies and private groups can also start larger projects through the Urban Agriculture program."

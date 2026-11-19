@@ -415,13 +415,15 @@ on a branch mismatch.
   column's text, the per-row geography tags, the tertile sentence, the strategy caveats above
   the list, and the indicator names in render order.
 
-  Four targets, each chosen for a reason. `climate-and-active-design` is the **only**
+  Four targets, each chosen for a reason. `climate` is the **only**
   category carrying all three geotypes — one CD row, one CDTA2020, one PUMA2020 — so it is
   the single page exercising every branch of the geography labelling. `housing` at two
   districts isolates district-driven content, and `financial_district` is the second
   because its PUMA2020 merges CD1 with CD2, which is the shared-value case the tag exists
-  to disclose. `mental-health` is the empty-state category, where a page that renders
-  nothing is otherwise indistinguishable from a template bug.
+  to disclose. `active-design` has one measure and the only category `note`. Until
+  2026-11-19 the fourth target was `mental-health`, the empty-state category; that category
+  was removed, so no target exercises the empty state now, and the harness re-arms those
+  assertions for any target flagged `emptyState: true`.
 
   **Unlike `characterize:nr`, `baseline` here can fail.** A rendered-content control runs
   before anything is written and refuses a capture of empty pages — the gap its NR sibling

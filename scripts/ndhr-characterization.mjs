@@ -38,10 +38,10 @@
 //     scripts/ndhr-indicator-availability.mjs check` fails on the same upstream rename
 //     and names the measure, which is the cheaper diagnosis to reach for first.
 //
-//   - One target is the empty-state category. Mental Health has no measures (DECIDED-7),
-//     so its report page renders a server-side sentence and app.js's bootstrap() returns
-//     before wiring anything. A page that renders nothing is indistinguishable from a
-//     template bug, and this is the target that tells them apart.
+//   - An empty-state target, when one exists, is flagged `emptyState: true` and asserted
+//     the other way round. Mental Health was that target until the category was removed
+//     on 2026-11-19; no category has no measures today. A page that renders nothing is
+//     indistinguishable from a template bug, and such a target is what tells them apart.
 //
 // IMPORTANT: this reads only DOM output, never the report page's internal names. The ten
 // modules share one top-level scope so those names ARE reachable from an evaluate(); the
@@ -98,9 +98,10 @@ import { startServer } from './isolated-server.mjs';
 // Four category/district pairs, chosen to vary one axis at a time and to reach the two
 // states no single ordinary page has:
 //
-//   climate-and-active-design is the ONLY category carrying all three geotypes — one CD
-//   row, one CDTA2020, one PUMA2020 [verified 2026-09-12 against the content YAML], so it
-//   is the single page that exercises every branch of geotypeTag() and geotypeSentence().
+//   climate is the ONLY category carrying all three geotypes — one CD row, one CDTA2020,
+//   one PUMA2020 [verified 2026-11-19 against the content YAML], so it is the single page
+//   that exercises every branch of geotypeTag() and geotypeSentence(). It inherited that
+//   from Climate and Active Design, split in two on 2026-11-19.
 //
 //   housing at two districts isolates district-driven content; climate and housing at
 //   midtown isolates category-driven content. financial_district (CD1) is the second
@@ -108,15 +109,18 @@ import { startServer } from './isolated-server.mjs';
 //   with CD2 — so its two PUMA-sourced rows carry a value shared with a neighbouring
 //   district, which is the case DECIDED-10 accepted and the tag exists to disclose.
 //
-//   mental-health has no measures at all. See the empty-state note in the header.
+//   active-design has a single measure and the only `note`, which the other three lack.
+//   It replaced mental-health, the empty-state target, when that category was removed
+//   (2026-11-19). No category is empty now, so the empty-state assertions in
+//   controlFailures() have no target; a target flagged `emptyState: true` re-arms them.
 //
 // Slugs match the `url:` frontmatter on the category markdown files and `page_name` in
 // data/globals/cdlist.json.
 const TARGETS = [
-    { category: 'climate-and-active-design', district: 'midtown' },
-    { category: 'housing',                   district: 'midtown' },
-    { category: 'housing',                   district: 'financial_district' },
-    { category: 'mental-health',             district: 'midtown' }
+    { category: 'climate',       district: 'midtown' },
+    { category: 'housing',       district: 'midtown' },
+    { category: 'housing',       district: 'financial_district' },
+    { category: 'active-design', district: 'midtown' }
 ];
 
 const BASELINE_ROOT = 'scripts/ndhr-characterization-baseline';
@@ -165,8 +169,8 @@ const captureTarget = async (browser, target, baseURL) => {
     // The rows are computed in the browser from several EHDP-data fetches, so wait for a
     // card to exist rather than for a fixed delay — but fail soft, because "nothing
     // rendered" is a result the baseline should record rather than an error that aborts.
-    // Mental Health legitimately never satisfies this and spends the full timeout; it is
-    // the last target for that reason.
+    // An empty-state category legitimately never satisfies this and spends the full
+    // timeout, so such a target belongs last.
     await page
         .waitForFunction(() => document.querySelector('.ndhr-report-accordion .card-header'), { timeout: 20000 })
         .catch(() => {});
@@ -295,6 +299,9 @@ const captureTarget = async (browser, target, baseURL) => {
             // null on the empty-state category, which lists no strategies to qualify — the
             // control below asserts that direction too
             strategyCaveats: textOf('ndhr-strategy-caveats'),
+            // The content YAML's optional `note` under the list; only Active Design carries
+            // one. null elsewhere, preserved as null below like strategyCaveats
+            categoryNote: textOf('ndhr-category-note'),
             // NO ZIP LIST, unlike the NR harness: cdlist.json carries none, because
             // community districts are not ZIP-based
             accordionIds: accordions,
@@ -332,6 +339,7 @@ const captureTarget = async (browser, target, baseURL) => {
         // null preserved for the same reason as emptyStateText below: an absent paragraph
         // must read as absent, not as an empty string a dead selector also returns
         strategyCaveats: captured.strategyCaveats === null ? null : tidy(captured.strategyCaveats),
+        categoryNote: captured.categoryNote === null ? null : tidy(captured.categoryNote),
         emptyStateText: captured.emptyStateText === null ? null : tidy(captured.emptyStateText),
         // Whitespace-normalized like the rest, but null is PRESERVED rather than collapsed
         // to '': tidy() turning a missing attribute into an empty string is what made NR's
@@ -415,7 +423,7 @@ const controlFailures = (captures) => {
     for (const { target, captured } of captures) {
 
         const label = `${target.category} / ${target.district}`;
-        const isEmptyState = target.category === 'mental-health';
+        const isEmptyState = target.emptyState === true;
 
         if (isEmptyState) {
 

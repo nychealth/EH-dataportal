@@ -1,5 +1,5 @@
 # Health Outcomes and Care Access — indicator spec for the NDHR report page.
-# Field contract, shape and sources: see the header of climate_and_active_design.yml.
+# Field contract, shape and sources: see the header of active_design.yml.
 #
 # Not listed here, and deliberately: health insurance (2132) and psychiatric
 # hospitalizations (2418) are UHF42-only, and maternal mortality and premature
@@ -15,24 +15,24 @@ measures:
     MeasureName: "Heat ED visits, Age-adjusted rate"
     IndicatorName: "Heat stress: yearly emergency department visits"
     geotype: CD
-    description: "The built and natural environments, including housing quality and greenspace, are important factors shaping exposure to heat that threatens health."
-    strategy: "Identify and develop a space to be a resilience hub, taking into consideration climate events such as flooding, cold or heat events"
-    strategy_description: "A resilience hub is a publicly accessible facility that serves as a trusted gathering place and connects the local community to resources before, during, or after a climate event. The Housing Preservation and Development Guidelines contains a description of the components of a resilience hub."
+    description: "ED visits due to heat-related illnesses, such as heat stroke and heat exhaustion. These represent part of the public health burden of extreme heat."
+    strategy: "Identify and develop a space to be a resilience hub, taking into consideration climate events such as flooding, cold or heat events, etc."
+    strategy_description: 'A resilience hub is a public place where people can gather and find help before, during, or after a climate emergency. <a href="https://www.nyc.gov/assets/hpd/downloads/pdfs/services/hpd-design-guidelines-for-new-construction-2026.pdf">The Housing Preservation and Development Guidelines</a> explain what a resilience hub can include.'
 
   - MeasureID: 983
     IndicatorID: 2322
     MeasureName: "Death before 65, Age-adjusted rate"
     IndicatorName: "Premature mortality"
     geotype: CD
-    description: "Communities with fewer parks, clinics, safe streets, and good housing often face higher exposure to pollution, violence, and chronic stress, increasing mortality."
+    description: "Deaths before age 65. This can indicate the overall health of a population."
     strategy: "Create community spaces and recreation areas in developments to increase social cohesion"
-    strategy_description: "Creating community spaces and recreation areas increases social cohesion by facilitating regular positive social interaction, which strengthens trust and mutual support networks, leading to improved mental and physical health outcomes."
+    strategy_description: 'Community spaces and recreation areas described in <a href="https://www.nyc.gov/assets/doh/downloads/pdf/environmental/active-design-guidelines-2025.pdf">ADG 2.0</a> give people places to spend time together. Regular, positive interactions can build trust and help people support one another. This can improve mental and physical health.'
 
   - MeasureID: 1196
     IndicatorID: 2379
     MeasureName: "Asthma ED visits (age 5 to 17), Estimated annual rate"
     IndicatorName: "Asthma emergency department visits (age 5 to 17)"
     geotype: CD
-    description: "Asthma triggers like traffic pollution, poor housing, mold, and limited greenspace can lead to more emergency care and missed school."
+    description: "Emergency department visits for asthma. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma."
     strategy: "For individuals, promote good indoor air quality; for the community, leverage public spaces for vegetation that improves air quality"
-    strategy_description: "Many factors affecting indoor air quality can contribute to health risks, and the Healthy Homes program contains resources to improve it. On a community level, increasing plants that serve as a barrier to air pollution could improve air quality."
+    strategy_description: 'Many things can affect indoor air quality and health. The <a href="https://www.nyc.gov/site/doh/health/health-topics/healthy-home.page">Healthy Homes program</a> offers resources to improve air inside homes. In neighborhoods, carefully chosen plants may help block air pollution. Choose plants that are less likely to cause allergies.'

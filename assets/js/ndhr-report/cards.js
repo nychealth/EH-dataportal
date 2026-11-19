@@ -94,19 +94,23 @@ const STRATEGY_BY_MEASURE = {};
 
 ((reportConfig && reportConfig.measures) || []).forEach(measure => {
 
+    // `strategyHTML` is the linked form of the strategy, for the expanded panel only. The
+    // plain `strategy` also renders inside the row's <button> and in the print row, where
+    // a link is invalid, so the YAML keeps the two apart and falls back to the plain text
     STRATEGY_BY_MEASURE[measure.MeasureID] = {
         strategy: measure.strategy || '',
+        strategyHTML: measure.strategy_html || measure.strategy || '',
         description: measure.strategy_description || ''
     };
 
 });
 
 
-// Returns { strategy, description } for a measure. `description` is legitimately '' for
-// evictions (1128), which appears in neither table of the "Text of ..." source document —
-// the YAML records that as an explicit null rather than inventing one
+// Returns { strategy, strategyHTML, description } for a measure. `description` is ''
+// for a row whose YAML records an explicit null — none since the 2026-11-19 revision, but
+// the guard below still renders no empty callout for one
 const strategyForMeasure = measureId =>
-    STRATEGY_BY_MEASURE[measureId] || { strategy: '', description: '' };
+    STRATEGY_BY_MEASURE[measureId] || { strategy: '', strategyHTML: '', description: '' };
 
 
 // MeasureID → the indicator description written for THIS tool, off the same reportConfig
@@ -412,8 +416,8 @@ const buildIndicatorCard = (row, districtName) => {
     // these run to a full sentence or two and the cell they would sit in is a quarter of
     // the column. The phrase repeats here as the lead-in rather than being referred back
     // to, so the block reads on its own when a reader expands one panel out of six.
-    // Rendered only when the YAML carries a description: evictions (1128) has an explicit
-    // null and a TODO beside it, and an empty <p> would read as a rendering fault.
+    // Rendered only when the YAML carries a description: a row with an explicit null would
+    // otherwise get an empty callout, which reads as a rendering fault.
     //
     // A shaded callout with its own label rather than one run-on line, which reviewers
     // found easy to miss under the chart (2026-10-27). The label is a <p>, not a heading:
@@ -426,8 +430,10 @@ const buildIndicatorCard = (row, districtName) => {
                       '<p class="ndhr-strategy-label mb-1">' +
                           '<i class="fas fa-lightbulb mr-1" aria-hidden="true"></i>Strategy' +
                       '</p>' +
-                      '<p class="fs-md font-weight-bold mb-1">' + strategyPair.strategy + '</p>' +
-                      '<p class="fs-sm mb-0">' + strategyPair.description + '</p>' +
+                      '<p class="fs-md font-weight-bold mb-1">' + strategyPair.strategyHTML + '</p>' +
+                      // A <div>, not a <p>: some descriptions carry an <ol>, which a <p>
+                      // cannot contain
+                      '<div class="fs-sm">' + strategyPair.description + '</div>' +
                   '</div>' +
               '</div>' +
           '</div>'

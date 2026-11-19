@@ -10,8 +10,8 @@ A holistic consideration of the impacts of urban planning on public health must 
 
 The Healthy Places Toolkit provides a baseline snapshot, equipping City Agencies, Community Based Organizations, and Private Developers with the necessary data to understand community conditions as new developments or planning processes happening across the city. This toolkit was developed by the Health Equity in Urban Planning workgroup within the NYC Health Department.
 
-{{< ndhr-how-it-works >}}
-
 ## Health Equity in Urban Planning
 
 The Health Equity in Urban Planning (HEiUP) workgroup is a cross-divisional team of health strategists at the NYC Department of Health and Mental Hygiene promoting health equity in urban planning processes. We are improving health outcomes through building towards a society that supports health and well-being while confronting the past. We aim to create a healthy and thriving city for all New Yorkers through adopting vetted, realistic, and maximally effective solutions.
+
+{{< ndhr-how-it-works >}}

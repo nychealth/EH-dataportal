@@ -1,0 +1,24 @@
+{{/*
+    "Contact the Health Department" box, shared by the landing page's sidebar
+    (ndhr/section.html) and the report page's left column (ndhr/ndhr-report.html), where it
+    took the place of the tertile explainer on reviewer request, 2026-11-19. Wording is the
+    reviewed source document's "[Text] Contact the Health Department".
+
+    The address is read from the landing page's front matter (`contact_email` in
+    content/ndhr/_index.md) so an editor changes it in one place, in CloudCannon.
+
+    An email link, NOT the form the document describes (name, organization type, email,
+    inquiry). This is a static site with no server to post a form to; the options are a
+    third-party form service or linking a DOHMH form, and that choice is the team's.
+    Plan DECIDED-9 records the same deferral. Renders nothing if no address is set.
+*/}}
+{{- with site.GetPage "/ndhr" }}
+    {{- with .Params.contact_email }}
+    <div class="card card-left-border shadow-sm">
+        <div class="card-body">
+            <h2 class="h5"><i class="fas fa-envelope mr-1" aria-hidden="true"></i>Contact the Health Department</h2>
+            <p class="fs-sm mb-0">For questions about this tool, baseline indicators, or example strategies, contact the Health Department at <a href="mailto:{{ . }}">{{ . }}</a>.</p>
+        </div>
+    </div>
+    {{- end }}
+{{- end }}

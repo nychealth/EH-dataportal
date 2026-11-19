@@ -163,7 +163,7 @@ const CONTENT_CONTROLS = [
     { url: '/neighborhood-reports/east_harlem/',                         min: 5,   kind: 'NR neighborhood index' },
     { url: '/neighborhood-reports/east_harlem/asthma_and_the_environment/', absent: true, kind: 'NR report (deliberately un-indexed)' },
     { url: '/ndhr/',                                                     absent: true, kind: 'NDHR landing (deliberately un-indexed)' },
-    { url: '/ndhr/climate-and-active-design/',                           absent: true, kind: 'NDHR category index (deliberately un-indexed)' },
+    { url: '/ndhr/climate/',                                             absent: true, kind: 'NDHR category index (deliberately un-indexed)' },
     { url: '/ndhr/midtown/',                                             absent: true, kind: 'NDHR district index (deliberately un-indexed)' },
     { url: '/ndhr/midtown/housing/',                                     absent: true, kind: 'NDHR report (deliberately un-indexed)' }
 ];

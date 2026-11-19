@@ -1,5 +1,8 @@
 # Neighborhood Conditions — indicator spec for the NDHR report page.
-# Field contract, shape and sources: see the header of climate_and_active_design.yml.
+# Field contract, shape and sources: see the header of active_design.yml.
+#
+# In the source document's order. On 2026-11-19 vegetative cover moved to Climate and
+# school absenteeism (984) left, both following the reviewed document.
 #
 # Not listed here, and deliberately: perception of neighborhood safety (2073) is
 # UHF42-only, and displacement risk and social cohesion are absent from EHDP-data
@@ -7,23 +10,14 @@
 
 measures:
 
-  - MeasureID: 690
-    IndicatorID: 2143
-    MeasureName: "Grass and tree cover, Percent"
-    IndicatorName: "Vegetative cover"
-    geotype: CD
-    description: "Vegetative cover is land covered by trees, grass, or other plants. Vegetative cover is linked to health because it can lower urban heat, help reduce air pollution, manage stormwater, and increase mental well-being."
-    strategy: "Contribute to the Parks Tree Fund, fund a Super Steward, participate in the NYC Urban Agriculture program"
-    strategy_description: "Well maintained and planned green spaces can cool outdoor spaces as well as improve mental health."
-
   - MeasureID: 1250
     IndicatorID: 2400
     MeasureName: "Violence-related ED visits (all ages), Age-adjusted rate"
     IndicatorName: "Violence-related emergency department visits (all ages)"
     geotype: CD
-    description: "Violence can affect people throughout their lives: it is associated with worse birth outcomes, childhood developmental delays, physical and mental illness, and premature deaths. The prevalence of violence is influenced by neighborhood conditions and the built environment."
+    description: "Non-fatal, violence-related injuries that result in emergency department visits. These are more common than homicides and help paint the larger picture of the burden of violence on communities."
     strategy: "Contribute funding to City initiatives to reduce violence in neighborhoods like VPI or HVIP"
-    strategy_description: "Hospital-Based Violence Intervention Programs (HVIPs) are multidisciplinary initiatives that provide support to individuals who have experienced violent injuries, linking them with community resources and services to reduce the risk of re-injury and promote recovery. These programs engage patients during their hospital stay and continue support after discharge, addressing underlying factors that contribute to violence."
+    strategy_description: 'Hospital-Based Violence Intervention Programs (<a href="https://www.nyc.gov/assets/doh/downloads/pdf/vio/violence-prevention-initiative.pdf">HVIPs</a>) help people who have been injured by violence, linking them with community resources and services to reduce the risk of another injury and promote recovery. Staff begin working with patients in the hospital and continue to support them after they leave. These programs also address problems that may contribute to violence. <a href="https://www.nyc.gov/site/doh/health/neighborhood-health/anti-violence.page">Violence: A Health Issue - NYC Health</a>'
 
   # Density rather than 1452 "Number": a district with more bathrooms is not
   # better served if it is also larger. 1455 "Percent accessible" answers a
@@ -34,27 +28,19 @@ measures:
     MeasureName: "Public bathrooms, Density"
     IndicatorName: "Public bathroom availability"
     geotype: CDTA2020
-    description: "When people can easily find clean, accessible restrooms, they are more likely to use parks, downtown areas, and transit systems, which encourages active transportation and social participation."
+    description: "Public bathrooms that are in service and open during scheduled hours. Public bathrooms help everyone take part in public life and make the city more livable for all New Yorkers."
     strategy: "Support the development of the Citywide Strategy for public bathrooms"
-    strategy_description: "Participate in the community engagement process to develop the citywide plan by using publicly available tools such as public restroom maps to find areas in need."
+    strategy_description: 'Local community groups can <a href="https://legistar.council.nyc.gov/LegislationDetail.aspx?ID=6584173&amp;GUID=34D728D6-2FFE-493B-B0CD-706CD6EE5B13">help plan where public bathrooms are needed</a>. They can use public restroom maps and other tools to find areas that need more bathrooms.'
 
   - MeasureID: 1225
     IndicatorID: 2389
     MeasureName: "Unhealthy food access, Ratio"
     IndicatorName: "Unhealthy food access"
     geotype: CD
-    description: "Neighborhoods with few affordable grocery stores, increases diets high in salt, sugar, and unhealthy fats.These environments contribute to, diabetes, heart disease, and other chronic diseases."
+    description: "The ratio of bodegas to supermarkets. This can indicate whether the environment makes accessing unhealthy food easier for residents, as bodegas are less likely to have healthy food options than supermarkets."
     strategy: "Promote food access programs such as FRESH, green carts, shop healthy, and other food-related strategies from the Health Department"
-    strategy_description: "Access to healthy food can be improved with programs of different approaches, whether it is designating space for a new grocery store, improving selection of healthy food at local bodegas, or increasing local gardening to address local needs."
-
-  - MeasureID: 984
-    IndicatorID: 2323
-    MeasureName: "School absenteeism, Percent"
-    IndicatorName: "School absenteeism"
-    geotype: CD
-    description: "Missing school can affect learning, social development, and access to school-based services such as meals, counseling, and health screenings. Long-term absence could impact social determinants that drive greater health inequities."
-    strategy: "Implement programs that enable students to complete their degrees, access advanced courses, or address social-emotional learning"
-    strategy_description: "Equity NYC has nine specific strategies to address causes of unequal education advancement; school absenteeism is a symptom of education condition and not a comprehensive measure, the strategies provided by Equity NYC address multiple pathways."
+    strategy_html: 'Promote food access programs such as <a href="https://www.nyc.gov/content/planning/pages/our-work/plans/citywide/food-retail-expansion-support-health-fresh">FRESH</a>, <a href="https://www.nyc.gov/site/doh/business/food-operators/green-carts.page">green carts</a>, <a href="https://www.nyc.gov/site/doh/health/neighborhood-health/shop-health.page">shop healthy</a>, and other food-related strategies from the Health Department'
+    strategy_description: 'Communities can improve access to healthy food in several ways. They can make space for a grocery store, help local bodegas offer more healthy foods, or <a href="https://www.nyc.gov/site/foodpolicy/programs/urban-growing-and-gardening.page">support community gardens</a>.'
 
   # Density of all baskets. The four alternatives split two ways — total count
   # (1308) against density (1314), and all baskets against non-wire only (1316,
@@ -65,6 +51,6 @@ measures:
     MeasureName: "Litter basket coverage, Density"
     IndicatorName: "Litter basket coverage"
     geotype: CD
-    description: "When waste is easy to dispose of, communities see less litter and fewer pests, and there are lower risks of odors and contamination that can affect public health. Better coverage also supports overall use of public spaces and social participation."
-    strategy: "Report dirty conditions and request location for litter baskets"
-    strategy_description: "The NYC Department of Sanitation has resources on reporting dirty conditions in a neighborhood as well as suggesting locations for new litter baskets."
+    description: "Public litter baskets (trash cans). Litter baskets are associated with a decrease in littering. Enclosed, non-wire baskets are generally better than wire baskets. Sanitation supports public health by providing clean, healthy public spaces for people to live, work, and get around."
+    strategy: "Identify opportunities to innovate waste management on-site"
+    strategy_description: 'People can report dirty conditions to the NYC Department of Sanitation. Planners and developers can also find new ways to handle waste. <a href="https://evs.institute/overview-of-waste-management/case-studies-waste-management-global-strategies/">Examples from around the world include sorting waste on-site, involving community members, and reusing materials instead of throwing them away</a>.'

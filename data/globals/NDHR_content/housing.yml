@@ -1,5 +1,8 @@
 # Housing — indicator spec for the NDHR report page.
-# Field contract, shape and sources: see the header of climate_and_active_design.yml.
+# Field contract, shape and sources: see the header of active_design.yml.
+#
+# In the source document's order. Evictions (1128) left this category on 2026-11-19:
+# the reviewed document no longer lists it.
 
 measures:
 
@@ -8,64 +11,44 @@ measures:
     MeasureName: "Crowding, Percent"
     IndicatorName: "Household crowding"
     geotype: CD
-    description: "Household crowding affects health through living conditions that can increase the spread of infectious diseases, worsen stress and mental health, and reduce overall quality of life."
+    description: "Households with more than one person per room."
     strategy: "Create shared housing to alleviate housing shortage"
-    strategy_description: "Shared housing is two or more independently occupied rooms that share living facilities, like bathrooms and kitchens, and may increase the amount of housing available at a lower cost."
-
-  # Evictions is the one indicator the "Text of ..." document does not cover — it
-  # is in neither its description table nor its strategy table. The strategy below
-  # is the "Example Intervention" from the other source document, "2026
-  # Neighborhood Development Health Report.docx", whose table has no description
-  # column.
-  # TODO (agency content): a strategy_description for this row.
-  #
-  # The rate, not 1127 "Evictions, Number": a count rises with the size of a
-  # community district, so ranking 59 of them on it would rank population.
-  - MeasureID: 1128
-    IndicatorID: 2365
-    MeasureName: "Evictions, Estimated annual rate"
-    IndicatorName: "Evictions (court-ordered)"
-    geotype: CD
-    # No description: this row has no "Text of ..." document entry,
-    # the same gap its strategy_description has. Falls back to
-    # EHDP-data's IndicatorDescription, which is what the page showed
-    # for every row before this field existed.
-    description: null
-    strategy: "Increase awareness of tenants’ rights and resources"
-    strategy_description: null
-
-  - MeasureID: 1029
-    IndicatorID: 2336
-    MeasureName: "Rent burden, Percent"
-    IndicatorName: "Rent-burdened households"
-    geotype: CD
-    description: "High rent burdens are associated with stress, housing instability, and poorer mental and physical health outcomes. Additionally, high rent limits household ability to pay for healthcare, food, transportation, and other basic needs."
-    strategy: "Increase access to community-based peer support services to connect to programs and resources"
-    strategy_description: "The Department of Social Services provide programs for rental assistance as well as other tenant resources."
-
-  - MeasureID: 692
-    IndicatorID: 2145
-    MeasureName: "Independence difficulty, Percent"
-    IndicatorName: "Independent living difficulty (adults)"
-    geotype: CD
-    description: "People who have trouble performing daily activities may face barriers related to housing design, transportation access, and neighborhood infrastructure. This could lead to worsening physical health and poorer mental health from less social interaction."
-    strategy: "Increase access to community-based peer support services to connect to programs and resources"
-    strategy_description: "The NYC Department for the Aging has a free Older Adults Home Modification program that provides no-cost home assessment and modification. Improving access and use of public spaces can also increase social cohesion, which can serve as a protector in climate events."
+    strategy_description: '<a href="https://www.nyc.gov/site/hpd/services-and-information/hpd-shared-housing-roadmap.page">Shared housing</a> has two or more private rooms that share spaces such as kitchens and bathrooms. It may provide more homes at a lower cost.'
 
   - MeasureID: 86
     IndicatorID: 45
     MeasureName: "Homes with 3+ housing problems, Percent"
     IndicatorName: "Homes with 3+ housing problems"
     geotype: PUMA2020
-    description: "Homes with more maintenance issues can expose residents to mold, pests, poor air quality, injury hazards, and temperature extremes, all of which can lead to or exacerbate chronic conditions."
-    strategy: "Increase access to community-based peer support services to connect to programs and resources"
-    strategy_description: "The Healthy Homes program can provide residents with resources and information on addressing indoor environmental issues that lead to acute and chronic health problems."
+    description: "Households reporting 3 or more housing problems. These can threaten the health of the people who live there."
+    strategy: "Ensure individual housing units and common areas are safe and well maintained"
+    strategy_description: 'Developers and building managers can create a guide for caring for a building and its outdoor areas. The guide should explain building equipment and when it needs care or repairs. <a href="https://www.greencommunitiesonline.org/operations-maintenance-and-resident-engagement">Enterprise Green Communities Criteria 8: Operations, Maintenance, and Resident Engagement</a> has sample guides and plans.'
 
+  # A list inside the description, as the source document lays it out. The panel
+  # renders strategy_description in a <div>, not a <p>, so the <ol> is valid markup.
   - MeasureID: 245
     IndicatorID: 107
     MeasureName: "Cockroaches, Percent"
     IndicatorName: "Homes with cockroaches"
     geotype: PUMA2020
-    description: "Homes with cockroaches can increase exposure to allergens that can act as triggers, especially for asthma and respiratory illnesses."
+    description: "Adults reporting cockroaches in the past 30 days (from when they were surveyed). Cockroaches are an allergen and can trigger asthma."
+    strategy: "Adopt integrated pest management into the planning, design, and maintenance phases of your project"
+    strategy_description: 'Integrated pest management, or IPM, is a way to prevent and control pests in buildings. It can improve building conditions and may be safer for residents than traditional pest control. Examples include:<ol class="mb-0 mt-1"><li>San Francisco Environment Department’s “<a href="http://sfenvironment.org/pest-prevention-design-guidelines">Pest Prevention by Design</a>” guidelines, which show how to keep pests out of buildings.</li><li>The NYC Health Department’s <a href="https://www.nyc.gov/site/doh/health/health-topics/pests-and-pesticides-building-owners.page">IPM Toolkit</a>, which includes a section on “Pest Management Opportunities during Building Renovations.”</li></ol>'
+
+  - MeasureID: 1029
+    IndicatorID: 2336
+    MeasureName: "Rent burden, Percent"
+    IndicatorName: "Rent-burdened households"
+    geotype: CD
+    description: "Renter households spending 30% of their income or more on rent."
     strategy: "Increase access to community-based peer support services to connect to programs and resources"
-    strategy_description: "The Healthy Homes program can provide residents with resources and information on addressing indoor environmental issues that lead to acute and chronic health problems."
+    strategy_description: 'People can contact the <a href="https://www.nyc.gov/site/hra/help/cityfheps.page">Department of Social Services</a> for help with rent and other tenant needs. City agencies and local groups can work together to <a href="https://www.nyc.gov/assets/dca/downloads/pdf/partners/Municipal-Policies-for-Community-Wealth-Building.pdf">build community wealth</a>. For example, community land trusts can help create more affordable homes. Developers can maximize affordable housing offerings.'
+
+  - MeasureID: 692
+    IndicatorID: 2145
+    MeasureName: "Independence difficulty, Percent"
+    IndicatorName: "Independent living difficulty (adults)"
+    geotype: CD
+    description: "Adults reporting independent living difficulty due to a physical, mental, or emotional problem. People with disabilities may need additional support during extreme weather. For example, extra planning for safe travel out of evacuation zones during a hurricane, or back-up electricity to support medical equipment during power outages."
+    strategy: "Increase access to community-based peer support services to connect to programs and resources"
+    strategy_description: 'The NYC Department for the Aging has a free <a href="https://www.nyc.gov/assets/brooklyncb18/downloads/pdf/2026/Older-Adults-Home-Modification-Program.pdf">Older Adults Home Modification program</a> that provides no-cost home assessment and modification. Improving access and use of public spaces can also increase social cohesion, which can serve as a protector in climate events.'

@@ -93,12 +93,11 @@ const PAGES = [
     // because it carries rows at two geographies: four CD measures and two read at PUMA2020,
     // so the geography-labelling path executes here and not on a CD-only category
     "ndhr/midtown/housing/",
-    // The SAME template as the line above, and in the list anyway: Mental Health is the only
-    // category with no measures, so it is the one page where app.js's bootstrap() returns
-    // before wiring a single event and the server-rendered empty state is all there is
-    // (plan DECIDED-7). That early return is a branch no other NDHR page executes, and a
-    // console error inside it would be invisible to every other entry here
-    "ndhr/midtown/mental-health/",
+    // The SAME template as the line above, and in the list anyway: Climate is the only
+    // category reading at all three geotypes (CD, CDTA2020, PUMA2020), so it is the one
+    // page where every branch of the geography labelling runs. This entry was the
+    // empty-state Mental Health page until that category was removed (2026-11-19)
+    "ndhr/midtown/climate/",
     "key-topics/",                                  // key-topics/section.html
     "key-topics/airquality/",                       // key-topics/single.html
     "about/",                                       // about/section.html

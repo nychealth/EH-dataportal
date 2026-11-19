@@ -11,6 +11,48 @@
 // prefix is applied at the one use below, so this title's wording is unchanged
 
 
+// Adds "About these rankings" to a rendered chart's "…" actions menu, opening the
+// tertile explainer modal in ndhr-report.html
+//
+// The explainer used to sit in the left column under the map; reviewers moved it here
+// (2026-11-19) so it sits beside the chart it explains. vega-embed has no option for a
+// custom action, so the link is appended to the menu it renders. Bootstrap's own
+// data-toggle handler opens the modal, which works on a node added after load
+const addRankingsMenuLink = destination => {
+
+    const details = document.querySelector(destination + ' details');
+    const actions = document.querySelector(destination + ' .vega-actions');
+
+    if (!details || !actions) {
+        debugLog('addRankingsMenuLink: branch-no-actions-menu:', destination);
+        return;
+    }
+
+    const link = document.createElement('a');
+    link.href = '#ndhr-tertile-modal';
+    link.textContent = 'About these rankings';
+    link.setAttribute('data-toggle', 'modal');
+    link.setAttribute('data-target', '#ndhr-tertile-modal');
+
+    // Close the menu as the modal opens, and give focus back to the menu's button when the
+    // modal closes. Bootstrap returns focus to the link, which by then is inside a closed
+    // <details> and not focusable, so a keyboard reader would land on <body>
+    link.addEventListener('click', () => {
+
+        details.removeAttribute('open');
+
+        $('#ndhr-tertile-modal').one('hidden.bs.modal', () => {
+            const summary = details.querySelector('summary');
+            if (summary) summary.focus();
+        });
+
+    });
+
+    actions.appendChild(link);
+
+};
+
+
 // Ranks one indicator across every area of its own geotype, with geocode's own bar
 // highlighted
 const renderIndicatorChart = (data, destination, legendLabel, geocode, indicatorLabel, geoType) => {
@@ -110,7 +152,9 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode, indicator
         // to a bare "DisclosureTriangle" with no name while sitting in the tab order. There
         // is no embed option for its label, so it is set on the rendered node
         const summary = document.querySelector(destination + ' details > summary');
-        if (summary) summary.setAttribute('aria-label', 'Export or view source for ' + chartName);
+        if (summary) summary.setAttribute('aria-label', 'Export, view source, or read about rankings for ' + chartName);
+
+        addRankingsMenuLink(destination);
 
     }).catch(err => {
 

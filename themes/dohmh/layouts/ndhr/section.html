@@ -96,15 +96,11 @@
                 Take me to the tool<i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
             </a>
 
-            {{/* The address is front matter so an editor can change it in CloudCannon */}}
-            {{- with .Params.contact_email }}
-            <div class="card card-left-border shadow-sm mb-4">
-                <div class="card-body">
-                    <h2 class="h5"><i class="fas fa-envelope mr-1" aria-hidden="true"></i>Questions about the tool?</h2>
-                    <p class="fs-sm mb-0">Contact the Health Equity in Urban Planning team at <a href="mailto:{{ . }}">{{ . }}</a>.</p>
-                </div>
+            {{/* Shared with the report page's left column, so both say the same thing.
+                 The address is this page's `contact_email` front matter */}}
+            <div class="mb-4">
+                {{ partial "ndhr-contact.html" . }}
             </div>
-            {{- end }}
 
         </div>
 

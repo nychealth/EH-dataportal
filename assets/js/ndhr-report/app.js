@@ -164,8 +164,9 @@ const bootstrap = () => {
         return;
     }
 
-    // A category with no measures is a supported state, not a broken page: Mental Health
-    // renders a server-side empty state (plan DECIDED-7) and has no indicator rows.
+    // A category with no measures is a supported state, not a broken page: it renders a
+    // server-side empty state (plan DECIDED-7) and has no indicator rows. Mental Health
+    // was that category until its removal on 2026-11-19; none is today.
     //
     // It is NOT short-circuited here. An earlier version returned at this point, and that
     // also skipped everything the left column and the header need — none of which has

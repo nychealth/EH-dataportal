@@ -1,0 +1,105 @@
+# Active Design — indicator spec for the NDHR report page.
+#
+# The NDHR analogue of data/globals/NR_content/*.yml, and it keeps that file's key
+# naming — `MeasureID`, `IndicatorID`, `MeasureName`, spelled as EHDP-data spells
+# them. NDHR forks the NR presentation (DECIDED-5) and the NR templates are the ones
+# already known to work, so the data they read keeps its form where it can.
+#
+# NO `report_topics` LAYER, which is the one place it departs. NR_content groups its
+# MeasureIDs into named subsections; neither NDHR source document groups indicators
+# below the five categories, so that layer would hold exactly one group per file with
+# a name nobody wrote. A flat `measures` list instead. If real subsections are ever
+# authored, this becomes a list of them and the renderer gains a heading level.
+#
+# Four fields NR_content does not carry, each deliberate:
+#
+#   - `IndicatorName`, EHDP-data's own name for the indicator, spelled exactly as
+#     metadata.json spells it. It is a COPY, and the copy exists for one reader:
+#     ndhr-category-index.html renders it server-side, where Hugo has no access to
+#     metadata.json. The report page does NOT read it — cards.js takes the headline
+#     from the row buildRows produces, live from metadata — so the only way the two
+#     could disagree is drift, which `node scripts/ndhr-indicator-availability.mjs
+#     check` fails on. An earlier `indicator_short_name` held a site-authored short
+#     form here ("Crowding", "Air conditioning"); the user chose the data repo's
+#     names on 2026-09-13, so that field is gone rather than renamed.
+#   - `description`, the indicator description written for THIS tool, from the
+#     "Text of ..." document's second column. EHDP-data's own IndicatorDescription is
+#     methodological and this one is written for a reader deciding what to build;
+#     DECIDED-11 chose the document's. `null` for any row the document does not cover,
+#     which falls back to EHDP-data's; since the 2026-11-19 revision every row is
+#     covered. The key is required even when null, so a deliberate gap is
+#     distinguishable from an oversight.
+#   - `geotype`, the geography the value is READ AT. NR needs no such field because
+#     every NR row is UHF42; NDHR reads three rows at PUMA2020 and two at CDTA2020
+#     (DECIDED-10), and several of these measures publish at more than one geography,
+#     so it cannot be implicit
+#   - `strategy` and `strategy_description`, site-owned content with no EHDP-data
+#     equivalent. `strategy` is PLAIN TEXT: it also renders inside the row's
+#     <button> and in the printed row, where a link is invalid. `strategy_description`
+#     is HTML and may carry links. Where the source document links words in the
+#     strategy itself, an optional `strategy_html` carries the linked form, and only
+#     the expanded panel's heading reads it
+#
+# `MeasureID` is the join key, as in NR_content: MeasureIDs are unique across the
+# whole of EHDP-data and name exactly one series, where an IndicatorID names a family
+# of them ("Number", "Percent", "Age-adjusted rate") whose values are not
+# interchangeable. `IndicatorID` rides alongside because it is what locates the
+# file — EHDP-data publishes indicators/data/<IndicatorID>.json and MeasureID is a
+# column inside it — so the pair is two different jobs, not a duplication.
+#
+# `MeasureName` is the exact EHDP-data name. It is here so an author editing strategy
+# text can see which series they are on, and it is checked rather than decorative:
+# `node scripts/ndhr-indicator-availability.mjs check` fails when the measure does not
+# sit under the declared indicator, when the name disagrees, or when the measure does
+# not publish at the declared geotype.
+#
+#
+# A file may also carry a top-level `note`: a sentence the report page and the
+# category index render beneath the indicator list. Active Design uses it to say
+# which of its indicators are not published for community districts.
+#
+# Descriptions, strategies and their links are from "Text of Healthy Neighborhoods
+# Toolkit [CLEAN].pdf" (reviewer email, 2026-11-19): the indicator description
+# table and "Strategies and Strategy Description". The copy that arrived as a
+# printed PDF had lost its links; the URLs are from the original export.
+#
+# Two of this category's three indicators in the source document are not here, because
+# EHDP-data publishes them only at UHF42 [checked 2026-11-19]: walking distance to an
+# accessible subway station (2391, measure 1227) and walkability index (2133, measure
+# 673). The `note` below says so on the page. Their text from the document, for when
+# they arrive at community district geography:
+#
+#   2391 description: "Population within a half mile of an accessible subway station.
+#   When more people have convenient access to the transit system, they're more likely
+#   to use it. Accessible subway stations may include ramps, elevators, or other access
+#   improvements that help New Yorkers with disabilities, those traveling with
+#   strollers, and older adults use public transit more safely and reliably. Accessible
+#   infrastructure ensures that subway stations follow American Disabilities Act (ADA)
+#   guidelines."
+#   2391 strategy: "Increase bike share and micromobility options" — "Bike-share programs
+#   and other small vehicles can help people get to transit stations faster. This can
+#   make public transportation easier to use."
+#
+#   2133 description: "A score that summarizes features that promote walking. These
+#   include density of residences, intersections, subway stops, and retail area. Higher
+#   scores indicate greater walkability. Neighborhoods range from -4.0 to 9.4, with zero
+#   as an approximate NYC average. This indicator excludes some factors that may impact
+#   access and walkability, like maintenance, ADA access, neighborhood safety, and
+#   street trees."
+#   2133 strategy: "Make pedestrian walkways safer, greener, and more engaging" — "The
+#   <a href="https://www.nyc.gov/site/doh/health/health-topics/active-design.page">Active
+#   Design Guidelines 2.0</a> show ways to improve sidewalks and public spaces so more
+#   people can walk, bike, and travel actively."
+
+measures:
+
+  - MeasureID: 1224
+    IndicatorID: 2388
+    MeasureName: "Park access, Percent"
+    IndicatorName: "Walking distance to a park"
+    geotype: CD
+    description: "The percentage of the population who live within walking distance to a park: a quarter-mile or less to entrances of smaller sites, such as sitting areas and playgrounds, and half-mile or less to entrances of larger parks. Increased access to green space and open space can contribute to increased levels of physical activity."
+    strategy: "Increase presence of parks or green spaces"
+    strategy_description: 'The Parks Department’s <a href="https://www.nycgovparks.org/planning-and-building/planning/walk-to-a-park">Walk to a Park Initiative</a> aims to help more people reach parks and green spaces. Public agencies can work with private groups. Developers can add green spaces to public areas and rooftops.'
+
+note: "Two more Active Design indicators, walking distance to an accessible subway station and the walkability index, are not yet published for community districts, so they are not shown here."
