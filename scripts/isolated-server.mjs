@@ -1,11 +1,11 @@
 // An isolated `hugo server` for one environment: a private port, and both
 // writable outputs redirected outside the repo.
 //
-// Extracted from site-characterization-rebaseline.mjs so that the two callers
-// that need a server for a NAMED environment — the re-baseline tool and
-// characterize-env.mjs — share one implementation. The thing being shared is
-// the isolation, whose failure mode is corrupting a running server's
-// fingerprint cache, so it gets one home rather than a home and a copy.
+// Shared by the callers that need a server for a NAMED environment —
+// smoke-env.mjs, and site-characterization-compare.mjs, which runs two at once
+// (base and head). The thing being shared is the isolation, whose failure mode
+// is corrupting a running server's fingerprint cache, so it gets one home
+// rather than a home and a copy.
 //
 // Deliberately NOT part of dev-server.mjs, which answers a different question:
 // "what server should the harness use", including reusing one it finds and
@@ -23,21 +23,9 @@ import { SPAWN_CMD as HUGO_BIN, PREFIXES } from "./dev-server.mjs";
 
 const REPO_ROOT = fileURLToPath(new URL("..", import.meta.url));
 
-// Which Hugo environment produces each baseline key. The key is a property of
-// the OUTPUT (data branch, plus prod_prod's environment-name branch in
-// head.html); this maps back to one environment that produces it. Any
-// environment in a key's row would do — these are just the ones the committed
-// baselines were captured from.
-export const ENVIRONMENT_FOR = {
-    staging: "dev_stage",
-    production: "dev_prod",
-    prod_prod: "prod_prod",
-};
-
 // Deliberately OFF dev-server.mjs's probe list (8080, 8081, 1313). On a probed
 // port, any other harness invocation running at the same time would discover
-// this script's private server and sweep the wrong environment against the
-// wrong baseline.
+// this script's private server and sweep the wrong environment.
 export const PORT = 8090;
 
 // Where the isolated servers write. Outside the repo, so neither resources/_gen
@@ -51,7 +39,7 @@ const SERVER_TIMEOUT_S = 200;
 // descendants on Windows, which is how a "stopped" server keeps serving.
 //
 // Idempotent via its own flag rather than via child.killed, which taskkill
-// never sets: this is called once from recapture's finally block and again from
+// never sets: this is called once from the caller's finally block and again from
 // the process exit handler, and a second taskkill would be aimed at a PID the
 // OS is free to have reassigned by then.
 //

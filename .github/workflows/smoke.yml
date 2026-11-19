@@ -306,7 +306,7 @@ jobs:
       # 'success', so the upload runs.
       #
       # No include-hidden-files: that flag is in the characterization workflow
-      # for .sc-check, a DOT directory the action skips by default. Smoke
+      # for .sc-compare, a DOT directory the action skips by default. Smoke
       # writes no dot path, so its absence here is correct rather than an
       # oversight.
       - name: Upload the smoke report

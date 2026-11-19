@@ -317,20 +317,6 @@ const partition = (rows, globs) => {
 
 const shortSha = (sha) => (sha ? sha.slice(0, 10) : "unknown");
 
-// shapeOf()'s "Fields:" line was written for a committed baseline, where
-// EHDP-data could have moved since the capture and "re-run at the merge base"
-// was the right advice. Here both sides fetch the same data branch minutes
-// apart, so that advice is wrong; say what this comparison can and cannot rule
-// out instead. Task 4 of the plan removes the baseline wording at its source.
-const FIELDS_LINE = /^Fields: .*$/m;
-const COMPARE_FIELDS = "Fields: both sides fetched the same EHDP-data branch minutes apart, so a data "
-    + "change would have moved both and cancelled out; what is left came from the head tree.";
-// summarize()'s one-sided rows say "baseline" and "this run" for the same reason.
-const compareWording = (text) => text
-    .replace(FIELDS_LINE, COMPARE_FIELDS)
-    .replaceAll("new, absent from the baseline", "new in head")
-    .replaceAll("in the baseline, absent from this run", "removed in head");
-
 const pageList = (pages) => {
     const shown = pages.slice(0, MAX_LISTED_PAGES).map((p) => `\`${p || "(home)"}\``).join(", ");
     return pages.length > MAX_LISTED_PAGES ? `${shown}, and ${pages.length - MAX_LISTED_PAGES} more` : shown;
@@ -354,7 +340,7 @@ const buildMarkdown = ({ opts, base, head, dataLine, rows, totalPages, part, cle
         lines.push(`No differences across ${totalPages} pages.`);
     } else {
         // renderMarkdown's own "###" heading is dropped in favour of the "##" above.
-        lines.push(compareWording(renderMarkdown(rows, totalPages, "Changed fields").replace(/^### .*\n\n/, "")));
+        lines.push(renderMarkdown(rows, totalPages, "Changed fields").replace(/^### .*\n\n/, ""));
         if (part) {
             lines.push(`**Claimed by --expect:** ${part.expected.length ? pageList(part.expected) : "none"}`, "");
             lines.push(`**Not claimed:** ${part.unexplained.length ? pageList(part.unexplained) : "none"}`, "");
@@ -509,7 +495,7 @@ const main = async () => {
             : `EHDP-data \`${dataSource.branch ?? "unknown"}\` @ unknown.`;
 
         console.log("");
-        console.log(rows.length ? compareWording(renderText(rows, totalPages)) : `No structural differences across ${totalPages} pages.`);
+        console.log(rows.length ? renderText(rows, totalPages) : `No structural differences across ${totalPages} pages.`);
         if (cleared.length) console.log(`\nCleared on sequential re-capture: ${cleared.map((p) => p || "(home)").join(", ")}`);
         if (part) {
             console.log(`\nClaimed by --expect: ${part.expected.length}; not claimed: ${part.unexplained.length}`);

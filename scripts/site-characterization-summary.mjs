@@ -2,22 +2,20 @@
 //
 // site-characterization-summary.mjs
 //
-// Turns the two projected record trees that project() writes into
-// .sc-check/base and .sc-check/head into a field-level summary: which fields
-// moved, on how many pages, and what the change looks like.
+// Turns the two projected record trees that project() writes — the base and
+// head sides of site-characterization-compare.mjs — into a field-level
+// summary: which fields moved, on how many pages, and what the change looks like.
 //
-// The raw `git diff` the check prints is fine for the three-page case and bad
-// for the common one — a template edit moves one field on all 925 pages, and
-// the log becomes 925 near-identical hunks with no sentence saying it is one
-// field.
+// A raw diff of the trees is fine for the three-page case and bad for the
+// common one — a template edit moves one field on all 925 pages, and the output
+// becomes 925 near-identical hunks with no sentence saying it is one field.
 //
 // Reads the JSON rather than parsing the diff text, deliberately: recovering a
 // dotted field path from `-            "missingAlt": 3,` means reconstructing
 // nesting from indentation, which the objects already carry.
 //
-// Consumed by site-characterization.mjs. The caller supplies the record list
-// because it already has walk(); importing walk from there would make the two
-// modules circular.
+// Consumed by site-characterization-compare.mjs, which supplies the record
+// list because it already has walk() from site-characterization.mjs.
 //
 // ----------------------------------------------------------------------- //
 
@@ -112,7 +110,7 @@ export const summarize = (baseDir, headDir, rels) => {
             rows.push({
                 page: rel.replace(/(\/index)?\.json$/, "").replace(/^_home$/, ""),
                 field: "(whole page)",
-                text: inBase ? "in the baseline, absent from this run" : "new, absent from the baseline",
+                text: inBase ? "removed in head" : "new in head",
             });
             continue;
         }
@@ -144,30 +142,18 @@ export const summarize = (baseDir, headDir, rels) => {
 // the shape of the change
 // ----------------------------------------------------------------------- //
 
-// The fields EHDP-data can move on its own. Task 8's cross-environment
-// measurement is the only calibration there is for this: comparing the
-// `staging` and `prod_prod` baselines, `controls` moved on 95 pages,
-// `headingLevels` on 86 and `links` on 84 from the data branch, while `meta`
-// moved on all 925 from the environment-NAME axis rather than from the data
-// `[2026-08-24]`. Nothing else in `structure` has a data path to it.
+// Which template a change most likely came from, read off the PAGE SET. It
+// costs nothing to compute and is the first question a reader of the report
+// asks.
 //
-// Calibration, not a rule — it was measured across two environments, not across
-// two states of one.
-const DATA_SENSITIVE = ["structure.controls", "structure.links", "structure.headingLevels"];
-
-// The single most diagnostic thing about a red run, and it costs nothing to
-// compute. Two axes, and only one of them is worth reading at small page
-// counts: the PAGE SET says which template, and the FIELD SET says whether
-// EHDP-data could have done it. Page count alone says nothing about the data
-// question — a data change is a large, field-concentrated move, not a scatter —
-// so this reports the two separately rather than inferring one from the other.
+// It used to report a second axis — whether EHDP-data could have moved the
+// changed fields — because a committed baseline could be weeks older than the
+// data. Both sides of a comparison now fetch the same data branch minutes
+// apart, so that question no longer arises and the line says so instead.
 export const shapeOf = (rows, totalPages) => {
 
     const pages = new Set(rows.map((r) => r.page));
     if (!pages.size) return "";
-
-    const fields = new Set(rows.map((r) => r.field));
-    const dataish = (f) => DATA_SENSITIVE.some((d) => f === d || f.startsWith(d + "."));
 
     let where;
 
@@ -193,14 +179,8 @@ export const shapeOf = (rows, totalPages) => {
         where = `${pages.size} of ${totalPages} pages — too few to infer a template from.`;
     }
 
-    const moved = [...fields];
-    const why = moved.every(dataish)
-        ? `Every changed field is one EHDP-data can move on its own (${DATA_SENSITIVE.join(", ")}), `
-          + `so this may not be your change at all — re-run the check at the merge base to find out.`
-        : moved.some(dataish)
-            ? `Some changed fields are ones EHDP-data can move on its own; the rest have no data `
-              + `path and point at this repo.`
-            : `No changed field has a data path to it, so this is a change in this repo.`;
+    const why = "both sides fetched the same EHDP-data branch minutes apart, so a data change "
+        + "would have moved both and cancelled out; what is left came from the head tree.";
 
     return `Shape: ${where}\nFields: ${why}`;
 };
