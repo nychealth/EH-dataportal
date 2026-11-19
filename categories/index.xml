@@ -6,8 +6,15 @@
     <description>Recent content in Categories on Environment &amp; Health Data Portal</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 14 Aug 2026 11:14:56 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 19 Nov 2026 09:01:00 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Foodanddrink</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/foodanddrink/</link>
+      <pubDate>Thu, 19 Nov 2026 09:01:00 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/foodanddrink/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Airquality</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/airquality/</link>
@@ -41,13 +48,6 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/inequality/</link>
       <pubDate>Sun, 14 Jun 2026 10:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/inequality/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Foodanddrink</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/foodanddrink/</link>
-      <pubDate>Mon, 18 May 2026 09:01:00 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/foodanddrink/</guid>
       <description></description>
     </item>
     <item>
