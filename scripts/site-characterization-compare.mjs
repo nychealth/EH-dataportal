@@ -63,6 +63,16 @@ export const REPORT_MARKER = "<!-- site-characterization-report -->";
 // The field table above it already counts every page; the list is for clicking.
 const MAX_LISTED_PAGES = 50;
 
+// Pages that may fail to load before the comparison is called off. A page that
+// does not load is retried once, alone, on each side it exists on; one that
+// still fails is left out of the comparison and listed in the report. A third-
+// party embed stalling one page is routine — /data-features/displacement-risk/
+// iframes equitableexplorer.planning.nyc.gov, which hung past the 30s goto cap
+// and voided a whole run's report `[run 44541819564, 2026-11-19]`. More than
+// this many failing at once is a broken build or a broken site, which is worth
+// exit 2 rather than a report with holes in it.
+const LOAD_FAILURE_LIMIT = 5;
+
 // ----------------------------------------------------------------------- //
 // arguments
 // ----------------------------------------------------------------------- //
@@ -234,18 +244,33 @@ const pagefindServed = async (baseURL) => {
 // One side: build the search index into its publishDir, then drive the existing
 // harness's --out mode against it. Driven as a child process, like every other
 // caller of the harness, so there is one implementation of the sweep.
+//
+// The harness exits 1 when some pages failed to load, having still written a
+// record for each of them (navError set, structure null). That is handled after
+// both captures, so it is not an error here; any other non-zero exit is.
 const captureSide = (side, server, sample) => {
     const outDir = `${WORK_DIR}/${side}`;
     execSync(`npx -y pagefind --site "${server.destDir}"`, { cwd: REPO_ROOT, stdio: "ignore" });
     console.log(`\n=== capturing ${side} (${server.baseURL}) ===`);
     const args = ["scripts/site-characterization.mjs", "--out", outDir];
     if (!sample) args.push("--all");
-    execFileSync(process.execPath, args, {
-        cwd: REPO_ROOT,
-        stdio: "inherit",
-        env: { ...process.env, DE_BASE_URL: server.baseURL, DE_SERVER_OWNED: "1" },
-    });
+    try {
+        execFileSync(process.execPath, args, {
+            cwd: REPO_ROOT,
+            stdio: "inherit",
+            env: { ...process.env, DE_BASE_URL: server.baseURL, DE_SERVER_OWNED: "1" },
+        });
+    } catch (e) {
+        if (e.status !== 1) throw e;
+    }
     return outDir;
+};
+
+// A record the harness wrote for a page that did not load.
+const didNotLoad = (dir, rel) => {
+    if (!existsSync(`${dir}/${rel}`)) return false;
+    const rec = readRecord(dir, rel);
+    return Boolean(rec.navError) || rec.structure == null;
 };
 
 // The EHDP-data repo and branch the site fetches, read off the served page:
@@ -322,7 +347,7 @@ const pageList = (pages) => {
     return pages.length > MAX_LISTED_PAGES ? `${shown}, and ${pages.length - MAX_LISTED_PAGES} more` : shown;
 };
 
-const buildMarkdown = ({ opts, base, head, dataLine, rows, totalPages, part, cleared, capped }) => {
+const buildMarkdown = ({ opts, base, head, dataLine, rows, totalPages, part, cleared, capped, notLoaded }) => {
 
     const changedPages = [...new Set(rows.map((r) => r.page))];
     const lines = [
@@ -352,6 +377,13 @@ const buildMarkdown = ({ opts, base, head, dataLine, rows, totalPages, part, cle
         }
     }
 
+    // Listed whatever else the report says: a page left out is not a page that
+    // passed, and a clean report with holes in it must say where they are.
+    if (notLoaded.length) {
+        lines.push("", `**Not compared — did not load after a retry:** `
+            + notLoaded.map((n) => `\`${n.path || "(home)"}\` (${n.where.join(" and ")})`).join(", ")
+            + ". A third-party embed that stalls is the usual cause; one that fails on head only may be this PR.");
+    }
     if (cleared.length) {
         lines.push("", `${cleared.length} page(s) differed under concurrency and matched on a sequential `
             + `re-capture, so they are not counted: ${pageList(cleared)}`);
@@ -432,7 +464,7 @@ const main = async () => {
             baseDir = captureSide("base", servers.base, opts.sample);
             headDir = captureSide("head", servers.head, opts.sample);
         } catch {
-            console.error("\nA capture did not complete — the harness output above names the pages. No report.");
+            console.error("\nA capture did not complete — the harness output above says why. No report.");
             return 2;
         }
 
@@ -443,6 +475,45 @@ const main = async () => {
             console.error(`Pagefind is served on the ${pf.base ? "base" : "head"} side only; every page would `
                 + "differ on the search UI. No report.");
             return 2;
+        }
+
+        browser = await chromium.launch({ headless: true });
+        const probe = await browser.newPage();
+        const userAgent = (await probe.evaluate(() => navigator.userAgent)).replace("HeadlessChrome", "Chrome");
+        await probe.close();
+        const sides = [["base", baseDir], ["head", headDir]];
+
+        // Pages that did not load: retry each once, alone, on every side it
+        // exists on — never on a side it is absent from, which would write a
+        // 404 record there and turn a new page into a changed one. What still
+        // fails is removed from both sides and listed, not compared.
+        const allRels = [...new Set([...walk(baseDir), ...walk(headDir)])];
+        const failing = allRels.filter((rel) => didNotLoad(baseDir, rel) || didNotLoad(headDir, rel));
+        const notLoaded = [];
+
+        if (failing.length > LOAD_FAILURE_LIMIT) {
+            console.error(`\n${failing.length} pages did not load — more than ${LOAD_FAILURE_LIMIT}, which points at `
+                + "the build or the site rather than one stalled embed. No report.");
+            return 2;
+        }
+
+        if (failing.length) {
+            console.log(`\n${failing.length} page(s) did not load — retrying each once, alone.`);
+            for (const [side, dir] of sides) {
+                const here = failing.filter((rel) => existsSync(`${dir}/${rel}`));
+                if (!here.length) continue;
+                const { baseURL } = servers[side];
+                await recapture(browser, baseURL, userAgent, new URL(baseURL).pathname, dir,
+                    here.map((rel) => readRecord(dir, rel).path));
+            }
+            for (const rel of failing) {
+                const where = sides.filter(([, dir]) => didNotLoad(dir, rel)).map(([side]) => side);
+                if (!where.length) continue;
+                const path = readRecord(existsSync(`${headDir}/${rel}`) ? headDir : baseDir, rel).path;
+                notLoaded.push({ path, where });
+                for (const [, dir] of sides) rmSync(`${dir}/${rel}`, { force: true });
+                console.log(`      still not loading on ${where.join(" and ")}: ${path || "(home)"} — not compared`);
+            }
         }
 
         const keys = opts.content ? ["structure", "content"] : ["structure"];
@@ -462,14 +533,10 @@ const main = async () => {
         const capped = both.length > ARBITRATION_CAP;
         let cleared = [];
 
-        browser = await chromium.launch({ headless: true });
         const dataSource = await readDataSource(browser, servers.head.baseURL);
 
         if (both.length && !capped) {
             console.log(`\n${both.length} page(s) differ on both sides — re-capturing each one alone on both servers.`);
-            const probe = await browser.newPage();
-            const userAgent = (await probe.evaluate(() => navigator.userAgent)).replace("HeadlessChrome", "Chrome");
-            await probe.close();
             const paths = both.map((rel) => readRecord(headDir, rel).path);
             for (const [side, dir] of [["base", baseDir], ["head", headDir]]) {
                 const { baseURL } = servers[side];
@@ -503,7 +570,12 @@ const main = async () => {
             for (const c of part.claims.filter((x) => x.matched === 0)) console.log(`  --expect ${c.glob} matched no changed page`);
         }
 
-        const markdown = buildMarkdown({ opts, base, head, dataLine, rows, totalPages, part, cleared, capped });
+        if (notLoaded.length) {
+            console.log(`\nNot compared — did not load after a retry: `
+                + notLoaded.map((n) => `${n.path || "(home)"} (${n.where.join(" and ")})`).join(", "));
+        }
+
+        const markdown = buildMarkdown({ opts, base, head, dataLine, rows, totalPages, part, cleared, capped, notLoaded });
         if (opts.report) {
             mkdirSync(dirname(resolve(opts.report)), { recursive: true });
             writeFileSync(opts.report, markdown);
