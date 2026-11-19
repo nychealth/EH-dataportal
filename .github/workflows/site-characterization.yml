@@ -118,12 +118,13 @@ jobs:
     name: Compare rendered structure with the base branch
     runs-on: ubuntu-24.04
 
-    # An ESTIMATE, to be replaced by the first measured run. The old one-sided
-    # job took 8m13s, 370s of it sweeping 925 pages at concurrency 6
-    # `[run 32771116783, 2026-08-24]`; this sweeps both sides, so ~13-16 minutes
-    # is expected, and 30 leaves room for two cold builds. Locally the whole
-    # comparison took 280s on 24 cores (plan, Task 2 (i)).
-    timeout-minutes: 30
+    # ~2x the measured work. On the first run the setup steps took 67s and the
+    # comparison itself 11m29s: two builds of ~43s each and two 840-page sweeps
+    # of ~5m at concurrency 6 on 4 logical processors `[run 44461996966,
+    # 2026-11-19: "Report written" at 05:11:49, step started 05:00:20]`. That
+    # run then hung to the old 30-minute limit on surviving hugo processes,
+    # since fixed in isolated-server.mjs's makeStop.
+    timeout-minutes: 25
 
     concurrency: # one run per ref; a superseded push does not need its own sweep
       group: ${{ github.workflow }}-${{ github.ref_name }}

@@ -54,6 +54,15 @@ const SERVER_TIMEOUT_S = 200;
 // never sets: this is called once from recapture's finally block and again from
 // the process exit handler, and a second taskkill would be aimed at a PID the
 // OS is free to have reassigned by then.
+//
+// Off Windows the child is started in its own process group (detached, below)
+// and the whole group is signalled. node_modules/.bin/hugo is hugo-extended's
+// Node wrapper (lib/cli.js), which spawns the real binary with stdio inherited
+// — so signalling the wrapper alone leaves the real hugo running AND holding
+// this process's pipes open, and the caller never exits. That hung the first CI
+// run of site-characterization-compare.mjs from report-written to the 30-minute
+// timeout `[run 44461996966, 2026-11-19: "Report written" 05:11:49, cancelled
+// 05:29:25]`.
 const makeStop = (child) => {
     let stopped = false;
     return () => {
@@ -62,7 +71,7 @@ const makeStop = (child) => {
         if (process.platform === "win32") {
             try { execSync(`taskkill /pid ${child.pid} /T /F`, { stdio: "ignore" }); } catch { /* already gone */ }
         } else {
-            child.kill("SIGTERM");
+            try { process.kill(-child.pid, "SIGTERM"); } catch { child.kill("SIGTERM"); }
         }
     };
 };
@@ -127,7 +136,10 @@ export const startServer = async (environment, { cwd = REPO_ROOT, port = PORT, t
     const child = process.platform === "win32"
         ? spawn([hugoBin, ...args].map(quote).join(" "),
             { cwd, shell: true, stdio, env: spawnEnv })
-        : spawn(hugoBin, args, { cwd, stdio, env: spawnEnv });
+        // detached: its own process group, so makeStop can signal the wrapper
+        // and the real hugo together. Still awaited normally; this does not
+        // unref it.
+        : spawn(hugoBin, args, { cwd, stdio, env: spawnEnv, detached: true });
 
     // Hugo's output is kept, capped, so a server that never answers can say why. Discarding it
     // made a template error on the first build read as a bare timeout. Both streams are drained
