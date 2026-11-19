@@ -31,6 +31,7 @@ related:
 ---
 
 {{< updateflag data=`[
+  {"src": "data-features/heat-report", "text": "Heat stroke and heat-exacerbated mortality analyses"},
   {"src": "data-explorer/weather-related-illness/?id=2074", "text": "Heat stress: deaths"},
   {"src": "data-explorer/climate/?id=2185", "text": "Household air conditioning"}
 ]` >}}
