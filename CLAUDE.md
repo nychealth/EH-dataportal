@@ -97,9 +97,12 @@ server under `/IndicatorPublic/` does not give, so it can miss a running compare
 **CI runs the full sweep on every PR into `production`.** `.github/workflows/smoke.yml` builds
 `prod_prod` on the runner, builds Pagefind and then *asserts* the index is served, and sweeps every
 page; `workflow_dispatch` offers the 33-page sample instead. A failing sweep triggers a
-`base-control` job that rebuilds the site from the base branch tip and runs **this PR's harness**
+`base-control` job that rebuilds the site from the merge commit's first parent (the base-branch tip
+the PR's merge ref was built on, not `pull_request.base.sha`, which can lag it) and runs **this PR's harness**
 against it — green means the PR caused it, red means the data or a third party moved. The harness
-aborts `www.googletagmanager.com`, so no sweep reports page views to Google Analytics.
+aborts `www.googletagmanager.com`, so no sweep reports page views to Google Analytics, and the four
+CARTO basemap tile hosts, so no sweep spends the site's tile quota (`BLOCKED_HOSTS` in
+`scripts/smoke-pages.mjs`; `scripts/site-characterization.mjs` blocks these and more).
 
 **After pushing to a PR branch, watch its CI runs in the background without being asked**
 (Chris, 2026-11-10). Get the run ids for the pushed commit with
