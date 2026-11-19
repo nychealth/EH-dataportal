@@ -174,8 +174,12 @@ unless stated, `--base HEAD` unless stated so base and head differ only by the i
 uncommitted edit is in the working tree, which is head; the worktree is the committed `HEAD`).
 
 - [ ] **(a) Null:** clean tree, `--base HEAD`. Predict exit 0, "No structural differences".
-- [ ] **(b) Positive control:** remove `alt` from one image in a shared partial (uncommitted).
-  Predict exit 1, the report names `structure.images…alt`-style field on the pages using that partial.
+- [ ] **(b) Positive control:** remove `alt="NYC Logo"` from `themes/dohmh/layouts/partials/footer.html`
+  (uncommitted). Predict exit 1, `structure.img.missingAlt` on most sample pages. *Corrected
+  2026-11-18:* "one image in a shared partial" first went to `header-ds.html`, which no sample page
+  renders (`_default/list.html` uses it only for data-stories list pages other than the landing) — so
+  the run read exactly like (a). Pick a partial the sample provably renders, and check the built
+  output carries the injection before reading the report.
   **No-power condition:** if (b) prints the same as (a), the comparison is not seeing head's tree —
   stop and diagnose before anything else.
 - [ ] **(c) `--expect` claims it:** (b) plus `--expect "**"`. Predict exit 0, the report lists the pages
@@ -287,13 +291,23 @@ Proofs (on a draft PR into `production` from this branch — it does not deploy,
 
 ## Ledger
 
+Status as of 2026-11-18: plan at `60dc642547`; Tasks 1–2 done; Tasks 3–5 not started.
+
 | # | Task | State | Commit | Proof that ran |
 |---|---|---|---|---|
-| 1 | Parameterize server, export helpers | not started | | |
-| 2 | Compare driver | not started | | |
-| 3 | CI report + comment | not started | | |
-| 4 | Remove baseline machinery | not started | | |
-| 5 | Docs | not started | | |
+| 1 | Parameterize server, export helpers | **DONE 2026-11-18** | `5a1f3dc8ad` | `[verified 2026-11-18: node --check on all three, exit 0; node scripts/characterize-env.mjs prod_prod sample → exit 0, 41/41 captured, "Characterization check PASSED"; node scripts/smoke-env.mjs prod_prod sample → exit 0, 44 pages clean; both printed the unchanged temp dirs sc-isolated/prod_prod-{docs,resources}, so the tag default holds; :8090 free afterwards. Logs: scripts/.sc-rebaseline/pr-diff-t1/ (git-ignored)]` |
+| 2 | Compare driver | **DONE 2026-11-18** | `1250a7340f` | `[2026-11-18: node --check exit 0; --bogus, three positionals, an unknown environment, and --base without a value each exit 2]`. `[verified 2026-11-18, all sample, --base HEAD at 5a1f3dc8ad: (a) clean → exit 0, "No differences across 41 pages", 125s including first npm ci, :8090/:8091 free after; (b) as written, removing alt in header-ds.html, read IDENTICAL to (a) — no power: list.html:18-20 renders header-ds only on data-stories list pages other than the landing, no sample page is one, and the built head had 0 pages lacking the alt. Corrected (b): footer.html:149 alt removed → exit 1, structure.img.missingAlt 0→1 on 38/41 (the 3 data-explorer pages unchanged, not examined), over-cap message printed, 844 built head pages lack the alt; (c) + --expect "**" → exit 0, 38 claimed; (d) + --expect "nosuchsection/**" → exit 1, "matched no changed page"; (e) + --report-only → exit 0, report starts with the marker; arbitration path: a <button> in nr-neighborhood-index.html → 1 page, re-captured alone on both servers, still controls.button 35→36, exit 1]`. Fixed after the arbitration run: shapeOf's "re-run at the merge base" line is replaced in compare output, since both sides fetch the same data. `[verified 2026-11-18: (f) uncommitted content/data-features/sc-probe/index.md, --all, --base HEAD → exit 1, 840 vs 841 pages; "(whole page) new" for data-features/sc-probe, not arbitrated; plus 3 pages linking to it (categories/airquality/page/4/, data-features/, key-topics/airquality/: links.internal +1, headingLevels +1), arbitrated and still differing — real knock-on effects, not predicted; 295s; one-sided row wording then changed to "new in head"/"removed in head". (g) {{ if }} prepended to the base worktree's baseof.html, --base-tree → exit 2, "The BASE tree did not build or serve … exited (code 1) before answering on :8091"; worktree restored. (h) local sc-stale at production~1 with refs/remotes/origin/sc-stale at production → "local sc-stale is 2 commit(s) behind", exit 0, no differences; control --base production with production..origin/production = 0 → no warning, exit 0; both refs deleted after. (i) clean tree (no rendering edits), --all against production @ 8993a4fc5d → exit 0, 840/840 each side, "No structural differences", no arbitration, 280s at concurrency 24 on 24 logical processors]`. Proof logs: `scripts/.sc-rebaseline/pr-diff-t2/` (git-ignored) |
+| 3 | CI report + comment | Not started | *none yet* | |
+| 4 | Remove baseline machinery | Not started | *none yet* | |
+| 5 | Docs | Not started | *none yet* | |
 
-**Next command:** edit `scripts/isolated-server.mjs` per Task 1, then
-`node scripts/characterize-env.mjs prod_prod sample`.
+**Environment:** the local base worktree lives at `%TEMP%/sc-base` (a detached `git worktree`;
+`git worktree list` shows it), with `node_modules` installed and a `.sc-lock-hash` stamp. Isolated
+server output goes to `%TEMP%/sc-isolated/sc-{base,head}-{docs,resources}`. Both are disposable.
+
+**Next command:** start Task 3 by invoking `hardening-github-actions` and rewriting
+`.github/workflows/site-characterization.yml`. Its `timeout-minutes` is still to be derived: the local
+full run took 280s on 24 cores at concurrency 24 (Task 2 (i)), while the old CI sweep took 370s for
+925 pages on ONE side at concurrency 6 (the workflow's own comment, run 32771116783), so two sides
+plus two builds is likely 13–16 minutes on the runner — an estimate, to be replaced by the first PR
+run's measured time.
