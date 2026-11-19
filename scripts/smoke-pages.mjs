@@ -182,8 +182,22 @@ const noiseLabel = ({ page, error }) => `${page ? page.source : "(every page)"} 
 // already swallows it, so this adds no failures. That entry is also the one
 // whose CAUTION warns it hides the *cause* of a blocked script: if a run ever
 // shows an unexplained "X is not defined", check this list before the allowlist.
+//
+// The CARTO basemap hosts are the other outward side effect: every tile a map
+// draws spends the site's monthly tile quota, which was 80% used when Chris
+// restricted the key to the live domain on 2026-11-19. Each data explorer page
+// requests 24 tiles, so one --all sweep requested 7,320 from the explorer alone
+// `[run 44548438378, 2026-11-19: one CORS error per refused tile]`. The
+// restriction also made every explorer page fail here, because the explorer
+// requests tiles with CORS and a refused one logs a CORS error that names the
+// host. Aborting them costs nothing smoke could see: a broken basemap answers
+// 200 with a placeholder image and logs nothing (the keyless case, 2026-11-04).
 const BLOCKED_HOSTS = [
     "www.googletagmanager.com",
+    "a.basemaps.cartocdn.com",
+    "b.basemaps.cartocdn.com",
+    "c.basemaps.cartocdn.com",
+    "d.basemaps.cartocdn.com",
 ];
 
 // Default browser concurrency for --all. Derived from the machine rather than
