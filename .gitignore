@@ -99,6 +99,7 @@ scripts/smoke-reports/
 scripts/site-characterization-current/
 scripts/.sc-check/
 scripts/.sc-rebaseline/
+scripts/.sc-compare/
 
 # NDHR characterization --check output (baseline IS committed)
 scripts/ndhr-characterization-current/

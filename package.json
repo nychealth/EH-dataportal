@@ -28,6 +28,7 @@
         "characterize:site:dev_stage": "node scripts/characterize-env.mjs dev_stage",
         "characterize:site:baseline": "node scripts/site-characterization.mjs --baseline --all",
         "characterize:site:rebaseline": "node scripts/site-characterization-rebaseline.mjs",
+        "characterize:site:compare": "node scripts/site-characterization-compare.mjs",
         "a11y:nr": "node scripts/nr-a11y-audit.mjs",
         "docs-check": "node scripts/docs-check.mjs"
     },
