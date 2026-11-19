@@ -21,12 +21,13 @@
         <div class="col-md-6  col-sm-12">
             <!-- Neighborhood selection form --> 
             <div data-pagefind-weight="7.0">
-                <div style="font-size: 1rem;" class="pb-1">Enter a neighborhood to get data:</div>
+                <div style="font-size: 1rem;" class="pb-1" id="hvi-search-label">Enter a neighborhood to get data:</div>
 
                 <div class="btn-group" role="group">
 
                     <input
                         id="flex_search"
+                        aria-labelledby="hvi-search-label"
                         type='search'
                         class='flexdatalist form-control'
                         name='indicator_name_suggestion'
@@ -60,7 +61,7 @@
 
             <p>It uses a statistical model to summarize the most important factors of neighborhood heat risk: surface temperature, green space, home air conditioning, and income.</p>
 
-            <p>Neighborhoods are scored from <span class="badge" style="font-weight: bold; color:#e9c213; background: dimgray; border-radius: 5px;"><i class="fas fa-square"></i>&nbsp;1 (lowest risk)</span> to <span class="badge" style="font-weight: bold; color: #793834; background: lightgray; border-radius: 5px;"><i class="fas fa-square"></i>&nbsp;5 (highest risk)</span>. </p>
+            <p>Neighborhoods are scored from <span class="badge" style="font-weight: bold; color: white; background: dimgray; border-radius: 5px;"><i class="fas fa-square" style="color: #e9c213"></i>&nbsp;1 (lowest risk)</span> to <span class="badge" style="font-weight: bold; color: #793834; background: lightgray; border-radius: 5px;"><i class="fas fa-square"></i>&nbsp;5 (highest risk)</span>. </p>
 
             <p>Remember, a neighborhood with low vulnerability does not mean no risk. All neighborhoods have residents at risk for heat illness and death. 
             </p>
@@ -92,9 +93,9 @@
                     <tr>
                         <td>
                             <h4 class="h5">Temperature</h4>
-                            <div class="fs-sm"><a href={{ relURL "data-explorer/climate/?id=2141" }}>
+                            <p class="fs-sm mb-0"><a href={{ relURL "data-explorer/climate/?id=2141" }}>
                                 Daytime summer surface temperature</a> is different from air temperature, and varies more by neighborhood: some neighborhoods are hotter than others. A higher surface temperature is associated with a higher risk of death from heat waves.                         
-                            </div>
+                            </p>
 
                         </td>
                         <td>
@@ -109,11 +110,11 @@
                     <tr>
                         <td>
                             <h4 class="h5">Air conditioning</h4>
-                            <div class="fs-sm">
+                            <p class="fs-sm mb-0">
                                 Air conditioning is as necessary during extreme heat as heating is in winter. A neighborhood with a high percentage of <a href={{ relURL "data-explorer/climate/?id=2104" }}>households with air conditioners</a> means that more of its residents can be protected from extreme heat. 
                             
 
-                            </div>
+                            </p>
                         </td>
                         <td>
                             <div class="p-3">
@@ -128,10 +129,10 @@
                     <tr>
                         <td>
                             <h4 class="h5">Green space</h4>
-                            <div class="fs-sm">
+                            <p class="fs-sm mb-0">
                                 Green space is <a href={{ relURL "data-explorer/active-design/?id=2157" }}>tree</a>, <a href={{ relURL "data-explorer/active-design/?id=2143" }}>grass, or shrub cover</a>. Green space helps cool a neighborhood, address the <a href={{ relURL "data-stories/urban-heat-island" }} target="_blank">UHI</a>, and create a resilient city. It also has a small association with heat mortality, weaker than other components in the index.
 
-                            </div>
+                            </p>
                         </td>
                         <td>
                             <div class="p-3">

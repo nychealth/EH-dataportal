@@ -47,7 +47,7 @@ image: ds-housing.jpeg
 
 1661年，黑人向殖民地申请在此拥有土地，他们得到了城墙以北、市区以外的土地。
 
-{{< figure src="colonial.png" alt="A colonial map of New York City, showing the wall at Wall Street.">}}
+{{< figure src="colonial.webp" alt="A colonial map of New York City, showing the wall at Wall Street.">}}
 
 纵观历史，许多不同的做法塑造了纽约市的种族主义居住模式。在20世纪，一种被称为“红线圈定”的做法使种族主义成为一项联邦政策，对我们的住房和健康产生了持久的影响。
 
@@ -94,7 +94,7 @@ image: ds-housing.jpeg
 </div>
 <div class="wide my-4">
 <div class="py-0 mb-4">
-    <iframe src="{{< relURL >}}maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
+    <iframe src="{{< relURL >}}maps/HOLC_map/HOLC_map.html" title="HOLC redlining map" scrolling="no" frameborder="0"
         style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
 </div>
@@ -242,12 +242,17 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
 
             spec.layer[0].data.url = topo;
             spec.layer[1].data.url = topo;
+            // layer 0 is a lightgray backdrop; left in the accessibility tree
+            // it is an unnamed graphics-symbol group (axe svg-img-alt)
+            spec.layer[0].mark.aria = false;
             
             d3.csv(csv, d3.autoType).then(csv => {
                 
                 vegaEmbed(div, spec, {renderer: "svg"}).then((res) => {
 
                     resview = res.view.insert("csv", csv).run();
+                    // vega-embed's actions <summary> holds only an SVG and has no name
+                    document.querySelector(div + ' details > summary')?.setAttribute('aria-label', 'Export or view source for this map');
                 });
             });
         });
@@ -274,15 +279,15 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
     <ul>
         <li>普遍失修可能会造成焦虑和抑郁。</li>
         <li>还有一些情况，如残破的石膏和剥落的油漆，或者内墙上的裂缝和孔洞，可能会<a
-                href=/data-explorer/lead/?id=2189#display=summary">使儿童接触含铅油漆。</a>
+                href="{{< relURL >}}data-explorer/lead/?id=2189#display=summary">使儿童接触含铅油漆。</a>
         </li>
         <li>漏水、窗户破裂、或者马桶故障，可能产生霉菌，导致过敏、
             <a
-                href=/data-explorer/asthma/?id=2380#display=summary">哮喘</a>, 还可能加重慢性病。
+                href="{{< relURL >}}data-explorer/asthma/?id=2380#display=summary">哮喘</a>, 还可能加重慢性病。
         </li>
         <li>蟑螂、小鼠、大鼠等害虫可能使哮喘和过敏症状更为严重。</li>
         <li>没有空调会使住户有<a
-                href=/data-explorer/weather-related-illness/?id=2376#display=summary">暑期高热致死</a>的风险。
+                href="{{< relURL >}}data-explorer/weather-related-illness/?id=2074#display=summary">暑期高热致死</a>的风险。
         </li>
     </ul>
 </div>
@@ -382,11 +387,11 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
 </div>
 <div class="wide my-4">
 <ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item">
+    <li class="nav-item" role="presentation">
         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home"
             role="tab" aria-controls="home" aria-selected="true">条形图</a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" role="presentation">
         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"
             role="tab" aria-controls="profile" aria-selected="false">散点图</a>
     </li>
@@ -418,7 +423,7 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
 {{< rawhtml >}}
 <div class="greyblock">
 {{< /rawhtml >}}
-{{< figure src="h1.jpeg" alt="Workers work on a building.">}}
+{{< figure src="h1.webp" alt="Workers work on a building.">}}
 政策制定者和社区倡导者可以支持种族正义倡议：
 - 投资那些被结构性种族主义历史所伤害的社区。促进经济和教育公平，支持[Where We Live 倡议](https://wherewelive.cityofnewyork.us/)。
 - 支持房屋维护及发展局（Department of Housing Preservation and Development，DHPD）为修复老房而提出的倡议。
@@ -427,7 +432,7 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
 
 <div class="greyblock">
 {{< /rawhtml >}}
-{{< figure src="h2.jpeg" alt="A New York City residential street.">}}
+{{< figure src="h2.webp" alt="A New York City residential street.">}}
 
 租户和业主可以进入此处的系统以为您提供援助：
 - [如果您的建筑物管理人不解决问题，可以拨打311发起业主维修投诉。](https://www1.nyc.gov/nyc-resources/service/1950/residential-maintenance-complaint).
@@ -440,7 +445,7 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
 {{< /rawhtml >}}
 
 
-{{< figure src="h3.jpeg" alt="A New York City apartment building.">}}
+{{< figure src="h3.webp" alt="A New York City apartment building.">}}
 建筑物所有者和业主应保持公寓的安全和卫生——这是法律的要求。
 - 及时修理租户报告的问题。
 - 除虫、除霉、封缝、补漏、改善垃圾管理。

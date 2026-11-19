@@ -49,6 +49,11 @@
     {{ .Content }}
 </div>
 
+{{/*  This page has no de-indicator-info box, so the "recently updated" ids the indicator modal
+      badges from are carried on an empty element of their own.  */}}
+
+<div hidden data-recently-updated-ids='{{ partial "de-recently-updated-ids.html" . }}'></div>
+
 {{- $selector            := resources.Get "js/data-explorer/topic-indicator-selector.js" -}}
 {{- $selector_secure     := $selector | partial "short-fingerprint.html" -}}
 <script type="text/javascript" src="{{ $selector_secure.RelPermalink }}" integrity="{{ $selector_secure.Data.Integrity }}" defer></script>

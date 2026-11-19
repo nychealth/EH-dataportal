@@ -28,7 +28,7 @@
 
     <main id="skip-header-target" role="main" tabindex="-1">
 
-        <div class="row mt-4">
+        <div class="row mx-0 mt-4">
             <div class="col-8 mx-auto">
                 <h1 class="mb-2">More content about <span style="color: #008939">{{ .Title }}</span>:</h1>
                 
@@ -61,7 +61,7 @@
     {{- partial "search-modal.html" . -}}
 
     {{- partial "footer.html" . -}}
-    {{- partial "js_bottom.html" -}}
+    {{- partial "js_bottom.html" . -}}
     {{- block "js_bot" . -}}{{- end -}}
 
 </body>

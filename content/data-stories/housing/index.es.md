@@ -46,7 +46,7 @@ El racismo siempre ha desempeñado un papel en los patrones residenciales de la 
 
 En 1661, cuando las personas negras le solicitaron a la colonia tierras en el área, recibieron las tierras ubicadas al norte del muro, fuera de la ciudad propiamente dicha.
 
-{{< figure src="colonial.png" alt="A colonial map of New York City, showing the wall at Wall Street.">}}
+{{< figure src="colonial.webp" alt="A colonial map of New York City, showing the wall at Wall Street.">}}
 
 A lo largo de la historia, muchas prácticas diferentes han moldeado los patrones raciales y residenciales en la ciudad de Nueva York. En el siglo XX, una práctica denominada “redlining” convirtió al racismo en una política federal, con repercusiones duraderas para nuestra situación de vivienda y la salud.
 
@@ -93,7 +93,7 @@ El mapa a continuación muestra cómo se categorizaban los vecindarios de la ciu
 </div>
 <div class="wide my-4">
 <div class="py-0 mb-4">
-    <iframe src="{{< relURL >}}maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
+    <iframe src="{{< relURL >}}maps/HOLC_map/HOLC_map.html" title="HOLC redlining map" scrolling="no" frameborder="0"
         style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
 </div>
@@ -240,12 +240,17 @@ Explore los problemas comunes de vivienda de la ciudad de Nueva York en el sigui
 
             spec.layer[0].data.url = topo;
             spec.layer[1].data.url = topo;
+            // layer 0 is a lightgray backdrop; left in the accessibility tree
+            // it is an unnamed graphics-symbol group (axe svg-img-alt)
+            spec.layer[0].mark.aria = false;
             
             d3.csv(csv, d3.autoType).then(csv => {
                 
                 vegaEmbed(div, spec, {renderer: "svg"}).then((res) => {
 
                     resview = res.view.insert("csv", csv).run();
+                    // vega-embed's actions <summary> holds only an SVG and has no name
+                    document.querySelector(div + ' details > summary')?.setAttribute('aria-label', 'Export or view source for this map');
                 });
             });
         });
@@ -314,17 +319,17 @@ Las personas negras y latinas con ingresos más altos también son más propensa
 </div>
 
 <div id="ifVlow" style="display:none">
-    <iframe title="Very low - Spanish" aria-label="Split Bars" id="datawrapper-chart-gUTaG" src="https://datawrapper.dwcdn.net/gUTaG/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="231"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+    <iframe title="Very low - Spanish" aria-label="Split Bars" id="datawrapper-chart-gUTaG" data-lazy-src="https://datawrapper.dwcdn.net/gUTaG/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="231"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
     </script>
 </div>
 
 <div id="ifLow" style="display:none">
-    <iframe title="Low - Spanish" aria-label="Split Bars" id="datawrapper-chart-1ElRS" src="https://datawrapper.dwcdn.net/1ElRS/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="231"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+    <iframe title="Low - Spanish" aria-label="Split Bars" id="datawrapper-chart-1ElRS" data-lazy-src="https://datawrapper.dwcdn.net/1ElRS/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="231"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
     </script>
 </div>
 
 <div id="ifMod" style="display:none">
-    <iframe title="Moderate or higher - Spanish" aria-label="Split Bars" id="datawrapper-chart-1Ck09" src="https://datawrapper.dwcdn.net/1Ck09/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="231"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+    <iframe title="Moderate or higher - Spanish" aria-label="Split Bars" id="datawrapper-chart-1Ck09" data-lazy-src="https://datawrapper.dwcdn.net/1Ck09/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="231"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
     </script>
 </div>
 </div>
@@ -332,6 +337,17 @@ Las personas negras y latinas con ingresos más altos también son más propensa
 
 
 <script>
+    // The three charts hidden at load carry data-lazy-src and get their src only once their div is
+    // shown: these Datawrapper charts abort rendering in a display:none container and warn (audit
+    // A-044). Runs after the display change, so the container has a size when the chart loads.
+    function loadDeferredChart(divId) {
+        const iframe = document.querySelector('#' + divId + ' iframe[data-lazy-src]');
+        if (iframe) {
+            iframe.src = iframe.dataset.lazySrc;
+            iframe.removeAttribute('data-lazy-src');
+        }
+    }
+
     function elow() {
         document.getElementById('ifElow').style.display = "block";
         document.getElementById('ifVlow').style.display = "none";
@@ -344,6 +360,7 @@ Las personas negras y latinas con ingresos más altos también son más propensa
         document.getElementById('ifVlow').style.display = "block";
         document.getElementById('ifLow').style.display = "none";
         document.getElementById('ifMod').style.display = "none";
+        loadDeferredChart('ifVlow');
     }
 
     function low() {
@@ -351,6 +368,7 @@ Las personas negras y latinas con ingresos más altos también son más propensa
         document.getElementById('ifVlow').style.display = "none";
         document.getElementById('ifLow').style.display = "block";
         document.getElementById('ifMod').style.display = "none";
+        loadDeferredChart('ifLow');
     }
 
     function mod() {
@@ -358,6 +376,7 @@ Las personas negras y latinas con ingresos más altos también son más propensa
         document.getElementById('ifVlow').style.display = "none";
         document.getElementById('ifLow').style.display = "none";
         document.getElementById('ifMod').style.display = "block";
+        loadDeferredChart('ifMod');
     }
 </script>
 <hr>
@@ -376,11 +395,11 @@ Como resultado, las tasas más altas de visitas por asma a la sala de emergencia
 </div>
 <div class="wide my-4">
 <ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item">
+    <li class="nav-item" role="presentation">
         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home"
             role="tab" aria-controls="home" aria-selected="true">Gráfico de barras</a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" role="presentation">
         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"
             role="tab" aria-controls="profile" aria-selected="false">Diagrama de dispersión</a>
     </li>
@@ -412,7 +431,7 @@ Sin embargo, una vivienda insalubre y mal mantenida no puede ofrecer un lugar se
 {{< rawhtml >}}
 <div class="greyblock">
 {{< /rawhtml >}}
-{{< figure src="h1.jpeg" alt="Workers work on a building.">}}
+{{< figure src="h1.webp" alt="Workers work on a building.">}}
 Los responsables políticos y los defensores comunitarios pueden apoyar iniciativas de justicia racial:
 - Invertir en vecindarios dañados por una historia de racismo estructural. Promover la igualdad económica y educativa, y apoyar las [iniciativas de Where We Live.](https://wherewelive.cityofnewyork.us/).
 - Apoyar las iniciativas del Departamento de Preservación y Desarrollo de Vivienda (Department of Housing Preservation and Development, DHPD) que buscan rehabilitar las viviendas más antiguas.
@@ -421,7 +440,7 @@ Los responsables políticos y los defensores comunitarios pueden apoyar iniciati
 
 <div class="greyblock">
 {{< /rawhtml >}}
-{{< figure src="h2.jpeg" alt="A New York City residential street.">}}
+{{< figure src="h2.webp" alt="A New York City residential street.">}}
 
 Los inquilinos y propietarios pueden acceder a sistemas que están disponibles para ayudarles:
 - Informar los problemas de mantenimiento a la administración de su edificio. Si el administrador del edificio no resuelve el problema, llamar al 311 para [presentar una queja sobre mantenimiento contra el arrendador](https://www1.nyc.gov/nyc-resources/service/1950/residential-maintenance-complaint).
@@ -434,7 +453,7 @@ Los inquilinos y propietarios pueden acceder a sistemas que están disponibles p
 {{< /rawhtml >}}
 
 
-{{< figure src="h3.jpeg" alt="A New York City apartment building.">}}
+{{< figure src="h3.webp" alt="A New York City apartment building.">}}
 Los propietarios y los arrendadores de edificios deben mantener los apartamentos seguros y limpios: es la ley.
 - Resolver de forma oportuna los problemas que los inquilinos informen.
 - Eliminar las plagas y el moho, sellar las grietas, reparar las goteras y mejorar el manejo de la basura.

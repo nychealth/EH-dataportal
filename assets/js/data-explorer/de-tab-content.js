@@ -145,6 +145,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (event.key !== 'Escape') return;
 
+        // Bootstrap's modal and open-dropdown handlers call preventDefault on the Escape they
+        // use to close themselves, and both run before this listener, so that Escape is theirs.
+
+        if (event.defaultPrevented) return;
+
+        // A selected geography (map.js, "persistent selection") goes first: the bar view is the
+        // default view, so with this last in line the first Escape would close the chart the
+        // selection is drawn on, and Escape is the keyboard's only way to clear a selection.
+
+        if (clearMapSelection()) return;
+
         const openPane = document.querySelector('#v-pills-tabContent .tab-pane.show.active');
 
         if (openPane?.id) {
@@ -161,39 +172,50 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // ----------------------------------------------------------------------- //
-// mobile accordion
+// details accordions (mobile and desktop)
 // ----------------------------------------------------------------------- //
 
-// Keeps the mobile details accordion's plus/minus icon in sync with its state, and lets a tap
-// anywhere on the header bar toggle it, as the bar did when it was the collapse trigger itself.
+// Keeps a details toggle's plus/minus icon and aria-expanded in step with its collapse. Phones and
+// desktop each have their own copy of the details box (de-indicator-info.html), so each has a toggle.
+
+const syncDetailsToggleIcon = (toggle, content) => {
+
+    const toggleIcon = toggle.querySelector('.toggle-icon');
+
+    const updateIconState = isOpen => {
+        toggleIcon.classList.toggle('fa-minus', isOpen);
+        toggleIcon.classList.toggle('fa-plus', !isOpen);
+        toggle.setAttribute('aria-expanded', String(isOpen));
+    };
+
+    // Bootstrap 4 triggers collapse events through jQuery, so a native addEventListener never
+    // receives them; $().on() does.
+
+    $(content).on('show.bs.collapse', () => updateIconState(true));
+    $(content).on('hide.bs.collapse', () => updateIconState(false));
+
+    updateIconState(content.classList.contains('show'));
+};
+
+// Phones: the details start closed, and a tap anywhere on the header bar toggles them, as the bar
+// did when it was the collapse trigger itself. Desktop: open at every load, toggled by its button only.
 
 document.addEventListener('DOMContentLoaded', function() {
+
+    const desktopDetailsToggle = document.querySelector('.desktop-details-toggle');
+    const desktopDetailsContent = document.querySelector('#detailsContentDesktop');
+
+    if (desktopDetailsToggle && desktopDetailsContent) {
+        syncDetailsToggleIcon(desktopDetailsToggle, desktopDetailsContent);
+    }
 
     const mobileAccordionHeader = document.querySelector('.mobile-details-header');
     const mobileDetailsToggle = document.querySelector('.mobile-details-toggle');
     const detailsContent = document.querySelector('#detailsContent');
-    const toggleIcon = mobileDetailsToggle ? mobileDetailsToggle.querySelector('.toggle-icon') : null;
 
-    if (mobileAccordionHeader && mobileDetailsToggle && detailsContent && toggleIcon) {
+    if (mobileAccordionHeader && mobileDetailsToggle && detailsContent) {
 
-        // Function to update icon state
-
-        function updateIconState(isOpen) {
-
-            if (isOpen) {
-
-                toggleIcon.classList.remove('fa-plus');
-                toggleIcon.classList.add('fa-minus');
-                mobileDetailsToggle.setAttribute('aria-expanded', 'true');
-
-            } else {
-
-                toggleIcon.classList.remove('fa-minus');
-                toggleIcon.classList.add('fa-plus');
-                mobileDetailsToggle.setAttribute('aria-expanded', 'false');
-
-            }
-        }
+        syncDetailsToggleIcon(mobileDetailsToggle, detailsContent);
 
         // A tap on the bar goes through the toggle button. Clicks on a button are left alone: the
         // toggle handles its own, and "Change dataset" opens its modal without also opening the
@@ -202,32 +224,6 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileAccordionHeader.addEventListener('click', function(e) {
             if (e.target.closest('button')) return;
             mobileDetailsToggle.click();
-        });
-
-        // Listen for Bootstrap collapse events
-
-        detailsContent.addEventListener('show.bs.collapse', function() {
-            updateIconState(true);
-        });
-
-        detailsContent.addEventListener('hide.bs.collapse', function() {
-            updateIconState(false);
-        });
-
-        // Handle initial state
-
-        const isInitiallyOpen = detailsContent.classList.contains('show');
-        updateIconState(isInitiallyOpen);
-
-        // Also listen for click events on the header as a backup
-
-        mobileAccordionHeader.addEventListener('click', function() {
-
-            setTimeout(() => {
-                const isCurrentlyOpen = detailsContent.classList.contains('show');
-                updateIconState(isCurrentlyOpen);
-            }, 100);
-
         });
     }
 });
@@ -258,10 +254,18 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Also check if tab content container is visible
+        // Also check if tab content container is visible. The renderers set its display to 'block'
+        // or 'none'; an empty value means none has run yet (the first call, at DOMContentLoaded),
+        // so go by what the URL asks for. An overlay opens a view only with an indicator: without
+        // an id the chooser opens and no renderer runs. app.js has already rewritten legacy
+        // #display= hashes into the overlay param by then (normalizeLegacyURL, at parse time).
 
         const tabContent = document.querySelector('#v-pills-tabContent');
-        if (tabContent && tabContent.style.display !== 'none') {
+        if (tabContent && tabContent.style.display === '') {
+            const params = new URLSearchParams(window.location.search);
+            const overlay = params.get('overlay');
+            if (params.get('id') && overlay && overlay !== 'none') hasOpenPanel = true;
+        } else if (tabContent && tabContent.style.display !== 'none') {
             hasOpenPanel = true;
         }
 
@@ -276,6 +280,10 @@ document.addEventListener('DOMContentLoaded', function() {
             deTabsElement.classList.remove('has-open-panel');
 
         }
+
+        // On phones and tablets an open view overlaps the map, so the map re-fits (map.js).
+
+        if (typeof layoutStackedMap === 'function') layoutStackedMap();
     }
 
     // Monitor all tab panes for show/hide events

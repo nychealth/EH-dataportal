@@ -55,7 +55,7 @@ Our goal is for you to be able to put our data and information to work improving
 
 For example, take a look at our re-vamped [Data Explorer]({{< relURL >}}data-explorer/). &nbsp;
 
-![Image of the data explorer tool, showing a purple map with different concentrations of PM2.5 across New York City.](data-explorer-screenshot.png)
+![Image of the data explorer tool, showing a purple map with different concentrations of PM2.5 across New York City.](data-explorer-screenshot.webp)
 
 On the page:&nbsp;
 

@@ -11,7 +11,7 @@
 // all indicator metadata as global variable
 // ----------------------------------------------------------------------- //
 
-// Holds the parsed metadata.json response once indicatorsPromise resolves;
+// Holds the parsed metadata.json response once loadIndicatorMetadata resolves;
 // null until then, so callers must go through ensureIndicatorsLoaded.
 
 let indicators = null;
@@ -39,18 +39,40 @@ let indicatorSelectionConfirmed = false;
 // Immediately start loading metadata.json
 // ----------------------------------------------------------------------- //
 
-const indicatorsPromise = fetch(`${data_repo}${data_branch}/indicators/metadata/metadata.json`)
-    .then(response => response.json())
-    .then(data => {
+const metadataUrl = `${data_repo}${data_branch}/indicators/metadata/metadata.json`;
 
-        debugLog("* fetch metadata.json");
-        indicators = data; 
-        // console.log(">> indicators [fetch]", indicators);
+// One shared request, dropped if it fails: the next ensureIndicatorsLoaded then fetches again
+// instead of replaying the failure, which is what lets the load-failure overlay's "Try again"
+// recover from a metadata.json failure. Kept local rather than using global.js's loadOnce,
+// because the explorer landing page (data-explorer/section.html) loads this file without it.
 
-        return data; // resolve promise
+let metadataRequest = null;
 
-    })
-    .catch(error => console.error("# Error loading metadata.json:", error));
+const loadIndicatorMetadata = () => {
+
+    metadataRequest ??= fetch(metadataUrl)
+        .then(response => response.json())
+        .then(data => {
+
+            debugLog("* fetch metadata.json");
+            indicators = data;
+            // console.log(">> indicators [fetch]", indicators);
+
+            return data; // resolve promise
+
+        })
+        .catch(error => {
+            metadataRequest = null;
+            throw error;
+        });
+
+    return metadataRequest;
+
+};
+
+// Started at load time; a failure here reaches the visitor through whichever caller awaits next.
+
+loadIndicatorMetadata().catch(error => console.error("# Error loading metadata.json:", error));
 
 // Waits for metadata.json to finish loading before any indicator UI reads it.
 
@@ -62,14 +84,14 @@ const ensureIndicatorsLoaded = async (topic) => {
 
     if (indicators) {
 
-        return indicators; 
+        return indicators;
 
     } else {
 
         // Reuse the in-flight metadata request instead of starting a second fetch.
         // console.log("# Waiting for indicators to load for " + topic);
-        
-        return await indicatorsPromise; 
+
+        return await loadIndicatorMetadata();
 
     }
 };
@@ -359,12 +381,13 @@ const renderIndicatorList = async (indList, destination) => {
     const data = await ensureIndicatorsLoaded('indicator selection modal');
     // console.log("Indicators ready to print to indicator selection modal!", data);
 
-    // Hugo exposes the curated updated-ID list on the shared indicator shell.
-    // Reuse it here so modal decorations match the main indicator header.
+    // Hugo writes the curated updated-ID list into a data-recently-updated-ids attribute
+    // on both the topic page and the chooser page (de-recently-updated-ids.html), so
+    // the modal badges the same indicators from either one.
 
-    const indicatorInfoRoot = document.querySelector('.de-main-details');
+    const recentlyUpdatedSource = document.querySelector('[data-recently-updated-ids]');
     const recentlyUpdatedIndicatorIds = JSON.parse(
-        indicatorInfoRoot?.dataset.recentlyUpdatedIds ?? '[]'
+        recentlyUpdatedSource?.dataset.recentlyUpdatedIds ?? '[]'
     ).map(Number);
 
     // ----- clear existing content ----- //
@@ -410,9 +433,9 @@ const renderIndicatorList = async (indList, destination) => {
             // keep working without inline handlers.
 
             return `
-                <div class="indicator-card border-bottom border-gray-300 pb-1 mb-1">
+                <div class="indicator-card de-chooser-card">
                     <div class="d-flex flex-wrap align-items-start">
-                        <button type="button" class="h6 font-weight-bold border-0 text-primary bg-transparent hover-underline p-0 text-left de-select-indicator-button" data-indicator-id="${indicator.IndicatorID}">${indicator.IndicatorName}</button>
+                        <button type="button" class="h6 font-weight-bold border-0 text-primary bg-transparent hover-underline p-0 text-left de-select-indicator-button stretched-link" data-indicator-id="${indicator.IndicatorID}">${indicator.IndicatorName}</button>
                         ${recentlyUpdatedBadge}
                     </div>
                     <p class="mb-0" style="font-size: 14px;">${indicator.IndicatorDescription}</p>
@@ -430,7 +453,9 @@ const renderIndicatorList = async (indList, destination) => {
             </div>
         `;
 
-        indicatorDestination.innerHTML += sectionHtml;
+        // Indicator names and descriptions are EHDP-data text, published without review (audit N-120).
+
+        indicatorDestination.innerHTML += DOMPurify.sanitize(sectionHtml);
 
     });
 };
@@ -518,9 +543,9 @@ const renderIndicatorInfo = async (IndicatorID) => {
     // Hugo writes the curated "recently updated" indicator IDs into the shell.
     // Read them here so the indicator title can reflect updated datasets.
 
-    const indicatorInfoRoot = document.querySelector('.de-main-details');
+    const recentlyUpdatedSource = document.querySelector('[data-recently-updated-ids]');
     const recentlyUpdatedIndicatorIds = JSON.parse(
-        indicatorInfoRoot?.dataset.recentlyUpdatedIds ?? '[]'
+        recentlyUpdatedSource?.dataset.recentlyUpdatedIds ?? '[]'
     ).map(Number);
     const showRecentlyUpdatedIcon = recentlyUpdatedIndicatorIds.includes(normalizedIndicatorId);
 
@@ -548,7 +573,9 @@ const renderIndicatorInfo = async (IndicatorID) => {
 
         // - - - append recently-updated icon - - - //
 
-        if (showRecentlyUpdatedIcon) {
+        // Citation name holders are copied as text, so they stay icon-free.
+
+        if (showRecentlyUpdatedIcon && !el.closest('.de-citation')) {
 
             const icon = document.createElement('i');
             icon.className = 'fa-regular fa-clock ml-1 fs-sm';
@@ -568,7 +595,17 @@ const renderIndicatorInfo = async (IndicatorID) => {
         el.textContent = indicator.IndicatorDescription ?? "";
     });
 
-    // ----- rebuild "how calculated" paragraphs, collect unique sources ----- //
+    // ----- rebuild "how calculated" paragraphs and sources ----- //
+
+    renderIndicatorAbout(indicator);
+};
+
+
+// Writes the indicator-wide "About the data" (one paragraph per measure) and its unique sources.
+// Trend and correlate overwrite both with their own text via renderAboutSources, so
+// renderCurrentView (app.js) calls restoreIndicatorAbout on every other view to put these back.
+
+const renderIndicatorAbout = (indicator) => {
 
     const howCalculatedEl = document.getElementById('howCalculated');
     const dataSourcesEl = document.getElementById('dataSources');
@@ -597,6 +634,17 @@ const renderIndicatorInfo = async (IndicatorID) => {
         p.textContent = source;
         dataSourcesEl.appendChild(p);
     });
+};
+
+
+// Re-renders the current indicator's About and sources, if metadata.json has loaded.
+
+const restoreIndicatorAbout = () => {
+
+    const indicator = indicators?.find(d => Number(d.IndicatorID) === Number(DE.state.IndicatorID));
+
+    if (indicator) renderIndicatorAbout(indicator);
+
 };
 
 

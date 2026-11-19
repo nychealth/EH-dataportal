@@ -190,8 +190,8 @@ export async function ensureDevServer() {
             // usually someone else's, so false is the right default — but a
             // caller that spawned it ITSELF with SPAWN_CMD knows otherwise, and
             // an env var is the only way that fact crosses a process boundary.
-            // site-characterization-rebaseline.mjs is the one such caller: it
-            // starts an isolated server per environment and drives this harness
+            // site-characterization-compare.mjs is the one such caller: it
+            // starts an isolated server per side and drives this harness
             // as a child. Never set it by hand for a server you merely found.
             hugo: { version: hugoVersion(), owned: process.env.DE_SERVER_OWNED === "1" },
         };

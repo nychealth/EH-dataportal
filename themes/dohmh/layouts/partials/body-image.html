@@ -1,0 +1,45 @@
+{{- /*
+    One <img> for an image placed in page content, shared by shortcodes/figure.html and
+    _markup/render-image.html. Body images used to be published at original resolution
+    (Cycling.jpg was 14.5 MB at 5293px), so a page-bundle or assets image wider than $maxWidth is
+    resized here, and every processable image gets width/height (reserves its box, avoiding layout
+    shift) and lazy loading.
+
+    $maxWidth: the story column draws images at most 640 CSS px and the about/ pages 1248
+    (measured 2026-11-15, documents/body-image-resize-plan-2026-11-15.md step 1), so 1600 covers
+    high-density screens on both. q80 applies to JPEG/WebP only; the site-wide default is q95.
+
+    Context: dict "page" (the page owning the resource), "src", optional "alt" (emitted whenever
+    the key is present, even empty), and optional "title" and
+    "attrs" (a map of extra attributes, from markdown's {attr} syntax).
+*/ -}}
+{{- $maxWidth := 1600 -}}
+{{- $u := urls.Parse .src -}}
+{{- $src := $u.String -}}
+{{- $img := false -}}
+{{- if not $u.IsAbs -}}
+    {{- $path := strings.TrimPrefix "./" $u.Path -}}
+    {{- with or (.page.Resources.Get $path) (resources.Get $path) -}}
+        {{- $src = .RelPermalink -}}
+        {{- /* SVG has no pixel size and GIF resizing drops animation, so both pass through as-is. */ -}}
+        {{- if and (eq .ResourceType "image") (not (in (slice "svg" "gif") .MediaType.SubType)) -}}
+            {{- $img = . -}}
+            {{- if gt .Width $maxWidth -}}
+                {{- $img = .Resize (printf "%dx q80" $maxWidth) -}}
+            {{- end -}}
+            {{- $src = $img.RelPermalink -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+<img src="{{ $src }}"
+    {{- /* isset, not with: an empty alt is meaningful (decorative image) and must survive. */ -}}
+    {{- if isset . "alt" }} alt="{{ .alt }}"{{ end -}}
+    {{- with .title }} title="{{ . }}"{{ end -}}
+    {{- with $img }} width="{{ .Width }}" height="{{ .Height }}" loading="lazy"{{ end -}}
+    {{- range $k, $v := .attrs -}}
+        {{- if $v -}}
+            {{- printf " %s=%q" $k ($v | transform.HTMLEscape) | safeHTMLAttr -}}
+        {{- end -}}
+    {{- end -}}
+>
+{{- /**/ -}}
