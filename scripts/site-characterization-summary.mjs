@@ -251,7 +251,7 @@ export const renderText = (rows, totalPages) => {
     return lines.join("\n");
 };
 
-export const renderMarkdown = (rows, totalPages) => {
+export const renderMarkdown = (rows, totalPages, heading = "Characterization check FAILED") => {
 
     if (!rows.length) return "";
 
@@ -259,7 +259,7 @@ export const renderMarkdown = (rows, totalPages) => {
     const pages = new Set(rows.map((r) => r.page)).size;
 
     const lines = [
-        `### Characterization check FAILED`,
+        `### ${heading}`,
         "",
         `**${pages} of ${totalPages} pages differ**, across ${grouped.length} field(s).`,
         "",

@@ -748,7 +748,7 @@ const write = (outDir, result) => {
     writeFileSync(file, JSON.stringify(recordFor(result), null, 4) + "\n");
 };
 
-const walk = (dir, base = "") => readdirSync(dir, { withFileTypes: true })
+export const walk = (dir, base = "") => readdirSync(dir, { withFileTypes: true })
     .flatMap((e) => e.isDirectory() ? walk(`${dir}/${e.name}`, `${base}${e.name}/`) : [`${base}${e.name}`]);
 
 // ----------------------------------------------------------------------- //
@@ -787,7 +787,7 @@ const walk = (dir, base = "") => readdirSync(dir, { withFileTypes: true })
 // captures that disagree are arbitrated by a third taken alone. That is worth
 // having whatever the cause turns out to be, and it is the same answer
 // smoke-pages.mjs reaches for.
-const recapture = async (browser, baseURL, userAgent, prefix, outDir, paths) => {
+export const recapture = async (browser, baseURL, userAgent, prefix, outDir, paths) => {
 
     const results = [];
 
@@ -828,7 +828,7 @@ const differingPaths = (dirA, dirB, only = null) => walk(dirA)
 // dev_stage baseline against a prod_prod run therefore reports ~925 robots
 // changes that are nothing of the kind, and the real regressions are lost in
 // them. --check refuses the comparison rather than let that read as a finding.
-const META_FILE = "_meta.json";
+export const META_FILE = "_meta.json";
 
 // The commit of the SITE UNDER TEST, which is not always the commit this
 // process runs from. A base-control CI job runs the harness out of the PR's
@@ -916,7 +916,7 @@ const writeMeta = (dir, { prefix, pages, all, arbitrated, cleared, capped, env, 
 // diff reports the other 884 as deletions and fails every time. Scoping the
 // projection to what was actually captured is what makes the sample check mean
 // "these 41 pages are unchanged" rather than "the baseline is bigger than the run".
-const project = (srcDir, dstDir, keys, only = null) => {
+export const project = (srcDir, dstDir, keys, only = null) => {
 
     rmSync(dstDir, { recursive: true, force: true });
 

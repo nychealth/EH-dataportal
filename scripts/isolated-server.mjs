@@ -14,8 +14,9 @@
 // smoke test and the probe control, so it is left alone.
 
 import { spawn, execSync } from "node:child_process";
-import { rmSync } from "node:fs";
+import { existsSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { setTimeout as sleep } from "node:timers/promises";
 import { fileURLToPath } from "node:url";
 import { SPAWN_CMD as HUGO_BIN, PREFIXES } from "./dev-server.mjs";
@@ -87,17 +88,31 @@ export const responds = async (url) => {
 // The prefix is PROBED rather than read from config/, because the served prefix
 // is whatever that environment's baseURL says and probing cannot disagree with
 // the running server.
-export const startServer = async (environment) => {
+//
+// The options exist for site-characterization-compare.mjs, which serves two
+// trees of the same environment at once — the PR's and its base branch's:
+//   cwd   the tree to build (default: this checkout)
+//   port  default PORT
+//   tag   names the temp dirs; two servers sharing one would delete each
+//         other's output on startup (default: the environment name, which is
+//         what every earlier caller's dirs were called)
+// Each tree builds with ITS OWN lockfile's Hugo when it has one installed, so a
+// base branch on an older pin is built the way it was deployed. The fallback is
+// this checkout's binary, the same one every earlier caller used.
+export const startServer = async (environment, { cwd = REPO_ROOT, port = PORT, tag = environment } = {}) => {
 
-    const destDir = `${ISO_ROOT}/${environment}-docs`;
-    const resourceDir = `${ISO_ROOT}/${environment}-resources`;
+    const destDir = `${ISO_ROOT}/${tag}-docs`;
+    const resourceDir = `${ISO_ROOT}/${tag}-resources`;
     rmSync(destDir, { recursive: true, force: true });
     rmSync(resourceDir, { recursive: true, force: true });
 
-    const args = ["server", "--environment", environment, "--cleanDestinationDir",
-        "--disableFastRender", "-p", String(PORT), "-d", destDir];
+    const treeHugo = join(cwd, "node_modules", ".bin", process.platform === "win32" ? "hugo.cmd" : "hugo");
+    const hugoBin = existsSync(treeHugo) ? treeHugo : HUGO_BIN;
 
-    console.log(`  starting isolated ${environment} server on :${PORT}`);
+    const args = ["server", "--environment", environment, "--cleanDestinationDir",
+        "--disableFastRender", "-p", String(port), "-d", destDir];
+
+    console.log(`  starting isolated ${environment} server on :${port}${cwd === REPO_ROOT ? "" : ` from ${cwd}`}`);
     console.log(`    HUGO_RESOURCEDIR=${resourceDir}`);
     console.log(`    -d ${destDir}`);
 
@@ -110,9 +125,9 @@ export const startServer = async (environment) => {
     const spawnEnv = { ...process.env, HUGO_RESOURCEDIR: resourceDir };
     const stdio = ["ignore", "pipe", "pipe"];
     const child = process.platform === "win32"
-        ? spawn([HUGO_BIN, ...args].map(quote).join(" "),
-            { cwd: REPO_ROOT, shell: true, stdio, env: spawnEnv })
-        : spawn(HUGO_BIN, args, { cwd: REPO_ROOT, stdio, env: spawnEnv });
+        ? spawn([hugoBin, ...args].map(quote).join(" "),
+            { cwd, shell: true, stdio, env: spawnEnv })
+        : spawn(hugoBin, args, { cwd, stdio, env: spawnEnv });
 
     // Hugo's output is kept, capped, so a server that never answers can say why. Discarding it
     // made a template error on the first build read as a bare timeout. Both streams are drained
@@ -123,7 +138,8 @@ export const startServer = async (environment) => {
     child.stderr.on("data", keep);
     let exitCode = null;
     child.once("exit", (code) => { exitCode = code ?? -1; });
-    const failure = (what) => new Error(`The ${environment} server ${what}. Hugo's last output:\n${output.trim() || "(none)"}`);
+    const failure = (what) => new Error(`The ${tag === environment ? environment : `${tag} (${environment})`} server ${what}. `
+        + `Hugo's last output:\n${output.trim() || "(none)"}`);
 
     const stop = makeStop(child);
     process.once("exit", stop);
@@ -131,14 +147,14 @@ export const startServer = async (environment) => {
 
     for (let i = 0; i < SERVER_TIMEOUT_S; i++) {
         for (const prefix of PREFIXES) {
-            const baseURL = `http://localhost:${PORT}${prefix}`;
+            const baseURL = `http://localhost:${port}${prefix}`;
             if (await responds(baseURL)) return { baseURL, destDir, stop };
         }
-        if (exitCode !== null) throw failure(`exited (code ${exitCode}) before answering on :${PORT}`);
+        if (exitCode !== null) throw failure(`exited (code ${exitCode}) before answering on :${port}`);
         await sleep(1000);
     }
 
     stop();
-    throw failure(`did not answer on :${PORT} within ${SERVER_TIMEOUT_S}s`);
+    throw failure(`did not answer on :${port} within ${SERVER_TIMEOUT_S}s`);
 };
 
