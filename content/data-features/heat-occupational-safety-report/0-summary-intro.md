@@ -91,23 +91,4 @@ Some workers are not covered by workers’ compensation at all. This includes ma
 </div>
 <!-- .collapse -->
 </div>
-
-  <div class="card">
-      <a class="card-header font-weight-bold collapse collapsed" id="acc-button-05" data-toggle="collapse" href="#panel-acc-button-05"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-05">
-        <span class="title" role="heading" aria-level="3">Debt and lower incomes impact socioemotional well-being in negative ways</span>
-      </a>
-
-<div class="collapse" id="panel-acc-button-05" role="tabpanel" aria-labelledby="acc-button-05" data-parent="#accordion-01">
-    <div class="card-body  fs-md">
-<p>
-  Debt type plays an important role in health and well-being in both positive and negative ways. For instance, higher levels of home and student loan debt are associated with greater socioemotional well-being for children, whereas higher levels of and increases in unsecured debt (for example, credit card debt) are associated with lower levels of and declines in child socioemotional well-being, respectively.
-
-At the household level, high debts or low assets can increase anxiety, frustration, and hopelessness, and can also lead to health deterioration due to stress. When looking at young adults with student debt, those with high levels of debt stress reported feeling more tense and anxious, troubled by physical problems, and had greater difficulty getting to sleep than students with low levels of debt stress.
-
-</p>
-</div>
-
-</div>
-<!-- .collapse -->
-</div>
 </div>
