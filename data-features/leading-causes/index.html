@@ -515,7 +515,7 @@ Injury prevention efforts focused on top causes for people by age will be most e
                 <div class="col-md-4">
                     <div class="fs-sm asidebox">
                         <h2 class="h6">About the data</h2><div class="fs-sm">
-                            <p>This updated leading causes of death, hospitalizations, and emergency department visits analysis was conducted using data from the New York Statewide Planning and Research Cooperative System (SPARCS) and NYC DOH Bureau of Vital Statistics. <a href='../../key-topics/injury-and-violence/'>Explore more data on injuries in New York City</a>. Visit <a href='https://wisqars.cdc.gov/lcd/'>WISQARS</a> to explore data on injury nationwide. <br><br><strong>Data for 2021 - 2023</strong>: <a href='data/leading-causes.csv'>Download chart data</a> and <a href='data/cause-descriptions.csv'>descriptions and sources</a>.</p>
+                            <p>This updated leading causes of death, hospitalizations, and emergency department visits analysis was conducted using data from the New York Statewide Planning and Research Cooperative System (SPARCS) and NYC DOHMH Vital Statistics. <a href='../../key-topics/injury-and-violence/'>Explore more data on injuries in New York City</a>. Visit <a href='https://wisqars.cdc.gov/lcd/'>WISQARS</a> to explore data on injury nationwide. <br><br><strong>Data for 2021 - 2023</strong>: <a href='data/leading-causes.xlsx'>Download data, descriptions, and sources (Excel)</a>.<br><br><strong>Cite this tool:</strong> New York City Department of Health, Environment &amp; Health Data Portal. Leading causes of injuries and deaths in NYC (2021 - 2023). Published November 12, 2026. Accessed <span class='citation-date'>[Date]</span>. <a href="/IndicatorPublic/data-features/leading-causes/">https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/leading-causes/</a></p>
 
                         </div>
                     </div>
@@ -529,7 +529,9 @@ Injury prevention efforts focused on top causes for people by age will be most e
 </div>
 
 
-    <a href="#accessibleTables" class="sr-only">Skip to accessible data tables.</a>
+    <a href="#accessibleTables" class="sr-only"
+        >Skip to accessible data tables.</a
+    >
 
     <div class="row mt-4 mb-4">
         <div class="col-11 mx-auto px-0">
@@ -537,19 +539,28 @@ Injury prevention efforts focused on top causes for people by age will be most e
 
             <div class="row">
                 <div class="col-lg-2 col-md-4 col-sm">
-                    <button class="btn btn-block btn-outline-primary type-button" id="ED">
+                    <button
+                        class="btn btn-block btn-outline-primary type-button"
+                        id="ED"
+                    >
                         ED visits
                     </button>
                 </div>
 
                 <div class="col-lg-2 col-md-4 col-sm">
-                    <button class="btn btn-block btn-outline-primary type-button 3" id="Hospitalization">
+                    <button
+                        class="btn btn-block btn-outline-primary type-button 3"
+                        id="Hospitalization"
+                    >
                         Hospitalizations
                     </button>
                 </div>
 
                 <div class="col-lg-2 col-md-4 col-sm">
-                    <button class="btn btn-block btn-outline-primary active type-button" id="Death">
+                    <button
+                        class="btn btn-block btn-outline-primary active type-button"
+                        id="Death"
+                    >
                         Deaths
                     </button>
                 </div>
@@ -557,27 +568,41 @@ Injury prevention efforts focused on top causes for people by age will be most e
 
             <div class="row mt-1">
                 <div class="col-lg-2 col-md-4 col-sm">
-                    <button class="btn btn-sm btn-block btn-outline-secondary subtype-button px-4" id="all"
-                            data-injury="0">
+                    <button
+                        class="btn btn-sm btn-block btn-outline-secondary subtype-button px-4"
+                        id="all"
+                        data-injury="0"
+                    >
                         All
                     </button>
                 </div>
 
                 <div class="col-lg-2 col-md-4 col-sm">
-                    <button class="btn btn-sm btn-block btn-outline-secondary subtype-button active" id="injuryOnly"
-                            data-injury="1">
+                    <button
+                        class="btn btn-sm btn-block btn-outline-secondary subtype-button active"
+                        id="injuryOnly"
+                        data-injury="1"
+                    >
                         Injury-related only
                     </button>
                 </div>
 
                 <div class="col-lg-2 col-md-4 col-sm">
                     <div class="dropdown d-inline-block">
-                        <button class="btn btn-sm btn-block btn-outline-info dropdown-toggle ml-0" type="button"
-                                data-toggle="dropdown" aria-expanded="false" id="buttonTitle">
+                        <button
+                            class="btn btn-sm btn-block btn-outline-info dropdown-toggle ml-0"
+                            type="button"
+                            data-toggle="dropdown"
+                            aria-expanded="false"
+                            id="buttonTitle"
+                        >
                             Highlight
                         </button>
-                        <div class="dropdown-menu" id="causeMenuHolder" style="height: 40vh; overflow-y: scroll">
-
+                        <div
+                            class="dropdown-menu"
+                            id="causeMenuHolder"
+                            style="height: 40vh; overflow-y: scroll"
+                        >
                             
 
                             <div id="causeMenu"></div>
@@ -595,7 +620,8 @@ Injury prevention efforts focused on top causes for people by age will be most e
 
                     <div class="border-top">
                         <p class="fs-xs">
-                            <strong>Note:</strong> <span id="footnote"></span>Bubble size is
+                            <strong>Note:</strong>
+                            <span id="footnote"></span>Bubble size is
                             proportional to the rate for each cause.
                         </p>
                     </div>
@@ -609,20 +635,29 @@ Injury prevention efforts focused on top causes for people by age will be most e
                         <span class="font-weight-bold" id="agePrint">---</span>
                         <hr class="my-1" />
                         <p class="fs-sm mb-0">
-                            <span id="rank">--</span> cause of <span id="intent"></span>
+                            <span id="rank">--</span> cause of
+                            <span id="intent"></span>
                             <span class="outcome">outcome</span>:
                         </p>
-                        <span class="font-weight-bold my-0" id="causePrint">---</span>
+                        <span class="font-weight-bold my-0" id="causePrint"
+                            >---</span
+                        >
                         <p class="mt-0 fs-xs" id="printDescription">---</p>
                         <hr class="my-1" />
                         <span class="fs-sm">Rate:</span><br />
                         <span class="font-weight-bold" id="ratePrint">---</span>
                         <hr class="my-1" />
                         <span class="fs-sm">Average annual number:</span><br />
-                        <span class="font-weight-bold" id="countPrint">---</span>
+                        <span class="font-weight-bold" id="countPrint"
+                            >---</span
+                        >
                         <hr class="my-1" />
                         <p class="fs-xs">
-                            <em><span id="flagNote" class="fs-xs">Note:</span></em>
+                            <em
+                                ><span id="flagNote" class="fs-xs"
+                                    >Note:</span
+                                ></em
+                            >
                         </p>
                     </div>
                 </div>
@@ -633,46 +668,53 @@ Injury prevention efforts focused on top causes for people by age will be most e
                     <div class="asidebox m-2 pxy-1 text-muted">
                         <strong>Notes on SPARCS data</strong>
                         <p>
-                            New York Statewide Planning and Research Cooperative System
-                            (SPARCS) (updated November 2023 (2021), October 2024 (2022-2023))
-                            inpatient hospitalization and emergency department (ED) live
-                            discharges. Data processed by Bureau of Environmental Surveillance
-                            and Policy in March 2025 and internal analyses conducted in
-                            December 2025 Statistics reported as the age-specific and total
-                            crude rate per 100,000 population according to NYC DOH intercensal
-                            estimates modified from US Census Bureau interpolated intercensal
-                            population estimates, 2020-2023 (updated March 2025). Injury
-                            intent and mechanism are classified following the National Center
-                            for Health Statistics external cause of injury matrix (based on
-                            the International Classification of Diseases Revision Clinical
-                            Modification 10th revision (ICD-10-CM) codes).
+                            New York Statewide Planning and Research Cooperative
+                            System (SPARCS) (updated November 2023 (2021),
+                            October 2024 (2022-2023)) inpatient hospitalization
+                            and emergency department (ED) live discharges. Data
+                            processed by Bureau of Environmental Surveillance
+                            and Policy in March 2025 and internal analyses
+                            conducted in December 2025 Statistics reported as
+                            the age-specific and total crude rate per 100,000
+                            population according to NYC DOH intercensal
+                            estimates modified from US Census Bureau
+                            interpolated intercensal population estimates,
+                            2020-2023 (updated March 2025). Injury intent and
+                            mechanism are classified following the National
+                            Center for Health Statistics external cause of
+                            injury matrix (based on the International
+                            Classification of Diseases, Tenth Revision, Clinical
+                            Modification (ICD-10-CM) codes).
                         </p>
                         <p>
-                            These data on ED visits and hospitalizations come from the
-                            Statewide Planning and Research Cooperative System (SPARCS), a
-                            system that collects data on patients and treatments at hospitals.
-                            These data are for NYC residents, for events that happened in NYC
-                            hospitals and EDs.
+                            These data on ED visits and hospitalizations come
+                            from SPARCS, a system that collects data on patients
+                            and treatments at hospitals. These data are for NYC
+                            residents, for events that happened in NYC hospitals
+                            and EDs.
                         </p>
                         <p>
-                            Data reflect <em>discharges:</em> a patient who visits the ED, and
-                            is subsequently hospitalized, is recorded as a hospitalization
-                            (discharged from the hospital), not an ED visit. A person who dies
-                            is recorded as a death, not a hospitalization or ED visit.
+                            Data reflect <em>discharges:</em> a patient who
+                            visits the ED, and is subsequently hospitalized, is
+                            recorded as a hospitalization (discharged from the
+                            hospital), not an ED visit. A person who dies is
+                            recorded as a death, not a hospitalization or ED
+                            visit.
                         </p>
                         <p>
-                            Because of slight variations between datasets, results might
-                            differ from those calculated using a different extract. This
-                            publication was produced from raw data purchased from or provided
-                            by the New York State Department of Health (NYSDOH).
-                        </p>
-                        <p>
-                            However, the calculations, metrics, conclusions derived, and views
-                            expressed herein are those of the author(s) and do not reflect the
-                            conclusions or views of NYSDOH. NYSDOH, its employees, officers,
-                            and agents make no representation, warranty or guarantee as to the
-                            accuracy, completeness, currency, or suitability of the
-                            information provided here.
+                            Because of slight variations between datasets,
+                            results might differ from those calculated using a
+                            different extract. The raw SPARCS data used to
+                            produce this publication was provided by the New
+                            York State Department of Health. However, the
+                            calculations, metrics, conclusions derived, and
+                            views expressed herein are those of the author(s)
+                            and do not reflect the work, conclusions, or views
+                            of New York State. The New York State Department of
+                            Health, its employees, officers, and agents make no
+                            representation, warranty or guarantee as to the
+                            accuracy, completeness, currency, or suitability of
+                            the information provided here.
                         </p>
                     </div>
                 </div>
@@ -681,21 +723,26 @@ Injury prevention efforts focused on top causes for people by age will be most e
                     <div class="asidebox m-2 pxy-2 text-muted">
                         <strong>Notes on Vital Statistics data</strong>
                         <p>
-                            NYC DOH Bureau of Vital Statistics. Internal analyses conducted by
-                            Bureau of Environmental Surveillance and Policy in December 2025.
-                            Statistics reported as the average number of deaths per year and
-                            the age-specific and total crude rate per 100,000 population
-                            according to NYC DOH intercensal estimates modified from US Census
-                            Bureau interpolated intercensal population estimates, 2020-2023
-                            (updated March 2025). These data are for NYC residents, for deaths 
-                            that happened in NYC. Injury intent and mechanism are classified
-                            following the National Center for Health Statistics external cause
-                            of injury matrix (based on the International Classification of
-                            Diseases 10th Revision (ICD-10) codes).
+                            NYC DOHMH Vital Statistics. Internal analyses
+                            conducted by Bureau of Environmental Surveillance
+                            and Policy in December 2025. Statistics reported as
+                            the average number of deaths per year and the
+                            age-specific and total crude rate per 100,000
+                            population according to NYC DOHMH population
+                            estimates modified from U.S. Census Bureau
+                            interpolated intercensal population estimates,
+                            2020-2023 (updated March 2025). These data are for
+                            NYC residents, for deaths that happened in NYC.
+                            Injury intent and mechanism are classified following
+                            the National Center for Health Statistics external
+                            cause of injury matrix (based on the International
+                            Classification of Diseases, Tenth Revision (ICD-10)
+                            codes).
                         </p>
                         <p>
-                            Counts (numbers) of events like births and deaths may differ slightly 
-                            when compared to data from other public health sources or products.
+                            Counts (numbers) of events like births and deaths
+                            may differ slightly when compared to data from other
+                            public health sources or products.
                         </p>
                     </div>
                 </div>
@@ -780,19 +827,17 @@ Injury prevention efforts focused on top causes for people by age will be most e
 </script>
 
     </div>
-
 </article>
 
 <script>
     
     
     
-    
-    
+
     var outcome = "Death"; 
     var intent = 1; 
     var highlight = "off"; 
-    
+
     const config = [
         {
             id: "ED",
@@ -807,7 +852,7 @@ Injury prevention efforts focused on top causes for people by age will be most e
             shTerm: "Self-Harm",
             hhTerm: "Assault",
             footnote:
-            "Hospitalization data includes routine birth-related hospitalizations.",
+                "Hospitalization data includes routine birth-related hospitalizations.",
         },
         {
             id: "Death",
@@ -817,172 +862,161 @@ Injury prevention efforts focused on top causes for people by age will be most e
             footnote: "",
         },
     ];
-    
+
     
 
     let injuryOn = false; 
-    
+
     
     
     
 
     let cachedCauseData = null;
     let cachedDescriptions = null;
-    
+
     
 
     function loadCauseData() {
-
         return cachedCauseData
             ? Promise.resolve(cachedCauseData)
             : d3.csv("data/leading-causes.csv").then((d) => {
-                cachedCauseData = d;
-                return d;
-            });
+                  cachedCauseData = d;
+                  return d;
+              });
     }
 
     function loadDescriptions() {
-
         return cachedDescriptions
             ? Promise.resolve(cachedDescriptions)
             : d3.csv("data/cause-descriptions.csv").then((d) => {
-                cachedDescriptions = d;
-                return d;
-            });
+                  cachedDescriptions = d;
+                  return d;
+              });
     }
+
     
     
     
-    
-    
+
     
 
     document.querySelectorAll(".type-button").forEach((btn) => {
-
         btn.addEventListener("click", function () {
-
             
 
             document
                 .querySelectorAll(".type-button")
                 .forEach((b) => b.classList.remove("active"));
-            
+
             
 
             this.classList.add("active");
-            
+
             
 
             console.log(this.id);
             outcome = this.id;
-            
-            
 
             
 
             
+
+
             
 
             drawChart(outcome, intent, highlight);
             updateCauseMenu(outcome, intent);
-
         });
     });
-    
+
     
 
     document.querySelectorAll(".subtype-button").forEach((btn) => {
-
         btn.addEventListener("click", function () {
-
             
 
             document
                 .querySelectorAll(".subtype-button")
                 .forEach((b) => b.classList.remove("active"));
-            
+
             
 
             this.classList.add("active");
-            
+
             
 
             intent = Number(this.dataset.injury);
-            
-            
-            
+
             
 
             
+
+
             
-            
+
             drawChart(outcome, intent, highlight);
             updateCauseMenu(outcome, intent);
-
         });
     });
+
     
     
     
-    
-    
+
     
 
     function updateCauseMenu(outcome, intent) {
-
         document.getElementById("buttonTitle").innerHTML = "Highlight";
-        
+
         const menu = document.getElementById("causeMenu");
         menu.innerHTML = ""; 
-        
-        loadCauseData().then((data) => {
 
+        loadCauseData().then((data) => {
             
 
             const filtered = data.filter(
-                (d) => d.type === outcome && String(d.InjuryOnly) === String(intent)
+                (d) =>
+                    d.type === outcome &&
+                    String(d.InjuryOnly) === String(intent),
             );
-            
+
             
 
             const uniqueCauses = new Set();
-            
-            filtered.forEach((d) => {
 
+            filtered.forEach((d) => {
                 if (d.cause_text) {
                     const cleaned = d.cause_text.replace(/^Injury:\s*/, "");
                     uniqueCauses.add(cleaned.trim());
                 }
             });
-            
+
             const causes = [...uniqueCauses];
-            
-            
-            
-            
 
             
 
             
+
+            
+
+
             
 
             causes.forEach((cause) => {
-
                 const a = document.createElement("a");
                 a.className = "dropdown-item cause-highlight";
                 a.href = "#visualization";
                 a.dataset.cause = cause;
                 a.textContent = cause;
                 menu.appendChild(a);
-
             });
-            
+
             
 
             const hr = document.createElement("hr");
             hr.className = "my-1";
             menu.appendChild(hr);
-            
+
             
 
             const reset = document.createElement("a");
@@ -991,102 +1025,94 @@ Injury prevention efforts focused on top causes for people by age will be most e
             reset.dataset.cause = "reset";
             reset.textContent = "Reset";
             menu.appendChild(reset);
-
         });
     }
-    
+
     
 
     document.addEventListener("click", function (e) {
-
         const target = e.target.closest(".cause-highlight");
         if (!target) return; 
-        
+
         
 
         document
-        .querySelectorAll(".cause-highlight.active")
-        .forEach((el) => el.classList.remove("active"));
-        
+            .querySelectorAll(".cause-highlight.active")
+            .forEach((el) => el.classList.remove("active"));
+
         
 
         target.classList.add("active");
-        
+
         
 
         console.log("highlighting", target.dataset.cause);
         drawChart(outcome, intent, target.dataset.cause);
-
     });
-    
+
     
 
     document.addEventListener("click", function (e) {
-
         const target = e.target.closest(".dropdown-item");
-        
+
         if (!target) return;
-        
+
         const cause = target.dataset.cause;
         const buttonTitle = document.getElementById("buttonTitle");
-        
+
         
 
         if (cause === "reset") {
-
             buttonTitle.innerText = "Highlight";
             highlight = "off";
             drawChart(outcome, intent, highlight);
             return;
-
         }
-        
+
         
 
         if (target.classList.contains("cause-highlight")) {
             buttonTitle.innerText = "Showing: " + target.innerText.trim();
         }
     });
-    
+
     
     
     
 
     function drawChart(outcome, intent, highlight) {
-
         console.log("Drawing chart for", outcome);
         console.log("Injury related?", intent);
         console.log("Highlighting:", highlight);
-        
+
         intent == 1
             ? (document.getElementById("intent").innerHTML = "injury-related")
             : (document.getElementById("intent").innerHTML = "");
-        
+
         
 
         var metadata = config.filter(
-            (chosenOutcome) => chosenOutcome.id === outcome
+            (chosenOutcome) => chosenOutcome.id === outcome,
         );
 
         metadata = metadata[0];
         console.log("metadata", metadata);
         document.getElementById("footnote").innerHTML = metadata.footnote;
-        
+
         
 
         document.querySelectorAll(".outcome").forEach((el) => {
             el.innerHTML = metadata.printName;
         });
-        
+
         
 
         var filter;
         var color = { value: "#bcbcbc" };
-        
+
         
 
         if (intent == 1) {
-
             filter = "datum.InjuryOnly == 1";
             injuryHighlight = "off";
             color = {
@@ -1094,10 +1120,10 @@ Injury prevention efforts focused on top causes for people by age will be most e
                 type: "nominal",
                 scale: {
                     domain: [
-                    "Unintentional",
-                    metadata.shTerm,
-                    metadata.hhTerm,
-                    "Undetermined",
+                        "Unintentional",
+                        metadata.shTerm,
+                        metadata.hhTerm,
+                        "Undetermined",
                     ],
                     range: ["#8ca0ca", "#65c1a4", "#fc8c61", "#eeeeee"],
                 },
@@ -1111,13 +1137,10 @@ Injury prevention efforts focused on top causes for people by age will be most e
                 },
             };
         } else {
-
             filter = "datum.InjuryOnly == 0";
-
         }
-        
-        if (outcome === "Death" && highlight === "Injury") {
 
+        if (outcome === "Death" && highlight === "Injury") {
             console.log("color highlight with injury");
 
             color = {
@@ -1125,10 +1148,10 @@ Injury prevention efforts focused on top causes for people by age will be most e
                 type: "nominal",
                 scale: {
                     domain: [
-                    "Injury: Unintentional",
-                    "Injury: Suicide",
-                    "Injury: Homicide",
-                    "Injury: Undetermined intent",
+                        "Injury: Unintentional",
+                        "Injury: Suicide",
+                        "Injury: Homicide",
+                        "Injury: Undetermined intent",
                     ],
                     range: ["#8ca0ca", "#65c1a4", "#fc8c61", "lightgray"],
                 },
@@ -1143,36 +1166,30 @@ Injury prevention efforts focused on top causes for people by age will be most e
             };
         } else {
         }
-        
-        
 
         
+
+
         
 
         var strokeHighlight;
         var strokeHighlightWidth;
         var fieldHighlight = "datum.Intent === 'Injury'";
-        
-        if (highlight === "Injury") {
 
+        if (highlight === "Injury") {
             fieldHighlight = "datum.Intent === 'Injury'";
             strokeHighlight = "black";
             strokeHighlightWidth = 3;
-
         } else if (highlight === "off") {
-
             fieldHighlight = "datum.Intent === 'Injury'";
             strokeHighlight = "#7C7C7C";
             strokeHighlightWidth = 1;
-
         } else {
-
             fieldHighlight = `datum.cause_text === '${highlight}' || datum.cause_text === 'Injury: ${highlight}'`;
             strokeHighlight = "black";
             strokeHighlightWidth = 3;
-
         }
-        
+
         var spec = {
             $schema: "https://vega.github.io/schema/vega-lite/v5.json",
             height: "container",
@@ -1200,7 +1217,9 @@ Injury prevention efforts focused on top causes for people by age will be most e
                     ticks: false,
                 },
                 view: { stroke: "transparent" },
-                range: { category: ["#ffa600", "#f5f5f5", "#40826D", "#5d5d5d"] },
+                range: {
+                    category: ["#ffa600", "#f5f5f5", "#40826D", "#5d5d5d"],
+                },
             },
             transform: [
                 {
@@ -1215,7 +1234,11 @@ Injury prevention efforts focused on top causes for people by age will be most e
                     as: "xAxisNum",
                 },
 
-                { calculate: "(datum.rate >= 100 ? round(datum.rate) : datum.rate) + ' per 100,000'", as: "RateWith" },
+                {
+                    calculate:
+                        "(datum.rate >= 100 ? round(datum.rate) : datum.rate) + ' per 100,000'",
+                    as: "RateWith",
+                },
             ],
             mark: { type: "circle" },
             params: [
@@ -1234,7 +1257,12 @@ Injury prevention efforts focused on top causes for people by age will be most e
                     field: "agegroup",
                     type: "nominal",
                     sort: { field: "xAxisNum" },
-                    axis: { ticks: true, labelAngle: 0, orient: "top", title: "" },
+                    axis: {
+                        ticks: true,
+                        labelAngle: 0,
+                        orient: "top",
+                        title: "",
+                    },
                 },
                 y: {
                     field: "rank_unique",
@@ -1303,27 +1331,25 @@ Injury prevention efforts focused on top causes for people by age will be most e
 
             },
         };
-        
+
         
 
-        vegaEmbed("#chart", spec, {renderer: "svg"}).then((result) => {
-
+        vegaEmbed("#chart", spec, { renderer: "svg" }).then((result) => {
             const view = result.view;
 
             
             
             document.querySelector('#chart details > summary')?.setAttribute('aria-label', 'Export or view source for this chart');
-            
+
             
 
             view.addEventListener("mouseover", (event) => {
                 showOnHover(event);
             });
-            
+
             
 
             view.addEventListener("mouseleave", (event) => {
-
                 clearOnHover();
 
                 if (event.item && event.item.datum) {
@@ -1332,98 +1358,89 @@ Injury prevention efforts focused on top causes for people by age will be most e
             });
         });
     }
-    
+
     
     
     
 
     function showOnHover(event) {
-
         document.getElementById("readout").classList.remove("hide");
         document.getElementById("prompt").classList.add("hide");
-        
-        if (event.item && event.item.datum) {
 
+        if (event.item && event.item.datum) {
             const datum = event.item.datum;
-            
-            console.log('>>> Hovered over:', datum);
-            
+
+            console.log(">>> Hovered over:", datum);
+
             printDescription(datum.cause_text);
-            
+
             var cause = datum.cause_text.replace("Injury: ", "");
-            
+
             
 
             if (datum.cause_text === "") {
-
                 document.getElementById("causePrint").innerText = "(None)";
-
             } else {
-
                 document.getElementById("causePrint").innerHTML =
-                (datum.Intent ? datum.Intent + ": " : "") + cause;
-
+                    (datum.Intent ? datum.Intent + ": " : "") + cause;
             }
-            
+
             document.getElementById("agePrint").innerHTML = datum["agegroup"];
-            
+
             document.getElementById("flagNote").innerHTML =
                 datum.flag === "*"
                     ? "Unstable rate due to high relative standard error."
                     : datum.flag === "^"
-                    ? "Causes of death with very low counts are not shown."
-                    : "";
-                
+                      ? "Causes of death with very low counts are not shown."
+                      : "";
+
             document.getElementById("rank").innerHTML =
                 datum.rank_unique == 1
                     ? "Top"
                     : datum.rank_unique == 2
-                        ? "2nd leading"
-                        : datum.rank_unique == 3
-                            ? "3rd leading"
-                            : `${datum.rank_unique}th leading`;
+                      ? "2nd leading"
+                      : datum.rank_unique == 3
+                        ? "3rd leading"
+                        : `${datum.rank_unique}th leading`;
+
             
-            
-            
+
             const rateNumber = Number(datum["rate"]);
-            const rateRounded = rateNumber >= 100 ? Math.round(rateNumber) : rateNumber;
-            const rateFormatted = rateRounded.toLocaleString(undefined, {maximumFractionDigits: 1});
+            const rateRounded =
+                rateNumber >= 100 ? Math.round(rateNumber) : rateNumber;
+            const rateFormatted = rateRounded.toLocaleString(undefined, {
+                maximumFractionDigits: 1,
+            });
 
-            const countFormatted = 
-                Number(datum["Annual_Average_Count"])
-                .toLocaleString(undefined, {maximumFractionDigits: 0});
-            
-            document.getElementById("ratePrint").innerHTML = rateFormatted + " per 100,000 people";
+            const countFormatted = Number(
+                datum["Annual_Average_Count"],
+            ).toLocaleString(undefined, { maximumFractionDigits: 0 });
+
+            document.getElementById("ratePrint").innerHTML =
+                rateFormatted + " per 100,000 people";
             document.getElementById("countPrint").innerHTML = countFormatted;
-
         }
     }
-    
+
     function clearOnHover() {
         document.getElementById("readout").classList.add("hide");
         document.getElementById("prompt").classList.remove("hide");
     }
-    
+
     function printDescription(x) {
-
         console.log(x);
-        
+
         loadDescriptions().then((data) => {
-
             let thisCause = data.filter((datum) => datum.cause === x);
-            
-            if (thisCause[0]) {
 
+            if (thisCause[0]) {
                 console.log(thisCause[0].description);
                 document.getElementById("printDescription").innerHTML =
-                thisCause[0].description;
-
+                    thisCause[0].description;
             } else {
-
                 console.log("No description found yet");
                 document.getElementById("printDescription").innerHTML =
-                "(No description yet)";
-
+                    "(No description yet)";
             }
         });
     }
@@ -1435,14 +1452,33 @@ Injury prevention efforts focused on top causes for people by age will be most e
     function capitalizeFirstLetter(val) {
         return String(val).charAt(0).toUpperCase() + String(val).slice(1);
     }
-    
+
     
     
     
 
+    
+    
+
+    function fillCitationDate() {
+        const accessed = new Date().toLocaleDateString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+        });
+
+        document.querySelectorAll(".citation-date").forEach((el) => {
+            el.textContent = accessed;
+        });
+    }
+
+    
+    
+    
+
+    fillCitationDate();
     drawChart(outcome, intent, highlight);
     updateCauseMenu(outcome, intent);
-
 </script>
 
 
