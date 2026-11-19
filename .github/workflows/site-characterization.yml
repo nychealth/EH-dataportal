@@ -294,7 +294,7 @@ jobs:
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           marker="<!-- site-characterization-report -->"
-          limit=2000
+          limit=60000
 
           if [ -s sc-report.md ]; then
             head -c "$limit" sc-report.md > body.md
