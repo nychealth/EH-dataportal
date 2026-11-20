@@ -3,7 +3,7 @@ _schema: default
 draft: false
 ---
 
-Heat risk at work is not limited to agriculture, construction, or other outdoor jobs. Across most NYC industries, workplace injury and illness risk was already elevated on 80°F days compared to 70°F days, with larger increases generally observed at higher temperatures (Figure 4).
+<strong>Heat risk at work is not limited to agriculture, construction, or other outdoor jobs.</strong> Across most NYC industries, workplace injury and illness risk was already elevated on 80°F days compared to 70°F days, with larger increases generally observed at higher temperatures (Figure 4).
 
 <!-- Vega-lite -->
 

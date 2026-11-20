@@ -31,4 +31,4 @@ weight: 25
 blurb: Annual analysis of heat related deaths, contributing factors,  and neighborhood impacts.
 ---
 
-Each summer, on average, more than 500 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 3% of all deaths over the warm season months of May through September.
+TK TK TK

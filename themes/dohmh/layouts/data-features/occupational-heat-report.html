@@ -1,8 +1,7 @@
-{{- define "main" -}}
-
-{{- /*  Figures 1, 4 and 5 are Vega-Lite charts embedded with the vega0 shortcode, whose inline
-      script calls vegaEmbed as the page parses, so Vega has to load here in main, above them.  */}}
-{{- partial "lib-vega.html" . }}
+{{- define "main" -}} {{- /* Figures 1, 4 and 5 are Vega-Lite charts embedded
+with the vega0 shortcode, whose inline script calls vegaEmbed as the page
+parses, so Vega has to load here in main, above them. */}} {{- partial
+"lib-vega.html" . }}
 
 <style>
     /* Keep Vega tooltips compact, and let long keys (Figure 1's group names) and long values (Figure 4's
@@ -10,11 +9,25 @@
        max-content makes the size independent of where the tooltip last sat, so the vega0 shortcode can place it reliably.
        pointer-events stops a tooltip that overlaps the pointer from stealing it and hiding itself.
        vega-embed injects its own tooltip CSS at runtime with a more specific selector, hence !important. */
-    #vg-tooltip-element { width: max-content; max-width: min(340px, calc(100vw - 16px)); pointer-events: none; }
+    #vg-tooltip-element {
+        width: max-content;
+        max-width: min(340px, calc(100vw - 16px));
+        pointer-events: none;
+    }
     #vg-tooltip-element td.key,
-    #vg-tooltip-element td.value { font-size: 12px !important; vertical-align: top; }
-    #vg-tooltip-element td.key { min-width: 120px; white-space: normal; }
-    #vg-tooltip-element td.value { max-height: none !important; white-space: normal; text-align: left; }
+    #vg-tooltip-element td.value {
+        font-size: 12px !important;
+        vertical-align: top;
+    }
+    #vg-tooltip-element td.key {
+        min-width: 120px;
+        white-space: normal;
+    }
+    #vg-tooltip-element td.value {
+        max-height: none !important;
+        white-space: normal;
+        text-align: left;
+    }
 </style>
 
 <article class="container-fluid">
@@ -169,7 +182,8 @@
     <div class="row my-3">
         <div class="col-md-10 col-sm-12 mx-auto my-1">
             <h3 class="h4">
-                Some workers may face overlapping sources of heat vulnerability
+                Workers living in part of Brooklyn, the Bronx, and Queens face
+                increased risk of hot-day workplace injury or illness
             </h3>
         </div>
         <div class="col-md-5 ml-auto col-sm-12">
