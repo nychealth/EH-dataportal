@@ -242,7 +242,7 @@ text. Datawrapper embeds: on a white plate while `DATAWRAPPER_FOLLOWS_THEME` is 
 Gaps, not fixed:
 
 - `/data-stories/housing/`: the map's SVG overflows its `.vega-embed` box and covers the "Who
-  shoulders the burden of housing disrepair" heading; pre-existing, filed as audit N-134 (batch R24).
+  shoulders the burden of housing disrepair" heading; pre-existing, filed as audit N-137 (batch R24; N-134 until production's N-134 merged in).
   In dark mode the transparent background shows the two overlapping.
 - The explorer's view rail (white on `#1a954d` while hovered) measures 3.86:1 in both modes;
   not this branch's.
