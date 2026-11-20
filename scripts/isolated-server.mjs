@@ -1,11 +1,11 @@
 // An isolated `hugo server` for one environment: a private port, and both
 // writable outputs redirected outside the repo.
 //
-// Extracted from site-characterization-rebaseline.mjs so that the two callers
-// that need a server for a NAMED environment — the re-baseline tool and
-// characterize-env.mjs — share one implementation. The thing being shared is
-// the isolation, whose failure mode is corrupting a running server's
-// fingerprint cache, so it gets one home rather than a home and a copy.
+// Shared by the callers that need a server for a NAMED environment —
+// smoke-env.mjs, and site-characterization-compare.mjs, which runs two at once
+// (base and head). The thing being shared is the isolation, whose failure mode
+// is corrupting a running server's fingerprint cache, so it gets one home
+// rather than a home and a copy.
 //
 // Deliberately NOT part of dev-server.mjs, which answers a different question:
 // "what server should the harness use", including reusing one it finds and
@@ -14,29 +14,18 @@
 // smoke test and the probe control, so it is left alone.
 
 import { spawn, execSync } from "node:child_process";
-import { rmSync } from "node:fs";
+import { existsSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { setTimeout as sleep } from "node:timers/promises";
 import { fileURLToPath } from "node:url";
 import { SPAWN_CMD as HUGO_BIN, PREFIXES } from "./dev-server.mjs";
 
 const REPO_ROOT = fileURLToPath(new URL("..", import.meta.url));
 
-// Which Hugo environment produces each baseline key. The key is a property of
-// the OUTPUT (data branch, plus prod_prod's environment-name branch in
-// head.html); this maps back to one environment that produces it. Any
-// environment in a key's row would do — these are just the ones the committed
-// baselines were captured from.
-export const ENVIRONMENT_FOR = {
-    staging: "dev_stage",
-    production: "dev_prod",
-    prod_prod: "prod_prod",
-};
-
 // Deliberately OFF dev-server.mjs's probe list (8080, 8081, 1313). On a probed
 // port, any other harness invocation running at the same time would discover
-// this script's private server and sweep the wrong environment against the
-// wrong baseline.
+// this script's private server and sweep the wrong environment.
 export const PORT = 8090;
 
 // Where the isolated servers write. Outside the repo, so neither resources/_gen
@@ -50,9 +39,18 @@ const SERVER_TIMEOUT_S = 200;
 // descendants on Windows, which is how a "stopped" server keeps serving.
 //
 // Idempotent via its own flag rather than via child.killed, which taskkill
-// never sets: this is called once from recapture's finally block and again from
+// never sets: this is called once from the caller's finally block and again from
 // the process exit handler, and a second taskkill would be aimed at a PID the
 // OS is free to have reassigned by then.
+//
+// Off Windows the child is started in its own process group (detached, below)
+// and the whole group is signalled. node_modules/.bin/hugo is hugo-extended's
+// Node wrapper (lib/cli.js), which spawns the real binary with stdio inherited
+// — so signalling the wrapper alone leaves the real hugo running AND holding
+// this process's pipes open, and the caller never exits. That hung the first CI
+// run of site-characterization-compare.mjs from report-written to the 30-minute
+// timeout `[run 44461996966, 2026-11-19: "Report written" 05:11:49, cancelled
+// 05:29:25]`.
 const makeStop = (child) => {
     let stopped = false;
     return () => {
@@ -61,7 +59,7 @@ const makeStop = (child) => {
         if (process.platform === "win32") {
             try { execSync(`taskkill /pid ${child.pid} /T /F`, { stdio: "ignore" }); } catch { /* already gone */ }
         } else {
-            child.kill("SIGTERM");
+            try { process.kill(-child.pid, "SIGTERM"); } catch { child.kill("SIGTERM"); }
         }
     };
 };
@@ -87,17 +85,31 @@ export const responds = async (url) => {
 // The prefix is PROBED rather than read from config/, because the served prefix
 // is whatever that environment's baseURL says and probing cannot disagree with
 // the running server.
-export const startServer = async (environment) => {
+//
+// The options exist for site-characterization-compare.mjs, which serves two
+// trees of the same environment at once — the PR's and its base branch's:
+//   cwd   the tree to build (default: this checkout)
+//   port  default PORT
+//   tag   names the temp dirs; two servers sharing one would delete each
+//         other's output on startup (default: the environment name, which is
+//         what every earlier caller's dirs were called)
+// Each tree builds with ITS OWN lockfile's Hugo when it has one installed, so a
+// base branch on an older pin is built the way it was deployed. The fallback is
+// this checkout's binary, the same one every earlier caller used.
+export const startServer = async (environment, { cwd = REPO_ROOT, port = PORT, tag = environment } = {}) => {
 
-    const destDir = `${ISO_ROOT}/${environment}-docs`;
-    const resourceDir = `${ISO_ROOT}/${environment}-resources`;
+    const destDir = `${ISO_ROOT}/${tag}-docs`;
+    const resourceDir = `${ISO_ROOT}/${tag}-resources`;
     rmSync(destDir, { recursive: true, force: true });
     rmSync(resourceDir, { recursive: true, force: true });
 
-    const args = ["server", "--environment", environment, "--cleanDestinationDir",
-        "--disableFastRender", "-p", String(PORT), "-d", destDir];
+    const treeHugo = join(cwd, "node_modules", ".bin", process.platform === "win32" ? "hugo.cmd" : "hugo");
+    const hugoBin = existsSync(treeHugo) ? treeHugo : HUGO_BIN;
 
-    console.log(`  starting isolated ${environment} server on :${PORT}`);
+    const args = ["server", "--environment", environment, "--cleanDestinationDir",
+        "--disableFastRender", "-p", String(port), "-d", destDir];
+
+    console.log(`  starting isolated ${environment} server on :${port}${cwd === REPO_ROOT ? "" : ` from ${cwd}`}`);
     console.log(`    HUGO_RESOURCEDIR=${resourceDir}`);
     console.log(`    -d ${destDir}`);
 
@@ -108,10 +120,26 @@ export const startServer = async (environment) => {
     // directory can hold a space, which an args array never has to care about.
     const quote = (a) => (/\s/.test(a) ? `"${a}"` : a);
     const spawnEnv = { ...process.env, HUGO_RESOURCEDIR: resourceDir };
+    const stdio = ["ignore", "pipe", "pipe"];
     const child = process.platform === "win32"
-        ? spawn([HUGO_BIN, ...args].map(quote).join(" "),
-            { cwd: REPO_ROOT, shell: true, stdio: "ignore", env: spawnEnv })
-        : spawn(HUGO_BIN, args, { cwd: REPO_ROOT, stdio: "ignore", env: spawnEnv });
+        ? spawn([hugoBin, ...args].map(quote).join(" "),
+            { cwd, shell: true, stdio, env: spawnEnv })
+        // detached: its own process group, so makeStop can signal the wrapper
+        // and the real hugo together. Still awaited normally; this does not
+        // unref it.
+        : spawn(hugoBin, args, { cwd, stdio, env: spawnEnv, detached: true });
+
+    // Hugo's output is kept, capped, so a server that never answers can say why. Discarding it
+    // made a template error on the first build read as a bare timeout. Both streams are drained
+    // continuously, so a full pipe can never stall the server.
+    let output = "";
+    const keep = (chunk) => { output = (output + chunk).slice(-8000); };
+    child.stdout.on("data", keep);
+    child.stderr.on("data", keep);
+    let exitCode = null;
+    child.once("exit", (code) => { exitCode = code ?? -1; });
+    const failure = (what) => new Error(`The ${tag === environment ? environment : `${tag} (${environment})`} server ${what}. `
+        + `Hugo's last output:\n${output.trim() || "(none)"}`);
 
     const stop = makeStop(child);
     process.once("exit", stop);
@@ -119,13 +147,14 @@ export const startServer = async (environment) => {
 
     for (let i = 0; i < SERVER_TIMEOUT_S; i++) {
         for (const prefix of PREFIXES) {
-            const baseURL = `http://localhost:${PORT}${prefix}`;
+            const baseURL = `http://localhost:${port}${prefix}`;
             if (await responds(baseURL)) return { baseURL, destDir, stop };
         }
+        if (exitCode !== null) throw failure(`exited (code ${exitCode}) before answering on :${port}`);
         await sleep(1000);
     }
 
     stop();
-    throw new Error(`The ${environment} server did not answer on :${PORT} within ${SERVER_TIMEOUT_S}s.`);
+    throw failure(`did not answer on :${port} within ${SERVER_TIMEOUT_S}s`);
 };
 

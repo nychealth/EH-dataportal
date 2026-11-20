@@ -1,4 +1,5 @@
 ---
+# Newest first. The home page shows the first 10; the data explorer badges every entry.
 featured:
 - copy: Fine particles (PM 2.5)
   link: air-quality/?id=2023

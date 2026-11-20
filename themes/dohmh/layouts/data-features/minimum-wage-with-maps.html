@@ -481,7 +481,7 @@
                     height: 350,
                     width: "container",
                     data: {
-                        url: "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/borough.topo.json",
+                        url: data_repo + data_branch + "/geography/borough.topo.json",
                         format: { type: "topojson", feature: "collection" },
                     },
                     mark: {
@@ -495,7 +495,7 @@
                     height: 350,
                     width: "container",
                     data: {
-                        url: "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/CD.topo.json",
+                        url: data_repo + data_branch + "/geography/CD.topo.json",
                         format: { type: "topojson", feature: "collection" },
                     },
                     mark: {
@@ -524,7 +524,7 @@
                             lookup: "CD",
                             from: {
                                 data: {
-                                    url: "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/CD.topo.json",
+                                    url: data_repo + data_branch + "/geography/CD.topo.json",
                                     format: { type: "topojson", feature: "collection" },
                                 },
                                 key: "properties.GEOCODE",

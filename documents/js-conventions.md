@@ -553,6 +553,26 @@ const headerHTML =
 
 ---
 
+## Browser differences
+
+No harness here runs Firefox (audit N-109), so these are recorded as they are found.
+
+- **Read text back with `textContent`, not `innerText`, straight after writing it.** Firefox's
+  `innerText` returns text nodes written moments earlier as empty until the page lays out again;
+  Chromium returns them. `copyCitation` in `global.js` copied "Accessed at  on ." in Firefox that
+  way (audit N-108). `textContent` does not depend on layout; collapse its whitespace with
+  `.replace(/\s+/g, ' ').trim()` where the markup's line breaks should not be copied.
+
+## Bootstrap 4 events
+
+Bootstrap 4 triggers its events (`show.bs.collapse`, `shown.bs.tab`, …) through jQuery only, so a
+native `addEventListener` for one never runs, and nothing reports it. Listen with
+`$(el).on('show.bs.collapse', …)`. The explorer's mobile "+" toggle kept a wrong `aria-expanded`
+until its listeners were switched (`c1801a007b`); the reasoning is in
+`documents/de-mobile-layout-options-2026-11-05.md`, Task 1's correction.
+
+---
+
 ## Worked example
 
 ```js

@@ -10,7 +10,7 @@ tags:
 categories: [pests]
 keywords:
 layout: rat-info-portal
-image: ratportal-screenshot.png
+image: ratportal-screenshot.webp
 externalPortal: true
 weight: 5
 blurb: Rat inspection results and action at the property level across NYC.

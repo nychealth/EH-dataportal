@@ -62,7 +62,7 @@ There are 55 PUMAs in NYC. PUMAs have similar boundaries to Community Districts,
 <div class="wide">
     <div class="row no-gutters border-top border-bottom py-2">
         <div class="col-6">
-        <div aria-hidden="true">
+        <div>
         <input type="radio" name="mainRadioGroup" value="cd" id="ucd" checked> <label for="ucd">Community Districts</label> &nbsp;&nbsp;
         <input type="radio" name="mainRadioGroup" value="puma" id="upuma"/> <label for="upuma">PUMAs (2020)</label> &nbsp;&nbsp;
         <!--<input type="radio" name="mainRadioGroup" value="nta" id="unta"><label for="unta">NTAs</label>-->
@@ -105,9 +105,14 @@ There are 55 PUMAs in NYC. PUMAs have similar boundaries to Community Districts,
                     d3.json(spec).then(spec => {
                         spec.layer[0].data.url = topo;
                         spec.layer[1].data.url = topo;
+                        // layer 0 is a lightgray backdrop; left in the accessibility tree
+                        // it is an unnamed graphics-symbol group (axe svg-img-alt)
+                        spec.layer[0].mark.aria = false;
                         d3.csv(csv, d3.autoType).then(csv => {
                             vegaEmbed(div, spec, {renderer: "svg"}).then((res) => {
                                 resview = res.view.insert("csv", csv).run();
+                                // vega-embed's actions <summary> holds only an SVG and has no name
+                                document.querySelector(div + ' details > summary')?.setAttribute('aria-label', 'Export or view source for this map');
                             });
                         });
                     });
@@ -121,7 +126,7 @@ There are 55 PUMAs in NYC. PUMAs have similar boundaries to Community Districts,
 <p>While these geographies have similar boundaries between neighborhood areas, they are not identical. For example, areas in Mott Haven/Port Morris, Melrose South/Mott Haven-North, Longwood, and Hunts Point are all in separate Neighborhood Tabulation Areas. But in Community Districts, Mott Haven/Melrose is one Community District, and Hunts Point/Longwood is another. And in PUMAs, Mott Haven and Hunts point are both in one PUMA. These divisions don't nest neatly within one another - familiar neighborhoods can be broken up or aggregated into smaller and larger geographic schemes.</p>
 </div>
         <div class="col-6 border-left pl-2">
-<div aria-hidden="true">
+<div>
 <input type="radio" name="uhfRadioGroup" value="42" id="42" checked> <label for="42">UHF42</label> &nbsp;&nbsp;
 <input type="radio" name="uhfRadioGroup" value="34" id="34"/> <label for="34">UHF34</label> &nbsp;&nbsp;
 <!--<input type="radio" name="uhfRadioGroup" value="zip" id="zip"><label for="zip">ZIP codes</label>-->
@@ -199,7 +204,7 @@ In the map below, notice how three UHF42 neighborhoods in the South Bronx are co
 
 </div>
 <div class="narrow border-top border-bottom py-2">
-<div aria-hidden="true">
+<div>
 <input type="radio" name="uhfRadioGroup2" value="42" id="2-42" checked> <label for="2-42">UHF42</label> &nbsp;&nbsp;
 <input type="radio" name="uhfRadioGroup2" value="34" id="2-34"/> <label for="2-34">UHF34</label> &nbsp;&nbsp;
 <input type="radio" name="uhfRadioGroup2" value="zip" id="2-zip"><label for="2-zip">ZIP codes</label>
@@ -343,6 +348,7 @@ Neighborhood boundaries can be imperfect representations of New York City’s co
 
 <style>
 .table--bordered {
+  display: table;
   border-top: 2px solid black;
   padding: 0.5em;
 }
@@ -354,7 +360,7 @@ tr {border-bottom: 1px dashed black;
     <div class="card card-left-border shadow-sm mt-2 mb-4 my-4 fs-sm">
         <div class="card-body">
             <h5 class="card-title">Appendix: common uses for each scheme</h5>
-<table class="table--bordered">
+<div class="table--bordered">
 
 | Boundaries  | Based on              | Number in NYC | Common use                                                                              |
 | ----------- | --------------------- | ------------- | --------------------------------------------------------------------------------------- |
@@ -365,7 +371,7 @@ tr {border-bottom: 1px dashed black;
 | PUMA        | Census tracts         | 55            | Research, <br>using statistically meaningful areas of ~100,000 people                   |
 | NTA         | Census tracts         | 195           | Neighborhood identity, fine-grained data                                                |
 
-</table>
+</div>
 </div>
 </div>
 
@@ -379,7 +385,7 @@ Matching datasets: a brief overview of GEOIDs
 A GeoID (Geographic Identifier) is a unique code used to label a specific area on a map—like a neighborhood, ZIP code, or census tract—so that data about that area can be organized, matched, and analyzed.
       A GeoID is like a “name tag” for places. Every area, from a small city block to an entire borough, can have a code that identifies it in a dataset.
 
-<table class="table--bordered">
+<div class="table--bordered">
 
 | Boundary scheme  | GeoID Example  | Format        | Determined by                |
 | ---------------- | -------------- | ------------- | ---------------------------- |
@@ -393,7 +399,7 @@ A GeoID (Geographic Identifier) is a unique code used to label a specific area o
 | CD               | 203            | Numeric       | BoroCD (Borough + District)  |
 | ZCTA (ZIP)       | 10454          | Numeric       | Census ZIP approximation     |
 
-</table>
+</div>
 </div>
 </div>
 

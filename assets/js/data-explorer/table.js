@@ -101,10 +101,14 @@ const getCurrentMapTableFilters = (rows) => {
     const geoValuesForSelectedTime = [...new Set(rowsForSelectedTime.map(d => prettifyGeoType(d.GeoType)))];
     const availableGeosForSelectedTime = geoTypes.filter(geo => geoValuesForSelectedTime.includes(geo));
 
+    // The map's geography plus Citywide and Borough, as far as this time slice has them.
+
+    const syncedGeos = pickSyncedTableGeos(availableGeosForSelectedTime, currentGeo);
+
     return {
         timeSelection,
-        geoSelection: currentGeo && availableGeosForSelectedTime.includes(currentGeo)
-            ? [currentGeo]
+        geoSelection: syncedGeos.length
+            ? syncedGeos
             : (availableGeosForSelectedTime[0]
                 ? [availableGeosForSelectedTime[0]]
                 : (availableGeos[0] ? [availableGeos[0]] : []))
@@ -324,7 +328,14 @@ const bindAreaOnlySearch = (dataTable) => {
 
     });
 
-    syncTableAreaSearchInput();
+    // A rebuilt table starts with no column search, so re-apply the kept Area term to it
+    // (setTableAreaSearch also refills the box); otherwise the box shows a filter that isn't on.
+
+    if (DE.table.tableAreaSearchValue) {
+        setTableAreaSearch(dataTable, DE.table.tableAreaSearchValue);
+    } else {
+        syncTableAreaSearchInput();
+    }
 
 };
 
@@ -402,7 +413,12 @@ const renderTableFilterControls = (rows) => {
         // is unavailable for the selected table time period.
 
         if (!DE.table.selectedTableGeography.length && dataGeos.length && !DE.table.tableGeoFilterIsManual) {
-            DE.table.selectedTableGeography = [DE.state.GeoType && dataGeos.includes(DE.state.GeoType) ? DE.state.GeoType : dataGeos[0]];
+
+            // dataGeos is in data order; geoTypes order keeps the synced rows coarsest-first.
+
+            const syncedGeos = pickSyncedTableGeos(geoTypes.filter(geo => dataGeos.includes(geo)), DE.state.GeoType);
+
+            DE.table.selectedTableGeography = syncedGeos.length ? syncedGeos : [dataGeos[0]];
         }
     }
 
@@ -564,7 +580,15 @@ const renderTable = (tableData) => {
     // ----- table column alignment (unchanged) ----- //
 
     const measureAlignMap = new Map();
-    const measures = [...new Set(tableData.map(d => d.MeasurementDisplay))];
+
+    // The pivot turns each MeasurementDisplay (EHDP-data's MeasurementType and DisplayType) into a
+    // column name, and Arquero's toHTML writes column names into <th> unescaped (it escapes only
+    // cell values), so each distinct name is sanitized once here rather than per row (audit N-120).
+
+    const safeMeasureName = new Map(
+        [...new Set(tableData.map(d => d.MeasurementDisplay))].map(m => [m, DOMPurify.sanitize(m)])
+    );
+    const measures = [...safeMeasureName.values()];
 
     // Default all value columns to right alignment after the Arquero pivot creates the final shape.
 
@@ -574,7 +598,10 @@ const renderTable = (tableData) => {
     // ----- pivot data (UNCHANGED) ----- //
 
     const filteredTableAqData = aq.from(tableData)
-        .derive({ GeoTypePretty: aq.escape(d => prettifyGeoType(d.GeoType)) })
+        .derive({
+            GeoTypePretty: aq.escape(d => prettifyGeoType(d.GeoType)),
+            MeasurementDisplay: aq.escape(d => safeMeasureName.get(d.MeasurementDisplay))
+        })
         .groupby("TimePeriod", "GeoTypePretty", "GeoTypeDesc", "GeoID", "GeoRank", "BoroID", "Borough", "Geography")
         .pivot("MeasurementDisplay", "DisplayCI", {sort: false})
         // Build a grouped Area label that optionally appends borough context for nested geographies.
@@ -838,8 +865,11 @@ const renderTable = (tableData) => {
 
                     if (last !== key) {
 
+                        // The label is a native <button> so the header is reachable and operable by keyboard
+                        //  and announces its state; its click bubbles to the td handler in bindTableGroupToggles.
+
                         $(rows).eq(i).before(
-                            `<tr class="group" data-group-level="${lvl}" ${attrsFn(time, geoTypeDesc, borough)}><td colspan="${visibleColumnsCount}" data-group-level="${lvl}"> ${group}</td></tr>`
+                            `<tr class="group" data-group-level="${lvl}" ${attrsFn(time, geoTypeDesc, borough)}><td colspan="${visibleColumnsCount}" data-group-level="${lvl}"><button type="button" class="de-group-toggle" aria-expanded="true">${group}</button></td></tr>`
                         );
 
                         last = key;
@@ -988,6 +1018,7 @@ const bindTableGroupToggles = () => {
             td.removeClass('hidden');
             descendants.show();
             descendants.find('td').removeClass('hidden');
+            descendants.find('.de-group-toggle').attr('aria-expanded', 'true');
 
         } else {
 
@@ -997,5 +1028,7 @@ const bindTableGroupToggles = () => {
             descendants.hide();
 
         }
+
+        td.find('.de-group-toggle').attr('aria-expanded', td.hasClass('hidden') ? 'false' : 'true');
     });
 };

@@ -153,10 +153,10 @@ In New York City, litter baskets are either wire and open at the top, or non-wir
 <div class="medium my-4 py-2">
     <div class="row">
         <div class="col-sm-6">
-            <img class="img-responsive" src="trash-can-wire.png" alt="Open wire basket with some trash. Next to a pole and plastic newspaper stand "style="width:100%">
+            <img class="img-responsive" src="trash-can-wire.webp" alt="Open wire basket with some trash. Next to a pole and plastic newspaper stand "style="width:100%">
         </div>
         <div class="col-sm-6">
-            <img class="img-responsive" src="trash-can-enclosed.png" alt="Round, grey, enclosed trash baskets are lined up next to each other. These three baskets have a small circular opening at the top and take different types of trash (mixed paper, litter, and metal/glass/plastic/cartons) A fourth basket that has a handle to open the trash basket is next to the other baskets." style="width:100%">
+            <img class="img-responsive" src="trash-can-enclosed.webp" alt="Round, grey, enclosed trash baskets are lined up next to each other. These three baskets have a small circular opening at the top and take different types of trash (mixed paper, litter, and metal/glass/plastic/cartons) A fourth basket that has a handle to open the trash basket is next to the other baskets." style="width:100%">
         </div>
         <div class="col-sm-6 mt-1">
         <div class="card card-left-border shadow-sm">

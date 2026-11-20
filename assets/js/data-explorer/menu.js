@@ -270,6 +270,8 @@ const handleSelection = (type, value, label) => {
 
     // ----- update the one changed global ----- //
 
+    const previousGeoTime = [DE.state.GeoType, DE.state.TimePeriodID];
+
     if (type === 'measure') DE.state.MeasureID = value;
 
     if (type === 'geo') DE.state.GeoType = value;
@@ -294,7 +296,11 @@ const handleSelection = (type, value, label) => {
 
     // - - - resync table filters - - - //
 
-    if ((type === 'geo' || type === 'time') && typeof syncTableFiltersToMapSelection === 'function') {
+    // A measure change counts when updateAllMenus cascaded it into a new geo or time.
+
+    const geoTimeChanged = DE.state.GeoType !== previousGeoTime[0] || DE.state.TimePeriodID !== previousGeoTime[1];
+
+    if ((type === 'geo' || type === 'time' || geoTimeChanged) && typeof syncTableFiltersToMapSelection === 'function') {
 
         // Geo and time changes can invalidate the current Area search, so clear and resync first.
 
@@ -326,4 +332,59 @@ const handleSelection = (type, value, label) => {
 
     renderCurrentView(true);
 
+    // ----- tell screen readers what is now shown ----- //
+
+    announceSelection();
+
 };
+
+
+// ----------------------------------------------------------------------- //
+// selection announcement
+// ----------------------------------------------------------------------- //
+
+// Writes the full selection ("Showing Age-adjusted rate, CD, 2023") into the #selectionStatus live
+// region after a measure, boundary or time change (A-256; Chris, 2026-10-31). It reads the trigger
+// labels updateAllMenus has just written, so a cascaded boundary or time is announced as it now reads.
+// The region is emptied first and refilled on the next tick so the same text twice is still spoken.
+
+const announceSelection = () => {
+
+    const status = document.getElementById('selectionStatus');
+
+    if (!status) return;
+
+    const text = ['measure', 'geo', 'time']
+        .map(type => document.querySelector(`.${type}-name`)?.textContent.trim())
+        .filter(Boolean)
+        .join(', ');
+
+    status.textContent = '';
+
+    if (text) {
+        setTimeout(() => { status.textContent = `Showing ${text}`; }, 100);
+    }
+
+};
+
+
+// ----------------------------------------------------------------------- //
+// selected item in view
+// ----------------------------------------------------------------------- //
+
+// The menus scroll past 50vh (_de-custom.scss), so a selection further down a long Time list
+// would open out of sight. Centre it in the menu each time one opens. Bootstrap 4 fires its
+// dropdown events through jQuery, which addEventListener does not receive.
+
+$(document).on('shown.bs.dropdown', '.dropdown', event => {
+
+    const menu = event.currentTarget.querySelector('.dropdown-menu-de');
+    const selected = menu?.querySelector('.is-selected');
+
+    if (!selected) return;
+
+    // the menu is absolutely positioned, so it is the selected item's offsetParent
+
+    menu.scrollTop = selected.offsetTop - (menu.clientHeight - selected.offsetHeight) / 2;
+
+});

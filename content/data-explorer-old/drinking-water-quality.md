@@ -18,7 +18,7 @@ indicators:
       - 2044
 related:
   - title: "Lead poisoning affects adults too"
-    url: "data-features/adult-lead/"
+    url: "data-stories/adult-lead/"
   - title: "What Hurricane Ida and Superstorm Sandy taught us about flooding and health"
     url: "data-stories/flooding-and-health/"
 relatedData:

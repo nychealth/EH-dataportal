@@ -66,7 +66,7 @@ Simple steps can be taken to prevent mice and rats both inside and outside:
 
 - Keep yards and outdoor areas trimmed and free of clutter to avoid creating a harbor for rats.
 
-Visit this resource to learn more about managing mice and rats: <a href="www.nyc.gov/rats">www.nyc.gov/rats.</a>
+Visit this resource to learn more about managing mice and rats: [www.nyc.gov/rats](https://www.nyc.gov/rats).
 
 ### Key Messages
 

@@ -1,7 +1,10 @@
-<!-- For keyboard users -->
-<a class="sr-only sr-only-focusable skip-menu" href="#skip-header-target">Skip Header</a>
+{{- /* The header is English on every site, so on es and zh pages it says so; otherwise a
+       screen reader speaks it with the page language's voice (WCAG 3.1.2). */ -}}
 
-<header id="global-header" role="banner">
+<!-- For keyboard users -->
+<a class="sr-only sr-only-focusable skip-menu" href="#skip-header-target"{{ if ne .Lang "en" }} lang="en"{{ end }}>Skip Header</a>
+
+<header id="global-header" role="banner"{{ if ne .Lang "en" }} lang="en"{{ end }}>
 
     <div class="bg-black text-white" id="nyc-top-header">
 

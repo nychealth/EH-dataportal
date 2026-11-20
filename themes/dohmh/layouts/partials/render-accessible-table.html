@@ -9,7 +9,7 @@
 {{ $csvPath := .csvPath }}
 {{ $containerId := .containerId | default "csv-table-container" }}
 
-<div id="{{ $containerId }}" role="region" aria-label="Data table" style="height: 400px; overflow-y:scroll;"></div>
+<div id="{{ $containerId }}" role="region" aria-label="Data table" tabindex="0" style="height: 400px; overflow-y:scroll;"></div>
 
 <script>
     (function() {

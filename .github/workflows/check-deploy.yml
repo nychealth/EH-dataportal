@@ -8,6 +8,11 @@ on:
       timezone: "America/New_York"
   workflow_dispatch:
 
+# Reads builds/prod-prod and sends mail; it writes nothing to the repository.
+
+permissions:
+  contents: read
+
 jobs:
   check_deploy:
     name: Check deployment
@@ -24,7 +29,10 @@ jobs:
         with:
           ref: builds/prod-prod
           fetch-depth: 0
-      
+          # Nothing here pushes, so the token is not left in .git/config while the
+          # third-party mail action runs.
+          persist-credentials: false
+
       # built hash
       
       - name: get built hash
@@ -35,10 +43,19 @@ jobs:
 
       # deployed hash
 
+      # -f fails on a 4xx/5xx, where -s alone handed the server's 41 KB HTML error page to
+      # the comparison and to git rev-list (audit N-036). The format check catches a 200
+      # that is not a commit hash, so later steps only ever see 40 hex characters.
+
       - name: get deployed hash
         id: d_hash
         run: |
-          echo "deployed_hash=$(curl https://a816-dohbesp.nyc.gov/indicatorpublic/commit_hash.txt -s -o -)" >> $GITHUB_OUTPUT
+          deployed_hash="$(curl -fsS https://a816-dohbesp.nyc.gov/indicatorpublic/commit_hash.txt | tr -d '[:space:]')"
+          if ! [[ "$deployed_hash" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "::error::commit_hash.txt did not hold a commit hash"
+            exit 1
+          fi
+          echo "deployed_hash=$deployed_hash" >> $GITHUB_OUTPUT
 
       # echo hash
 

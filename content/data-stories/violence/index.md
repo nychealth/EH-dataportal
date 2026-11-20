@@ -306,7 +306,7 @@ Another way to compare poverty and violence rates is to rank neighborhoods from 
 Below, we can see that <span style="color: #b820bb; font-weight: bold;">Belmont/East Tremont</span> ranks high in both poverty and assaults, while <span style="color: #5c8ea5; font-weight: bold;">Tottenville/Great Kills</span> ranks low for both.
 
 <div aria-hidden="true">
-<iframe title='Poverty and assaults - ranks' aria-label="Interactive chart" id="datawrapper-chart-O0SUA"
+<iframe title='Poverty and assaults - ranks' id="datawrapper-chart-639n0"
     src='//datawrapper.dwcdn.net/639n0/1/' scrolling="no" frameborder="0"
     style="width: 0; min-width: 100% !important; border: none;" height='600'></iframe>
 <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();

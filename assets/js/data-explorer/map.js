@@ -64,6 +64,116 @@ const setBarSelection = (geoID) => {
 
 };
 
+// ----------------------------------------------------------------------- //
+// persistent selection
+// ----------------------------------------------------------------------- //
+
+// A click on a map area, a bubble or a bar selects that geography (Chris, 2026-11-12, D10): it
+// stays outlined on the map and the bar chart, and fills the legend panel, after the pointer
+// leaves. Hover still highlights on top of it, and the legend returns to the selection when the
+// hover ends. A second click on it, a click on the map away from any area or bubble, or Escape
+// clears it; a click on another moves it. The state is DE.map.selection (global.js).
+
+// Set by the renderer on screen: outlines the given geography on the map and shows it in the
+// legend panel, or removes both for null. A no-op while no render has drawn.
+
+let showMapSelection = () => {};
+
+// Pushes the selection into the bar chart's own signal for it (bar.js, pinnedGeo), separate from
+// the hover signal setBarSelection drives, so a hover elsewhere leaves the selected bar outlined.
+
+const setBarPin = (geoID) => {
+
+    if (!window.myVegaView) return;
+
+    window.myVegaView.signal("pinnedGeo", geoID).run();
+
+};
+
+// The selected geography's outline, told apart from hover's plain black (Chris, 2026-11-13): a
+// black line with a white one on top. No single colour contrasts 3:1 with both ends of the
+// viridis fills; one of these two lines always does. It sits in a pane of its own above the
+// shapes, so a hovered neighbour brought to the front cannot cover it, and that pane ignores the
+// pointer, so clicks and hovers still reach the shape underneath. makeLine builds one line from
+// the options it is given; null removes the outline.
+
+const SELECTION_PANE = 'deSelectionPane';
+
+let selectionOutline = null;
+
+const drawSelectionOutline = (makeLine) => {
+
+    if (selectionOutline) {
+        selectionOutline.remove();
+        selectionOutline = null;
+    }
+
+    if (!makeLine || !currentMap) return;
+
+    // Above Leaflet's overlay pane (z-index 400), where the shapes are, and below its tooltip and
+    // popup panes.
+
+    if (!currentMap.getPane(SELECTION_PANE)) {
+        const pane = currentMap.createPane(SELECTION_PANE);
+        pane.style.zIndex = 450;
+        pane.style.pointerEvents = 'none';
+    }
+
+    const options = { pane: SELECTION_PANE, interactive: false, fill: false };
+
+    selectionOutline = L.layerGroup([
+        makeLine({ ...options, color: '#000', weight: 5 }),
+        makeLine({ ...options, color: '#fff', weight: 2 })
+    ]).addTo(currentMap);
+
+};
+
+const selectedGeoID = () => DE.map.selection?.geoID ?? null;
+
+// A tap fires mouseover before click, so hover's plain black outline painted first and the
+// selection's white line followed, a visible step on an iPhone (Chris, 2026-11-14). Taps therefore
+// skip hover: the selection shows the same geography in the legend and on both views. The mouse
+// events a tap fires do not say they came from a finger; the pointer events before them do.
+
+let lastPointerType = null;
+
+['pointerdown', 'pointerover'].forEach(type => {
+    document.addEventListener(type, (event) => { lastPointerType = event.pointerType; }, true);
+});
+
+const isTouchInput = () => lastPointerType === 'touch';
+
+// Selects a geography, or clears the selection when it is the one already selected. GeoIDs arrive
+// as numbers from some sources and strings from others, so they are compared as strings.
+
+const toggleMapSelection = (geoID) => {
+
+    const current = selectedGeoID();
+    const next = current != null && String(current) === String(geoID) ? null : geoID;
+
+    DE.map.selection = next == null ? null : { geoID: next, geoType: DE.state.GeoType };
+
+    showMapSelection(next);
+    setBarPin(next);
+
+};
+
+// Clears the selection. Returns whether there was one, so the Escape handler
+// (de-tab-content.js) knows whether the key was used.
+
+const clearMapSelection = () => {
+
+    if (!DE.map.selection) return false;
+
+    DE.map.selection = null;
+
+    showMapSelection(null);
+    setBarPin(null);
+
+    return true;
+
+};
+
 // Points the contract back at the no-ops. Called synchronously at the start of every render so
 // that a bar hover during the geometry fetch can't reach the outgoing map's discarded layers —
 // that used to silently no-op the highlight while still writing the previous geography's name
@@ -79,6 +189,171 @@ const detachMapInterop = () => {
 
 // Initialize the base tile layer early so it loads in the background
 
+// The five boroughs' extent, Tottenville to the north Bronx and the Hudson to eastern Queens:
+// the opening view on phones and tablets.
+
+const NYC_BOUNDS = [[40.4774, -74.2591], [40.9176, -73.7004]];
+
+// The stacked phone and tablet layout's breakpoint; the same one as its block in _de-custom.scss.
+
+const STACKED_LAYOUT = window.matchMedia('(max-width: 959.98px)');
+
+// The desktop opening view, which Reset zoom returns to on desktop.
+
+const DESKTOP_CENTER = [40.700142, -73.921546];
+const DESKTOP_ZOOM = 11;
+
+// Data-layer fill opacities before the visitor touches the map's opacity control. The control
+// multiplies resting and hover fills alike (DE.map.fillScale), so a hovered area stays as much
+// stronger than its neighbours as it was, up to fully opaque.
+
+const CHOROPLETH_FILL = 0.65;
+const CHOROPLETH_HOVER_FILL = 0.9;
+const BUBBLE_FILL = 0.9;
+const BUBBLE_HOVER_FILL = 1;
+
+const fillOpacityFor = (base) => Math.min(1, base * DE.map.fillScale);
+
+// The resting fill of the layer on the map now, which is what the slider shows: the circles on
+// the bubble map, the areas otherwise.
+
+const currentFillBase = () => (currentBubbleMarkers.length ? BUBBLE_FILL : CHOROPLETH_FILL);
+
+// Set by addMapControls; a render calls it so the slider shows the new layer's opacity.
+
+let syncMapControls = () => {};
+
+// Share of the map an open view covers before the page is scrolled.
+
+const SHEET_SHARE = 0.45;
+
+// Zoom levels the map steps out when a view opens over a map the visitor has zoomed or panned
+// (and back in when it closes). 0 keeps their zoom; showing the same area in the 55% left would
+// take about 0.86.
+
+const SHEET_ZOOM_STEP = 0;
+
+// How far (in screen px) the centre must drift from the last fit before the map counts as moved.
+// Leaflet's own resizes round its centre by a fraction of a pixel (0.5px measured about 1.4s
+// after load), which an exact comparison read as the visitor panning.
+
+const MOVED_THRESHOLD_PX = 4;
+
+// ----------------------------------------------------------------------- //
+// stacked layout: map height and fit
+// ----------------------------------------------------------------------- //
+
+// Below lg the map is pinned and fills the screen between the card and the legend + tab bar, so
+// with no view open nothing is left blank under it. An open view is pulled up over the bottom
+// SHEET_SHARE of the map, and the city is fitted into the part still showing. Runs at load, on
+// resize, and from de-tab-content.js when a view opens or closes. It re-fits only when the
+// map's size or the overlap changed, so a toolbar showing or hiding does not undo a pan.
+// Once the visitor has zoomed or panned, it stops re-fitting: opening or closing a view keeps
+// their zoom (less SHEET_ZOOM_STEP) and keeps the point at the middle of the visible map there.
+
+let stackedLayoutKey = null;
+let stackedOverlap = null;
+let fittedView = null;
+let screenHeightProbe = null;
+
+const layoutStackedMap = () => {
+
+    const wrapper = document.querySelector('.de-wrapper');
+    if (!currentMap || !wrapper) return;
+
+    // Leaving the stacked layout: drop its sizing and hand the map back to the desktop CSS.
+
+    if (!STACKED_LAYOUT.matches) {
+        if (stackedLayoutKey === null) return;
+        stackedLayoutKey = null;
+        wrapper.classList.remove('de-sheet-open');
+        wrapper.style.removeProperty('--de-map-height');
+        wrapper.style.removeProperty('--de-sheet-overlap');
+        currentMap.invalidateSize();
+        return;
+    }
+
+    // The small viewport height (svh) rather than innerHeight, which grows and shrinks as a
+    // mobile browser's toolbar hides and shows. Browsers without svh fall back to vh.
+
+    if (!screenHeightProbe) {
+        screenHeightProbe = document.createElement('div');
+        screenHeightProbe.style.cssText = 'position:fixed;top:0;width:0;visibility:hidden;pointer-events:none;height:100vh;height:100svh';
+        document.body.appendChild(screenHeightProbe);
+    }
+    const screenHeight = screenHeightProbe.getBoundingClientRect().height;
+
+    // The map's place in the page is the card's bottom edge: the map itself is sticky, so its own
+    // position reads 0 once the page has scrolled. The card is measured as if its details were
+    // closed: open details push the map down the page rather than shrink it, and nothing re-runs
+    // this when they open or close, so a resize while they were open (one fires ~1.2s after load)
+    // left the map sized for them, with a gap under it once they closed.
+
+    const card = document.querySelector('.de-main-details');
+    const details = document.getElementById('detailsContent');
+    const legend = document.querySelector('.de-legend');
+    const tabBar = document.querySelector('.de-tabs-nav');
+    const detailsHeight = details ? details.getBoundingClientRect().height : 0;
+    const mapTop = card.getBoundingClientRect().bottom + window.scrollY - detailsHeight;
+    const mapHeight = Math.max(200, Math.round(screenHeight - mapTop - legend.offsetHeight - tabBar.offsetHeight));
+
+    const sheetOpen = document.querySelector('.de-tabs')?.classList.contains('has-open-panel');
+    const overlap = sheetOpen ? Math.round(mapHeight * SHEET_SHARE) : 0;
+
+    const key = mapHeight + '/' + overlap;
+    if (key === stackedLayoutKey) return;
+    stackedLayoutKey = key;
+
+    // The visitor has moved the map if it no longer shows the view this function last fitted.
+    // Read the point at the middle of the visible part (above any overlap) before resizing.
+    // Only once there is a fitted view: Leaflet caches the first size getSize() reads, and
+    // invalidateSize() cannot refresh it until the map has a view, so reading it before the
+    // first fit pins the pre-layout height and the fit centres in the wrong box.
+
+    let anchor = null;
+    if (fittedView !== null) {
+        const before = currentMap.getSize();
+        const moved = currentMap.getZoom() !== fittedView.zoom ||
+            currentMap.latLngToContainerPoint(fittedView.center).distanceTo(before.divideBy(2)) > MOVED_THRESHOLD_PX;
+        if (moved) anchor = currentMap.containerPointToLatLng([before.x / 2, (before.y - stackedOverlap) / 2]);
+    }
+    const previousOverlap = stackedOverlap;
+    stackedOverlap = overlap;
+
+    wrapper.style.setProperty('--de-map-height', mapHeight + 'px');
+    wrapper.style.setProperty('--de-sheet-overlap', overlap + 'px');
+    wrapper.classList.toggle('de-sheet-open', sheetOpen);
+    currentMap.invalidateSize();
+
+    // Moved: keep the zoom (stepping it by SHEET_ZOOM_STEP as a view opens or closes) and put the
+    // anchor back at the middle of the visible part, which sits overlap / 2 above the map's centre.
+
+    if (anchor) {
+        const step = overlap > previousOverlap ? -SHEET_ZOOM_STEP : overlap < previousOverlap ? SHEET_ZOOM_STEP : 0;
+        currentMap.setView(anchor, currentMap.getZoom() + step, { animate: false });
+        currentMap.panBy([0, overlap / 2], { animate: false });
+        return;
+    }
+
+    fitStackedCity(sheetOpen, overlap);
+
+};
+
+// Fits the city into the part of the stacked map an open view leaves showing. With a view open,
+// the fit trims its outer edges (pad -0.1) so it draws larger in the smaller space; with none
+// open the whole city fits. Records the fit so layoutStackedMap can tell a visitor's pan from
+// its own view. Also Reset zoom's target below lg.
+
+const fitStackedCity = (sheetOpen, overlap) => {
+
+    const bounds = L.latLngBounds(NYC_BOUNDS);
+    currentMap.fitBounds(sheetOpen ? bounds.pad(-0.1) : bounds, { paddingBottomRight: [0, overlap], animate: false });
+    fittedView = { zoom: currentMap.getZoom(), center: currentMap.getCenter() };
+
+};
+
+window.addEventListener('resize', layoutStackedMap);
+
 // Creates the shared Leaflet base map once and reuses it across renders.
 
 const initBaseMap = () => {
@@ -87,19 +362,287 @@ const initBaseMap = () => {
 
     if (currentMap) return; // already initialized
 
+    // Half-step zoom lets the fitted view (layoutStackedMap) land between levels: the whole city
+    // needs about 814x845px at zoom 11, so whole steps would often leave it a full level too small.
+
     currentMap = L.map('map', {
-        zoomControl: false
-    }).setView([40.700142, -73.921546], 11);
+        zoomControl: false,
+        zoomSnap: 0.5
+    });
+
+    // Below lg the stacked layout sizes the map and fits the city (layoutStackedMap); the desktop
+    // view keeps its fixed centre and zoom. The first stacked fit waits for DOMContentLoaded:
+    // de-tab-content.js only sets .has-open-panel then, so fitting now would paint a fit with no
+    // overlap and re-fit visibly once the open view is known.
+
+    if (STACKED_LAYOUT.matches) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', layoutStackedMap);
+        } else {
+            layoutStackedMap();
+        }
+    } else {
+        currentMap.setView(DESKTOP_CENTER, DESKTOP_ZOOM);
+    }
+
+    addMapControls();
+
+    // A click on the map away from any area or bubble clears the selection. Clicks on the
+    // selectable shapes stop propagation in their own handlers, so they never reach this one, and
+    // the controls' container blocks clicks from reaching the map (addMapControls).
+
+    currentMap.on('click', clearMapSelection);
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}' + (L.Browser.retina ? '@2x.png' : '.png') + '?key=cb1_2vaf_1_f87644104deb54c869cef554', {
         attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
         crossOrigin: true,
         subdomains: 'abcd',
-        maxZoom: 11,
         minZoom: 7
     }).addTo(currentMap);
 
     debugLog("* initBaseMap: tile layer ready");
+
+};
+
+// ----------------------------------------------------------------------- //
+// map controls: zoom, reset, data-layer fill
+// ----------------------------------------------------------------------- //
+
+// Returns the map to the view a page load gives: the fitted city below lg, the fixed desktop
+// view above it.
+
+const resetMapView = () => {
+
+    if (STACKED_LAYOUT.matches) {
+        const sheetOpen = document.querySelector('.de-tabs')?.classList.contains('has-open-panel');
+        fitStackedCity(sheetOpen, stackedOverlap || 0);
+    } else {
+        currentMap.setView(DESKTOP_CENTER, DESKTOP_ZOOM);
+    }
+
+};
+
+// Re-applies the fill settings to the layers on the map now. The choropleth's style function
+// reads DE.map.fillScale, so resetStyle re-runs it; on the bubble map the setting governs the
+// circles only (Chris, 2026-11-12), and at 0 they come off the map so an invisible circle
+// cannot still open a popup or catch a hover.
+
+const applyFillSettings = () => {
+
+    if (!currentMap) return;
+
+    if (currentBubbleMarkers.length) {
+
+        currentBubbleMarkers.forEach(circle => {
+            if (DE.map.fillScale === 0) {
+                currentMap.removeLayer(circle);
+            } else {
+                circle.setStyle({ fillOpacity: fillOpacityFor(BUBBLE_FILL) });
+                circle.addTo(currentMap);
+            }
+        });
+
+    } else if (currentGeojsonLayer?.options?.style) {
+
+        currentGeojsonLayer.resetStyle();
+
+    }
+
+    // Both branches restyle every shape, the selected one included, so outline it again.
+
+    showMapSelection(selectedGeoID());
+};
+
+// Adds Leaflet's zoom control and one control of the explorer's own beneath it: Reset zoom, and
+// an eye button that hides the data layer, with an opacity slider for that layer folded out
+// beside it. The purpose of the last two is to let people see the basemap and the boundaries
+// unobscured (Chris, 2026-11-12). Buttons rather than Leaflet's <a role="button">, so Space works
+// as well as Enter. Below lg the corner is the map's own; from lg up _de-custom.scss moves it
+// beside the details card, which covers it.
+
+const addMapControls = () => {
+
+    const zoomControl = L.control.zoom({ position: 'topleft' }).addTo(currentMap);
+
+    // hover-hints.js gives every button in this stack the explorer's own hint, so the
+    // browser's title tooltip comes off Leaflet's zoom links (Chris, 2026-11-13). Removed
+    // after creation rather than by passing an empty title, because Leaflet sets the
+    // links' aria-label from the same option.
+
+    zoomControl.getContainer().querySelectorAll('a').forEach(link => link.removeAttribute('title'));
+
+    const MapToolsControl = L.Control.extend({
+
+        options: { position: 'topleft' },
+
+        onAdd: () => {
+
+            const container = L.DomUtil.create('div', 'de-map-tools');
+
+            container.innerHTML = `
+                <div class="leaflet-bar">
+                    <button type="button" class="de-map-reset" aria-label="Reset zoom">
+                        <i class="fas fa-undo" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="leaflet-bar de-map-opacity">
+                    <button type="button" class="de-map-fill-toggle" aria-label="Hide data layer" aria-pressed="false">
+                        <i class="fas fa-eye" aria-hidden="true"></i>
+                    </button>
+                    <div class="de-map-opacity-panel" id="de-map-opacity-panel" hidden>
+                        <label for="de-map-opacity-input">Opacity</label>
+                        <input type="range" id="de-map-opacity-input" min="0" max="100" step="5" value="65" aria-valuetext="65%">
+                        <span class="de-map-opacity-value" aria-hidden="true">65%</span>
+                    </div>
+                </div>`;
+
+            // Clicks, drags and wheel turns on the control must not pan or zoom the map under it.
+
+            L.DomEvent.disableClickPropagation(container);
+            L.DomEvent.disableScrollPropagation(container);
+
+            const opacityBox = container.querySelector('.de-map-opacity');
+            const eyeButton = container.querySelector('.de-map-fill-toggle');
+            const opacityPanel = container.querySelector('#de-map-opacity-panel');
+            const slider = container.querySelector('#de-map-opacity-input');
+            const sliderReadout = container.querySelector('.de-map-opacity-value');
+
+            // Mirrors DE.map.fillScale onto the controls. The eye's name stays fixed and
+            // aria-pressed carries its state; the icon shows the layer's state (open eye while
+            // it shows), and hover-hints.js says what a click will do. The slider shows the
+            // layer's actual fill opacity (65 on a choropleth by default, 90 on the bubble
+            // map's circles), not the multiplier (Chris, 2026-11-13). The readout repeats it
+            // on screen, for touch, where hover hints do not show; it is aria-hidden because
+            // aria-valuetext already gives screen readers the value.
+
+            const syncControls = () => {
+                const isHidden = DE.map.fillScale === 0;
+                eyeButton.setAttribute('aria-pressed', String(isHidden));
+                eyeButton.querySelector('i').className = isHidden ? 'fas fa-eye-slash' : 'fas fa-eye';
+                const opacity = Math.round(fillOpacityFor(currentFillBase()) * 100);
+                slider.value = String(opacity);
+                slider.setAttribute('aria-valuetext', `${slider.value}%`);
+                sliderReadout.textContent = `${slider.value}%`;
+
+                // The slider snaps to its 5-point steps, and a setting carried from one map type
+                // to the other can fall between them (45 on the bubble map is 32.5 on a
+                // choropleth). Move the layer to the step shown, so the number stays true.
+
+                if (Number(slider.value) !== opacity) {
+                    DE.map.fillScale = Number(slider.value) / 100 / currentFillBase();
+                    applyFillSettings();
+                }
+            };
+
+            syncMapControls = syncControls;
+
+            const setFillScale = (scale) => {
+                DE.map.fillScale = scale;
+                syncControls();
+                applyFillSettings();
+            };
+
+            container.querySelector('.de-map-reset').addEventListener('click', resetMapView);
+
+            // Hiding sets the opacity to 0 and remembers the level it replaced; showing puts that
+            // level back (Chris, 2026-11-13). A layer the slider itself took to 0 has no level to
+            // return to, so it comes back at the default.
+
+            const toggleFill = () => {
+                if (DE.map.fillScale === 0) {
+                    setFillScale(DE.map.fillRestore || 1);
+                } else {
+                    DE.map.fillRestore = DE.map.fillScale;
+                    setFillScale(0);
+                }
+            };
+
+            slider.addEventListener('input', () => {
+                DE.map.fillRestore = 1;
+                setFillScale(Number(slider.value) / 100 / currentFillBase());
+            });
+
+            // The slider stays folded behind the eye until wanted (Chris, 2026-11-13). It opens
+            // on hover, on keyboard focus reaching the eye (so the next Tab reaches the slider),
+            // and on a first tap of the eye. It closes when the pointer and the focus have both
+            // left, on a press outside it, and on Escape.
+
+            const setPanelOpen = (isOpen) => {
+                opacityPanel.hidden = !isOpen;
+            };
+
+            const closeUnlessInUse = () => {
+                if (!opacityBox.matches(':hover') && !opacityBox.contains(document.activeElement)) {
+                    setPanelOpen(false);
+                }
+            };
+
+            opacityBox.addEventListener('mouseenter', () => setPanelOpen(true));
+            opacityBox.addEventListener('mouseleave', closeUnlessInUse);
+
+            // Escape moves focus back to the eye, which would open the panel again at once; this
+            // flag lets that one focus through without reopening it.
+
+            let reopenOnFocus = true;
+
+            eyeButton.addEventListener('focus', () => {
+                if (reopenOnFocus) setPanelOpen(true);
+            });
+
+            // relatedTarget is where focus went; null means it left the page or went to the map.
+
+            opacityBox.addEventListener('focusout', (e) => {
+                if (!opacityBox.contains(e.relatedTarget) && !opacityBox.matches(':hover')) {
+                    setPanelOpen(false);
+                }
+            });
+
+            // Whether the panel was already open when this press began. A mouse has opened it
+            // by hovering first, so its click hides or shows. A tap opens it during the tap
+            // itself (the browser's emulated mouseenter, then focus), so the first tap only
+            // leaves it open and the next one hides or shows. A keyboard press has no
+            // pointerdown and arrives as a click with detail 0, which always hides or shows.
+
+            let panelOpenAtPress = false;
+
+            eyeButton.addEventListener('pointerdown', () => {
+                panelOpenAtPress = !opacityPanel.hidden;
+            });
+
+            eyeButton.addEventListener('click', (e) => {
+                if (e.detail !== 0 && !panelOpenAtPress) {
+                    setPanelOpen(true);
+                } else {
+                    toggleFill();
+                }
+                panelOpenAtPress = !opacityPanel.hidden;
+            });
+
+            // A press hover-hints.js already used to dismiss a hint is skipped, so one Escape
+            // does one thing, as de-tab-content.js does.
+
+            opacityBox.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !e.defaultPrevented && !opacityPanel.hidden) {
+                    setPanelOpen(false);
+                    reopenOnFocus = false;
+                    eyeButton.focus();
+                    reopenOnFocus = true;
+                }
+            });
+
+            // Capture phase, so a press on the map closes it even where Leaflet handles the event.
+
+            document.addEventListener('pointerdown', (e) => {
+                if (!opacityBox.contains(e.target)) setPanelOpen(false);
+            }, true);
+
+            syncControls();
+
+            return container;
+        }
+    });
+
+    new MapToolsControl().addTo(currentMap);
 
 };
 
@@ -142,6 +685,12 @@ const resetMapForRender = () => {
 
     detachMapInterop();
 
+    // The outgoing render's selection drawer holds its discarded layers; the incoming render
+    // installs its own and redraws the selection once its geometry is on the map.
+
+    showMapSelection = () => {};
+    drawSelectionOutline(null);
+
     // The outgoing render's hover text describes geography that is about to disappear, and with
     // the interop detached no mouseout can clear it — so clear it here, at the render boundary.
 
@@ -173,6 +722,7 @@ const resetMapForRender = () => {
         currentMap.removeLayer(currentGeojsonLayer);
         currentGeojsonLayer = null;
     }
+
     return currentMap;
 
 };
@@ -249,7 +799,9 @@ const createMapPopupContent = (properties, metadata, options = {}) => {
         ? `<div class="popup-note">${properties.Note}</div>`
         : '';
 
-    return `
+    // The name, display type and note are EHDP-data text, which is published without review (audit N-120).
+
+    return DOMPurify.sanitize(`
         <div class="popup-content">
             <div class="popup-header">
                 <strong>${properties.Geography}</strong>
@@ -268,7 +820,7 @@ const createMapPopupContent = (properties, metadata, options = {}) => {
             </div>
             ${note}
         </div>
-    `;
+    `);
 
 };
 
@@ -390,7 +942,9 @@ const loadMapGeojson = (topoFile, dataLookup) => {
 
 const createCitywidePopupContent = (citywideData, metadata) => {
 
-    return `
+    // Sanitized for the same reason as createMapPopupContent (audit N-120).
+
+    return DOMPurify.sanitize(`
         <div class="popup-content">
             <div class="popup-header">
                 <strong>NYC</strong>
@@ -409,7 +963,7 @@ const createCitywidePopupContent = (citywideData, metadata) => {
             </div>
             <div class="popup-note fs-xs">This dataset isn't available broken down by neighborhood.</div>
         </div>
-    `;
+    `);
 
 };
 
@@ -572,7 +1126,13 @@ const renderUnmappedCitywide = (metadata) => {
 
         })
         .catch(error => {
+
             console.log(error);
+
+            // A newer render has replaced this map, so its failure is no longer on screen.
+
+            if (generation === mapRenderGeneration) showLoadError(DE.state.IndicatorID);
+
         });
 
     // send info for printing
@@ -610,6 +1170,13 @@ const renderMap = (
 
     debugLog("** renderMap");
     debugLog("** renderMap: metadata", metadata);
+
+    // ----- drop a selection made under another boundary ----- //
+
+    // Its GeoID would name a different place here (CD 501 and CDTA 501 are in different boroughs).
+    // Runs before either renderer and before showBar, which seeds the bar chart from DE.map.selection.
+
+    if (DE.map.selection && DE.map.selection.geoType !== DE.state.GeoType) clearMapSelection();
 
     // ----- bail out to the unmapped state before reading any measure fields ----- //
 
@@ -703,7 +1270,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
             fillColor: value != null ? colorScale(value) : '#ccc',
             weight: 0.35,
             color: 'black',
-            fillOpacity: 0.65
+            fillOpacity: fillOpacityFor(CHOROPLETH_FILL)
         };
     };
 
@@ -719,32 +1286,47 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
 
     let highlightedLayer = null;
 
-    // Applies the hover-highlight outline, clearing any previous highlight, and brings the feature to the front of the layer stack.
+    // The selected polygon (see "persistent selection" above). It keeps the highlight outline when
+    // a hover moves elsewhere, so every reset below skips it.
 
-    const highlightFeature = (e) => {
+    let selectedLayer = null;
 
-        const layer = e.target;
+    // Draws the highlight outline on a polygon and brings it to the front of the layer stack, so
+    // its neighbours' strokes don't cover it.
 
-        if (highlightedLayer && highlightedLayer !== layer) {
-            geojsonLayer.resetStyle(highlightedLayer);
-        }
+    const outlineLayer = (layer) => {
 
         layer.setStyle({
             weight: 3,
             color: '#000',
-            fillOpacity: 0.9
+            fillOpacity: fillOpacityFor(CHOROPLETH_HOVER_FILL)
         });
 
         if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
             layer.bringToFront();
         }
+    };
+
+    // Applies the hover-highlight outline, clearing any previous hover highlight.
+
+    const highlightFeature = (e) => {
+
+        const layer = e.target;
+
+        if (highlightedLayer && highlightedLayer !== layer && highlightedLayer !== selectedLayer) {
+            geojsonLayer.resetStyle(highlightedLayer);
+        }
+
+        outlineLayer(layer);
 
         highlightedLayer = layer;
 
     };
 
-    // Restores a layer's base style. Falls back to the tracked layer so callers that don't hold a
-    // reference (or pass a stale one) still clear the highlight that is actually on screen.
+    // Restores a layer's base style, unless it is the selected one. Falls back to the tracked layer
+    // so callers that don't hold a reference (or pass a stale one) still clear the highlight that
+    // is actually on screen. The hovered polygon was brought to the front, so the selected one goes
+    // back in front of it.
 
     const resetHighlight = (layer) => {
 
@@ -752,10 +1334,13 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
 
         if (!target || !geojsonLayer) return;
 
-        geojsonLayer.resetStyle(target);
+        if (target !== selectedLayer) geojsonLayer.resetStyle(target);
 
         if (target === highlightedLayer) highlightedLayer = null;
 
+        if (selectedLayer && !L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+            selectedLayer.bringToFront();
+        }
     };
 
     // Builds popup markup for a feature, substituting the citywide popup when the data is citywide-only.
@@ -775,6 +1360,16 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
     };
 
     const { updateHoverUI } = createHoverUIHelpers(metadata, minValue, maxValue, 1);
+
+    // What the legend panel shows when nothing is hovered: the selection, or its idle text.
+
+    const showSelectionInLegend = () => {
+        if (selectedLayer) {
+            updateHoverUI(selectedLayer.feature.properties);
+        } else {
+            clearHoverUI();
+        }
+    };
 
     const mapRenderPromise = loadMapGeojson(topoFile, dataLookup)
         .then(geojson => {
@@ -817,15 +1412,22 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
                         const props = feature.properties;
                         debugLog("** click", feature.properties);
 
+                        // Keep this click from reaching the map's own handler, which clears the
+                        // selection (initBaseMap). The popup opens from the layer, so it still does.
+
+                        L.DomEvent.stopPropagation(e);
+
                         if (isCitywideOnly) switchToTrendTabOnce();
 
                         const linkedGeoID = props.GeoID ?? props.GEOCODE;
 
-                        if (linkedGeoID != null) setBarSelection(linkedGeoID);
+                        if (linkedGeoID != null) toggleMapSelection(linkedGeoID);
 
                     });
 
                     layer.on('mouseover', (e) => {
+
+                        if (isTouchInput()) return;
 
                         const props = feature.properties;
                         const linkedGeoID = props.GeoID ?? props.GEOCODE;
@@ -846,7 +1448,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
                     layer.on('mouseout', (e) => {
 
                         resetHighlight(e.target);
-                        clearHoverUI();
+                        showSelectionInLegend();
 
                         setBarSelection(null);
 
@@ -855,6 +1457,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
             }).addTo(map);
 
             currentGeojsonLayer = geojsonLayer;
+            syncMapControls();
 
             if (isCitywideOnly) handleCitywideOnly(map, data, metadata);
 
@@ -882,13 +1485,48 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
                     // highlight from either source (map hover or bar chart) clears correctly.
 
                     resetHighlight();
-                    clearHoverUI();
+                    showSelectionInLegend();
 
                 }
             });
+
+            // ----- draw the selection, now and on later changes ----- //
+
+            // Outlines the polygon for a GeoID (looked up as for the bar hover above) and shows it
+            // in the legend panel, unless a hover is showing there now; null removes it. A
+            // selection with no polygon on this map stays in DE.map.selection and is drawn again
+            // if a later render has one.
+
+            showMapSelection = (geoID) => {
+
+                const previous = selectedLayer;
+
+                selectedLayer = geoID == null ? null : (geoIDtoLayer[geoID] ?? geoIDtoLayer[String(geoID)] ?? null);
+
+                if (previous && previous !== selectedLayer && previous !== highlightedLayer) {
+                    geojsonLayer.resetStyle(previous);
+                }
+
+                if (selectedLayer) outlineLayer(selectedLayer);
+
+                const outlined = selectedLayer;
+
+                drawSelectionOutline(outlined && ((options) => L.polygon(outlined.getLatLngs(), options)));
+
+                if (!highlightedLayer) showSelectionInLegend();
+
+            };
+
+            showMapSelection(selectedGeoID());
         })
         .catch(error => {
+
             console.log(error);
+
+            // A newer render has replaced this map, so its failure is no longer on screen.
+
+            if (generation === mapRenderGeneration) showLoadError(DE.state.IndicatorID);
+
         });
 
     // send info for printing
@@ -971,7 +1609,26 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
 
             let highlightedMarker = null;
 
-            // Applies the hover-highlight style to a marker entry, clearing any previous one.
+            // The selected bubble (see "persistent selection" above). It keeps the highlight style
+            // when a hover moves elsewhere, so the resets below skip it.
+
+            let selectedMarker = null;
+
+            // Draws the highlight style on a marker entry, or restores its base style.
+
+            const outlineMarker = (markerEntry) => {
+                markerEntry.marker.setStyle({
+                    weight: 3,
+                    color: '#000',
+                    fillOpacity: fillOpacityFor(BUBBLE_HOVER_FILL)
+                });
+            };
+
+            const restoreMarker = (markerEntry) => {
+                markerEntry.marker.setStyle({ ...markerEntry.originalStyle, fillOpacity: fillOpacityFor(BUBBLE_FILL) });
+            };
+
+            // Applies the hover-highlight style to a marker entry, clearing any previous hover.
 
             const highlightMarker = (markerEntry) => {
 
@@ -979,29 +1636,35 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                     return;
                 }
 
-                if (highlightedMarker) {
-                    highlightedMarker.marker.setStyle(highlightedMarker.originalStyle);
-                }
+                if (highlightedMarker && highlightedMarker !== selectedMarker) restoreMarker(highlightedMarker);
 
-                markerEntry.marker.setStyle({
-                    weight: 3,
-                    color: '#000',
-                    fillOpacity: 1
-                });
+                outlineMarker(markerEntry);
 
                 highlightedMarker = markerEntry;
 
             };
 
-            // Restores whichever marker is currently highlighted, whoever highlighted it.
+            // Restores whichever marker is currently highlighted, whoever highlighted it, unless
+            // it is the selected one.
 
             const resetMarkerHighlight = () => {
 
                 if (!highlightedMarker) return;
 
-                highlightedMarker.marker.setStyle(highlightedMarker.originalStyle);
+                if (highlightedMarker !== selectedMarker) restoreMarker(highlightedMarker);
+
                 highlightedMarker = null;
 
+            };
+
+            // What the legend panel shows when nothing is hovered: the selection, or its idle text.
+
+            const showSelectionInLegend = () => {
+                if (selectedMarker) {
+                    updateHoverUI(selectedMarker.row);
+                } else {
+                    clearHoverUI();
+                }
             };
 
             // ----- Add the GeoJSON overlay (light gray polygons) ----- //
@@ -1033,10 +1696,13 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                         color: '#333',  // dark stroke
                         weight: 1,
                         opacity: 1,
-                        fillOpacity: 0.9
-                    }).addTo(map);
+                        fillOpacity: fillOpacityFor(BUBBLE_FILL)
+                    });
 
-                    // Track for cleanup
+                    // Off the map while the visitor has the data layer hidden (applyFillSettings
+                    // adds it back); tracked either way, for cleanup and for that re-add.
+
+                    if (DE.map.fillScale !== 0) circle.addTo(map);
 
                     currentBubbleMarkers.push(circle);
 
@@ -1054,8 +1720,7 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                             fillColor: colorScale(item.Value),
                             color: '#333',
                             weight: 1,
-                            opacity: 1,
-                            fillOpacity: 0.9
+                            opacity: 1
                         }
                     };
 
@@ -1067,13 +1732,21 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
 
                         debugLog("** click", item);
 
+                        // Keep this click from reaching the map's own handler, which clears the
+                        // selection (initBaseMap). A click on the gray areas under the bubbles
+                        // does reach it: on this map the bubbles are what a click selects.
+
+                        L.DomEvent.stopPropagation(e);
+
                         if (isCitywideOnly) switchToTrendTabOnce();
 
-                        setBarSelection(item.GeoID);
+                        toggleMapSelection(item.GeoID);
 
                     });
 
                     circle.on('mouseover', (e) => {
+
+                        if (isTouchInput()) return;
 
                         highlightMarker(markerEntry);
 
@@ -1087,13 +1760,15 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
 
                         resetMarkerHighlight();
 
-                        clearHoverUI();
+                        showSelectionInLegend();
 
                         setBarSelection(null);
 
                     });
                 }
             });
+
+            syncMapControls();
 
             if (isCitywideOnly) handleCitywideOnly(map, data, metadata);
 
@@ -1114,12 +1789,48 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
 
                 reset: () => {
                     resetMarkerHighlight();
-                    clearHoverUI();
+                    showSelectionInLegend();
                 }
             });
+
+            // ----- draw the selection, now and on later changes ----- //
+
+            // As on the choropleth: outlines the bubble for a GeoID and shows it in the legend
+            // panel unless a hover is showing there; null removes it. A geography with no bubble
+            // on this map (no value, or no coordinates) stays selected and draws nothing.
+
+            showMapSelection = (geoID) => {
+
+                const previous = selectedMarker;
+
+                selectedMarker = geoID == null ? null : (circleMarkers.find(c => String(c.geoID) === String(geoID)) ?? null);
+
+                if (previous && previous !== selectedMarker && previous !== highlightedMarker) restoreMarker(previous);
+
+                if (selectedMarker) outlineMarker(selectedMarker);
+
+                // No outline while the eye has taken the bubbles off the map (applyFillSettings).
+
+                const outlined = DE.map.fillScale === 0 ? null : selectedMarker?.marker;
+
+                drawSelectionOutline(outlined && ((options) =>
+                    L.circleMarker(outlined.getLatLng(), { ...options, radius: outlined.getRadius() })
+                ));
+
+                if (!highlightedMarker) showSelectionInLegend();
+
+            };
+
+            showMapSelection(selectedGeoID());
         })
         .catch(error => {
+
             console.log(error);
+
+            // A newer render has replaced this map, so its failure is no longer on screen.
+
+            if (generation === mapRenderGeneration) showLoadError(DE.state.IndicatorID);
+
         });
 
     // send info for printing

@@ -109,7 +109,21 @@ const DE = {
         // unmapped state. Gates both halves of that hint — the message popup and the outline on the
         // visualization bar — so they share one lifetime. Without it, every measure/geo/time
         // re-render would re-apply a hint the user had already dismissed by clicking the bar.
-        unmappedHintPending: false
+        unmappedHintPending: false,
+
+        // The visitor's map-layer settings from the map's own controls (map.js, addMapControls):
+        // a multiplier on the data layer's default fill (map.js, fillOpacityFor), where 0 is
+        // the layer hidden and 1 the default; and the
+        // level the eye button restores after hiding it. Kept here so a measure, boundary or
+        // time change redraws with them; the saved map (print-map.js) deliberately ignores both.
+        fillScale: 1,
+        fillRestore: 1,
+
+        // The geography the visitor selected by clicking it on the map or the bar chart, as
+        // { geoID, geoType }, or null (map.js, toggleMapSelection). geoType is the boundary it was
+        // picked on: a GeoID names a different place under another boundary, so a boundary change
+        // drops it, while a measure, time-period or view change keeps it.
+        selection: null
     },
 
     // Print/export state: the current view's Vega spec, caption fields, and chart
@@ -171,7 +185,7 @@ const DE = {
     },
 
     // Core identity: which indicator/measure/geography/time is selected and which
-    // overlay tab is open ('bar', 'table', 'trend', 'links', or 'none'). Read across
+    // overlay tab is open ('bar', 'table', 'trend', 'links', 'ds', or 'none'). Read across
     // nearly every file and kept in sync with the URL by app.js.
     state: {
         IndicatorID: undefined,
@@ -296,7 +310,15 @@ const refreshCitation = () => {
     const url = window.location.href.replace(/#.*/, '');
     const date = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
-    document.querySelectorAll('.citation-url').forEach(el => { el.textContent = url; });
+    // The Data Sources pane's citation would always cite overlay=ds, the pane itself, so it drops
+    // the param and the link opens the explorer's default view instead.
+
+    const urlWithoutOverlay = new URL(url);
+    urlWithoutOverlay.searchParams.delete('overlay');
+
+    document.querySelectorAll('.citation-url').forEach(el => {
+        el.textContent = el.hasAttribute('data-citation-omit-overlay') ? urlWithoutOverlay.href : url;
+    });
     document.querySelectorAll('.citation-date').forEach(el => { el.textContent = date; });
 
 };
@@ -315,7 +337,10 @@ const copyCitation = (button = null) => {
 
     refreshCitation();
 
-    const citeText = citationTextElement.innerText;
+    // textContent, not innerText: Firefox's innerText reads the spans refreshCitation just
+    // rewrote as empty until layout runs, so the copy lost the URL and date (Zen user report,
+    // 2026-11). Collapsing whitespace stands in for the template's line breaks.
+    const citeText = citationTextElement.textContent.replace(/\s+/g, ' ').trim();
 
     navigator.clipboard.writeText(citeText).then(() => {
 
@@ -343,6 +368,13 @@ const bindCitationCopyButton = () => {
             event.preventDefault();
             copyCitation(event.currentTarget);
         });
+    });
+
+    // Bootstrap 4 closes an open dropdown on any click that reaches the document, including one
+    // inside its own menu, so a Cite popup would shut before "Copied!" shows or while text is selected.
+
+    document.querySelectorAll('.de-citation-menu').forEach(menu => {
+        menu.addEventListener('click', event => event.stopPropagation());
     });
 };
 
@@ -413,7 +445,8 @@ const renderAboutSources = (about, sources) => {
 // the holder, then re-reveals it only if there are notes to show. Callers pass an
 // already-deduped `notes` array — each site's dedupe source differs enough (table
 // rows vs. joined Note_1/Note_2 pairs) that the dedupe/filter step stays inline at
-// the call site rather than folding into this helper.
+// the call site rather than folding into this helper. That inline step dedupes raw
+// notes only; for bar/trend/correlate, `getDisplayNotes` dedupes again after mapping.
 // `wrapNote` lets bar.js keep its `<p>` markup while the other four keep
 // `<div class='fs-xs'>` — a real markup divergence between sites, not an oversight
 // to silently unify. Builds the joined markup once and assigns it, instead of the
@@ -511,6 +544,16 @@ const assignGeoRank = (GeoType) => GEO_RANK_BY_PRETTY_TYPE[prettifyGeoType(GeoTy
 // two lists can't drift apart (JS guarantees string-key insertion order)
 
 const geoTypes = Object.keys(GEO_RANK_BY_PRETTY_TYPE);
+
+// The table follows the map's geography, with Citywide and Borough always shown alongside it for
+// context (Chris, 2026-11-12; site-wide audit A-032). On a Citywide or Borough map that is just those
+// two. Returns the subset of availableGeos to check, in availableGeos's order, so pass it in geoTypes
+// order to keep the rows coarsest-first.
+
+const TABLE_CONTEXT_GEOS = ['Citywide', 'Borough'];
+
+const pickSyncedTableGeos = (availableGeos, mapGeo) =>
+    availableGeos.filter(geo => TABLE_CONTEXT_GEOS.includes(geo) || geo === mapGeo);
 
 // Shared-geo helpers keep links and disparities limited to measures that can join.
 
@@ -758,6 +801,36 @@ const getChartContainerWidth = (selector) => {
 
 };
 
+
+// Vega-Lite draws a title on one line however long it is, and fit-x autosize sizes the plot,
+// not the title, so a name wider than the chart runs past the SVG's edge (N-105). Splits the
+// title and subtitle into lines that fit `width`, measured in the title's own font. The 10px
+// is Vega's default 5px padding on each side. Leaves the spec alone when the width is unknown.
+
+const chartTitleMetrics = document.createElement('canvas').getContext('2d');
+
+const wrapChartTitle = (title, width) => {
+
+    // width is "container" when getChartContainerWidth returned 0.
+    if (!title || !(width > 0)) return;
+
+    const maxWidth = width - 10;
+
+    const wrap = (text, fontSize, fontWeight) => {
+        chartTitleMetrics.font = `${fontWeight || 'normal'} ${fontSize}px ${title.font || 'sans-serif'}`;
+        return splitCanvasTextIntoLines(chartTitleMetrics, text, maxWidth);
+    };
+
+    if (typeof title.text === 'string' && title.fontSize) {
+        title.text = wrap(title.text, title.fontSize, title.fontWeight);
+    }
+
+    if (typeof title.subtitle === 'string') {
+        title.subtitle = wrap(title.subtitle, title.subtitleFontSize || 12, title.subtitleFontWeight);
+    }
+
+};
+
 // ----------------------------------------------------------------------- //
 // chart resize
 // ----------------------------------------------------------------------- //
@@ -979,9 +1052,11 @@ const downloadData = (
 
 // Revises the notes that are displayed under each chart - meant to work in concert with tooltip notes at each datapoint. This lets you display chart-specific notes, rather than datapoint-specific notes (which should show in tooltips)
 
+// Deduped after mapping: distinct raw notes ("* Estimate…", "< 4 Estimate…") map to one sentence.
+
 function getDisplayNotes(notes) {
 
-  return notes
+  return [...new Set(notes
     .map(note => {
 
       if (note.includes('based on small numbers')) {
@@ -994,5 +1069,5 @@ function getDisplayNotes(notes) {
 
       return note;
 
-    });
+    }))];
 }
