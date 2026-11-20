@@ -4,7 +4,7 @@
 
 // Breadth-first characterization harness: every page the site serves, loaded
 // once, with its rendered structure recorded so a template, asset or SCSS
-// change can be diffed against a committed baseline.
+// change can be diffed against another tree's capture.
 // Dev-only tooling — not part of the Hugo build or the shipped bundle.
 //
 // It is the orthogonal axis to the depth-first harnesses (cp-characterization
@@ -26,37 +26,31 @@
 // many controls are unlabelled".
 //
 // Usage:
-//   node scripts/site-characterization.mjs --baseline --all   write + commit
-//   node scripts/site-characterization.mjs --check --all      gate on `structure`
-//   node scripts/site-characterization.mjs --check --content  gate on both halves
-//   node scripts/site-characterization.mjs --out <dir>        raw capture, no baseline
+//   node scripts/site-characterization.mjs --out <dir> [--all]   capture into <dir>
 //
-// A BASELINE IS A FACT ABOUT ONE COMMIT AND ONE CLASS OF ENVIRONMENT. Baselines
-// live under scripts/site-characterization-baseline/<key>/, where the key is the
-// EHDP-data branch — or "prod_prod", the one environment whose template output
-// differs from its data-branch siblings. See BASELINE_ROOT below. The harness
-// reads the key off the running site, so --check selects its own baseline and
-// prints which one it used.
+// Capture only. Comparing two captures — a PR against its base branch — is
+// site-characterization-compare.mjs, which drives this script once per side.
+// There is no committed baseline any more: see
+// documents/characterization-pr-diff-plan-2026-11-18.md for why.
 //
-// Plan and ledger: documents/site-characterization-plan-2026-08-23.md
+// Original plan and probe validation: documents/site-characterization-plan-2026-08-23.md
 
 import { chromium } from "playwright";
 import { execFileSync } from "node:child_process";
-import { appendFileSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
 import { availableParallelism } from "node:os";
 import { pathToFileURL } from "node:url";
 import { ensureDevServer } from "./dev-server.mjs";
 import { collectAllPaths, mapPool } from "./site-urls.mjs";
-import { summarize, renderText, renderMarkdown } from "./site-characterization-summary.mjs";
 
 // ----------------------------------------------------------------------- //
 // configuration
 // ----------------------------------------------------------------------- //
 
 // A fixed viewport, because overflowX and every zero-size probe are viewport
-// relative. Changing this number invalidates the whole baseline, so it is a
-// constant rather than a flag.
+// relative. A constant rather than a flag, so the two sides of a comparison —
+// both captured by this one script — cannot be taken at different sizes.
 const VIEWPORT = { width: 1280, height: 900 };
 
 // Browser pages in flight. Derived from the machine rather than fixed, because
@@ -81,67 +75,6 @@ const DEFAULT_CONCURRENCY = Math.min(
     Math.max(CONCURRENCY_FLOOR, availableParallelism()),
 );
 
-// Baselines are filed by what actually changes the site's output, not by Hugo
-// environment name. The precedent is scripts/nr-characterization-baseline/ on
-// feature-MOD-Lab-NR-recode-refactor, which splits by EHDP-data branch.
-//
-// Two things vary here, not one:
-//
-//   - data_branch. staging and production carry different indicator data, so a
-//     production-data server checked against a staging baseline reports content
-//     differences as regressions.
-//   - prod_prod. head.html:46-53 branches on the environment NAME, not on the
-//     data branch: only prod_prod emits robots "all" (or "noindex" for the
-//     resources section), where every other environment emits "noindex,
-//     nofollow" on every page. So prod_prod and dev_prod share production data
-//     and still differ in meta.robots on all 925 pages.
-//
-// Hence three keys, not four — prod_prod is always production data:
-//
-//   staging/     dev_stage, local_stage, prod_stage
-//   production/  dev_prod, development, local_prod, production
-//   prod_prod/   prod_prod
-//
-// Paths and asset references are recorded prefix-relative (see CAPTURE), so one
-// baseline checks from any environment in its row whatever path it is mounted
-// at — that is the property that makes the split work at all.
-const BASELINE_ROOT = "scripts/site-characterization-baseline";
-const CURRENT_DIR = "scripts/site-characterization-current";
-
-// Above this many differing pages, --check reports what it captured rather than
-// re-capturing each one sequentially. recapture() guards against a per-page
-// capture race, and a race does not reach hundreds of pages at once — a
-// difference that wide is systematic, so arbitration is pure cost on a result
-// that will not change.
-//
-// The cost is not marginal. A one-line template edit that moved `lang` on every
-// page sent the CI job into a 12-minute un-concurrent re-capture of all 925 and
-// hit `timeout-minutes: 20` having reported NOTHING — no field summary, no
-// artifact, and the base-branch control skipped, because `if: failure()` is
-// false for a cancelled job `[run 32802721473, 2026-08-25: sweep 6m15s, then
-// "925 page(s) differ ... re-capturing sequentially", cancelled at 20m15s]`.
-// The harness was slowest exactly when it had the most to say.
-//
-// 25 is above every arbitration count observed here — 18 before the
-// Leaflet-tile and quiescence fixes, 2 after them, 0 on the prod_prod capture,
-// and 3 in the one failure that justifies recapture() at all — and far below
-// anything systematic. A full-cap re-capture has never been run: at the
-// >=0.78 s/page the timed-out run implies (720s for 925 pages, and it had not
-// finished), 25 pages is on the order of 20-30s.
-//
-// Only --check is capped. --baseline arbitrates two sweeps of the SAME commit,
-// where a wide disagreement means something is wrong that a re-capture will not
-// settle either; it is rare, run by hand, and under no timeout.
-const ARBITRATION_CAP = 25;
-
-// Where --check writes the two section-filtered trees it actually diffs. Kept
-// inside the repo and deliberately short: `git diff --no-index` returns the
-// correct exit code but prints ZERO lines of diff when handed a long path,
-// which reads as a broken harness rather than as a failing check
-// `[verified 2026-08-23: exit 1 and no output against a ~150-char temp path;
-// full field-level output for the same comparison under C:/temp]`.
-const DIFF_DIR = "scripts/.sc-check";
-
 // Hosts whose requests are aborted before they can inject anything.
 //
 // This is not a general third-party block. Datawrapper, AirNow and forecast7
@@ -164,11 +97,22 @@ const DIFF_DIR = "scripts/.sc-check";
 // Kept: whether head.html still emits the <script> tag that loads it, since
 // that tag is parser-inserted and appears in `assets` either way. It also makes
 // the baseline independent of Google's uptime, which would otherwise churn it.
+//
+// The CARTO basemap hosts are blocked for a different reason: every tile spends
+// the site's monthly tile quota, which was 80% used when the key was restricted
+// to the live domain on 2026-11-19. No probe here reads tiles — `img` stopped
+// counting Leaflet tiles in 2026-08 — so aborting them changes no recorded field
+// except through a map that reacts to tile errors, and both sides of a
+// comparison abort the same requests.
 const BLOCKED_HOSTS = [
     "translate.google.com",
     "translate.googleapis.com",
     "www.gstatic.com",
     "www.googletagmanager.com",
+    "a.basemaps.cartocdn.com",
+    "b.basemaps.cartocdn.com",
+    "c.basemaps.cartocdn.com",
+    "d.basemaps.cartocdn.com",
 ];
 
 // The Task 1 sample: smoke's own one-per-template-kind list, plus pages that
@@ -748,7 +692,7 @@ const write = (outDir, result) => {
     writeFileSync(file, JSON.stringify(recordFor(result), null, 4) + "\n");
 };
 
-const walk = (dir, base = "") => readdirSync(dir, { withFileTypes: true })
+export const walk = (dir, base = "") => readdirSync(dir, { withFileTypes: true })
     .flatMap((e) => e.isDirectory() ? walk(`${dir}/${e.name}`, `${base}${e.name}/`) : [`${base}${e.name}`]);
 
 // ----------------------------------------------------------------------- //
@@ -787,7 +731,7 @@ const walk = (dir, base = "") => readdirSync(dir, { withFileTypes: true })
 // captures that disagree are arbitrated by a third taken alone. That is worth
 // having whatever the cause turns out to be, and it is the same answer
 // smoke-pages.mjs reaches for.
-const recapture = async (browser, baseURL, userAgent, prefix, outDir, paths) => {
+export const recapture = async (browser, baseURL, userAgent, prefix, outDir, paths) => {
 
     const results = [];
 
@@ -800,129 +744,32 @@ const recapture = async (browser, baseURL, userAgent, prefix, outDir, paths) => 
     return results;
 };
 
-// Paths whose records differ between two capture directories.
-// `only`, where given, restricts the comparison to files the run actually
-// captured — see project() for why sample mode needs it.
-const differingPaths = (dirA, dirB, only = null) => walk(dirA)
-    .filter((rel) => rel !== META_FILE)
-    .filter((rel) => !only || only.has(rel))
-    .filter((rel) => {
-        try {
-            return readFileSync(`${dirA}/${rel}`, "utf8") !== readFileSync(`${dirB}/${rel}`, "utf8");
-        } catch {
-            return true;
-        }
-    })
-    .map((rel) => JSON.parse(readFileSync(`${dirA}/${rel}`, "utf8")).path);
-
 // ----------------------------------------------------------------------- //
-// baseline metadata
+// capture metadata
 // ----------------------------------------------------------------------- //
 
-// A baseline is a fact about one commit AND one environment, and neither is
-// recoverable from the records themselves.
-//
-// The environment half is not paranoia. meta.robots reads "noindex, nofollow"
-// on every page outside prod_prod, and under prod_prod reads "all" except on
-// the resources section, which reads "noindex" (head.html:46-53). Diffing a
-// dev_stage baseline against a prod_prod run therefore reports ~925 robots
-// changes that are nothing of the kind, and the real regressions are lost in
-// them. --check refuses the comparison rather than let that read as a finding.
-const META_FILE = "_meta.json";
-
-// The commit of the SITE UNDER TEST, which is not always the commit this
-// process runs from. A base-control CI job runs the harness out of the PR's
-// checkout while the site it sweeps is built from base/, so `git rev-parse
-// HEAD` there names the harness rather than the site — and the two artifacts
-// then agree on the one field meant to tell them apart `[run 33019503991,
-// 2026-08-26: the sweep's report and the base's both recorded edf2e17299, the
-// PR merge ref]`. That job passes the base sha in; everywhere else the working
-// directory IS the site's tree and the git call is right.
-const gitHead = () => {
-    const declared = process.env.SITE_UNDER_TEST_COMMIT;
-    if (declared) return declared;
-    try {
-        return execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
-    } catch {
-        return null;
-    }
-};
-
-const writeMeta = (dir, { prefix, pages, all, arbitrated, cleared, capped, env, pagefind, hugo, dataCommit }) => {
-    writeFileSync(`${dir}/${META_FILE}`, JSON.stringify({
-        capturedAt: new Date().toISOString(),
-        gitHead: gitHead(),
-        baselineKey: env.key,
-        hugoEnv: env.hugoEnv,
-        dataBranch: env.dataBranch,
-        // Which EHDP-data commit the branch above pointed at when this was
-        // captured. Recorded, never gated — see fetchDataCommit(). Null means
-        // the lookup failed, and a baseline captured before this field existed
-        // has no key here at all; --check treats both the same way, as nothing
-        // to say rather than as a mismatch.
-        dataCommit,
-        // Whether Pagefind's index was served at capture time. `hugo server`
-        // does not build it, and without it the search UI never mounts — worth
-        // one button and one input on every page `[measured 2026-08-24: 40 of
-        // 40 sample pages, controls.button and controls.input each +1, no other
-        // field touched]`. Recorded rather than assumed so --check can refuse a
-        // comparison across the two states instead of reporting 925 regressions.
-        pagefind,
-        // Which Hugo built the site this baseline describes, and whether that is
-        // known or merely likely. `owned: true` means this process spawned the
-        // server, so the version is the server's; `owned: false` means the
-        // server came from DE_BASE_URL or was already running, and the version
-        // describes the binary this checkout would have used. Recorded, not gated:
-        // measured 2026-08-24, v0.147.3 and v0.147.9 build this site to
-        // byte-identical output across 2936 files, the only difference being the
-        // build_datetime meta on the three home pages, which no record reads.
-        hugo: hugo ?? null,
-        // Informational only. The prefix no longer gates the check — records are
-        // prefix-relative, so an environment may be served at any path.
-        prefix,
-        mode: all ? "all" : "sample",
-        pages,
-        // Which pages in this capture did not come from the concurrent sweep.
-        // `arbitrated` were re-captured sequentially — because two sweeps
-        // disagreed (--baseline) or because they differed from the baseline
-        // (--check); `cleared` is the --check subset that then matched, so
-        // contention rather than change. `capped` says the --check re-capture
-        // was skipped outright because more pages differed than
-        // ARBITRATION_CAP, which makes every record here a plain concurrent
-        // capture. Named rather than counted: a count cannot tell you which
-        // page to go and look at.
-        arbitrated,
-        cleared,
-        capped,
-        viewport: VIEWPORT,
-        blockedHosts: BLOCKED_HOSTS,
-    }, null, 4) + "\n");
-};
+// The name of the provenance file a capture directory may hold. This script no
+// longer writes one, but walk()-based enumerations and project() still skip it,
+// so a capture directory left over from before 2026-11-19 compares cleanly.
+export const META_FILE = "_meta.json";
 
 // ----------------------------------------------------------------------- //
 // section-filtered diff
 // ----------------------------------------------------------------------- //
 
-// Writes a copy of `srcDir` holding only the record sections in `keys`, so the
-// default check can gate on `structure` while `content` still lives in the
-// committed baseline for anyone who wants to read or diff it.
+// Writes a copy of `srcDir` holding only the record sections in `keys`, so a
+// comparison can look at `structure` alone while each capture still records
+// `content` for anyone who widens it with --content.
 //
-// A projection rather than a two-file-per-page layout: it keeps the committed
-// baseline at one readable file per page instead of 1,850 half-records, and the
-// projected trees are throwaway.
-//
-// `only` restricts the projection to a set of relative filenames. A sample-mode
-// --check captures 41 pages against a baseline holding 925, and without this the
-// diff reports the other 884 as deletions and fails every time. Scoping the
-// projection to what was actually captured is what makes the sample check mean
-// "these 41 pages are unchanged" rather than "the baseline is bigger than the run".
-const project = (srcDir, dstDir, keys, only = null) => {
+// A projection rather than a two-file-per-page layout: it keeps a capture at
+// one readable file per page instead of 1,850 half-records, and the projected
+// trees are throwaway.
+export const project = (srcDir, dstDir, keys) => {
 
     rmSync(dstDir, { recursive: true, force: true });
 
     for (const rel of walk(srcDir)) {
         if (rel === META_FILE) continue;
-        if (only && !only.has(rel)) continue;
         const record = JSON.parse(readFileSync(`${srcDir}/${rel}`, "utf8"));
         const kept = { path: record.path, status: record.status };
         for (const k of keys) kept[k] = record[k];
@@ -943,24 +790,17 @@ const parseArgs = (argv) => {
     };
     return {
         all: argv.includes("--all"),
-        baseline: argv.includes("--baseline"),
-        check: argv.includes("--check"),
-        content: argv.includes("--content"),
         out: at("--out"),
         concurrency: Number(at("--concurrency")) || DEFAULT_CONCURRENCY,
     };
 };
 
 const USAGE = `Usage:
-  node scripts/site-characterization.mjs --baseline [--all]     write the committed baseline
-  node scripts/site-characterization.mjs --check    [--all]     diff the structure half against it
-  node scripts/site-characterization.mjs --check --content      diff structure AND content
-  node scripts/site-characterization.mjs --out <dir> [--all]    raw capture, no baseline involved
+  node scripts/site-characterization.mjs --out <dir> [--all]    capture every page (or the sample) into <dir>
 
   --concurrency N   browser pages in flight (default ${DEFAULT_CONCURRENCY})
 
-Under PowerShell, prefer the npm scripts: \`npm run characterize:site -- --check\` does NOT work,
-because PowerShell eats the \`--\` and the script sees an empty argv.`;
+To compare two trees, use site-characterization-compare.mjs (npm run characterize:site).`;
 
 // Playwright's default UA says "HeadlessChrome", which some third parties
 // refuse — forecast7.com answers 403 to it, so the heat-syndrome embed renders
@@ -1079,25 +919,14 @@ const readEnvironment = async (browser, baseURL) => {
 `
                 + `head.html emits both as top-level lets in an inline script; check they are
 `
-                + `still emitted before trusting any baseline captured from this server.`);
+                + `still emitted before trusting any capture from this server.`);
         }
 
-        // prod_prod is the only environment whose TEMPLATE output differs from
-        // its data-branch siblings, so it gets its own key.
-        return { ...env, key: env.hugoEnv === "prod_prod" ? "prod_prod" : env.dataBranch };
+        return env;
 
     } finally {
         await page.close();
     }
-};
-
-// The baseline keys that already exist on disk, for an error message that tells
-// you what you could have pointed at instead.
-const existingBaselines = () => {
-    if (!existsSync(BASELINE_ROOT)) return [];
-    return readdirSync(BASELINE_ROOT, { withFileTypes: true })
-        .filter((d) => d.isDirectory() && existsSync(`${BASELINE_ROOT}/${d.name}/${META_FILE}`))
-        .map((d) => d.name);
 };
 
 const browserUserAgent = async (browser) => {
@@ -1109,11 +938,14 @@ const browserUserAgent = async (browser) => {
 
 const main = async () => {
 
-    const { all, baseline, check, content, out, concurrency } = parseArgs(process.argv.slice(2));
+    const { all, out, concurrency } = parseArgs(process.argv.slice(2));
 
-    if ([baseline, check, Boolean(out)].filter(Boolean).length !== 1) {
+    // process.exitCode rather than process.exit() on every path: exiting
+    // straight after a fetch() can abort Node on Windows with 127.
+    if (!out) {
         console.error(USAGE);
-        process.exit(2);
+        process.exitCode = 2;
+        return;
     }
 
     const { baseURL, stop, pagefind, hugo } = await ensureDevServer();
@@ -1125,9 +957,8 @@ const main = async () => {
 
     const browser = await chromium.launch({ headless: true });
 
-    // Which baseline this server belongs to, read from the running site BEFORE
-    // sweeping — pointing at the wrong environment then costs one page load
-    // rather than a full capture.
+    // Which environment this server is, read from the running site before
+    // sweeping, so pointing at the wrong server costs one page load.
     let env;
 
     try {
@@ -1136,104 +967,44 @@ const main = async () => {
         await browser.close();
         await stop();
         console.error(String(e.message ?? e));
-        process.exit(2);
+        process.exitCode = 2;
+        return;
     }
-
-    const baselineDir = `${BASELINE_ROOT}/${env.key}`;
-    const outDir = out || (baseline ? baselineDir : CURRENT_DIR);
-
-    let baselineMeta = null;
-
-    if (check) {
-        if (!existsSync(`${baselineDir}/${META_FILE}`)) {
-            await browser.close();
-            await stop();
-            const have = existingBaselines();
-            console.error(
-                `No baseline for "${env.key}" — looked in ${baselineDir}/.
-` +
-                `  hugo environment: ${env.hugoEnv}
-` +
-                `  EHDP-data branch: ${env.dataBranch}
-
-` +
-                `Capture one with --baseline against this server, or point DE_BASE_URL at an
-` +
-                `environment that has one. Baselines present: ${have.length ? have.join(", ") : "(none)"}`);
-            process.exit(2);
-        }
-        baselineMeta = JSON.parse(readFileSync(`${baselineDir}/${META_FILE}`, "utf8"));
-
-        // Comparing a searched site against a search-less one (or the reverse)
-        // moves controls.button and controls.input on every page, which buries
-        // anything real under 925 diffs. Refuse the comparison and name the fix
-        // rather than spend a full sweep producing noise. Baselines captured
-        // before this field existed have `pagefind` undefined; those are not
-        // gated, since we cannot know which state they hold.
-        if (baselineMeta.pagefind !== undefined && baselineMeta.pagefind !== pagefind) {
-            await browser.close();
-            await stop();
-            console.error(
-                `Pagefind mismatch: this server ${pagefind ? "serves" : "does not serve"} the search `
-                + `index, the "${env.key}" baseline was captured ${baselineMeta.pagefind ? "with" : "without"} it.
-`
-                + `Every page would differ on controls.button and controls.input.
-
-`
-                + (pagefind
-                    ? `Re-capture the baseline with --baseline, or point DE_BASE_URL at a server without the index.`
-                    : `Build it: npx -y pagefind --site docs   (against this server's publishDir, then re-run)`));
-            process.exit(2);
-        }
-    }
-
-    // Once per run, before the sweep. A failure costs at most the 5s timeout and
-    // changes nothing else about the run.
-    const dataCommit = await fetchDataCommit(env.dataRepo, env.dataBranch);
 
     console.log(`Environment: ${env.hugoEnv} (EHDP-data ${env.dataBranch}) at ${prefix} `
-        + `— baseline "${env.key}" — pagefind ${pagefind ? "served" : "ABSENT"}`
-        + `
-Hugo: ${hugo?.version ?? "unknown"}`
+        + `— pagefind ${pagefind ? "served" : "ABSENT"}`
+        + `\nHugo: ${hugo?.version ?? "unknown"}`
         + `${hugo?.owned ? "" : " (this checkout's pinned binary — the server was not started by this process)"}`
         // Printed rather than inferred: DEFAULT_CONCURRENCY is derived from the
         // machine, so the same command runs at a different width on a developer
         // box and on a CI runner, and two sweep timings are not comparable
         // without knowing which width each was taken at.
-        + `
-Concurrency: ${concurrency} (${availableParallelism()} logical processors)`
-        + `
-EHDP-data: ${env.dataBranch} @ `
-        + (dataCommit
-            ? `${dataCommit.sha.slice(0, 10)} (${dataCommit.date?.slice(0, 10) ?? "date unknown"})`
-            : "unknown"));
+        + `\nConcurrency: ${concurrency} (${availableParallelism()} logical processors)`);
 
     const paths = all ? await collectAllPaths(baseURL) : SAMPLE;
     const userAgent = await browserUserAgent(browser);
 
-    rmSync(outDir, { recursive: true, force: true });
-    mkdirSync(outDir, { recursive: true });
+    rmSync(out, { recursive: true, force: true });
+    mkdirSync(out, { recursive: true });
 
     let done = 0;
     let failed = 0;
-    let unsettled = [];
+    const unsettled = [];
     let consoleErrorTotal = 0;
     let rawHashedAssets = 0;
 
-    // Sweeps `paths` into `dir` at `concurrency`, accumulating the run stats
-    // above. Extracted so --baseline can run it twice: one sweep cannot tell an
-    // anomalous capture from a real one, and two disagreeing sweeps can.
-    const sweep = (dir, at) => mapPool(paths, at, async (path) => {
+    try {
+        await mapPool(paths, concurrency, async (path) => {
 
             const result = await capturePage(browser, baseURL, path, userAgent, prefix);
-            write(dir, result);
+            write(out, result);
 
             done++;
             consoleErrorTotal += result.consoleErrors.length;
 
-            // Task 1 step 6's positive control for the fingerprint strip: count
-            // raw asset names that actually carried a 16-hex segment. A strip
-            // that never had anything to strip passes by construction.
+            // The positive control for the fingerprint strip: count raw asset
+            // names that actually carried a 16-hex segment. A strip that never
+            // had anything to strip passes by construction.
             if (result.record) {
                 rawHashedAssets += result.record.rawAssetUrls
                     .filter((n) => /\.[0-9a-f]{16,}\.(js|css)$/.test(n)).length;
@@ -1248,86 +1019,34 @@ EHDP-data: ${env.dataBranch} @ `
 
             if (done % 50 === 0) console.log(`      ... ${done}/${paths.length}`);
         });
-
-    let arbitrated = [];
-    let cleared = [];
-    let capped = false;
-
-    try {
-        await sweep(outDir, concurrency);
-
-        // --baseline arbitrates against a second sweep. A baseline entry taken
-        // from an anomalous capture would fail every check from then on, so it
-        // is worth a second pass on an operation this rare.
-        if (baseline && !failed) {
-            const verifyDir = `${DIFF_DIR}/verify`;
-            rmSync(verifyDir, { recursive: true, force: true });
-            mkdirSync(verifyDir, { recursive: true });
-
-            console.log("\nVerifying the baseline against a second sweep...");
-            done = 0;
-            await sweep(verifyDir, concurrency);
-
-            arbitrated = differingPaths(outDir, verifyDir);
-            if (arbitrated.length) {
-                console.log(`${arbitrated.length} page(s) disagreed between sweeps — re-capturing sequentially:`);
-                for (const p of arbitrated) console.log(`      ${p || "(home)"}`);
-                await recapture(browser, baseURL, userAgent, prefix, outDir, arbitrated);
-            }
-            rmSync(verifyDir, { recursive: true, force: true });
-        }
-
-        // --check arbitrates only what differs from the baseline. A page that
-        // agrees on a calm sequential re-capture was contending, not changed.
-        if (check && !failed) {
-            const captured = all ? null : new Set(
-                walk(outDir).filter((rel) => rel !== META_FILE));
-            const suspect = differingPaths(baselineDir, outDir, captured);
-            if (suspect.length > ARBITRATION_CAP) {
-                capped = true;
-                console.log(`\n${suspect.length} page(s) differ from the baseline — past the `
-                    + `${ARBITRATION_CAP}-page arbitration cap, so they are reported as captured `
-                    + `and NOT re-captured sequentially. A capture race does not reach this many `
-                    + `pages at once; a difference this wide is systematic. Nothing below is `
-                    + `arbitrated, so treat every page named as a real difference.`);
-            } else if (suspect.length) {
-                console.log(`\n${suspect.length} page(s) differ from the baseline — re-capturing sequentially before reporting.`);
-                await recapture(browser, baseURL, userAgent, prefix, outDir, suspect);
-                arbitrated = suspect;
-                const still = new Set(differingPaths(baselineDir, outDir, captured));
-                cleared = suspect.filter((p) => !still.has(p));
-            }
-        }
-
     } finally {
         await browser.close();
         await stop();
     }
 
-    console.log(`\nCaptured ${done - failed}/${paths.length} pages into ${outDir}`);
+    console.log(`\nCaptured ${done - failed}/${paths.length} pages into ${out}`);
     console.log(`Fingerprinted asset references seen (strip control): ${rawHashedAssets}`);
-    console.log(`Console errors across the sweep (NOT baselined — that is smoke's job): ${consoleErrorTotal}`);
+    console.log(`Console errors across the sweep (not compared — that is smoke's job): ${consoleErrorTotal}`);
 
-    // A page that hit the quiescence cap was measured mid-change, so its record
-    // is the one to suspect first when the baseline churns. Named, not counted:
-    // a count cannot tell you which page to go and look at.
     // A page that answers non-200 is not necessarily a failure — 404.html is in
     // the --all set on purpose — but a sample entry that has always 404'd is
     // invisible otherwise. zh/data-stories/geographies/ was one, from Task 1
     // until 2026-08-24: it was added to stop `lang` reading constant, and the
     // 404 page renders lang="en", so it contributed nothing while looking like
     // coverage.
-    const nonOk = walk(outDir)
+    const nonOk = walk(out)
         .filter((rel) => rel !== META_FILE)
-        .map((rel) => JSON.parse(readFileSync(`${outDir}/${rel}`, "utf8")))
+        .map((rel) => JSON.parse(readFileSync(`${out}/${rel}`, "utf8")))
         .filter((r) => r.status !== 200);
 
     if (nonOk.length) {
-        console.log(`
-${nonOk.length} page(s) did not answer 200:`);
+        console.log(`\n${nonOk.length} page(s) did not answer 200:`);
         for (const r of nonOk) console.log(`      ${r.status}  ${r.path || "(home)"}`);
     }
 
+    // A page that hit the quiescence cap was measured mid-change, so its record
+    // is the one to suspect first when a comparison churns. Named, not counted:
+    // a count cannot tell you which page to go and look at.
     if (unsettled.length) {
         console.log(`\n${unsettled.length} page(s) never reached DOM quiescence and were captured at the cap:`);
         for (const p of unsettled) console.log(`      ${p}`);
@@ -1336,155 +1055,7 @@ ${nonOk.length} page(s) did not answer 200:`);
     }
 
     if (failed) {
-        console.error(`\n${failed} page(s) failed to load — not writing a baseline or a verdict from a partial sweep.`);
-        process.exitCode = 1;
-        return;
-    }
-
-    // Provenance for the capture, not only for a committed baseline. A --check
-    // tree is what the CI failure artifact carries, and without this it is 925
-    // records with nothing saying which commit, environment, data branch or Hugo
-    // produced them — on a 14-day artifact retention, where the console log that
-    // prints the same facts is a separate object with its own lifetime
-    // `[2026-08-25: the base-control artifact from run 32905347134, downloaded
-    // and inventoried]`.
-    //
-    // Every enumeration here already skips META_FILE, so nothing downstream has
-    // to learn about the new file. NOT written for --out, which is the one mode
-    // that chooses its own path: an --out tree under BASELINE_ROOT carrying a
-    // _meta.json would register as a baseline key — baselineKeys() accepts any
-    // directory holding one — and so would let --out mint a baseline without the
-    // second sweep --baseline arbitrates against.
-    if (!out) {
-        writeMeta(outDir, { prefix, pages: paths.length, all, arbitrated, cleared, capped, env, pagefind, hugo, dataCommit });
-    }
-
-    if (baseline) {
-        console.log(`\nBaseline written to ${outDir}/ against ${prefix} at ${gitHead()?.slice(0, 10)} — commit it.`);
-        console.log(arbitrated.length
-            ? `${arbitrated.length} page(s) needed sequential arbitration; their records came from that pass.`
-            : "Both sweeps agreed on every page — no arbitration was needed.");
-        return;
-    }
-
-    if (!check) return;
-
-    // The gated sections. `content` is always captured and always committed;
-    // --content only widens what the check refuses to let through.
-    const keys = content ? ["structure", "content"] : ["structure"];
-
-    // In sample mode the baseline is a superset of what was captured, so both
-    // sides are projected through the INTERSECTION. In --all mode `only` is null
-    // and a page missing from the run still shows up as a deletion, which is a
-    // real regression worth failing on.
-    //
-    // The intersection rather than the captured set, because the sample contains
-    // pages the baseline cannot: `--all` enumerates from sitemap.xml, which lists
-    // no query strings, so data-explorer/asthma/?id=2380 has no baseline record
-    // and would otherwise fail every sample check as an addition. Those pages are
-    // named rather than silently dropped — an unmatched page is uncovered, and a
-    // check that quietly ignores what it cannot compare is the failure this whole
-    // harness is built against.
-    let only = null;
-    let unmatched = [];
-
-    if (!all) {
-        const captured = walk(CURRENT_DIR).filter((rel) => rel !== META_FILE);
-        const inBaseline = new Set(walk(baselineDir).filter((rel) => rel !== META_FILE));
-        only = new Set(captured.filter((rel) => inBaseline.has(rel)));
-        unmatched = captured.filter((rel) => !inBaseline.has(rel));
-    }
-
-    if (unmatched.length) {
-        console.log(`
-${unmatched.length} sample page(s) have no record in this baseline and were `
-            + `NOT compared:`);
-        for (const rel of unmatched) {
-            console.log(`      ${JSON.parse(readFileSync(`${CURRENT_DIR}/${rel}`, "utf8")).path}`);
-        }
-    }
-
-    project(baselineDir, `${DIFF_DIR}/base`, keys, only);
-    project(CURRENT_DIR, `${DIFF_DIR}/head`, keys, only);
-
-    if (cleared.length) {
-        console.log(`\n${cleared.length} page(s) differed under concurrency but matched on a sequential `
-            + `re-capture, so they are reported rather than failed:`);
-        for (const p of cleared) console.log(`      ${p || "(home)"}`);
-    }
-
-    console.log(`\nDiffing ${keys.join(" + ")} against the baseline captured at `
-        + `${baselineMeta.gitHead?.slice(0, 10)} (${baselineMeta.capturedAt})`);
-
-    // The field-level summary, computed from the two projected trees before the
-    // raw diff runs so it lands ABOVE it in the log. `git diff` stays the
-    // authority on pass/fail — this only describes what it is about to print.
-    const rels = [...new Set([...walk(`${DIFF_DIR}/base`), ...walk(`${DIFF_DIR}/head`)])];
-    const rows = summarize(`${DIFF_DIR}/base`, `${DIFF_DIR}/head`, rels);
-    let driftMd = null;
-    if (rows.length) console.log(renderText(rows, rels.length));
-
-    try {
-        execFileSync("git", ["diff", "--no-index", "--exit-code", `${DIFF_DIR}/base`, `${DIFF_DIR}/head`],
-            { stdio: "inherit" });
-        console.log(`\nCharacterization check PASSED — ${keys.length > 1 ? "both halves" : "the structure half"} `
-            + `matches the baseline.`);
-    } catch {
-        console.error(`\nCharacterization check FAILED — the summary above names every changed field; `
-            + `the raw diff follows it.`);
-        if (!content) {
-            console.error(`(Only ${keys.join(" + ")} was compared. Re-run with --content to include titles, `
-                + `heading text and link targets.)`);
-        }
-
-        // Did the data move, or did I? Both metas describe the same environment
-        // by construction — --check refuses a cross-environment comparison — so
-        // the commit is the only thing here that can differ. Silent when either
-        // side has no dataCommit, which includes every baseline captured before
-        // the field existed, and silent on a green run because this whole block
-        // is the failure path.
-        const wasSha = baselineMeta.dataCommit?.sha;
-        const nowSha = dataCommit?.sha;
-        if (wasSha && nowSha) {
-            const short = (x) => x.slice(0, 10);
-            const slug = githubSlug(env.dataRepo);
-            if (wasSha === nowSha) {
-                console.error(`
-EHDP-data has NOT moved since the baseline (${short(wasSha)}) — the data is not the explanation.`);
-                driftMd = `**EHDP-data has not moved** since the baseline (\`${short(wasSha)}\`), `
-                    + `so the data is not the explanation.
-`;
-            } else {
-                const compare = slug ? `https://github.com/${slug}/compare/${wasSha}...${nowSha}` : null;
-                console.error(`
-EHDP-data moved since the baseline: ${short(wasSha)} -> ${short(nowSha)}`
-                    + (compare ? `
-      ${compare}` : ""));
-                driftMd = `**EHDP-data moved** since the baseline: \`${short(wasSha)}\` -> \`${short(nowSha)}\``
-                    + (compare ? ` ([compare](${compare}))` : "") + `
-`;
-            }
-        }
-
-        // Two independent comparisons of the same two trees, so disagreement
-        // means the summary is blind to something git can see — which would
-        // otherwise be invisible, because the raw diff below still prints it and
-        // the run still fails. Say so rather than let a silent gap accumulate.
-        if (!rows.length) {
-            console.error(`\nWARNING: git found a difference and the field summary found none. `
-                + `The summary is not seeing everything the diff sees — read the raw diff, and treat `
-                + `site-characterization-summary.mjs as suspect.`);
-        }
-
-        // GitHub renders this on the run page, so a red run is legible without
-        // opening the log. Unset locally, which is what keeps local output
-        // identical either way.
-        if (process.env.GITHUB_STEP_SUMMARY && rows.length) {
-            appendFileSync(process.env.GITHUB_STEP_SUMMARY,
-                renderMarkdown(rows, rels.length) + (driftMd ? `
-${driftMd}` : ""));
-        }
-
+        console.error(`\n${failed} page(s) failed to load — this capture is partial and must not be compared.`);
         process.exitCode = 1;
     }
 };
