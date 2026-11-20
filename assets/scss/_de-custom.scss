@@ -891,6 +891,14 @@ $color-data-explorer: #0A408A;
         // border: 1px solid rgba(0, 0, 0, 0.12);
     }
 
+    // The legend shares the card's z-index and comes later in the DOM, so it paints over a
+    // dropdown that opens down into it (#1581: a 900px-tall window hid 2011-2013 in a long Time
+    // menu). Lift the card only while a menu is open: on short windows the card and legend
+    // overlap at rest, and a permanent lift would hide the legend instead.
+    .de-main-details:has(.dropdown-menu.show) {
+        z-index: 3;
+    }
+
     #v-pills-tabContent {
         border: 1px solid rgba(0, 0, 0, 0.12);
     }
