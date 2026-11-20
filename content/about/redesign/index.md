@@ -50,7 +50,7 @@ Our goal is for you to be able to put our data and information to work improving
 
 For example, take a look at our re-vamped [Data Explorer]({{< relURL >}}data-explorer/). &nbsp;
 
-![](data-explorer-screenshot.png)
+![](data-explorer-screenshot.webp)
 
 On the page:&nbsp;
 

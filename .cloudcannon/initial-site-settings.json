@@ -7,9 +7,9 @@
     "baseURL": "/",
     "noTimes": false,
     "hugoVersion": "0.147.3",
-    "rubyVersion": "2.7.3",
-    "nodeVersion": "20",
-    "denoVersion": "1.40.2",
+    "rubyVersion": "",
+    "nodeVersion": "24",
+    "denoVersion": "",
     "environment_variables": [
       {
         "key": "HUGO_CACHEDIR",

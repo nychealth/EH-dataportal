@@ -15,7 +15,7 @@
 
         <div class="medium my-auto">
             <h1 class="titleheader py-2 px-4">
-                {{- .Title -}}
+                {{ partial "section-icon.html" $.Section }}{{- .Title -}}
             </h1>
         </div>
     </div>
@@ -72,7 +72,7 @@
         {{- if .IsTranslated -}}
             <nav class="navbar navbar-default my-2">
                     <ul class="nav navbar-nav fs-sm">
-                        <span class="mr-2">Read this data story in:</span> 
+                        <li class="mr-2">Read this data story in:</li> 
                         {{- range .Translations -}}
                         <li class="mb-1"><a href="{{ .RelPermalink }}">{{ .Language.LanguageName }}</a>&nbsp;|&nbsp;</li>  
                         {{- end -}}

@@ -1,0 +1,27 @@
+{{/*
+    Each of a topic's indicator names and descriptions as a hidden heading, shared by the five
+    topic index pages (nr-topic-index.html) and the generated report pages (nr-report.html).
+    The report page renders its indicator cards from EHDP-data in the browser, so without these
+    a reader that does not run JS gets none of that vocabulary. d-none keeps them off screen
+    and out of the accessibility tree.
+
+    Call with:
+      content_key — the topic's content_yml key, which is exactly the JSON's `title` field
+
+    Keyed on content_yml, not .File.BaseFileName: on a generated page .File.BaseFileName is
+    the literal "_content", and a `where` against it matches zero rows with no error at all.
+
+    No id, despite what the copy of this block in topiclanding.html claimed: an id is what
+    makes Pagefind emit a sub-result, and a sub-result would link to a d-none heading. The
+    data-explorer copy has an id because footer.html rewrites its #IndicatorID- anchor into a
+    ?id= query the explorer acts on; nothing equivalent exists on these pages.
+*/}}
+
+{{- $nr_indicator_names := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/metadata/nr_indicator_names.json")) | transform.Unmarshal -}}
+
+{{- range (where $nr_indicator_names "title" "eq" .content_key) -}}
+
+    <h1 class="d-none">{{ .indicator_name }}</h1>
+    <h2 class="d-none">{{ .indicator_description }}</h2>
+
+{{- end -}}

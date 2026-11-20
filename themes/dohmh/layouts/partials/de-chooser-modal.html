@@ -1,0 +1,69 @@
+{{/* de-chooser-modal.html */}} 
+
+{{- $pages := where .Site.RegularPages.ByTitle "Section" "data-explorer" -}}
+
+{{/* Topics listed in the columns. The hideFromRange pages (data index, indicator catalog) are
+     listed separately below, so drop them before splitting, or the columns come out uneven. */}}
+
+{{- $topics := slice -}}
+{{- range $pages }}
+    {{- if not .Params.hideFromRange }}
+        {{- $topics = $topics | append . -}}
+    {{- end }}
+{{- end }}
+
+{{/* Three columns from lg (960px), two from md (720px), one below; alphabetical down each
+     column. Below lg the third column wraps under the first two, so reading order holds. */}}
+
+{{- $perColumn := div (add (len $topics) 2) 3 -}}
+
+{{- range $column := seq 0 2 }}
+
+<div class="col-md-6 col-lg-4">
+
+    {{- range first $perColumn (after (mul $column $perColumn) $topics) }}
+
+        {{/* Build JSON for this page */}}
+
+        {{- $indicatorsJSON := slice -}}
+
+        {{- range .Params.indicators }}
+            {{- $indicatorsJSON = $indicatorsJSON | append (dict "header" .header "indicators" .IndicatorID) -}}
+        {{- end }}
+
+        {{- $json := $indicatorsJSON | jsonify -}}
+
+        <div class="de-chooser-card">
+            <a
+                href="{{ .RelPermalink }}"
+                class="font-weight-bold de-topic-indicator-link stretched-link"
+                data-indicators="{{ $json }}"
+                data-topic-title="{{ .Title }}"
+                data-topic-destination="{{ .RelPermalink }}">
+                {{ .Title }}
+            </a>
+
+            {{ with .Params.blurb }} <p style="font-size:14px" class=""> {{ . }} </p>{{ end }}
+
+        </div>
+
+    {{- end }}
+
+</div>
+
+{{- end }}
+
+{{- range .Site.RegularPages.ByTitle }} 
+
+    {{- if and (eq .Section "data-explorer") .Params.hideFromRange }}
+
+        <div class="col-6 mt-2 border-top pt-2">
+            <p class="mb-1">
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ with .Params.blurb }}: {{ . }}{{ end }}
+            </p>
+        </div>
+
+    {{- end }} 
+
+{{- end }}
+

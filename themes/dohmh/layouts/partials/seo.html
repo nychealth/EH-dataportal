@@ -1,22 +1,33 @@
 <!-- Standard SEO -->
 <meta name="description" content="{{ if .Description -}} {{ .Description }} {{ else if .Params.seo_description }} {{ .Params.seo_description }} {{ else if .Params.seo_title }} {{ .Params.seo_title }} {{ else }} {{ .Site.Data.globals.seo_defaults.seo_description }} {{- end }}">
-<link rel="canonical" href="{{ .Permalink }}" />
+{{- /* Pager pages 2..n are canonical to themselves, not to page 1 (audit N-095). Read the
+     paginator only on taxonomy and term pages: _default/list.html renders them and already
+     paginates, while calling .Paginator on any other list page would make Hugo publish
+     pager pages for it that do not exist today. */}}
+{{- $canonical := .Permalink }}
+{{- if in (slice "taxonomy" "term") .Kind }}{{ $canonical = .Paginator.URL | absURL }}{{ end }}
+<link rel="canonical" href="{{ $canonical }}" />
 <meta name="geo.placename" content="{{ .Site.Title }}" />
 
+{{- /* One processed image for og:image and twitter:image alike. Twitter used to get the
+     unprocessed path through relURL, which on the NR report pages names an assets/ file
+     Hugo never publishes (audit N-075). Permalink, not RelPermalink: both tags want an
+     absolute URL (A-129). */}}
+{{- $socialImage := (resources.Get (.Params.seo_image | default .Site.Data.globals.seo_defaults.seo_image)).Fill "2400x1260" }}
 <!-- Facebook OpenGraph -->
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="en_us" />
-<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:url" content="{{ $canonical }}" />
 <meta property="og:title" content="{{ if .Params.seo_title -}} {{ .Params.seo_title }} {{ else }} {{ .Title }} {{- end }} &ndash; {{ .Site.Title }}" />
 <meta property="og:description" content="{{ if .Params.seo_description -}} {{ .Params.seo_description }} {{ else }} {{ .Site.Data.globals.seo_defaults.seo_description }} {{- end }}" />
 <meta property="og:site_name" content="{{ .Site.Title }}" />
-{{ if .Params.seo_image }}{{ $src := resources.Get .Params.seo_image }}{{ $image := $src.Fill "2400x1260"}}<meta property="og:image" content="{{ $image.RelPermalink }}">{{ else }}{{ $src := resources.Get .Site.Data.globals.seo_defaults.seo_image }}{{ $image := $src.Fill "2400x1260"}}<meta property="og:image" content="{{ $image.RelPermalink }}">{{- end -}}
+<meta property="og:image" content="{{ $socialImage.Permalink }}">
 {{- range .Site.Data.globals.social.social_destinations }}
 <meta property="og:see_also" content="{{ .url }}" />{{- end -}}
 
 <!-- Twitter OpenGraph -->
 <meta name="twitter:title" content="{{ if .Params.seo_title -}} {{ .Params.seo_title }} {{ else }} {{ .Title }} {{- end }} &ndash; {{ .Site.Title }}">
 <meta name="twitter:description" content="{{ if .Params.seo_description }} {{ .Params.seo_description }} {{ else }} {{ .Site.Data.globals.seo_defaults.seo_description }} {{- end }}">
-<meta name="twitter:image" content="{{ if .Params.seo_image -}} {{ relURL .Params.seo_image }} {{ else }} {{ relURL .Site.Data.globals.seo_defaults.seo_image }} {{- end }}">
+<meta name="twitter:image" content="{{ $socialImage.Permalink }}">
 <meta name="twitter:site" content="@nycHealthy">
 <meta name="twitter:creator" content="@nycHealthy">

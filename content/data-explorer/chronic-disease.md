@@ -6,6 +6,14 @@ azlink: "https://www.nyc.gov/site/doh/health/health-topics/heart-disease.page"
 seo_title: "Chronic disease data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of chronic disease data in NYC."
+blurb: "Diabetes burden and complications"
+datatables: true
+arquero: true
+leaflet: true
+vega: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 tags:
 categories: ["healthoutcomes", "neighborhoods", "inequality", "airquality"]
 keywords:
@@ -24,7 +32,6 @@ indicators:
       - 2466
       - 2467
       - 2468
-
 related:
   - title: "Economic stability creates health"
     url: "data-stories/economic-stability/"
@@ -41,6 +48,6 @@ relatedData:
     url: "healthy-eating"
 ---
 
-Chronic diseases such as diabetes, heart disease, hypertension, and stroke are shaped by where people live, work, and play—factors like housing quality, neighborhood safety, access to healthy food, transportation, and economic opportunity. These conditions, and their inequitable distribution, are deeply linked to the built, social, and economic environments in NYC.
+Chronic diseases such as diabetes, heart disease, hypertension, and stroke are shaped by where people live, work, and play - factors like housing quality, neighborhood safety, access to healthy food, transportation, and economic opportunity. These conditions, and their inequitable distribution, are deeply linked to the built, social, and economic environments in NYC.
 
 ### Chronic disease and health

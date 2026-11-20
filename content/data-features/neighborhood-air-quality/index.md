@@ -2,6 +2,7 @@
 title: "Your Neighborhood's Air Quality"
 aliases:
   - /key-topics/airquality/aqe/
+  - /data-stories/aq/
 date: 2021-08-24T12:04:44-04:00
 draft: false
 seo_title: "Your Neighborhood's Air Quality"

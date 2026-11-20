@@ -10,6 +10,7 @@
 // ----------------------------------------------------------------------- //
 
 $(function () {
+
     var $window = $(window);
     var $headers = $('.cp-sticky-header');
 
@@ -36,11 +37,13 @@ $(function () {
 
         $headers.removeClass('cp-is-fixed').css('top', '');
         $headers.each(function () {
+
             var $h = $(this);
             var natH = $h.outerHeight();
             $h.parent().height(natH);
             $h.data('origTop', $h.parent().offset().top)
                 .data('origHeight', natH);
+
         });
     }
 
@@ -64,32 +67,41 @@ $(function () {
 
     var resizeTimer;
     $(window).on('resize.cp-sticky', function () {
+
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(function () {
             recordPositions();
             update();
         }, 200);
+
     });
 
     // --- apply fixed/unfixed state on scroll --- //
 
     function update() {
+
         var scrollTop = $window.scrollTop();
 
         $headers.each(function (i) {
+
             var $h = $(this);
             var origTop = $h.data('origTop');
             var h = $h.data('origHeight');
 
             if (scrollTop < origTop) {
+
                 $h.removeClass('cp-is-fixed').css('top', '');
+
             } else {
+
                 var fixedTop = 0;
                 var $next = $headers.eq(i + 1);
 
                 if ($next.length) {
+
                     var nextOrigTop = $next.data('origTop');
                     if (scrollTop > nextOrigTop - h) {
+
                         // Next header is displacing this one
 
                         fixedTop = -(scrollTop - (nextOrigTop - h));
@@ -97,6 +109,7 @@ $(function () {
                 }
 
                 $h.addClass('cp-is-fixed').css('top', fixedTop + 'px');
+
             }
         });
     }
@@ -130,9 +143,7 @@ $(function () {
         if (siteName && typeof window.cpReportZoomToSite === 'function') {
             window.cpReportZoomToSite(siteName);
         }
-
     });
-
 });
 
 
@@ -148,9 +159,7 @@ $(function () {
 // column and both children take the full computed width.
 
 function applyExplainWidth(spec, { pane }) {
-
     spec.vconcat.forEach((view) => { view.width = pane; });
-
 }
 
 function drawExplainChart() {
@@ -515,7 +524,6 @@ function drawExplainChart() {
         addResizeHandler(ciEl, drawCI);
 
     }
-
 }
 
 
@@ -524,10 +532,12 @@ function drawExplainChart() {
 // ----------------------------------------------------------------------- //
 
 document.addEventListener("DOMContentLoaded", () => {
+
     if (typeof vegaEmbed !== "function") {
         console.error("vegaEmbed not available. Are the Vega scripts loaded above this script?");
         return;
     }
     
     drawExplainChart();
+
 });

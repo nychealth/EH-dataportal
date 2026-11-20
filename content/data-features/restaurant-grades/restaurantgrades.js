@@ -1,55 +1,66 @@
 
 // set year default
 
-var year = '2011' 
+var year = '2011'; 
 
 // set gray overlay defaults:
 
-var lower = 1277956800000 // 2010.5
-var mid = 1293840000000 // value for 2011
-var upper = 1309492800000 // 2011.5; one year: 31536000000; 1/2 year: 15768000000
+var lower = 1277956800000; // 2010.5
+var mid = 1293840000000; // value for 2011
+var upper = 1309492800000; // 2011.5; one year: 31536000000; 1/2 year: 15768000000
 
 // changeYear runs on button click
 
 function changeYear(x) {
+
     year = Number(year);
-    year = year + x
-    document.getElementById('2020note').innerHTML = ''
+    year = year + x;
+    document.getElementById('2020note').innerHTML = '';
 
     // run interactions
 
     if (year < 2011) {
-    year = 2011
+
+    year = 2011;
+
     } else if (year == 2011) {
-    document.getElementById('downButton').disabled = true
+
+    document.getElementById('downButton').disabled = true;
+
     } else if (year > 2020) {
-    year = 2020
+
+    year = 2020;
+
     } else if (year == 2020) {
-    document.getElementById('upButton').disabled = true
-    document.getElementById('2020note').innerHTML = 'Data for 2020 are through 3/31/2020 only.'
+
+    document.getElementById('upButton').disabled = true;
+    document.getElementById('2020note').innerHTML = 'Data for 2020 are through 3/31/2020 only.';
+
     } else {
-    document.getElementById('downButton').disabled = false
-    document.getElementById('upButton').disabled = false
+
+    document.getElementById('downButton').disabled = false;
+    document.getElementById('upButton').disabled = false;
+
     }
-    console.log('year is:' + year)
-    document.getElementById('year').innerHTML = year
-    document.getElementById('year2').innerHTML = year
-    document.getElementById('year3').innerHTML = year
-    year = year.toString()
-    spec.transform[0].filter = `datum.Time == ${year}` // update spec with chosen year
-    vegaEmbed("#map", spec, {renderer: "svg"}) // re-run map
-    updateValues(year)
+    console.log('year is:' + year);
+    document.getElementById('year').innerHTML = year;
+    document.getElementById('year2').innerHTML = year;
+    document.getElementById('year3').innerHTML = year;
+    year = year.toString();
+    spec.transform[0].filter = `datum.Time == ${year}`; // update spec with chosen year
+    vegaEmbed("#map", spec, {renderer: "svg"}); // re-run map
+    updateValues(year);
 
     // get date for overlay
 
-    var date = year + '/01/01'
-    date = Math.floor(new Date(date).getTime())
-    console.log(date)
-    lower = date - 15768000000
-    upper = date + 15768000000
+    var date = year + '/01/01';
+    date = Math.floor(new Date(date).getTime());
+    console.log(date);
+    lower = date - 15768000000;
+    upper = date + 15768000000;
     line.layer[0].encoding.x.datum = lower;
     line.layer[0].encoding.x2.datum = upper;
-    vegaEmbed('#lineVis', line, {renderer: "svg"})
+    vegaEmbed('#lineVis', line, {renderer: "svg"});
 
 }
 
@@ -60,24 +71,27 @@ var partData = [];
 var uhfData = [];
 var cityValue = [];
 d3.csv('resto-data-full.csv').then(data => {
+
     fullData = data;
     // console.log(fullData)
 
-    updateValues(year)
-})
+    updateValues(year);
+
+});
 
 // updateValues runs on button click, and updates page-printed values
 
 function updateValues(x) {
+
     // console.log('to filter for:' + x)
 
-    partData = fullData.filter(row => row.Time == year)
+    partData = fullData.filter(row => row.Time == year);
     // console.log(partData)
 
     // get Citywide Value
 
-    cityValue = partData.filter(row => row.GeoTypeDesc == 'Citywide')
-    document.getElementById('citywide').innerHTML = cityValue[0].Percent + '%'
+    cityValue = partData.filter(row => row.GeoTypeDesc == 'Citywide');
+    document.getElementById('citywide').innerHTML = cityValue[0].Percent + '%';
 
     // get lowest value
 
@@ -86,8 +100,8 @@ function updateValues(x) {
         acc.Percent < loc.Percent
         ? acc
         : loc
-    )
-    document.getElementById('lowest').innerHTML = lowValue.Percent + "%"
+    );
+    document.getElementById('lowest').innerHTML = lowValue.Percent + "%";
 
     // get highest value
 
@@ -96,12 +110,12 @@ function updateValues(x) {
         acc.Percent > loc.Percent
         ? acc
         : loc
-    )
-    document.getElementById('highest').innerHTML = highValue.Percent + "%"
+    );
+    document.getElementById('highest').innerHTML = highValue.Percent + "%";
 
     // get median
 
-    uhfData = partData.filter(row => row.GeoTypeDesc == 'UHF 42')
+    uhfData = partData.filter(row => row.GeoTypeDesc == 'UHF 42');
     // console.log('uhf data:')
     // console.log(uhfData)
 
@@ -112,11 +126,12 @@ function updateValues(x) {
 
     valuesArray.sort(function(a,b) {
     return a - b;
-    })
+    });
     // console.log(valuesArray)
 
-    valuesArray.splice(0,20) // remove first 21 values
+    valuesArray.splice(0,20); // remove first 21 values
     // document.getElementById('median').innerHTML = valuesArray[0] + '%'
+
 }
 
 
@@ -221,11 +236,11 @@ var spec = {
         }
     }
     ]
-}
+};
 
 // initial embedding of the map
 
-vegaEmbed("#map", spec, {renderer: "svg"})
+vegaEmbed("#map", spec, {renderer: "svg"});
 
 /*
 // Event listener for the slider
@@ -321,7 +336,6 @@ var line = {
         "type": "temporal",
         "title": "",
         "scale": {"domain": [1262322000000, 1609477200000]}
-
         },
         "tooltip": [
         {"field": "Percent", "type": "quantitative", "title": "Percent of restaurants with A grades"}
@@ -329,6 +343,6 @@ var line = {
     }
     }
     ]
-}
+};
 
-vegaEmbed('#lineVis', line, {renderer: "svg"})
+vegaEmbed('#lineVis', line, {renderer: "svg"});

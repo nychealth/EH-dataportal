@@ -19,7 +19,7 @@
                 </div>
             </div>
 
-            <h1 class="h2 data-stories mb-3"><i class="fas fa-passport" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
+            <h1 class="h2 mb-3">{{ partial "section-icon.html" $.Section }}{{ .Title }}</h1>
             <div class="container-fluid px-0">
 
                 {{ $src := .Resources.GetMatch .Params.image }}
@@ -108,7 +108,7 @@
     <div class="row">
         <div class="col-md-8 col-sm-12 mx-auto">
             <h2>Pollutant Maps</h2>
-            <img src="{{ .Params.fullurl }}images/NyccasInstall_red.jpg" alt="NYCCAS installation" align="right" style="width:50%;" class="my-2 pl-2">
+            <img src="{{ .Params.fullurl }}images/NyccasInstall_red.webp" alt="NYCCAS installation" align="right" style="width:50%;" class="my-2 pl-2">
 
             {{- with .Resources.GetMatch "pollutant-maps.md" -}}
                 {{ .Content }}

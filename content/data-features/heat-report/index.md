@@ -1,6 +1,8 @@
 ---
 _schema: default
 title: 2026 NYC Heat-Related Mortality Report
+aliases:
+  - /key-topics/climatehealth/heat-report/
 draft: false
 date: 2026-06-14T10:14:56-04:00
 categories: [climatehealth, inequality, healthoutcomes]

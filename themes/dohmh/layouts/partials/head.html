@@ -10,7 +10,6 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'G-64BWDRHRGB');
     </script>
 
@@ -26,7 +25,6 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'G-PB98MPZ31B');
     </script>
 
@@ -41,12 +39,16 @@
       content/resources/ stays noindex in production — decided 2026-08-21, after
       the question was raised in the audit backlog. The section holds
       health-code-reference and sugar-lookup, which are public tools; keeping
-      them out of the index is deliberate, not an oversight.  */}}
+      them out of the index is deliberate, not an oversight.
+
+      data-explorer-old/ is noindex too (audit N-099): the retired explorer is
+      already kept out of page lists, the sitemap and Pagefind by its section's
+      cascade, and without this it still asked to be indexed as its own canonical.  */}}
 
 {{- $robots := "all" -}}
 {{- if ne hugo.Environment "prod_prod" -}}
     {{- $robots = "noindex, nofollow" -}}
-{{- else if eq .Section "resources" -}}
+{{- else if in (slice "resources" "data-explorer-old") .Section -}}
     {{- $robots = "noindex" -}}
 {{- end }}
 
@@ -64,7 +66,6 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-{{/*  <meta data-pagefind-filter="section[content]" content="Data Stories">  */}}
 
 <!-- Corrects IE Compatibility Mode -->
 
@@ -95,9 +96,11 @@
 
 {{- /*  content translations  */ -}}
 
+{{- /* AllTranslations, not Translations: Google wants each page to list itself among its
+       alternates, and the URLs fully qualified (audit N-074). */ -}}
 {{- if .IsTranslated -}}
-    {{- range .Translations }}
-        <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .RelPermalink }}" title="{{ .Language.LanguageName }}">
+    {{- range .AllTranslations }}
+        <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" title="{{ .Language.LanguageName }}">
     {{- end -}}
 {{- end }}
 
@@ -108,6 +111,7 @@
 {{- if .Params.mapLib }}
     <!-- nyc-lib css (for maps in the core framework)-->
     <link href="https://maps.nyc.gov/nyc-lib/v1.4.78/css/nyc-basic-lib.css" rel="stylesheet">
+    <link href={{ relURL "css/nyc-basic-lib-v1.2.79.css" }} rel="stylesheet">
 {{- end }}
 
 
@@ -170,6 +174,10 @@
     <meta data-pagefind-filter="section[content]" content="Data Explorer">
 {{- end }}
 
+{{- if (eq .Section "data-explorer-old") -}}
+    <meta data-pagefind-filter="section[content]" content="Data Explorer (Old)">
+{{- end }}
+
 {{- if (eq .Section "key-topics") -}}
     <meta data-pagefind-filter="section[content]" content="Key Topics">
 {{- end -}}
@@ -184,6 +192,37 @@
     let data_repo = "{{ $.Site.Params.data_repo }}";
     let data_branch = "{{ $.Site.Params.data_branch }}";
     let hugoEnv = "{{ hugo.Environment }}";
+
+</script>
+
+<script>
+
+    // Verbose tracing defaults on for every Hugo environment except the two that serve the
+    // real public site (production, prod_prod), so dev/staging/local work doesn't need a
+    // manual opt-in; localStorage.setItem('de_debug', '1' | '0') overrides either direction
+    // per browser. Site-wide (not data-explorer-specific) since hugoEnv already is — any
+    // page's inline JS or asset scripts can call debugLog() once loaded after this point.
+
+    // Reading localStorage can throw (a SecurityError where the browser blocks site data). Uncaught,
+    // that would abort this block before debugLog exists, and every script calling it would then
+    // fail with a ReferenceError (review finding #18), so a throw just means "no override".
+
+    let DE_DEBUG_OVERRIDE = null;
+
+    try {
+
+        DE_DEBUG_OVERRIDE = localStorage.getItem('de_debug');
+
+    } catch (e) {}
+
+    const DE_DEBUG = DE_DEBUG_OVERRIDE !== null
+        ? DE_DEBUG_OVERRIDE === '1'
+        : !['production', 'prod_prod'].includes(hugoEnv);
+
+    // Bound (not wrapped) so DevTools attributes the log line to the caller, not to here —
+    // a bound native console method adds no extra stack frame, unlike a plain wrapper function.
+
+    const debugLog = DE_DEBUG ? console.log.bind(console) : () => {};
 
 </script>
 

@@ -15,9 +15,13 @@ While most page-level resources can be stored in the page's content folder, HTML
 
 Storing resources in /assets is rarely necessary – this is for items that Hugo will process during the serve or build.   
 
+For data-story header images, set `image` to the image filename and `image_alt` to a concise description of the image. Leave `image_alt` empty when the image is decorative.
+
 ## Limit HTML in Markdown files  
 
 We have it enabled to support some layout stuff, but it would be better to avoid it. As the HTML gets more complex, it becomes harder to edit and manage. In the future, we may want to reconsider ways to use shortcodes for embedding charts in data stories, for example. 
+
+When HTML is needed for a standalone control that *does* something rather than *goes* somewhere — opening the email sign-up form, opening a note — use a button, not a link to `#`. For example: `<button type="button" class="btn btn-primary" data-subscribe-click="subscribe-page" data-toggle="modal" data-target="#subscribeModal">Open the subscription form</button>`. Inside a sentence, keep the link (`<a href="#" …>`): a button cannot wrap across lines with the text around it.
 
 ## Always use relative links  
 

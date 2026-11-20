@@ -14,20 +14,25 @@
 
 const cp_container_id = "cpVis";
 const aq_container_id = "aqChangeVis";
-const text_container_id = "EJ_text"
+const text_container_id = "EJ_text";
 
 // Updates the preposition and site name spans in the heading. The control
 // site (Van Wyck) isn't asking "did congestion pricing affect air quality"
 // of itself, so its heading collapses to just the site name.
 
 function updateSiteHeading(site) {
+
     const isControl = CP_SITES[site].isControlSite === true;
 
     const prefixEl = document.getElementById("site-question-prefix");
-    if (prefixEl) prefixEl.style.display = isControl ? "none" : "";
+    if (prefixEl) {
+        prefixEl.style.display = isControl ? "none" : "";
+    }
 
     const prepWrapEl = document.getElementById("site-prep-wrap");
-    if (prepWrapEl) prepWrapEl.style.display = isControl ? "none" : "";
+    if (prepWrapEl) {
+        prepWrapEl.style.display = isControl ? "none" : "";
+    }
 
     const prepEl = document.getElementById("site-prep");
     if (prepEl) prepEl.textContent = CP_SITES[site].preposition;
@@ -36,7 +41,9 @@ function updateSiteHeading(site) {
     if (nameEl) nameEl.textContent = getSiteDisplayName(site);
 
     const suffixEl = document.getElementById("site-question-suffix");
-    if (suffixEl) suffixEl.style.display = isControl ? "none" : "";
+    if (suffixEl) {
+        suffixEl.style.display = isControl ? "none" : "";
+    }
 }
 
 // Default selection
@@ -52,7 +59,6 @@ let currentSite = "CRZ";
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 const baseSpec = {
-    
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
         "text": "Change in air quality after congestion pricing",
@@ -512,7 +518,7 @@ const secondSpec = {
             }
         }
     ]
-}
+};
 
 
 // ----------------------------------------------------------------------- //
@@ -535,6 +541,7 @@ function buildCpSpec(site) {
     spec.spec.encoding.color.legend = (site || currentSite) !== "Van Wyck";
 
     return spec;
+
 }
 
 // The rows are attached after cloning, so the deep clone never copies the
@@ -553,6 +560,7 @@ function buildAqSpec(site, rows) {
     });
 
     return spec;
+
 }
 
 
@@ -583,9 +591,10 @@ function applyHconcatFacet(spec, { cols, spacing, pane }) {
     if (spec.spacing != null) spec.spacing = spacing;
 
     spec.hconcat?.forEach((chartSpec) => {
-        if (chartSpec?.spec?.width != null) chartSpec.spec.width = pane;
+        if (chartSpec?.spec?.width != null) {
+            chartSpec.spec.width = pane;
+        }
     });
-
 }
 
 
@@ -606,7 +615,9 @@ async function draw(site) {
     // are momentarily empty between renders
     
     cpEl.style.minHeight = cpEl.offsetHeight + "px";
-    if (aqEl.offsetHeight > 0) aqEl.style.minHeight = aqEl.offsetHeight + "px";
+    if (aqEl.offsetHeight > 0) {
+        aqEl.style.minHeight = aqEl.offsetHeight + "px";
+    }
     
     cpEl.innerHTML = "";
     aqEl.innerHTML = "";
@@ -645,14 +656,17 @@ async function draw(site) {
         const aligned = aqAvail >= 576 ? cpLayout?.pane : undefined;
 
         try {
+
             const rows = await loadCsv(CP_AQ_POST_URL);
             await embedFitted(aqEl, () => buildAqSpec(site, rows), CP_FIT.aq, applyHconcatFacet, aligned);
             aqEl.style.minHeight = "";
+
         } catch (err) {
+
             console.error("AQ change Vega render failed:", err);
             aqEl.innerHTML = "<pre style='white-space:pre-wrap'>Chart failed to render. See console.</pre>";
-        }
 
+        }
     } else {
 
         aqEl.style.display = "none";
@@ -674,7 +688,9 @@ async function handleSiteChange(site) {
     
     const textElement = document.getElementById(text_container_id);
     
-    if (textElement && CP_SITES[site].text) textElement.innerHTML = CP_SITES[site].text;
+    if (textElement && CP_SITES[site].text) {
+        textElement.innerHTML = CP_SITES[site].text;
+    }
     
     updateSiteHeading(site);
     
@@ -694,7 +710,6 @@ function renderButtons() {
         onChange: handleSiteChange,
         
     });
-    
 }
 
 

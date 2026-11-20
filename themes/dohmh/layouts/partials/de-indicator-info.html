@@ -1,0 +1,187 @@
+<!-- Upper left indicator detail box -->
+<div class="position-absolute  de-main-details border-top" data-recently-updated-ids='{{ partial "de-recently-updated-ids.html" . }}'>
+
+    <!-- Mobile Indicator Header. A tap anywhere on the bar opens the details (de-tab-content.js);
+         the +/- button is the same control as a real button, so keyboard and screen-reader users
+         can reach it. The bar itself is not the toggle: it holds the "Change dataset" button, and
+         a toggle containing a button is a nested control. -->
+    <div class="bg-primary text-white px-2 py-1 w-full d-flex d-lg-none mobile-details-header" style="cursor: pointer;">
+        <div>
+            <div class="h6 font-weight-bold mb-0 py-1 main-heading indicator-name" aria-live="polite" aria-atomic="true">Loading indicator...</div>
+            <div class="position-relative d-inline-flex align-items-center indicator-selector-trigger-wrap">
+                <button type="button" class="badge badge-pill badge-light border-0 de-viz-pill-button text-nowrap indicator-selector-trigger" data-toggle="modal" data-target="#indicatorSelector">Change dataset&nbsp;&nbsp;<i class="fa-solid fa-right-left fs-xs"></i></button>
+                <span id="indicatorSelectorPromptMobile" class="indicator-selector-prompt d-none" aria-hidden="true" role="status">Choose dataset</span>
+            </div>
+        </div>
+        <button type="button" class="btn btn-link p-0 ml-auto align-self-start text-white mobile-details-toggle" data-toggle="collapse" data-target="#detailsContent" aria-expanded="false" aria-controls="detailsContent" aria-label="Dataset details">
+            <i class="fas fa-plus text-white toggle-icon" aria-hidden="true" style="transition: opacity 0.3s ease; padding-top: 4px;"></i>
+        </button>
+    </div>
+
+    <!-- Desktop Indicator Header (always visible), laid out as the phone header is: title, the
+         "Change dataset" pill under it, and a +/- button that collapses the description and the
+         three dropdowns below. Beside the title, the button wrapped short titles to a second line.
+         The details open on every load and nothing remembers the choice (Chris, 2026-11-12). -->
+    <div class="bg-primary text-white px-2 py-1 w-full d-none d-lg-flex">
+        <div>
+            <div class="h6 font-weight-bold mb-0 py-1 indicator-name" aria-live="polite" aria-atomic="true">Loading indicator...</div>
+            <div class="position-relative d-inline-flex align-items-center indicator-selector-trigger-wrap">
+                <button type="button" class="badge badge-pill badge-light border-0 de-viz-pill-button text-nowrap indicator-selector-trigger" data-toggle="modal" data-target="#indicatorSelector">Change dataset&nbsp;&nbsp;<i class="fa-solid fa-right-left fs-xs"></i></button>
+                <span id="indicatorSelectorPromptDesktop" class="indicator-selector-prompt d-none" aria-hidden="true" role="status">Choose dataset</span>
+            </div>
+        </div>
+        <button type="button" class="btn btn-link p-0 ml-auto align-self-start text-white desktop-details-toggle" data-toggle="collapse" data-target="#detailsContentDesktop" aria-expanded="true" aria-controls="detailsContentDesktop" aria-label="Dataset details">
+            <i class="fas fa-minus text-white toggle-icon" aria-hidden="true" style="padding-top: 4px;"></i>
+        </button>
+    </div>
+
+    <!-- Mobile Collapsible Content -->
+    <div id="detailsContent" class="collapse d-lg-none">
+        <div class="bg-white p-2 fs-sm">
+            <p class="indicator-description">Loading indicator description...</p>
+        </div>
+
+        <div>
+            <!-- Dropdown 1 -->
+            <div class="card">
+                <div class="card-header pb-0">
+                    <div class="dropdown fs-sm">
+                        {{/*  The help button sits beside the label, not inside it: the dropdown takes its
+                              name from the label (aria-labelledby), which would then read the button's too.  */}}
+                        <div class="d-flex align-items-center mb-1">
+                            <div class="font-weight-bold mr-1 text-primary fs-sm" id="measureOptionsLabel1">Measure: </div>
+                            <button type="button" class="de-help-button fs-sm" data-help-location="details" data-toggle="modal" data-target="#measureModal" aria-haspopup="dialog" aria-label="About measures"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
+                        </div>
+                        <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="measureOptionsDropdownButton1" aria-labelledby="measureOptionsLabel1 measureOptionsDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="flex-grow-1 measure-name"></span>
+                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-de w-100 border-none measures-holder" aria-labelledby="measureOptionsDropdownButton1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dropdown 2 -->
+            <div class="card">
+                <div class="card-header pb-0">
+                    <div class="dropdown fs-sm">
+                        <div class="d-flex align-items-center mb-1">
+                            <div class="font-weight-bold mr-1 text-primary fs-sm" id="geoOptionsLabel1">Boundary: </div>
+                            <button type="button" class="de-help-button fs-sm" data-help-location="details" data-toggle="modal" data-target="#geoModal" aria-haspopup="dialog" aria-label="About neighborhood boundaries"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
+                        </div>
+                        <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="geoOptionsDropdownButton1" aria-labelledby="geoOptionsLabel1 geoOptionsDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="flex-grow-1 geo-name"></span>
+                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-de w-100 border-none geo-holder" aria-labelledby="geoOptionsDropdownButton1">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dropdown 3 -->
+            <div class="card">
+                <div class="card-header pb-0">
+                    <div class="dropdown fs-sm">
+                        <div class="d-flex align-items-center mb-1">
+                            <div class="font-weight-bold mr-1 text-primary fs-sm" id="timeOptionsLabel1">Time: </div>
+                            <button type="button" class="de-help-button fs-sm" data-help-location="details" data-toggle="modal" data-target="#timeModal" aria-haspopup="dialog" aria-label="About available time periods"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
+                        </div>
+                        <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal mb-2" type="button" id="timeOptionsDropdownButton1" aria-labelledby="timeOptionsLabel1 timeOptionsDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="flex-grow-1 time-name"></span>
+                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-de w-100 border-none time-holder" aria-labelledby="timeOptionsDropdownButton1">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Desktop Content -->
+    <div class="d-none d-lg-block">
+        <!-- Collapsible part, open at load: description and dropdowns. Save map stays visible. -->
+        <div id="detailsContentDesktop" class="collapse show">
+        <div class="bg-white p-2 fs-sm border-left border-right">
+            <p class="indicator-description fs-sm">Loading indicator description... </p>
+        </div>
+
+        <div>
+            <!-- Dropdown 1 -->
+            <div class="card border-left border-right">
+                <div class="card-header pb-0">
+                    <div class="fs-sm d-flex align-items-center">
+                        {{/*  The label column is a fixed width, so the three dropdowns line up. It is sized to
+                              the widest label, "Boundary:", in rem so it grows with the text. The help button
+                              sits after the dropdown, as the old explorer's floated right at the end of the label
+                              line, so the eye moves from label to choice without crossing it; phones keep it
+                              beside the label. Siblings, not nested, for the aria-labelledby reason given above.
+                              The toggle and its menu get their own .dropdown so the menu's w-100 is the toggle's
+                              width, not the row's; min-width:0 lets a long selected name shrink rather than widen it.  */}}
+                        <div class="font-weight-bold de-option-label fs-sm mr-2 flex-shrink-0" style="white-space: nowrap; width:4.5rem" id="measureOptionsLabel">Measure:</div>
+                        <div class="dropdown flex-grow-1" style="min-width:0">
+                            <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal w-100" type="button" id="measureOptionsDropdownButton" aria-labelledby="measureOptionsLabel measureOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="flex-grow-1 measure-name"></span>
+                                <i class="fas fa-chevron-down ml-auto text-primary"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-de w-100 border-none measures-holder" aria-labelledby="measureOptionsDropdownButton">
+                            </div>
+                        </div>
+                        <button type="button" class="de-help-button fs-sm ml-2" data-help-location="details" data-toggle="modal" data-target="#measureModal" aria-haspopup="dialog" aria-label="About measures"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dropdown 2 -->
+            <div class="card border-left border-right">
+                <div class="card-header pb-0">
+                    <div class="fs-sm d-flex align-items-center">
+                        <div class="font-weight-bold de-option-label fs-sm mr-2 flex-shrink-0" style="white-space: nowrap; width:4.5rem" id="geoOptionsLabel">Boundary:</div>
+                        <div class="dropdown flex-grow-1" style="min-width:0">
+                            <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal w-100" type="button" id="geoOptionsDropdownButton" aria-labelledby="geoOptionsLabel geoOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="flex-grow-1 geo-name"></span>
+                                <i class="fas fa-chevron-down ml-auto text-primary"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-de w-100 border-none geo-holder" aria-labelledby="geoOptionsDropdownButton">
+                            </div>
+                        </div>
+                        <button type="button" class="de-help-button fs-sm ml-2" data-help-location="details" data-toggle="modal" data-target="#geoModal" aria-haspopup="dialog" aria-label="About neighborhood boundaries"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dropdown 3 -->
+            <div class="card border-left border-right border-bottom">
+                <div class="card-header pb-0">
+                    <div class="fs-sm d-flex align-items-center mb-2">
+                        <div class="font-weight-bold de-option-label fs-sm mr-2 flex-shrink-0" style="white-space: nowrap; width:4.5rem" id="timeOptionsLabel">Time:</div>
+                        <div class="dropdown flex-grow-1" style="min-width:0">
+                            <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal w-100" type="button" id="timeOptionsDropdownButton" aria-labelledby="timeOptionsLabel timeOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="flex-grow-1 time-name"></span>
+                                <i class="fas fa-chevron-down ml-auto text-primary"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-de w-100 border-none time-holder" aria-labelledby="timeOptionsDropdownButton">
+                            </div>
+                        </div>
+                        <button type="button" class="de-help-button fs-sm ml-2" data-help-location="details" data-toggle="modal" data-target="#timeModal" aria-haspopup="dialog" aria-label="About available time periods"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div>
+            <div class="card card-header p-0 bg-transparent d-inline-block printMap border-bottom border-left border-right">
+                <div style="background-color:#DCF4E7" class="py-1 d-inline-block">
+                        <button type="button" id="deSaveMapButton" class="de-link-button fs-sm mx-1 de-save-map-button" aria-haspopup="dialog" data-print-target="map"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save map</button>
+                        {{ partial "de-cite-popup.html" (dict "page" . "id" "map" "class" "de-link-button fs-sm mx-1") }}
+                    </div>
+            </div>
+
+        </div>
+    </div>
+</div>

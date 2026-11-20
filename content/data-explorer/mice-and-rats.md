@@ -6,6 +6,14 @@ azlink: "https://www.nyc.gov/site/doh/health/health-topics/rats.page"
 seo_title: "Mice and rats data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of mice and rat data in NYC."
+blurb: "Inspections and sightings"
+datatables: true
+arquero: true
+leaflet: true
+vega: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 tags:
 categories: ["housing", "pests"]
 keywords: ["mice", "rats", "rodents", "pests", "housing"]
@@ -58,7 +66,7 @@ Simple steps can be taken to prevent mice and rats both inside and outside:
 
 - Keep yards and outdoor areas trimmed and free of clutter to avoid creating a harbor for rats.
 
-Visit this resource to learn more about managing mice and rats: <a href="www.nyc.gov/rats">www.nyc.gov/rats.</a>
+Visit this resource to learn more about managing mice and rats: [www.nyc.gov/rats](https://www.nyc.gov/rats).
 
 ### Key Messages
 

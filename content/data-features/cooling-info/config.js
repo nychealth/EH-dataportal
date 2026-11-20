@@ -1,4 +1,4 @@
-console.log("Config file loaded.")
+console.log("Config file loaded.");
 
 var content = [
 
@@ -30,7 +30,6 @@ var content = [
                 "goTo": 2
             },
         ]
-
     },
 
     
@@ -45,7 +44,7 @@ var content = [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "If the power goes out during a heat wave, you won't be able to charge the battery on this critical equipment. Make sure to have back-up batteries or another emergency plan. And, <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/special-services'>register your equipment with your utility provider<a> so they can contact you during a power outage. <ul><li> CON ED: 1-800-752-6633 <li>PSEG: 1-800-490-0025</ul>",
+                "message": "If the power goes out during a heat wave, you won't be able to charge the battery on this critical equipment. Make sure to have back-up batteries or another emergency plan. And, <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/special-services'>register your equipment with your utility provider</a> so they can contact you during a power outage. <ul><li> CON ED: 1-800-752-6633 <li>PSEG: 1-800-490-0025</ul>",
                 "setVariable": "eme('Yes')",
                 "goTo": 3
             },
@@ -58,7 +57,6 @@ var content = [
             }
         
         ]
-
     },
 
     /* Question 3*/
@@ -110,7 +108,6 @@ var content = [
                 "goTo": 6
             }
         ]
-
     },
 
 
@@ -138,7 +135,6 @@ var content = [
                 "goTo": 6
             }
         ]
-
     },
 
 
@@ -165,8 +161,7 @@ var content = [
                 "goTo": 99
             }
         ]
-
     },
 
-]
+];
     

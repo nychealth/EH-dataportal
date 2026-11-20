@@ -34,9 +34,10 @@ A run-down of main branches, actions, and purposes are:
 | Deploy to          | `EH-dataportal` branch: | `EHDP-data` branch: | Action on merge:             | Used for:              |
 |--------------------|-------------------------|---------------------|------------------------------|------------------------|
 | Production servers | `production`            | `production`        | Builds to `builds/prod-prod` | Live site              |
-| 307 (internal)     | `build-to-dev-stage`    | `staging`           | Builds to `builds/dev-stage` | Demoing data & content |
 
-On merge, these branches are automatically [built](https://github.com/peaceiris/actions-hugo) and [served](https://github.com/peaceiris/actions-gh-pages) to other branches using Github Actions (triggerd by a merged pull request).  _(Note that this requires a workflow YAML file in both [`production`](https://github.com/nychealth/EH-dataportal/blob/production/.github/workflows/hugo-build-to-dev-prod.yml) and the build branch, e.g. [`build-to-dev-stage`](https://github.com/nychealth/EH-dataportal/blob/build-to-dev-stage/.github/workflows/hugo-build-to-dev-stage.yml).)_
+On merge, this branch is automatically [built](https://github.com/peaceiris/actions-hugo) and [served](https://github.com/peaceiris/actions-gh-pages) to other branches using Github Actions (triggerd by a merged pull request).  _(Note that this requires the workflow YAML file on [`production`](https://github.com/nychealth/EH-dataportal/blob/production/.github/workflows/hugo-build-to-prod-prod.yml).)_
+
+Until 2026-11-07 a second branch, `build-to-dev-stage`, was meant to build to `builds/dev-stage` for the internal 307 server through `hugo-build-to-dev-stage.yml`, with `trigger_dev-stage_workflow.ps1` and `.sh` to run it by hand. That workflow never ran in the retained history, and CloudCannon branch previews took over its purpose, so all three were deleted (audit N-033). The last commit holding them is `b730ddf7d3`.
 
 ### Automated actions
 
@@ -48,9 +49,8 @@ Current workflows:
 | Workflow:                     | `EH-dataportal` branch: | `EHDP-data` branch:   | Action on merge:                                  | In use?      |
 |-------------------------------|-------------------------|-----------------------|---------------------------------------------------|--------------|
 | `hugo-build-to-prod-prod.yml` | `production`            | `production`          | Builds to `builds/prod-prod`                      | Yes          |
-| `hugo-build-to-dev-stage.yml` | `build-to-dev-stage`    | `staging`             | Builds to `builds/dev-stage`                      | Yes          |
 | `hugo-build-to-dev-prod.yml`  | `development`           | `production`          | Builds to `builds/dev-prod`                       | No           |
-| `hugo-build-any-branch.yml`   | Any (need to specify)   | Any (need to specify) | By default, builds to `builds/[specified-branch]` | Yes          |
+| `hugo-build-any-branch.yml`   | Any (need to specify)   | Any (need to specify) | By default, builds to `builds/[specified-branch]`; refuses `builds/prod-prod` | Yes          |
 
 **Note:**
 GitHub Actions and the deployment pipeline are set up to convert all end-of-line characters to Unix style (`LF`). This is configured in the workflow YAML files (step `set git EOL`). This is nice for consistency and for avoiding git flagging hundreds of inconsequential changes, but it's actually important for subresource integrity calculations.
@@ -91,11 +91,11 @@ templates compile.
 | Command | What it does |
 |---|---|
 | `npm run smoke` | Loads 33 pages, one per template kind, and fails on any JavaScript error. Fast. |
-| `npm run smoke:all` | The same, over every page the site serves. For a pre-merge sweep. |
+| `npm run smoke:all` | The same, over every page the site serves plus one Data Explorer link per indicator. For a pre-merge sweep. |
 | `npm run smoke:env <env> [sample]` | The same, against a named environment it builds and serves itself. |
-| `npm run characterize:site` | Loads every page and compares its *structure* — assets, heading levels, `alt` text, tables, JSON-LD, overflow — against a committed baseline. |
-| `npm run characterize:site:sample` | The same check over 41 pages, one per template kind. |
-| `npm run characterize:site:env <env> [sample]` | The same check, against a named environment it builds and serves itself. |
+| `npm run characterize:site` | Builds `production` and your working copy, loads every page of each, and reports which pages' *structure* differs — assets, heading levels, `alt` text, tables, JSON-LD, overflow. |
+| `npm run characterize:site:sample` | The same comparison over 41 pages, one per template kind. |
+| `npm run characterize:site:env <env> [sample]` | The same comparison, built under a named environment. |
 
 Run `smoke` before merging anything that touches `partials/head.html`, `_default/baseof.html`, the
 header or footer partials, or `assets/js/`. Neither check sees what the other does: `smoke` catches
@@ -103,32 +103,30 @@ JavaScript that throws, characterization catches a page whose markup quietly mov
 
 #### Checking a specific environment
 
-`npm run smoke` and `npm run characterize:site` check whichever environment your machine happens to
-be serving — they reuse any Hugo server already answering on :8080, :8081 or :1313, and otherwise
-start `dev_stage` for you. When you need a *named* environment instead, and especially `prod_prod`,
-which is the one that actually deploys, both checks have an `:env` form:
+`npm run smoke` checks whichever environment your machine happens to be serving — it reuses any
+Hugo server already answering on :8080, :8081 or :1313, and otherwise starts `dev_stage` for you.
+When you need a *named* environment instead, and especially `prod_prod`, which is the one that
+actually deploys, use the `:env` form:
 
 ```bash
 npm run smoke:prod_prod                    # every page, JavaScript errors, prod_prod
 npm run smoke:env local_prod               # any environment in config/
 npm run smoke:env local_prod sample        # the curated 33 pages instead of all of them
 
-npm run characterize:site:prod_prod        # the environment the live site is built with
-npm run characterize:site:dev_stage        # staging data, deterministically
-npm run characterize:site:env local_prod   # any environment in config/
-npm run characterize:site:env local_prod sample   # the curated 41 pages instead of all of them
+npm run characterize:site                  # prod_prod, every page
+npm run characterize:site:env dev_stage    # any environment in config/
+npm run characterize:site:env dev_stage sample   # the curated 41 pages instead of all of them
 ```
 
 Add the word `sample` to check the curated one-page-per-template list rather than the whole site.
 A full Hugo build runs either way, so `sample` narrows *what* gets checked rather than making the
 command quick.
 
-These start their own Hugo server on port 8090, build it entirely outside the repo, and stop it
-when they finish — so they ignore whatever you have running, and they leave `docs/` and
-`resources/_gen` untouched. They are slower than the plain forms, because a full build runs before
-the check does. They share that one port, so **you cannot run a `smoke:env` and a
-`characterize:site:env` at the same time** — the second one to start says so and exits rather than
-sweep the wrong site.
+These start their own Hugo servers — characterization starts two, on ports 8090 and 8091 — build
+them entirely outside the repo, and stop them when they finish, so they ignore whatever you have
+running and leave `docs/` and `resources/_gen` untouched. They are slower than plain `smoke`,
+because a full build runs before the check does. **You cannot run a `smoke:env` and a
+characterization comparison at the same time**, because both need port 8090.
 
 Two things make the environment worth naming rather than taking what you are given. `head.html`
 branches on the environment's *name*, so only `prod_prod` gets the production analytics property
@@ -137,42 +135,50 @@ EHDP-data branch, which changes the data URLs a page fetches **in the browser** 
 that was renamed on one branch throws a JavaScript error on that environment only, which is
 exactly what `smoke:env` is for and what a green `hugo` build cannot see.
 
-`smoke:env` works on all eight environments — it needs no baseline, only a page that loads without
-throwing. Characterization compares against a committed baseline, and two are committed, between
-them covering four of the eight. The rest stop and say which baselines exist:
-
-| Environment | Baseline used |
-|---|---|
-| `prod_prod` | `prod_prod` |
-| `dev_stage`, `local_stage`, `prod_stage` | `staging` |
-| `dev_prod`, `development`, `local_prod`, `production` | **none — the check exits and tells you so** |
-
 **Pass the environment as a plain word, not as a flag.** `npm run characterize:site:env prod_prod`
 works; `npm run characterize:site:env --env prod_prod` does not, because PowerShell and npm between
-them discard the flag's name and keep only its value. Both `:env` scripts refuse anything starting
-with `-` rather than act on a mangled argument. If you need the underlying flags, call the script
-directly: `node scripts/site-characterization.mjs --check --content`, or
+them discard the flag's name and keep only its value. `smoke:env` refuses anything starting with
+`-`, and the comparison refuses any option it does not recognize, rather than act on a mangled
+argument. For the flags, call the script directly, for example
+`node scripts/site-characterization-compare.mjs --base my-branch --content` or
 `node scripts/smoke-pages.mjs --all --concurrency 12`.
 
-#### When a check fails
+#### Reading a characterization report
 
-A characterization failure names each page and field that moved, with the raw diff underneath. That
-is a starting point, not a verdict — a page can move because the data behind it moved, or because a
-third-party embed rendered differently, not only because someone broke it. Read what changed before
-assuming a regression.
+The comparison builds your working copy, uncommitted edits included, and a copy of your **local**
+`production` branch. If your `production` is behind GitHub's, it says so: pull it first, or the
+report will include other people's merged changes as if they were yours.
 
-Some pages legitimately go red when *data* changes rather than code. `data-features/proximity/`,
-`data-features/congestion-pricing-report/` and `data-features/heat-story/` draw a map marker per
-row of their data, and the check counts those markers on purpose — a marker appearing or vanishing
-is a real change to what the page shows. Editing that data therefore means re-capturing the
-baselines, and that is working as intended, not a bug. `data-features/realtime-air-quality/` is the
-exception: its markers come from a live feed that nobody here controls, so its marker count is
-deliberately **not** recorded — only whether the map drew any markers at all.
+The report names each field that changed, how many pages it changed on, and which pages. That is a
+starting point, not a verdict — read what changed before deciding whether it was intended. Both
+sides fetch the same EHDP-data minutes apart, so a data change normally cancels out and does not
+show up here. Adding a page also
+changes the listing pages that link to it (its category pages, its section's index), so expect
+those in a new-content report.
 
-If a site-wide change is *intended*, the baselines are re-captured with
-`npm run characterize:site:rebaseline`, which rebuilds every committed baseline and reports what
-moved. That command takes no arguments and overwrites all of them, so it is not the way to check a
-single environment — the `characterize:site:env` scripts above are.
+Locally the command **fails** when anything changed. That's deliberate: it's for checking your
+own work before you push. If the change is intended, say so with `--expect` and a pattern for the
+pages you meant to change. `*` matches within one path segment and `**` across them:
+
+```bash
+node scripts/site-characterization-compare.mjs --expect "data-features/**"
+```
+
+`--expect` accepts every change on the pages it matches, not only the fields you had in mind, so
+read the field table before trusting a pass.
+
+#### The report on a pull request
+
+On every PR into `production` or `development`, `.github/workflows/site-characterization.yml`
+runs the same comparison, your PR merged onto its base against the base itself, and posts the
+result as a **comment on the PR**, mentioning the PR's author. Each new push updates that comment
+rather than adding another. A difference never fails the check. The check fails only when the
+comparison could not be made at all, for example a tree that would not build or more than five
+pages that would not load, and the comment then says so. A page or two that will not load (usually
+a slow outside embed) is retried, then left out and listed in the report. The run takes about 15
+minutes.
+
+Smoke (`.github/workflows/smoke.yml`) runs on the same PRs and does fail on a JavaScript error.
 
 ### Data repository
 

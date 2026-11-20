@@ -6,6 +6,14 @@ azlink: "https://www.nyc.gov/site/doh/health/health-topics/food-drinking-water-s
 seo_title: "Drinking water quality data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of drinking water quality data in NYC."
+blurb: "Contaminant levels"
+datatables: true
+arquero: true
+leaflet: true
+vega: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 tags:
 categories: ["foodanddrink"]
 keywords: ["food", "drink", "water", "housing"]
@@ -18,7 +26,7 @@ indicators:
       - 2044
 related:
   - title: "Lead poisoning affects adults too"
-    url: "data-features/adult-lead/"
+    url: "data-stories/adult-lead/"
   - title: "What Hurricane Ida and Superstorm Sandy taught us about flooding and health"
     url: "data-stories/flooding-and-health/"
 relatedData:

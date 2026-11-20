@@ -1,0 +1,40 @@
+# Editor defaults for this repo. Formatting rules beyond these live in
+# documents/js-conventions.md.
+
+root = true
+
+[*]
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# 4 spaces, per CLAUDE.md. SCSS and CSS joined 2026-10-27
+[*.{js,mjs,html,json,toml,py,ps1,sh,scss,css}]
+indent_style = space
+indent_size = 4
+
+# YAML is 2 throughout, and mixed indentation inside a YAML file changes its meaning
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+# Two trailing spaces are a Markdown hard line break
+[*.md]
+trim_trailing_whitespace = false
+
+# A patch's context lines keep their trailing whitespace, or it no longer applies
+[*.{patch,diff}]
+trim_trailing_whitespace = false
+
+# Hugo renders a template's last newline. Most layouts end without one, and in a
+# shortcode or render hook whose output sits inside a line, an added newline lands
+# in the page: in relURL.html, inside every link it builds
+[themes/dohmh/layouts/**]
+insert_final_newline = unset
+
+# Generated and vendored files are left exactly as they arrive; the .js ones match
+# VENDORED in scripts/js-sweep-targets.mjs
+[{docs/**,static/**,assets/bootstrap/**,*.min.js,assets/js/L.colorIcon.js,assets/js/ccd-to-uhf42.js,assets/js/cd-to-uhf42.js,assets/js/color-convert.js,assets/js/naturalSort.js,content/data-features/healthy-homes-info/source/assets/js/bootstrap.js,content/data-features/healthy-homes-info/source/assets/js/plugins.js,content/data-features/healthy-homes-info/source/assets/js/popper.js}]
+trim_trailing_whitespace = unset
+insert_final_newline = unset
+indent_style = unset
+indent_size = unset

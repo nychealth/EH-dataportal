@@ -10,6 +10,7 @@ keywords: ["pests"]
 layout: report
 image: ratportal-screenshot.png
 report: true
+hide: true
 js: rat-report.js
 weight: 10
 blurb: Biannual rat mitigation strategy report with inspection, summons, and abatement data by Rat Mitigation Zone. 

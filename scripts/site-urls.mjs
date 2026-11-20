@@ -118,3 +118,75 @@ export async function collectAllPaths(baseURL) {
 
     return all;
 }
+
+// Views rotated across the explorer indicator list, so each is exercised on about
+// a fifth of the indicators without loading any indicator twice. Each view is
+// named twice because the two explorers read different parts of the URL: the new
+// one reads `overlay` from the query, production's old one reads `#display=` and
+// ignores `overlay`. The pairs are the new explorer's own legacyOverlayByHash
+// table (normalizeLegacyHashOverlayURL, data-explorer/app.js), which backfills
+// `overlay` from the hash only when the query has none and then strips the hash —
+// so the query wins there, and the hash alone steers the old explorer. Map-only
+// carries no hash for the same reason: `#display=map` with no `overlay` would be
+// backfilled to `bar`. The old explorer has no bar view, so `bar` maps to its map.
+const EXPLORER_VIEWS = [
+    { overlay: "", hash: "" },
+    { overlay: "bar", hash: "#display=map" },
+    { overlay: "trend", hash: "#display=trend" },
+    { overlay: "links", hash: "#display=links" },
+    { overlay: "table", hash: "#display=summary" },
+];
+
+// Every data explorer indicator, as a topic page with ?id=. The sitemap lists
+// topic pages without one, and the new explorer then opens its indicator chooser
+// and renders nothing (production's old explorer renders the topic's first
+// indicator instead), so the sitemap sweep alone exercises at most one indicator
+// per topic. The list is the build's own: de-topic-indicators.html publishes
+// IndicatorMetadata/topic_indicators.json on every full build, keyed by topic
+// slug. An indicator listed under several topics is loaded once, under the first.
+//
+// Kept separate from collectAllPaths on purpose: site-characterization.mjs
+// imports that one, and a rendered indicator's structure moves with EHDP-data.
+export async function collectExplorerIndicatorPaths(baseURL) {
+
+    const url = baseURL + "IndicatorMetadata/topic_indicators.json";
+    const response = await fetch(url);
+
+    if (!response.ok) {
+        throw new Error(`${url} answered ${response.status} — cannot enumerate explorer indicators.`);
+    }
+
+    // A server that answers a missing file with an HTML 404 page at 200 would
+    // throw here, which is the outcome wanted: an empty explorer sweep must never
+    // read as a passing one.
+    const topics = await response.json();
+
+    if (!topics || typeof topics !== "object" || Array.isArray(topics) || !Object.keys(topics).length) {
+        throw new Error(`${url} is not a non-empty topic map — cannot enumerate explorer indicators.`);
+    }
+
+    const seen = new Set();
+    const paths = [];
+    let pairs = 0;
+
+    for (const [topic, entry] of Object.entries(topics)) {
+        for (const id of entry?.IndicatorID || []) {
+            pairs += 1;
+            if (seen.has(id)) continue;
+            seen.add(id);
+            const { overlay, hash } = EXPLORER_VIEWS[paths.length % EXPLORER_VIEWS.length];
+            paths.push(`data-explorer/${topic}/?id=${id}` + (overlay ? `&overlay=${overlay}` : "") + hash);
+        }
+    }
+
+    if (!paths.length) {
+        throw new Error(`${url} lists no indicator ids — cannot enumerate explorer indicators.`);
+    }
+
+    console.log(
+        `Explorer indicators: ${paths.length} unique of ${pairs} topic pairs ` +
+        `in ${Object.keys(topics).length} topics (from topic_indicators.json)`
+    );
+
+    return paths;
+}
