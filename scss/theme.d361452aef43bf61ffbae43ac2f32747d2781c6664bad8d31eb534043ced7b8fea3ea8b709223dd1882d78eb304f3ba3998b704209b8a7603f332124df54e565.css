@@ -10539,6 +10539,8 @@ table .group td {
     left: 2rem;
     z-index: 2;
     width: calc(100% - 4rem); }
+  .de-wrapper .de-main-details:has(.dropdown-menu.show) {
+    z-index: 3; }
   .de-wrapper #v-pills-tabContent {
     border: 1px solid rgba(0, 0, 0, 0.12); }
   .de-wrapper .de-legend {
@@ -11101,6 +11103,11 @@ h1 {
 @media (max-width: 959.98px) {
   .nav-item {
     font-size: 1.1875rem; } }
+
+#nav-primary-top .nav-item {
+  font-size: inherit; }
+  #nav-primary-top .nav-item.btn-sm, #nav-primary-top .btn-group-sm > .nav-item.btn {
+    font-size: 0.875rem; }
 
 #global-header .nav-pills .nav-item {
   border-right: 1px solid #D1F0C8; }
