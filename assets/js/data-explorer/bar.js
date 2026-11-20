@@ -180,6 +180,18 @@ const renderBar = (
     let setHeight = 500;
     let setCircleSize = 250;
 
+    // The selected geography (map.js, "persistent selection") is outlined in two tones, as on the
+    // map: pinnedOutline below draws a black line and a white one over it, above every mark.
+
+    const PINNED_BAR_TEST = "datum.Value != null && datum.GeoID == pinnedGeo";
+    const PINNED_LINE_STYLE = 'pinnedOutline';
+
+    // Hover outlines a bar for a mouse or pen, not a finger: a tap would paint hover's black before
+    // the selection's white (see isTouchInput, map.js). Mouse events cannot tell, pointer events can.
+
+    const HOVER_ON = "pointerover[event.pointerType !== 'touch']";
+    const HOVER_CLEAR = "pointerout";
+
 
     // ----- display-rule resolution (CI detection, percent formatting) ----- //
 
@@ -230,7 +242,7 @@ const renderBar = (
                     "params": [
                         {
                             "name": "highlight",
-                            "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}
+                            "select": {"type": "point", "on": HOVER_ON, "clear": HOVER_CLEAR}
                         }
                     ],
                     "encoding": {
@@ -258,7 +270,7 @@ const renderBar = (
                             "condition": [
                                 {"param": "highlight", "empty": false, "value": "black"},
                                 {
-                                    "test": "datum.Value != null && datum.GeoID == selectedGeo",
+                                    "test": "datum.Value != null && (datum.GeoID == selectedGeo || datum.GeoID == pinnedGeo)",
                                     "value": "black"
                                 }
                             ],
@@ -287,7 +299,7 @@ const renderBar = (
                 "x": {"field": "Value", "type": "quantitative"},
                 "color": {
                 "condition": {
-                "test": "datum.Value != null && datum.GeoID == selectedGeo",
+                "test": "datum.Value != null && (datum.GeoID == selectedGeo || datum.GeoID == pinnedGeo)",
                 "value": "black"
                 },
                 "value": "transparent"
@@ -311,8 +323,8 @@ const renderBar = (
                             "name": "highlight",
                             "select": {
                                 "type": "point",
-                                "on": "mouseover",
-                                "clear": "mouseout"
+                                "on": HOVER_ON,
+                                "clear": HOVER_CLEAR
                             }
                         }
                     ],
@@ -351,7 +363,7 @@ const renderBar = (
                             "condition": [
                                 {"param": "highlight", "empty": false, "value": "black"},
                                 {
-                                    "test": "datum.Value != null && datum.GeoID == selectedGeo",
+                                    "test": "datum.Value != null && (datum.GeoID == selectedGeo || datum.GeoID == pinnedGeo)",
                                     "value": "black"
                                 }
                             ],
@@ -361,7 +373,7 @@ const renderBar = (
                             "condition": [
                                 {"param": "highlight", "empty": false, "value": 2},
                                 {
-                                    "test": "datum.Value != null && datum.GeoID == selectedGeo",
+                                    "test": "datum.Value != null && (datum.GeoID == selectedGeo || datum.GeoID == pinnedGeo)",
                                     "value": 2
                                 }
                             ],
@@ -416,7 +428,7 @@ const renderBar = (
                         "stroke": {
                             "condition": [
                                 {
-                                    "test": "datum.Value != null && datum.GeoID == selectedGeo",
+                                    "test": "datum.Value != null && (datum.GeoID == selectedGeo || datum.GeoID == pinnedGeo)",
                                     "value": "black"
                                 }
                             ],
@@ -426,7 +438,7 @@ const renderBar = (
                             "condition": [
                                 {"param": "highlight", "empty": false, "value": 2},
                                 {
-                                    "test": "datum.Value != null && datum.GeoID == selectedGeo",
+                                    "test": "datum.Value != null && (datum.GeoID == selectedGeo || datum.GeoID == pinnedGeo)",
                                     "value": 2
                                 }
                             ],
@@ -445,7 +457,7 @@ const renderBar = (
                     "params": [
                         {
                             "name": "highlight",
-                            "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}
+                            "select": {"type": "point", "on": HOVER_ON, "clear": HOVER_CLEAR}
                         }
                     ],
                     "encoding": {
@@ -473,7 +485,7 @@ const renderBar = (
                             "condition": [
                                 {"param": "highlight", "empty": false, "value": "black"},
                                 {
-                                    "test": "datum.Value != null && datum.GeoID == selectedGeo",
+                                    "test": "datum.Value != null && (datum.GeoID == selectedGeo || datum.GeoID == pinnedGeo)",
                                     "value": "black"
                                 }
                             ],
@@ -497,7 +509,7 @@ const renderBar = (
                         "x": {"field": "Value", "type": "quantitative"},
                         "color": {
                             "condition": {
-                                "test": "datum.Value != null && datum.GeoID == selectedGeo",
+                                "test": "datum.Value != null && (datum.GeoID == selectedGeo || datum.GeoID == pinnedGeo)",
                                 "value": "black"
                             },
                         "value": "transparent"
@@ -507,6 +519,61 @@ const renderBar = (
                 */
             ];   
         }
+
+
+    // ----- selected geography's two-tone outline ----- //
+
+    // Two layers per selectable mark, black then white: the same geometry, drawn unfilled over it,
+    // coloured on the selected row and transparent on the rest. Both sit above all the marks,
+    // because a mark's own stroke is painted over by any neighbour drawn after it, and marks are
+    // drawn in data order, not rank order (seen on an iPhone 2026-11-14: the selected bar's widened
+    // black stroke showed only at its ends). Each keeps every row rather than filtering to the
+    // selected one: a filtered layer has its own y domain, and Vega-Lite drops the "-x" ranking
+    // sort when it has to union two (measured 2026-11-13: 2380's bars fell back to GeoID order).
+    // Width and height are copied for the same reason, since the layers that set them conflict
+    // with one that doesn't. The compiled marks are made non-interactive below, so hover, tooltip
+    // and click still reach the mark underneath.
+
+    const isSelectableLayer = (layer) => [].concat(layer.encoding?.stroke?.condition ?? [])
+        .some(condition => condition.test?.includes('pinnedGeo'));
+
+    const pinnedOutline = (layer, colour, width) => {
+
+        const { type, size } = layer.mark;
+        const { x, x2, y } = layer.encoding;
+
+        return {
+            ...(layer.width != null && { "width": layer.width }),
+            ...(layer.height != null && { "height": layer.height }),
+            // Opacity 1: Vega-Lite draws unaggregated points at 0.7 by default, which greys both lines.
+            // aria false: otherwise each layer adds one more screen-reader item per row.
+            "mark": {
+                type,
+                ...(size != null && { size }),
+                "filled": false,
+                "opacity": 1,
+                "aria": false,
+                "style": PINNED_LINE_STYLE
+            },
+            "encoding": {
+                "x": type === 'bar' && !x2 ? { ...x, "stack": null } : x,
+                ...(x2 && { x2 }),
+                y,
+                "color": {
+                    "condition": { "test": PINNED_BAR_TEST, "value": colour },
+                    "value": "transparent"
+                },
+                "strokeWidth": { "value": width }
+            }
+        };
+    };
+
+    const selectableLayers = barDisplay.filter(isSelectableLayer);
+
+    barDisplay = barDisplay.concat(
+        selectableLayers.map(layer => pinnedOutline(layer, 'black', 4)),
+        selectableLayers.map(layer => pinnedOutline(layer, 'white', 1.5))
+    );
 
 
     // ----- bar spec assembly (barSpec) ----- //
@@ -584,14 +651,29 @@ const renderBar = (
 
     const vegaSpec = vegaLite.compile(barSpec).spec;
 
+    // Vega-Lite has no switch for this, so it is set on the compiled marks.
+
+    vegaSpec.marks
+        .filter(mark => [].concat(mark.style ?? []).includes(PINNED_LINE_STYLE))
+        .forEach(mark => { mark.interactive = false; });
+
     // console.log("vegaSpec", vegaSpec);
     
     const geoSignal = {
         "name": "selectedGeo",
         "value": null
     };
-    
+
     vegaSpec.signals.push(geoSignal);
+
+    // The geography the visitor selected by a click (map.js, "persistent selection"), outlined
+    // like a hovered one. Seeded from the shared state because a measure, time-period or view
+    // change redraws this chart while the selection stands.
+
+    vegaSpec.signals.push({
+        "name": "pinnedGeo",
+        "value": DE.map.selection?.geoID ?? null
+    });
 
     DE.print.printSpec = vegaSpec;
     DE.print.vizSource = metadata[0]?.Sources;
@@ -661,7 +743,7 @@ const renderBar = (
 
             const geoID = item?.datum?.GeoID;
 
-            if (geoID == null || !window.mapInterop.ready) return;
+            if (geoID == null || !window.mapInterop.ready || isTouchInput()) return;
 
             window.mapInterop.highlight(geoID);
 
@@ -674,6 +756,19 @@ const renderBar = (
             if (!window.mapInterop.ready) return;
 
             window.mapInterop.reset();
+
+        });
+
+        // A click on a bar selects its geography, as a click on the map does (Chris, 2026-11-13).
+        // A row with no value is never outlined (the stroke tests above), so it is not selectable.
+
+        result.view.addEventListener('click', (event, item) => {
+
+            const geoID = item?.datum?.GeoID;
+
+            if (geoID == null || item.datum.Value == null) return;
+
+            toggleMapSelection(geoID);
 
         });
     });

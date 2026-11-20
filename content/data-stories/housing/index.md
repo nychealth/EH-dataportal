@@ -87,7 +87,7 @@ Racism has always played a role in residential patterns in New York City. When N
 
 In 1661, when Black people petitioned the colony for land in the area, they were given land north of the wall, outside of the city proper.
 
-{{< figure src="colonial.png" alt="A colonial map of New York City, showing the wall at Wall Street.">}}
+{{< figure src="colonial.webp" alt="A colonial map of New York City, showing the wall at Wall Street.">}}
 
 Throughout history, many different practices have shaped racial and residential patterns in New York City. In the 20th century, a practice called redlining made racism a federal policy – with long-lasting repercussions for our housing and our health.
 
@@ -444,21 +444,21 @@ harm health.</a></p>
         <li>General disrepair is associated with anxiety and depression.</li>
         <li>Some forms, like <strong>broken plaster and peeling paint</strong>, or
             <strong>cracks and holes in interior walls</strong>, can <a
-                href=/data-explorer/lead/?id=2189#display=summary">expose
+                href="{{< relURL >}}data-explorer/lead/?id=2189#display=summary">expose
                 children to lead paint</a>.
         </li>
         <li><strong>Water leaks</strong>, broken windows, or <strong>toilet
                 breakdowns</strong> can introduce mold - which triggers allergies,
             <a
-                href=/data-explorer/asthma/?id=2380#display=summary">asthma</a>,
+                href="{{< relURL >}}data-explorer/asthma/?id=2380#display=summary">asthma</a>,
             and can make chronic conditions worse.
         </li>
         <li>Pests, like <strong>cockroaches, mice, and rats</strong> can make <a
-                href=/data-explorer/asthma/?id=2380#display=summary">asthma</a>
+                href="{{< relURL >}}data-explorer/asthma/?id=2380#display=summary">asthma</a>
             and allergies worse.</li>
         <li>The <strong>lack of an air conditioner</strong> places people at risk of
             <a
-                href=/data-explorer/weather-related-illness/?id=2074#display=summary">death
+                href="{{< relURL >}}data-explorer/weather-related-illness/?id=2074#display=summary">death
                 during hot weather</a>.
         </li>
     </ul>
@@ -643,7 +643,7 @@ But a poorly maintained, unhealthy home can’t provide a truly safe haven. Inst
 
 **_So how can we create a city in which race - and racism - doesn't determine whether you have an opportunity to stay healthy?_**
 
-{{< figure src="h1.jpeg" alt="Workers work on a building.">}}
+{{< figure src="h1.webp" alt="Workers work on a building.">}}
 
 <div class="card card-left-border shadow-sm mb-4">
     <div class="card-body">
@@ -655,7 +655,7 @@ But a poorly maintained, unhealthy home can’t provide a truly safe haven. Inst
     </div>
   </div>
 
-{{< figure src="h2.jpeg" alt="A New York City residential street.">}}
+{{< figure src="h2.webp" alt="A New York City residential street.">}}
 
 <div class="card card-left-border shadow-sm mb-4">
     <div class="card-body">
@@ -667,7 +667,7 @@ But a poorly maintained, unhealthy home can’t provide a truly safe haven. Inst
     </div>
   </div>
 
-{{< figure src="h3.jpeg" alt="A New York City apartment building.">}}
+{{< figure src="h3.webp" alt="A New York City apartment building.">}}
 
 <div class="card card-left-border shadow-sm mb-4">
     <div class="card-body">

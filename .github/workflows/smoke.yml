@@ -306,7 +306,7 @@ jobs:
       # 'success', so the upload runs.
       #
       # No include-hidden-files: that flag is in the characterization workflow
-      # for .sc-check, a DOT directory the action skips by default. Smoke
+      # for .sc-compare, a DOT directory the action skips by default. Smoke
       # writes no dot path, so its absence here is correct rather than an
       # oversight.
       - name: Upload the smoke report
@@ -358,11 +358,15 @@ jobs:
   # without that entry, and the two runs would not be comparable. Task 1's
   # BLOCKED_HOSTS route is in the same file and travels with it.
   #
-  # base.sha is the BASE BRANCH TIP, not the merge base `[verified 2026-08-24
-  # on PR #1480: baseRefOid is production's tip, where git merge-base differs]`.
-  # The tip is the right control — it is what this PR merges into and what is
-  # deployed — and it needs no history, where a real merge base would need
-  # fetch-depth 0.
+  # The base is the merge commit's FIRST PARENT: the base-branch tip the PR's
+  # merge ref was built on, which is what this PR merges into and what is
+  # deployed. NOT github.event.pull_request.base.sha, which can lag the merge
+  # ref: on #1584, characterization run 44568676537 built its base from
+  # base.sha c0f6be6c9a while its merge commit f727b1631d had first parent
+  # 5edbab83ea `[2026-11-19]`. A control built from the older tip could call
+  # the PR guilty of, or exonerate it from, a commit it never saw. The same fix
+  # landed in site-characterization.yml as #1587. It needs fetch-depth 2, not
+  # the full history a real merge base would.
   # ---------------------------------------------------------------------
 
   base-control:
@@ -384,15 +388,26 @@ jobs:
 
     steps:
 
+      # fetch-depth 2, so the merge commit's parents are present for the next step.
       - name: Checkout this PR (the harness and its allowlist)
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          fetch-depth: 1
+          fetch-depth: 2
+
+      # Both values are printed, so a lag between them shows in the log.
+      - name: Pick the base commit
+        id: base
+        env:
+          EVENT_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          sha=$(git rev-parse HEAD^1)
+          echo "merge commit $(git rev-parse HEAD), first parent $sha; event base.sha ${EVENT_BASE_SHA}"
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
 
       - name: Checkout the base branch tip (the site under test)
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ github.event.pull_request.base.sha }}
+          ref: ${{ steps.base.outputs.sha }}
           path: base
           fetch-depth: 1
 
@@ -481,12 +496,12 @@ jobs:
           # The harness runs from THIS checkout; the site it sweeps was built
           # from base/. Without this the report records the PR merge ref and
           # is indistinguishable from the sweep job's own report.
-          SITE_UNDER_TEST_COMMIT: ${{ github.event.pull_request.base.sha }}
+          SITE_UNDER_TEST_COMMIT: ${{ steps.base.outputs.sha }}
         run: node scripts/smoke-pages.mjs --all --report scripts/smoke-reports/
 
       - name: Verdict
         env:
-          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          BASE_SHA: ${{ steps.base.outputs.sha }}
           BASE_REF: ${{ github.event.pull_request.base.ref }}
           OUTCOME: ${{ steps.control.outcome }}
         run: |

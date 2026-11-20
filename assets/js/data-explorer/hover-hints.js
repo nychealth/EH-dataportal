@@ -4,7 +4,10 @@
 
 // Short hints on the data explorer buttons that open a modal, so a mouse user
 // can see what a click will do before making it. Modals cover the page and take
-// focus, so hover never opens them; it only says what will open.
+// focus, so hover never opens them; it only says what will open. Since
+// 2026-11-13 also on icon-only buttons that act in place rather than opening
+// anything: the map's own controls (map.js, addMapControls), the header logo, the
+// dataset details toggle and a view pane's close button.
 //
 // Hints show after the mouse rests on a trigger, or right away on keyboard focus,
 // and hide when the pointer or focus leaves, on Escape, on scroll or resize, and
@@ -80,6 +83,60 @@ const HOVER_HINTS = [
     {
         selector: '.de-help-button[data-target="#linksModal"]',
         text: 'Opens help on correlations'
+    },
+
+    // Icon-only buttons that act in place (Chris, 2026-11-13). The two collapse
+    // toggles read aria-expanded, which Bootstrap's collapse keeps current, so the
+    // hint says what a click will do.
+    {
+        // The portal logo in header-de.html. It expands #global-header: the nyc.gov
+        // bar, the portal title, its menu (All topics, Search) and the language picker.
+        selector: '[data-target="#global-header"]',
+        text: (trigger) => (trigger.getAttribute('aria-expanded') === 'true' ? 'Hide site menu' : 'Show site menu')
+    },
+    {
+        // The minus / plus on the dataset details card (de-indicator-info.html).
+        selector: '.desktop-details-toggle, .mobile-details-toggle',
+        text: (trigger) => (trigger.getAttribute('aria-expanded') === 'true' ? 'Hide dataset details' : 'Show dataset details')
+    },
+    {
+        // The close button on an open view pane (de-tab-content.html).
+        selector: '.de-close-tab-button',
+        text: 'Close this view'
+    },
+
+    // The map's control stack (map.js, addMapControls; Chris, 2026-11-13), all
+    // icon-only, so every one gets the same hint rather than a mix of these and the
+    // browser's title tooltips. Scoped to #map so no other Leaflet map's controls match.
+    // The three zoom buttons sit in a column, so a hint below one covered the next
+    // (measured 2026-11-13: "Zoom in" lay over the Zoom out button); theirs open to the
+    // right, over the map.
+    {
+        selector: '#map .leaflet-control-zoom-in',
+        text: 'Zoom in',
+        placement: 'right'
+    },
+    {
+        selector: '#map .leaflet-control-zoom-out',
+        text: 'Zoom out',
+        placement: 'right'
+    },
+    {
+        selector: '#map .de-map-reset',
+        text: 'Reset zoom',
+        placement: 'right'
+    },
+
+    // The eye toggles, so its hint is a function read when the hint opens:
+    // aria-pressed is its state, and the hint says what a click will do. The slider's
+    // value is shown beside it, so its hint names it only.
+    {
+        selector: '.de-map-fill-toggle',
+        text: (trigger) => (trigger.getAttribute('aria-pressed') === 'true' ? 'Show data layer' : 'Hide data layer')
+    },
+    {
+        selector: '#de-map-opacity-input',
+        text: 'Data layer opacity'
     }
 ];
 
@@ -100,6 +157,7 @@ const isHintMousePointer = (event) => event.pointerType === 'mouse';
 const hoverHint = {
     element: null,
     trigger: null,
+    placement: undefined,
     showTimer: null,
     hideTimer: null,
     // A trigger that was just clicked. Its modal is opening, and when the modal
@@ -118,7 +176,9 @@ const HOVER_HINT_ID = 'deHoverHint';
 
 const HOVER_HINT_PROMPTED = '.topic-selector-required, .indicator-selector-required';
 
-// Returns the hint config entry and trigger element for an element inside one.
+// Returns the hint config entry and trigger element for an element inside one. An
+// entry's text may be a function of the trigger, for a control whose hint follows
+// its state.
 
 const findHintTrigger = (element) => {
 
@@ -126,7 +186,10 @@ const findHintTrigger = (element) => {
 
     for (const hint of HOVER_HINTS) {
         const trigger = element.closest(hint.selector);
-        if (trigger) return trigger.closest(HOVER_HINT_PROMPTED) ? null : { trigger, text: hint.text };
+        if (!trigger) continue;
+        if (trigger.closest(HOVER_HINT_PROMPTED)) return null;
+        const text = typeof hint.text === 'function' ? hint.text(trigger) : hint.text;
+        return { trigger, text, placement: hint.placement };
     }
 
     return null;
@@ -155,14 +218,22 @@ const ensureHintElement = () => {
 };
 
 // Places the hint below the trigger, or above it when there is no room below,
-// and keeps it inside the viewport horizontally.
+// and keeps it inside the viewport horizontally. An entry placed 'right' sits
+// beside its trigger, centred on it, unless that would leave the viewport.
 
-const positionHint = (element, trigger) => {
+const positionHint = (element, trigger, placement) => {
 
     const gap = 6;
     const edge = 8;
     const rect = trigger.getBoundingClientRect();
     const hintRect = element.getBoundingClientRect();
+
+    if (placement === 'right' && rect.right + gap + hintRect.width <= window.innerWidth - edge) {
+        const sideTop = rect.top + (rect.height / 2) - (hintRect.height / 2);
+        element.style.top = `${Math.max(edge, sideTop) + window.scrollY}px`;
+        element.style.left = `${rect.right + gap + window.scrollX}px`;
+        return;
+    }
 
     let top = rect.bottom + gap;
     if (top + hintRect.height > window.innerHeight - edge) top = rect.top - gap - hintRect.height;
@@ -177,7 +248,7 @@ const positionHint = (element, trigger) => {
 
 // Shows the hint for a trigger and links the two for assistive tech.
 
-const showHint = (trigger, text) => {
+const showHint = (trigger, text, placement) => {
 
     const element = ensureHintElement();
 
@@ -189,7 +260,7 @@ const showHint = (trigger, text) => {
 
     element.textContent = text;
     element.hidden = false;
-    positionHint(element, trigger);
+    positionHint(element, trigger, placement);
 
     const describedBy = (trigger.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean);
     if (!describedBy.includes(HOVER_HINT_ID)) {
@@ -197,6 +268,7 @@ const showHint = (trigger, text) => {
     }
 
     hoverHint.trigger = trigger;
+    hoverHint.placement = placement;
 
 };
 
@@ -258,7 +330,7 @@ document.addEventListener('pointerover', (event) => {
     if (found.trigger === hoverHint.trigger) return;
 
     clearTimeout(hoverHint.showTimer);
-    hoverHint.showTimer = setTimeout(() => showHint(found.trigger, found.text), HOVER_HINT_TIMING.show);
+    hoverHint.showTimer = setTimeout(() => showHint(found.trigger, found.text, found.placement), HOVER_HINT_TIMING.show);
 
 });
 
@@ -290,7 +362,7 @@ document.addEventListener('focusin', (event) => {
     if (!found || found.trigger === hoverHint.suppressedFor) return;
     if (!found.trigger.matches(':focus-visible')) return;
 
-    showHint(found.trigger, found.text);
+    showHint(found.trigger, found.text, found.placement);
 
 });
 
@@ -298,9 +370,20 @@ document.addEventListener('focusout', (event) => {
 
     if (hoverHint.trigger && hoverHint.trigger.contains(event.target)) hideHint();
 
+    // A trigger that acts in place (the map's eye) is never followed by a modal
+    // closing, so without this a keyboard user who pressed it would not see its hint
+    // again. While a modal is open the focus is leaving for the modal, and the
+    // suppression must outlast it.
+
+    if (hoverHint.suppressedFor?.contains(event.target) && !document.body.classList.contains('modal-open')) {
+        hoverHint.suppressedFor = null;
+    }
+
 });
 
-// Activating a trigger opens its modal, so the hint has done its job.
+// Activating a trigger opens its modal, so the hint has done its job. On the map's
+// eye the click changes what its hint would say, so keeping it down until the
+// pointer leaves also stops a hint that has just gone stale.
 
 document.addEventListener('click', (event) => {
 
@@ -355,7 +438,7 @@ window.addEventListener('scroll', () => {
     const inView = rect.bottom > 0 && rect.top < window.innerHeight && rect.right > 0 && rect.left < window.innerWidth;
 
     if (inView) {
-        positionHint(element, trigger);
+        positionHint(element, trigger, hoverHint.placement);
     } else {
         hideHint();
     }

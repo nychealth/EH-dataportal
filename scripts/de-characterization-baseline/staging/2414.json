@@ -17,7 +17,7 @@
     "bar": {
         "present": true,
         "ariaLabel": "Bar chart of Adults with asthma: Adults with asthma, Percent",
-        "markCount": 68
+        "markCount": 204
     },
     "trend": {
         "present": true,

@@ -143,6 +143,18 @@ h1 {
     }
 }
 
+// The desktop header nav shows from lg up and fits on one row at the body size even at 960px, so
+// it keeps its xl sizes through the lg band. The rule above otherwise shrank its links to 1rem at
+// 960-1199px and, since Subscribe's .btn-sm wrapper is a .nav-item too, enlarged that label to
+// 1rem and made the whole row taller.
+#nav-primary-top .nav-item {
+    font-size: inherit;
+
+    &.btn-sm {
+        font-size: $btn-font-size-sm;
+    }
+}
+
 #global-header .nav-pills .nav-item {
     border-right: 1px solid #D1F0C8;
 }
