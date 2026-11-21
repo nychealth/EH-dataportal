@@ -379,6 +379,32 @@ a.text-primary {
     }
 }
 
+// The typeahead list under a flexdatalist input (HVI, AQE, the explorer's search, the NR
+// picker). Its own stylesheet paints it #fff with #333 text, and __portal-custom.scss sets the
+// secondary text in 90% black. The active row's #2B82C9 and the yellow match highlight read on
+// navy as they are, so they are left alone.
+
+.flexdatalist-results {
+
+    @include dark {
+        background-color: var(--dm-raised);
+        border-color: var(--dm-border);
+        color: var(--dm-text);
+
+        li {
+            border-color: var(--dm-border);
+        }
+
+        li:not(.active) span:not(:first-child):not(.highlight) {
+            color: var(--dm-muted);
+        }
+
+        li.no-results {
+            color: var(--dm-muted);
+        }
+    }
+}
+
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // tables
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
