@@ -10,7 +10,7 @@
     color: rgba(0, 0, 0, 0.90);
 }
 .flexdatalist-results li.active span:not(:first-child):not(.highlight) {
-    color: rgba(255, 255, 255, 0.70);
+    color: rgba(255, 255, 255, 0.85);
 }
 .flexdatalist-results li span.highlight {
     font-weight: 500;

@@ -1287,8 +1287,15 @@ th.tablehead {
     font-size: 90%;
     color: rgba(0, 0, 0, 0.90);
 }
+// The plugin's active row, #2B82C9, gives white text 4.09:1 and the 70% white details 2.82:1.
+// #1A64A3 gives 6.18:1 and, at 85%, 4.97:1. The `ul` outranks the plugin's own rule, whose
+// stylesheet loads after this one.
+
+ul.flexdatalist-results li.active {
+    background: #1A64A3;
+}
 .flexdatalist-results li.active span:not(:first-child):not(.highlight) {
-    color: rgba(255, 255, 255, 0.70);
+    color: rgba(255, 255, 255, 0.85);
 }
 .flexdatalist-results li span.highlight {
     font-weight: 500;
