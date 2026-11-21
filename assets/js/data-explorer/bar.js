@@ -50,6 +50,79 @@ const registerBarTabResizeHandler = () => {
 
 
 // ----------------------------------------------------------------------- //
+// single-value fallback
+// ----------------------------------------------------------------------- //
+
+// Enables or disables the bar tab's Save Chart button, including its place in the tab order.
+// Download data stays enabled: the one row is still data worth exporting.
+
+const setBarSaveState = (isEnabled) => {
+
+    const saveChartButton = document.querySelector('.de-save-chart-button[data-print-context="bar"]');
+
+    if (!saveChartButton) return;
+
+    saveChartButton.classList.toggle('disabled', !isEnabled);
+    saveChartButton.setAttribute('aria-disabled', String(!isEnabled));
+    saveChartButton.style.pointerEvents = isEnabled ? '' : 'none';
+
+    if (isEnabled) {
+        saveChartButton.removeAttribute('tabindex');
+    } else {
+        saveChartButton.setAttribute('tabindex', '-1');
+    }
+
+};
+
+
+// Shows or hides the "This bar chart shows…" caption under the chart, which describes a chart
+// that is not there when the fallback note is shown.
+
+const setBarCaptionVisible = (isVisible) => {
+
+    const caption = document.querySelector('#v-pills-bar .chart-note');
+
+    if (caption) caption.classList.toggle('hide', !isVisible);
+
+};
+
+
+// Replaces the bar chart with a note when the selection has one value: a single bar is one
+// colored rectangle, and compares nothing. Written like correlate's no-correlates note
+// (renderNoCorrelatesMessage). The Boundary hint appears only when the measure has another
+// geography to switch to; a citywide-only measure has none.
+
+const renderSingleBarMessage = (metadata, geography) => {
+
+    const barHolder = document.getElementById('barHolder');
+
+    const measureLabel = metadata[0]?.MeasureName || 'This measure';
+    const geoLabel = prettifyGeoType(geography) || 'this boundary';
+    const hasOtherGeos = (metadata[0]?.AvailableGeoTypes || []).length > 1;
+
+    const message = `No bar chart: ${measureLabel} has only one reported value for ${geoLabel}.` +
+        (hasOtherGeos ? ' Change the Boundary on the map to compare areas.' : '');
+
+    if (barHolder) {
+        barHolder.classList.add('d-flex', 'align-items-center', 'justify-content-center');
+        barHolder.innerHTML = `<div class="alert alert-warning mb-0 w-100" role="alert">${message}</div>`;
+    }
+
+    // map.js's interop pushes hover into window.myVegaView; the view it holds is no longer on
+    // the page.
+
+    window.myVegaView = null;
+
+    DE.print.printSpec = null;
+    DE.print.chartType = 'bar';
+
+    setBarCaptionVisible(false);
+    setBarSaveState(false);
+
+};
+
+
+// ----------------------------------------------------------------------- //
 // bar chart rendering
 // ----------------------------------------------------------------------- //
 
@@ -617,6 +690,29 @@ const renderBar = (
         .select(aq.not("GeoType", "GeoTypeDesc", "GeoTypeShortDesc", "GeoRank", "MeasureID", "ban_summary_flag", "DisplayValue", "start_period", "end_period"));
 
     DE.print.CSVforDownload = downloadTable.toCSV();
+
+    // ----- single value: note instead of a chart ----- //
+
+    // Checked here, after the CSV, so Download data still exports the rows. The count is of
+    // bars the chart would draw: one per GeoID, and only rows with a numeric Value, since the
+    // spec's number parse turns a suppressed value into null and Vega-Lite draws no bar for it.
+
+    const drawnGeoIDs = new Set(
+        barData
+            .filter(d => d.Value !== null && d.Value !== '' && Number.isFinite(Number(d.Value)))
+            .map(d => d.GeoID)
+    );
+
+    if (drawnGeoIDs.size === 1) {
+        renderSingleBarMessage(metadata, geography);
+        return Promise.resolve();
+    }
+
+    // Undo a previous fallback note before drawing a real chart.
+
+    document.getElementById('barHolder')?.classList.remove('d-flex', 'align-items-center', 'justify-content-center');
+    setBarCaptionVisible(true);
+    setBarSaveState(true);
 
     // ----- render & map-hover interop ----- //
 
