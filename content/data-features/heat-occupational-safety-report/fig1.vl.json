@@ -1,6 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "description": "Line chart of the percent change in workplace injury and illness risk compared with a 70°F day, by the hottest temperature of the day from 65°F to 100°F. Three lines: industries with common outdoor or indoor heat exposure, all industries, and all other industries. On a 95°F day, risk is about 14% higher in industries with common heat exposure, 8% higher across all industries, and 4% higher in all other industries.",
+    "description": "Line chart of the percent change in workplace injury and illness risk compared with a 70°F day, by the hottest temperature of the day from 65°F to 100°F. Three lines: industries with common outdoor or indoor heat exposure, all industries, and all other industries. On a 95°F day, risk is about 14% higher in industries with common heat exposure, 8% higher across all industries, and 4% higher in all other industries. A gray band around each line shows its 95% confidence interval.",
     "width": "container",
     "height": 340,
     "autosize": {"type": "fit-x", "contains": "padding"},
@@ -10,12 +10,23 @@
             "type": "csv",
             "parse": {
                 "temperature_F": "number",
-                "All industries": "number",
-                "Heat-exposed industries": "number",
-                "All other industries": "number"
+                "All industries_pct": "number",
+                "Heat-exposed industries_pct": "number",
+                "All other industries_pct": "number",
+                "All industries_pct_lo": "number",
+                "Heat-exposed industries_pct_lo": "number",
+                "All other industries_pct_lo": "number",
+                "All industries_pct_hi": "number",
+                "Heat-exposed industries_pct_hi": "number",
+                "All other industries_pct_hi": "number"
             }
         }
     },
+    "transform": [
+        {"calculate": "datum['Heat-exposed industries_pct']", "as": "Heat-exposed industries"},
+        {"calculate": "datum['All industries_pct']", "as": "All industries"},
+        {"calculate": "datum['All other industries_pct']", "as": "All other industries"}
+    ],
     "encoding": {
         "x": {
             "field": "temperature_F",
@@ -30,6 +41,23 @@
         }
     },
     "layer": [
+        {
+            "description": "95% confidence interval for each line, drawn first so the baseline, lines and labels sit on top. Gray rather than each line's color, so where bands overlap they darken instead of mixing hues.",
+            "layer": [
+                {
+                    "mark": {"type": "area", "color": "#8c8c8c", "opacity": 0.2, "interpolate": "monotone"},
+                    "encoding": {"y": {"field": "Heat-exposed industries_pct_lo", "type": "quantitative"}, "y2": {"field": "Heat-exposed industries_pct_hi"}}
+                },
+                {
+                    "mark": {"type": "area", "color": "#8c8c8c", "opacity": 0.2, "interpolate": "monotone"},
+                    "encoding": {"y": {"field": "All industries_pct_lo", "type": "quantitative"}, "y2": {"field": "All industries_pct_hi"}}
+                },
+                {
+                    "mark": {"type": "area", "color": "#8c8c8c", "opacity": 0.2, "interpolate": "monotone"},
+                    "encoding": {"y": {"field": "All other industries_pct_lo", "type": "quantitative"}, "y2": {"field": "All other industries_pct_hi"}}
+                }
+            ]
+        },
         {
             "description": "The no-change baseline",
             "mark": {"type": "rule", "color": "#8a8a8a", "strokeWidth": 1},
@@ -55,9 +83,9 @@
                     "field": "pct",
                     "type": "quantitative",
                     "title": "% change in injury and illness risk vs. 70°F",
-                    "scale": {"domain": [-3, 18], "nice": false},
+                    "scale": {"domain": [-3, 21], "nice": false},
                     "axis": {
-                        "values": [0, 5, 10, 15],
+                        "values": [0, 5, 10, 15, 20],
                         "labelExpr": "datum.value > 0 ? '+' + datum.value + '%' : datum.value + '%'"
                     }
                 },

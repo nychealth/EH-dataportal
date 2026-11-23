@@ -28,6 +28,31 @@ parses, so Vega has to load here in main, above them. */}} {{- partial
         white-space: normal;
         text-align: left;
     }
+
+    /* Figures 4 and 5 (5-fig-4-5.md) sit side by side once their box can fit both: Figure 5 needs 555px
+       for its labels, Figure 4 about 430px, plus the gap. A container query measures the box itself, so this
+       holds whatever the window and column widths are. Narrower, they stack with the divider between them. */
+    .occ-fig-pair {
+        container-type: inline-size;
+    }
+    @container (min-width: 1020px) {
+        .occ-fig-pair-row {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+        .occ-fig-pair-row > hr {
+            display: none;
+        }
+        .occ-fig-pair-row > .occ-fig-pair-item:first-child {
+            flex: 430 1 0;
+            min-width: 0;
+        }
+        .occ-fig-pair-row > .occ-fig-pair-item:last-child {
+            flex: 555 1 0;
+            min-width: 0;
+        }
+    }
 </style>
 
 <article class="container-fluid">
@@ -166,12 +191,13 @@ parses, so Vega has to load here in main, above them. */}} {{- partial
         <div class="col-md-10 col-sm-12 mx-auto my-1">
             <h2>Heat risk extends across the NYC workforce</h2>
         </div>
-        <div class="col-md-5 ml-auto col-sm-12">
+        <!-- Text sits above the figures here, not beside them, so Figures 4 and 5 can share the full width -->
+        <div class="col-md-7 mx-auto col-sm-12">
             {{- with .Resources.GetMatch "5-heat-risk-workforce.md" -}} {{
             .Content }} {{- end -}}
         </div>
 
-        <div class="col-md-5 mr-auto col-sm-12">
+        <div class="col-md-10 mx-auto col-sm-12">
             <div class="p-2 border">
                 {{- with .Resources.GetMatch "5-fig-4-5.md" -}} {{ .Content }}
                 {{- end -}}
