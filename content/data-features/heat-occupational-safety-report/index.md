@@ -15,7 +15,7 @@ keywords:
   - disparities
   - mortality
 seo_title: NYC Occupational Heat Safety Report | Environment and Health Data Portal
-seo_description: Data and findings on the impact of heat in NYC.
+seo_description: Data and findings on the impact of heat in the workplace in NYC.
 layout: occupational-heat-report
 content_weight: 6.0
 image: Fig5_header.png

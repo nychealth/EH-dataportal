@@ -209,24 +209,23 @@ parses, so Vega has to load here in main, above them. */}} {{- partial
         </div>
     </div>
 
-    <!--
     <div class="row my-3">
         <div class="col-md-10 mx-auto col-sm-12 my-1">
-            <h2>Community-Level Impacts</h2>
+            <h2>Immigrant workers may face greater risk</h2>
         </div>
         <div class="col-md-5 ml-auto col-sm-12">
-            {{- with .Resources.GetMatch "9-impacts.md" -}} {{ .Content }} {{-
-            end -}}
+            {{- with .Resources.GetMatch "7-interpreters.md" -}} {{ .Content }}
+            {{- end -}}
         </div>
 
         <div class="col-md-5 mr-auto col-sm-12">
             <div class="p-2 border mt-2">
-                {{- with .Resources.GetMatch "9-maps.md" -}} {{ .Content }} {{-
+                {{- with .Resources.GetMatch "7-fig-7.md" -}} {{ .Content }} {{-
                 end -}}
             </div>
         </div>
     </div>
--->
+
     <div class="row my-3">
         <div class="col-md-7 mx-auto col-sm-12">
             {{- with .Resources.GetMatch "10-conclusion.md" -}} {{ .Content }}
