@@ -193,8 +193,12 @@ parses, so Vega has to load here in main, above them. */}} {{- partial
 
         <div class="col-md-5 mr-auto col-sm-12">
             <div class="p-2 border">
-                {{- with .Resources.GetMatch "6-fig-6-7.md" -}} {{ .Content }}
-                {{- end -}}
+                {{- with .Resources.GetMatch "6-fig-6.md" -}} {{ .Content }} {{-
+                end -}}
+            </div>
+            <div class="p-2 border">
+                {{- with .Resources.GetMatch "6-fig-7.md" -}} {{ .Content }} {{-
+                end -}}
             </div>
         </div>
     </div>
