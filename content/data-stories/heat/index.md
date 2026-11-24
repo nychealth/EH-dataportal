@@ -30,7 +30,7 @@ related:
     url: "data-features/heat-syndrome/"
 ---
 
-<em>Updated heat mortality analyses and data are available in the annual <a href="../../data-features/heat-report">NYC Heat Mortality Report.</a></em>
+<em>Updated heat mortality analyses and public health information are available in the annual <a href="../../data-features/heat-report">NYC Heat Mortality Report.</a></em>
 
 {{< updateflag data=`[
   {"src": "data-explorer/weather-related-illness/?id=2074", "text": "Heat stress: deaths"},
