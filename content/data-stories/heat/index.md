@@ -30,6 +30,8 @@ related:
     url: "data-features/heat-syndrome/"
 ---
 
+<em>Updated heat mortality analyses and public health information are available in the annual <a href="../../data-features/heat-report">NYC Heat Mortality Report.</a></em>
+
 {{< updateflag data=`[
   {"src": "data-explorer/weather-related-illness/?id=2074", "text": "Heat stress: deaths"},
   {"src": "data-explorer/climate/?id=2185", "text": "Household air conditioning"}
