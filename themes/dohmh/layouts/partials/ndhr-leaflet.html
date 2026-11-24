@@ -187,7 +187,7 @@
         // index, where landing on the clicked district's own index is what is wanted.
         const category = typeof ndhrPickerDestination === "function" ? ndhrPickerDestination() : "";
 
-        window.location.href = {{ relURL "ndhr/" }} + row.page_name + "/" +
+        window.location.href = {{ (site.GetPage "/ndhr").RelPermalink }} + row.page_name + "/" +
             (category ? category + "/" : "");
 
     };

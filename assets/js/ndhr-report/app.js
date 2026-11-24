@@ -57,7 +57,7 @@ const downloadCSV = () => {
 
     const csv = lines.join('\n');
 
-    const filename = 'NYC EH Data Portal - Healthy Places Toolkit - ' +
+    const filename = 'NYC EH Data Portal - NYC Healthy Places Toolkit - ' +
         (reportConfig.reportName || 'Report') + ' - ' + currentDistrict + '.csv';
 
     // Use Blob URL download flow for broad browser compatibility

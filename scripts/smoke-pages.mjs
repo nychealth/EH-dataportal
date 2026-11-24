@@ -86,18 +86,18 @@ const PAGES = [
                                                     // URL and changed what renders it; topiclanding.html is retired
     "neighborhood-reports/bayside_little_neck/",                         // nr-neighborhood-index.html
     "neighborhood-reports/bayside_little_neck/asthma_and_the_environment/", // nr-report.html — the report itself
-    "ndhr/",                                        // ndhr/section.html — NDHR landing
-    "ndhr/housing/",                                // ndhr/ndhr-category-index.html
-    "ndhr/midtown/",                                // ndhr/ndhr-cd-index.html — Leaflet + the 5 category cards
+    "nyc-healthy-places-toolkit/",                  // ndhr/section.html — NDHR landing
+    "nyc-healthy-places-toolkit/housing/",          // ndhr/ndhr-category-index.html
+    "nyc-healthy-places-toolkit/midtown/",          // ndhr/ndhr-cd-index.html — Leaflet + the 5 category cards
     // ndhr/ndhr-report.html — the NDHR report page. Housing rather than a lighter category
     // because it carries rows at two geographies: four CD measures and two read at PUMA2020,
     // so the geography-labelling path executes here and not on a CD-only category
-    "ndhr/midtown/housing/",
+    "nyc-healthy-places-toolkit/midtown/housing/",
     // The SAME template as the line above, and in the list anyway: Climate is the only
     // category reading at all three geotypes (CD, CDTA2020, PUMA2020), so it is the one
     // page where every branch of the geography labelling runs. This entry was the
     // empty-state Mental Health page until that category was removed (2026-11-19)
-    "ndhr/midtown/climate/",
+    "nyc-healthy-places-toolkit/midtown/climate/",
     "key-topics/",                                  // key-topics/section.html
     "key-topics/airquality/",                       // key-topics/single.html
     "about/",                                       // about/section.html

@@ -72,7 +72,7 @@
 
             const category = ndhrPickerDestination();
 
-            window.location.href = {{ relURL "ndhr/" }} + set.page_name + '/' +
+            window.location.href = {{ (site.GetPage "/ndhr").RelPermalink }} + set.page_name + '/' +
                 (category ? category + '/' : '');
 
         })

@@ -32,7 +32,7 @@
   title: "Active Design"
   menu_label: "Active Design"
   seo_short_name: "Active Design"
-  seo_long_name: "Active Design — Healthy Places Toolkit"
+  seo_long_name: "Active Design — NYC Healthy Places Toolkit"
   summary: "Active Design Guidelines 2.0: Designing for Health and Equity (ADG 2.0) is a playbook and toolkit to equitably improve the health of New Yorkers through the design of the city’s built environment. The guidelines focus on the buildings, streets and neighborhoods where we live, work and play—and the significant impact these spaces have on our daily lives."
   facilities_layer: true
 
@@ -41,7 +41,7 @@
   title: "Climate"
   menu_label: "Climate"
   seo_short_name: "Climate"
-  seo_long_name: "Climate — Healthy Places Toolkit"
+  seo_long_name: "Climate — NYC Healthy Places Toolkit"
   summary: "Climate change is driving higher temperatures and more frequent and intense rainfall and storms. Approximately 500 New Yorkers die from heat each summer."
   facilities_layer: true
 
@@ -50,7 +50,7 @@
   title: "Health Outcomes and Care Access"
   menu_label: "Health Outcomes & Care Access"
   seo_short_name: "Health Outcomes and Care Access"
-  seo_long_name: "Health Outcomes and Care Access — Healthy Places Toolkit"
+  seo_long_name: "Health Outcomes and Care Access — NYC Healthy Places Toolkit"
   summary: "Health care access is not equally distributed across the city, and its availability can encourage more preventive care. Variable access to healthcare facilities contribute to disparities between communities in death rates from chronic diseases and maternal health outcomes."
   facilities_layer: true
 
@@ -59,7 +59,7 @@
   title: "Housing"
   menu_label: "Housing"
   seo_short_name: "Housing"
-  seo_long_name: "Housing — Healthy Places Toolkit"
+  seo_long_name: "Housing — NYC Healthy Places Toolkit"
   summary: "Safe, quality housing is a primary driver of health. For example, the presence of pests can exacerbate asthma, public space design near residences can impact safety and mental health. Overall housing affordability, stability, and accessibility, are factors that impact both physical and mental health."
   facilities_layer: true
 
@@ -68,6 +68,6 @@
   title: "Neighborhood Conditions"
   menu_label: "Neighborhood Conditions"
   seo_short_name: "Neighborhood Conditions"
-  seo_long_name: "Neighborhood Conditions — Healthy Places Toolkit"
+  seo_long_name: "Neighborhood Conditions — NYC Healthy Places Toolkit"
   summary: "Neighborhood conditions include amenities available for public use by those living in the neighborhood, design of public spaces that create a sense of safety, and unique characteristics that give a community a sense of identity. These conditions reflect policies and investment that contribute to the overall mental and physical health of community members."
   facilities_layer: true

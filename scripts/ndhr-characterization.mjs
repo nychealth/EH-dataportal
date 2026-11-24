@@ -47,7 +47,7 @@
 // modules share one top-level scope so those names ARE reachable from an evaluate(); the
 // rule is what keeps the harness valid across a refactor that renames them.
 //
-// It navigates straight to the real /ndhr/<cd>/<category>/ page, so it exercises the path
+// It navigates straight to the real /nyc-healthy-places-toolkit/<cd>/<category>/ page, so it exercises the path
 // the site serves. The Leaflet map is deliberately not clicked — that would make this a
 // test of map hit-detection rather than of report rendering.
 //
@@ -162,7 +162,7 @@ const captureTarget = async (browser, target, baseURL) => {
         if (!KNOWN_NOISE.test(err.message)) consoleErrors.push(`pageerror: ${err.message}`);
     });
 
-    const url = `${baseURL}ndhr/${target.district}/${target.category}/`;
+    const url = `${baseURL}nyc-healthy-places-toolkit/${target.district}/${target.category}/`;
 
     await page.goto(url, { waitUntil: 'load', timeout: 30000 });
 
@@ -373,7 +373,7 @@ const readServedBranch = async (browser, baseURL) => {
     const page = await browser.newPage();
 
     try {
-        await page.goto(`${baseURL}ndhr/`, { waitUntil: 'load', timeout: 45000 });
+        await page.goto(`${baseURL}nyc-healthy-places-toolkit/`, { waitUntil: 'load', timeout: 45000 });
         return await page.evaluate(() => (typeof data_branch === 'undefined' ? null : data_branch));
     } catch {
         return null;

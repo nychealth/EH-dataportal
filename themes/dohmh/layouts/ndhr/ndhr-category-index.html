@@ -47,7 +47,7 @@
             <nav aria-label="breadcrumb" class="mt-2 mb-3">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
-                    <li class="breadcrumb-item"><a href={{ relURL "ndhr" }}>Healthy Places Toolkit</a></li>
+                    <li class="breadcrumb-item"><a href={{ (site.GetPage "/ndhr").RelPermalink }}>NYC Healthy Places Toolkit</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
                 </ul>
             </nav>
@@ -144,7 +144,7 @@
                                 <ul class="list-unstyled fs-sm">
                                 {{- $lastBorough = .borough -}}
                             {{- end -}}
-                            <li><a href="{{ relURL (printf "ndhr/%s/%s/" .page_name $categorySlug) }}">{{ .CD_name }}</a></li>
+                            <li><a href="{{ printf "%s%s/%s/" (site.GetPage "/ndhr").RelPermalink .page_name $categorySlug }}">{{ .CD_name }}</a></li>
                         {{- end -}}
                         </ul></div>
                     </div>

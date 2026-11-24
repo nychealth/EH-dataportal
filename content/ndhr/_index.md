@@ -1,6 +1,6 @@
 ---
-title: Healthy Places Toolkit
-seo_title: "Healthy Places Toolkit"
+title: NYC Healthy Places Toolkit
+seo_title: "NYC Healthy Places Toolkit"
 seo_description: "Health Department data on urban planning and development, by New York City community district, compared with borough and citywide values."
 contact_email: "heiup@health.nyc.gov"
 image: nyc-neighborhood.jpg
@@ -8,7 +8,7 @@ image: nyc-neighborhood.jpg
 ---
 A holistic consideration of the impacts of urban planning on public health must include an understanding of existing community health conditions. Various factors – including inequitable distribution of wealth, harmful past policies such as redlining, and historical and current concentration of polluting actions – have contributed to health disparities, resulting in some communities with resident life expectancy significantly shorter than other communities based on zip code. These disparities in health outcomes can be worsened by additional exposures.
 
-The Healthy Places Toolkit provides a baseline snapshot, equipping City Agencies, Community Based Organizations, and Private Developers with the necessary data to understand community conditions as new developments or planning processes happening across the city. This toolkit was developed by the Health Equity in Urban Planning workgroup within the NYC Health Department.
+The NYC Healthy Places Toolkit provides a baseline snapshot, equipping City Agencies, Community Based Organizations, and Private Developers with the necessary data to understand community conditions as new developments or planning processes happening across the city. This toolkit was developed by the Health Equity in Urban Planning workgroup within the NYC Health Department.
 
 ## Health Equity in Urban Planning
 

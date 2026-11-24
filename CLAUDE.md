@@ -762,18 +762,32 @@ the Neighborhood Reports presentation at **community district** geography, with 
 in the browser from EHDP-data's own indicator files rather than from precomputed payloads
 (`assets/js/report-data/normalize.js`, whose parity harness is under Guardrails above).
 
-360 pages from `content/ndhr/`, four kinds, all routed by `layout` within
-`themes/dohmh/layouts/ndhr/`:
+Its public name is **NYC Healthy Places Toolkit**, and it is served under
+`/nyc-healthy-places-toolkit/` (since 2026-11-24). Everything internal keeps the `ndhr` name —
+the section, `content/ndhr/`, the layouts, `data/globals/NDHR_*`, the scripts — and only the
+served path moved, through the `[permalinks]` entries for `ndhr` in
+`config/_default/config.toml`. So **build links from `(site.GetPage "/ndhr").RelPermalink`, never
+from a literal `"ndhr/"`**: a literal now points at a path that 404s. The five category markdown
+files set their own `url`, which overrides permalinks, so they spell the prefix out by hand.
 
-- **Report page** — `/ndhr/<cd>/<category>/`, 295 of them, `ndhr-report.html`. Forked from
+360 pages from `content/ndhr/`, four kinds, all routed by `layout` within
+`themes/dohmh/layouts/ndhr/` (paths below are relative to `/nyc-healthy-places-toolkit/`):
+
+- **Report page** — `<cd>/<category>/`, 295 of them, `ndhr-report.html`. Forked from
   `nr-report.html` and carrying the same page-level `data-pagefind-ignore="all"`. **What it
   inherited is described in [documents/nr-architecture.md](documents/nr-architecture.md), not
   here** — the two print renditions, the tertile vocabulary and the `.comp-*` classes are shared.
   That document is the only place the print rendition's rules are written down, and deriving one
   of them from the SCSS instead cost a build-and-revert on 2026-09-14.
-- **Community district index** — `/ndhr/<cd>/`, 59, `ndhr-cd-index.html`.
-- **Category index** — `/ndhr/<category>/`, 5, from the hand-written markdown in `content/ndhr/`.
-- **Landing** — `/ndhr/`, `section.html`.
+- **Community district index** — `<cd>/`, 59, `ndhr-cd-index.html`.
+- **Category index** — `<category>/`, 5, from the hand-written markdown in `content/ndhr/`.
+- **Landing** — the section root, `section.html`.
+
+**Printing for review.** A browser print does not show reviewers the page: the report page swaps
+in the inherited print rendition, and at Letter width every page stacks to Bootstrap's narrow
+layout. `node scripts/ndhr-review-pdfs.mjs [district ...] [collapsed]` saves screen-media PDFs at
+desktop width instead, with every report row expanded, into a git-ignored review-pdfs folder at
+the repo root.
 
 `content/ndhr/_content.gotmpl` generates the first two by crossing `data/globals/cdlist.json` with
 `data/globals/NDHR_categories.yml`; the other six pages are the markdown files beside it.

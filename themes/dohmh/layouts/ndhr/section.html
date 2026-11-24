@@ -62,7 +62,7 @@
     <div class="row mt-1 py-4 mb-4">
 
         <div class="col-12 mb-3">
-            {{/* Just the title, "Healthy Places Toolkit" — the NDHR name and abbreviation
+            {{/* Just the title, "NYC Healthy Places Toolkit" — the NDHR name and abbreviation
                  were retired on reviewer request, 2026-10-28. h2 sizing, as on the Key
                  Topics pages */}}
             <h1 class="h2">{{ partial "section-icon.html" $.Section }}{{ .Title }}</h1>
@@ -92,7 +92,7 @@
         <div class="col-md-12 col-lg-4 pl-xl-4">
 
             {{- $firstCategory := index site.Data.globals.NDHR_categories 0 }}
-            <a class="btn btn-primary btn-lg btn-block mb-4" href="{{ relURL (printf "ndhr/%s/" $firstCategory.slug) }}">
+            <a class="btn btn-primary btn-lg btn-block mb-4" href="{{ printf "%s%s/" (site.GetPage "/ndhr").RelPermalink $firstCategory.slug }}">
                 Take me to the tool<i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
             </a>
 

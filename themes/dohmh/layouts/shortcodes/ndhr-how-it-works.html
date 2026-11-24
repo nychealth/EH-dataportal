@@ -38,7 +38,7 @@
          cannot disagree */}}
     {{- $firstCategory := index site.Data.globals.NDHR_categories 0 }}
     <p class="mt-4 mb-0">
-        <a class="btn btn-primary" href="{{ relURL (printf "ndhr/%s/" $firstCategory.slug) }}">
+        <a class="btn btn-primary" href="{{ printf "%s%s/" (site.GetPage "/ndhr").RelPermalink $firstCategory.slug }}">
             Take me to the tool<i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
         </a>
     </p>

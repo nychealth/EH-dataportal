@@ -57,6 +57,17 @@ timeZone = "America/New_York"
   [languages.zh.params]
     languageDesc = "Chinese-Simplified"
 
+[permalinks]
+  # The NDHR prototype's public URL. The section stays `ndhr` internally (content/ndhr/,
+  # themes/dohmh/layouts/ndhr/, data/globals/NDHR_*), and only where it is served moves,
+  # so templates build links from (site.GetPage "/ndhr").RelPermalink rather than from a
+  # literal path. The five category indexes set their own `url` in front matter, which
+  # overrides these patterns, so they name the same prefix by hand.
+  [permalinks.section]
+    ndhr = "/nyc-healthy-places-toolkit/:sections[1:]/"
+  [permalinks.page]
+    ndhr = "/nyc-healthy-places-toolkit/:sections[1:]/:contentbasename/"
+
 [taxonomies]
   tag = "tags"
   category = "categories"

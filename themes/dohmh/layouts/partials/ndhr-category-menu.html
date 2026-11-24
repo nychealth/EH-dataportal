@@ -17,6 +17,8 @@
 
 {{- $active := .active -}}
 {{- $slug := .district_slug -}}
+{{- /* The section's served path, from the permalink config rather than a literal */ -}}
+{{- $base := (site.GetPage "/ndhr").RelPermalink -}}
 
 {{/* data-pagefind-ignore="all", for the same reason nr-topic-menu carries it: these five
      labels are the five NDHR category words and this partial puts all of them on every
@@ -28,12 +30,12 @@
     {{- range site.Data.globals.NDHR_categories -}}
 
         {{- $href := cond (eq $slug "")
-            (printf "ndhr/%s/" .slug)
-            (printf "ndhr/%s/%s/" $slug .slug) -}}
+            (printf "%s%s/" $base .slug)
+            (printf "%s%s/%s/" $base $slug .slug) -}}
 
         <div class="col-sm mb-2 mr-1 mb-lg-0">
             <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 ndhr-category-link{{ if eq .key $active }} active{{ end }}"
-               href="{{ relURL $href }}">
+               href="{{ $href }}">
                 {{ .menu_label }}
             </a>
         </div>
