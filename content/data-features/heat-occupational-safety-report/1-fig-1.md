@@ -4,7 +4,7 @@ draft: false
 ---
 
 <div class="p-2 border">
-<strong>Figure 1</strong>: Heat-stress deaths by year, NYC residents (2016-2025).
+<strong>Figure 1</strong>: Workplace injury and illness risk rises with temperature, most sharply in industries with common heat exposure
 
 <div class="my-2">
 {{< vega0 id="fig1" spec="fig1.vl.json" >}}

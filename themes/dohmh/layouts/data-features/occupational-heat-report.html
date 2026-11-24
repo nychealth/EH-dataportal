@@ -191,14 +191,20 @@ parses, so Vega has to load here in main, above them. */}} {{- partial
         <div class="col-md-10 col-sm-12 mx-auto my-1">
             <h2>Heat risk extends across the NYC workforce</h2>
         </div>
-        <!-- Text sits above the figures here, not beside them, so Figures 4 and 5 can share the full width -->
-        <div class="col-md-7 mx-auto col-sm-12">
-            {{- with .Resources.GetMatch "5-heat-risk-workforce.md" -}} {{
-            .Content }} {{- end -}}
+        <!-- Text sits above the figures here, not beside them, so Figures 4 and 5 can share the full width.
+             It shares the figures' col-md-10 so its left edge lines up with their border; the inner col-lg-8
+             keeps the lines a readable length. -->
+        <div class="col-md-10 mx-auto col-sm-12">
+            <div class="row">
+                <div class="col-lg-8 col-12">
+                    {{- with .Resources.GetMatch "5-heat-risk-workforce.md" -}} {{
+                    .Content }} {{- end -}}
+                </div>
+            </div>
         </div>
 
         <div class="col-md-10 mx-auto col-sm-12">
-            <div class="p-2 border">
+            <div class="p-2 border mt-3">
                 {{- with .Resources.GetMatch "5-fig-4-5.md" -}} {{ .Content }}
                 {{- end -}}
             </div>
