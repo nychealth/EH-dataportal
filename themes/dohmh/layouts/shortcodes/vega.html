@@ -31,7 +31,10 @@
         //data_repo + "/" + data_branch + "/" + dir + "/" + spec
     ).then(function(result) {
 
-        // TOOD: do something?
+        // vega-embed's actions control is a <summary> holding only an SVG, so it has
+        // no name; there is no embed option for one (as in nr-report/chart.js)
+        var summary = document.querySelector('#{{ .Get "id" }} details > summary');
+        if (summary) summary.setAttribute('aria-label', 'Export or view source for this chart');
     }).catch(console.error);
 
 </script>

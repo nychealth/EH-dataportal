@@ -1,0 +1,14 @@
+{{- /*
+    Markdown image hook: routes ![alt](src) through partials/body-image.html, which resizes
+    oversized bundle images and adds width/height and lazy loading. Mirrors Hugo's built-in hook
+    (v0.147.3) otherwise, except that a query string or fragment on a local image is not carried
+    over: no content uses one (2026-11-15), and a resized image has its own URL.
+*/ -}}
+{{- partial "body-image.html" (dict
+    "page" .PageInner
+    "src" .Destination
+    "alt" .PlainText
+    "title" .Title
+    "attrs" .Attributes
+) -}}
+{{- /**/ -}}

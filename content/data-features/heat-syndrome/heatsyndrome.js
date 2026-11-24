@@ -6,15 +6,16 @@ const month   = today.getUTCMonth() + 1; // months from 1-12
 const day     = today.getUTCDate();
 const year    = today.getUTCFullYear();
 const date    = today.getDate();
-var allYears  = [];    
+var allYears  = [];
 var fileExists;
-var yearURL   = 'https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat' + year + '_live.csv';
+var colorArray; // set by init(); the scatterplot specs below read it once init() resolves
+var yearURL   = data_repo + data_branch + '/key-topics/heat-syndrome/edheat' + year + '_live.csv';
 
-function init() {
+async function init() {
 
     // check if this year's URL exists, and if it does, draw this year's button
 
-    UrlExists(yearURL);
+    fileExists = await UrlExists(yearURL);
 
     // console.log(UrlExists(yearURL))
 
@@ -69,25 +70,19 @@ function init() {
     }
 }
 
-function UrlExists(url) {
+// Resolves true unless the file 404s. Asynchronous: the synchronous XHR this replaced held the
+// main thread for the whole request. A network failure counts as missing, so the page falls
+// back to last year's button rather than stopping, where the old XHR threw out of init().
+async function UrlExists(url) {
 
     // console.log('checking ' + url)
 
-    var http = new XMLHttpRequest();
-    http.open('HEAD', url, false);
-    http.send();
-    if (http.status == 404 ) {
-
-        fileExists = false;
-
-    } else {
-
-        fileExists = true;
-
+    try {
+        const response = await fetch(url, { method: 'HEAD' });
+        return response.status != 404;
+    } catch (error) {
+        return false;
     }
-    // console.log(fileExists)
-
-    return http.status!=404;
 
 }
 
@@ -142,7 +137,7 @@ var spec = {
         "view": {"stroke": "transparent"}
     },
     "data": {
-        "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat2023_live.csv",
+        "url": data_repo + data_branch + "/key-topics/heat-syndrome/edheat2023_live.csv",
     "format": {"type":"csv", "parse":{"END_DATE": "date:'%Y-%m-%d'", "MAX_DAILY_TEMP":"number","HEAT_ED_VISIT_COUNT":"number"}} //format.parse -> END_DATE resolves UTC time issues
     },
     "transform": [
@@ -218,9 +213,8 @@ var spec = {
     ]
 };
 
-// Initial embed of line chart
-
-vegaEmbed('#vis1',spec, {renderer: "svg"});
+// The line chart is first drawn by init() -> changeYear(), with the year filter applied. A second
+// embed here, at load, raced that one into #vis1 and could leave two export menus in the chart.
 
 
 
@@ -234,12 +228,12 @@ function changeYear(x) {
 
     if ( x == allYears[0]) {
 
-        spec.data.url = `https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat${x}_live.csv`;
+        spec.data.url = `${data_repo}${data_branch}/key-topics/heat-syndrome/edheat${x}_live.csv`;
 
     }
     else {
 
-        spec.data.url = 'https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/previous_years.csv';
+        spec.data.url = data_repo + data_branch + '/key-topics/heat-syndrome/previous_years.csv';
 
     }
     document.getElementById('yearHeader').innerHTML = x;
@@ -283,9 +277,8 @@ function toggleScatter(x) {
 
 
 
-init();
-
-// Scatterplot specs. They need to follow init() because that's how we get colorArray
+// Scatterplot specs. Their palette is colorArray, which init() computes, so it is written into
+// them once init() resolves (at the foot of this file)
 
 var scatterplot = {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -306,7 +299,7 @@ var scatterplot = {
     },
     "view": {"stroke": "transparent"},
     "data": {
-        "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/previous_years.csv"
+        "url": data_repo + data_branch + "/key-topics/heat-syndrome/previous_years.csv"
     },
     "transform": [
         {"calculate": "year(datum.END_DATE)", "as": "Year"},
@@ -396,7 +389,7 @@ var scatterplotTwo = {
     },
     "view": {"stroke": "transparent"},
     "data": {
-        "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/previous_years.csv"
+        "url": data_repo + data_branch + "/key-topics/heat-syndrome/previous_years.csv"
     },
     "transform": [
         {"calculate": "year(datum.END_DATE)", "as": "Year"},
@@ -471,6 +464,13 @@ var scatterplotTwo = {
     }
 };
 
-// Initial embed of scatterplot
+// Draw the year buttons, then the initial scatterplot with init()'s palette
 
-vegaEmbed('#vis2', scatterplot, {renderer: "svg"});
+init().then(() => {
+
+    scatterplot.config.range.category = colorArray;
+    scatterplotTwo.config.range.category = colorArray;
+
+    vegaEmbed('#vis2', scatterplot, {renderer: "svg"});
+
+});

@@ -368,7 +368,10 @@ const loadData = async (this_IndicatorID) => {
 
     } catch (error) {
 
+        // Rethrown so loadAndRenderIndicator can show the visitor the failure (A-284).
+
         console.log(error);
+        throw error;
 
     }
 

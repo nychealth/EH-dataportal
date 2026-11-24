@@ -176,17 +176,18 @@ const renderDisparitiesChart = async (
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "description": `${primaryIndicatorName} ${primaryMeasurementType} and poverty scatterplot`,
         "title": {
-            "text": [`${primaryIndicatorName}`],
+            "text": `${primaryIndicatorName}`,
             "align": "left",
             "anchor": "start",
-            "fontSize": 18,
+            // Same title and subtitle sizes as the correlate and trend charts.
+            "fontSize": 14,
             "fontWeight": "normal",
             "font": "sans-serif",
             "baseline": "top",
             "dy": -10,
             "limit": 1000,
             "subtitle": `${subtitle} (${primaryTime})`,
-            "subtitleFontSize": 13
+            "subtitleFontSize": 12
         },
         // A measured width, so the chart still sizes correctly when this render beats
         // Bootstrap's reveal of the pane and "container" would resolve to 0px. fit-x is
@@ -334,6 +335,9 @@ const renderDisparitiesChart = async (
             }
         ]
     };
+
+    // A long indicator name would otherwise run past the SVG's right edge (N-105).
+    wrapChartTitle(disparitiesSpec.title, disparitiesSpec.width);
 
     // ----- embed chart, cache print-export state, build downloadable CSV ----- //
 

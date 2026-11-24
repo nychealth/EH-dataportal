@@ -1,0 +1,226 @@
+# R3: Explorer behaviour (2026-10-30)
+
+Batch R3 of `documents/site-wide-audit-2026-10.md` (Roadmap): 4 P1 rows (A-152, A-162, A-308,
+N-046) and 9 P2 (A-153, A-154, A-155, A-273, A-284, N-040, N-041, N-042, N-045), on branch
+`feature-audit-r3-explorer-behaviour`, cut from the local `production` at `a77f7d4991`. This
+document is the plan and the ledger. Rows are closed in the audit document only once their proof
+has run.
+
+**Status as of 2026-11-01: every task done, all 14 rows closed in the audit; fixes `fcb2771302`, `3fbc44854f`, `082cd56d40` (A-308), `4f29000c69` (N-105), `5fb0981135` and `c7bc1aa32b` (A-284). Next: the PR into `production`.**
+
+Every row was found on `b8f4b32fbd`. Since then 13 non-merge commits have touched the explorer's
+files (16 JS files +628/−588, mostly the formatting sweeps `d2d80dc7e2`..`840ede9674` and
+`91aa287079`, plus R4 `47d7a1bea8` and R5 `7f721b3aaa`, which changed `de-tab-content.js`)
+`[verified 2026-10-30: git log --no-merges b8f4b32fbd..production over assets/js/data-explorer/,
+themes/dohmh/layouts/data-explorer/, de-*.html partials and _de-custom.scss]`. So Task 0
+reproduces every row on `a77f7d4991`, the runtime-confirmed ones included, and a row that does
+not reproduce is dropped from the batch rather than fixed.
+
+## Decisions
+
+All three Chris's, all three decided:
+
+- **D1, A-308 (charts too narrow between 720 and ~1000px).** `documents/de-chart-width-findings-2026-10-15.md`
+  §Options: (1) move the side-panel breakpoint from 720px to e.g. 992px — eight
+  `@media (min-width: 720px)` blocks and one `max-width: 719.98px` block in `_de-custom.scss`,
+  plus `trend.js`'s `viewportWidth < 720` legend switch; (2) a minimum side-panel width (~360px),
+  which overlaps the 380px details panel more between 720 and ~800px. That document recommends
+  (1); neither was built. Both get built and measured at 720, 768, 991, 992 and 1024px before
+  the choice is put to Chris.
+  **Measured 2026-10-31** (below, "D1 measurements"): (1) as specced removes every clip from 720 to
+  991 but produces a third layout there, not the phone one; (2) still clips two of three chart
+  titles and covers part of the details panel at 720–800. Titles that clip at 992–1024px on all three builds are N-105,
+  added to the audit 2026-10-31 as a P1 row of this batch. A third option, (1) extended to the explorer's
+  Bootstrap classes, was measured the same day: the phone layout throughout 720–959, no clipping there, and
+  a switch at 960 rather than 992 because the site's `lg` is 960 (below, "Option 1 extended").
+  **Decided: option 1 extended** (Chris, 2026-10-31). Rejected: option 1, for the third layout it leaves at
+  768–991; option 2, which still clips two of three titles and covers the details panel at 720–800. Its cost,
+  accepted with it: N-105's range widens to 960–1024, which needs its own fix under every option.
+- **D2, A-284 (failed fetches only log to the console).** What the message says, where it shows,
+  and whether a retry is in scope for this batch.
+  **Decided** (Chris, 2026-10-31): a message for the loads that leave the explorer blank or stale (indicator
+  data, time and geography in `data.js`'s `loadIndicator` catch; `metadata.json` in
+  `topic-indicator-selector.js`; the three map-shape catches in `map.js`), shown in the chart area as an
+  `alert alert-warning` with `role="alert"` (the `correlate.js` no-correlates pattern), with a "Try again"
+  button that re-runs `loadAndRenderIndicator`; `loadOnce` already evicts a rejected load, so the retry
+  refetches. Rejected: message only, and every fetch site (comparisons and 311 already degrade quietly,
+  to `[]` and to no links).
+- **D3, A-155 (small-numbers sentence printed twice): fix it** (Chris, 2026-10-30). Task 0 found
+  no render that shows it on today's data, though the mechanism is in the source; the fix dedupes
+  after mapping in `getDisplayNotes`. Rejected: dropping it as not reproduced.
+
+## Ledger
+
+| Task | Rows | Commit | Status | Proof that ran |
+|---|---|---|---|---|
+| 0 | all 13 but A-284 and A-308: reproduce on an isolated `prod_prod` build of `a77f7d4991` | *no commit* (measurement) | **DONE 2026-10-30**: 10 of 11 reproduce; A-155 does not on today's data (D3) | Task 0 findings, below |
+| 1 | A-162: correlate CSV column swap | `3fbc44854f` | **Fix written, verified** | `correlate.js` labels the download by primary/secondary instead of by axis, each column keeping its format. `a162.mjs`, before `:8091` (`a77f7d4991`), after `:8092` (isolated `prod_prod` build of the edited tree); `after-8091.out` / `after-8092.out`: axis `y` (id 4) `Value_1_Indicator` names the primary — false before, true after, `Value_1` 8.8 both; control axis `x` (id 18): both labels byte-identical before and after. `a162null.mjs`: all 567 links whose `SecondaryAxis` is null carry no secondary `MeasureID` (the same field read 777 on the axis-`y` link), so none reaches a correlate CSV; A-162's scope is the 467 axis-`y` links |
+| 2 | A-152: "About the data" keeps a tab's text | `3fbc44854f` | **Fix written, verified** | the About/Sources fill moves out of `renderIndicatorInfo` into `renderIndicatorAbout`; `renderCurrentView` calls `restoreIndicatorAbout` on every overlay but `trend` and `links`, which write their own. `probe0.mjs a152`: after Trends, Bar and Table read the trend text before and the indicator-wide text after; Trends still shows its own text after |
+| 3 | A-155: notes printed twice (indicator 2383); D3: fix it (Chris, 2026-10-30) | `fcb2771302` | **Fix written, verified** | `getDisplayNotes` returns `[...new Set(mapped)]`; `renderUnreliabilityNotes`'s caller comment now says the inline step dedupes raw notes only. `npm run lint` exit 0. `a155fix.mjs` on 2383's raw notes (`* Estimate…`, `< 4 Estimate…`): before (`global.e107fa142c37c568.js`, :8091) 2 identical sentences, after (`global.9b9f69c4ad3abdaa.js`, isolated `prod_prod` build of the edited tree on :8092) 1. Control, a small-numbers and a suppressed note: 2 distinct sentences on both. The 1206 bar slice shows the sentence once on both |
+| 4 | A-153, A-154: table sync and Area search after rebuild | `3fbc44854f` | **Fix written, verified** | popstate and a measure change that cascades geo/time now clear the Area search and resync the table, as a geo/time change already did; `bindAreaOnlySearch` re-applies a kept Area term to a rebuilt table; `resetSelectionForNewIndicator` clears it. `a153.mjs` (id 22), Back over a geo change: table off the map while "Synced" before, following after; the geo-change control follows on both. Cascade arm, run 2026-10-31 on indicator 103 (found by a metadata scan, `cascade-scan.mjs`: measure 221 offers NTA, 870 does not): 221 at NTA with "Bronx", then Rank: before, the table stops following the map (geo and time) and "Bronx" stays applied under "Synced"; after, it follows and the search is cleared. On both builds Rank leaves GeoType and TimePeriodID `null`, which predates this branch and was not looked into. Indicator 40 (PUMA, Percent → Number) did not cascade: its menus offer PUMA for both. `a154.mjs`, Change dataset 2380 → 2384 with "Bronx": box "Bronx" over an empty column filter (188 rows) before, box and filter both cleared after. `a154b.mjs`, group-by-borough toggle with "Bronx": filter dropped to 59 rows under a "Bronx" box before, 12 rows with box and filter agreeing after |
+| 5 | A-273, N-040, N-041, N-042: history and overlay state | `3fbc44854f` | **Fix written, verified** | A-273: `writeSelectionToURL` turns a push of the URL already showing into `replaceState`. N-040: the Escape listener returns on `event.defaultPrevented`, which Bootstrap 4.6.2 sets for a modal's and an open dropdown's own Escape. N-041: Data Sources is overlay `ds` (tab map, a no-op `renderCurrentView` case, `showOverlayTab`). N-042: popstate to an entry with no `id` reloads the page, the state `checkURL` gives a topic page opened without one (a choice made here, not by Chris). `probe0.mjs`: A-273 same measure `history.length` 2 → 3 before, 2 → 2 after, other measure +1 on both; N-040 modal arm and new dropdown arm closed the Bar pane and pushed an entry before, kept it open with no entry after, Escape alone still closes it; N-041 `overlay=ds` when Data Sources opens, kept through a Measure change and from `overlay=trend` (before: `none`, closed, `trend`), Bar control `bar` on both; N-042 Back left 2414 on screen with no chooser before, after it reloads to the chooser |
+| 6 | N-045: unknown `?id=` throws | `3fbc44854f` | **Fix written, verified** | `loadAndRenderIndicator` stops after `ensureIndicatorsLoaded` when `getIndicatorById` finds nothing. `probe0.mjs n045`: chooser open on both; `reading 'array'` page error before, none after; control `?id=2380` none on both |
+| 7 | N-046: Take Action placeholder | `3fbc44854f` | **Fix written, verified** | `header-de.html` and `de-tab-button.html` render the 311 spans empty with `hide` and an empty label, the state `render311Links` leaves for an indicator with no match. Built `data-explorer/asthma/index.html`: 2 "Dynamic option" before, 0 after. `probe0.mjs n046`: `/data-explorer/` and `/data-explorer/asthma/` showed "Dynamic option" → `#` before and no link after; control `?id=2380` "Asthma" → KA-02563 on both |
+| 8 | A-284: fetch failure message (D2) | `5fb0981135`, regression fix `c7bc1aa32b` | **Fix written, verified**. Regression found 2026-11-01 by Task 10's smoke sweep on `531f6f1987` (`t10b-smoke.log`): `/data-explorer/` threw `loadOnce is not defined`, its only failure in 1187 pages, kept on the sequential re-check. `data-explorer/section.html` loads `topic-indicator-selector.js` without `global.js`, and `5fb0981135` routed `metadata.json` through `global.js`'s `loadOnce`; lint scans the directory as one scope, so it could not see this. Fix: the selector keeps its own shared request and drops it on failure (`metadataRequest`), the same retry behaviour. `[verified 2026-11-01: landing.mjs on isolated prod_prod builds of 531f6f1987 (:8098) and the fix (:8099), landing.out: /data-explorer/ pageerror "loadOnce is not defined" and no metadata before, none and 267 indicators after; data-explorer/asthma/ with no ?id= clean on both; a284b.mjs on :8099, a284-after-2.out: every arm as a284-after.out, the metadata arm's Try again → 62 paths at 1280 and 400px; npm run lint exit 0]`. Earlier: placement decided 2026-10-31 (Chris: a non-modal card over the explorer, not a banner, which moves the layout, nor a modal); `showLoadError`/`clearLoadError`/`retryIndicatorLoad` in `app.js`, `#loadErrorOverlay` in `single.html`, `.de-load-error-overlay` in `_de-custom.scss`, `loadIndicator` rethrows, `metadata.json` through `loadOnce`, the three map catches guarded by `mapRenderGeneration`. Not covered: a `metadata.json` failure on a topic page opened without `?id=` (the chooser path, `renderIndicatorList`), which still leaves one uncaught "Failed to fetch"; the retry's `push` branch (an in-page pick that fails) was not driven | `[verified 2026-10-31: isolated prod_prod build, :8097, a284b.mjs at 1280 and 400px, output a284-after.out]` data, metadata and topo arms: card `role="alert"`, in view and topmost at both widths, `#map` box identical to the control; Try again after unrouting → 62 paths, MeasureID 1199, card gone, URL rewritten in place. control and comparisons: no card. `npm run lint` exit 0; `git diff -w` on `app.js` deletes only the two lines changed on purpose. Before: `[verified 2026-10-31: isolated prod_prod build of d1b982fb8c plus the opt1x variant, served on :8096; a284.mjs aborts one URL pattern per arm on /data-explorer/asthma/?id=2380, 9 s settle; output a284-before.out]` control 62 map paths, MeasureID 1199. Aborting indicators/data/2380.json: 3 paths, MeasureID null, no visible alert or retry, plus an uncaught pageerror "Failed to fetch". metadata.json: 3 paths, null, two uncaught TypeErrors (reading 'find'). topo: 3 paths, MeasureID 1199, logged only. comparisons: 62 paths, quiet, as D2 assumed |
+| 9 | A-308: tablet chart width (D1); N-105: titles clipped at 960–1024px | A-308 `082cd56d40`, N-105 `4f29000c69` | **Both fixes written, verified**. N-105 (2026-11-01): the overflow is the title, not the layout — Vega-Lite draws a title on one line and fit-x sizes only the plot, so any name wider than the chart overruns at any width; 960–1024 is where the chart is narrowest. `wrapChartTitle` in `global.js` splits the title and subtitle into lines measured in the title's font against the chart width (`splitCanvasTextIntoLines`, `print-map.js`; the congestion-pricing report's `wrapTitle` is the pattern), called from `bar.js` and `trend.js`; skipped when the width is "container". `npm run lint` exit 0. `[verified 2026-11-01: n105.mjs (text past the SVG's right edge, full text and Vega role) on isolated prod_prod builds of b91e53b1ea (:8098, n105-head.out) and of the edited tree (:8099, n105-fix.out), at 700, 960, 991, 1024 and 1200; predictions in n105-predictions.md]` before: bar 2445's subtitle 329px, 71/59/47px past the SVG at 960/991/1024; trend 2380's title 282px, 24/12px past at 960/991; bar 2023 and every chart at 700 and 1200 clean. After: nothing past the edge at any width; both names in two lines at 960–1024 and one at 700 and 1200, as predicted; bar 2023 one line throughout. `shot-n105-*-960.png`: two-line titles clear of the plot. Seen, not in scope: the trend chart's year labels crowd at 263px on this build; the axis is unchanged and the chart width is the same on HEAD. Prior: D1 decided 2026-10-31 (option 1 extended), applied by `a308_variant.py . opt1x` to files unchanged since the measured `3fbc44854f` (`git diff --stat 3fbc44854f d1b982fb8c` over all seven: empty), asserts passed, numstat 30/30 over 7 files; N-105's fix not designed | D1 measurements, above |
+| 10 | lint, smoke, DE and site characterization, re-baseline | re-baseline `f4719c3047` | **DONE 2026-10-31** (checks on `3fbc44854f`); **re-run 2026-11-01** on `c7bc1aa32b`'s tree (`531f6f1987` plus row 8's selector fix) | Re-run: `npm run lint` exit 0. `smoke-env.mjs prod_prod` on `531f6f1987` failed 1 of 1187, `/data-explorer/` `loadOnce is not defined` (row 8's regression, `t10b-smoke.log`); with the fix, 1187 clean (`t10c-smoke.log`), the selector's blob unchanged between the run's start and end. `characterize-env.mjs prod_prod`: PASSED, 924 of 924 pages match the `prod_prod` baseline captured at `3fbc44854f`, so no re-baseline (`t10c-char.log`). `de-characterization.mjs --check` against isolated builds of `3fbc44854f` (`C:/temp/r3cur`, :8098) and of this tree (`C:/temp/r3m`, :8099; `flex-lg-row` on the asthma page only in the second): both fail the committed baseline on the same 14 lines as on 2026-10-31, and the two captures are identical (`git diff --no-index` exit 0). That harness runs at 1400px, where neither A-308 nor N-105 changes anything, so it shows no unintended change at desktop width, not coverage of either fix. First run: `npm run lint` exit 0. `smoke-env.mjs prod_prod`: 1187 pages clean; `heat-report-archive/2021/` failed under concurrency and cleared on the sequential re-check (the Datawrapper flake in CLAUDE.md). `de-characterization.mjs --check` against `:8091` (before) and `:8092` (after): both fail the committed baseline on the same 14 lines (indicator 2023's time 2024 → 2025, row and mark counts, legend), and the two arms' outputs are identical (`git diff --no-index` exit 0), so this is EHDP-data having moved since that baseline, not this branch. That baseline was re-captured in `987d8397dc` and the re-capture reverted in `608bf60f83`: `feature-de-harness-branch-baselines` (`0b259e9a95`) files baselines per EHDP-data branch and carries the same staging capture byte-identically under `staging/`, and with both edits in place `git merge-tree` reported no conflict but wrote this branch's staging 2380 into that branch's `production/2380.json`. After the revert, all six baseline files merge to that branch's versions in either order. So this branch leaves the DE baseline as `production` has it, and its `--check` fails on `dev_stage` by the 16 lines A-395 records until that branch merges. Logs: `scripts/.sc-rebaseline/r3/de-*.log`. `characterize-env.mjs prod_prod`: 42 of 924 pages differ, all under `data-explorer/`, every one `links.internal` −2 and `links.emptyHref` −2 and nothing else (a parse of both captures): N-046's two placeholder links. `site-characterization-rebaseline.mjs --expect "data-explorer/**"`: both baselines "42 of 924 pages changed in all; 42 covered by --expect, 0 not", "Nothing unexplained"; `git diff -U0` tallied by key: 84 `internal` and 84 `emptyHref`, every one −2, plus the two `_meta.json` provenance lines; 86 files +174/−174 |
+| 11 | close the rows in the audit | `b6dee3e27a`, `6b179b02df` | **All 14 closed** (2026-11-01: A-308, N-105, A-284) | Last three, 2026-11-01: `close_r3b.py` on a copy, then on the audit, byte-identical (`cmp` exit 0); recount control reproduced `HEAD`'s table first (OPEN 13/52/131/2 = 198, FIXED 262), then read OPEN 11/51/131/2 = 195, FIXED 265, all 507; `check_batches.py`: every batch OK, ordered, 62 ids = the OPEN P1/P2 rows. R3's batch row reads 0 / 0, "none open", beside R6 at the foot of the Roadmap; it names commits, not ids, because the batch check reads every id in that column as a member (a first draft naming them failed it). `git diff --numstat` 9/9. First eleven: `close_r3.py` on a copy, then on the audit, byte-identical (`cmp` exit 0): 11 rows FIXED (A-155 by `fcb2771302`, the other ten by `3fbc44854f`), the count table, the Summary paragraph, the Roadmap's P1+P2 total (75 → 64) and the R3 batch row (1 / 1: **A-308**; A-284), moved below R11 by P1-then-P2 order. Recount control reproduced `HEAD`'s table first (OPEN 15/60/131/2 = 208, FIXED 251), then read OPEN 12/52/131/2 = 197, FIXED 262. Batch check (`C:/temp/check_batches.py`, the memory's script): every batch OK, ordered, 64 ids = the OPEN P1/P2 rows. `git diff --numstat` 17/17. Then N-105 added by `add_n105.py` (OPEN, P1, batch R3: chart titles clipped at 992 and 1024px, past both A-308 options, from the D1 measurements), on a copy first and byte-identical: OPEN 13/52/131/2 = 198, all 507, Roadmap 64 → 65, R3's row 2 / 1 and above R1; batch check 0 MISMATCH, 65 ids |
+
+Every script, probe output, prediction file and screenshot this document names is in
+`scripts/.sc-rebaseline/r3/` (git-ignored, so on the machine that ran them only; copied there
+2026-10-31 from the session scratchpad). The probes import Playwright through the repo's
+`package.json` and read `R3_BASE` for the site to load (default `http://localhost:8091/IndicatorPublic/`).
+
+Each fix task's proof is the Task 0 reproduction re-run on a build of the edited tree, with the
+same probe, plus a control the fix should not move.
+
+### D1 measurements (A-308)
+
+`[verified 2026-10-31: three isolated prod_prod builds of 3fbc44854f, the variants applied in a detached
+worktree (C:/temp/r3wt) by a308_variant.py and confirmed in each built theme CSS: current (:8092);
+option 1 (:8093), the seven explorer min-width: 720px blocks and the max-width: 719.98px block moved to
+992px / 991.98px (min-width: 992px 1 → 8, min-width: 720px 33 → 26 in the CSS; .container-to-large
+left alone) plus trend.js's viewportWidth < 720; option 2 (:8094), min-width: 360px on .de-tabs.
+a308.mjs, method of .playwright-mcp/chart-text-clip.mjs, 9 widths x 4 charts per build;
+predictions written first in a308-predictions.md]`
+
+No-power check passed: current clips at 768 on all three bar and trend charts (1, 3 and 1 text
+elements), as the 2026-10-15 findings recorded.
+
+| Window | current: chart px / clipped (bar 2023, bar 2445, trend 2380) / correlate past pane | option 1 | option 2 |
+|---:|---|---|---|
+| 700 | 666 / 0, 0, 0 / — | same | same |
+| 720 | 172 / 1, 1, 1 / 92px | 626 / 0, 0, 0 / — | 258 / 0, 1, 1 / 6px |
+| 768 | 190 / 1, 3, 1 / 74px | 674 / 0, 0, 0 / — | 258 / 0, 1, 1 / 6px |
+| 800 | 202 / 0, 3, 1 / 62px | 706 / 0, 0, 0 / — | 258 / 0, 1, 1 / 6px |
+| 900 | 240 / 0, 1, 1 / 24px | 806 / 0, 0, 0 / — | 258 / 0, 1, 1 / 6px |
+| 991 | 275 / 0, 1, 1 / — | 897 / 0, 0, 0 / — | 275 / 0, 1, 1 / — |
+| 992 | 275 / 0, 1, 1 / — | same as current | same as current |
+| 1024 | 287 / 0, 1, 0 / — | same as current | same as current |
+| 1200 | 354 / 0, 0, 0 / — | same | same |
+
+- The clipped text is the chart title ("Cold-related illness: 5-…", "Asthma emergency departm…"), plus bar
+  2445's axis numbers 10 and 20 at 768–800 on current. At 992–1024 those two titles clip on all three
+  builds: neither option addresses a ~275–287px chart's title.
+- Side panel over the details panel: current 0px at every width; option 2 84, 36 and 4px at 720, 768
+  and 800 — at 720 it covers "Change dataset" (only "Cha" shows) and the right end of the Measure,
+  Boundary and Time dropdowns (`shot-opt2-720.png`). No build scrolls the page sideways at any width.
+- Option 1 is not the phone layout at 768–991. The explorer's Bootstrap `md` classes still switch at
+  720 (this line said 768, Bootstrap's default, which is wrong here: the site sets `md` 720px and `lg`
+  960px in `assets/scss/_a-global-variables.scss`, and the built CSS puts `.d-md-none` under
+  `min-width: 720px`, read 2026-10-31), so the tab buttons stand in a vertical column on the right
+  (tops 450–809px) instead of the phone's bottom bar (all at 836px at 700), and the details card shows
+  expanded, full width, above a full-width chart (`shot-opt1-768.png`, `shot-opt1-900.png` against
+  `shot-current-700.png`). Making that range the phone layout as well means moving those classes too;
+  that is option 1 extended, below.
+
+#### Option 1 extended (opt1x), measured 2026-10-31
+
+`[verified 2026-10-31: isolated prod_prod builds of 72adc26190, whose site code is identical to 3fbc44854f
+(git diff --stat over assets themes content config layouts static data: empty); current on :8092, opt1x on :8095,
+each port confirmed serving its own build (flex-lg-row on :8095 only); a308x.mjs = a308.mjs plus widths 959/960
+and three layout readings (visible tab tops, which Take Action toggle shows, the mobile details header);
+predictions written first in a308x-predictions.md; table in a308x-table.txt]`
+
+The variant (`a308_variant.py … opt1x`) moves the explorer from the site's `md` to its `lg` throughout, so it
+switches at 960, not 992: the utility classes have no 992 breakpoint. Seven explorer `min-width: 720px` blocks to
+960px and the `max-width: 719.98px` block to 959.98px; `trend.js`'s `< 720` to `< 960`; 23 `-md-` layout classes to
+`-lg-`: `de-tabs.html` 1, `de-tab-button.html` 8, `de-tab-content.html` 9, `de-indicator-info.html` 4, and
+`header-de.html`'s desktop Take Action, which pairs with `de-tab-button.html`'s mobile one. The header's padding
+and Learn More label, the choosers and `fs-md` stay. Built output confirmed: `min-width: 720px` 33 → 26 and
+`min-width: 960px` 17 → 24 in the theme CSS; the asthma page's `-md-` layout classes 27 → 4, `-lg-` 11 → 34.
+
+Controls: current at 768 reproduced the table above (190 / 1, 3, 1). The layout readings discriminate: current
+reads one tab top and the mobile Take Action at 700, five tops and the desktop one at 768.
+
+| Window | current: chart px / clipped (bar 2023, bar 2445, trend 2380) / layout | opt1x |
+|---:|---|---|
+| 700 | 666 / 0, 0, 0 / phone | same |
+| 720–959 | 172–263 / 1–3 per chart, titles / side panel | 686–925 / 0, 0, 0 / phone: tabs in one bottom row, mobile Take Action only, details collapsed |
+| 960, 991 | 263, 275 / 0, 1, 1 / side panel | same as current |
+| 992, 1024 | 275, 287 / 0, 1, 1 and 0, 1, 0 / side panel | same as current |
+| 1200 | 354 / 0, 0, 0 | same |
+
+So N-105's range under opt1x is 960–1024, not 992–1024. `shot-opt1x-768.png` and `shot-opt1x-900.png` show the
+phone layout; the one visible difference from 700 is the header's "Learn More" text, left at `md`. The probe's
+`overlap` field reads 636+ in every phone layout, current at 700 included: the bottom bar and the details card
+share their horizontal extent, stacked rather than side by side, so it is not an overlap there.
+
+### Task 0 findings
+
+`[verified 2026-10-30: HUGO_RESOURCEDIR=C:/temp/r3/res hugo --environment prod_prod -d C:/temp/r3/docs
+on a77f7d4991, served under /IndicatorPublic/ on :8091; Playwright, de-headlessed UA, GA aborted. Probes
+probe0.mjs, a162.mjs, a162b.mjs, a155*.mjs, a153.mjs, a154.mjs]`
+
+- **A-162 reproduces.** Over all metadata links `SecondaryAxis` is `y` 467, `x` 475, `null` 567. Axis
+  `y`: `birth-outcomes/?id=4&MeasureID=8&overlay=links` (secondary measure 777) writes `Value_1_Indicator`
+  "Elevated blood lead levels (under age 6) - Rate…" while `Value_1` is the primary's: first row GeoID 101,
+  TimePeriodID 49, `Value_1` 8.8 = measure 8's own UHF42 row (8.8; CD 5.8). Control, axis `x`
+  (`asthma/?id=18&MeasureID=31`): `Value_1_Indicator` names the primary. Cause in source: the default/`y`
+  branch of `correlate.js`'s axis switch sets `yIndicatorName` to the secondary, and the download labels
+  `Value_1_Indicator` with `yIndicatorName`; `data.js` joins the primary on the left (`_1`). The `null`
+  candidate (id 1) opened as `bubble-map`; all 567 `null` links name no secondary measure (Task 1), so none reaches the CSV.
+- **A-152 reproduces.** `asthma/?id=2380`: `#howCalculated` at load lists every measure ("Number: …");
+  after Trends it holds the trend text ("Age-adjusted rate: …"), and Bar and Table keep it.
+- **A-155 does not reproduce on today's data.** Indicator 2383's two raw notes ("* Estimate is based on
+  small numbers…", "< 4 Estimate…") both map to the same sentence, but they sit on different measures
+  (1206 and 1217, one row each at NTA2010 / 254), and no measure, measure×geo or measure×geo×time group
+  carries both. Positive control: `?id=2383&MeasureID=1206&TimePeriodID=254&overlay=bar` shows the
+  sentence once in `#bar-unreliability`. The mechanism is in the source at all three callers (each dedupes
+  raw notes, then `getDisplayNotes` maps without deduping), so it fires on any render carrying both
+  variants; none was found.
+- **A-153 reproduces on Back.** Indicator 22, `overlay=table`, Synced: a menu geo change keeps the table
+  following the map (control); Back over it leaves `selectedTableGeography` off the map's selection while
+  the summary still reads "Synced". The Measure-cascade arm did not run here (it ran in Task 4, on indicator 103): indicator 22's measure 41 offers
+  UHF42 in data but not in its geo menu at the default time, and 2380's three measures share geos and
+  times, so no cascade occurred on either.
+- **A-154 reproduces on an indicator switch.** `asthma/?id=2380&overlay=table`, Area search "Bronx": box,
+  state and column filter agree, 12 rows (control). After Change dataset → 2384 the box and
+  `tableAreaSearchValue` still read "Bronx", the column filter is `""` and 188 rows show. A measure change
+  keeps all three at "Bronx" (no mismatch).
+- **A-273 reproduces.** Choosing the selected "Age-adjusted rate": `history.length` 2 → 3, URL unchanged.
+  Control, "Number": 3 → 4 with `MeasureID=1197`.
+- **N-040 reproduces.** `overlay=bar`, Save Chart opens `#printModal`; Escape closes it and the Bar pane,
+  `overlay=none`, `history.length` 2 → 3. Control: Escape with no modal closes the pane (intended).
+- **N-041 reproduces.** Data Sources opens with `overlay=none`; Measure "Number" leaves no pane open. From
+  `overlay=trend`, Data Sources leaves the URL at `overlay=trend`. Control: Bar sets `overlay=bar`.
+- **N-042 reproduces.** `asthma/` chooser → 2414 (`history.length` 2 → 3); `history.back()` gives an
+  empty query, `DE.state.IndicatorID` 2414, Measure "Percent", no chooser, `.citation-url` the bare topic
+  page.
+- **N-045 reproduces.** `asthma/?id=99999` opens `#indicatorSelector` and throws `Cannot read properties
+  of undefined (reading 'array')`. Control `?id=2380`: no page error.
+- **N-046 reproduces.** With modals closed and Take Action open, `/data-explorer/` and
+  `/data-explorer/asthma/` show "Dynamic option" → `#`. Control `?id=2380`: "Asthma" →
+  portal.311.nyc.gov KA-02563.
+
+### Next commands
+
+State on 2026-11-01: `git rev-list --left-right --count origin/feature-audit-r3-explorer-behaviour...HEAD`
+→ `0 0` means nothing unpushed. No servers or worktree are left running; the builds below are rebuilt
+from scratch.
+
+```
+git log --oneline a77f7d4991..HEAD                       # this branch's commits
+python scripts/.sc-rebaseline/r3/recount.py documents/site-wide-audit-2026-10.md         # expect OPEN 11/51/131/2 = 195, FIXED 265
+python scripts/.sc-rebaseline/r3/check_batches.py documents/site-wide-audit-2026-10.md   # expect every batch OK, 62 ids
+```
+
+To look at A-308's options again (Git Bash, from the repo root; each build ~30 s, isolated, safe beside a dev server):
+
+```
+R=scripts/.sc-rebaseline/r3; HUGO=$PWD/node_modules/.bin/hugo
+git worktree add --detach C:/temp/r3wt HEAD
+python $R/a308_variant.py C:/temp/r3wt opt1          # prints "opt1 applied"; asserts 8 media blocks + trend.js
+(cd C:/temp/r3wt && HUGO_RESOURCEDIR=C:/temp/r3o1/res $HUGO --environment prod_prod -d C:/temp/r3o1/docs && git checkout -- .)
+python $R/a308_variant.py C:/temp/r3wt opt2
+(cd C:/temp/r3wt && HUGO_RESOURCEDIR=C:/temp/r3o2/res $HUGO --environment prod_prod -d C:/temp/r3o2/docs && git checkout -- .)
+HUGO_RESOURCEDIR=C:/temp/r3cur/res $HUGO --environment prod_prod -d C:/temp/r3cur/docs
+node $R/serve-prefix.mjs C:/temp/r3cur/docs 8092 &   node $R/serve-prefix.mjs C:/temp/r3o1/docs 8093 &   node $R/serve-prefix.mjs C:/temp/r3o2/docs 8094 &
+# open http://localhost:8093/IndicatorPublic/data-explorer/asthma/?id=2380&overlay=bar at 768px, etc.
+R3_BASE=http://localhost:8093/IndicatorPublic/ node $R/a308.mjs opt1     # the D1 table's numbers
+git worktree remove --force C:/temp/r3wt
+```
+
+D1 and D2 are decided and both fixes are written (Tasks 8 and 9). Rows 8 and 9 are committed (`5fb0981135`,
+`082cd56d40`), and N-105 (`4f29000c69`). Task 10 has been re-run and all 14 rows are closed (rows 10 and 11). Remaining: open the PR into `production`
+(`gh pr list --head feature-audit-r3-explorer-behaviour` shows whether one exists).

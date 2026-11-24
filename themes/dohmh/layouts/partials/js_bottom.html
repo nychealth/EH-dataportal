@@ -19,12 +19,19 @@
 ></script>
 
 <!-- Google Translate -->
+{{- /* The widget is told the language the page is written in (audit N-081). Hugo's zh
+       is Simplified Chinese, which the widget calls zh-CN: the footer's own button for it
+       already passes data-lang="zh-CN" to the widget's language select. */}}
+{{- $pageLanguage := "en" -}}
+{{- with . -}}
+    {{- $pageLanguage = cond (eq .Language.Lang "zh") "zh-CN" .Language.Lang -}}
+{{- end }}
 <script>
     function googleTranslateElementInit() {
 
         new google.translate.TranslateElement(
         {
-            pageLanguage: "en",
+            pageLanguage: "{{ $pageLanguage }}",
         },
         "google_translate_element"
         );

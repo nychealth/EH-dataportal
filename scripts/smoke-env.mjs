@@ -8,7 +8,7 @@
 // The smoke test itself needs no new flag: dev-server.mjs honours DE_BASE_URL
 // and probes Pagefind on whatever it is pointed at. So the whole job here is
 // starting the right server and pointing the harness at it — which is what
-// isolated-server.mjs does, and what characterize-env.mjs already does for the
+// isolated-server.mjs does, and what site-characterization-compare.mjs does for the
 // characterization harness. This is that module's second caller.
 //
 // WHY per-environment smoke is worth a script, given that a console error is
@@ -40,7 +40,7 @@
 // --env prod_prod` reaches the script as argv ["prod_prod"] — PowerShell eats
 // the `--` and npm eats the flag NAME, leaving its value as a nameless
 // positional. A bare positional survives both intact. Flags remain available by
-// calling smoke-pages.mjs directly. Same contract as characterize-env.mjs; the
+// calling smoke-pages.mjs directly. Same contract as the retired characterize-env.mjs; the
 // full measurement table is in documents/characterize-env-plan-2026-08-26.md.
 
 import { execFileSync, execSync } from "node:child_process";
@@ -100,7 +100,7 @@ async function main() {
     // enumerate the site; without it, it reads its curated PAGES list.
     const sweepArgs = mode === SAMPLE ? [] : ["--all"];
 
-    // Same guard characterize-env.mjs keeps, and it now guards against that
+    // Same guard site-characterization-compare.mjs keeps, and it guards against that
     // script too: :8090 is this port precisely because nothing else probes it,
     // so anything answering there is either a sibling run or a server a
     // previous run failed to reap.
@@ -127,8 +127,8 @@ async function main() {
         console.log("  building the Pagefind index");
         execSync(`npx -y pagefind --site "${destDir}"`, { cwd: REPO_ROOT, stdio: "ignore" });
 
-        // Driven as a child rather than imported, for the reason
-        // characterize-env.mjs gives: smoke-pages.mjs is a CLI that reads
+        // Driven as a child rather than imported, because
+        // smoke-pages.mjs is a CLI that reads
         // process.argv and sets process.exitCode. DE_BASE_URL takes
         // ensureDevServer's path 1, which trusts the URL, probes Pagefind on it
         // and returns a no-op stop — teardown stays this script's job.

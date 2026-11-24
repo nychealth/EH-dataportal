@@ -330,6 +330,11 @@ $comp-bad-text: #7a5c00;
 // $color-key-topics: #800080;
 $color-data-features: #800080;
 $color-data-stories: #D75047;
+
+/* $color-data-stories as *text* is 4.10:1 on white, under WCAG AA. This is the same red darkened
+   to 4.86:1, for text only; $color-data-stories stays the section colour for icons and fills,
+   which need 3:1 as graphics. The same split as $primary / $primary-dark. */
+$color-data-stories-text: #C8433A;
 $color-n-reports: #197BBD;
 $color-data-explorer: #0A408A;
 
@@ -352,7 +357,7 @@ $color-data-explorer: #0A408A;
 }
 
 .data-stories {
-    color: $color-data-stories;
+    color: $color-data-stories-text;
 
     svg path {
         fill: $color-data-stories;
@@ -656,8 +661,17 @@ $color-data-explorer: #0A408A;
     padding-top: 20px;
 }
 
-#toggleButton[aria-expanded="true"] {
+// Key-topic "Show More" stays visible once expanded and reads "Show less", so keyboard focus stays
+// on it and the list can be collapsed again. Bootstrap's collapse keeps aria-expanded in step.
+#toggleButton[aria-expanded="false"] .toggle-expanded,
+#toggleButton[aria-expanded="true"] .toggle-collapsed {
     display: none;
+}
+
+// The explorer's Measure / Boundary / Time labels sit on the card header's #DCF4E7, where
+// $primary is 3.91:1; $primary-dark is 4.74:1.
+.de-option-label {
+    color: $primary-dark;
 }
 
 
@@ -729,9 +743,159 @@ $color-data-explorer: #0A408A;
     padding: 6px 10px;
 }
 
-@media (min-width: 720px) {
+@media (min-width: 960px) {
     .de-nav-bar .nav-topic-selector {
         background-color: transparent;
+    }
+}
+
+// The explorer map's own controls under Leaflet's zoom buttons (map.js, addMapControls). They
+// are <button>s, which Leaflet's .leaflet-bar styles do not reach (it styles <a>), so this
+// copies the look of its touch-size zoom links: 30px square, white, hairline dividers.
+.de-map-tools {
+    // A column that does not stretch its children: the button bar keeps its 30px width
+    // instead of taking the slider box's.
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .leaflet-bar button {
+        display: block;
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        border: 0;
+        border-bottom: 1px solid #ccc;
+        background-color: #fff;
+        color: #000;
+        font-size: 14px;
+        line-height: 30px;
+        text-align: center;
+        cursor: pointer;
+
+        &:first-child {
+            border-top-left-radius: 2px;
+            border-top-right-radius: 2px;
+        }
+
+        &:last-child {
+            border-bottom: 0;
+            border-bottom-left-radius: 2px;
+            border-bottom-right-radius: 2px;
+        }
+
+        &:hover {
+            background-color: #f4f4f4;
+        }
+
+        &[aria-pressed="true"] {
+            background-color: #EFFAF4;
+            color: $primary-dark;
+        }
+
+        // Mouse focus only, as the site's range style does (__portal-custom.scss): a click
+        // otherwise leaves Bootstrap's focus ring on the button. Keyboard focus keeps it.
+        &:focus:not(:focus-visible) {
+            outline: none;
+        }
+    }
+
+    // The eye button with the opacity slider folding out to its right (map.js shows and hides
+    // the panel through the hidden attribute).
+    .de-map-opacity {
+        display: flex;
+        align-items: stretch;
+        margin-top: 10px;
+        background-color: #fff;
+
+        .de-map-fill-toggle {
+            flex: 0 0 auto;
+            border-bottom: 0;
+            border-radius: 2px;
+        }
+    }
+
+    // One row at the button's 30px height (Chris, 2026-11-13). The label is hidden visually but
+    // still names the slider.
+    .de-map-opacity-panel {
+        display: flex;
+        align-items: center;
+        height: 30px;
+        padding: 0 10px;
+        border-left: 1px solid #ccc;
+
+        &[hidden] {
+            display: none;
+        }
+
+        label {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+        }
+
+        // A slimmer copy of the site's range style (__portal-custom.scss: 25px track, 30px
+        // thumb), which cannot fit a 30px row. Same colours; the thumb is centred on the track
+        // by the negative margin, (track - thumb) / 2.
+        input[type=range] {
+            display: block;
+            width: 120px;
+            height: 30px;
+            margin: 0;
+        }
+
+        // The value beside the slider. A fixed width that holds "100%", with tabular
+        // digits, so the slider does not shift as the number changes length.
+        .de-map-opacity-value {
+            width: 2.9em;
+            margin-left: 8px;
+            font-size: 12px;
+            font-variant-numeric: tabular-nums;
+            text-align: right;
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            height: 6px;
+            border-radius: 3px;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            width: 16px;
+            height: 16px;
+            margin-top: -5px;
+            border-radius: 50%;
+        }
+
+        input[type=range]::-moz-range-track {
+            height: 6px;
+            border-radius: 3px;
+        }
+
+        input[type=range]::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+        }
+    }
+}
+
+// Data explorer load-failure card (showLoadError, app.js). Absolute inside the explorer's
+// position-relative row, so it covers the map and panes without moving them. 1001 clears
+// Leaflet's control corners (1000); the row's own z-index: 2 keeps it under site modals.
+.de-load-error-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+    width: 90%;
+    max-width: 360px;
+
+    &:empty {
+        display: none;
     }
 }
 
@@ -744,7 +908,7 @@ $color-data-explorer: #0A408A;
         padding: 5px 8px;
     }
 
-    @media (min-width: 720px) {
+    @media (min-width: 960px) {
         .indicator-selector-prompt {
             right: 14px;
             bottom: 14px;
@@ -754,15 +918,37 @@ $color-data-explorer: #0A408A;
         }
     }
 
+    // The Measure / Boundary / Time buttons (de-indicator-info.html). _d-enhancements.scss
+    // underlines every .btn on hover and focus, and these buttons are flex containers, so the
+    // chevron is a blockified flex item and gets the underline too; rotated open, it draws above
+    // the icon. Underline the label instead, as that file does for .btn.file-choose.
+    .btn[data-toggle="dropdown"] {
+        @include hover-focus {
+            text-decoration: none;
+
+            > span {
+                text-decoration: underline;
+            }
+        }
+    }
+
     .dropdown-menu-de {
         border: none;
         border-bottom: 4px solid #008939;
         padding: 10px;
         font-size: 14px;
 
+        // Quarterly measures list 100 time periods, a menu ~3800px tall that ran off the screen.
+        // Cap it and scroll inside; menu.js scrolls the selected item into view on open.
+        max-height: 50vh;
+        overflow-y: auto;
+
+        // Bootstrap's .dropdown-item is nowrap. On desktop the menu is the dropdown's width
+        // (de-indicator-info.html), narrower than the longest measure names, so they wrap instead.
         button {
             border-bottom: 1px solid #D8D8D8;
             padding: 8px 0;
+            white-space: normal;
         }
         button:hover {
             background-color: #ffffff;
@@ -779,7 +965,7 @@ $color-data-explorer: #0A408A;
         padding-top: 0px;
     }
 
-    @media (min-width: 720px) {
+    @media (min-width: 960px) {
         .de-accordion .card-body {
             padding-left: 122px;
         }
@@ -815,7 +1001,7 @@ $color-data-explorer: #0A408A;
     }
 
     /* Ensure mobile bottom nav sits above iOS Safari toolbar */
-    @media (max-width: 719.98px) {
+    @media (max-width: 959.98px) {
         .de-tabs {
             position: fixed !important;
             left: 0 !important;
@@ -826,12 +1012,6 @@ $color-data-explorer: #0A408A;
             max-width: none !important;
         }
 
-        /* Give the page content breathing room equal to nav height + safe-area */
-        .de-wrapper {
-            padding-bottom: calc(56px + env(safe-area-inset-bottom));
-            padding-bottom: calc(56px + constant(safe-area-inset-bottom)); /* iOS 11.0-11.2 fallback */
-        }
-
         .de-tabs-nav {
             /* Add extra padding for the home indicator area */
             padding-bottom: calc(8px + env(safe-area-inset-bottom));
@@ -840,16 +1020,11 @@ $color-data-explorer: #0A408A;
 
         .tab-content {
             max-height: 50vh;
-            overflow-y: scroll;
+            overflow-y: auto;
             overflow-x: auto;
             position: relative;
             z-index: 10;
             padding-top: 10px;
-        }
-
-        .closeTabPane {
-            position: absolute;
-            left: -32px;
         }
     }
 
@@ -859,6 +1034,14 @@ $color-data-explorer: #0A408A;
         z-index: 2;
         width: calc(100% - 4rem);
         // border: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    // The legend shares the card's z-index and comes later in the DOM, so it paints over a
+    // dropdown that opens down into it (#1581: a 900px-tall window hid 2011-2013 in a long Time
+    // menu). Lift the card only while a menu is open: on short windows the card and legend
+    // overlap at rest, and a permanent lift would hide the legend instead.
+    .de-main-details:has(.dropdown-menu.show) {
+        z-index: 3;
     }
 
     #v-pills-tabContent {
@@ -882,7 +1065,7 @@ $color-data-explorer: #0A408A;
         font-size: 18px;
     }
 
-    @media (min-width: 720px) {
+    @media (min-width: 960px) {
         .de-tabs {
             right: 2rem;
             left: auto;
@@ -898,6 +1081,14 @@ $color-data-explorer: #0A408A;
             left: 2rem;
             top: 2rem;
             width: 380px;
+        }
+
+        // The details card covers the map's top-left corner here, so its controls (map.js,
+        // addMapControls) move to just right of the card, top-aligned with it. Leaflet gives
+        // each control a 10px margin, which the top offset takes back.
+        .leaflet-top.leaflet-left {
+            left: calc(2rem + 380px);
+            top: calc(2rem - 10px);
         }
 
         // Let the panel shrink within the tab shell so DataTables scrolls horizontally
@@ -929,7 +1120,7 @@ $color-data-explorer: #0A408A;
         background-color: white;
     }
 
-    @media (min-width: 720px) {
+    @media (min-width: 960px) {
         .de-tabs-nav {
             height: calc(100vh - 8rem);
             overflow-y: visible;
@@ -1036,7 +1227,7 @@ $color-data-explorer: #0A408A;
         padding: 10px 5px;
     }
 
-    @media (min-width: 720px) {
+    @media (min-width: 960px) {
         .de-tabs-nav .nav-pills .nav-link,
         .de-tabs-nav .nav-tabs .nav-link {
             width: auto;
@@ -1066,7 +1257,7 @@ $color-data-explorer: #0A408A;
         color: white;
     }
 
-    @media (min-width: 720px) {
+    @media (min-width: 960px) {
         .w-md-40 {
             width: 40% !important;
         }
@@ -1424,4 +1615,190 @@ $color-data-explorer: #0A408A;
     font-size: 12px;
     color: #2a2d5f;
     line-height: 1.4;
+}
+
+// Cite popups (de-cite-popup.html). Bootstrap's dropdown-menu is sized for one-line items, and the
+// citation is a paragraph carrying a long unbroken URL.
+.de-citation-menu {
+    width: 22rem;
+    max-width: 90vw;
+    white-space: normal;
+
+    .citation-url {
+        word-break: break-all;
+    }
+}
+
+// Topic and dataset cards in the chooser modals (de-chooser-modal.html, and the dataset list
+// built in topic-indicator-selector.js). Top level, not under .de-wrapper: the modals render in
+// header-de.html, outside the explorer's <article>. The title carries .stretched-link, so the
+// whole card is the click target.
+.de-chooser-card {
+    position: relative;
+    border: 1px solid $gray-300;
+    border-radius: 6px;
+    padding: 8px 10px;
+    margin-bottom: 8px;
+    transition: background-color 0.15s, border-color 0.15s;
+
+    &:hover,
+    &:focus-within {
+        border-color: $hover;
+        background-color: #EFFAF4;
+
+        // The title turns $primary / $hover (#008939) on hover, 4.24:1 on #EFFAF4, under the
+        // 4.5:1 the 16px dataset titles need; $primary-dark clears it. !important to beat
+        // Bootstrap's .text-primary on the dataset button.
+        .stretched-link {
+            color: $primary-dark !important;
+        }
+    }
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+}
+
+// A <button> that looks like the site's links (theme.scss's `a` rule), for actions sitting beside
+// href links such as Save map. Bootstrap's .btn-link brings its own blue and a 1px border instead.
+.de-link-button {
+    background: none;
+    border: 0;
+    padding: 0;
+    color: $primary-dark;
+    cursor: pointer;
+    &:hover {
+        color: $hover;
+        // The colour shift alone (#007a31 -> #008939) is barely visible; links beside these underline.
+        text-decoration: underline;
+    }
+}
+
+// Save map and Cite in the details box take .btn-light-green-bg-outline's hover fill instead of an
+// underline. The padding is there at rest too, so the fill does not shift the strip on hover.
+.printMap .de-link-button {
+    padding: 0 0.25rem;
+    &:hover {
+        background-color: #008939;
+        color: white;
+        text-decoration: none;
+    }
+}
+
+// The question-mark icons that open the help modals (partials/de-help-modals.html). A real <button>
+// where the old explorer used a bare <i>, so they take focus; colour and purple hover match the old
+// explorer's .helper (data-explorer-old/single.html).
+.de-help-button {
+    background: none;
+    border: 0;
+    padding: 0;
+    line-height: 1;
+    color: $primary;
+    cursor: pointer;
+    &:hover {
+        color: purple;
+    }
+}
+
+// ----- Phone and tablet layout (Option C and T2, documents/de-mobile-layout-options-2026-11-05.md) ----- //
+// Below lg the explorer stops floating its pieces over the map and stacks them in DOM order
+// (card, map, legend, views; data-explorer/single.html), so the page is the only vertical
+// scroller. The tab bar stays fixed to the bottom of the screen, and the page is padded by its
+// height so nothing ends under it. !important is needed against Bootstrap's .position-absolute
+// utility and the max-width: 959.98px rules above, which carry their own. The map's opening view
+// at these widths is fitted to the city in initBaseMap (map.js), whose breakpoint matches this one.
+@media (max-width: 959.98px) {
+    // Always show the page's scrollbar. Where scrollbars take width (a narrow desktop window), the
+    // page grows past the screen during load, the scrollbar appears after the map has been fitted,
+    // and Leaflet re-centres the narrower map, moving the city about 7px. On body, not html: body's
+    // overflow-x: hidden is what the viewport takes its scrollbars from. Not scrollbar-gutter, which
+    // stacks with the padding Bootstrap's modals add for the scrollbar they hide. Not while a modal
+    // is open: .modal-open hides the scrollbar and pads by its width, which this would outrank.
+    // With overlay scrollbars, which take no width, this is a no-op.
+    body:not(.modal-open):has(.de-wrapper) {
+        overflow-y: scroll;
+    }
+
+    .de-wrapper {
+        padding-bottom: calc(64px + env(safe-area-inset-bottom));
+
+        // The shell's .row (data-explorer/single.html) as block layout: as a wrapping flex row it
+        // put the legend on a flex line of its own, so the negative margin below moved the legend
+        // and left the view behind it, and stretched the legend to the margin's height.
+        > section > .row {
+            display: block;
+        }
+
+        .de-main-details {
+            position: static !important;
+            width: 100% !important;
+            max-width: none !important; // the 720-959px floating layout caps these
+        }
+
+        // Relative rather than static so they can sit above the map (z-index 1) when they overlap it.
+        // Relative also applies the floating layout's offsets (the legend's bottom: 9rem, the tabs'
+        // !important left/right/bottom), so those are reset.
+        .de-legend,
+        .de-tabs {
+            position: relative !important;
+            top: auto !important;
+            right: auto !important;
+            bottom: auto !important;
+            left: auto !important;
+            z-index: 2;
+            width: 100% !important;
+            max-width: none !important;
+        }
+
+        // The map stays pinned while the page scrolls, so an open view slides up over it rather than
+        // pushing it away. Its height fills the screen down to the legend and tab bar, and is set by
+        // layoutStackedMap (map.js) because the card above it varies in height; 55svh is the
+        // fallback until that runs.
+        #map {
+            position: sticky;
+            top: 0;
+            height: var(--de-map-height, 55svh);
+        }
+
+        // With a view open, the legend and view are pulled up over the bottom of the map by
+        // --de-sheet-overlap; layoutStackedMap fits the city into the part left showing.
+        &.de-sheet-open .de-legend {
+            margin-top: calc(-1 * var(--de-sheet-overlap, 0px));
+        }
+
+        .tab-content {
+            max-height: none;
+            overflow: visible;
+        }
+
+        .de-tabs-nav {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1010; // above Leaflet's controls (1000)
+        }
+    }
+}
+
+// Hint shown on hover or keyboard focus over a data explorer button that opens a modal
+// (hover-hints.js). Created by script on first use and positioned in page coordinates, so it
+// sits on <body> outside every explorer container. Pointer events stay on so the pointer can
+// move onto the hint without it vanishing (WCAG 1.4.13). z-index sits above the explorer's
+// tab panes and legend but below Bootstrap's modal backdrop (1040), since a modal hides it.
+.de-hover-hint {
+    position: absolute;
+    z-index: 1030;
+    max-width: 16rem;
+    padding: 0.4rem 0.6rem;
+    border-radius: 0.25rem;
+    background-color: #1f2328;
+    color: white;
+    font-size: 0.8125rem;
+    line-height: 1.35;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+
+    &[hidden] {
+        display: none;
+    }
 }
